@@ -1,0 +1,31 @@
+{
+   "name": "laxar",
+   "version": "0.0.0",
+   "description": "Building large applications is hard, so don't do that!",
+   "authors": [],
+   "license": "MIT",
+   "main": "dist/laxar.js",
+   "ignore": [
+      ".*",
+      "Gruntfile.js",
+      "node_modules",
+      "bower_components",
+      "docs"
+   ],
+   "dependencies": {
+      "angular": "angular/bower-angular#1.2.x",
+      "angular-mocks": "angular/bower-angular-mocks#1.2.x",
+      "angular-sanitize": "angular/bower-angular-sanitize#1.2.x",
+      "angular-route": "angular/bower-angular-route#1.2.x",
+      "jquery": "jquery/jquery#1.11.x",
+      "modernizr": "Modernizr/Modernizr#2.7.x",
+      "q_mock": "LaxarJS/q_mock#*",
+      "underscore": "jashkenas/underscore#1.5.x",
+      "requirejs": "jrburke/requirejs#2.1.x",
+      "requirejs-plugins": "millermedeiros/requirejs-plugins#1.0.x"
+   },
+   "devDependencies": {
+      "es5-shim": "es-shims/es5-shim#2.3.x",
+      "jasmine": "pivotal/jasmine#1.3.x"
+   }
+}

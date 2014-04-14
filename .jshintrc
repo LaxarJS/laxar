@@ -1,0 +1,29 @@
+{
+   "bitwise":true,
+   "curly": true,
+   "eqeqeq": true,
+   "forin": true,
+   "noarg": true,
+   "noempty": true,
+   "nonew": true,
+   "undef": true,
+   "strict": true,
+   "quotmark": "single",
+   "eqnull": true,
+   "browser": true,
+   "globals": {
+      "require": false,
+      "define": false,
+      "afterEach": false,
+      "assert": false,
+      "beforeEach": false,
+      "describe": false,
+      "expect": false,
+      "it": false,
+      "inject": false,
+      "jasmine": false,
+      "waitsFor": false,
+      "runs": false,
+      "spyOn": false
+   }
+}

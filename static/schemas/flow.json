@@ -1,0 +1,50 @@
+{
+   "type": "object",
+   "required": true,
+   "properties": {
+
+      "places": {
+         "type": "object",
+         "description": "The places for this flow",
+         "required": true,
+         "patternProperties": {
+            "[a-z][a-zA-Z0-9_]*": {
+               "type": "object",
+               "properties": {
+
+                  "redirectTo": {
+                     "type": "string"
+                  },
+                  "page": {
+                     "type": "string"
+                  },
+                  "targets": {
+                     "type": "object",
+                     "patternProperties": {
+                        "[a-z][a-zA-Z0-9_]*": {
+                           "type": "string"
+                        }
+                     }
+                  },
+                  "entryPoints": {
+                     "type": "object",
+                     "patternProperties": {
+                        "[a-z][a-zA-Z0-9_]*": {
+                           "type": "string"
+                        }
+                     }
+                  },
+                  "triggerBrowserReload": {
+                     "type": "boolean",
+                     "default": false
+                  }
+
+               },
+               "additionalProperties": false
+            }
+         }
+      }
+
+   },
+   "additionalProperties": false
+}

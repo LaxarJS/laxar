@@ -1,0 +1,52 @@
+{
+   "type": "object",
+   "properties": {
+
+      "layout": {
+         "type": "string"
+      },
+
+      "extends": {
+         "type": "string"
+      },
+
+      "areas": {
+         "type": "object",
+         "patternProperties": {
+            "^[a-z][\\.a-zA-Z0-9_]*$": {
+               "type": "array",
+               "items": {
+                  "type": "object",
+                  "properties": {
+
+                     "widget": {
+                        "type": "string"
+                     },
+                     "mixin": {
+                        "type": "string"
+                     },
+                     "composition": {
+                        "type": "string"
+                     },
+                     "id": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-zA-Z0-9_]*$"
+                     },
+                     "insertBeforeId": {
+                        "type": "string"
+                     },
+                     "features": {
+                        "type": "object"
+                     }
+
+                  },
+                  "additionalProperties": false
+               }
+            }
+         },
+         "additionalProperties": false
+      }
+
+   },
+   "additionalProperties": false
+}
