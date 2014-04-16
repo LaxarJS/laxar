@@ -1,10 +1,9 @@
 {
    "name": "laxar",
-   "version": "0.0.0",
+   "version": "0.9.0-pre",
    "description": "Building large applications is hard, so don't do that!",
    "authors": [],
    "license": "MIT",
-   "main": "dist/laxar.js",
    "ignore": [
       ".*",
       "Gruntfile.js",
