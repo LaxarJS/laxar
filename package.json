@@ -21,11 +21,12 @@
       "grunt-bower-requirejs": "~0.8.4",
       "grunt-contrib-requirejs": "~0.4.1",
       "grunt-contrib-jasmine": "~0.6.1",
+      "grunt-laxar": "git+ssh://git/git/mirror/github.com/LaxarJS/grunt-laxar.git#master",
       "grunt-markdown": "~0.5.0",
       "grunt-karma": "~0.8.2",
 
       "karma": "~0.12.1",
-      "karma-laxar": "git+ssh://git/git/incubator/2014/oss/karma-laxar.git#master",
+      "karma-laxar": "git+ssh://git/git/mirror/github.com/LaxarJS/karma-laxar.git#master",
       "karma-junit-reporter": "~0.2.1",
       "karma-phantomjs-launcher": "~0.1.2"
    }

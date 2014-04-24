@@ -70,6 +70,23 @@ module.exports = function (grunt) {
          text: karma('text'),
          utilities: karma('utilities')
       },
+      laxar_dox: {
+         laxar: {
+            files: [ {
+               expand: true,
+               src: [
+                  'laxar.js',
+                  'lib/event_bus/*.js',
+                  'lib/i18n/*.js',
+                  'lib/logging/*.js',
+                  'lib/utilities/*.js',
+                  'lib/testing/*.js'
+               ],
+               dest: 'docs/api/',
+               ext: '.md'
+            } ]
+         }
+      },
       markdown: {
          docs: {
             files: [ {
@@ -115,6 +132,7 @@ module.exports = function (grunt) {
    grunt.loadNpmTasks('grunt-contrib-requirejs');
    grunt.loadNpmTasks('grunt-contrib-watch');
    grunt.loadNpmTasks('grunt-bower-requirejs');
+   grunt.loadNpmTasks('grunt-laxar');
    grunt.loadNpmTasks('grunt-karma');
    grunt.loadNpmTasks('grunt-markdown');
 
