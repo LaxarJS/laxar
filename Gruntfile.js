@@ -79,8 +79,8 @@ module.exports = function (grunt) {
                   'lib/event_bus/*.js',
                   'lib/i18n/*.js',
                   'lib/logging/*.js',
-                  'lib/text/*.js',
-                  'lib/utilities/*.js'
+                  'lib/utilities/*.js',
+                  'lib/testing/*.js'
                ],
                dest: 'docs/api/',
                ext: '.md'
