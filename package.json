@@ -1,6 +1,6 @@
 {
    "name": "laxar",
-   "version": "0.0.0",
+   "version": "0.10.0-pre",
    "description": "Building large applications is hard, so don't do that!",
    "authors": [],
    "license": "MIT",
@@ -21,12 +21,12 @@
       "grunt-bower-requirejs": "~0.8.4",
       "grunt-contrib-requirejs": "~0.4.1",
       "grunt-contrib-jasmine": "~0.6.1",
-      "grunt-laxar": "git+ssh://git/git/mirror/github.com/LaxarJS/grunt-laxar.git#master",
+      "grunt-laxar": "LaxarJS/grunt-laxar",
       "grunt-markdown": "~0.5.0",
       "grunt-karma": "~0.8.2",
 
       "karma": "~0.12.1",
-      "karma-laxar": "git+ssh://git/git/mirror/github.com/LaxarJS/karma-laxar.git#master",
+      "karma-laxar": "LaxarJS/karma-laxar",
       "karma-junit-reporter": "~0.2.1",
       "karma-phantomjs-launcher": "~0.1.2"
    }
