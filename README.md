@@ -23,7 +23,7 @@ grunt-init laxar-application
 npm install
 npm start
 ```
-Visit your empty application at http://localhost:8000/debug.html
+Visit your empty application at [http://localhost:8000/debug.html](http://localhost:8000/debug.html)
 Press Ctrl-c to stop the server for now.
 
 
@@ -57,7 +57,7 @@ echo '{
 ' > application/pages/page1.json
 npm start
 ```
-See your widget in action at http://localhost:8000/debug.html
+See your widget in action at [http://localhost:8000/debug.html](http://localhost:8000/debug.html)
 
 
 ### Create a Compressed Release-Ready Version of Your Application
@@ -66,7 +66,7 @@ First, stop the development server using Ctrl-c.
 grunt dist
 npm start
 ```
-Now your compressed application can be visited at http://localhost:8000/ or deployed from the zip file that was just generated for you.
+Now your compressed application can be visited at [http://localhost:8000/](http://localhost:8000/) or deployed from the zip file that was just generated for you.
 
 #### Next Steps
 Have fun developing your first LaxarJS application.
