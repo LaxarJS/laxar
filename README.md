@@ -11,6 +11,7 @@ This is a very minimal getting started guide. It helps you to set up your first 
 npm install -g grunt-cli grunt-init
 git clone https://github.com/LaxarJS/grunt-init-laxar-application.git ~/.grunt-init/laxar-application
 git clone https://github.com/LaxarJS/grunt-init-laxar-widget.git ~/.grunt-init/laxar-widget
+git clone https://github.com/LaxarJS/grunt-init-laxar-widget.git ~/.grunt-init/laxar-activity
 ```
 
 ### Create a LaxarJS Application from Our Template
@@ -18,7 +19,7 @@ git clone https://github.com/LaxarJS/grunt-init-laxar-widget.git ~/.grunt-init/l
 ```sh
 mkdir tryout
 cd tryout
-grunt-init https://github.com/LaxarJS/laxar-application
+grunt-init laxar-application
 npm install
 npm start
 ```
@@ -32,8 +33,9 @@ Create a widget which just displays _Hello, world!_
 ```sh
 mkdir -p includes/widgets/tryout/my_first_widget
 cd includes/widgets/tryout/my_first_widget
+grunt-init laxar-widget
 add some widget-HTML:
-echo "<h1>Hello, world!</h1>" > default.theme/my_first_widget.html
+echo '<h1>Hello, world!</h1>' > default.theme/my_first_widget.html
 ```
 
 Reference the widget from your page:
