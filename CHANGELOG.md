@@ -1,6 +1,7 @@
 # Changelog
 
 ## Last Changes
+- [#8](https://github.com/LaxarJS/laxar/issues/8): Fixed the cleanup mechanism for generated widget areas.
 
 ## v0.9.7
 - [#7](https://github.com/LaxarJS/laxar/issues/7): Fixed version information in changelog on release-0.9.x branch.
