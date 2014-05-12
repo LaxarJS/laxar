@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#12](https://github.com/LaxarJS/laxar/issues/12): Testing: Get the LaxarJS tests running in Karma again.
 - [#10](https://github.com/LaxarJS/laxar/issues/10): Testing: Loading controls during tests now works in Karma.
 
 ## v0.9.9
