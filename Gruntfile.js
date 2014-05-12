@@ -31,6 +31,8 @@ module.exports = function (grunt) {
          },
          junitReporter: {
             outputFile: 'lib/' + lib + '/junit.xml'
+         },
+         proxies: {
          }
       };
 
