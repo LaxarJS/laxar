@@ -1,6 +1,7 @@
 # Changelog
 
 ## Last Changes
+- [#11](https://github.com/LaxarJS/laxar/issues/11): Testing: Handle `spec_runner.js` that are not in a subdirectory of the RequireJS' `baseUrl`.
 - [#13](https://github.com/LaxarJS/laxar/issues/13): The current place is now send as part of the didNavigate event.
 
 ## v0.9.10
