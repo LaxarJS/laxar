@@ -1,6 +1,8 @@
 # Changelog
 
 ## Last Changes
+
+## v0.9.11
 - [#14](https://github.com/LaxarJS/laxar/issues/14): Fixed navigation being broken after successive navigation to the current location.
 - [#11](https://github.com/LaxarJS/laxar/issues/11): Testing: Handle `spec_runner.js` that are not in a subdirectory of the RequireJS' `baseUrl`.
 - [#13](https://github.com/LaxarJS/laxar/issues/13): The current place is now send as part of the didNavigate event.
