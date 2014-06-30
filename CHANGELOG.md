@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#20](https://github.com/LaxarJS/laxar/issues/20): Fixed event bus inspectors not being notified on unsubscription.
 - [#14](https://github.com/LaxarJS/laxar/issues/14): Fixed navigation being broken after successive navigation to the current location.
 - [#13](https://github.com/LaxarJS/laxar/issues/13): The current place is now send as part of the didNavigate event.
 - [#12](https://github.com/LaxarJS/laxar/issues/12): Testing: Get the LaxarJS tests running in Karma again.
