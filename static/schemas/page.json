@@ -37,6 +37,10 @@
                      },
                      "features": {
                         "type": "object"
+                     },
+                     "enabled": {
+                        "type": "boolean",
+                        "default": true
                      }
 
                   },

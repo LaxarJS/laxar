@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#24](https://github.com/LaxarJS/laxar/issues/24): Widgets and compositions can now be disabled in pages.
+  NEW FEATURE: see ticket for details
 - [#23](https://github.com/LaxarJS/laxar/issues/23): FileResourceProvider: Slashes are now correctly handled when checking a file for existence in a listing.
 - [#21](https://github.com/LaxarJS/laxar/issues/21): The file resource provider now normalizes its root path.
 - [#20](https://github.com/LaxarJS/laxar/issues/20): Fixed event bus inspectors not being notified on unsubscription.
