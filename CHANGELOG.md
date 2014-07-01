@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#23](https://github.com/LaxarJS/laxar/issues/23): FileResourceProvider: Slashes are now correctly handled when checking a file for existence in a listing.
 - [#21](https://github.com/LaxarJS/laxar/issues/21): The file resource provider now normalizes its root path.
 - [#20](https://github.com/LaxarJS/laxar/issues/20): Fixed event bus inspectors not being notified on unsubscription.
 - [#14](https://github.com/LaxarJS/laxar/issues/14): Fixed navigation being broken after successive navigation to the current location.
