@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#17](https://github.com/LaxarJS/laxar/issues/17): Testing: The testBed.setup method can now simulate default-events
+  NEW FEATURE: see ticket for details
 - [#26](https://github.com/LaxarJS/laxar/issues/26): Testing: Fixed the responseTransform option for http-mock
 - [#22](https://github.com/LaxarJS/laxar/issues/22): FileResourceProvider: allow to embed files into listings
   NEW FEATURE: see ticket for details
