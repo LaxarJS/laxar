@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#30](https://github.com/LaxarJS/laxar/issues/30): PageLoader: added missing check for duplicate composition ids.
+
 ## v0.10.0
 
 - [#27](https://github.com/LaxarJS/laxar/issues/27): Portal: Enhanced the portal event bus performance by not requiring a digest/render-cycle on each tick
