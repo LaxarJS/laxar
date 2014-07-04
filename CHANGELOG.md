@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#30](https://github.com/LaxarJS/laxar/issues/30): PageLoader: added missing check for duplicate composition ids.
 - [#28](https://github.com/LaxarJS/laxar/issues/28): Fixed null values in widget features within compositions being turned into empty objects.
 - [#29](https://github.com/LaxarJS/laxar/issues/29): PageLoader: composition features that are not configured do not result in undefined values for widget features.
 - [#25](https://github.com/LaxarJS/laxar/issues/25): Only the page relevant for the current place is loaded now.
