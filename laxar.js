@@ -62,7 +62,8 @@ define( [
     *    all AngularJS modules that should instantly be loaded (most probably the widgets)
     */
    laxar.bootstrap = function( widgetModules ) {
-      var logThreshold = configuration.get( 'logThreshold' );
+      // DEPRECATED: 'logThreshold' should be removed in the next major version
+      var logThreshold = configuration.get( 'logging.threshold' ) || configuration.get( 'logThreshold' );
       if( logThreshold ) {
          log.setLogThreshold( logThreshold );
       }
