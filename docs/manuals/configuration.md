@@ -100,7 +100,7 @@ In cases where configuration is injected, an `angularMocks.module` provider may 
 ## Available Configuration Keys in _LaxarJS Core_
 
 The following configuration options are available in _LaxarJS Core_.
-For options available in _LaxarJS UiKit_, have a look at the (respective documentation)[https://github.com/LaxarJS/laxar/blob/master/docs/manuals/configuration.md].
+For options available in _LaxarJS UiKit_, have a look at the (respective documentation)[https://github.com/LaxarJS/laxar_uikit/blob/master/docs/manuals/configuration.md].
 
 | Key                                  | Default               | Description
 | :----------------------------------- | :-------------------- | :------------------------------------------------------------------
