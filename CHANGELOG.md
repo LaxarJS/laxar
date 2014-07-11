@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+## v0.10.1
+
 - [#30](https://github.com/LaxarJS/laxar/issues/30): PageLoader: added missing check for duplicate composition ids.
 
 ## v0.10.0
