@@ -34,6 +34,9 @@
                         }
                      }
                   },
+                  "exitFunction": {
+                     "type": "string"
+                  },
                   "triggerBrowserReload": {
                      "type": "boolean",
                      "default": false

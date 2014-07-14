@@ -17,6 +17,8 @@
       "angular-mocks": "angular/bower-angular-mocks#1.2.x",
       "angular-sanitize": "angular/bower-angular-sanitize#1.2.x",
       "angular-route": "angular/bower-angular-route#1.2.x",
+      "jjv": "acornejo/jjv#1.0.x",
+      "jjve": "alex3683/jjve#0.2.1-plus-5-commits",
       "jquery": "jquery/jquery#1.11.x",
       "modernizr": "Modernizr/Modernizr#2.7.x",
       "q_mock": "LaxarJS/q_mock#0.1.x",
