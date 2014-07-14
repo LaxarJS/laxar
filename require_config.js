@@ -58,6 +58,8 @@ var require = {
       text: 'bower_components/requirejs-plugins/lib/text',
       requirejs: 'bower_components/requirejs/require',
       q_mock: 'bower_components/q_mock/q',
+      jjv: 'bower_components/jjv/lib/jjv',
+      jjve: 'bower_components/jjve/jjve',
       json: 'bower_components/requirejs-plugins/src/json',
       jquery: 'bower_components/jquery/dist/jquery',
       'angular-mocks': 'bower_components/angular-mocks/angular-mocks',
