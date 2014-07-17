@@ -23,3 +23,20 @@ references and resolves `..` references (unless there are no preceding directori
 
 ### Returns
 - **{String}**: the normalized path
+
+
+## relative( from, path )
+Compute a relative path. Takes two absolute paths and returns a normalized path, relative to
+the first path.
+Note that if both paths are URLs they are threated as if they were on the same host. I.e. this function
+does not complain when called with `http://localhost/path` and `http://example.com/another/path`.
+
+### Parameters
+- **from {String}**: the starting point from which to determine the relative path
+
+
+- **path {String}**: the target path
+
+
+### Returns
+- **{String}**: the relative path from `from` to `to`

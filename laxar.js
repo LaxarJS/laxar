@@ -34,21 +34,6 @@ define( [
 ) {
    'use strict';
 
-   var laxar = {
-      log: log,
-      configuration: configuration,
-      directives: directives,
-      text: text,
-      i18n: i18n,
-      assert: assert,
-      array: array,
-      object: object,
-      storage: storage,
-      string: string
-   };
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
    /**
     * Bootstraps AngularJS on the current `window.document` and sets up the LaxarJS portal. All AngularJS
     * module names of widgets that are passed to this method will be passed to `angular.bootstrap` as initial
@@ -58,10 +43,12 @@ define( [
     * return the names of their respective AngularJS modules. This list of module names can simply be passed
     * to the `boostrap` method.
     *
+    * @memberOf laxar
+    *
     * @param {String[]} widgetModules
     *    all AngularJS modules that should instantly be loaded (most probably the widgets)
     */
-   laxar.bootstrap = function( widgetModules ) {
+   function bootstrap( widgetModules ) {
       // DEPRECATED: 'logThreshold' should be removed in the next major version
       var logThreshold = configuration.get( 'logging.threshold' ) || configuration.get( 'logThreshold' );
       if( logThreshold ) {
@@ -78,10 +65,22 @@ define( [
       ng.element( document ).ready( function bootstrap() {
          ng.bootstrap( document, dependencies );
       } );
-   };
+   }
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   return laxar;
-   
+   return {
+      bootstrap: bootstrap,
+      log: log,
+      configuration: configuration,
+      directives: directives,
+      text: text,
+      i18n: i18n,
+      assert: assert,
+      array: array,
+      object: object,
+      storage: storage,
+      string: string
+   };
+
 } );

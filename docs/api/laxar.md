@@ -1,6 +1,6 @@
 # Documentation
 
-## function Object() { [native code] }#bootstrap( widgetModules )
+## bootstrap( widgetModules )
 Bootstraps AngularJS on the current `window.document` and sets up the LaxarJS portal. All AngularJS
 module names of widgets that are passed to this method will be passed to `angular.bootstrap` as initial
 dependencies, along with internal laxar modules. This is needed because AngularJS currently doesn't
