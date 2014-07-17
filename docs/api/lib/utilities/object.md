@@ -17,11 +17,24 @@ later in the arguments list overwrite existing in the target and earlier source 
 
 ## options( options, defaults )
 Returns all properties from `options` with missing properties completed from `defaults`. If `options`
-is `null´ or ´undefined´, an empty object is automatically created. `options` and `defaults` are not
+is `null` or `undefined`, an empty object is automatically created. `options` and `defaults` are not
 modified.
 
+Example:
+```javascript
+object.options( { validate: true }, {
+   validate: false,
+   highlight: true
+} );
+// =>
+// {
+//    validate: true,
+//    highlight: true
+// }
+```
+
 ### Parameters
-- **options {Object}**: the options object to use as source
+- **options {Object}**: the options object to use as source, may be `null` or `undefined`
 
 - **defaults {Object}**: the defaults to take missing properties from
 
@@ -32,9 +45,17 @@ modified.
 
 ## map( object, mappingFunction )
 Applies a given function to each entry in the object and returns a new objects reflecting the changes
-made by the mapping function. On each iteration the mapping function is passed the ´value´, the ´key´
-and the complete ´object´ as arguments. It then must return an array where the first item is the new
+made by the mapping function. On each iteration the mapping function is passed the `value`, the `key`
+and the complete `object` as arguments. It then must return an array where the first item is the new
 key and the second item the new value for the resulting object.
+
+Example:
+```javascript
+object.map( { x: 1, y: 2 } , function( value, key ) {
+   return [ key, value + 1 ];
+} );
+// => { x: 2, y: 3 }
+```
 
 ### Parameters
 - **object {Object}**: the object to run the mapping function on
@@ -48,7 +69,7 @@ key and the second item the new value for the resulting object.
 
 ## forEach( object, iteratorFunction )
 Iterates over the keys of an object and calls the given iterator function for each entry. On each
-iteration the iterator function is passed the ´value´, the ´key´ and the complete ´object´ as
+iteration the iterator function is passed the `value`, the `key` and the complete `object` as
 arguments. If `object` is an array, the native `Array.prototype.forEach` function is called and hence
 the keys are the numeric indices of the array.
 
@@ -117,7 +138,3 @@ browser this method simply returns its first value, i.e. is an identity operatio
 
 ### Returns
 - **{Object}**: the input (possibly) frozen
-
-
-## fillArrayWithNull()
-@private
