@@ -1,7 +1,9 @@
 # Changelog
 
 ## Last Changes
-- [#40](https://github.com/LaxarJS/laxar/issues/39): portal: fixed 'flag-topic' pattern.
+
+## v0.11.1
+- [#40](https://github.com/LaxarJS/laxar/issues/40): portal: fixed 'flag-topic' pattern.
 
 ## v0.11.0
 - [#39](https://github.com/LaxarJS/laxar/issues/39): portal: added JSON-schema formats 'topic', 'sub-topic' and 'flag-topic' to widget loader.
