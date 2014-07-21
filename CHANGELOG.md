@@ -1,6 +1,8 @@
 # Changelog
 
 ## Last Changes
+
+## v0.11.0
 - [#39](https://github.com/LaxarJS/laxar/issues/39): portal: added JSON-schema formats 'topic', 'sub-topic' and 'flag-topic' to widget loader.
   NEW FEATURE: see ticket for details
 - [#37](https://github.com/LaxarJS/laxar/issues/37): improved browsing of existing api doc and fixed some syntactical errors.
