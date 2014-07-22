@@ -1,6 +1,7 @@
 # Changelog
 
 ## Last Changes
+- [#42](https://github.com/LaxarJS/laxar/issues/42): portal: added 'language-tag', 'topic-map' and 'localization' formats.
 - [#40](https://github.com/LaxarJS/laxar/issues/40): portal: fixed 'flag-topic' pattern.
 
 ## v0.11.0
