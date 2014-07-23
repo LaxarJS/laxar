@@ -1,6 +1,7 @@
 # Changelog
 
 ## Last Changes
+- [#45](https://github.com/LaxarJS/laxar/issues/45): i18n: adjusted localizer.format specs to changes from [#43](https://github.com/LaxarJS/laxar/issues/43).
 - [#43](https://github.com/LaxarJS/laxar/issues/43): string: added new function `string.format` as simpler replacement for `text` library.
   NEW FEATURE: see ticket for details
 - [#42](https://github.com/LaxarJS/laxar/issues/42): portal: added 'language-tag', 'topic-map' and 'localization' formats.
