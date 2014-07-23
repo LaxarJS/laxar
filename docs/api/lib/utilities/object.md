@@ -1,8 +1,8 @@
 # Documentation
 
 ## extend( target, sources )
-Copies the properties from a set of source object over to the target object. Properties of sources
-later in the arguments list overwrite existing in the target and earlier source objects.
+Copies the properties from a set of source objects over to the target object. Properties of sources
+later in the arguments list overwrite existing properties in the target and earlier source objects.
 
 ### Parameters
 - **target {Object}**: the target object to modify
