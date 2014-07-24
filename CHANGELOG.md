@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#46](https://github.com/LaxarJS/laxar/issues/46): fixed misinterpretation of falsy required attribute in json schema converter.
+
 ## v0.11.1
 - [#40](https://github.com/LaxarJS/laxar/issues/40): portal: fixed 'flag-topic' pattern.
 
