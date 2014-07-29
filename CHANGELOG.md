@@ -1,7 +1,7 @@
 # Changelog
 
 ## Last Changes
-
+- [#51](https://github.com/LaxarJS/laxar/issues/51): Remove some obsolete NPM `devDependencies`.
 - [#46](https://github.com/LaxarJS/laxar/issues/46): fixed misinterpretation of falsy required attribute in json schema converter.
 
 ## v0.11.1
