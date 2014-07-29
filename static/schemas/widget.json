@@ -35,6 +35,15 @@
          "type": "object",
          "description": "A JSON schema for the widget feature configuration",
          "default": {}
+      },
+
+      "compatibility": {
+         "type": "array",
+         "default": [],
+         "items": {
+            "type": "string",
+            "enum": [ "json-patch" ]
+         }
       }
 
    },
