@@ -135,7 +135,6 @@ module.exports = function (grunt) {
    grunt.loadNpmTasks('grunt-contrib-watch');
    grunt.loadNpmTasks('grunt-bower-requirejs');
    grunt.loadNpmTasks('grunt-laxar');
-   grunt.loadNpmTasks('grunt-karma');
    grunt.loadNpmTasks('grunt-markdown');
 
    grunt.registerTask('build', []);
