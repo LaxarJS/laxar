@@ -1,6 +1,7 @@
 # Changelog
 
 ## Last Changes
+- [#51](https://github.com/LaxarJS/laxar/issues/51): Remove some obsolete NPM `devDependencies`.
 - [#47](https://github.com/LaxarJS/laxar/issues/47): (#47) Do not schedule another full event-bus tick while one is already being processed.
 - [#46](https://github.com/LaxarJS/laxar/issues/46): fixed misinterpretation of falsy required attribute in json schema converter.
 - [#45](https://github.com/LaxarJS/laxar/issues/45): i18n: adjusted localizer.format specs to changes from [#43](https://github.com/LaxarJS/laxar/issues/43).
