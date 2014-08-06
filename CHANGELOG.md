@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#54](https://github.com/LaxarJS/laxar/issues/54): testing: fixed broken testBed injection of $q and $timeout
 - [#50](https://github.com/LaxarJS/laxar/issues/50): performance: decoupled instantiation of widget controllers from their DOM
 
 
