@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+## v0.12.1
+
 - [#55](https://github.com/LaxarJS/laxar/issues/55): run_spec: disable loading the `widget.json` if the `spec_runner.js` contains `widgetJson: false`
 
 
