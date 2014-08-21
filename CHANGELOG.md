@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#57](https://github.com/LaxarJS/laxar/issues/57): portal: fixed double-navigation problem which can lead to skipping places
 - [#56](https://github.com/LaxarJS/laxar/issues/56): object: removed all direct calls of hasOwnProperty.
 - [#55](https://github.com/LaxarJS/laxar/issues/55): run_spec: disable loading the `widget.json` if the `spec_runner.js` contains `widgetJson: false`
 - [#54](https://github.com/LaxarJS/laxar/issues/54): testing: fixed broken testBed injection of $q and $timeout
