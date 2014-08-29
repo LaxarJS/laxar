@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v0.13.0
+
 - [#61](https://github.com/LaxarJS/laxar/issues/61): added first profiling tools for scope property watchers.
   NEW FEATURE: see ticket for details
 - [#60](https://github.com/LaxarJS/laxar/issues/60): tests: make sure PhantomJS is installed properly, before running spec tests.
