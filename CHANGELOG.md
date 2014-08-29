@@ -2,8 +2,11 @@
 
 ## Last Changes
 
+- [#61](https://github.com/LaxarJS/laxar/issues/61): added first profiling tools for scope property watchers.
+  NEW FEATURE: see ticket for details
 - [#60](https://github.com/LaxarJS/laxar/issues/60): tests: make sure PhantomJS is installed properly, before running spec tests.
 - [#52](https://github.com/LaxarJS/laxar/issues/52): portal, testing: added visibility events and the `axVisibilityService`
+  NEW FEATURE: see ticket for details
 - [#59](https://github.com/LaxarJS/laxar/issues/59): portal: fixed dangling comma in timer imports
 - [#58](https://github.com/LaxarJS/laxar/issues/58): portal, json: fixed copyright headers
 - [#57](https://github.com/LaxarJS/laxar/issues/57): portal: fixed double-navigation problem which can lead to skipping places
