@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#60](https://github.com/LaxarJS/laxar/issues/60): tests: make sure PhantomJS is installed properly, before running spec tests.
 - [#52](https://github.com/LaxarJS/laxar/issues/52): portal, testing: added visibility events and the `axVisibilityService`
 - [#59](https://github.com/LaxarJS/laxar/issues/59): portal: fixed dangling comma in timer imports
 - [#58](https://github.com/LaxarJS/laxar/issues/58): portal, json: fixed copyright headers
