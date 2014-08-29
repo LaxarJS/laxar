@@ -12,6 +12,7 @@ define( [
    './lib/i18n/i18n',
    './lib/utilities/assert',
    './lib/utilities/array',
+   './lib/utilities/fn',
    './lib/utilities/object',
    './lib/utilities/storage',
    './lib/utilities/string',
@@ -27,6 +28,7 @@ define( [
    i18n,
    assert,
    array,
+   fn,
    object,
    storage,
    string,
@@ -70,17 +72,18 @@ define( [
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    return {
-      bootstrap: bootstrap,
-      log: log,
-      configuration: configuration,
-      directives: directives,
-      text: text,
-      i18n: i18n,
       assert: assert,
       array: array,
+      bootstrap: bootstrap,
+      configuration: configuration,
+      directives: directives,
+      fn: fn,
+      i18n: i18n,
+      log: log,
       object: object,
       storage: storage,
-      string: string
+      string: string,
+      text: text
    };
 
 } );
