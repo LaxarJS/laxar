@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#62](https://github.com/LaxarJS/laxar/issues/62): fixed endless recursion on navigation when place and target have the same name.
+
 
 ## v0.13.0
 
