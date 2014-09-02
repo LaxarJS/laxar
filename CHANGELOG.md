@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#63](https://github.com/LaxarJS/laxar/issues/63): axVisibilityService: use scope.$id to identify handlers, not scope.id
 - [#62](https://github.com/LaxarJS/laxar/issues/62): fixed endless recursion on navigation when place and target have the same name.
 
 
