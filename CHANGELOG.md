@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#65](https://github.com/LaxarJS/laxar/issues/65): fixed navigation being broken when parameter values were missing.
 - [#66](https://github.com/LaxarJS/laxar/issues/66): prevented endless navigation ping pong in flow controller
 
 
