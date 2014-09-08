@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#66](https://github.com/LaxarJS/laxar/issues/66): prevented endless navigation ping pong in flow controller
+
 
 ## v0.13.1
 
