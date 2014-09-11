@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#68](https://github.com/LaxarJS/laxar/issues/68): fixed wrongly global assert in jshintrc.
 - [#67](https://github.com/LaxarJS/laxar/issues/67): re-added missing widget root element IDs.
 
 
