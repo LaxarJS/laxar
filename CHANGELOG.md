@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#69](https://github.com/LaxarJS/laxar/issues/69): portal: moved setting widget root element IDs to widget loader
 - [#68](https://github.com/LaxarJS/laxar/issues/68): fixed wrongly global assert in jshintrc.
 - [#67](https://github.com/LaxarJS/laxar/issues/67): re-added missing widget root element IDs.
 - [#65](https://github.com/LaxarJS/laxar/issues/65): fixed navigation being broken when parameter values were missing.
