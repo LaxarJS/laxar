@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+## v0.14.0
+
 - [#73](https://github.com/LaxarJS/laxar/issues/73): portal: fixed lookup of merged CSS file
 - [#69](https://github.com/LaxarJS/laxar/issues/69): portal: moved setting widget root element IDs to widget loader
 - [#68](https://github.com/LaxarJS/laxar/issues/68): fixed wrongly global assert in jshintrc.
