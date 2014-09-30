@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#77](https://github.com/LaxarJS/laxar/issues/77): flow: the log tag `PLCE` with the current place name is set after navigation
+
+
 ## v0.14.0
 
 - [#73](https://github.com/LaxarJS/laxar/issues/73): portal: fixed lookup of merged CSS file
