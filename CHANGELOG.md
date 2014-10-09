@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#80](https://github.com/LaxarJS/laxar/issues/80): storage: Improved detection of WebStorage API for Internet Explorer
+
+
 ## v0.14.0
 
 - [#73](https://github.com/LaxarJS/laxar/issues/73): portal: fixed lookup of merged CSS file
