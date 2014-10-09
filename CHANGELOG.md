@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#80](https://github.com/LaxarJS/laxar/issues/80): storage: Improved detection of WebStorage API for Internet Explorer
 - [#79](https://github.com/LaxarJS/laxar/issues/79): assert: details given as object are now serialized
 - [#77](https://github.com/LaxarJS/laxar/issues/77): flow: the log tag `PLCE` with the current place name is set after navigation
 
