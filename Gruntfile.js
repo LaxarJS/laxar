@@ -19,20 +19,17 @@ module.exports = function (grunt) {
 
    function karma(lib) {
       var options = {
-         files: [
-            { pattern: 'bower_components/**', included: false },
-            { pattern: 'static/**', included: false},
-            { pattern: 'lib/**', included: false },
-            { pattern: '*.js', included: false }
-         ],
          laxar: {
             specRunner: 'lib/' + lib + '/spec/spec_runner.js',
             requireConfig: src.require
          },
          junitReporter: {
-            outputFile: 'lib/' + lib + '/junit.xml'
+            outputFile: 'lib/' + lib + '/spec/test-results.xml'
          },
-         proxies: {
+         coverageReporter: {
+            type: 'lcovonly',
+            dir: 'lib/' + lib + '/spec',
+            file: 'lcov.info'
          }
       };
 
@@ -55,9 +52,19 @@ module.exports = function (grunt) {
          options: {
             basePath: '.',
             frameworks: ['laxar'],
-            reporters: ['junit', 'progress'],
+            reporters: ['junit', 'coverage', 'progress'],
             browsers: ['PhantomJS'],
-            singleRun: true
+            singleRun: true,
+            preprocessors: {
+               'lib/**/*.js': 'coverage'
+            },
+            proxies: {},
+            files: [
+               { pattern: 'bower_components/**', included: false },
+               { pattern: 'static/**', included: false},
+               { pattern: 'lib/**', included: false },
+               { pattern: '*.js', included: false }
+            ]
          },
          event_bus: karma('event_bus'),
          'directives-layout': karma('directives/layout'),
@@ -71,6 +78,18 @@ module.exports = function (grunt) {
          testing: karma('testing'),
          text: karma('text'),
          utilities: karma('utilities')
+      },
+      test_results_merger: {
+         laxar: {
+            src: [ 'lib/**/spec/test-results.xml' ],
+            dest: 'test-results.xml'
+         }
+      },
+      lcov_info_merger: {
+         laxar: {
+            src: [ 'lib/**/spec/*/lcov.info' ],
+            dest: 'lcov.info'
+         }
       },
       laxar_dox: {
          laxar: {
@@ -138,6 +157,6 @@ module.exports = function (grunt) {
    grunt.loadNpmTasks('grunt-markdown');
 
    grunt.registerTask('build', []);
-   grunt.registerTask('test', ['karma', 'jshint']);
+   grunt.registerTask('test', ['karma', 'test_results_merger', 'lcov_info_merger', 'jshint']);
    grunt.registerTask('default', ['build', 'test']);
 };

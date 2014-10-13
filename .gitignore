@@ -6,4 +6,5 @@
 /dist
 
 npm-debug.log
-junit.xml
+test-results.xml
+lcov.info
