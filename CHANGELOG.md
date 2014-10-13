@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+## v0.15.0
+
 - [#82](https://github.com/LaxarJS/laxar/issues/82): implemented directives axId and axFor
   NEW FEATURE: see ticket for details
 - [#80](https://github.com/LaxarJS/laxar/issues/80): storage: Improved detection of WebStorage API for Internet Explorer
