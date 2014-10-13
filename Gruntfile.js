@@ -75,6 +75,7 @@ module.exports = function (grunt) {
          logging: karma('logging'),
          'portal-modules': karma('portal/modules'),
          'portal-assembler': karma('portal/portal_assembler'),
+         profiling: karma('profiling'),
          testing: karma('testing'),
          text: karma('text'),
          utilities: karma('utilities')
