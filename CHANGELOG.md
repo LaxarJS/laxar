@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#83](https://github.com/LaxarJS/laxar/issues/83): portal: provided a timestamp service with a mock that works with jasmine
+  NEW FEATURE: see ticket for details
 - [#81](https://github.com/LaxarJS/laxar/issues/81): added check for duplicate area definitions in layouts
 
 
