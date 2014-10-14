@@ -4,7 +4,7 @@
 /bower_components
 /_SpecRunner.html
 /dist
-
+junit.xml
 npm-debug.log
 test-results.xml
 lcov.info
