@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#81](https://github.com/LaxarJS/laxar/issues/81): added check for duplicate area definitions in layouts
+
+
 ## v0.15.0
 
 - [#82](https://github.com/LaxarJS/laxar/issues/82): implemented directives axId and axFor
