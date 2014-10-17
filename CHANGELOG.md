@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#86](https://github.com/LaxarJS/laxar/issues/86): logging: Added tests to ensure that string format compatible format strings using indexed placeholders are supported.
 - [#85](https://github.com/LaxarJS/laxar/issues/85): utilities: Implemented support for value mapping functions in string.format.
   NEW FEATURE: see ticket for details
 - [#83](https://github.com/LaxarJS/laxar/issues/83): portal: provided a timestamp service with a mock that works with jasmine
