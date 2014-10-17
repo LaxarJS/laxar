@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#87](https://github.com/LaxarJS/laxar/issues/87): portal: Ensure anonymization of logged events.
 - [#86](https://github.com/LaxarJS/laxar/issues/86): logging: Added tests to ensure that string format compatible format strings using indexed placeholders are supported.
 - [#85](https://github.com/LaxarJS/laxar/issues/85): utilities: Implemented support for value mapping functions in string.format.
   NEW FEATURE: see ticket for details
