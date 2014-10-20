@@ -9,7 +9,7 @@
       "url": "https://github.com/LaxarJS/laxar.git"
    },
    "scripts": {
-      "test": "grunt test",
+      "test": "grunt test --continue",
       "prepublish": "fixinstall && bower install && grunt build"
    },
    "devDependencies": {
@@ -20,7 +20,7 @@
       "grunt-contrib-jshint": "~0.8.0",
       "grunt-bower-requirejs": "~0.8.4",
       "grunt-contrib-requirejs": "~0.4.1",
-      "grunt-laxar": "~0.5.0",
+      "grunt-laxar": "~0.5.1",
       "grunt-markdown": "~0.5.0"
    }
 }
