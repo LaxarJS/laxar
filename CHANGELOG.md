@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v0.16.1
+
 - [#84](https://github.com/LaxarJS/laxar/issues/84): storage: storing `undefined` now causes the entry to be removed
 
 
