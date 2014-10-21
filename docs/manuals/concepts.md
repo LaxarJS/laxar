@@ -82,7 +82,7 @@ The page establishes this context, for example _by placing_ the social buttons b
 This does not mean that all widgets must be broadly reusable (e.g. a widget to manage the inventory in a video game would probably not be useful anywhere else), but it means that reuse is supported for those widgets that are.
 
 While widgets and activities are implemented in JavaScript, pages are written as using JSON in a declarative fashion.
-This reflects that pages do not contain application logic, but merely assemble and and configure a set of widgets.
+This reflects that pages do not contain application logic, but merely assemble and configure a set of widgets.
 
 
 ### Layouts
@@ -95,7 +95,7 @@ For each _widget areas_, the layout defines a width in grid columns, and widgets
 The LaxarJS UiKit ships with _Bootstrap_ to implement the grid layout in CSS.
 Like widgets, layouts are accompanied by CSS styles, for example to define a background color.
 
-You might think of layouts as the opposite of Activities: While Activities are just widgets without a user interface, layouts are similar to widgets without the logic part -- just HTML templates and CSS.
+You might think of layouts as the opposite of activities: While activities are just widgets without a user interface, layouts are similar to widgets without the logic part -- just HTML templates and CSS.
 
 
 ### The Flow
