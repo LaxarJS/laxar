@@ -2,6 +2,7 @@
 
 Preliminary readings:
 
+* [LaxarJS Core Concepts](concepts.md)
 * [Creating Layouts](creating_layouts.md)
 * [Widgets and Activities](widgets_and_activities.md)
 
