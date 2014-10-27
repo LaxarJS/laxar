@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#91](https://github.com/LaxarJS/laxar/issues/91): portal: make sure that widget DOM is attached when linking
+
 
 ## v0.16.1
 
