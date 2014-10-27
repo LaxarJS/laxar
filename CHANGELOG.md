@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#90](https://github.com/LaxarJS/laxar/issues/90): documentation: secondary parts of any LaxarJS application
+  NEW FEATURE: see ticket for details
 - [#89](https://github.com/LaxarJS/laxar/issues/89): documentation: primary concepts of LaxarJS
 - [#84](https://github.com/LaxarJS/laxar/issues/84): storage: storing `undefined` now causes the entry to be removed
 
