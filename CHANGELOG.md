@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#38](https://github.com/LaxarJS/laxar/issues/38): documentation: pages and compositions.
 - [#91](https://github.com/LaxarJS/laxar/issues/91): portal: make sure that widget DOM is attached when linking
 - [#90](https://github.com/LaxarJS/laxar/issues/90): documentation: secondary parts of any LaxarJS application
   NEW FEATURE: see ticket for details
