@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#92](https://github.com/LaxarJS/laxar/issues/92): removed obsolete mixins in favor of compositions.
+  BREAKING CHANGE: see ticket for details
 - [#38](https://github.com/LaxarJS/laxar/issues/38): documentation: pages and compositions.
 - [#91](https://github.com/LaxarJS/laxar/issues/91): portal: make sure that widget DOM is attached when linking
 - [#90](https://github.com/LaxarJS/laxar/issues/90): documentation: secondary parts of any LaxarJS application
