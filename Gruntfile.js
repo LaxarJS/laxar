@@ -77,7 +77,6 @@ module.exports = function (grunt) {
          'portal-assembler': karma('portal/portal_assembler'),
          profiling: karma('profiling'),
          testing: karma('testing'),
-         text: karma('text'),
          utilities: karma('utilities')
       },
       test_results_merger: {

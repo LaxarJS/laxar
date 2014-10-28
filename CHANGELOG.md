@@ -1,5 +1,8 @@
 # Changelog
 
+- [#92](https://github.com/LaxarJS/laxar/issues/92): footprint: removed `laxar.text` API (use `laxar.string.format` instead)
+  BREAKING CHANGE: see ticket for details
+
 ## Last Changes
 
 - [#92](https://github.com/LaxarJS/laxar/issues/92): removed obsolete mixins in favor of compositions.
