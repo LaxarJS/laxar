@@ -1,5 +1,10 @@
 # LaxarJS
 
+## What is LaxarJS?
+
+Find out [why](docs/why_laxar.md) you would use LaxarJS and more in our [documentation](docs).
+
+
 ## Getting Started
 
 This is a very minimal getting started guide. It helps you to set up your first LaxarJS application and to create your first LaxarJS widget.
@@ -13,6 +18,7 @@ git clone https://github.com/LaxarJS/grunt-init-laxar-application.git ~/.grunt-i
 git clone https://github.com/LaxarJS/grunt-init-laxar-widget.git ~/.grunt-init/laxar-widget
 git clone https://github.com/LaxarJS/grunt-init-laxar-widget.git ~/.grunt-init/laxar-activity
 ```
+
 
 ### Create a LaxarJS Application from Our Template
 
@@ -67,6 +73,7 @@ grunt dist
 npm start
 ```
 Now your compressed application can be visited at [http://localhost:8000/](http://localhost:8000/) or deployed from the zip file that was just generated for you.
+
 
 #### Next Steps
 Have fun developing your first LaxarJS application.

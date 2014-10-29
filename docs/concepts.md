@@ -1,9 +1,6 @@
-[<< return to the manuals](index.md)
-
 # LaxarJS Concepts
 
 In order to get productive with LaxarJS, a basic understanding of a few core concepts is helpful.
-
 
 
 ## A LaxarJS Application
@@ -27,8 +24,8 @@ In order to run the application, there are additional secondary resources:
 The following two sections first explain the primary application components, and than the underlying secondary components.
 
 
-
 ## Primary Application Parts
+
 
 ### Widgets
 
@@ -123,7 +120,6 @@ Where nothing else is specified, plain bootstrap is used.
 The LaxarJS UiKit is based on Compass/SCSS to simplify the generation of user defined themes, but any way to generate Bootstrap-like CSS styles would be a valid way to create a theme.
 
 
-
 ## Secondary Application Parts -- Under the Hood
 
 ### The LaxarJS Portal
@@ -155,4 +151,3 @@ LaxarJS currently provides a development workflow based on [grunt](http://gruntj
 
 To establish a useful common base vocabulary for the LaxarJS event bus, the [LaxarJS Patterns](https://github.com/LaxarJS/laxar_patterns) library is provided.
 It contains helpers that make it very easy for widgets to talk about user actions, common (REST) resources and boolean flags.
-
