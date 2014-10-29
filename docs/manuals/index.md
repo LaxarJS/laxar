@@ -1,15 +1,30 @@
 [<< return to index](../../README.md)
 
-Manuals
-=======
+# Manuals
 
-* [LaxarJS Concepts](concepts.md)
+Before starting with the manuals make sure you are familiar with the [core concepts](../concepts.md).
 
-    Explains the core parts of any LaxarJS application and how they work together.
+
+## Basic Manuals
+
+* [Widgets and Activities](widgets_and_activities.md)
+
+   Learn about the building blocks of a LaxarJS application.
 
 * [Writing Pages](writing_pages.md)
 
-    A step-by-step introduction to writing pages for a LaxarJS application.
+    A step-by-step introduction to writing layouts and pages for a LaxarJS application.
+
+* [Events](events.md)
+
+    How to communicate between widgets using topics on the event bus.
+
+
+## Advanced Manuals
+
+* [Writing Compositions](writing_compositions.md)
+
+    When simple pages are not enough.
 
 * [Configuration](configuration.md)
 
