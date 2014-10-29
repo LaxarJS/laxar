@@ -1,5 +1,6 @@
 # Changelog
 
+- [#94](https://github.com/LaxarJS/laxar/issues/94): footprint: removed the outdated app stub in favor of grunt-init (see README.md)
 - [#88](https://github.com/LaxarJS/laxar/issues/88): footprint: removed `underscore` dependency
 - [#92](https://github.com/LaxarJS/laxar/issues/92): footprint: removed `laxar.text` API (use `laxar.string.format` instead)
   BREAKING CHANGE: see ticket for details
