@@ -14,6 +14,10 @@ Before starting with the manuals make sure you are familiar with the [core conce
 * [Writing Pages](writing_pages.md)
 
     A step-by-step introduction to writing layouts and pages for a LaxarJS application.
+    
+* [Flow and Places](flow_and_places.md)
+
+    Creating a flow through the pages and make the addressable as places.
 
 * [Events](events.md)
 
