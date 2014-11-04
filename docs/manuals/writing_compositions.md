@@ -1,4 +1,4 @@
-[<< return to the manuals](index.md)
+[« return to the manuals](index.md)
 
 Preliminary readings:
 
