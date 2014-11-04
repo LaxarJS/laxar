@@ -1,4 +1,4 @@
-[<< return to index](../../README.md)
+[« return to the manuals](index.md)
 
 # Manuals
 
