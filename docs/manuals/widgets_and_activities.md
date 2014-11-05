@@ -13,7 +13,7 @@ They make up the bulk of the user interface and provide all client-side applicat
 
 ## Widget Responsibilities
 
-Before starting to implement your widget, take a moment to think and delineate it's responsibilities.
+Before starting to implement your widget, take a moment to think and delineate its responsibilities.
 You can do this by phrasing the question: _What goal does this widget help the user to accomplish?_
 Are you thinking about a very broadly applicable, technical task such as _"allow the user to enter a date"_ or _"allow the user to delete a data row"_?
 In this case you might want to implement this functionality as a _control_ (an AngularJS directive or an HTML5 web component) and use it _within_ one or more of your widgets.
@@ -441,7 +441,7 @@ It has the following essential properties.
 
 * `testBed_.featuresMock`
 
-  The feature configuration to use during the spec test, to be specified by the author of the test.
+  Contains the feature configuration for use during the spec test, to be specified by the author of the test.
   It has the same format that would be provided through the page definition within an actual application.
   Note that `featuresMock` must be set before calling `testBed_.setup()`.
 

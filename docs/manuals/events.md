@@ -252,7 +252,7 @@ It only has a few essential methods that allow to implement all patterns describ
 
 * `publishAndGatherReplies( requestEventName, payload )`
 
-  Publishes a [request event](#request-evens), gathers all _will_-responses during delivery and then waits for all outstanding _did_-responses.
+  Publishes a [request event](#request-events), gathers all _will_-responses during delivery and then waits for all outstanding _did_-responses.
   Returns a promise that is resolved when all _did_-responses have been received.
 
 
