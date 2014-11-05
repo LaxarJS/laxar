@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#104](https://github.com/LaxarJS/laxar/issues/104): configuration: deprecated configuration keys are no handled at one place.
 - [#101](https://github.com/LaxarJS/laxar/issues/101): documentation: use "«" rather than "<<" for backwards navigation links
 - [#76](https://github.com/LaxarJS/laxar/issues/76): documentation: widgets and activities
 - [#75](https://github.com/LaxarJS/laxar/issues/75): documentation: flow and places.
