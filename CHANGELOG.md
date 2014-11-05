@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#100](https://github.com/LaxarJS/laxar/issues/100): widget loader: added angular widget as default integration.
 - [#105](https://github.com/LaxarJS/laxar/issues/105): moved resumable timer handling from flow to timer.
 - [#104](https://github.com/LaxarJS/laxar/issues/104): configuration: deprecated configuration keys are no handled at one place.
 - [#101](https://github.com/LaxarJS/laxar/issues/101): documentation: use "«" rather than "<<" for backwards navigation links
