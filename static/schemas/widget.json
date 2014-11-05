@@ -17,7 +17,14 @@
          "properties": {
             "type": {
                "type": "string"
+            },
+            "technology": {
+               "type": "string"
             }
+         },
+         "default": {
+            "type": "widget",
+            "technology": "angular"
          },
          "additionalProperties": false
       },
