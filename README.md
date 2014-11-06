@@ -1,6 +1,6 @@
 # LaxarJS
 
-LaxarJS is a framework that helps to create maintainable AngularJS applications by assembling them from small, isolated parts.
+LaxarJS helps to create maintainable AngularJS apps by assembling them from small, isolated parts.
 
 
 ## Why LaxarJS?
