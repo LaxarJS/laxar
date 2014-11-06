@@ -55,6 +55,6 @@ Like pages, flows are written in a simple JSON format.
 
 ## The Best of Both Worlds
 
-Building upon the thriving ecosystem of Web Standards and AngularJS components, LaxarJS tries to simplify organizing, re-using or even sharing the larger building blocks of your applications.
+Building upon the thriving ecosystem of Web Standards and AngularJS components, LaxarJS tries to simplify organizing, re-using and even sharing the larger building blocks of your applications.
 
 If this draws your interest, learn more about the LaxarJS [key concepts](concepts.md) or jump in at the deep end by writing your first [LaxarJS](http://github.com/LaxarJS/laxar) application.
