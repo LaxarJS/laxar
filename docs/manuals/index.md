@@ -2,7 +2,7 @@
 
 # Manuals
 
-Before starting with the manuals make sure you are familiar with the [core concepts](../concepts.md).
+Before starting with the manuals, make sure that you know [what LaxarJS is about](../why_laxar.md), and that you are familiar with the [core concepts](../concepts.md).
 
 
 ## Basic Manuals
