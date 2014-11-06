@@ -3,6 +3,7 @@
 ## Last Changes
 
 - [#93](https://github.com/LaxarJS/laxar/issues/93): refactoring: extracted page related services into own files.
+- [#98](https://github.com/LaxarJS/laxar/issues/98): documentation: added manual on events and pub/sub
 - [#100](https://github.com/LaxarJS/laxar/issues/100): widget loader: added angular widget as default integration.
 - [#105](https://github.com/LaxarJS/laxar/issues/105): moved resumable timer handling from flow to timer.
 - [#104](https://github.com/LaxarJS/laxar/issues/104): configuration: deprecated configuration keys are no handled at one place.
