@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v0.17.0
+
 - [#108](https://github.com/LaxarJS/laxar/issues/108): documentation: unify code-snippet format, and some polish
 - [#109](https://github.com/LaxarJS/laxar/issues/109): documentation: added manual on providing controls
 - [#107](https://github.com/LaxarJS/laxar/issues/107): angular widget adapter: added widget specific event bus service.
