@@ -37,13 +37,6 @@ var require = {
             'use strict';
             return angular;
          }
-      },
-      underscore: {
-         exports: '_',
-         init: function () {
-            'use strict';
-            return this._.noConflict();
-         }
       }
    },
    packages: [
@@ -54,7 +47,6 @@ var require = {
       }
    ],
    paths: {
-      underscore: 'bower_components/underscore/underscore',
       text: 'bower_components/requirejs-plugins/lib/text',
       requirejs: 'bower_components/requirejs/require',
       q_mock: 'bower_components/q_mock/q',
