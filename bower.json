@@ -22,6 +22,7 @@
       "jquery": "jquery/jquery#1.11.x",
       "modernizr": "Modernizr/Modernizr#2.7.x",
       "q_mock": "LaxarJS/q_mock#0.1.x",
+      "underscore": "jashkenas/underscore#1.5.x",
       "requirejs": "jrburke/requirejs#2.1.x",
       "requirejs-plugins": "millermedeiros/requirejs-plugins#1.0.x"
    },

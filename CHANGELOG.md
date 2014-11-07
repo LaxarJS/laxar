@@ -17,7 +17,6 @@
 - [#96](https://github.com/LaxarJS/laxar/issues/96): documentation: restructured existing documents and added stubs for missing ones.
 - [#95](https://github.com/LaxarJS/laxar/issues/95): documentation: wrote a motivational article for LaxarJS.
 - [#94](https://github.com/LaxarJS/laxar/issues/94): footprint: removed the outdated app stub in favor of grunt-init (see README.md)
-- [#88](https://github.com/LaxarJS/laxar/issues/88): footprint: removed `underscore` dependency
 - [#70](https://github.com/LaxarJS/laxar/issues/70): footprint: removed `laxar.text` API (use `laxar.string.format` instead)
     + **BREAKING CHANGE:** see ticket for details
 - [#92](https://github.com/LaxarJS/laxar/issues/92): removed obsolete mixins in favor of compositions.
