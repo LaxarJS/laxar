@@ -23,6 +23,10 @@ Before starting with the manuals make sure you are familiar with the [core conce
 
     How to communicate between widgets using topics on the event bus.
 
+* [Providing Controls](providing_controls.md)
+
+    How to create reusable, interactive elements that support themes.
+
 
 ## Advanced Manuals
 
