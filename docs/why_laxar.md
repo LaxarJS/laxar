@@ -36,16 +36,16 @@ Both widgets would still be able to perform their respective function without th
 
 After a user interaction, widgets may publish the need for some other widget to take an action, if that is outside of their own responsibility.
 Applied to the previous example, a shopping cart widget would provide a *check out* button.
-It could then send an according event because it isn't responsible for the actual ordering process, which might involve navigation, calling a (RESTful) web service and so on.
+On click of that button, the widget would simply publish a request for action as an event, because it isn't responsible for the actual ordering process, which might involve navigation, calling a (RESTful) web service and so on.
 A separate component would *react* to the event and possibly later publish its own event to indicate that the action was performed successfully.
 
-There is no need to decide upfront which widgets may talk about the same resources and actions.
+There is no need to decide upfront which widgets talk about the same resources and actions.
 Widgets may be developed and tested completely in isolation, *relaxing* the tight constraints and dependencies imposed by traditional programmatic APIs.
 
 
-### The Runtime Connects Widgets
+### The Runtime Composes Widgets
 
-In the application widgets are connected to each other in a declarative fashion using JSON *page definitions*.
+In the application, widgets are connected to each other in a declarative fashion using JSON *page definitions*.
 The LaxarJS *runtime* is responsible for loading and instantiating all widgets configured on the current page and to orchestrate them throughout the page lifecycle.
 Additionally, it performs the task of loading static assets, like HTML and CSS.
 
@@ -57,4 +57,4 @@ Like pages, flows are written in a simple JSON format.
 
 Building upon the thriving ecosystem of Web Standards and AngularJS components, LaxarJS tries to simplify organizing, re-using and even sharing the larger building blocks of your applications.
 
-If this draws your interest, learn more about the LaxarJS [key concepts](concepts.md) or jump in at the deep end by writing your first [LaxarJS](http://github.com/LaxarJS/laxar) application.
+If this draws your interest, learn more about the LaxarJS [key concepts](concepts.md) or jump in at the deep end by writing your first [LaxarJS](http://github.com/LaxarJS/laxar#getting-started) application.
