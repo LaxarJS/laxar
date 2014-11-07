@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#107](https://github.com/LaxarJS/laxar/issues/107): angular widget adapter: added widget specific event bus service.
 - [#106](https://github.com/LaxarJS/laxar/issues/106): documentation: fixed manuals, improved introduction in README.md
 - [#93](https://github.com/LaxarJS/laxar/issues/93): refactoring: extracted page related services into own files.
 - [#98](https://github.com/LaxarJS/laxar/issues/98): documentation: added manual on events and pub/sub
