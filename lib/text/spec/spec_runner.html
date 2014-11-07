@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <script type="text/javascript" src="../../../require_config.js" id="require_config"></script>
+   <script type="text/javascript" src="spec_runner.js"></script>
+
+   <script type="text/javascript">
+      ( function() {
+         var s = '/';
+
+         function dirname( f ) {
+            return f.substr( 0, f.lastIndexOf( s ) );
+         }
+
+         require.baseUrl = dirname( document.getElementById( 'require_config' ).src ) + s + require.baseUrl;
+
+         (laxarSpec.requireConfig = laxarSpec.requireConfig || {}).baseUrl = require.baseUrl;
+
+         var requirePath = require.baseUrl + s + require.paths.requirejs;
+         var jasminePath = require.baseUrl + s + require.paths.jasmine;
+
+         document.writeln( '<link type="text/css" rel="stylesheet" href="' + jasminePath + '.css"></link>' );
+         document.writeln( '<link type="image/png" rel="shortcut icon" href="' + jasminePath + '_favicon.png"></link>' );
+         document.writeln( '<script type="text/javascript" src="' + jasminePath + '.js"><' + '/script>' );
+         document.writeln( '<script type="text/javascript" src="' + jasminePath + '-html.js"><' + '/script>' );
+         document.writeln( '<script type="text/javascript" src="' + requirePath + '.js"><' + '/script>' );
+      } )();
+   </script>
+
+   <script type="text/javascript">
+      require.config( laxarSpec.requireConfig );
+      require( [
+         'laxar/laxar_testing'
+      ], function( ax ) {
+         ax.testing.runSpec( laxarSpec );
+      } );
+   </script>
+
+</head>
+<body></body>
+</html>

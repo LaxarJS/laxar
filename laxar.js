@@ -8,6 +8,7 @@ define( [
    './lib/logging/log',
    './lib/logging/channels/console_logger',
    './lib/directives/directives',
+   './lib/text/text',
    './lib/i18n/i18n',
    './lib/utilities/assert',
    './lib/utilities/array',
@@ -23,6 +24,7 @@ define( [
    log,
    consoleLogger,
    directives,
+   text,
    i18n,
    assert,
    array,
@@ -112,7 +114,8 @@ define( [
       log: log,
       object: object,
       storage: storage,
-      string: string
+      string: string,
+      text: text
    };
 
 } );
