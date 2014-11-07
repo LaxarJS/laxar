@@ -262,9 +262,7 @@ It only has a few essential methods that allow to implement all patterns describ
 This is the formal grammar for event names, in [EBNF](http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form):
 
 ```EBNF
-
-    <event-name> ::= <topic-id> [ '.' <topic-id> ]*
-    <topic-id> ::= <sub-topic-id> [ '-' <sub-topic-id> ]*
-    <sub-topic-id> ::= [a-z][+a-zA-Z0-9]* | [A-Z][+A-Z0-9]*
-
+<event-name> ::= <topic-id> [ '.' <topic-id> ]*
+<topic-id> ::= <sub-topic-id> [ '-' <sub-topic-id> ]*
+<sub-topic-id> ::= [a-z][+a-zA-Z0-9]* | [A-Z][+A-Z0-9]*
 ```

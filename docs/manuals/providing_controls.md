@@ -61,7 +61,7 @@ If it is something else, you will need to change the path accordingly (such as `
 
 Now the _require-path_ for the clock-control is _my_controls/clock_.
 
-#### AngularJS directive
+#### AngularJS Directive
 
 Now let us create the AngularJS module for the control, in `includes/lib/my_controls/clock.js`:
 
@@ -99,7 +99,7 @@ For the directive, we use a prefix, to avoid collisions with future HTML element
 Make sure to return the AngularJS module as shown here, so that LaxarJS can use it when bootstrapping your application.
 
 
-#### AngularJS template
+#### AngularJS Template
 
 Let us create a simple template at `includes/lib/my_controls/clock/clock.html`.
 
@@ -112,7 +112,7 @@ Let us create a simple template at `includes/lib/my_controls/clock/clock.html`.
 Use a prefix for the custom CSS class, to avoid collision with other controls and libraries.
 Of course, for maximum performance you might want to move the filtering to the _tick_ function, but this should be fine as an example.
 
-#### The CSS stylesheet
+#### The CSS Stylesheet
 
 To automatically load your CSS depending on the theme, it has to be placed into a sub-directory `default.theme/css` of your require path and it has to use the same file name as the controller file.
 In case of the clock, the correct path is `includes/lib/my_controls/clock/default.theme/clock.css`.
@@ -136,13 +136,13 @@ Any widget that uses our clock should declare its dependency using `controls` en
 "controls": [ "my_controls/clock" ],
 ```
 
-This allows the portal to load the RequireJS module and to register its AngularJS module during bootstrap.
+This allows the runtime to load the RequireJS module and to register its AngularJS module during bootstrapping.
 Additionally this causes the control CSS to be loaded from the correct theme, and to be bundled when creating a release-version of your application. 
 
 To actually get the control onto the screen, you have to reference it from your widget template:
 
 ```HTML
-<h3>My Widget, now with 100% more clock!</h3>
+<h3>My Widget, now with 100% more 24h-clock!</h3>
 <my-clock></my-clock>
 
 ```

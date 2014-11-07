@@ -17,7 +17,7 @@ From a developer point of view, an application primarily consists of:
 
 In order to run the application, there are additional secondary resources:
 
-  * the _LaxarJS Core_ runtime (the _portal_) which loads flow and pages, sets up the correct widgets and connects them through an _event bus_
+  * the _LaxarJS Core runtime_ which loads flow and pages, sets up the correct widgets and connects them through an _event bus_
   * _controls_ which are used by the widgets to provide advanced user interface functionality, some of which are provided by _LaxarJS UiKit_
   * _libraries_ used from widgets and activities, such as _moment.js_, _jQuery_, and _LaxarJS patterns_.
 
@@ -77,7 +77,7 @@ To sum it up, widgets support direct user-interaction, while activities always p
 ### Pages
 
 A LaxarJS _page_ combines and configures widgets and activities that should be displayed together by embedding them in an HTML skeleton (the layout).
-When navigated to, the portal loads the page and puts the widgets referenced by the page into the associated layout to display them.
+When navigated to, the runtime loads the page and puts the widgets referenced by the page into the associated layout to display them.
 The page also defines the publish/subscribe topics that the widget instance use to communicate resource state and user actions. 
 
 An individual widget is still somewhat generic in that it allows to perform a specific task _in any context_.
@@ -92,7 +92,7 @@ This reflects that pages do not contain application logic, but merely assemble a
 ### Layouts
 
 Layouts are skeleton HTML documents, which contain placeholders (_widget areas_) within which widget instances can be placed.
-Each page specifies a layout that the LaxarJS portal should use for it.
+Each page specifies a layout that the LaxarJS runtime should use for it.
 A layout can contain all the scaffolding markup of your application (such as copyright footers and navigation), but you may also choose to implement these areas as widgets to allow for re-use and configuration.
 
 For each _widget areas_, the layout defines a width in grid columns, and widgets within these areas may not exceed their available number of columns.
@@ -122,9 +122,9 @@ The LaxarJS UiKit is based on Compass/SCSS to simplify the generation of user de
 
 ## Secondary Application Parts -- Under the Hood
 
-### The LaxarJS Portal
+### The LaxarJS Runtime
 
-The _portal_ handles URL routing and loads the template associated with the current page definition.
+The _runtime_ handles URL routing and loads the template associated with the current page definition.
 It instantiates all required widgets and activities, and tells them when everyone else is ready to receive their publish/subscribe-events.
 It also loads the corresponding templates and CSS files, or provides these assets from an optimized bundle in production.
 
