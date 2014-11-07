@@ -149,7 +149,7 @@ To actually get the control onto the screen, you have to reference it from your 
 
 After adding your widget to a page, you may inspect your timepiece in the browser:
 
-![CartWidget](widgets_and_activities/cart_widget.png)
+![CartWidget](providing_controls/my_clock.png)
 
 
 ## Creating or Integrating a Library
