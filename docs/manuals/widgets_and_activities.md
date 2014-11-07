@@ -57,7 +57,7 @@ Regular widget names always end in `_widget` whereas activities always end in `_
 To create the actual widget, run:
 
 ```sh
-    grunt-init laxar-widget
+grunt-init laxar-widget
 ```
 
 A wizard will ask for some details on the widget such as license and author, but you can always edit this information in the widget sources afterwards.
@@ -141,33 +141,31 @@ The grunt-init template has already created an empty controller along with some 
 For a shopping cart, this might be an appropriate starting implementation based on some dummy data:
 
 ```JS
+// ...
 
-    // ...
+function Controller( $scope ) {
+   $scope.model = [
+      { label: 'Dairy Dreams', price: 5.25, amount: 1 },
+      { label: 'Milky Mocha', price: 12.75, amount: 3 },
+      { label: 'Freezing Frappé', price: 18.25, amount: 1 }
+   ];
 
-    function Controller( $scope ) {
-       $scope.model = [
-          { label: 'Dairy Dreams', price: 5.25, amount: 1 },
-          { label: 'Milky Mocha', price: 12.75, amount: 3 },
-          { label: 'Freezing Frappé', price: 18.25, amount: 1 }
-       ];
+   $scope.increment = function( item ) {
+      ++item.amount;
+   };
 
-       $scope.increment = function( item ) {
-          ++item.amount;
-       };
+   $scope.decrement = function( item ) {
+      item.amount = Math.max( 0, item.amount - 1 );
+   };
 
-       $scope.decrement = function( item ) {
-          item.amount = Math.max( 0, item.amount - 1 );
-       };
+   $scope.total = function( rows ) {
+      return rows.reduce( function( acc, next ) {
+         return acc + next.price*next.amount;
+      }, 0 );
+   };
+}
 
-       $scope.total = function( rows ) {
-          return rows.reduce( function( acc, next ) {
-             return acc + next.price*next.amount;
-          }, 0 );
-       };
-    }
-
-    // ...
-
+// ...
 ```
 
 We can see that a widget controller in LaxarJS works just like any other AngularJS controller.
@@ -180,34 +178,32 @@ The purpose of creating an HTML template is to provide your widget with an appea
 For anyone familiar with Bootstrap and AngularJS, most of this should not be a surprise:
 
 ```HTML
-
-    <h4 ng-bind-html="features.headline.htmlText"></h4>
-    <table class="table">
-       <thead>
-       <tr>
-          <th>Beverage</th>
-          <th class="cart-price">Price</th>
-          <th class="cart-amount">Amount</th>
-          <th></th>
-       </tr>
-       </thead>
-       <tfoot>
-       <tr>
-          <th colspan="3" class="cart-price">{{ total( model ) }}</th>
-          <th></th>
-       </tr>
-       </tfoot>
-       <tr ng-repeat="item in model">
-          <td>{{ item.label }}</td>
-          <td class="cart-amount">{{ item.amount }}</td>
-          <td class="cart-price">{{ item.price }}</td>
-          <td>
-             <button data-ng-click="decrement( item )" class="btn btn-xs"><i class="fa fa-minus" /></button>
-             <button data-ng-click="increment( item )" class="btn btn-xs"><i class="fa fa-plus" /></button>
-          </td>
-       </tr>
-    </table>
-
+<h4 ng-bind-html="features.headline.htmlText"></h4>
+<table class="table">
+   <thead>
+   <tr>
+      <th>Beverage</th>
+      <th class="cart-price">Price</th>
+      <th class="cart-amount">Amount</th>
+      <th></th>
+   </tr>
+   </thead>
+   <tfoot>
+   <tr>
+      <th colspan="3" class="cart-price">{{ total( model ) }}</th>
+      <th></th>
+   </tr>
+   </tfoot>
+   <tr ng-repeat="item in model">
+      <td>{{ item.label }}</td>
+      <td class="cart-amount">{{ item.amount }}</td>
+      <td class="cart-price">{{ item.price }}</td>
+      <td>
+         <button data-ng-click="decrement( item )" class="btn btn-xs"><i class="fa fa-minus" /></button>
+         <button data-ng-click="increment( item )" class="btn btn-xs"><i class="fa fa-plus" /></button>
+      </td>
+   </tr>
+</table>
 ```
 
 Note that the LaxarJS runtime will wrap the DOM of each widget within a single DIV container.
@@ -225,12 +221,10 @@ Once you are familiar with the basics, read the article on [creating themes](./c
 Thanks to Bootstrap this widget does not require a lot of fancy styling:
 
 ```CSS
-
-    .cart-widget .cart-amount,
-    .cart-widget .cart-price {
-       text-align: right;
-    }
-
+.cart-widget .cart-amount,
+.cart-widget .cart-price {
+   text-align: right;
+}
 ```
 
 For best encapsulation, selectors should be prefixed with the widget class (`cart-widget`) as shown here.
@@ -247,28 +241,26 @@ We want to be able to control the headline text for each instance of our widget.
 For this reason, we make it configurable by adding a feature entry to the `widget.json`:
 
 ```JSON
+{
+   "name": "CartWidget",
+   "description": "Allows Users to Review and Modify Purchase Items",
 
-    {
-       "name": "CartWidget",
-       "description": "Allows Users to Review and Modify Purchase Items",
-
-       "features": {
-          "$schema": "http://json-schema.org/draft-04/schema#",
-          "type": "object",
-          "properties": {
-             "headline": {
-                "type": "object",
-                "properties": {
-                   "htmlText": {
-                      "type": "string",
-                      "description": "The HTML headline content."
-                   }
-                }
-             }
-          }
-       }
-    }
-
+   "features": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {
+         "headline": {
+            "type": "object",
+            "properties": {
+               "htmlText": {
+                  "type": "string",
+                  "description": "The HTML headline content."
+               }
+            }
+         }
+      }
+   }
+}
 ```
 
 The _widget features_ are a [JSON schema](http://json-schema.org) document that is used by LaxarJS to verify pages.
@@ -282,27 +274,25 @@ See the [reference section](#reference) for details on the widget specification.
 Before we can take a look at the widget, we will need to integrate it into the page provided by the application template (`application/pages/page1.json`).
 
 ```JSON
+{
+   "layout": "one_column",
 
-    {
-       "layout": "one_column",
-
-       "areas": {
-          "activities": [],
-          "header": [],
-          "content": [
-              {
-                 "widget": "shopping/cart_widget",
-                 "features": {
-                    "headline": {
-                       "htmlText": "My Shopping Cart"
-                    }
-                 }
-              }
-          ],
-          "footer": []
-       }
-    }
-
+   "areas": {
+      "activities": [],
+      "header": [],
+      "content": [
+          {
+             "widget": "shopping/cart_widget",
+             "features": {
+                "headline": {
+                   "htmlText": "My Shopping Cart"
+                }
+             }
+          }
+      ],
+      "footer": []
+   }
+}
 ```
 
 There is another manual to learn more about [writing pages](./writing_pages.md).
@@ -310,10 +300,8 @@ There is another manual to learn more about [writing pages](./writing_pages.md).
 Now we can start the development web server provided by LaxarJS, from the application root:
 
 ```SH
-
-    npm install # if you haven't already
-    npm start
-
+npm install # if you haven't already
+npm start
 ```
 
 Navigate to `http://localhost:8000/debug.html` to admire the fruits of your labor:
@@ -339,19 +327,15 @@ To mock out AngularJS services such as `$http` you can work with [ngMocks](https
 To add a simple test for our widget, replace the existing dummy test
 
 ```JS
-
-    it( 'still needs some tests.' );
-
+it( 'still needs some tests.' );
 ```
 
 with a more useful spec:
 
 ```JS
-
-    it( 'allows to calculate a total of its contents', function() {
-        expect( testBed_.scope.total( testBed_.scope.model ) ).toEqual( 61.75 );
-    } );
-
+it( 'allows to calculate a total of its contents', function() {
+    expect( testBed_.scope.total( testBed_.scope.model ) ).toEqual( 61.75 );
+} );
 ```
 
 Tests get more interesting when you instrument the testbed to publish mock events to be handled by the widget controller, and in turn to inspect events published by the widget.
@@ -367,9 +351,7 @@ Now make sure that the development web server is still running and check out the
 Alternatively, you can run the tests for all your widgets from the command line:
 
 ```JS
-
-    npm test
-
+npm test
 ```
 
 LaxarJS provides [grunt tasks](https://github.com/LaxarJS/grunt-laxar) for testing that automatically set up and run [PhantomJS](http://phantomjs.org/) for you, so you should not run into problems accessing the DOM.

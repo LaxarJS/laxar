@@ -1,8 +1,8 @@
 # Why LaxarJS?
 
-It's difficult to build large applications using AngularJS.
+It is difficult to build large applications using AngularJS.
 Even the creators [tell you](http://briantford.com/blog/huuuuuge-angular-apps) not to do that.
-Unfortunately your customer didn't read that article and now you're trying to manage twenty controllers on the same page.
+Unfortunately your customer did not read that article and now you are trying to manage twenty controllers on the same page.
 We therefore developed LaxarJS as a way to manage this complexity by splitting your application into isolated, manageable components, that may be reused in different contexts.
 
 
