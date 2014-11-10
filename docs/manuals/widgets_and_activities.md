@@ -130,7 +130,7 @@ None of these files are loaded during regular application runtime:
 
 ### Implementing a Controller
 
-To write the controller for your widget, you'll need to implement some business logic.
+To write the controller for your widget, you will need to implement some business logic.
 For a very simple shopping cart this means
 
 * summing the contents of the cart
@@ -300,7 +300,7 @@ There is another manual to learn more about [writing pages](./writing_pages.md).
 Now we can start the development web server provided by LaxarJS, from the application root:
 
 ```SH
-npm install # if you haven't already
+npm install # if you have not already
 npm start
 ```
 

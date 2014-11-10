@@ -15,7 +15,7 @@ Each place corresponds to a single page that should be rendered, or some other c
 Currently the definition of one single flow file is possible, which can by default be found within the application at the path `application/flow/flow.json`.
 This can be adjusted as `laxar-path-flow` in the *require configuration* of your application.
 
-Let's start with an example for a simple `flow.json` file:
+Let us start with an example for a simple `flow.json` file:
 
 ```JSON
 {
@@ -38,7 +38,7 @@ The syntax is taken from AngularJS, where variable parts of a URL are always pre
 Within the flow, the constant prefix of a place is interpreted as its *identifier*.
 Thus the second place in the example has the identifier *pageOne* and one parameter, called *userId*.
 
-The identifier *entry* of the first place is always interpreted as the default place to navigate to if either no place was provided or if the requested place wasn't found within the flow.
+The identifier *entry* of the first place is always interpreted as the default place to navigate to if either no place was provided or if the requested place was not found within the flow.
 Most commonly it will just redirect to another existing place, that for example handles user login or application startup.
 Just as in plain AngularJS, routing a redirect is configured using the `redirectTo` keyword and naming the place identifier to navigate to.
 In this example we simply navigate without providing a value for the *userId* parameter to the place *pageOne*.
@@ -73,7 +73,7 @@ In contrast these places would all be considered invalid:
 * `user/:names*` or `user/:names?`: Wildcards are *not* supported
 
 These rules may seem very restrictive but they enable LaxarJS to make some assumptions and optimizations based on the URL template.
-Additionally a URL shouldn't encode too much sensitive information directly, as this might lead to security issues and bulky URLs.
+Additionally a URL should not encode too much sensitive information directly, as this might lead to security issues and bulky URLs.
 Instead only some domain information should be passed on between pages, that enables the widgets of the next place to fulfill their specific tasks.
 
 
@@ -81,7 +81,7 @@ Instead only some domain information should be passed on between pages, that ena
 
 Navigation is triggered from within a widget by issuing a *navigateRequest* event expressing the desired next location within the application and providing values for place parameters.
 How that works in practice can be read in the separate manual covering [events](events.md).
-Using these events it's possible to always navigate directly from place to place.
+Using these events it is possible to always navigate directly from place to place.
 Nevertheless this would instantly lead to a tight coupling between the widget triggering navigation events and the definition of places within the flow.
 Instead a widget or a page (by means of the feature configuration for a widget) should only know about semantic navigation targets reachable from their current location (roughly comparable to *relations* in [REST](http://en.wikipedia.org/wiki/Representational_state_transfer)).
 
@@ -137,7 +137,7 @@ An example (for brevity the `entry` place is omitted):
 This flow is typical for a wizard-like application, as it allows a forward and backward navigation, but only sparsely jumping in between pages.
 The first place in the example is called *introduction*, which simply displays a page and just lets the user navigate to the *next* target, which would be resolved to the place *interests*.
 Here a page is displayed where the user can input his interests, e.g. his hobbies or music taste.
-As we are in the middle of a wizard, there's a *previous* target reachable now in addition to the *next* and *help* targets.
+As we are in the middle of a wizard, there is a *previous* target reachable now in addition to the *next* and *help* targets.
 Unsurprisingly the *previous* target references the place *introduction* again.
 The *next* target instead leads us to another new place with identifier *profession*.
 The *profession* place may only lead us back to the *interests* place via the *previous* target.
@@ -153,14 +153,14 @@ Returning from the help pages works in a similar way via the *back* targets lead
 ## Entry Points
 
 The previous sections covered the concepts of navigation within the scope of one LaxarJS application.
-Additionally it's also often necessary to integrate a use case implemented as a LaxarJS application within the context of another external application.
+Additionally it is also often necessary to integrate a use case implemented as a LaxarJS application within the context of another external application.
 For example the process of collecting data on interests and profession could be part of a larger application creating a personal profile of a person.
 The host application might have been be implemented in a totally different technology, like Rails or JSP (JavaServer Pages).
 There should be some way for this application to give control to the LaxarJS application and pass in some parameters.
 
 This is achieved by the concept of *entry points*.
 Entry points define possible ways for how to enter an application and which place to navigate to once this entry point is selected.
-Let's add entry points to our example:
+Let us add entry points to our example:
 
 ```JSON
 {
@@ -195,7 +195,7 @@ The difference mainly comes from their usage when passing control from the exter
 An entry point is selected by configuring it in the global `window.laxar` [configuration object](configuration.md) as `window.laxar.portal.flow.entryPoint` property.
 This property is an object with key `target` denoting the name of the entry point to select and an optional map under the `parameters` with the values for the possible place parameters.
 
-So let's assume a JSP renders the bootstrapping code for the LaxarJS application, selects the `enterInterests` entry point and passes the user ID to the JavaScript frontend:
+So let us assume a JSP renders the bootstrapping code for the LaxarJS application, selects the `enterInterests` entry point and passes the user ID to the JavaScript frontend:
 
 ```html
 <!DOCTYPE html>
@@ -253,10 +253,10 @@ Here we added to possible exitPoints to our example:
             },
             exitPoints: {
                saveProfile: function( parameters ) {
-                  // Do whatever is necessary here to pass control back to the JSF application ...
+                  // Do whatever is necessary here to pass control back to the JSP application ...
                },
                cancelProcess: function( parameters ) {
-                  // Do whatever is necessary here to pass control back to the JSF application ...
+                  // Do whatever is necessary here to pass control back to the JSP application ...
                }
             }
          };
