@@ -29,7 +29,7 @@ If for example the desired layout is located at `popups/layout_one`, the accordi
 }
 ```
 
-Now let's assume the html file of `popups/layout_one` looks like this:
+Now let us assume the html file of `popups/layout_one` looks like this:
 
 <a name="example_2"></a>
 ```HTML
@@ -126,7 +126,7 @@ Nevertheless it has its valid use cases as in every user interface there are som
 These should be extracted into one or more base pages, that define no layout and can be reused by all other pages defining the layout necessary to display their contents.
 
 Valid candidate widgets for base pages are application headlines, informational notes in a footer area or activities providing common tasks for all pages.
-Let's apply this to our example from above and extract the *HeadlineWidget* into a base page called `base_page.json`.
+Let us apply this to our example from above and extract the *HeadlineWidget* into a base page called `base_page.json`.
 
 ```JSON
 {
@@ -186,12 +186,12 @@ The parts already provided by the base page can then be deleted:
 }
 ```
 
-It's also possible to add widgets to an area, that is already filled with one or more widgets in the base page.
+It is also possible to add widgets to an area, that is already filled with one or more widgets in the base page.
 Those widgets in the extending page will be appended to the according area and thus appear after the base widgets in the DOM.
 If a widget of the extending page should explicitly be added before another widget of a base page, this can be achieved using the keyword `insertBeforeId`.
 Note that for this to work it's necessary to provide an `id` property for the according widget in the base page.
 
-Let's assume we wanted to add another additional headline in one extending page.
+Let us assume we wanted to add another additional headline in one extending page.
 We therefore change the base page first and add an id to the existing headline:
 
 ```JSON

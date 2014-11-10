@@ -2,7 +2,7 @@
 
 It is difficult to build large applications using AngularJS.
 Even the creators [tell you](http://briantford.com/blog/huuuuuge-angular-apps) not to do that.
-Unfortunately your customer did not read that article and now you are trying to manage twenty controllers on the same page.
+Unfortunately your customer has not read that article and now you are trying to manage twenty controllers on the same page.
 We therefore developed LaxarJS as a way to manage this complexity by splitting your application into isolated, manageable components, that may be reused in different contexts.
 
 
@@ -10,8 +10,8 @@ We therefore developed LaxarJS as a way to manage this complexity by splitting y
 
 AngularJS already tries to address some of the issues arising with larger applications such as end-to-end testability, encapsulation through directives and controller/view-separation.
 Also there already exist [best practices](http://cliffmeyers.com/blog/2013/4/21/code-organization-angularjs-javascript) on the organization of larger applications.
-However it isn't obvious how to isolate and possibly even reuse larger blocks of functionality as experienced by the application user.
-AngularJS offers many ways to couple your components, but few ways to reliably decouple them:
+However it is not obvious how to isolate and possibly even reuse larger blocks of functionality as experienced by the application user.
+AngularJS offers many ways to _couple_ your components, but few ways to reliably _decouple_ them:
 
 * binding to shared scope properties harms stability due to side effects
 * shared state via services may quickly lead to similar problems
@@ -36,7 +36,7 @@ Both widgets would still be able to perform their respective function without th
 
 After a user interaction, widgets may publish the need for some other widget to take an action, if that is outside of their own responsibility.
 Applied to the previous example, a shopping cart widget would provide a *check out* button.
-On click of that button, the widget would simply publish a request for action as an event, because it isn't responsible for the actual ordering process, which might involve navigation, calling a (RESTful) web service and so on.
+On click of that button, the widget would simply publish a request for action as an event, because it is not responsible for the actual ordering process, which might involve navigation, calling a (RESTful) web service and so on.
 A separate component would *react* to the event and possibly later publish its own event to indicate that the action was performed successfully.
 
 There is no need to decide upfront which widgets talk about the same resources and actions.
