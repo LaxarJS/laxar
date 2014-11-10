@@ -8,7 +8,7 @@ Preliminary readings:
 
 # Writing Compositions
 
-Although inheritance brings a bit of organization into pages, for bigger applications with many widgets on a page this isn't sufficient.
+Although inheritance brings a bit of organization into pages, for bigger applications with many widgets on a page this is not sufficient.
 Very often most of a base page fits for all pages but some small things need to be adjusted for some of the pages that could otherwise be reused throughout the application.
 Another use case is to enable the reuse of a bundle of widgets multiple times within one page, each time only with some different configuration.
 
@@ -17,7 +17,7 @@ The idea behind compositions is, that they provide a widget like interface regar
 A composition thus has two basic properties: `areas`, like a page and `features` like a widget.
 A third more advanced property, namely `mergedFeatures`, will be explained later.
 
-Instead we'll start with the simple `popup_composition` we referenced above:
+Instead we will start with the simple `popup_composition` we referenced above:
 
 ```JSON
 {
@@ -78,7 +78,7 @@ Instead we'll start with the simple `popup_composition` we referenced above:
 ```
 
 This example already shows some of the additional characteristics that go beyond the two properties `features` and `areas`.
-Let's start from the beginning:
+Let us start from the beginning:
 
 First there is the `features` object, that for simple cases looks just like a feature specification of a widget.
 Here you can define all the features that your composition needs to be configurable from the outside.
@@ -173,7 +173,7 @@ The assembled page thus looks similar to this:
 ```
 Note how also the id of the exported area was automatically adjusted to `"popupCompositionId0Popup.content"` to prevent naming clashes.
 
-In our example it's currently only possible to close the *PopupWidget* from within itself via an action event published by the *CommandBarWidget*.
+In our example it is currently only possible to close the *PopupWidget* from within itself via an action event published by the *CommandBarWidget*.
 What if we additionally would like to close the popup on demand from outside based on another action?
 This is where the concept of *merged features* comes into play.
 *Merged features* allow us to merge or better concatenate two arrays, where one array is defined as a feature for the composition and the second array is defined in the `mergedFeatures` object.
@@ -259,7 +259,7 @@ For this we then added an entry in the `mergedFeatures` map whose value is an ar
 This enables us to now reference this feature when configuring the *PopupWidget*.
 Instead of creating the array with the generated topic here, we can simply reference the feature directly as it is the case for the `openPopup.onActions` feature.
 For the configuration of the *CommandBarWidget* nothing changed.
-When using the composition it is now possible to provide additional close actions, but since we defined an empty array as default for the feature, this isn't mandatory.
+When using the composition it is now possible to provide additional close actions, but since we defined an empty array as default for the feature, this is not mandatory.
 
 # Appendix:
 

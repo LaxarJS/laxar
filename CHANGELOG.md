@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#112](https://github.com/LaxarJS/laxar/issues/112): documentation: removed colloquial style
+
 
 ## v0.17.0
 
