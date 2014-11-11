@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#97](https://github.com/LaxarJS/laxar/issues/97): documentation: manual on themes
 - [#112](https://github.com/LaxarJS/laxar/issues/112): documentation: removed colloquial style
 - [#88](https://github.com/LaxarJS/laxar/issues/88): footprint: removed `underscore` dependency
 - [#70](https://github.com/LaxarJS/laxar/issues/70): footprint: removed `laxar.text` API (use `laxar.string.format` instead)

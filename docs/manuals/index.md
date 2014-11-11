@@ -1,5 +1,3 @@
-[« return to the manuals](index.md)
-
 # Manuals
 
 Before starting with the manuals, make sure that you know [what LaxarJS is about](../why_laxar.md), and that you are familiar with the [core concepts](../concepts.md).
@@ -23,6 +21,10 @@ Before starting with the manuals, make sure that you know [what LaxarJS is about
 
     How to communicate between widgets using topics on the event bus.
 
+* [Creating Themes](creating_themes.md)
+
+    How to create a custom, pluggable style for your widgets and applications.
+    
 * [Providing Controls](providing_controls.md)
 
     How to create reusable, interactive elements that support themes.
