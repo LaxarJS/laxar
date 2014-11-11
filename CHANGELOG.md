@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#97](https://github.com/LaxarJS/laxar/issues/97): documentation: manual on themes
 - [#112](https://github.com/LaxarJS/laxar/issues/112): documentation: removed colloquial style
 
 
