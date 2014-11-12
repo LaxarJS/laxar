@@ -79,7 +79,7 @@ define( [
          'locales': 'i18n.locales',
          'entryPoint': 'portal.flow.entryPoint',
          'exitPoints': 'portal.flow.exitPoints',
-         'fileListings': 'file_resource_provider.listings',
+         'fileListings': 'file_resource_provider.fileListings',
          'theme': 'portal.theme',
          'useMergedCss': 'portal.useMergedCss'
       };
