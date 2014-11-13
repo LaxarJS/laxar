@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#72](https://github.com/LaxarJS/laxar/issues/72): configuration: removed deprecated configuration paths.
+    + **BREAKING CHANGE:** see ticket for details
 - [#97](https://github.com/LaxarJS/laxar/issues/97): documentation: manual on themes
 - [#112](https://github.com/LaxarJS/laxar/issues/112): documentation: removed colloquial style
 - [#88](https://github.com/LaxarJS/laxar/issues/88): footprint: removed `underscore` dependency

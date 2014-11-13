@@ -49,12 +49,11 @@ define( [
     *    all AngularJS modules that should instantly be loaded (most probably the widgets)
     */
    function bootstrap( widgetModules ) {
-      findAndLogDeprecatedSettings();
-
       var logThreshold = configuration.get( 'logging.threshold' );
       if( logThreshold ) {
          log.setLogThreshold( logThreshold );
       }
+
       log.addLogChannel( log.channels.console );
       log.trace( 'Bootstrapping portal ... ' );
 
@@ -65,37 +64,6 @@ define( [
 
       ng.element( document ).ready( function bootstrap() {
          ng.bootstrap( document, dependencies );
-      } );
-   }
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function findAndLogDeprecatedSettings() {
-
-      var deprecatedConfiguration = {
-         'logThreshold': 'logging.threshold',
-         'locales': 'i18n.locales',
-         'entryPoint': 'portal.flow.entryPoint',
-         'exitPoints': 'portal.flow.exitPoints',
-         'fileListings': 'file_resource_provider.listings',
-         'theme': 'portal.theme',
-         'useMergedCss': 'portal.useMergedCss'
-      };
-
-      // Obtain global object in strict mode: http://stackoverflow.com/questions/3277182/
-      /*jshint evil:true*/
-      var global = new Function( 'return this' )();
-
-      ng.forEach( deprecatedConfiguration, function( newLocation, oldLocation ) {
-         var oldValue = object.path( global.laxar, oldLocation );
-         if( oldValue !== undefined ) {
-            log.warn( 'Found deprecated configuration key "[0]". Use "[1]" instead.', oldLocation, newLocation );
-
-            var newValue = object.path( global.laxar, newLocation );
-            if( newValue === undefined ) {
-               object.setPath( global.laxar, newLocation, oldValue );
-            }
-         }
       } );
    }
 
