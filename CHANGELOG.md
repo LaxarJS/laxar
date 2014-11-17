@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#99](https://github.com/LaxarJS/laxar/issues/99): exit points are now configured as `exitPoint` in flow.json.
+    + **BREAKING CHANGE:** see ticket for details
 - [#72](https://github.com/LaxarJS/laxar/issues/72): configuration: removed deprecated configuration paths.
     + **BREAKING CHANGE:** see ticket for details
 - [#97](https://github.com/LaxarJS/laxar/issues/97): documentation: manual on themes

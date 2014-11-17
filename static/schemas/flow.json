@@ -34,7 +34,7 @@
                         }
                      }
                   },
-                  "exitFunction": {
+                  "exitPoint": {
                      "type": "string"
                   },
                   "triggerBrowserReload": {
