@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#116](https://github.com/LaxarJS/laxar/issues/116): performance: the flow is now loaded through the file resource provider
+    + **BREAKING CHANGE:** see ticket for details
 - [#99](https://github.com/LaxarJS/laxar/issues/99): exit points are now configured as `exitPoint` in flow.json.
     + **BREAKING CHANGE:** see ticket for details
 - [#72](https://github.com/LaxarJS/laxar/issues/72): configuration: removed deprecated configuration paths.
