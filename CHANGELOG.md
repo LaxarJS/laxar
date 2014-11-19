@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v0.17.1
+
 - [#119](https://github.com/LaxarJS/laxar/issues/119): portal: fixed race condition in page loader
 - [#114](https://github.com/LaxarJS/laxar/issues/114): configuration: fixed mapping of deprecated fileListing entry.
 - [#112](https://github.com/LaxarJS/laxar/issues/112): documentation: removed colloquial style
