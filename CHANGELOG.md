@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#120](https://github.com/LaxarJS/laxar/issues/120): portal: fixed flaky timestamp test
 - [#119](https://github.com/LaxarJS/laxar/issues/119): portal: fixed race condition in page loader
 - [#35](https://github.com/LaxarJS/laxar/issues/35): Upgraded internal JSON schemas to draft v4.
 - [#116](https://github.com/LaxarJS/laxar/issues/116): performance: the flow is now loaded through the file resource provider
