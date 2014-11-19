@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v0.18.0
+
 - [#114](https://github.com/LaxarJS/laxar/issues/114): configuration: fixed mapping of deprecated fileListing entry.
 - [#97](https://github.com/LaxarJS/laxar/issues/97): documentation: manual on themes
 - [#112](https://github.com/LaxarJS/laxar/issues/112): documentation: removed colloquial style
