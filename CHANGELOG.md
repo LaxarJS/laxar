@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#120](https://github.com/LaxarJS/laxar/issues/120): portal: fixed flaky timestamp test
+
 
 ## v0.18.1
 
