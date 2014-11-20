@@ -3,6 +3,7 @@
 ## Last Changes
 
 - [#117](https://github.com/LaxarJS/laxar/issues/117): portal: implemented a flow service that provides place urls usable as hyperlinks.
+    + **BREAKING CHANGE:** see ticket for details
 - [#121](https://github.com/LaxarJS/laxar/issues/121): documentation: have README.md next steps point to manuals
 - [#118](https://github.com/LaxarJS/laxar/issues/118): performance: removed $timeout from axPageFade
 - [#120](https://github.com/LaxarJS/laxar/issues/120): portal: fixed flaky timestamp test
