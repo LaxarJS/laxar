@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#113](https://github.com/LaxarJS/laxar/issues/113): documentation: manual on tools
 - [#122](https://github.com/LaxarJS/laxar/issues/122): testing: allow to inject dependencies
     + NEW FEATURE: see ticket for details
 - [#123](https://github.com/LaxarJS/laxar/issues/123): portal: preload widget assets on page load
