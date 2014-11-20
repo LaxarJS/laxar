@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#122](https://github.com/LaxarJS/laxar/issues/122): testing: allow to inject dependencies
+    + NEW FEATURE: see ticket for details
 - [#123](https://github.com/LaxarJS/laxar/issues/123): portal: preload widget assets on page load
 - [#117](https://github.com/LaxarJS/laxar/issues/117): portal: implemented a flow service that provides place urls usable as hyperlinks.
 - [#121](https://github.com/LaxarJS/laxar/issues/121): documentation: have README.md next steps point to manuals
