@@ -93,4 +93,4 @@ Now your compressed application can be visited at [http://localhost:8000/](http:
 
 Have fun developing your first LaxarJS application.
 
-Make sure to have a look at the [API doc](docs/api/index.md) and stay tuned for the upcoming getting started guide.
+Make sure to have a look at the [manuals](docs/manuals/index.md) and and check out the demo applications on the [LaxarJS website](http://laxarjs.org/).
