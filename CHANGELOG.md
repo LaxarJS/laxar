@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#125](https://github.com/LaxarJS/laxar/issues/125): axLayout: emit AngularJS event when loaded
+    + NEW FEATURE: see ticket for details
 - [#113](https://github.com/LaxarJS/laxar/issues/113): documentation: manual on tools
 - [#122](https://github.com/LaxarJS/laxar/issues/122): testing: allow to inject dependencies
     + NEW FEATURE: see ticket for details
