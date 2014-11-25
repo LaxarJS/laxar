@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#124](https://github.com/LaxarJS/laxar/issues/124): implemented an adapter for plain JavaScript widgets.
+    + NEW FEATURE: see ticket for details
 - [#103](https://github.com/LaxarJS/laxar/issues/103): portal: removed json patch compatibility layer.
     + **BREAKING CHANGE:** see ticket for details
 - [#113](https://github.com/LaxarJS/laxar/issues/113): documentation: manual on tools
