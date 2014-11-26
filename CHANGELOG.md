@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#134](https://github.com/LaxarJS/laxar/issues/134): storage: fixed storage in iOS Safari private browsing
 - [#124](https://github.com/LaxarJS/laxar/issues/124): implemented an adapter for plain JavaScript widgets.
     + NEW FEATURE: see ticket for details
 - [#125](https://github.com/LaxarJS/laxar/issues/125): axLayout: emit AngularJS event when loaded
