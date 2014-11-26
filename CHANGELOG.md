@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#134](https://github.com/LaxarJS/laxar/issues/134): storage: fixed storage in iOS Safari private browsing
+
 
 ## v0.19.0
 
