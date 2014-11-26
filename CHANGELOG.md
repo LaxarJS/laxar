@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#134](https://github.com/LaxarJS/laxar/issues/134): storage: fixed storage in iOS Safari private browsing
 - [#120](https://github.com/LaxarJS/laxar/issues/120): portal: fixed flaky timestamp test
 
 
