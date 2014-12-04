@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#140](https://github.com/LaxarJS/laxar/issues/140): EventBus: make timeout configurable
 - [#126](https://github.com/LaxarJS/laxar/issues/126): testing: `axEventBus` injection available to widget controllers during testing
 
 
