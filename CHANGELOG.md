@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#126](https://github.com/LaxarJS/laxar/issues/126): testing: `axEventBus` injection available to widget controllers during testing
+
 
 ## v0.20.0
 
