@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+## v0.21.0
+
 - [#137](https://github.com/LaxarJS/laxar/issues/137): flow: warn on empty place
 - [#140](https://github.com/LaxarJS/laxar/issues/140): EventBus: make timeout configurable
 - [#126](https://github.com/LaxarJS/laxar/issues/126): testing: `axEventBus` injection available to widget controllers during testing
