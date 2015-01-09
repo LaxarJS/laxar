@@ -2,6 +2,10 @@
 
 ## Last Changes
 
+- [#144](https://github.com/LaxarJS/laxar/issues/144): EventBus: reject publishAndGatherReplies-promise after timeout
+    + **BREAKING CHANGE:** see ticket for details
+
+
 ## v0.21.0
 
 - [#137](https://github.com/LaxarJS/laxar/issues/137): flow: warn on empty place
