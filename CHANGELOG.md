@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#142](https://github.com/LaxarJS/laxar/issues/142): documentation: fixed task alias for development server (`start`, not `develop`)
 - [#144](https://github.com/LaxarJS/laxar/issues/144): EventBus: reject publishAndGatherReplies-promise after timeout
     + **BREAKING CHANGE:** see ticket for details
 

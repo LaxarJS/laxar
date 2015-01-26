@@ -175,7 +175,7 @@ The aliases make sure that task dependencies are observed, plus they are easier 
 
   * `optimize`: makes sure that CSS and JavaScript are available for release
 
-  * `develop`: starts the development server (see below), and watches for file changes (see below)
+  * `start`: starts the development server (see below), and watches for file changes (see below)
   
   * `test`: runs your widget tests.
 
