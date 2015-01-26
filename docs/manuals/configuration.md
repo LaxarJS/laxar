@@ -78,7 +78,7 @@ define( [ 'laxar/laxar_testing', 'my_module' ], function( ax, myModule ) {
       beforeEach( function() {
          var origGet = ax.configuration.get;
          var hoops;
-         spyOn( ax.configuration, 'get' ).andCallThrough( function( key, fallback ) {
+         spyOn( ax.configuration, 'get' ).andCallFake( function( key, fallback ) {
             return key === 'lib.my_module.fooCompatibility' ? true : origGet( key, fallback );
          } );
          hoops = setup();
