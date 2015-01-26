@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#146](https://github.com/LaxarJS/laxar/issues/146): documentation: improved the prerequisites in the `README.md` and writing style
 - [#143](https://github.com/LaxarJS/laxar/issues/143): documentation: fixed testing configuration example (`andCallFake`, not `andCallThrough`)
 - [#142](https://github.com/LaxarJS/laxar/issues/142): documentation: fixed task alias for development server (`start`, not `develop`)
 - [#144](https://github.com/LaxarJS/laxar/issues/144): EventBus: reject publishAndGatherReplies-promise after timeout
