@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#148](https://github.com/LaxarJS/laxar/issues/148): documentation: more detailed information on the event bus, link to api doc
+
 
 ## v0.22.0
 
