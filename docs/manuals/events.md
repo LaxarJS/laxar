@@ -23,7 +23,7 @@ This allows the web browser to batch event-handling with other operations that m
 ## The Event Bus
 
 All events are published to and delivered by the _event bus_:
-The event bus manages _name-based_ (or _topic-based_) _event subscriptions_ for all interested widgets and activities (the _subscribers_):
+The event bus manages _name-based_ (or _topic-based)_ _event subscriptions_ for all interested widgets and activities (the _subscribers)_:
 Subscribers specify an event name pattern that tells the event bus which kinds of "thing that happened" they are interested in.
 When an event is published to the event bus, it is kept in an event queue, to be delivered asynchronously.
 During event delivery, each event name is matched against each subscription, and each matching event is delivered by running the associated callback.
@@ -103,7 +103,7 @@ The requesting widget does not care about _who_ actually performs the request, b
 
 As an example, consider a multi-part user sign-up process, where each of several widgets allows the user to enter and validate some of the information such as email address, payment information or a CAPTCHA.
 Another widget offering a _Complete Sign-Up_ button would be responsible for the overall process of submitting the registration resource to a REST service and navigating to a different page.
-Before hitting the registration service, this widget would ask all input widgets to validate their respective validation details in order to provide immediate feedback to the user.
+Before hitting the registration service, this widget would ask all input widgets to validate their respective sign-up details in order to provide immediate feedback to the user.
 Some of the widgets might have to query their own validation services though, such as the CAPTCHA widget.
 
 Using the _Request/Will/Did_ mechanism, such functionality can be achieved without the registration widget having to know any of the participant widgets:
@@ -118,9 +118,9 @@ Using the _Request/Will/Did_ mechanism, such functionality can be achieved witho
 
   The registration widget may now disable its button and start showing an activity indicator to help the user recognize that an action is in progress.
 
-3. During delivery, the input widgets supporting validation receive the request and will publish a `willValidate.registrationForm` event to indicate that
+3. During delivery, the input widgets supporting validation receive the request and publish a `willValidate.registrationForm` event to indicate that
 
-  * a validation is about to begin _(what)_ and
+  * a validation has been initiated _(what)_ and
   * that it concerns the `registrationForm` resource _(where)_.
 
 4. Each widget will either call its registration service to respond asynchronously, or publish a response directly if it can validate locally.
@@ -137,13 +137,13 @@ New widgets may be added at any time, and will work as long as they support the 
 For example, the message display widget could be added to gather and display validation messages to the user, simply by hooking it up to the same resource and processing its `"didValidate"` events.
 Even if some widgets do not support the validation pattern, they can still be used, only that their validation would have to be handled by the server upon submission of the registration form.
 
-Validation and other patterns are described in the following paragraph below.
+Validation and other patterns are described in the following section.
 
 
 <a name="pattern-reference"></a>
 ## Pattern Reference
 
-A few event patterns are supported directly by LaxarJS, while others are described in the _LaxarJS Patterns_ library.
+A few event patterns are supported directly by LaxarJS, while others are described in the _[LaxarJS Patterns](https://github.com/LaxarJS/laxar_patterns#laxarjs-patterns)_ library.
 Have a good look at all of them before coming up with your own patterns, in order to maximize the synergy of your widgets, especially when aiming for reuse.
 
 
@@ -235,26 +235,54 @@ This section lists the exact details of using it, and on how event names may be 
 ### The Event Bus API
 
 The event bus is available to widgets and activities through `$scope.eventBus`.
-It only has a few essential methods that allow to implement all patterns described below.
+It has only a few essential methods that allow to implement all patterns mentioned above.
 
-* `subscribe( eventPattern, callback, options )`
+* `subscribe( eventPattern, callback [, options] )`
 
-  This creates a subscription on the event bus.
-  The `eventPattern` is a prefix for events to subscribe to:
-  Events that start with the given sequence of (sub-)topics will be handled by this subscription.
+   Creates a subscription on the event bus.
 
-* `publish( eventName, payload )`
+   - The `eventPattern` is a prefix for events to subscribe to:
+     Events that start with the given sequence of (sub-)topics will be handled by this subscription.
+     For example, a subscription to the pattern `didSave` will be triggered for the event `didSave.myDocument` as well as for the event `didSave.preferences-main`.
+     Most of the time, widgets are only interested in very specific events related to resources they work with or actions they handle, so they use patterns such as `didReplace.someResource` where `someResource` is given by the page configuration.
+   
+   - The `callback` is the function which will be called to process any matching events.
+     Event subscription callbacks receive two arguments:
+       + The `event` is this subscriber's copy of the payload, as published by the sender of the event.
+       + The `meta` object contains additional information about the event, in particular the `sender` (identified by a string) and the `name` (under which the event was published).
+   
+   - The `options` are usually not required for widgets:
+     Using `options.subscriberId`, the subscriber can identify itself to the event bus.
+     However, the LaxarJS runtime decorates each widget's event bus such that this option is always set correctly.
+  
+  The method `subscribe` does not return a value.
+
+* `publish( eventName, payload [, options ] )`
 
   Publishes an event to all interested subscribers.
   Delivery is asynchronous: control is returned to the caller immediately, and delivery will be performed afterwards, together with an AngularJS digest cycle.
   The event payload is cloned immediately so that the caller is free to modify it right after publishing.
   Returns a promise that is resolved after the event has been delivered to all subscribers.
 
-* `publishAndGatherReplies( requestEventName, payload )`
+  - The `eventName` is used to identify matching subscribers.
+    It is matched against the `eventPattern` of any subscriptions.
+
+  - The `payload` will be delivered as the `event` parameter to any matching subscriber callbacks.
+    It is copied right away, making it safe to modify afterwards.
+
+  - The `options` are usually not required for widgets:
+    By setting `options.deliverToSender` to `false`, widgets can ignore their own events, which can sometimes be necessary to avoid loops.
+
+  The method `publish` returns a promise that is resolved after the event has been processed by all matching subscribers.
+
+* `publishAndGatherReplies( requestEventName, payload [, options ] )`
 
   Publishes a [request event](#request-events), gathers all _will_-responses during delivery and then waits for all outstanding _did_-responses.
+  The parameters `payload` and `options` are equivalent to the regular `publish`-method.
   Returns a promise that is resolved when all _did_-responses have been received.
 
+This information should help to get started with the event bus and intentionally omits a lot of details.
+For full information, refer to the [EventBus API documentation](https://github.com/LaxarJS/laxar/blob/master/docs/api/lib/event_bus/event_bus.md).
 
 <a name="grammar"></a>
 ### Event Name Grammar
