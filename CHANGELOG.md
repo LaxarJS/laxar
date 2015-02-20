@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#151](https://github.com/LaxarJS/laxar/issues/151): EventBus: fixed cycle count for zero subscribers
+
 
 ## v0.22.0
 
