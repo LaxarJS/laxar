@@ -22,6 +22,8 @@
 - [#92](https://github.com/LaxarJS/laxar/issues/92): removed obsolete mixins in favor of compositions.
     + **BREAKING CHANGE:** see ticket for details
 
+- [#153](https://github.com/LaxarJS/laxar/issues/153): portal: angular-adapter: simplified widget and controller naming
+    + NEW FEATURE: see ticket for details
 - [#151](https://github.com/LaxarJS/laxar/issues/151): EventBus: fixed cycle count for zero subscribers
 - [#148](https://github.com/LaxarJS/laxar/issues/148): documentation: more detailed information on the event bus, link to api doc
 
