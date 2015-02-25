@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#153](https://github.com/LaxarJS/laxar/issues/153): portal: angular-adapter: simplify widget naming
 - [#151](https://github.com/LaxarJS/laxar/issues/151): EventBus: fixed cycle count for zero subscribers
 - [#148](https://github.com/LaxarJS/laxar/issues/148): documentation: more detailed information on the event bus, link to api doc
 
