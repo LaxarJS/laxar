@@ -9,14 +9,14 @@ Preliminary readings:
 
 # Installing Third Party Widgets
 
-Among [the advantages](../why_laxar.md) of using LaxarJS, the concept of isolated, reusable widgets was mentioned.
-This begs the question, as to how an existing LaxarJS widget can be added to your application.
+Among [the advantages](../why_laxar.md) of LaxarJS the concept of isolated, reusable widgets was mentioned.
+This begs the question as to how an existing LaxarJS widget can be added to your application.
 
 
 ## Installing Widgets Manually
 
 Currently, widgets must be installed manually in three steps, of which usually only the first is required.
-There are plans to automate the installation in the future, using bower.
+There are plans to automate the installation in the future using bower.
 
 
 ### 1. Obtain the Widget
@@ -27,9 +27,9 @@ Usually, you will simply [clone](http://git-scm.com/docs/git-clone) the required
 In this example, the LaxarJS headline widget in Version 1.0.0 is obtained through `git submodule`:
 
 ```sh
-$ git submodule add https://github.com/laxarjs/ax-headline-widget.git includes/widgets/laxarjs/ax-headline-widget
-$ cd includes/widgets/laxarjs/ax-headline-widget
-$ git checkout v1.0.0
+git submodule add https://github.com/laxarjs/ax-headline-widget.git includes/widgets/laxarjs/ax-headline-widget
+cd includes/widgets/laxarjs/ax-headline-widget
+git checkout v1.0.0
 ```
 
 Instead of using git, you can also simply copy a widget from another project, unpack it from a zip archive, or obtain it in any other way.
