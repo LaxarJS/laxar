@@ -1,11 +1,14 @@
 # Changelog
 
-## Last Changes
 
-## v0.23.0
+## Last Changes
 
 - [#152](https://github.com/LaxarJS/laxar/issues/152): documentation: added widget installation manual
     + NEW FEATURE: see ticket for details
+
+
+## v0.23.0
+
 - [#153](https://github.com/LaxarJS/laxar/issues/153): portal: angular-adapter: simplified widget and controller naming
     + NEW FEATURE: see ticket for details
 - [#151](https://github.com/LaxarJS/laxar/issues/151): EventBus: fixed cycle count for zero subscribers
