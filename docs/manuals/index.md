@@ -12,7 +12,11 @@ Before starting with the manuals, make sure that you know [what LaxarJS is about
 * [Writing Pages](writing_pages.md)
 
     A step-by-step introduction to writing layouts and pages for a LaxarJS application.
-    
+
+* [Installing Third Party Widgets](installing_widgets.md)
+
+   Learn how to integrate and leverage existing widgets and activities.
+
 * [Flow and Places](flow_and_places.md)
 
     Creating a flow through the pages and make the addressable as places.
