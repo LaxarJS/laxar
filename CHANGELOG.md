@@ -3,6 +3,7 @@
 
 ## Last Changes
 
+- [#155](https://github.com/LaxarJS/laxar/issues/155): visibility: page controller now unsubscribes on tear-down
 - [#152](https://github.com/LaxarJS/laxar/issues/152): documentation: added widget installation manual
     + NEW FEATURE: see ticket for details
 
