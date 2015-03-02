@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#155](https://github.com/LaxarJS/laxar/issues/155): visibility: page controller now unsubscribes on tear-down
+
 
 ## v0.23.0
 
