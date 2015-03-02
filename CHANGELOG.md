@@ -22,6 +22,7 @@
 - [#92](https://github.com/LaxarJS/laxar/issues/92): removed obsolete mixins in favor of compositions.
     + **BREAKING CHANGE:** see ticket for details
 
+- [#155](https://github.com/LaxarJS/laxar/issues/155): visibility: page controller now unsubscribes on tear-down
 - [#152](https://github.com/LaxarJS/laxar/issues/152): documentation: added widget installation manual
     + NEW FEATURE: see ticket for details
 
