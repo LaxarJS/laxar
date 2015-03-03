@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+## v0.23.2
+
 - [#145](https://github.com/LaxarJS/laxar/issues/145): testing: added missing cancel-method to mock-$timeout
 
 
