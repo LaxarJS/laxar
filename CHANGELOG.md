@@ -3,6 +3,7 @@
 
 ## Last Changes
 
+- [#157](https://github.com/LaxarJS/laxar/issues/157): portal: angular-adapter: fixed error reporting
 - [#145](https://github.com/LaxarJS/laxar/issues/145): testing: added missing cancel-method to mock-$timeout
 - [#155](https://github.com/LaxarJS/laxar/issues/155): visibility: page controller now unsubscribes on tear-down
 - [#152](https://github.com/LaxarJS/laxar/issues/152): documentation: added widget installation manual
