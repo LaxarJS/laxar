@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v0.23.3
+
 - [#157](https://github.com/LaxarJS/laxar/issues/157): portal: angular-adapter: fixed error reporting
 
 
