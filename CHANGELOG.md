@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#102](https://github.com/LaxarJS/laxar/issues/102): testing: deleted deprecated warning of `testBed.useWidgetJson`
+
 
 ## v0.23.3
 
