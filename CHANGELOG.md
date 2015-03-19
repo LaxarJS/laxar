@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#149](https://github.com/LaxarJS/laxar/issues/149): testing: always use `widget.json` for widget spec tests
+    + **BREAKING CHANGE:** see ticket for details
 - [#139](https://github.com/LaxarJS/laxar/issues/139): loader: removed widget compatibility warning for now
 - [#124](https://github.com/LaxarJS/laxar/issues/124): implemented an adapter for plain JavaScript widgets.
     + NEW FEATURE: see ticket for details
