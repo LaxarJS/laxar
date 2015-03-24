@@ -3,6 +3,9 @@
 
 ## Last Changes
 
+
+## v0.25.0
+
 - [#160](https://github.com/LaxarJS/laxar/issues/160): refactoring: prepared for normalization of AngularJS artifact names (v1.x)
     + NEW FEATURE: see ticket for details
 - [#156](https://github.com/LaxarJS/laxar/issues/156): i18n: by default, use relaxed matching for language tags
