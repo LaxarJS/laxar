@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#160](https://github.com/LaxarJS/laxar/issues/160): refactoring: normalized AngularJS artifact names
+    + **BREAKING CHANGE:** see ticket for details
 - [#149](https://github.com/LaxarJS/laxar/issues/149): testing: always use `widget.json` for widget spec tests
     + **BREAKING CHANGE:** see ticket for details
 - [#139](https://github.com/LaxarJS/laxar/issues/139): loader: removed widget compatibility warning for now

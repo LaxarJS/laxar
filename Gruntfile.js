@@ -66,9 +66,10 @@ module.exports = function (grunt) {
                { pattern: '*.js', included: false }
             ]
          },
-         event_bus: karma('event_bus'),
+         'directives-id': karma('directives/id'),
          'directives-layout': karma('directives/layout'),
          'directives-widget_area': karma('directives/widget_area'),
+         event_bus: karma('event_bus'),
          file_resource_provider: karma('file_resource_provider'),
          i18n: karma('i18n'),
          json: karma('json'),
