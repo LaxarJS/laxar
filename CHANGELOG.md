@@ -26,7 +26,14 @@
 - [#92](https://github.com/LaxarJS/laxar/issues/92): removed obsolete mixins in favor of compositions.
     + **BREAKING CHANGE:** see ticket for details
 
+
+## v0.25.0
+
 - [#156](https://github.com/LaxarJS/laxar/issues/156): i18n: by default, use relaxed matching for language tags
+
+
+## v0.24.0
+
 - [#157](https://github.com/LaxarJS/laxar/issues/157): portal: angular-adapter: fixed error reporting
 - [#145](https://github.com/LaxarJS/laxar/issues/145): testing: added missing cancel-method to mock-$timeout
 - [#155](https://github.com/LaxarJS/laxar/issues/155): visibility: page controller now unsubscribes on tear-down
