@@ -9,9 +9,9 @@ Preliminary readings:
 
 # Creating Themes
 
-Sometimes you would like to use the _one widget_ in _two or more applications_.
+Sometimes you would like to use _one widget_ in _two or more applications_.
 For this, usually you want the widget to _behave identically_, but _look differently_.
-Alternatively, you would sometimes like to offer the same application in different appearances.
+Alternatively, sometimes you would like to offer the same application in different appearances.
 LaxarJS has the concept of _themes_ to help you achieve these things.
 
 
@@ -24,7 +24,7 @@ There are several ways to add your own styles.
 ### From Ad-Hoc Styles to Theme Folders… 
 
 Usually, you will need to add some CSS classes of your own.
-For example, the vast majority of web application needs some styling for the page background and positioning or custom header and footer areas.
+For example, the vast majority of web application needs some styling for the page background and positioning or custom header- and footer-areas.
 To include such _ad-hoc styles_, you _could_ simply add a CSS file of your own to the project, and load it from the debug.html and index.html files using the `<link>` tag.
 However, it is _recommended_ to add these styles to your main application layout instead, into a sub-folder called `default.theme/css`.
 
@@ -34,7 +34,6 @@ The _benefit_ of using such a _theme folder_ is that
   * you can support different _themes_ simply by adding more `.theme` folders.
 
 Due to the first point, using the theme folders is useful and recommended _even_ if you only use (and maybe customize) the default theme.
-The LaxarJS [MashupDemo](http://laxarjs.org/demos/mashupdemo/) application takes this no-fuss approach to customizing Bootstrap.
 
 
 ### …and to Custom Themes
@@ -52,18 +51,18 @@ This means that it is entirely _up to you_ which (if any) CSS authoring tools yo
 That being said, we use Compass/SCSS to create themes, and the default-theme is based on the SCSS version of Bootstrap.
 Using this approach makes it very easy to create a custom theme just by changing some Bootstrap SCSS variables.
 Also, by using SCSS variables defined in the theme, widgets and controls can provide a consistent appearance.
-After explaining themes in general, below are instructions on [creating an SCSS theme](#creating-an-scss-theme).
+After explaining themes in general, further down we give instructions on [creating an SCSS theme](#creating-an-scss-theme).
 
 
 <a name="creating-a-theme"></a>
-## Creating your own Theme
+## Creating Your Own Theme
 
 Let us create our own theme for an existing application, the [LaxarJS ShopDemo](http://laxarjs.org/demos/shopdemo/).
-The ShopDemo brings it's own theme _"laxar_demo"_, which is implemented by augmenting Bootstrap with some custom additions.
+The ShopDemo brings it's own _"cube.theme"_, which is implemented by augmenting Bootstrap with some changes and custom additions, such as the circle icons used with the headlines.
 
-![LaxarJS ShopDemo using laxar_demo theme](creating_themes/shop_demo_laxar_demo_50.png)
+![LaxarJS ShopDemo using cube theme](creating_themes/shop_demo_cube_50.png)
 
-**_Above:_ The LaxarJS ShopDemo using the _laxar_demo_ theme**
+**_Above:_ The LaxarJS ShopDemo using the _cube_ theme**
 
 However, the demo also works with just the default theme, provided by LaxarJS UiKit, although admittedly it does not look quite as pretty:
 
@@ -71,9 +70,9 @@ However, the demo also works with just the default theme, provided by LaxarJS Ui
 
 **_Above:_ The LaxarJS ShopDemo using the _default_ theme**
 
-### Adding a Theme Using Plain CSS 
+### A Custom Theme Using Plain CSS 
 
-Now, since all applications seem to offer a "dark" look these days, let us try to achieve this for our shop demo app.
+Since all applications seem to offer a "dark" look these days, let us try to achieve this for our shop demo app.
 Fortunately, there are several collections of nice bootstrap themes available for free.
 On the site [Bootswatch](http://bootswatch.com) for example, you will find the theme _[darkly](http://bootswatch.com/darkly/)_, which looks like it might work for us.
 
@@ -241,16 +240,16 @@ The Bootstrap framework incurs some degree of boilerplate, but makes it relative
 
 ## How the Runtime Finds CSS
 
-As mentioned previously, the LaxarJS runtime and grunt tasks do not care how you create your CSS.
-However, these tools need to find it.
+As mentioned previously, the LaxarJS runtime and grunt tasks do not care _how_ you create your CSS.
+However, these tools need to find it, so it is important _where_ the CSS files are.
 
 The general lookup works always like this:
 
-  1. if there are _application specific styles_ for an artifact then use those
+  1. if there are _theme-specific styles_ for an artifact (matching the application theme) then use those
   2. else if there are _default styles_ for an artifact then use those
   3. else load _nothing_
-  
-Of course, _load nothing_ means that it is completely fine for a widget not to have its own CSS styles.
+
+Of course, _load nothing_ means that it is completely fine for a widget not to have its any CSS styles.
 If it was missing an HTML template on the other hand, that would simply be an error.
 Following this structure allows the `grunt-laxar` tasks to find and combine the correct HTML and CSS assets, so that the number of HTTP requests may be minimized during production.
 
