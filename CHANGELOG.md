@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#147](https://github.com/LaxarJS/laxar/issues/147): footprint: made jquery from a dependency into a dev-dependency
+    + NEW FEATURE: see ticket for details
 - [#162](https://github.com/LaxarJS/laxar/issues/162): documentation: fixed theme manual after shop-demo update
 - [#160](https://github.com/LaxarJS/laxar/issues/160): refactoring: normalized AngularJS artifact names
     + **BREAKING CHANGE:** see ticket for details
