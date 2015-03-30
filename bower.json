@@ -13,10 +13,10 @@
       "docs"
    ],
    "dependencies": {
-      "angular": "angular/bower-angular#1.2.x",
-      "angular-mocks": "angular/bower-angular-mocks#1.2.x",
-      "angular-sanitize": "angular/bower-angular-sanitize#1.2.x",
-      "angular-route": "angular/bower-angular-route#1.2.x",
+      "angular": "angular/bower-angular#1.3.15",
+      "angular-mocks": "angular/bower-angular-mocks#1.3.15",
+      "angular-sanitize": "angular/bower-angular-sanitize#1.3.15",
+      "angular-route": "angular/bower-angular-route#1.3.15",
       "jjv": "acornejo/jjv#1.0.x",
       "jjve": "alex3683/jjve#0.2.1-plus-5-commits",
       "jquery": "jquery/jquery#1.11.x",
