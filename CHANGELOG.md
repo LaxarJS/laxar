@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#161](https://github.com/LaxarJS/laxar/issues/161): portal: removed memory leak fix for msie8
 - [#158](https://github.com/LaxarJS/laxar/issues/158): changed AngularJS support to version 1.3.15.
     + **BREAKING CHANGE:** see ticket for details
 - [#147](https://github.com/LaxarJS/laxar/issues/147): footprint: made jquery from a dependency into a dev-dependency
