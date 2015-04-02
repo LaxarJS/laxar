@@ -3,6 +3,8 @@
 
 ## Last Changes
 
+- [#163](https://github.com/LaxarJS/laxar/issues/163): EventBus: fixed request topic matching
+
 
 ## v0.25.0
 
