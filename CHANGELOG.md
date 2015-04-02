@@ -2,7 +2,6 @@
 
 ## Last Changes
 
-- [#163](https://github.com/LaxarJS/laxar/issues/163): EventBus: fixed request topic matching
 - [#161](https://github.com/LaxarJS/laxar/issues/161): portal: removed memory leak fix for msie8
 - [#158](https://github.com/LaxarJS/laxar/issues/158): changed AngularJS support to version 1.3.15.
     + **BREAKING CHANGE:** see ticket for details
@@ -32,6 +31,8 @@
     + **BREAKING CHANGE:** see ticket for details
 - [#92](https://github.com/LaxarJS/laxar/issues/92): removed obsolete mixins in favor of compositions.
     + **BREAKING CHANGE:** see ticket for details
+
+- [#163](https://github.com/LaxarJS/laxar/issues/163): EventBus: fixed request topic matching
 
 
 ## v0.25.0
