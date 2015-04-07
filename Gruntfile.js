@@ -7,14 +7,12 @@
 module.exports = function (grunt) {
    'use strict';
 
-   var pkg = grunt.file.readJSON('package.json');
-   var bwr = grunt.file.readJSON('bower.json');
+   var pkg = grunt.file.readJSON( 'package.json' );
    var src = {
       gruntfile: 'Gruntfile.js',
       require: 'require_config.js',
-      laxar: [pkg.name + '.js', 'lib/**/*.js', '!lib/**/spec/**/*.js'],
-      specs: ['lib/**/spec/**/*.js'],
-      docs: ['docs/**/*.md']
+      laxar: [ pkg.name + '.js', 'lib/**/*.js', '!lib/**/spec/**/*.js' ],
+      specs: [ 'lib/**/spec/**/*.js' ]
    };
 
    function karma(lib) {
@@ -36,7 +34,7 @@ module.exports = function (grunt) {
       return { options: options };
    }
 
-   grunt.initConfig({
+   grunt.initConfig( {
       jshint: {
          options: {
             jshintrc: '.jshintrc'
@@ -66,19 +64,19 @@ module.exports = function (grunt) {
                { pattern: '*.js', included: false }
             ]
          },
-         'directives-id': karma('directives/id'),
-         'directives-layout': karma('directives/layout'),
-         'directives-widget_area': karma('directives/widget_area'),
-         event_bus: karma('event_bus'),
-         file_resource_provider: karma('file_resource_provider'),
-         i18n: karma('i18n'),
-         json: karma('json'),
-         logging: karma('logging'),
-         'portal-modules': karma('portal/modules'),
-         'portal-assembler': karma('portal/portal_assembler'),
-         profiling: karma('profiling'),
-         testing: karma('testing'),
-         utilities: karma('utilities')
+         'directives-id': karma( 'directives/id' ),
+         'directives-layout': karma( 'directives/layout' ),
+         'directives-widget_area': karma( 'directives/widget_area' ),
+         event_bus: karma( 'event_bus' ),
+         file_resource_provider: karma( 'file_resource_provider' ),
+         i18n: karma( 'i18n' ),
+         json: karma( 'json' ),
+         logging: karma( 'logging' ),
+         'portal-modules': karma( 'portal/modules' ),
+         'portal-assembler': karma( 'portal/portal_assembler' ),
+         profiling: karma( 'profiling' ),
+         testing: karma( 'testing' ),
+         utilities: karma( 'utilities' )
       },
       test_results_merger: {
          laxar: {
@@ -92,72 +90,26 @@ module.exports = function (grunt) {
             dest: 'lcov.info'
          }
       },
-      laxar_dox: {
-         laxar: {
-            files: [ {
-               expand: true,
-               src: [
-                  'laxar.js',
-                  'lib/event_bus/*.js',
-                  'lib/i18n/*.js',
-                  'lib/logging/*.js',
-                  'lib/utilities/*.js',
-                  'lib/testing/*.js'
-               ],
-               dest: 'docs/api/',
-               ext: '.md'
-            } ]
-         }
-      },
-      markdown: {
-         docs: {
-            files: [ {
-               expand: true,
-               src: src.docs,
-               dest: 'dist/',
-               ext: '.html',
-               rename: function (dest, src) {
-                  return dest + src.replace(/\/README\.html$/, '/index.html');
-               }
-            } ]
-         }
-      },
-      bower: {
-         laxar: {
-            rjsConfig: src.require,
-            options: {
-               baseUrl: './'
-            }
-         }
-      },
       watch: {
          gruntfile: {
             files: src.gruntfile,
-            tasks: ['jshint:gruntfile']
+            tasks: [ 'jshint:gruntfile' ]
          },
          laxar: {
             files: src.laxar,
-            tasks: ['jshint:laxar', 'karma']
+            tasks: [ 'jshint:laxar', 'karma' ]
          },
          specs: {
             files: src.specs,
-            tasks: ['jshint:specs', 'karma']
-         },
-         docs: {
-            files: src.docs,
-            tasks: ['markdown']
+            tasks: [ 'jshint:specs', 'karma' ]
          }
       }
-   });
+   } );
 
-   grunt.loadNpmTasks('grunt-contrib-jshint');
-   grunt.loadNpmTasks('grunt-contrib-requirejs');
-   grunt.loadNpmTasks('grunt-contrib-watch');
-   grunt.loadNpmTasks('grunt-bower-requirejs');
-   grunt.loadNpmTasks('grunt-laxar');
-   grunt.loadNpmTasks('grunt-markdown');
+   grunt.loadNpmTasks( 'grunt-contrib-jshint' );
+   grunt.loadNpmTasks( 'grunt-contrib-watch' );
+   grunt.loadNpmTasks( 'grunt-laxar' );
 
-   grunt.registerTask('build', []);
-   grunt.registerTask('test', ['karma', 'test_results_merger', 'lcov_info_merger', 'jshint']);
-   grunt.registerTask('default', ['build', 'test']);
+   grunt.registerTask( 'test', [ 'karma', 'test_results_merger', 'lcov_info_merger', 'jshint' ] );
+   grunt.registerTask( 'default', [ 'test' ] );
 };
