@@ -49,6 +49,7 @@
 - [#92](https://github.com/LaxarJS/laxar/issues/92): removed obsolete mixins in favor of compositions.
     + **BREAKING CHANGE:** see ticket for details
 
+- [#166](https://github.com/LaxarJS/laxar/issues/166): cleanup: removed distribution-related configuration and files
 - [#163](https://github.com/LaxarJS/laxar/issues/163): EventBus: fixed request topic matching
 
 
