@@ -3,6 +3,7 @@
 
 ## Last Changes
 
+- [#166](https://github.com/LaxarJS/laxar/issues/166): cleanup: removed distribution-related configuration and files
 - [#163](https://github.com/LaxarJS/laxar/issues/163): EventBus: fixed request topic matching
 - [#160](https://github.com/LaxarJS/laxar/issues/160): refactoring: prepared for normalization of AngularJS artifact names (v1.x)
     + NEW FEATURE: see ticket for details

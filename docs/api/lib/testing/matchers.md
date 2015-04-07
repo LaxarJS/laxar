@@ -1,3 +1,0 @@
-# Documentation
-
-shint validthis:true

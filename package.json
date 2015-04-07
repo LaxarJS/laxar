@@ -10,7 +10,7 @@
    },
    "scripts": {
       "test": "grunt test --continue",
-      "prepublish": "fixinstall && bower install && grunt build"
+      "prepublish": "fixinstall && bower install"
    },
    "devDependencies": {
       "bower": "~1.3.3",
@@ -18,9 +18,6 @@
       "grunt-cli": "~0.1.13",
       "grunt-contrib-watch": "~0.5.3",
       "grunt-contrib-jshint": "~0.8.0",
-      "grunt-bower-requirejs": "~0.8.4",
-      "grunt-contrib-requirejs": "~0.4.1",
-      "grunt-laxar": "~0.5.1",
-      "grunt-markdown": "~0.5.0"
+      "grunt-laxar": "~0.5.1"
    }
 }
