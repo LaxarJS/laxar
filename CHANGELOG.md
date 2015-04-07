@@ -2,14 +2,25 @@
 
 ## Last Changes
 
+
+## v1.0.0-alpha.3
+
 - [#165](https://github.com/LaxarJS/laxar/issues/165): i18n: changed localizer.format signature to match string.format
     + **BREAKING CHANGE:** see ticket for details
 - [#161](https://github.com/LaxarJS/laxar/issues/161): portal: removed memory leak fix for msie8
+
+
+## v1.0.0-alpha.2
+
 - [#158](https://github.com/LaxarJS/laxar/issues/158): changed AngularJS support to version 1.3.15.
     + **BREAKING CHANGE:** see ticket for details
 - [#147](https://github.com/LaxarJS/laxar/issues/147): footprint: made jquery from a dependency into a dev-dependency
     + NEW FEATURE: see ticket for details
 - [#162](https://github.com/LaxarJS/laxar/issues/162): documentation: fixed theme manual after shop-demo update
+
+
+## v1.0.0-alpha.1
+
 - [#160](https://github.com/LaxarJS/laxar/issues/160): refactoring: normalized AngularJS artifact names
     + **BREAKING CHANGE:** see ticket for details
 - [#149](https://github.com/LaxarJS/laxar/issues/149): testing: always use `widget.json` for widget spec tests
@@ -17,6 +28,10 @@
 - [#139](https://github.com/LaxarJS/laxar/issues/139): loader: removed widget compatibility warning for now
 - [#124](https://github.com/LaxarJS/laxar/issues/124): implemented an adapter for plain JavaScript widgets.
     + NEW FEATURE: see ticket for details
+
+
+## v1.0.0-alpha.0
+
 - [#103](https://github.com/LaxarJS/laxar/issues/103): portal: removed json patch compatibility layer.
     + **BREAKING CHANGE:** see ticket for details
 - [#117](https://github.com/LaxarJS/laxar/issues/117): portal: implemented a flow service that provides place urls usable as hyperlinks.
