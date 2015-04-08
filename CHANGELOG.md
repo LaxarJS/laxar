@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#71](https://github.com/LaxarJS/laxar/issues/71): angular_adapter: widget and activity scopes are now created on demand.
+
 
 ## v1.0.0-alpha.3
 
