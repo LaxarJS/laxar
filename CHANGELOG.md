@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#164](https://github.com/LaxarJS/laxar/issues/164): updated bower dependencies jjv and jjve to latest versions.
 - [#71](https://github.com/LaxarJS/laxar/issues/71): angular_adapter: widget and activity scopes are now created on demand.
 
 
