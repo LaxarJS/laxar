@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.0.0-alpha.5
+
 - [#130](https://github.com/LaxarJS/laxar/issues/130): portal: refactored portal artifacts to runtime and loaders.
 
 
