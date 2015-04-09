@@ -71,10 +71,10 @@ module.exports = function (grunt) {
          file_resource_provider: karma( 'file_resource_provider' ),
          i18n: karma( 'i18n' ),
          json: karma( 'json' ),
+         loaders: karma( 'loaders' ),
          logging: karma( 'logging' ),
-         'portal-modules': karma( 'portal/modules' ),
-         'portal-assembler': karma( 'portal/portal_assembler' ),
          profiling: karma( 'profiling' ),
+         runtime: karma( 'runtime' ),
          testing: karma( 'testing' ),
          utilities: karma( 'utilities' )
       },

@@ -15,10 +15,10 @@ define( [
    './lib/utilities/object',
    './lib/utilities/storage',
    './lib/utilities/string',
-   './lib/portal/configuration',
-   './lib/portal/module_registry',
-   './lib/portal/portal',
-   './lib/portal/portal_dependencies'
+   './lib/runtime/configuration',
+   './lib/runtime/module_registry',
+   './lib/runtime/runtime',
+   './lib/runtime/runtime_dependencies'
 ], function(
    ng,
    log,
@@ -33,8 +33,8 @@ define( [
    string,
    configuration,
    moduleRegistry,
-   portal,
-   portalDependencies
+   runtime,
+   runtimeDependencies
 ) {
    'use strict';
 
@@ -59,13 +59,13 @@ define( [
       }
 
       log.addLogChannel( log.channels.console );
-      log.trace( 'Bootstrapping portal ... ' );
+      log.trace( 'Bootstrapping LaxarJS...' );
 
       Object.keys( widgetModules ).forEach( function( technology ) {
          widgetModules[ technology ].forEach( moduleRegistry.registerModule.bind( null, technology ) );
       } );
 
-      var dependencies = [ portal.name, portalDependencies.name ]
+      var dependencies = [ runtime.name, runtimeDependencies.name ]
          .concat( moduleRegistry.bootstrapDependencies() );
 
       ng.element( document ).ready( function bootstrap() {
