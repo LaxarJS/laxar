@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#136](https://github.com/LaxarJS/laxar/issues/136): storage: removed `window.name`-shim for session-storage
+    + **BREAKING CHANGE:** see ticket for details
+
 
 ## v1.0.0-alpha.5
 
