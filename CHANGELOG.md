@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#168](https://github.com/LaxarJS/laxar/issues/168): documentation: added basic documentation on coding style
 - [#136](https://github.com/LaxarJS/laxar/issues/136): storage: removed `window.name`-shim for session-storage
     + **BREAKING CHANGE:** see ticket for details
 
