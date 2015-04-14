@@ -16,9 +16,9 @@ define( [
    './lib/utilities/storage',
    './lib/utilities/string',
    './lib/runtime/configuration',
-   './lib/runtime/module_registry',
    './lib/runtime/runtime',
-   './lib/runtime/runtime_dependencies'
+   './lib/runtime/runtime_dependencies',
+   './lib/widget_adapters/adapters'
 ], function(
    ng,
    log,
@@ -32,9 +32,9 @@ define( [
    storage,
    string,
    configuration,
-   moduleRegistry,
    runtime,
-   runtimeDependencies
+   runtimeDependencies,
+   adapters
 ) {
    'use strict';
 
@@ -52,7 +52,7 @@ define( [
     * @param {String[]} widgetModules
     *    all AngularJS modules that should instantly be loaded (most probably the widgets)
     */
-   function bootstrap( widgetModules ) {
+   function bootstrap( widgetModules, optionalWidgetAdapters ) {
       var logThreshold = configuration.get( 'logging.threshold' );
       if( logThreshold ) {
          log.setLogThreshold( logThreshold );
@@ -61,12 +61,23 @@ define( [
       log.addLogChannel( log.channels.console );
       log.trace( 'Bootstrapping LaxarJS...' );
 
-      Object.keys( widgetModules ).forEach( function( technology ) {
-         widgetModules[ technology ].forEach( moduleRegistry.registerModule.bind( null, technology ) );
-      } );
+      if( optionalWidgetAdapters && Array.isArray( optionalWidgetAdapters ) ) {
+         adapters.addAdapters( optionalWidgetAdapters );
+      }
+      var dependencies = [ runtime.name, runtimeDependencies.name ];
 
-      var dependencies = [ runtime.name, runtimeDependencies.name ]
-         .concat( moduleRegistry.bootstrapDependencies() );
+      Object.keys( widgetModules ).forEach( function( technology ) {
+         var adapter = adapters.getFor( technology );
+         if( !adapter ) {
+            log.error( 'Unknown widget technology: [0]', technology );
+            return;
+         }
+
+         var module = adapter.bootstrap( widgetModules[ technology ] );
+         if( module && module.name ) {
+            dependencies.push( module.name );
+         }
+      } );
 
       ng.element( document ).ready( function bootstrap() {
          ng.bootstrap( document, dependencies );
