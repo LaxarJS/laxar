@@ -76,7 +76,8 @@ module.exports = function (grunt) {
          profiling: karma( 'profiling' ),
          runtime: karma( 'runtime' ),
          testing: karma( 'testing' ),
-         utilities: karma( 'utilities' )
+         utilities: karma( 'utilities' ),
+         widget_adapters: karma( 'widget_adapters' )
       },
       test_results_merger: {
          laxar: {

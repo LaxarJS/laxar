@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#170](https://github.com/LaxarJS/laxar/issues/170): loaders: refactored widget loader and widget adapters.
+
 
 ## v1.0.0-alpha.5
 
