@@ -282,7 +282,7 @@ It has only a few essential methods that allow to implement all patterns mention
   Returns a promise that is resolved when all _did_-responses have been received.
 
 This information should help to get started with the event bus and intentionally omits a lot of details.
-For full information, refer to the [EventBus API documentation](https://github.com/LaxarJS/laxar/blob/master/docs/api/lib/event_bus/event_bus.md).
+For full information, refer to the [EventBus module](https://github.com/LaxarJS/laxar/blob/master/lib/event_bus/event_bus.js).
 
 <a name="grammar"></a>
 ### Event Name Grammar
