@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#173](https://github.com/LaxarJS/laxar/issues/173): testing: fixed a bug when configuring the widget under test.
 - [#167](https://github.com/LaxarJS/laxar/issues/167): widget_adapters: added injectable axContext as alternative to AngularJS scopes.
     + NEW FEATURE: see ticket for details
 - [#170](https://github.com/LaxarJS/laxar/issues/170): loaders: refactored widget loader and widget adapters.
