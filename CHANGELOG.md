@@ -67,6 +67,7 @@
 - [#92](https://github.com/LaxarJS/laxar/issues/92): removed obsolete mixins in favor of compositions.
     + **BREAKING CHANGE:** see ticket for details
 
+- [#169](https://github.com/LaxarJS/laxar/issues/169): widget_adapters: fixed plain-adapter to use new-style widget module names
 - [#172](https://github.com/LaxarJS/laxar/issues/172): documentation: fixed dead link
 - [#166](https://github.com/LaxarJS/laxar/issues/166): cleanup: removed distribution-related configuration and files
 - [#163](https://github.com/LaxarJS/laxar/issues/163): EventBus: fixed request topic matching
