@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#167](https://github.com/LaxarJS/laxar/issues/167): widget_adapters: added injectable axContext as alternative to AngularJS scopes.
 - [#170](https://github.com/LaxarJS/laxar/issues/170): loaders: refactored widget loader and widget adapters.
 - [#168](https://github.com/LaxarJS/laxar/issues/168): documentation: added basic documentation on coding style
 - [#136](https://github.com/LaxarJS/laxar/issues/136): storage: removed `window.name`-shim for session-storage
