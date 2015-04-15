@@ -51,3 +51,7 @@ Before starting with the manuals, make sure that you know [what LaxarJS is about
 * [Internationalization (i18n)](i18n.md)
 
     Explains how to leverage the LaxarJS event bus and APIs when writing internationalized applications.
+
+* [Creating an Adapter for a new Widget Technology](adapters.md)
+
+    Tired of writing widgets in AngularJS? Learn how to adapt any MVC technology for creating LaxarJS widgets.

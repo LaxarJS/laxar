@@ -51,6 +51,8 @@ define( [
     *
     * @param {String[]} widgetModules
     *    all AngularJS modules that should instantly be loaded (most probably the widgets)
+    * @param {{create: Function}[]} optionalWidgetAdapters
+    *    an optional array of user-defined widget adapter modules
     */
    function bootstrap( widgetModules, optionalWidgetAdapters ) {
       var logThreshold = configuration.get( 'logging.threshold' );
