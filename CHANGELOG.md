@@ -1,7 +1,9 @@
 # Changelog
 
-
 ## Last Changes
+
+
+## v0.26.0
 
 - [#172](https://github.com/LaxarJS/laxar/issues/172): documentation: fixed dead link
 - [#166](https://github.com/LaxarJS/laxar/issues/166): cleanup: removed distribution-related configuration and files
