@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#175](https://github.com/LaxarJS/laxar/issues/175): loaders: changed generated DOM- and topic-IDs to be more compact
+    + **BREAKING CHANGE:** see ticket for details
 - [#174](https://github.com/LaxarJS/laxar/issues/174): widget_adapters: simplified widget adapter API
     + NEW FEATURE: see ticket for details
 
