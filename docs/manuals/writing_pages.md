@@ -61,7 +61,7 @@ When adding widgets to an area, the order is important, as this is the order in 
 Each entry in the array is an object that can either reference a widget or a [composition](#compositions).
 It thus needs to specify either `widget` or `composition` as key.
 Additionally a page wide unique (even over inheritance) `id` property can be provided.
-This can be useful for debugging and is mandatory in case a widget provides one or more embedded areas (like e.g. a popover widget), which is explained in detail in [TODO](TODO).
+This can be useful for debugging and is mandatory in case a widget provides one or more embedded areas, such as those created by the [AxPopupWidget](https://github.com/LaxarJS/ax-popup-widget).
 Finally it is possible to provide the configuration for features of a widget or a composition under the key `features`.
 
 Here is the example with some simple, exemplary content:
@@ -73,7 +73,7 @@ Here is the example with some simple, exemplary content:
    "areas": {
       "header": [
          {
-            "widget": "portal/headline_widget",
+            "widget": "laxarjs/ax-headline-widget",
             "features": {
                "headline": {
                   "htmlText": "Welcome!",
@@ -84,7 +84,7 @@ Here is the example with some simple, exemplary content:
       ],
       "content": [
          {
-            "widget": "portal/command_bar_widget",
+            "widget": "laxarjs/ax-command-bar-widget",
             "features": {
                "next": {
                   "enabled": true
@@ -102,7 +102,7 @@ Here is the example with some simple, exemplary content:
       ],
       "footer": [
          {
-            "widget": "portal/html_display_widget",
+            "widget": "laxarjs/ax-html-display-widget",
             "features": {
                "content": {
                   "resource": "footerTextResource"
@@ -126,14 +126,14 @@ Nevertheless it has its valid use cases as in every user interface there are som
 These should be extracted into one or more base pages, that define no layout and can be reused by all other pages defining the layout necessary to display their contents.
 
 Valid candidate widgets for base pages are application headlines, informational notes in a footer area or activities providing common tasks for all pages.
-Let us apply this to our example from above and extract the *HeadlineWidget* into a base page called `base_page.json`.
+Let us apply this to our example from above and extract the *AxHeadlineWidget* into a base page called `base_page.json`.
 
 ```JSON
 {
    "areas": {
       "header": [
          {
-            "widget": "portal/headline_widget",
+            "widget": "laxarjs/ax-headline-widget",
             "features": {
                "headline": {
                   "htmlText": "Welcome!",
@@ -156,7 +156,7 @@ The parts already provided by the base page can then be deleted:
    "areas": {
       "content": [
          {
-            "widget": "portal/command_bar_widget",
+            "widget": "laxarjs/ax-command-bar-widget",
             "features": {
                "next": {
                   "enabled": true
@@ -174,7 +174,7 @@ The parts already provided by the base page can then be deleted:
       ],
       "footer": [
          {
-            "widget": "portal/html_display_widget",
+            "widget": "laxarjs/ax-html-display-widget",
             "features": {
                "content": {
                   "resource": "footerTextResource"
@@ -199,7 +199,7 @@ We therefore change the base page first and add an id to the existing headline:
    "areas": {
       "header": [
          {
-            "widget": "portal/headline_widget",
+            "widget": "laxarjs/ax-headline-widget",
             "id": "mainHeadline",
             "features": {
                "headline": {
@@ -222,7 +222,7 @@ Hence the page that has the need to add content can reference the given id using
    "areas": {
       "header": [
          {
-            "widget": "portal/headline_widget",
+            "widget": "laxarjs/ax-headline-widget",
             "insertBeforeId": "mainHeadline",
             "features": {
                 "headline": {

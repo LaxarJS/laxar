@@ -256,7 +256,7 @@ Following this structure allows the `grunt-laxar` tasks to find and combine the 
 
 ### Looking up the Theme CSS
 
-To load the CSS for the theme itself, the portal simply uses the [configured](./configuration.md) theme _X_ and looks for its CSS under `includes/themes/X.theme/css/theme.css`.
+To load the CSS for the theme itself, the runtime simply uses the [configured](./configuration.md) theme _X_ and looks for its CSS under `includes/themes/X.theme/css/theme.css`.
 The exception is the default theme, which is currently loaded from _laxar_uikit_ (if no user-defined theme is specified).
 
 
