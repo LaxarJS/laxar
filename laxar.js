@@ -39,7 +39,7 @@ define( [
    'use strict';
 
    /**
-    * Bootstraps AngularJS on the current `window.document` and sets up the LaxarJS portal. All AngularJS
+    * Bootstraps AngularJS on the current `window.document` and sets up the LaxarJS runtime. All AngularJS
     * module names of widgets that are passed to this method will be passed to `angular.bootstrap` as initial
     * dependencies, along with internal laxar modules. This is needed because AngularJS currently doesn't
     * support lazy loading of modules. The `portal_angular_dependencies` grunt task of LaxarJS will collect
@@ -55,6 +55,8 @@ define( [
     *    an optional array of user-defined widget adapter modules
     */
    function bootstrap( widgetModules, optionalWidgetAdapters ) {
+      findAndLogDeprecatedSettings();
+
       var logThreshold = configuration.get( 'logging.threshold' );
       if( logThreshold ) {
          log.setLogThreshold( logThreshold );
@@ -83,6 +85,35 @@ define( [
 
       ng.element( document ).ready( function bootstrap() {
          ng.bootstrap( document, dependencies );
+      } );
+   }
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function findAndLogDeprecatedSettings() {
+      var deprecatedConfiguration = {
+         'event_bus.timeout_ms': 'eventBusTimeoutMs',
+         'file_resource_provider.listings': 'fileListings',
+         'file_resource_provider.fileListings': 'fileListings',
+         'file_resource_provider.useEmbedded': 'useEmbeddedFileListings',
+         'portal.useMergedCss': 'useMergedCss',
+         'portal.theme': 'theme',
+         'portal.flow.entryPoint': 'flow.entryPoint',
+         'portal.flow.exitPoints': 'flow.exitPoints'
+      };
+
+      // Obtain global object in strict mode: http://stackoverflow.com/questions/3277182/
+      /*jshint evil:true*/
+      var global = new Function( 'return this' )();
+      ng.forEach( deprecatedConfiguration, function( newLocation, oldLocation ) {
+         var oldValue = object.path( global.laxar, oldLocation );
+         if( oldValue !== undefined ) {
+            log.warn( 'Found deprecated configuration key "[0]". Use "[1]" instead.', oldLocation, newLocation );
+            var newValue = object.path( global.laxar, newLocation );
+            if( newValue === undefined ) {
+               object.setPath( global.laxar, newLocation, oldValue );
+            }
+         }
       } );
    }
 

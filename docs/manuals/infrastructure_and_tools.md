@@ -102,7 +102,7 @@ If navigating to a new page, the startup process (described above) repeated, sta
 ### The File Resource Provider
 
 Internally, LaxarJS uses a single service to provide HTML, CSS and JSON assets used to instantiate widgets and controls:
-The file resource provider is used to find out if a given template or stylesheet is available for the current theme.
+The _file resource provider_ is used to find out if a given template or stylesheet is available for the current theme.
 It uses _file listings_ (JSON files) to answer these queries without actually going to the web server.
 File listings also contain bundled resources to avoid HTTP requests in production (not during development).
 If your application causes a lot of HTTP requests for widget templates and CSS, it is likely due to a misconfiguration of the file listings.
