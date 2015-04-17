@@ -41,7 +41,7 @@ Instead we will start with the simple `popup_composition` we referenced above:
    "areas": {
       ".": [
          {
-            "widget": "portal/popup_widget",
+            "widget": "laxarjs/ax-popup-widget",
             "id": "popup",
             "features": {
                "open": {
@@ -55,7 +55,7 @@ Instead we will start with the simple `popup_composition` we referenced above:
       ],
       "popup.content": [
          {
-            "widget": "portal/headline_widget",
+            "widget": "laxarjs/ax-headline-widget",
             "features": {
                "headline": {
                   "htmlText": "Say hi to the popup",
@@ -64,7 +64,7 @@ Instead we will start with the simple `popup_composition` we referenced above:
             }
          },
          {
-            "widget": "portal/command_bar_widget",
+            "widget": "laxarjs/ax-command-bar-widget",
             "features": {
                "close": {
                   "enabled": true,
@@ -107,7 +107,7 @@ The assembled page thus looks similar to this:
    "areas": {
       "header": [
          {
-            "widget": "portal/headline_widget",
+            "widget": "laxarjs/ax-headline-widget",
             "features": {
                "headline": {
                   "htmlText": "Welcome!",
@@ -118,7 +118,7 @@ The assembled page thus looks similar to this:
       ],
       "content": [
          {
-            "widget": "portal/command_bar_widget",
+            "widget": "laxarjs/ax-command-bar-widget",
             "features": {
                "next": {
                   "enabled": true
@@ -126,7 +126,7 @@ The assembled page thus looks similar to this:
             }
          },
          {
-            "widget": "portal/popup_widget",
+            "widget": "laxarjs/ax-popup-widget",
             "id": "popupCompositionId0Popup",
             "features": {
                "open": {
@@ -140,7 +140,7 @@ The assembled page thus looks similar to this:
       ],
       "footer": [
          {
-            "widget": "portal/html_display_widget",
+            "widget": "laxarjs/ax-html-display-widget",
             "features": {
                "content": {
                   "resource": "footerTextResource"
@@ -150,7 +150,7 @@ The assembled page thus looks similar to this:
       ],
       "popupCompositionId0Popup.content": [
          {
-            "widget": "portal/headline_widget",
+            "widget": "laxarjs/ax-headline-widget",
             "features": {
                "headline": {
                   "htmlText": "Say hi to the popup",
@@ -159,7 +159,7 @@ The assembled page thus looks similar to this:
             }
          },
          {
-            "widget": "portal/command_bar_widget",
+            "widget": "laxarjs/ax-command-bar-widget",
             "features": {
                "close": {
                   "enabled": true,
@@ -173,7 +173,7 @@ The assembled page thus looks similar to this:
 ```
 Note how also the id of the exported area was automatically adjusted to `"popupCompositionId0Popup.content"` to prevent naming clashes.
 
-In our example it is currently only possible to close the *PopupWidget* from within itself via an action event published by the *CommandBarWidget*.
+In our example it is currently only possible to close the *AxPopupWidget* from within itself via an action event published by the *AxCommandBarWidget*.
 What if we additionally would like to close the popup on demand from outside based on another action?
 This is where the concept of *merged features* comes into play.
 *Merged features* allow us to merge or better concatenate two arrays, where one array is defined as a feature for the composition and the second array is defined in the `mergedFeatures` object.
@@ -218,7 +218,7 @@ This should become clear when looking at our adjusted example:
    "areas": {
       ".": [
          {
-            "widget": "portal/popup_widget",
+            "widget": "laxarjs/ax-popup-widget",
             "id": "popup",
             "features": {
                "open": {
@@ -232,7 +232,7 @@ This should become clear when looking at our adjusted example:
       ],
       "popup.content": [
          {
-            "widget": "portal/headline_widget",
+            "widget": "laxarjs/ax-headline-widget",
             "features": {
                "headline": {
                   "htmlText": "Say hi to the popup",
@@ -241,7 +241,7 @@ This should become clear when looking at our adjusted example:
             }
          },
          {
-            "widget": "portal/command_bar_widget",
+            "widget": "laxarjs/ax-command-bar-widget",
             "features": {
                "close": {
                   "enabled": true,
@@ -254,11 +254,11 @@ This should become clear when looking at our adjusted example:
 }
 ```
 
-Here we added the possibility to configured close actions for the *PopupWidget* as feature `closePopup.onActions`.
+Here we added the possibility to configured close actions for the *AxPopupWidget* as feature `closePopup.onActions`.
 For this we then added an entry in the `mergedFeatures` map whose value is an array that has the internal generated topic as only item.
-This enables us to now reference this feature when configuring the *PopupWidget*.
+This enables us to now reference this feature when configuring the *AxPopupWidget*.
 Instead of creating the array with the generated topic here, we can simply reference the feature directly as it is the case for the `openPopup.onActions` feature.
-For the configuration of the *CommandBarWidget* nothing changed.
+For the configuration of the *AxCommandBarWidget* nothing changed.
 When using the composition it is now possible to provide additional close actions, but since we defined an empty array as default for the feature, this is not mandatory.
 
 # Appendix:
@@ -272,7 +272,7 @@ When using the composition it is now possible to provide additional close action
    "areas": {
       "header": [
          {
-            "widget": "portal/headline_widget",
+            "widget": "laxarjs/ax-headline-widget",
             "features": {
                "headline": {
                   "htmlText": "Welcome!",
@@ -283,7 +283,7 @@ When using the composition it is now possible to provide additional close action
       ],
       "content": [
          {
-            "widget": "portal/command_bar_widget",
+            "widget": "laxarjs/ax-command-bar-widget",
             "features": {
                "next": {
                   "enabled": true
@@ -301,7 +301,7 @@ When using the composition it is now possible to provide additional close action
       ],
       "footer": [
          {
-            "widget": "portal/html_display_widget",
+            "widget": "laxarjs/ax-html-display-bar-widget",
             "features": {
                "content": {
                   "resource": "footerTextResource"
