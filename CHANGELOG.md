@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#154](https://github.com/LaxarJS/laxar/issues/154): widget_adapters: added deprecation warning for old-style widget modules
 - [#177](https://github.com/LaxarJS/laxar/issues/177): runtime: renamed configuration options
     + NEW FEATURE: see ticket for details
 - [#171](https://github.com/LaxarJS/laxar/issues/171): documentation: added manual on widget adapters
