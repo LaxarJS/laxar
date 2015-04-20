@@ -192,7 +192,7 @@ Let us add entry points to our example:
 
 Apart from the key `entryPoints` this is very similar to the definition of targets within the `flow.json`.
 The difference mainly comes from their usage when passing control from the external application to this application:
-An entry point is selected by configuring it in the global `window.laxar` [configuration object](configuration.md) as `window.laxar.portal.flow.entryPoint` property.
+An entry point is selected by configuring it in the global `window.laxar` [configuration object](configuration.md) as `window.laxar.flow.entryPoint` property.
 This property is an object with key `target` denoting the name of the entry point to select and an optional map under the `parameters` with the values for the possible place parameters.
 
 So let us assume a JSP renders the bootstrapping code for the LaxarJS application, selects the `enterInterests` entry point and passes the user ID to the JavaScript frontend:
@@ -208,7 +208,7 @@ So let us assume a JSP renders the bootstrapping code for the LaxarJS applicatio
       <script src="application/application.js"></script>
       <script src="require_config.js"></script>
       <script>
-         window.laxar.portal.flow = {
+         window.laxar.flow = {
             entryPoint: {
                target: 'enterInterests',
                parameters: {
@@ -229,7 +229,7 @@ By using this mechanism the external application, in this example a simple JSP, 
 
 *Exit points* work the other way around:
 Here the external application may define a map of different exit points, which in fact are simple JavaScript functions, and the LaxarJS application selects which one to call when navigating to a specific target.
-Configuration of possible exit points also takes place in the global `window.laxar` [configuration object](configuration.md)  as `window.laxar.portal.flow.exitPoints` property.
+Configuration of possible exit points also takes place in the global `window.laxar` [configuration object](configuration.md)  as `window.laxar.flow.exitPoints` property.
 
 Here we added to possible exitPoints to our example:
 
@@ -244,7 +244,7 @@ Here we added to possible exitPoints to our example:
       <script src="application/application.js"></script>
       <script src="require_config.js"></script>
       <script>
-         window.laxar.portal.flow = {
+         window.laxar.flow = {
             entryPoint: {
                target: 'enterInterests',
                parameters: {

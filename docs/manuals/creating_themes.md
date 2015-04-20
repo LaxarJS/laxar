@@ -79,7 +79,7 @@ On the site [Bootswatch](http://bootswatch.com) for example, you will find the t
 The only thing that is actually _required_ for a theme to work are a configuration entry and a CSS file in the right place.
 Put the pre-built [darkly css](http://bootswatch.com/darkly/bootstrap.css) into the right place, which is `includes/themes/darkly.theme/css/theme.css`.
 The path prefix `includes/themes/` may be changed using the RequireJS configuration path `laxar-path-themes`.
-In the LaxarJS configuration (usually `application/application.js`), change the property `laxar.portal.theme` from _"default"_ to _"darkly"_.
+In the LaxarJS configuration (usually `application/application.js`), change the property `laxar.theme` from _"default"_ to _"darkly"_.
 This causes the LaxarJS runtime to use the new theme.
 
 Because the ShopDemo uses [Font Awesome](http://fortawesome.github.io/Font-Awesome), we need to add an import to the top of our CSS file for that as well:

@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#177](https://github.com/LaxarJS/laxar/issues/177): runtime: renamed configuration options
+    + NEW FEATURE: see ticket for details
 - [#171](https://github.com/LaxarJS/laxar/issues/171): documentation: added manual on widget adapters
 - [#178](https://github.com/LaxarJS/laxar/issues/178): runtime: renamed AngularJS modules to match AMD modules
 - [#176](https://github.com/LaxarJS/laxar/issues/176): documentation: replaced the widget category _portal_ with _laxarjs_
