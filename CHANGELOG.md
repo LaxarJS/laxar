@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#179](https://github.com/LaxarJS/laxar/issues/179): loaders: fixed loading of CSS for controls
 - [#154](https://github.com/LaxarJS/laxar/issues/154): widget_adapters: added deprecation warning for old-style widget modules
 - [#177](https://github.com/LaxarJS/laxar/issues/177): runtime: renamed configuration options
     + NEW FEATURE: see ticket for details
@@ -16,7 +17,6 @@
 
 ## v1.0.0-alpha.6
 
-- [#173](https://github.com/LaxarJS/laxar/issues/173): testing: fixed a bug when configuring the widget under test.
 - [#173](https://github.com/LaxarJS/laxar/issues/173): testing: fixed a bug when configuring the widget under test.
 - [#167](https://github.com/LaxarJS/laxar/issues/167): widget_adapters: added injectable axContext as alternative to AngularJS scopes.
     + NEW FEATURE: see ticket for details
