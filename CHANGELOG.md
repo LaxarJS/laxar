@@ -87,6 +87,9 @@
     + **BREAKING CHANGE:** see ticket for details
 
 
+- [#181](https://github.com/LaxarJS/laxar/issues/181): runtime: added missing default for the configuration key `i18n.locales`
+
+
 ## v0.26.0
 
 - [#169](https://github.com/LaxarJS/laxar/issues/169): widget_adapters: fixed plain-adapter to use new-style widget module names
