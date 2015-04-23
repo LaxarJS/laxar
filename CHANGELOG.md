@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#180](https://github.com/LaxarJS/laxar/issues/180): directives: removed `axPageFade` directive
+    + **BREAKING CHANGE:** see ticket for details
+
 
 ## v1.0.0-alpha.7
 
