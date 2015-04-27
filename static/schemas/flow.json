@@ -41,11 +41,6 @@
                   "exitPoint": {
                      "type": "string",
                      "description": "The exit point to invoke when reaching this place."
-                  },
-                  "triggerBrowserReload": {
-                     "type": "boolean",
-                     "default": false,
-                     "description": "If true a full page refresh occurs during navigation to this place."
                   }
 
                },
