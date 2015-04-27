@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#182](https://github.com/LaxarJS/laxar/issues/182): runtime: removed live theme switching
+    + **BREAKING CHANGE:** see ticket for details
 - [#180](https://github.com/LaxarJS/laxar/issues/180): directives: removed `axPageFade` directive
     + **BREAKING CHANGE:** see ticket for details
 
