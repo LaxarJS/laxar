@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#184](https://github.com/LaxarJS/laxar/issues/184): documentation: fixed logging configuration documentation
 - [#185](https://github.com/LaxarJS/laxar/issues/185): logging: configuration value not applied correctly
 - [#128](https://github.com/LaxarJS/laxar/issues/128): logging, utilities: simplified and removed some APIs
     + **BREAKING CHANGE:** see ticket for details
