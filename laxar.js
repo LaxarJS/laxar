@@ -6,11 +6,9 @@
 define( [
    'angular',
    './lib/logging/log',
-   './lib/logging/channels/console_logger',
    './lib/directives/directives',
    './lib/i18n/i18n',
    './lib/utilities/assert',
-   './lib/utilities/array',
    './lib/utilities/fn',
    './lib/utilities/object',
    './lib/utilities/storage',
@@ -22,11 +20,9 @@ define( [
 ], function(
    ng,
    log,
-   consoleLogger,
    directives,
    i18n,
    assert,
-   array,
    fn,
    object,
    storage,
@@ -55,14 +51,11 @@ define( [
     *    an optional array of user-defined widget adapter modules
     */
    function bootstrap( widgetModules, optionalWidgetAdapters ) {
+
+      setInstanceIdLogTag();
+
       findAndLogDeprecatedSettings();
 
-      var logThreshold = configuration.get( 'logging.threshold' );
-      if( logThreshold ) {
-         log.setLogThreshold( logThreshold );
-      }
-
-      log.addLogChannel( log.channels.console );
       log.trace( 'Bootstrapping LaxarJS...' );
 
       if( optionalWidgetAdapters && Array.isArray( optionalWidgetAdapters ) ) {
@@ -119,9 +112,22 @@ define( [
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+   function setInstanceIdLogTag() {
+      var instanceIdStorageKey = 'ax.log.tags.INST';
+      var store = storage.getSessionStorage();
+      var instanceId = store.getItem( instanceIdStorageKey );
+      if( !instanceId ) {
+         instanceId = '' + new Date().getTime() + Math.floor( Math.random() * 100 );
+         store.setItem( instanceIdStorageKey, instanceId );
+      }
+
+      log.addTag( 'INST', instanceId );
+   }
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
    return {
       assert: assert,
-      array: array,
       bootstrap: bootstrap,
       configuration: configuration,
       directives: directives,

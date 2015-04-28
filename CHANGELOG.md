@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#128](https://github.com/LaxarJS/laxar/issues/128): logging, utilities: simplified and removed some APIs
+    + **BREAKING CHANGE:** see ticket for details
 - [#159](https://github.com/LaxarJS/laxar/issues/159): flow: removed support for triggerBrowserReload.
     + **BREAKING CHANGE:** see ticket for details
 - [#182](https://github.com/LaxarJS/laxar/issues/182): runtime: removed live theme switching
