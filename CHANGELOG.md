@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#188](https://github.com/LaxarJS/laxar/issues/188): configuration: moved configuration module to utilities
 - [#187](https://github.com/LaxarJS/laxar/issues/187): storage: use per-app unique storage prefixes
     + NEW FEATURE: see ticket for details
 - [#184](https://github.com/LaxarJS/laxar/issues/184): documentation: fixed logging configuration documentation
