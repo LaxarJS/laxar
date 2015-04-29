@@ -113,8 +113,8 @@ define( [
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    function setInstanceIdLogTag() {
-      var instanceIdStorageKey = 'ax.log.tags.INST';
-      var store = storage.getSessionStorage();
+      var instanceIdStorageKey = 'axLogTags.INST';
+      var store = storage.getApplicationSessionStorage();
       var instanceId = store.getItem( instanceIdStorageKey );
       if( !instanceId ) {
          instanceId = '' + new Date().getTime() + Math.floor( Math.random() * 100 );
