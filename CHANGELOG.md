@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#189](https://github.com/LaxarJS/laxar/issues/189): loaders: fixed inferring top-level widget configuration defaults for JSON schema v4
 - [#188](https://github.com/LaxarJS/laxar/issues/188): configuration: moved configuration module to utilities
 - [#187](https://github.com/LaxarJS/laxar/issues/187): storage: use per-app unique storage prefixes
     + NEW FEATURE: see ticket for details
