@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#189](https://github.com/LaxarJS/laxar/issues/189): loaders: fixed inferring top-level widget configuration defaults for JSON schema v4
 - [#181](https://github.com/LaxarJS/laxar/issues/181): runtime: added missing default for the configuration key `i18n.locales`
 
 
