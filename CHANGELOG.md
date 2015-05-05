@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#192](https://github.com/LaxarJS/laxar/issues/192): loaders: removed duplicate code for defaults application
+
 
 ## v1.0.0-alpha.8
 
