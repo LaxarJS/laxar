@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#183](https://github.com/LaxarJS/laxar/issues/183): runtime, file_resource_provider: allow to load file listings directly from configuration
+    + NEW FEATURE: see ticket for details
 - [#186](https://github.com/LaxarJS/laxar/issues/186): loaders: allow to load layouts from theme
     + NEW FEATURE: see ticket for details
 - [#192](https://github.com/LaxarJS/laxar/issues/192): loaders: removed duplicate code for defaults application
