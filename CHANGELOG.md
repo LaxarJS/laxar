@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.0.0-alpha.10
+
 - [#196](https://github.com/LaxarJS/laxar/issues/196): runtime: fixed default theme loading
 
 
