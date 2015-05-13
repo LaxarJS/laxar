@@ -1,7 +1,6 @@
 # LaxarJS
 
-LaxarJS helps to create maintainable AngularJS apps by assembling them from small, isolated parts.
-Think of it as _middleware for your web client_.
+> _Middleware for your web client:_ Create maintainable AngularJS applications from small, isolated parts.
 
 
 ## Why LaxarJS?
