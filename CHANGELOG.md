@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.0.0-alpha.11
+
 - [#198](https://github.com/LaxarJS/laxar/issues/198): project: prepared `laxar` npm package
 
 
