@@ -1,1 +1,7 @@
 bower_components/
+/.idea
+/.grunt
+junit.xml
+npm-debug.log
+test-results.xml
+lcov.info
