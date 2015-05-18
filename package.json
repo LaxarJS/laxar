@@ -24,7 +24,7 @@
       "grunt-cli": "~0.1.13",
       "grunt-contrib-watch": "~0.5.3",
       "grunt-contrib-jshint": "~0.8.0",
-      "grunt-laxar": "~1.0.0-alpha.8"
+      "grunt-laxar": "~1.0.0-alpha.9"
    },
    "bugs": {
       "url": "https://github.com/LaxarJS/laxar/issues",
