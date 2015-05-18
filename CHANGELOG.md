@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#197](https://github.com/LaxarJS/laxar/issues/197): loaders: read control name from control.json descriptor if present
+    + NEW FEATURE: see ticket for details
+
 
 ## v1.0.0-alpha.11
 
