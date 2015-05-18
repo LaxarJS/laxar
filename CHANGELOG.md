@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#199](https://github.com/LaxarJS/laxar/issues/199): project: removed unnecessary dependencies, simplified Bower references
 - [#197](https://github.com/LaxarJS/laxar/issues/197): loaders: read control name from control.json descriptor if present
     + NEW FEATURE: see ticket for details
 
