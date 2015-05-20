@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.0.0-alpha.14
+
 - [#201](https://github.com/LaxarJS/laxar/issues/201): testing: fix loading of old-style controls
 
 
