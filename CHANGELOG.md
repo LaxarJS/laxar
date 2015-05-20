@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.0.0-alpha.13
+
 - [#200](https://github.com/LaxarJS/laxar/issues/200): loaders, testing: fix loading of controls that are configured as commonjs packages in RequireJS
 
 
