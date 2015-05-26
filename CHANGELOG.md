@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#202](https://github.com/LaxarJS/laxar/issues/202): themes: made path to the default theme configurable
+    + **BREAKING CHANGE:** see ticket for details
+
 
 ## v1.0.0-alpha.14
 
