@@ -1,6 +1,6 @@
 {
    "name": "laxar",
-   "version": "1.0.0-alpha.15",
+   "version": "1.0.0-beta.0",
    "description": "Building large applications is hard, so don't do that!",
    "homepage": "http://laxarjs.org",
    "main": "laxar.js",
@@ -25,7 +25,7 @@
       "grunt-contrib-clean": "~0.6.0",
       "grunt-contrib-watch": "~0.5.3",
       "grunt-contrib-jshint": "~0.8.0",
-      "grunt-laxar": "~1.0.0-alpha.9"
+      "grunt-laxar": "~1.0.0-beta.0"
    },
    "bugs": {
       "url": "https://github.com/LaxarJS/laxar/issues",

@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.0.0-beta.0
+
 - [#132](https://github.com/LaxarJS/laxar/issues/132): documentation: provided updated API doc for relevant modules
 
 
