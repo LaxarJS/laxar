@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#203](https://github.com/LaxarJS/laxar/issues/203): documentation: updated manual on controls to cover the new descriptor
+
 
 ## v1.0.0-beta.0
 

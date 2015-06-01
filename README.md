@@ -51,7 +51,7 @@ Press `Ctrl-C` to stop the server for now.
 
 ### Create your first LaxarJS widget
 
-Create a widget which simply displays _Hello, world!_:
+Create a widget which simply displays _Hello, world_:
 
 ```sh
 mkdir -p includes/widgets/tryout/my_first_widget
