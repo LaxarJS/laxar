@@ -1,6 +1,6 @@
 # LaxarJS
 
-> _Middleware for your web client:_ Create maintainable AngularJS applications from small, isolated parts.
+> _Middleware for your web client:_ Create maintainable applications from small, isolated parts.
 
 
 ## Why LaxarJS?
@@ -9,6 +9,7 @@ Find out [why](docs/why_laxar.md) you would use LaxarJS and if it's the right to
 Then, explore the [core concepts](docs/concepts.md) and browse the [manuals](docs/manuals/index.md) in the [documentation](docs).
 
 Have a look at the [LaxarJS homepage](http://laxarjs.org) for demos and more information.
+
 
 ## Getting Started
 
@@ -32,9 +33,11 @@ _Note that_, depending on your workstation setup, you might have to use `sudo` w
 Make sure that your `PATH` includes the `.../node_modules/bin` directory.
 For additional information and troubleshooting, consult the documentation of `npm` and `grunt-init` respectively. 
 
+
 ### Create a LaxarJS Application from Our Template
 
-The scaffolding tool `grunt-init` can now be used to create artifacts from the LaxarJS templates:
+The scaffolding tool `grunt-init` can now be used to create artifacts from the LaxarJS templates.
+When asked if you would like to create an example application, answer with *Yes*.
 
 ```sh
 mkdir tryout
@@ -44,49 +47,51 @@ npm install
 npm start
 ```
 
-Visit your empty application at [http://localhost:8000/debug.html](http://localhost:8000/debug.html).
+Visit your fresh application at [http://localhost:8000/debug.html](http://localhost:8000/debug.html).
 
 Press `Ctrl-C` to stop the server for now.
 
 
-### Create your first LaxarJS widget
+### Create your own LaxarJS widget
 
 Create a widget which simply displays _Hello, world_:
 
 ```sh
-mkdir -p includes/widgets/tryout/my_first_widget
-cd includes/widgets/tryout/my_first_widget
+mkdir -p includes/widgets/tryout/my-first-widget
+cd includes/widgets/tryout/my-first-widget
 grunt-init laxar-widget
 ```
 
 Add some widget-HTML:
 
 ```sh
-echo '<h1>Hello, world!</h1>' > default.theme/my_first_widget.html
+echo '<h1>Hello, world!</h1>' > default.theme/my-first-widget.html
 ```
 
-Reference the widget from your page:
+Add the widget to the page *application/pages/example1.json*, so that it looks like this:
+
+```js
+{
+   "layout": "two-columns",
+   "areas": {
+      "left": [
+         {
+            "widget": "tryout/my-first-widget"
+         }
+      ],
+      // ...
+   }
+}
+```
+
+Now you may start the development server again:
 
 ```sh
 cd -
-echo '{
-   "layout": "one_column",
-   "areas": {
-      "activities": [ ],
-      "header": [ ],
-      "content": [
-          {
-             "widget": "tryout/my_first_widget"
-          }
-      ],
-      "footer": [ ]
-   }
-}
-' > application/pages/page1.json
 npm start
 ```
 
-See your widget in action at [http://localhost:8000/debug.html](http://localhost:8000/debug.html)
+See your *Hello, World!* widget in action at [http://localhost:8000/debug.html](http://localhost:8000/debug.html)
 
 
 ### Create a Compressed Release-Ready Version of Your Application

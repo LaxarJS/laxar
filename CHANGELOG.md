@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#205](https://github.com/LaxarJS/laxar/issues/205): documentation: updated README.md according to latest template version
+
 
 ## v1.0.0-beta.1
 
