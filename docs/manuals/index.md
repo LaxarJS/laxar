@@ -1,7 +1,7 @@
 # Manuals
 
 Before starting with the manuals, make sure that you know [what LaxarJS is about](../why_laxar.md), and that you are familiar with the [core concepts](../concepts.md).
-
+If you're already developing your first widgets and want to know which programmatic APIs are provided by LaxarJS, have a look at the [API docs](../api).
 
 ## Basic Manuals
 

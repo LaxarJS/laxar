@@ -155,7 +155,7 @@ Returning from the help pages works in a similar way via the *back* targets lead
 The previous sections covered the concepts of navigation within the scope of one LaxarJS application.
 Additionally it is also often necessary to integrate a use case implemented as a LaxarJS application within the context of another external application.
 For example the process of collecting data on interests and profession could be part of a larger application creating a personal profile of a person.
-The host application might have been be implemented in a totally different technology, like Rails or JSP (JavaServer Pages).
+The host application might have been be implemented in a totally different technology, like [Ruby on Rails](http://rubyonrails.org/) or [JSP](http://en.wikipedia.org/wiki/JavaServer_Pages).
 There should be some way for this application to give control to the LaxarJS application and pass in some parameters.
 
 This is achieved by the concept of *entry points*.

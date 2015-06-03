@@ -19,7 +19,7 @@ In order to run the application, there are additional secondary resources:
 
   * the _LaxarJS runtime_ loads flow and pages, sets up the widgets and connects them to the _event bus_
   * _controls_ which are used by the widgets to provide advanced user interface functionality, such as those provided by _LaxarJS UiKit_
-  * _libraries_ used by widgets and activities, such as _moment.js_, _jQuery_, and _LaxarJS patterns_.
+  * _libraries_ used by widgets and activities, such as _moment.js_, _jQuery_, and _LaxarJS Patterns_.
 
 The following two sections first explain the primary application components, and than the underlying secondary components.
 
@@ -151,7 +151,7 @@ A useful set of controls to get started is provided by the [Angular UI Bootstrap
 Widgets may use _libraries_ such as _jQuery_ or _moment.js_ just like in any JavaScript web application.
 LaxarJS currently provides a development workflow based on [grunt](http://gruntjs.com/), [bower](http://bower.io/), and [RequireJS](http://requirejs.org/) in order to install and load widgets with their assets as well as libraries, but other tool-chains are not out of the question.
 
-To establish a useful common base vocabulary for use with the event bus, the [LaxarJS Patterns](https://github.com/LaxarJS/laxar_patterns) library is provided.
+To establish a useful common base vocabulary for use with the event bus, the [LaxarJS Patterns](https://github.com/LaxarJS/laxar-patterns) library is provided.
 It contains helpers that make it easy for widgets to talk about user actions, common (REST) resources and boolean flags.
 
 
