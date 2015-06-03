@@ -46,7 +46,7 @@ Check out the [README](../../README.md) on how to obtain the grunt-init template
 Start by creating a sub-directory for your new widget within the LaxarJS application.
 Each widget in an application lives within a sub-folder of the _widget root_ (`includes/widgets` by default).
 To change the widget root you can modify the RequireJS-path `'laxar-path-widgets'` in the require configuration.
-The widget path `includes/widgets/shopping/cart_widget` is used as an example path throughout this manual.
+The widget path `includes/widgets/shopping/cart-widget` is used as an example path throughout this manual.
 
 The sub-directory _shopping_ is the _widget category_ in the example path.
 Categories allow to organize widgets by their general business area, for example _shopping_, _social_, _finance_ and so on.
@@ -61,7 +61,7 @@ grunt-init laxar-widget
 ```
 
 A wizard will ask for some details on the widget such as license and author, but you can always edit this information in the widget sources afterwards.
-In the following steps, it is assumed that you used the category _shopping_ and the widget name _cart_widget_ as above.
+In the following steps, it is assumed that you used the category _shopping_ and the widget name _cart-widget_ as above.
 
 
 ### Widget Files
@@ -78,13 +78,13 @@ A newly created widget contains the following files:
   This specifies the _dependencies_ of your widget for use with [Bower](http://bower.io/).
   While not used directly by LaxarJS, it is the key to automated and isolated widget tests.
 
-* `cart_widget.js`
+* `cart-widget.js`
 
   The _business logic_ of your shopping cart (like calculating a total or changing item quantities) as an _AngularJS controller_.
   When your controller is instantiated by the LaxarJS runtime, it will receive an AngularJS scope (the model) and a reference to the event bus, which allows for communication with the world.
   When built for release, all controllers and their RequireJS-dependencies are bundled into a single, compressed JavaScript file.
 
-* `default.theme/cart_widget.html`
+* `default.theme/cart-widget.html`
 
   The _AngularJS HTML template_ defining the _appearance_ of your widget.
   When your widget is used on a page, LaxarJS will load this automatically and bind it to your widget controller's scope.
@@ -92,7 +92,7 @@ A newly created widget contains the following files:
   If Bootstrap does not suit you, feel free to use a different framework (or none at all), but keep in mind that this limits opportunities for widget reuse.
   Similarly to controllers, all widget templates will be preloaded within a single JSON file when your application is packaged for release.
 
-* `default.theme/(s)css/cart_widget.(s)css`
+* `default.theme/(s)css/cart-widget.(s)css`
 
   Widget-specific _style definitions_.
   Most of the time, your widget is fine just using CSS style definitions from the global application theme.
@@ -122,7 +122,7 @@ None of these files are loaded during regular application runtime:
   Configuration for the spec test.
   This file needs to be modified only if widget-specific external dependencies are required during testing.
 
-* `spec/cart_widget_spec.js`
+* `spec/cart-widget.spec.js`
 
   This is the actual [jasmine](http://jasmine.github.io/1.3/introduction.html) spec test.
   The test harness (providing a simulated LaxarJS event bus) has already been prepared for you.
@@ -215,7 +215,7 @@ The `features` property used within the headline comes from the _widget configur
 
 A widget may be styled using CSS.
 LaxarJS supports generating the CSS from SCSS source files, allowing to place common definitions for font size, color and much more within a shared "theme" folder.
-To keep things simple, you can ignore SCSS and themes for now and simply write a CSS file for your widget, in our case under `default.theme/css/cart_widget.css`.
+To keep things simple, you can ignore SCSS and themes for now and simply write a CSS file for your widget, in our case under `default.theme/css/cart-widget.css`.
 Once you are familiar with the basics, read the article on [creating themes](./creating_themes.md) for more information.
 
 Thanks to Bootstrap this widget does not require a lot of fancy styling:
@@ -282,7 +282,7 @@ Before we can take a look at the widget, we will need to integrate it into the p
       "header": [],
       "content": [
           {
-             "widget": "shopping/cart_widget",
+             "widget": "shopping/cart-widget",
              "features": {
                 "headline": {
                    "htmlText": "My Shopping Cart"
@@ -344,7 +344,7 @@ For more details on testing event bus communication, refer to the [article on ev
 
 ### Running the Test
 
-Now make sure that the development web server is still running and check out the test results using the [provided spec runner](http://localhost:8000/includes/widgets/shopping/cart_widget/spec/spec_runner.html):
+Now make sure that the development web server is still running and check out the test results using the [provided spec runner](http://localhost:8000/includes/widgets/shopping/cart-widget/spec/spec_runner.html):
 
 ![CartWidget](widgets_and_activities/cart_widget_spec.png)
 

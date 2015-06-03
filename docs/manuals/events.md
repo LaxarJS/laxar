@@ -7,7 +7,7 @@ Preliminary readings:
 
 # Events and Publish-Subscribe
 
-The key concept that distinguishes LaxarJS applications from other AngularJS applications is the _publish-subscribe_ (or _pub/sub_) architecture.
+The key concept that distinguishes LaxarJS applications from other AngularJS applications is the _publish-subscribe_ (or _pub/sub)_ architecture.
 It helps to isolate building blocks such as widgets and activities by moving the coupling from implementation (no module imports, no service contracts) to configuration (of event topics).
 
 LaxarJS consistently uses the term _events_ rather than _messages_, to point out two key aspects of its pub/sub-architecture:
@@ -75,8 +75,8 @@ But for best interoperability between widgets and activities, not only should th
 It is recommended wherever possible for widgets to use one or more of the established _event patterns_:
 These patterns consist of event vocabularies and minimal associated semantics that have been identified during the development of LaxarJS.
 A few [core patterns](core-patterns) are baked right into the LaxarJS runtime, and these are listed below.
-Other useful patterns are described in the separate project _[LaxarJS Patterns](//github.com/LaxarJS/laxar_patterns)_.
-Even without using the LaxarJS Patterns _library_, widget authors are very much encouraged to use the [event vocabularies](//github.com/LaxarJS/laxar_patterns/docs/index.md) whenever meaningful.
+Other useful patterns are described in the separate project _[LaxarJS Patterns](//github.com/LaxarJS/laxar-patterns)_.
+Even without using the LaxarJS Patterns _library_, widget authors are very much encouraged to use the [event vocabularies](//github.com/LaxarJS/laxar-patterns/docs/index.md) whenever meaningful.
 
 
 ### Event Payload
@@ -86,7 +86,7 @@ Any JavaScript object that can be directly represented as [JSON](http://json.org
 This allows for the object to contain instances of _string_, _array_, _number_, _boolean_ and _object_, including `null`.
 On the other hand, it excludes`undefined`, _Date_, _RegExp_ and custom classes.
 
-The Event Bus will _create a copy_ of the payload _for each subscriber_ that gets the event delivered.
+The event bus will _create a copy_ of the payload _for each subscriber_ that gets the event delivered.
 This improves decoupling and robustness, because events are "fire and forget":
 A widget may publish some resource through an event and afterwards immediately modify its contents, but all subscribers are guaranteed to receive the original event.
 
@@ -143,7 +143,7 @@ Validation and other patterns are described in the following section.
 <a name="pattern-reference"></a>
 ## Pattern Reference
 
-A few event patterns are supported directly by LaxarJS, while others are described in the _[LaxarJS Patterns](https://github.com/LaxarJS/laxar_patterns#laxarjs-patterns)_ library.
+A few event patterns are supported directly by LaxarJS, while others are described in the _[LaxarJS Patterns](https://github.com/LaxarJS/laxar-patterns#laxarjs-patterns)_ library.
 Have a good look at all of them before coming up with your own patterns, in order to maximize the synergy of your widgets, especially when aiming for reuse.
 
 
@@ -224,7 +224,7 @@ Events related to locales are described in the ["i18n" manual](./i18n.md).
 ### More Patterns
 
 The patterns described so far are used mainly for widgets to interact with the LaxarJS runtime.
-For application patterns that help widgets to interact with each other, refer to the [LaxarJS Patterns documentation](//github.com/LaxarJS/laxar_patterns/tree/master/docs/index.md).
+For application patterns that help widgets to interact with each other, refer to the [LaxarJS Patterns documentation](//github.com/LaxarJS/laxar-patterns/tree/master/docs/index.md).
 
 
 ## Event Reference

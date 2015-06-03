@@ -200,10 +200,10 @@ The `config.rb` has a similar role for SCSS as the `require_config.js` has for t
 When compiling widget CSS, the path to the config should be passed on the command line:
 
 ```SH
-compass compile -c /path/to/shop_demo/includes/themes/darkly_scss.theme/compass/config.rb
+compass compile -c /path/to/shop-demo/includes/themes/darkly_scss.theme/compass/config.rb
 ```
 
-With the [right config](https://github.com/LaxarJS/shop_demo/blob/master/includes/themes/darkly_scss.theme/compass/config.rb) in place, the [SCSS for our theme](https://github.com/LaxarJS/shop_demo/tree/master/includes/themes/darkly_scss.theme/scss) is little more than a couple of imports.
+With the [right config](https://github.com/LaxarJS/shop-demo/blob/master/includes/themes/darkly_scss.theme/compass/config.rb) in place, the [SCSS for our theme](https://github.com/LaxarJS/shop-demo/tree/master/includes/themes/darkly_scss.theme/scss) is little more than a couple of imports.
 Execute `compass` from any parent folder containing the `scss`, `css` and possibly also `fonts` and `images` directories.
 Note that you can probably configure your editor or IDE to always pass the `-c` option correctly, otherwise you can create a shell alias. 
 
@@ -233,7 +233,7 @@ As an example, here is the SCSS file for the _ArticleBrowserWidget_:
 ```
 
 Which CSS framework and toolchain to use (if any) is ultimately up to you.
-The [shop demo on github](https://github.com/LaxarJS/shop_demo) contains the _darkly_ theme both as a [plain CSS version](//github.com/LaxarJS/shop_demo/tree/master/includes/themes/darkly.theme), and as an [SCSS version](//github.com/LaxarJS/shop_demo/tree/master/includes/themes/darkly_scss.theme).
+The [shop demo on github](https://github.com/LaxarJS/shop-demo) contains the _darkly_ theme both as a [plain CSS version](//github.com/LaxarJS/shop-demo/tree/master/includes/themes/darkly.theme), and as an [SCSS version](//github.com/LaxarJS/shop-demo/tree/master/includes/themes/darkly_scss.theme).
 
 The Bootstrap framework incurs some degree of boilerplate, but makes it relatively easy to reuse widgets across applications, and to find controls that work with your theme out of the box.
 
@@ -257,7 +257,10 @@ Following this structure allows the `grunt-laxar` tasks to find and combine the 
 ### Looking up the Theme CSS
 
 To load the CSS for the theme itself, the runtime simply uses the [configured](./configuration.md) theme _X_ and looks for its CSS under `includes/themes/X.theme/css/theme.css`.
-The exception is the default theme, which is currently loaded from _laxar_uikit_ (if no user-defined theme is specified).
+The exception is the default theme, which is currently loaded from within _Laxar UiKit_ (if no user-defined theme is specified).
+Both, the path for application specific themes and the default theme, can optionally be configured within the `require_config.js` file to match your setup.
+The relevant paths are `laxar-path-themes` and `laxar-path-default-theme` respectively.
+In most cases however, this shouldn't be necessary.
 
 
 ### Looking up Widget CSS and HTML Templates

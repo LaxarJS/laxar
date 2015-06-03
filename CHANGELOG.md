@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#207](https://github.com/LaxarJS/laxar/issues/207): documentation: adapted to changed naming
 - [#206](https://github.com/LaxarJS/laxar/issues/206): runtime: fixed problem with possible duplicate flow-controller
 - [#203](https://github.com/LaxarJS/laxar/issues/203): documentation: updated manual on controls to cover the new descriptor
 

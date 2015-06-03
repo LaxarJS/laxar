@@ -107,3 +107,4 @@ You can also use `grunt dist` to get a zip archive containing the application wi
 Have fun developing your first LaxarJS application.
 
 Make sure to have a look at the [manuals](docs/manuals/index.md) and and check out the demo applications on the [LaxarJS website](http://laxarjs.org/).
+If you're already developing your first widgets and want to know which programmatic APIs are provided by LaxarJS, have a look at the [API docs](docs/api).
