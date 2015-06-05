@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.0.1
+
 - [#208](https://github.com/LaxarJS/laxar/issues/208): configuration: applied default for `i18n.locales` when setting `$rootScope.i18n.tags`
 
 
