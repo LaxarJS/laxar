@@ -30,12 +30,12 @@ Creates and returns a new instance.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| rootPath | `String` | the path to the root of the application. It is needed to prefix relative paths found in a listing with an absolute prefix |
+| rootPath | `String` |  the path to the root of the application. It is needed to prefix relative paths found in a listing with an absolute prefix |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `FileResourceProvider` | a new instance |
+| `FileResourceProvider` |  a new instance |
 
 #### <a name="init"></a>init( q, httpClient )
 Initializes the module.
@@ -43,8 +43,8 @@ Initializes the module.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| q | `Object` | a promise library like AngularJS' `$q` |
-| httpClient | `Object` | a http client whose api conforms to AngularJS' `$http` service |
+| q | `Object` |  a promise library like AngularJS' `$q` |
+| httpClient | `Object` |  a http client whose api conforms to AngularJS' `$http` service |
 
 ## Types
 ### <a name="FileResourceProvider"></a>FileResourceProvider
@@ -58,12 +58,12 @@ listing for the path is available, a request simply takes place and either succe
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| url | `String` | the uri to the resource to provide |
+| url | `String` |  the uri to the resource to provide |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `Promise` | resolved with the file's content or rejected when the file could not be fetched |
+| `Promise` |  resolved with the file's content or rejected when the file could not be fetched |
 
 #### <a name="FileResourceProvider#isAvailable"></a>FileResourceProvider#isAvailable( url )
 Resolves the returned promise with `true` as argument, if the requested resource is available and
@@ -73,12 +73,12 @@ succeeds or fails.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| url | `String` | the uri to check for availability |
+| url | `String` |  the uri to check for availability |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `Promise` | a promise that is always resolved with a boolean value |
+| `Promise` |  a promise that is always resolved with a boolean value |
 
 #### <a name="FileResourceProvider#setFileListingUri"></a>FileResourceProvider#setFileListingUri( directory, listingUri )
 Sets the uri to a file listing file for a given path.
@@ -86,8 +86,8 @@ Sets the uri to a file listing file for a given path.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| directory | `String` | the directory the file listing is valid for |
-| listingUri | `String` | the uri to the listing file |
+| directory | `String` |  the directory the file listing is valid for |
+| listingUri | `String` |  the uri to the listing file |
 
 #### <a name="FileResourceProvider#setFileListingContents"></a>FileResourceProvider#setFileListingContents( directory, listing )
 Sets the contents of a file listing file to the given object. This a useful alternative to
@@ -96,5 +96,5 @@ Sets the contents of a file listing file to the given object. This a useful alte
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| directory | `String` | the directory the file listing is valid for |
-| listing | `String` | the actual file listing |
+| directory | `String` |  the directory the file listing is valid for |
+| listing | `String` |  the actual file listing |

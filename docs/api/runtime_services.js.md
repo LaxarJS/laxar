@@ -49,7 +49,7 @@ now.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| func | `Function` | a function to schedule for the next tick |
+| func | `Function` |  a function to schedule for the next tick |
 
 #### <a name="axHeartbeat#onBeforeNext"></a>axHeartbeat#onBeforeNext( func )
 Schedules a function to be called before the next heartbeat occurs. Note that `func` may never be
@@ -58,7 +58,7 @@ called, if there is no next heartbeat.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| func | `Function` | a function to call before the next heartbeat |
+| func | `Function` |  a function to call before the next heartbeat |
 
 #### <a name="axHeartbeat#onAfterNext"></a>axHeartbeat#onAfterNext( func )
 Schedules a function to be called after the next heartbeat occured. Note that `func` may never be
@@ -67,7 +67,7 @@ called, if there is no next heartbeat.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| func | `Function` | a function to call after the next heartbeat |
+| func | `Function` |  a function to call after the next heartbeat |
 
 ### <a name="axTimestamp"></a>axTimestamp
 A timestamp function, provided as a service to support the jasmine mock clock during testing. The
@@ -149,7 +149,7 @@ Additionally it works around a
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| url | `String` | the url of the css file to load |
+| url | `String` |  the url of the css file to load |
 
 ### <a name="axVisibilityService"></a>axVisibilityService
 Directives should use this service to stay informed about visibility changes to their widget.
@@ -175,12 +175,12 @@ Create a DOM visibility handler for the given scope.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| scope | `Object` | the scope from which to infer visibility. Must be a widget scope or nested in a widget scope |
+| scope | `Object` |  the scope from which to infer visibility. Must be a widget scope or nested in a widget scope |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `axVisibilityServiceHandler` | a visibility handler for the given scope |
+| `axVisibilityServiceHandler` |  a visibility handler for the given scope |
 
 #### <a name="axVisibilityService#isVisible"></a>axVisibilityService#isVisible( area )
 Determine if the given area's content DOM is visible right now.
@@ -188,12 +188,12 @@ Determine if the given area's content DOM is visible right now.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| area | `String` | the full name of the widget area to query |
+| area | `String` |  the full name of the widget area to query |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `Boolean` | `true` if the area is visible right now, else `false`. |
+| `Boolean` |  `true` if the area is visible right now, else `false`. |
 
 ## Types
 ### <a name="axVisibilityServiceHandler"></a>axVisibilityServiceHandler
@@ -205,7 +205,7 @@ Determine if the governing widget scope's DOM is visible right now.
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `Boolean` | `true` if the widget associated with this handler is visible right now, else `false` |
+| `Boolean` |  `true` if the widget associated with this handler is visible right now, else `false` |
 
 #### <a name="axVisibilityServiceHandler#onChange"></a>axVisibilityServiceHandler#onChange( handler )
 Schedule a handler to be called with the new DOM visibility on any DOM visibility change.
@@ -213,12 +213,12 @@ Schedule a handler to be called with the new DOM visibility on any DOM visibilit
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| handler | `Function.<Boolean>` | the callback to process visibility changes |
+| handler | `Function.<Boolean>` |  the callback to process visibility changes |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `axVisibilityServiceHandler` | this visibility handler (for chaining) |
+| `axVisibilityServiceHandler` |  this visibility handler (for chaining) |
 
 #### <a name="axVisibilityServiceHandler#onShow"></a>axVisibilityServiceHandler#onShow( handler )
 Schedule a handler to be called with the new DOM visibility when it has changed to `true`.
@@ -226,12 +226,12 @@ Schedule a handler to be called with the new DOM visibility when it has changed 
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| handler | `Function.<Boolean>` | the callback to process visibility changes |
+| handler | `Function.<Boolean>` |  the callback to process visibility changes |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `axVisibilityServiceHandler` | this visibility handler (for chaining) |
+| `axVisibilityServiceHandler` |  this visibility handler (for chaining) |
 
 #### <a name="axVisibilityServiceHandler#onHide"></a>axVisibilityServiceHandler#onHide( handler )
 Schedule a handler to be called with the new DOM visibility when it has changed to `false`.
@@ -239,12 +239,12 @@ Schedule a handler to be called with the new DOM visibility when it has changed 
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| handler | `Function.<Boolean>` | the callback to process visibility changes |
+| handler | `Function.<Boolean>` |  the callback to process visibility changes |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `axVisibilityServiceHandler` | this visibility handler (for chaining) |
+| `axVisibilityServiceHandler` |  this visibility handler (for chaining) |
 
 #### <a name="axVisibilityServiceHandler#clear"></a>axVisibilityServiceHandler#clear()
 Removes all visibility handlers.
@@ -252,4 +252,4 @@ Removes all visibility handlers.
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `axVisibilityServiceHandler` | this visibility handler (for chaining) |
+| `axVisibilityServiceHandler` |  this visibility handler (for chaining) |
