@@ -19,11 +19,11 @@ documentation.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| f | `Function` | the function to return a debounced version of |
-| waitMs | `Number` | milliseconds to debounce before invoking `f` |
-| immediate | `Boolean` | if `true` `f` is invoked prior to start waiting `waitMs` milliseconds. Otherwise `f` is invoked after the given debounce duration has passed. Default is `false` |
+| f | `Function` |  the function to return a debounced version of |
+| waitMs | `Number` |  milliseconds to debounce before invoking `f` |
+| immediate | `Boolean` |  if `true` `f` is invoked prior to start waiting `waitMs` milliseconds. Otherwise `f` is invoked after the given debounce duration has passed. Default is `false` |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `Function` | the debounced function |
+| `Function` |  the debounced function |

@@ -21,14 +21,14 @@ Creates and returns a new theme manager instance.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| fileResourceProvider | `FileResourceProvider` | the file resource provider used for theme file lookup |
-| q | `$q` | a `$q` like promise library |
-| theme | `String` | the theme to use |
+| fileResourceProvider | `FileResourceProvider` |  the file resource provider used for theme file lookup |
+| q | `$q` |  a `$q` like promise library |
+| theme | `String` |  the theme to use |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `ThemeManager` |  |
+| `ThemeManager` |   |
 
 ## Types
 ### <a name="ThemeManager"></a>ThemeManager
@@ -36,9 +36,9 @@ Creates and returns a new theme manager instance.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| fileResourceProvider | `FileResourceProvider` | the file resource provider used for theme file lookups |
-| q | `$q` | a `$q` like promise library |
-| theme | `String` | the theme to use |
+| fileResourceProvider | `FileResourceProvider` |  the file resource provider used for theme file lookups |
+| q | `$q` |  a `$q` like promise library |
+| theme | `String` |  the theme to use |
 
 #### <a name="ThemeManager#getTheme"></a>ThemeManager#getTheme()
 Returns the currently used theme.
@@ -46,7 +46,7 @@ Returns the currently used theme.
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `String` | the currently active theme |
+| `String` |  the currently active theme |
 
 #### <a name="ThemeManager#urlProvider"></a>ThemeManager#urlProvider( artifactPathPattern, themePathPattern, fallbackPathPattern )
 Returns a URL provider for specific path patterns that are used to lookup themed artifacts. The token
@@ -58,11 +58,11 @@ default theme last.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| artifactPathPattern | `String` | a path pattern for search within the artifact directory itself, based on the current theme |
-| _themePathPattern_ | `String` | a path pattern for search within the current theme |
-| _fallbackPathPattern_ | `String` | a fallback path, used if all else fails. Usually without placeholders, e.g. for loading the default theme itself. |
+| artifactPathPattern | `String` |  a path pattern for search within the artifact directory itself, based on the current theme |
+| _themePathPattern_ | `String` |  a path pattern for search within the current theme |
+| _fallbackPathPattern_ | `String` |  a fallback path, used if all else fails. Usually without placeholders, e.g. for loading the default theme itself. |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `[object Object]` | an object with a provide method |
+| `[object Object]` |  an object with a provide method |

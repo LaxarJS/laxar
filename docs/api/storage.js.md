@@ -43,13 +43,13 @@ available. Just make sure to initialize the polyfills before this module.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| _localStorageBackend_ | `Object` | the backend for local storage, Default is `window.localStorage` |
-| _sessionStorageBackend_ | `Object` | the backend for session storage, Default is `window.sessionStorage` |
+| _localStorageBackend_ | `Object` |  the backend for local storage, Default is `window.localStorage` |
+| _sessionStorageBackend_ | `Object` |  the backend for session storage, Default is `window.sessionStorage` |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `Object` | a new storage module |
+| `Object` |  a new storage module |
 
 #### <a name="getLocalStorage"></a>getLocalStorage( namespace )
 Returns a local storage object for a specific local namespace.
@@ -57,12 +57,12 @@ Returns a local storage object for a specific local namespace.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| namespace | `String` | the namespace to prepend to keys |
+| namespace | `String` |  the namespace to prepend to keys |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `StorageApi` | the local storage object |
+| `StorageApi` |  the local storage object |
 
 #### <a name="getSessionStorage"></a>getSessionStorage( namespace )
 Returns a session storage object for a specific local namespace.
@@ -70,12 +70,12 @@ Returns a session storage object for a specific local namespace.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| namespace | `String` | the namespace to prepend to keys |
+| namespace | `String` |  the namespace to prepend to keys |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `StorageApi` | the session storage object |
+| `StorageApi` |  the session storage object |
 
 #### <a name="getApplicationLocalStorage"></a>getApplicationLocalStorage()
 Returns the local storage object for application scoped keys. This is equivalent to
@@ -84,7 +84,7 @@ Returns the local storage object for application scoped keys. This is equivalent
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `StorageApi` | the application local storage object |
+| `StorageApi` |  the application local storage object |
 
 #### <a name="getApplicationSessionStorage"></a>getApplicationSessionStorage()
 Returns the session storage object for application scoped keys. This is equivalent to
@@ -93,7 +93,7 @@ Returns the session storage object for application scoped keys. This is equivale
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `StorageApi` | the application session storage object |
+| `StorageApi` |  the application session storage object |
 
 ## Types
 ### <a name="StorageApi"></a>StorageApi
@@ -105,12 +105,12 @@ Retrieves a `value` by `key` from the store. JSON deserialization will automatic
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| key | `String` | the key of the item to retrieve (without namespace prefix) |
+| key | `String` |  the key of the item to retrieve (without namespace prefix) |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `*` | the value or `null` if it doesn't exist in the store |
+| `*` |  the value or `null` if it doesn't exist in the store |
 
 #### <a name="StorageApi#setItem"></a>StorageApi#setItem( key, value )
 Sets a `value` for a `key`. The value should be JSON serializable. An existing value will be
@@ -119,8 +119,8 @@ overwritten.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| key | `String` | the key of the item to set (without namespace prefix) |
-| value | `*` | the new value to set |
+| key | `String` |  the key of the item to set (without namespace prefix) |
+| value | `*` |  the new value to set |
 
 #### <a name="StorageApi#for"></a>StorageApi#for( key )
 Removes the value associated with `key` from the store.
@@ -128,4 +128,4 @@ Removes the value associated with `key` from the store.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| key | `String` | the key of the item to remove (without namespace prefix) |
+| key | `String` |  the key of the item to remove (without namespace prefix) |

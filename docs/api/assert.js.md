@@ -38,13 +38,13 @@ define( [ 'laxar' ], function( ax ) {
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| subject | `*` | the object assertions are made for |
-| _optionalDetails_ | `String` | details that should be printed in case no specific details are given when calling an assertion method |
+| subject | `*` |  the object assertions are made for |
+| _optionalDetails_ | `String` |  details that should be printed in case no specific details are given when calling an assertion method |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `Assertion` | the assertion instance |
+| `Assertion` |  the assertion instance |
 
 #### <a name="codeIsUnreachable"></a>codeIsUnreachable( optionalDetails )
 Marks a code path as erroneous by throwing an error when reached.
@@ -52,7 +52,7 @@ Marks a code path as erroneous by throwing an error when reached.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| _optionalDetails_ | `String` | details to append to the error message |
+| _optionalDetails_ | `String` |  details to append to the error message |
 
 #### <a name="state"></a>state( expression, optionalDetails )
 Throws an error if the given expression is falsy.
@@ -60,8 +60,8 @@ Throws an error if the given expression is falsy.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| expression | `*` | the expression to test for truthyness |
-| _optionalDetails_ | `String` | details to append to the error message |
+| expression | `*` |  the expression to test for truthyness |
+| _optionalDetails_ | `String` |  details to append to the error message |
 
 ## Types
 ### <a name="Assertion"></a>Assertion
@@ -72,12 +72,12 @@ Throws an error if the subject is `null` or `undefined`.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| _optionalDetails_ | `String` | details to append to the error message |
+| _optionalDetails_ | `String` |  details to append to the error message |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `Assertion` | this instance |
+| `Assertion` |  this instance |
 
 #### <a name="Assertion#hasType"></a>Assertion#hasType( type, optionalDetails )
 Throws an error if the subject is not of the given type. No error is thrown for `null` or `undefined`.
@@ -85,13 +85,13 @@ Throws an error if the subject is not of the given type. No error is thrown for 
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| type | `Function` | the expected type of the subject |
-| _optionalDetails_ | `String` | details to append to the error message |
+| type | `Function` |  the expected type of the subject |
+| _optionalDetails_ | `String` |  details to append to the error message |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `Assertion` | this instance |
+| `Assertion` |  this instance |
 
 #### <a name="Assertion#hasProperty"></a>Assertion#hasProperty( property, optionalDetails )
 Throws an error if the subject is no object or the given property is not defined on it.
@@ -99,10 +99,10 @@ Throws an error if the subject is no object or the given property is not defined
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| property | `String` | the property that is expected for the subject |
-| _optionalDetails_ | `String` | details to append to the error message |
+| property | `String` |  the property that is expected for the subject |
+| _optionalDetails_ | `String` |  details to append to the error message |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `Assertion` | this instance |
+| `Assertion` |  this instance |

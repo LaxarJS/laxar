@@ -100,7 +100,7 @@ For example, the widget headers look much better using the original laxar demo t
 
 Let's fix that using _widget-specific styles:_
 The widget styles use a _category/name_ directory structure, similar to that of the actual widgets.
-Here are some suggestions for a nicer look, to be put under `widgets/shop_demo`:
+Here are some suggestions for a nicer look, to be put under `widgets/shop-demo`:
 
 
 * _ArticleBrowserWidget_: `article_browser_widget/css/article_browser_widget.css`
@@ -181,7 +181,7 @@ Instead, we use `grunt dist` to create a merged version, which we may load throu
 
 **_Above:_ The all-new ShopDemo using the _darkly_ theme with widget styles. Not too shabby, eh?**
 
-Have a look at the [dark theme in action](//laxarjs.github.io/shop_demo/darkly.html#/shopDemo).
+Have a look at the [dark theme in action](//laxarjs.github.io/shop-demo/darkly.html#/shopDemo).
 
 Of course, there are still some problems with this way of styling widgets.
 For example, if we would like to change the shade of blue that is used in our theme, we would have to update multiple source code locations.
