@@ -29,10 +29,10 @@ define( [ 'laxar' ], function( ax ) {
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| key | `String` | a path (using `.` as separator) to the property in the configuration object |
-| _optionalDefault_ | `*` | the value to return if no value was set for `key` |
+| key | `String` |  a  path (using `.` as separator) to the property in the configuration object |
+| _optionalDefault_ | `*` |  the value to return if no value was set for `key` |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `*` | either the configured value, `undefined` or `optionalDefault` |
+| `*` |  either the configured value, `undefined` or `optionalDefault` |

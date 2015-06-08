@@ -28,13 +28,13 @@ Creates and returns a new event bus instance using the given configuration.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| _optionalConfiguration_ | `Object` | configuration for the event bus instance |
-| _optionalConfiguration.pendingDidTimeout_ | `Number` | the timeout in milliseconds used by [EventBus#publishAndGatherReplies](#EventBus#publishAndGatherReplies). Default is 120000ms |
+| _optionalConfiguration_ | `Object` |  configuration for the event bus instance |
+| _optionalConfiguration.pendingDidTimeout_ | `Number` |  the timeout in milliseconds used by [EventBus#publishAndGatherReplies](#EventBus#publishAndGatherReplies). Default is 120000ms |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `EventBus` |  |
+| `EventBus` |   |
 
 #### <a name="init"></a>init( q, nextTick, timeoutFunction )
 Initializes the module.
@@ -42,9 +42,9 @@ Initializes the module.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| q | `Object` | a promise library like AngularJS' `$q` |
-| nextTick | `Function` | a next tick function like `process.nextTick` or AngularJS' `$timeout` |
-| timeoutFunction | `Function` | a timeout function like `window.setTimeout` or AngularJS' `$timeout` |
+| q | `Object` |  a promise library like AngularJS' `$q` |
+| nextTick | `Function` |  a next tick function like `process.nextTick` or AngularJS' `$timeout` |
+| timeoutFunction | `Function` |  a timeout function like `window.setTimeout`  or AngularJS' `$timeout` |
 
 ## Types
 ### <a name="EventBus"></a>EventBus
@@ -58,7 +58,7 @@ The default error handler simply logs all issues to `console.error` or `console.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| errorHandler | `Function` | the error handler |
+| errorHandler | `Function` |  the error handler |
 
 #### <a name="EventBus#setMediator"></a>EventBus#setMediator( mediator )
 Sets a mediator, that has the chance to alter events shortly before their delivery to the according
@@ -79,7 +79,7 @@ An event item has these properties:
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| mediator | `Function` | the mediator function |
+| mediator | `Function` |  the mediator function |
 
 #### <a name="EventBus#addInspector"></a>EventBus#addInspector( inspector )
 Adds an inspector, that gets notified when certain actions within the event bus take place. Currently
@@ -105,12 +105,12 @@ being called for future event bus actions.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| inspector | `Function` | the inspector function to add |
+| inspector | `Function` |  the inspector function to add |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `Function` | a function to remove the inspector |
+| `Function` |  a function to remove the inspector |
 
 #### <a name="EventBus#subscribe"></a>EventBus#subscribe( eventName, subscriber, optionalOptions )
 Subscribes to an event by name. An event name consists of so called *topics*, where each topic is
@@ -149,11 +149,11 @@ function was attached to. This is necessary to make [EventBus#unsubscribe](#Even
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| eventName | `String` | the name of the event to subscribe to |
-| subscriber | `Function` | a function to call whenever an event matching `eventName` is published |
-| _optionalOptions_ | `Object` | additional options for the subscribe action |
-| _optionalOptions.subscriber_ | `String` | the id of the subscriber. Default is `null` |
-| _optionalOptions.clone_ | `Boolean` | if `false` the event will be send frozen to the subscriber, otherwise it will receive a deep copy. Default is `true` |
+| eventName | `String` |  the name of the event to subscribe to |
+| subscriber | `Function` |  a function to call whenever an event matching `eventName` is published |
+| _optionalOptions_ | `Object` |  additional options for the subscribe action |
+| _optionalOptions.subscriber_ | `String` |  the id of the subscriber. Default is `null` |
+| _optionalOptions.clone_ | `Boolean` |  if `false` the event will be send frozen to the subscriber, otherwise it will receive a deep copy. Default is `true` |
 
 #### <a name="EventBus#unsubscribe"></a>EventBus#unsubscribe( subscriber )
 Removes all subscriptions of the given subscriber.
@@ -161,7 +161,7 @@ Removes all subscriptions of the given subscriber.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| subscriber | `Function` | the function to unsubscribe |
+| subscriber | `Function` |  the function to unsubscribe |
 
 #### <a name="EventBus#publish"></a>EventBus#publish( eventName, optionalEvent, optionalOptions )
 Asynchronously publishes an event on the event bus. The returned promise will be queued as soon as this
@@ -189,16 +189,16 @@ mentioned above. Practically this is used internally for the implementation of
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| eventName | `String` | the name of the event to publish |
-| _optionalEvent_ | `Object` | the event to publish |
-| _optionalOptions_ | `Object` | additional options for the publish action |
-| _optionalOptions.sender_ | `String` | the id of the event sender. Default is `null` |
-| _optionalOptions.deliverToSender_ | `Boolean` | if `false` the event will not be send to subscribers whose subscriber name matches `optionalOptions.sender`, else all subscribers will receive the event. Default is `true` |
+| eventName | `String` |  the name of the event to publish |
+| _optionalEvent_ | `Object` |  the event to publish |
+| _optionalOptions_ | `Object` |  additional options for the publish action |
+| _optionalOptions.sender_ | `String` |  the id of the event sender. Default is `null` |
+| _optionalOptions.deliverToSender_ | `Boolean` |  if `false` the event will not be send to subscribers whose subscriber name matches `optionalOptions.sender`, else all subscribers will receive the event. Default is `true` |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `Promise` | the delivery promise |
+| `Promise` |  the delivery promise |
 
 #### <a name="EventBus#publishAndGatherReplies"></a>EventBus#publishAndGatherReplies( eventName, optionalEvent, optionalOptions )
 Publishes an event that follows the *request-will-did pattern* and awaits all replies. This pattern has
@@ -220,13 +220,13 @@ rejected with all response received up to now.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| eventName | `String` | the name of the event to publish |
-| _optionalEvent_ | `Object` | the event to publish |
-| _optionalOptions_ | `Object` | additional options for the publish action |
-| _optionalOptions.sender_ | `String` | the id of the event sender. Default is `null` |
-| _optionalOptions.pendingDidTimeout_ | `Number` | the timeout in milliseconds for pending did* events |
+| eventName | `String` |  the name of the event to publish |
+| _optionalEvent_ | `Object` |  the event to publish |
+| _optionalOptions_ | `Object` |  additional options for the publish action |
+| _optionalOptions.sender_ | `String` |  the id of the event sender. Default is `null` |
+| _optionalOptions.pendingDidTimeout_ | `Number` |  the timeout in milliseconds for pending did* events |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `Promise` | the delivery promise. It receives a list of all collected `did*` events and according meta information |
+| `Promise` |  the delivery promise. It receives a list of all collected `did*` events and according meta information |

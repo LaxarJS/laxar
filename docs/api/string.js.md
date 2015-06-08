@@ -79,14 +79,14 @@ cases simply are ignored and don't alter the value.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| string | `String` | the string to replace placeholders in |
-| _optionalIndexedReplacements_ | `Array` | an optional array of indexed replacements |
-| _optionalNamedReplacements_ | `Object` | an optional map of named replacements |
+| string | `String` |  the string to replace placeholders in |
+| _optionalIndexedReplacements_ | `Array` |  an optional array of indexed replacements |
+| _optionalNamedReplacements_ | `Object` |  an optional map of named replacements |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `String` | the string with placeholders substituted for their according replacements |
+| `String` |  the string with placeholders substituted for their according replacements |
 
 #### <a name="createFormatter"></a>createFormatter( typeFormatters, optionalValueMappers )
 Creates a new format function having the same api as [format](#format). If the first argument is
@@ -138,10 +138,10 @@ format( 'Hello [0:%s:flip], you owe me [1:double:%.2f] euros.', [ 'Peter', 12 ] 
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| typeFormatters | `Object` | map from format specifier (single letter without leading `%`) to formatting function |
-| _optionalValueMappers_ | `Object` | map from mapping identifier to mapping function |
+| typeFormatters | `Object` |  map from format specifier (single letter without leading `%`) to formatting function |
+| _optionalValueMappers_ | `Object` |  map from mapping identifier to mapping function |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `Function` | A function having the same api as [format](#format) |
+| `Function` |  A function having the same api as [format](#format) |

@@ -27,13 +27,13 @@ place.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| targetOrPlace | `String` | the target or place id to construct the url for |
-| _optionalParameters_ | `Object` | optional map of place parameters. Missing parameters are taken from the parameters that were passed to the currently active place |
+| targetOrPlace | `String` |  the target or place id to construct the url for |
+| _optionalParameters_ | `Object` |  optional map of place parameters. Missing parameters are taken from the parameters that were passed to the currently active place |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `string` | the generated path |
+| `string` |  the generated path |
 
 #### <a name="axFlowService#constructAnchor"></a>axFlowService#constructAnchor( targetOrPlace, optionalParameters )
 Constructs a path and prepends a `#` to make it directly usable as relative link within an
@@ -43,13 +43,13 @@ place.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| targetOrPlace | `String` | the target or place id to construct the url for |
-| _optionalParameters_ | `Object` | optional map of place parameters. Missing parameters are taken from the parameters that were passed to the currently active place |
+| targetOrPlace | `String` |  the target or place id to construct the url for |
+| _optionalParameters_ | `Object` |  optional map of place parameters. Missing parameters are taken from the parameters that were passed to the currently active place |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `string` | the generated anchor |
+| `string` |  the generated anchor |
 
 #### <a name="axFlowService#constructAbsoluteUrl"></a>axFlowService#constructAbsoluteUrl( targetOrPlace, optionalParameters )
 Constructs an absolute url to the given target or place using the given parameters application. If
@@ -58,13 +58,13 @@ a target is given as first argument, this is resolved using the currently active
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| targetOrPlace | `String` | the target or place id to construct the url for |
-| _optionalParameters_ | `Object` | optional map of place parameters. Missing parameters are taken from the parameters that were passed to the currently active place |
+| targetOrPlace | `String` |  the target or place id to construct the url for |
+| _optionalParameters_ | `Object` |  optional map of place parameters. Missing parameters are taken from the parameters that were passed to the currently active place |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `string` | the generated url |
+| `string` |  the generated url |
 
 #### <a name="axFlowService#place"></a>axFlowService#place()
 Returns a copy of the currently active place.
@@ -72,4 +72,4 @@ Returns a copy of the currently active place.
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `Object` | the currently active place |
+| `Object` |  the currently active place |

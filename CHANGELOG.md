@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#209](https://github.com/LaxarJS/laxar/issues/209): api-doc: update generated api doc
+
 
 ## v1.0.1
 
