@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#150](https://github.com/LaxarJS/laxar/issues/150): documentation: added contributor guide
 - [#209](https://github.com/LaxarJS/laxar/issues/209): api-doc: update generated api doc
 - [#208](https://github.com/LaxarJS/laxar/issues/208): configuration: applied default for `i18n.locales` when setting `$rootScope.i18n.tags`
 
