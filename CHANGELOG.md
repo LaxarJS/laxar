@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#211](https://github.com/LaxarJS/laxar/issues/211): project: state compatibility with AngularJS 1.4.x 
+    + NEW FEATURE: see ticket for details
 - [#212](https://github.com/LaxarJS/laxar/issues/212): documentation: added basic manual on installing controls
 - [#150](https://github.com/LaxarJS/laxar/issues/150): documentation: added contributor guide
 - [#209](https://github.com/LaxarJS/laxar/issues/209): api-doc: update generated api doc
