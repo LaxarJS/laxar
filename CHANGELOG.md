@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.1.0-alpha.0
+
 - [#127](https://github.com/LaxarJS/laxar/issues/127): testing: made necessary changes for new, distinct testing framework
 - [#211](https://github.com/LaxarJS/laxar/issues/211): project: state compatibility with AngularJS 1.4.x 
     + NEW FEATURE: see ticket for details
