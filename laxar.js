@@ -7,29 +7,39 @@ define( [
    'angular',
    './lib/logging/log',
    './lib/directives/directives',
+   './lib/event_bus/event_bus',
+   './lib/file_resource_provider/file_resource_provider',
    './lib/i18n/i18n',
+   './lib/loaders/widget_loader',
    './lib/utilities/assert',
    './lib/utilities/configuration',
    './lib/utilities/fn',
    './lib/utilities/object',
+   './lib/utilities/path',
    './lib/utilities/storage',
    './lib/utilities/string',
    './lib/runtime/runtime',
    './lib/runtime/runtime_dependencies',
+   './lib/runtime/theme_manager',
    './lib/widget_adapters/adapters'
 ], function(
    ng,
    log,
    directives,
+   eventBus,
+   fileResourceProvider,
    i18n,
+   widgetLoader,
    assert,
    configuration,
    fn,
    object,
+   path,
    storage,
    string,
    runtime,
    runtimeDependencies,
+   themeManager,
    adapters
 ) {
    'use strict';
@@ -124,6 +134,17 @@ define( [
       log.addTag( 'INST', instanceId );
    }
 
+   // API to leverage tooling support. For example laxar-testing needs this for widget tests
+   var toolingApi = {
+      eventBus: eventBus,
+      fileResourceProvider: fileResourceProvider,
+      path: path,
+      themeManager: themeManager,
+      widgetAdapters: adapters,
+      widgetLoader: widgetLoader,
+      runtimeDependenciesModule: runtimeDependencies
+   };
+
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    return {
@@ -136,7 +157,8 @@ define( [
       log: log,
       object: object,
       storage: storage,
-      string: string
+      string: string,
+      _tooling: toolingApi
    };
 
 } );

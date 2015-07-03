@@ -51,7 +51,7 @@ The _plain_ adapter requires no additional dependencies, and is meant for widget
 
 ## The Integration Technology API
 
-Each widget integration technology is implemented as an AMD module with three properties:
+Each widget integration technology is implemented as an AMD module with these properties:
 
 * The `technology` is a string that identifies the widget adapter.
   It is compared to the `integration.technology` field of each _widget.json_ to determine which adapter must be used for each widget in the application.
@@ -61,11 +61,16 @@ Each widget integration technology is implemented as an AMD module with three pr
   The API of the widget modules depends on the integration technology, but usually there is at least a `name` to associate the modules to their _widget.json,_ a method to instantiate a controller for a given widget instance, and possibly a method to set up a view.
   For the _angular_ integration, the widget module simply yields the corresponding AngularJS module, so that controllers can be instantiated by using the AngularJS `$controller` service.
   For the _plain_ integration, the widget module must have a method `create` to instantiate the controller, and optionally an array `injections` to specify services required by the widget, such as the EventBus.
-  These injections are used are used as arguments to `create` in the order that they are listed in `injections`.
+  These injections are used as arguments to `create` in the order that they are listed in `injections`.
 
 * The method `create` is a factory that actually creates the widget adapter for a given widget instance.
   Each widget instance has its own adapter instance, so that the adapter is free to maintain state information specific to the current widget instance, as may be required by the integration technology.
   For each widget to be instantiated, `create` is called with an _environment_ object containing the instance configuration and other context information for the widget controller, chiefly the instance's handle to the event bus.
+
+* Optionally an adapter may provide a method called `applyViewChanges`.
+  Whenever the _LaxarJS_ runtime carried out some task that may have tampered with the model of one or more widgets, like the asynchronous delivery of event bus events, this method gets called.
+  It should then do whatever necessary to achieve consistency again.
+  In case of _AngularJS_ this is a call to `$rootScope.$apply()`, while the plain adapter simply does nothing.
 
 Before going into details on the widget adapter API, let us have a look at the environment that is used to create widget adapters.
 
@@ -108,8 +113,12 @@ Having been created from an environment, all widget adapter instances expose the
 
 All widget adapters must implement the following four methods, to support creation and destruction of controller and view:
 
-* `createController`: called without arguments to instantiate the widget controller.
-  The adapter must provide the widget controller with the `context` from the widget loader environment.
+* `createController`: called to instantiate the widget controller.
+  The argument is a config map, currently only having an `onBeforeControllerCreation` function as single property.
+  This function acts as integration point for widget tests and should be called by the adapter just before the controller is instantiated.
+  It expects the `environment` as first and all readily prepared injections for the widget as second argument.
+  
+  When instantiating the widget controller, the adapter must provide it with the `context` from the widget loader environment.
   Because the view has not been setup at this point in time, the adapter should not yet manipulate the anchor element, nor make it available to the widget controller.
 
 * `domAttachTo`: called with a widget area as the first argument, and an optional (template) html string as the second argument.
