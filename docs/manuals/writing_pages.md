@@ -118,6 +118,52 @@ The object under `features` needs to satisfy the schema defined for the features
 When loading a page and its widgets, LaxarJS will actually validate the configuration provided in the page against the widget's schema and throw an error in case one or more constraints are violated.
 
 
+## <a name="embeddedLayouts"></a>Embedded Layouts
+
+There are use cases where it is not sufficient to reference one single page layout and place all widgets of a page within that layout, but where more flexibility is needed.
+Especially when trying to reuse existing layouts, it may be necessary to embedded another layout within the area of a global page layout.
+
+To support this hassle-free, layouts are first-class citizens just as widgets or [compositions](#compositions) within areas.
+
+```JSON
+{
+   "layout": "popups/layout_one",
+   "areas": {
+      "content": [
+         {
+            "layout": "other_layouts/small_columns",
+            "id": "embedded"
+         },
+         {
+            "widget": "laxarjs/ax-command-bar-widget",
+            "features": {
+               "next": {
+                  "enabled": true
+               }
+            }
+         }
+      ],
+      "embedded.left": [
+         {
+            "widget": "laxarjs/ax-html-display-widget",
+            "features": {
+               "content": {
+                  "resource": "someResource"
+               }
+            }
+         }
+      ]
+   }
+}
+```
+
+As seen in the example from above simply the key `layout` should be used instead of `widget`.
+Its value is - just like the main `layout` property of a page - the path of a specific layout directory within the layout folder of the application.
+Providing an `id` is obligatory since otherwise it would be impossible to reference a widget area defined within the layout.
+Under the assumption that the layout `other_layouts/small_columns` exports a widget area named `left`, we can now insert widgets into it using the area name `embedded.left` for it.
+
+Note that providing `features` to a layout entry does not lead to an error, but simply is ignored.
+
 ## <a name="inheritance"></a>Inheritance
 
 The most simple way to reuse parts of a page specification is by inheritance.
