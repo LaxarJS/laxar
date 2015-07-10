@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.1.0-alpha.1
+
 - [#193](https://github.com/LaxarJS/laxar/issues/193): loaders: implemented nesting of layouts within areas directly in a page
 
 
