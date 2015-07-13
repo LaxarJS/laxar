@@ -2,8 +2,9 @@
 
 ## Last Changes
 
-
+- [#213](https://github.com/LaxarJS/laxar/issues/213): documentation: fixed widget installation manual
 - [#214](https://github.com/LaxarJS/laxar/issues/214): axHeartBeat: using applyViewChanges via page controller
+
 
 ## v1.1.0-alpha.1
 

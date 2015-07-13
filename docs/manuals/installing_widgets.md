@@ -45,7 +45,7 @@ You should compare your widget's bower dependencies to those of your application
 Usually, you can automate that process using `bower` itself:
 
 ```sh
-bower install --save ./includes/widgets/category/widget`
+bower install --save ./includes/widgets/category/widget
 ```
 
 _Note:_ This will also install the widget itself as a bower component, which is not actually needed but also should not hurt.
@@ -62,4 +62,4 @@ Having followed these steps, you can now add the new widget to a page by specify
 
 ## Installing Widgets Automatically
 
-This is still in the works: for LaxarJS [v1.0](https://github.com/LaxarJS/laxar/issues?q=is%3Aopen+is%3Aissue+label%3Ablocks-1.0), we are evaluating to automate all three steps, possibly using `bower` and [bower-requirejs](https://github.com/yeoman/bower-requirejs).
+This is still in the works: for LaxarJS [v1.1](https://github.com/LaxarJS/laxar/issues?q=is%3Aopen+is%3Aissue+label%3Ablocks-1.0), we are evaluating to automate all three steps, possibly using `bower` and [bower-requirejs](https://github.com/yeoman/bower-requirejs).
