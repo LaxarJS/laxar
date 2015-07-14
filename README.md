@@ -1,4 +1,4 @@
-# LaxarJS
+# LaxarJS [![Build Status](https://travis-ci.org/LaxarJS/laxar.svg?branch=master)](https://travis-ci.org/LaxarJS/laxar)
 
 > _Middleware for your web client:_ Create maintainable applications from small, isolated parts.
 
