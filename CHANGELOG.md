@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.0.3
+
 - [#218](https://github.com/LaxarJS/laxar/issues/218): project: relaxed angular version constraint (1.3.15 -> ~1.3.17)
 
 
