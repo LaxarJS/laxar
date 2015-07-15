@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.1.0-alpha.2
+
 - [#219](https://github.com/LaxarJS/laxar/issues/219): added Travis-CI build integration
     + NEW FEATURE: see ticket for details
 - [#213](https://github.com/LaxarJS/laxar/issues/213): documentation: fixed widget installation manual
