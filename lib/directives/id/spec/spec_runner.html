@@ -14,10 +14,11 @@
    <script type="text/javascript">
       ( function() {
          // assume that we live in an application under includes/lib
-         var defaultDepth = 6;
-         var depth = parseInt( window.location.search.replace( /[?&]folderDepth=([0-9]+)/, '$1' ), 10 ) || defaultDepth;
+         var defaultDepth = 8;
+         var depth = parseInt( window.location.search.replace( /[?&]folderDepth=([0-9]+)/, '$1' ), 10 );
+         if( isNaN( depth ) ) depth = defaultDepth;
          var config = 'require_config.js';
-         for( var i = 0; i <= depth; ++i ) config = '../' + config;
+         for( var i = 0; i < depth; ++i ) config = '../' + config;
          document.writeln( '<script id="require_config" type="text/javascript" src="' + config + '"><' + '/script>' );
       } )();
    </script>
