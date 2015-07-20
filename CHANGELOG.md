@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#78](https://github.com/LaxarJS/laxar/issues/78): tests: allow to execute spec-tests using a project RequireJS configuration
+    + NEW FEATURE: see ticket for details
+
 
 ## v1.1.0-alpha.2
 
