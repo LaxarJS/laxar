@@ -52,7 +52,7 @@ The sub-directory _shopping_ is the _widget category_ in the example path.
 Categories allow to organize widgets by their general business area, for example _shopping_, _social_, _finance_ and so on.
 The last component of the widget path is the _widget name_:
 It has to be unique throughout an application and must be written in lower case letters with components separated by underscores.
-Regular widget names always end in `_widget` whereas activities always end in `_activity`.
+Regular widget names always end in `-widget` whereas activities always end in `-activity`.
 
 To create the actual widget, run:
 
@@ -124,7 +124,7 @@ None of these files are loaded during regular application runtime:
 
 * `spec/cart-widget.spec.js`
 
-  This is the actual [jasmine](http://jasmine.github.io/1.3/introduction.html) spec test.
+  This is the actual [jasmine](http://jasmine.github.io/2.3/introduction.html) spec test.
   The test harness (providing a simulated LaxarJS event bus) has already been prepared for you.
 
 
@@ -319,6 +319,15 @@ For this reason, the testing infrastructure for your widget has already been add
 
 ### Writing Spec-Tests
 
+LaxarJS still contains a testing framework, which is deprecated starting from version 1.1.0 onwards.
+For backwards compatibility it won't be removed until the next major release 2.0.0 of LaxarJS, but when starting a new application, usage is discouraged.
+Instead the new, self-contained [LaxarJS Testing](https://github.com/LaxarJS/laxar-testing) framework should be used.
+There you'll also find manuals and [an introduction](https://github.com/LaxarJS/laxar-testing/blob/master/docs/manuals/introduction.md) on how to test widgets in isolation
+
+
+
+*Introduction valid up to LaxarJS 1.1.0:*
+
 LaxarJS contains a testing infrastructure to mock out the LaxarJS runtime, effectively running your widget in a sandbox or _test bed_ as it is called in LaxarJS.
 A skeleton spec is already provided for you:
 It contains code to prepare the test bed with sample configuration and to instantiate your controller.
@@ -362,23 +371,7 @@ Hopefully this makes it simple to set up continuous integration for your applica
 ## LaxarJS Widget Reference
 
 Building on top of the basics covered so far, sometimes it is helpful to know about all the options available to widget authors.
-This section covers the details of the widget specification format and of the LaxarJS test bed.
-
-### The Widget Scope
-
-The widget controller and the template have access to the widget scope.
-The scope may be used by widget controllers to communicate with directives such as `ngForm`.
-To avoid entanglement, multiple widgets (even if nested) do *not* communicate through the scope but *always use the event bus* for this.
-
-* `$scope.eventBus`
-
-  Most of the time, this is the only LaxarJS scope property used by widget controllers.
-  Of course, controllers will almost always add their own properties.
-
-* `$scope.widget.id`
-
-  A unique identifier for this widget within the page.
-  You can use it to generate unique DOM IDs, for example to connect `label` and `input` elements in an HTML form.
+This section covers the details of the widget specification format and the properties available on the `$scope` in case of an AngularJS widget.
 
 
 ### The Widget Specification Format
@@ -416,36 +409,18 @@ These are the most important widget properties:
   Refer to [Providing Controls](./providing_controls.md) for on loading user interface components and their resources in this manner.
 
 
-### The LaxarJS Widget Test Bed
+### The Widget Scope
 
-The LaxarJS spec test boilerplate (provided for you by grunt-init) creates a `testBed_` instance which is re-initialized prior to running each test case.
-It has the following essential properties.
+The widget controller and the template have access to the widget scope.
+The scope may be used by widget controllers to communicate with directives such as `ngForm`.
+To avoid entanglement, multiple widgets (even if nested) do *not* communicate through the scope but *always use the event bus* for this.
 
-* `testBed_.featuresMock`
+* `$scope.eventBus`
 
-  Contains the feature configuration for use during the spec test, to be specified by the author of the test.
-  It has the same format that would be provided through the page definition within an actual application.
-  Note that `featuresMock` must be set before calling `testBed_.setup()`.
+  Most of the time, this is the only LaxarJS scope property used by widget controllers.
+  Of course, controllers will almost always add their own properties.
 
-* `testBed_.setup()`
+* `$scope.widget.id`
 
-  Creates the widget controller.
-  Afterwards, the `testBed_.scope` is available.
-  This simulates navigating to a page that contains an instance of the widget under test.
-
-* `testBed_.tearDown()`
-
-  Destroys the widget controller.
-  This is the testing equivalent to navigating away from the page that contains the widget instance.
-
-* `testBed_.scope`
-
-  The AngularJS scope that was created for this widget.
-  This allows to inspect widget state in white-box tests.
-
-* `testBed_.eventBusMock`
-
-  A handle to the LaxarJS event bus that allows spec tests to simulate other widgets on the same page.
-  Through it, the spec test can publish events for manipulating the widget, and in turn subscribe to events published by the widget controller.
-  This is different from the `testBed_.scope.eventBus` handle which is used by the widget controller.
-  Tests may use `spyOn` on the scope event bus to monitor widget behaviour directly, or interact with the `eventBusMock` to communicate with the widget indirectly.
+  A unique identifier for this widget within the page.
+  You can use it to generate unique DOM IDs, for example to connect `label` and `input` elements in an HTML form.
