@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#222](https://github.com/LaxarJS/laxar/issues/222): require_config: added documentation for widget / control specific configuration
 - [#215](https://github.com/LaxarJS/laxar/issues/215): testing: updated documentation regarding widget tests
 - [#220](https://github.com/LaxarJS/laxar/issues/220): fixed off-by-one bug in HTML spec-runners
 - [#78](https://github.com/LaxarJS/laxar/issues/78): tests: allow to execute spec-tests using a project RequireJS configuration
