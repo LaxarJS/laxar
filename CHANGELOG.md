@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#226](https://github.com/LaxarJS/laxar/issues/226): angular: normalized widget module lookup so that widget.json can use dash-separated-names
 - [#129](https://github.com/LaxarJS/laxar/issues/129): integration: implemented using widgets installed via bower as amd module
     + NEW FEATURE: see ticket for details
 - [#222](https://github.com/LaxarJS/laxar/issues/222): require_config: added documentation for widget / control specific configuration
