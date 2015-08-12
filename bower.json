@@ -1,6 +1,6 @@
 {
    "name": "laxar",
-   "version": "1.0.3",
+   "version": "1.0.4",
    "description": "Building large applications is hard, so don't do that!",
    "private": true,
    "authors": [],

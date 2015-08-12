@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.0.4
+
 - [#226](https://github.com/LaxarJS/laxar/issues/226): angular: normalized widget module lookup so that widget.json can use dash-separated-names
 
 
