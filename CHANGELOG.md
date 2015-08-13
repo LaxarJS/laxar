@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.0.5
+
 - [#227](https://github.com/LaxarJS/laxar/issues/227): testing: fixed widget descriptor lookup so that it is independent of the widget location
 
 
