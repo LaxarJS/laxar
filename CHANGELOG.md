@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.1.0-alpha.3
+
 - [#227](https://github.com/LaxarJS/laxar/issues/227): testing: fixed widget descriptor lookup so that it is independent of the widget location
 - [#225](https://github.com/LaxarJS/laxar/issues/225): loaders: prefer widget specification name over directory name if possible
 - [#226](https://github.com/LaxarJS/laxar/issues/226): angular: normalized widget module lookup so that widget.json can use dash-separated-names
