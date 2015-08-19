@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#228](https://github.com/LaxarJS/laxar/issues/228): documentation: documented writing widget controller for specific technologies
 - [#229](https://github.com/LaxarJS/laxar/issues/229): adapters: added axFeatures as injection for angular widgets
 - [#221](https://github.com/LaxarJS/laxar/issues/221): adapters: made all relevant services available to plain widgets
 
