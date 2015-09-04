@@ -183,8 +183,8 @@ For anyone familiar with Bootstrap and AngularJS, most of this should not be a s
    <thead>
    <tr>
       <th>Beverage</th>
-      <th class="cart-price">Price</th>
-      <th class="cart-amount">Amount</th>
+      <th class="cart-amount">Price</th>
+      <th class="cart-price">Amount</th>
       <th></th>
    </tr>
    </thead>
