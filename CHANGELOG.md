@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.1.0-alpha.4
+
 - [#195](https://github.com/LaxarJS/laxar/issues/195): documentation: added manual on the FileResourceProvider
     + NEW FEATURE: see ticket for details
 - [#230](https://github.com/LaxarJS/laxar/issues/230): documentation: fixed example in *Widgets and Activities* manual
