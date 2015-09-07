@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#195](https://github.com/LaxarJS/laxar/issues/195): documentation: added manual on the FileResourceProvider
+    + NEW FEATURE: see ticket for details
 - [#230](https://github.com/LaxarJS/laxar/issues/230): documentation: fixed example in *Widgets and Activities* manual
 - [#223](https://github.com/LaxarJS/laxar/issues/223): documentation: explain tooling with the new grunt tasks
 - [#228](https://github.com/LaxarJS/laxar/issues/228): documentation: documented writing widget controller for specific technologies
