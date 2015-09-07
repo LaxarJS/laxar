@@ -240,49 +240,16 @@ The Bootstrap framework incurs some degree of boilerplate, but makes it relative
 
 ## How the Runtime Finds CSS
 
-As mentioned previously, the LaxarJS runtime and grunt tasks do not care _how_ you create your CSS.
+As mentioned above, the LaxarJS runtime and grunt tasks do not care _how_ you create your CSS.
 However, these tools need to find it, so it is important _where_ the CSS files are.
+For details on how CSS and other assets are loaded, have a look at the [asset lookup manual](asset_lookup.md).
 
-The general lookup works always like this:
+In general, the lookup order goes like this:
 
-  1. if there are _theme-specific styles_ for an artifact (matching the application theme) then use those
-  2. else if there are _default styles_ for an artifact then use those
-  3. else load _nothing_
+  1. if there are _theme-specified styles_ for an artifact (bundled with the application theme in use), then use those
+  2. if there are _theme-specified styles_ for an artifact (bundled with the artifact itself), then use those
+  3. else if there are _default styles_ for an artifact then use those
+  4. else load _nothing_
 
 Of course, _load nothing_ means that it is completely fine for a widget not to have its any CSS styles.
 If it was missing an HTML template on the other hand, that would simply be an error.
-Following this structure allows the `grunt-laxar` tasks to find and combine the correct HTML and CSS assets, so that the number of HTTP requests may be minimized during production.
-
-
-### Looking up the Theme CSS
-
-To load the CSS for the theme itself, the runtime simply uses the [configured](./configuration.md) theme _X_ and looks for its CSS under `includes/themes/X.theme/css/theme.css`.
-The exception is the default theme, which is currently loaded from within _Laxar UiKit_ (if no user-defined theme is specified).
-Both, the path for application specific themes and the default theme, can optionally be configured within the `require_config.js` file to match your setup.
-The relevant paths are `laxar-path-themes` and `laxar-path-default-theme` respectively.
-In most cases however, this shouldn't be necessary.
-
-
-### Looking up Widget CSS and HTML Templates
-
-For widget CSS styles and HTML templates, the LaxarJS runtime first checks if a version is available within the theme.
-This means that you cannot only customize the CSS for a widget _X_ by placing a stylesheet at `<theme>/widgets/category/X/css/X.css` but that you can also override the HTML at `<theme>/widgets/category/X/X.html`.
-If nothing is found in the current theme for a given widget, the `default.theme` folder within the widget itself is used.
-Do note that CSS and HTML files are treated separately:
-You can override the CSS but not the HTML or vice versa.
-
-
-### Looking up CSS and HTML for a Layout
-
-Themes are intended to be reusable across applications.
-Because layouts are highly specific to an application, their CSS and HTML assets are always _within the layout's folder_, for all themes.
-Otherwise, the same process as for widgets is used: First, LaxarJS searches the current theme folder, before falling back to the default theme.
-
-
-### Looking up CSS for a Control
-
-Controls (AngularJS directives) take care of their own HTML loading, so the choice of theme has no effect here.
-The styling however is theme specific:
-Before looking for the default theme in `<control-require-path>/default.theme/css/<control-name>.css`, LaxarJS looks for a theme specific override in `<theme-path>/<control-require-path>/css/<control-name>.css`.
-Here, the `<theme-path>` refers to the folder containing your global theme, and the `<control-require-path>` is the same path that widgets specify in their widget.json to include a control.
-Have a look at the [manual on controls](./providing_controls.md) for details. 
