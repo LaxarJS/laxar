@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#232](https://github.com/LaxarJS/laxar/issues/232): documentation: explain Bower-based widget installation
+    + NEW FEATURE: see ticket for details
+
 
 ## v1.1.0-alpha.4
 
