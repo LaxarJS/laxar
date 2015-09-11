@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#233](https://github.com/LaxarJS/laxar/issues/233): loaders: fixed widget theme lookup
 - [#232](https://github.com/LaxarJS/laxar/issues/232): documentation: explain Bower-based widget installation
     + NEW FEATURE: see ticket for details
 
