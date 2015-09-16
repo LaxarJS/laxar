@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.1.0-alpha.6
+
 - [#234](https://github.com/LaxarJS/laxar/issues/234): testing: do not query widget CSS/HTML assets
 
 
