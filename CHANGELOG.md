@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.1.0-alpha.7
+
 - [#235](https://github.com/LaxarJS/laxar/issues/235): loaders: to find CSS in theme, first try the descriptor name
 
 
