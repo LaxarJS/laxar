@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.1.0-alpha.9
+
 - [#237](https://github.com/LaxarJS/laxar/issues/237): runtime: defer page-controller injections until controller instantiation
 
 
