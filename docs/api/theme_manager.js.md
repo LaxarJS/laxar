@@ -48,7 +48,7 @@ Returns the currently used theme.
 | ---- | ----------- |
 | `String` |  the currently active theme |
 
-#### <a name="ThemeManager#urlProvider"></a>ThemeManager#urlProvider( artifactPathPattern, themePathPattern, fallbackPathPattern )
+#### <a name="ThemeManager#urlProvider"></a>ThemeManager#urlProvider( artifactPathPattern, themePathPattern, fallbackPathPatterns )
 Returns a URL provider for specific path patterns that are used to lookup themed artifacts. The token
 `[theme]` will be replaced by the name of the currently active theme (plus `.theme` suffix) or by
 `default.theme` as a fallback. The `provide` method of the returned object can be called with a list of
@@ -60,7 +60,7 @@ default theme last.
 | -------- | ---- | ----------- |
 | artifactPathPattern | `String` |  a path pattern for search within the artifact directory itself, based on the current theme |
 | _themePathPattern_ | `String` |  a path pattern for search within the current theme |
-| _fallbackPathPattern_ | `String` |  a fallback path, used if all else fails. Usually without placeholders, e.g. for loading the default theme itself. |
+| _fallbackPathPatterns_ | `Array.<String>` |  fallback paths, used if all else fails. Possibly without placeholders, e.g. for loading the default theme itself. |
 
 ##### Returns
 | Type | Description |

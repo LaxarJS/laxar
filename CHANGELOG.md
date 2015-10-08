@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#210](https://github.com/LaxarJS/laxar/issues/210): runtime: added `axControls` service so that controls can be instantiated in any integration technology
+    + NEW FEATURE: see ticket for details
+
 
 ## v1.1.0-alpha.9
 

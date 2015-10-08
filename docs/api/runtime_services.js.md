@@ -13,6 +13,7 @@ when e.g. they need to be mocked during tests.
   - [axHeartbeat#onBeforeNext](#axHeartbeat#onBeforeNext)
   - [axHeartbeat#onAfterNext](#axHeartbeat#onAfterNext)
 - [axTimestamp](#axTimestamp)
+- [axControls](#axControls)
 - [axGlobalEventBus](#axGlobalEventBus)
 - [axConfiguration](#axConfiguration)
 - [axI18n](#axI18n)
@@ -43,8 +44,8 @@ loop. It integrates into the AngularJS *$digest* cycle, while trying to minimize
 For example in LaxarJS the global event bus instance ([axGlobalEventBus](#axGlobalEventBus)) uses this service.
 
 #### <a name="axHeartbeat#onNext"></a>axHeartbeat#onNext( func )
-Schedules a function for the next heartbeat. If no heartbeat was triggered yet, it will be requested
-now.
+Schedules a function for the next heartbeat. If no heartbeat was triggered yet, it will be
+requested now.
 
 ##### Parameters
 | Property | Type | Description |
@@ -81,6 +82,10 @@ function Controller( axTimestamp ) {
    var currentTimestamp = axTimestamp();
 };
 ```
+
+### <a name="axControls"></a>axControls
+Provides access to the control-implementation-modules used by a widget.
+Further documentation on the api can be found at the *controls_service* module api doc.
 
 ### <a name="axGlobalEventBus"></a>axGlobalEventBus
 The global event bus instance provided by the LaxarJS runtime. Widgets **should never** use this, as

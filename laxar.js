@@ -20,6 +20,7 @@ define( [
    './lib/utilities/string',
    './lib/runtime/runtime',
    './lib/runtime/runtime_dependencies',
+   './lib/runtime/controls_service',
    './lib/runtime/theme_manager',
    './lib/widget_adapters/adapters'
 ], function(
@@ -39,6 +40,7 @@ define( [
    string,
    runtime,
    runtimeDependencies,
+   controlsService,
    themeManager,
    adapters
 ) {
@@ -136,6 +138,7 @@ define( [
 
    // API to leverage tooling support. For example laxar-testing needs this for widget tests
    var toolingApi = {
+      controlsService: controlsService,
       eventBus: eventBus,
       fileResourceProvider: fileResourceProvider,
       path: path,
