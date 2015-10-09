@@ -119,7 +119,7 @@ module.exports = function (grunt) {
                   'lib/file_resource_provider/file_resource_provider.js',
                   'lib/i18n/i18n.js',
                   'lib/logging/log.js',
-                  'lib/runtime/{flow,runtime_services,theme_manager}.js',
+                  'lib/runtime/{controls_service,flow,runtime_services,theme_manager}.js',
                   'lib/utilities/!(timer|path).js'
                ],
                dest: 'docs/api/'
