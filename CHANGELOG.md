@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.1.0-beta.1
+
 - [#238](https://github.com/LaxarJS/laxar/issues/238): testing: fixed initialization of `axControls` mock
 
 
