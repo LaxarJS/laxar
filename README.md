@@ -20,29 +20,27 @@ It helps you to set up your first LaxarJS application and to create your first L
 ### Get the Prerequisites
 
 The node package manager [npm](https://www.npmjs.com) is required to get started with LaxarJS.
-First we use it to obtain some basic development tools ([grunt-cli](http://gruntjs.com/using-the-cli) and [grunt-init](http://gruntjs.com/project-scaffolding)), as well as templates for the main LaxarJS artifact types:
+First we use it to obtain some basic development tools, namely [Yeoman](http://yeoman.io/) and [grunt-cli](https://github.com/gruntjs/grunt-cli), as well as the Yeoman generator for LaxarJS.
 
 ```sh
-npm install -g grunt-cli grunt-init
-git clone https://github.com/LaxarJS/grunt-init-laxar-application.git ~/.grunt-init/laxar-application
-git clone https://github.com/LaxarJS/grunt-init-laxar-widget.git ~/.grunt-init/laxar-widget
-git clone https://github.com/LaxarJS/grunt-init-laxar-activity.git ~/.grunt-init/laxar-activity
+npm install -g grunt-cli yo
+npm install -g generator-laxarjs
 ```
 
 _Note that_, depending on your workstation setup, you might have to use `sudo` when running `npm install` with the `-g` option.
-Make sure that your `PATH` includes the `.../node_modules/bin` directory.
-For additional information and troubleshooting, consult the documentation of `npm` and `grunt-init` respectively. 
+Make sure that your `PATH` includes the global `node_modules/bin` directory.
+For additional information and troubleshooting, consult the documentation of [npm](https://docs.npmjs.com) and [Yeoman](http://yeoman.io/learning) respectively. 
 
 
 ### Create a LaxarJS Application from Our Template
 
-The scaffolding tool `grunt-init` can now be used to create artifacts from the LaxarJS templates.
-When asked if you would like to create an example application, answer with *Yes*.
+The scaffolding tool `yo` can now be used to create artifacts from the LaxarJS templates.
+When asked if you would like to create example widgets, answer with *Yes*.
 
 ```sh
 mkdir tryout
 cd tryout
-grunt-init laxar-application
+yo laxarjs
 npm install
 npm start
 ```
@@ -57,15 +55,15 @@ Press `Ctrl-C` to stop the server for now.
 Create a widget which simply displays _Hello, world_:
 
 ```sh
-mkdir -p includes/widgets/tryout/my-first-widget
-cd includes/widgets/tryout/my-first-widget
-grunt-init laxar-widget
+yo laxarjs:widget
 ```
+
+Asked for the widget name, let's try `my-first-widget`.
 
 Add some widget-HTML:
 
 ```sh
-echo '<h1>Hello, world!</h1>' > default.theme/my-first-widget.html
+echo '<h1>Hello, world!</h1>' > includes/widgets/my-first-widget/default.theme/my-first-widget.html
 ```
 
 Add the widget to the page *application/pages/example1.json*, so that it looks like this:
@@ -76,7 +74,7 @@ Add the widget to the page *application/pages/example1.json*, so that it looks l
    "areas": {
       "left": [
          {
-            "widget": "tryout/my-first-widget"
+            "widget": "my-first-widget"
          }
       ],
       // ...
@@ -87,7 +85,6 @@ Add the widget to the page *application/pages/example1.json*, so that it looks l
 Now you may start the development server again:
 
 ```sh
-cd -
 npm start
 ```
 
@@ -103,7 +100,7 @@ grunt optimize
 npm start
 ```
 
-Now your production-ready application can be visited at [http://localhost:8000/index.html](http://localhost:8000/index.html).
+Now, your production-ready application can be visited at [http://localhost:8000/index.html](http://localhost:8000/index.html).
 You can also use `grunt dist` to get a zip archive containing the application without development server and build tools.
 
 
