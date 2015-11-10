@@ -2,8 +2,9 @@
 
 ## Last Changes
 
+- [#241](https://github.com/LaxarJS/laxar/issues/241): fn: allow to cancel debounced functions
+    + NEW FEATURE: see ticket for details
 - [#240](https://github.com/LaxarJS/laxar/issues/240): documentation: fixed prerequisites (yeoman, not grunt-init)
-
 
 
 ## v1.1.0
