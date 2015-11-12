@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.2.0-alpha.0
+
 - [#242](https://github.com/LaxarJS/laxar/issues/242): tooling: added `provideQ` factory
     + NEW FEATURE: see ticket for details
 - [#241](https://github.com/LaxarJS/laxar/issues/241): fn: allow to cancel debounced functions
