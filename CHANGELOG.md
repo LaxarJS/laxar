@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#243](https://github.com/LaxarJS/laxar/issues/243): fn: fixed invalid setTimeout application
+
 
 ## v1.2.0-alpha.0
 
