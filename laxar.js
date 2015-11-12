@@ -73,7 +73,7 @@ define( [
       if( optionalWidgetAdapters && Array.isArray( optionalWidgetAdapters ) ) {
          adapters.addAdapters( optionalWidgetAdapters );
       }
-      var dependencies = [ runtime.name, runtimeDependencies.name ];
+      var dependencies = [ runtime.module.name, runtimeDependencies.name ];
 
       Object.keys( widgetModules ).forEach( function( technology ) {
          var adapter = adapters.getFor( technology );
@@ -136,7 +136,10 @@ define( [
       log.addTag( 'INST', instanceId );
    }
 
-   // API to leverage tooling support. For example laxar-testing needs this for widget tests
+   // API to leverage tooling support.
+   // Not for direct use by widgets/activities!
+   //  - laxar-mocks needs this for widget tests
+   //  - laxar-patterns needs this to have the same (mocked) q version as the event bus
    var toolingApi = {
       controlsService: controlsService,
       eventBus: eventBus,
@@ -145,7 +148,10 @@ define( [
       themeManager: themeManager,
       widgetAdapters: adapters,
       widgetLoader: widgetLoader,
-      runtimeDependenciesModule: runtimeDependencies
+      runtimeDependenciesModule: runtimeDependencies,
+      provideQ: function() {
+         return runtime.api.provideQ();
+      }
    };
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////

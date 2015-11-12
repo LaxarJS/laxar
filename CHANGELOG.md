@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#242](https://github.com/LaxarJS/laxar/issues/242): tooling: added `provideQ` factory
+    + NEW FEATURE: see ticket for details
 - [#241](https://github.com/LaxarJS/laxar/issues/241): fn: allow to cancel debounced functions
     + NEW FEATURE: see ticket for details
 - [#240](https://github.com/LaxarJS/laxar/issues/240): documentation: fixed prerequisites (yeoman, not grunt-init)
@@ -88,7 +90,7 @@
 ## v1.1.0-alpha.0
 
 - [#127](https://github.com/LaxarJS/laxar/issues/127): testing: made necessary changes for new, distinct testing framework
-- [#211](https://github.com/LaxarJS/laxar/issues/211): project: state compatibility with AngularJS 1.4.x 
+- [#211](https://github.com/LaxarJS/laxar/issues/211): project: state compatibility with AngularJS 1.4.x
     + NEW FEATURE: see ticket for details
 - [#212](https://github.com/LaxarJS/laxar/issues/212): documentation: added basic manual on installing controls
 - [#150](https://github.com/LaxarJS/laxar/issues/150): documentation: added contributor guide

@@ -12,6 +12,7 @@ define( [
    function LaxarTesting() {
       this.testing = testing;
    }
+   ax._tooling.provideQ = function() { return testing.qMock; };
    LaxarTesting.prototype = ax;
 
    return new LaxarTesting();
