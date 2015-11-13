@@ -22,7 +22,8 @@ define( [
    './lib/runtime/runtime_dependencies',
    './lib/runtime/controls_service',
    './lib/runtime/theme_manager',
-   './lib/widget_adapters/adapters'
+   './lib/widget_adapters/adapters',
+   './lib/tooling/pages'
 ], function(
    ng,
    log,
@@ -42,7 +43,8 @@ define( [
    runtimeDependencies,
    controlsService,
    themeManager,
-   adapters
+   adapters,
+   pageToolingApi
 ) {
    'use strict';
 
@@ -136,6 +138,8 @@ define( [
       log.addTag( 'INST', instanceId );
    }
 
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
    // API to leverage tooling support.
    // Not for direct use by widgets/activities!
    //  - laxar-mocks needs this for widget tests
@@ -151,7 +155,10 @@ define( [
       runtimeDependenciesModule: runtimeDependencies,
       provideQ: function() {
          return runtime.api.provideQ();
-      }
+      },
+
+      // Prototype support for page inspection tools:
+      pages: pageToolingApi
    };
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
