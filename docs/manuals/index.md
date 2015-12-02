@@ -3,6 +3,7 @@
 Before starting with the manuals, make sure that you know [what LaxarJS is about](../why_laxar.md), and that you are familiar with the [core concepts](../concepts.md).
 If you're already developing your first widgets and want to know which programmatic APIs are provided by LaxarJS, have a look at the [API docs](../api).
 
+
 ## Basic Manuals
 
 * [Widgets and Activities](widgets_and_activities.md)
@@ -32,7 +33,7 @@ If you're already developing your first widgets and want to know which programma
 * [Creating Themes](creating_themes.md)
 
    How to create a custom, pluggable style for your widgets and applications.
-    
+
 * [Providing Controls](providing_controls.md)
 
    How to create reusable, interactive elements that support themes.
@@ -46,16 +47,16 @@ If you're already developing your first widgets and want to know which programma
 
 * [Asset Lookup and the FileResourceProvider](asset_lookup.md)
 
-   How CSS, HTML and other static assets are resolved and loaded. 
+   How CSS, HTML and other static assets are resolved and loaded.
 
 * [Writing Compositions](writing_compositions.md)
 
    When simple pages are not enough.
-    
+
 * [Configuring RequireJS for widgets and controls](configuring_requirejs.md)
 
    How to configure RequireJS for widgets and controls with extraordinary needs.
-    
+
 * [Configuration](configuration.md)
 
    Documents the LaxarJS configuration API which can be used to configure widgets, and the builtin configuration options.
@@ -63,6 +64,10 @@ If you're already developing your first widgets and want to know which programma
 * [Internationalization (i18n)](i18n.md)
 
    Explains how to leverage the LaxarJS event bus and APIs when writing internationalized applications.
+
+* [Visibility Events](visibility_events.md)
+
+   Introduces visibility events for improving performance by allowing widgets to determine if they are visible to the user or if they currently reside in the background.
 
 * [Creating an Adapter for a new Widget Technology](adapters.md)
 

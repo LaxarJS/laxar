@@ -21,9 +21,9 @@ In order to avoid excessive configuration, assets are selected based on their pa
 For *widgets*, LaxarJS manages the following assets:
 
   * the `widget.json` *descriptor*, which describes the widget features
-  
+
   * the *HTML template* which defines the widget markup, and may be overwritten by the theme
-  
+
   * the *CSS stylesheet* refining the presentation of the widget, which is often overwritten by the theme, but which may also be missing completely
 
 For *activities*, LaxarJS only manages the `widget.json` descriptor, since activities lack an associated presentation.
@@ -41,7 +41,7 @@ Since LaxarJS widgets and controls may use AMD-style imports, they could try to 
 This would also allow for simple automatic minification through [r.js](https://github.com/jrburke/r.js/).
 However, we chose a different approach for the following reasons:
 
-* The runtime needs access to the `widget.json` to resolve the controller module and to validate the feature configuration, while only the actual configuration values for a specific widget instance are relevant to the corresponding controller instance. 
+* The runtime needs access to the `widget.json` to resolve the controller module and to validate the feature configuration, while only the actual configuration values for a specific widget instance are relevant to the corresponding controller instance.
   For this reason, the runtime should take care of obtaining the widget descriptor.
 
 * The LaxarJS runtime knows when a widget is actually being displayed, and will only then instantiate the corresponding HTML template.
