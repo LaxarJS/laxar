@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#248](https://github.com/LaxarJS/laxar/issues/248): tooling: added compositions to page inspection API
+    + NEW FEATURE: see ticket for details
 - [#247](https://github.com/LaxarJS/laxar/issues/247): tooling: added page inspection API
     + NEW FEATURE: see ticket for details
 - [#244](https://github.com/LaxarJS/laxar/issues/244): documentation: added extensive documentation on visibility events
