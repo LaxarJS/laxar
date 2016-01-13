@@ -14,7 +14,7 @@
    <script type="text/javascript">
       ( function() {
          // assume that we live in an application under includes/lib
-         var defaultDepth = 6;
+         var defaultDepth = 3;
          var depth = parseInt( window.location.search.replace( /[?&]folderDepth=([0-9]+)/, '$1' ), 10 );
          if( isNaN( depth ) ) depth = defaultDepth;
          var config = 'require_config.js';

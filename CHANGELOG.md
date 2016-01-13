@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#248](https://github.com/LaxarJS/laxar/issues/248): tooling: added compositions to page inspection API
+    + NEW FEATURE: see ticket for details
+
 
 ## v1.2.0-alpha.2
 
