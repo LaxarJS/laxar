@@ -2,7 +2,9 @@
 
 ## Last Changes
 
+- [#249](https://github.com/LaxarJS/laxar/issues/249): project: updated copyright year in file header
 
+    
 ## v1.2.0-beta.0
 
 - [#248](https://github.com/LaxarJS/laxar/issues/248): tooling: added compositions to page inspection API
