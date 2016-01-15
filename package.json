@@ -12,6 +12,7 @@
   },
   "scripts": {
     "test": "grunt test --continue",
+    "build": "node build.js",
     "prepublish": "fixinstall && bower install"
   },
   "dependencies": {

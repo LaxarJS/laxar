@@ -4486,8 +4486,81 @@ System.register('lib/widget_adapters/plain_adapter.js', [], function (_export) {
    };
 });
 
-System.register('lib/widget_adapters/adapters.js', ['npm:babel-runtime@5.8.34/core-js/object/keys', 'lib/widget_adapters/plain_adapter.js', 'lib/widget_adapters/angular_adapter.js'], function (_export) {
-   var _Object$keys, plainAdapter, angularAdapter, adapters;
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var $Object = Object;
+  module.exports = {
+    create: $Object.create,
+    getProto: $Object.getPrototypeOf,
+    isEnum: {}.propertyIsEnumerable,
+    getDesc: $Object.getOwnPropertyDescriptor,
+    setDesc: $Object.defineProperty,
+    setDescs: $Object.defineProperties,
+    getKeys: $Object.keys,
+    getNames: $Object.getOwnPropertyNames,
+    getSymbols: $Object.getOwnPropertySymbols,
+    each: [].forEach
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/fn/object/define-property", ["npm:core-js@1.2.6/library/modules/$"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var $ = $__require('npm:core-js@1.2.6/library/modules/$');
+  module.exports = function defineProperty(it, key, desc) {
+    return $.setDesc(it, key, desc);
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:babel-runtime@5.8.34/core-js/object/define-property", ["npm:core-js@1.2.6/library/fn/object/define-property"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = {
+    "default": $__require('npm:core-js@1.2.6/library/fn/object/define-property'),
+    __esModule: true
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:babel-runtime@5.8.34/helpers/define-property", ["npm:babel-runtime@5.8.34/core-js/object/define-property"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var _Object$defineProperty = $__require('npm:babel-runtime@5.8.34/core-js/object/define-property')["default"];
+  exports["default"] = function(obj, key, value) {
+    if (key in obj) {
+      _Object$defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  };
+  exports.__esModule = true;
+  global.define = __define;
+  return module.exports;
+});
+
+System.register('lib/widget_adapters/adapters.js', ['npm:babel-runtime@5.8.34/helpers/define-property', 'npm:babel-runtime@5.8.34/core-js/object/keys', 'lib/widget_adapters/plain_adapter.js', 'lib/widget_adapters/angular_adapter.js'], function (_export) {
+   var _defineProperty, _Object$keys, plainAdapter, angularAdapter, _adapters, adapters;
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -4510,7 +4583,9 @@ System.register('lib/widget_adapters/adapters.js', ['npm:babel-runtime@5.8.34/co
    }
 
    return {
-      setters: [function (_npmBabelRuntime5834CoreJsObjectKeys) {
+      setters: [function (_npmBabelRuntime5834HelpersDefineProperty) {
+         _defineProperty = _npmBabelRuntime5834HelpersDefineProperty['default'];
+      }, function (_npmBabelRuntime5834CoreJsObjectKeys) {
          _Object$keys = _npmBabelRuntime5834CoreJsObjectKeys['default'];
       }, function (_libWidget_adaptersPlain_adapterJs) {
          plainAdapter = _libWidget_adaptersPlain_adapterJs;
@@ -4531,10 +4606,7 @@ System.register('lib/widget_adapters/adapters.js', ['npm:babel-runtime@5.8.34/co
 
          _export('addAdapters', addAdapters);
 
-         adapters = {};
-
-         adapters[plainAdapter.technology] = plainAdapter;
-         adapters[angularAdapter.technology] = angularAdapter;
+         adapters = (_adapters = {}, _defineProperty(_adapters, plainAdapter.technology, plainAdapter), _defineProperty(_adapters, angularAdapter.technology, angularAdapter), _adapters);
       }
    };
 });
