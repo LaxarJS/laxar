@@ -5,24 +5,24 @@
  */
 
 import ng from 'angular';
-import log from 'lib/logging/log';
-import * as directives from 'lib/directives/directives';
-import * as eventBus from 'lib/event_bus/event_bus';
-import * as fileResourceProvider from 'lib/file_resource_provider/file_resource_provider';
-import * as i18n from 'lib/i18n/i18n';
-import * as widgetLoader from 'lib/loaders/widget_loader';
-import assert from 'lib/utilities/assert';
-import * as configuration from 'lib/utilities/configuration';
-import fn from 'lib/utilities/fn';
-import * as object from 'lib/utilities/object';
-import * as path from 'lib/utilities/path';
-import storage from 'lib/utilities/storage';
-import * as string from 'lib/utilities/string';
-import runtime from 'lib/runtime/runtime';
-import * as runtimeDependencies from 'lib/runtime/runtime_dependencies';
-import * as controlsService from 'lib/runtime/controls_service';
-import * as themeManager from 'lib/runtime/theme_manager';
-import * as adapters from 'lib/widget_adapters/adapters';
+import log from './lib/logging/log';
+import * as directives from './lib/directives/directives';
+import * as eventBus from './lib/event_bus/event_bus';
+import * as fileResourceProvider from './lib/file_resource_provider/file_resource_provider';
+import * as i18n from './lib/i18n/i18n';
+import * as widgetLoader from './lib/loaders/widget_loader';
+import assert from './lib/utilities/assert';
+import * as configuration from './lib/utilities/configuration';
+import fn from './lib/utilities/fn';
+import * as object from './lib/utilities/object';
+import * as path from './lib/utilities/path';
+import storage from './lib/utilities/storage';
+import * as string from './lib/utilities/string';
+import runtime from './lib/runtime/runtime';
+import * as runtimeDependencies from './lib/runtime/runtime_dependencies';
+import * as controlsService from './lib/runtime/controls_service';
+import * as themeManager from './lib/runtime/theme_manager';
+import * as adapters from './lib/widget_adapters/adapters';
 
 
 /**
