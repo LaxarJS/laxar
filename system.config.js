@@ -6,15 +6,23 @@ System.config({
     "optional": [
       "runtime",
       "optimisation.modules.system"
-    ]
+    ],
+    "retainLines": true
   },
   paths: {
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*"
   },
 
+  meta: {
+     'angular-mocks': {
+        deps: [ 'angular' ]
+     }
+  },
+
   map: {
     "angular": "npm:angular@1.4.8",
+    "angular-mocks": "npm:angular-mocks@1.4.8",
     "angular-route": "npm:angular-route@1.4.8",
     "angular-sanitize": "npm:angular-sanitize@1.4.8",
     "babel": "npm:babel-core@5.8.34",
@@ -22,6 +30,13 @@ System.config({
     "core-js": "npm:core-js@1.2.6",
     "jjv": "npm:jjv@1.0.2",
     "jjve": "npm:jjve@0.5.1",
+    "laxar-jasmine-runner": "github:LaxarJS/laxar-jasmine-runner@0.1.1",
+    "q": "npm:q@1.4.1",
+    "github:LaxarJS/laxar-jasmine-runner@0.1.1": {
+      "css": "github:systemjs/plugin-css@0.1.20",
+      "image": "github:systemjs/plugin-image@0.1.0",
+      "jasmine-core": "npm:jasmine-core@2.4.1"
+    },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },
@@ -52,6 +67,11 @@ System.config({
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
+    "npm:jasmine-core@2.4.1": {
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "path": "github:jspm/nodelibs-path@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
     "npm:jjv@1.0.2": {
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
@@ -60,6 +80,9 @@ System.config({
     },
     "npm:process@0.11.2": {
       "assert": "github:jspm/nodelibs-assert@0.1.0"
+    },
+    "npm:q@1.4.1": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:util@0.10.3": {
       "inherits": "npm:inherits@2.0.1",
