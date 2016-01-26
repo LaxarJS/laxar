@@ -5,13 +5,15 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
    <script data-ax-library-base="../../../">
-      document.writeln( '<script type="text/javascript" src="' +
-         document.querySelector( 'script[data-ax-library-base]' ).dataset.axLibraryBase +
-         'jspm_packages/system.src.js"><' + '/script>' );
+      document.writeln(
+         '<script type="text/javascript" src="' +
+         document.querySelector( 'script[data-ax-library-base]' ).getAttribute( 'data-ax-library-base' ) +
+         'jspm_packages/system.src.js"><' + '/script>'
+      );
    </script>
    <script>
       ( function() {
-         var base = document.querySelector( 'script[data-ax-library-base]' ).dataset.axLibraryBase;
+         var base = document.querySelector( 'script[data-ax-library-base]' ).getAttribute( 'data-ax-library-base' );
          var origConf = System.config;
          System.config = function( conf ) {
             conf.baseURL = base;
