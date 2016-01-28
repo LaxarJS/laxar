@@ -1,5 +1,5 @@
 System.config({
-  baseURL: "/",
+  baseURL: "./",
   defaultJSExtensions: true,
   transpiler: "babel",
   babelOptions: {
@@ -15,9 +15,11 @@ System.config({
   },
 
   meta: {
-     'angular-mocks': {
-        deps: [ 'angular' ]
-     }
+    "angular-mocks": {
+      "deps": [
+        "angular"
+      ]
+    }
   },
 
   map: {

@@ -3,9 +3,7 @@
 /jspm_packages
 /node_modules
 /bower_components
-/_SpecRunner.html
 /dist
-junit.xml
+/karma-output
 npm-debug.log
-test-results.xml
-lcov.info
+.sass-cache

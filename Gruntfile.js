@@ -14,17 +14,19 @@ module.exports = function (grunt) {
       pkgFile: 'package.json',
       karma: {
          options: {
-            browsers: [ 'PhantomJS' ],
+            browsers: [ 'Chrome' ],
             plugins: [
                'karma-systemjs',
+               'karma-es6-shim',
                'karma-jasmine',
                'karma-coverage',
                'karma-junit-reporter',
-               'karma-phantomjs-launcher'
+               'karma-phantomjs-launcher',
+               'karma-chrome-launcher'
             ],
             reporters: [ 'progress', 'coverage', 'junit' ],
             preprocessors: {
-               'lib/*.js': [ 'coverage' ]
+               'lib/**/!(*_spec).js': [ 'coverage' ]
             },
             junitReporter: {
                outputDir: 'karma-output/'
@@ -40,16 +42,17 @@ module.exports = function (grunt) {
                   isparta: { babel: { presets: 'es2015' } }
                }
             },
-            frameworks: [ 'systemjs', 'jasmine' ],
+            frameworks: [ 'systemjs', 'es6-shim', 'jasmine' ],
             systemjs: {
                configFile: 'system.config.js',
                serveFiles: [
                   'lib/**/*.js',
+                  'static/**/*.js',
                   'jspm_packages/**/*.js',
                ],
                config: {
                   paths: {
-                     'babel': 'node_modules/babel-core/browser.js',
+                     'babel': 'babel', // makes karma-systemjs use the babel version installed and configured by jspm
                      'es6-module-loader': 'node_modules/es6-module-loader/dist/es6-module-loader.js',
                      'phantomjs-polyfill': 'node_modules/phantomjs-polyfill/bind-polyfill.js',
                      'systemjs': 'node_modules/systemjs/dist/system.js',
@@ -61,7 +64,8 @@ module.exports = function (grunt) {
          unit: {
             singleRun: true,
             files: [ {
-               src: 'lib/spec/*_spec.js'
+               src: 'lib/**/spec/*_spec.js',
+               src: 'lib/loaders/spec/page_loader_spec.js',
             } ]
          }
       },

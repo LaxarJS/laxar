@@ -1,3 +1,8 @@
+/**
+ * Copyright 2016 aixigo AG
+ * Released under the MIT license.
+ * http://laxarjs.org/license
+ */
 export default {
    "$schema": "http://json-schema.org/draft-04/schema#",
    "type": "object",

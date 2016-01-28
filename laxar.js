@@ -3,7 +3,6 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
-
 import ng from 'angular';
 import log from './lib/logging/log';
 import * as directives from './lib/directives/directives';
