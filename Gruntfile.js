@@ -14,61 +14,99 @@ module.exports = function (grunt) {
       pkgFile: 'package.json',
       karma: {
          options: {
-            browsers: [ 'Chrome' ],
+            basePath: '',
+            browsers: [ 'Chrome', 'PhantomJS' ],
             plugins: [
-               'karma-systemjs',
-               'karma-es6-shim',
+               'karma-jspm',
                'karma-jasmine',
-               'karma-coverage',
                'karma-junit-reporter',
                'karma-phantomjs-launcher',
                'karma-chrome-launcher'
             ],
-            reporters: [ 'progress', 'coverage', 'junit' ],
-            preprocessors: {
-               'lib/**/!(*_spec).js': [ 'coverage' ]
-            },
+            reporters: [ 'progress', 'junit' ],
             junitReporter: {
                outputDir: 'karma-output/'
             },
-            coverageReporter: {
-               type : 'lcov',
-               dir : 'karma-output/',
-               instrumenters: { isparta: require( 'isparta' ) },
-               instrumenter: {
-                  '**/*.js': 'isparta'
-               },
-               instrumenterOptions: {
-                  isparta: { babel: { presets: 'es2015' } }
-               }
+            frameworks: [ 'jspm', 'jasmine' ],
+            proxies: {
+               '/lib/': '/base/lib/',
+               '/static/': '/base/static/',
+               '/jspm_packages/': '/base/jspm_packages/'
             },
-            frameworks: [ 'systemjs', 'es6-shim', 'jasmine' ],
-            systemjs: {
-               configFile: 'system.config.js',
+            jspm: {
+               config: 'system.config.js',
+               loadFiles: [
+                  'lib/**/*_spec.js',
+               ],
                serveFiles: [
-                  'lib/**/*.js',
+                  'lib/**/!(*_spec).js',
                   'static/**/*.js',
                   'jspm_packages/**/*.js',
-               ],
-               config: {
-                  paths: {
-                     'babel': 'babel', // makes karma-systemjs use the babel version installed and configured by jspm
-                     'es6-module-loader': 'node_modules/es6-module-loader/dist/es6-module-loader.js',
-                     'phantomjs-polyfill': 'node_modules/phantomjs-polyfill/bind-polyfill.js',
-                     'systemjs': 'node_modules/systemjs/dist/system.js',
-                     'system-polyfills': 'node_modules/systemjs/dist/system-polyfills.js',
-                  }
-               }
+               ]
             }
          },
          unit: {
             singleRun: true,
-            files: [ {
-               src: 'lib/**/spec/*_spec.js',
-               src: 'lib/loaders/spec/page_loader_spec.js',
-            } ]
          }
       },
+      // karma: {
+      //    options: {
+      //       browsers: [ 'Chrome' ],
+      //       plugins: [
+      //          'karma-systemjs',
+      //          'karma-es6-shim',
+      //          'karma-jasmine',
+      //          'karma-coverage',
+      //          'karma-junit-reporter',
+      //          'karma-phantomjs-launcher',
+      //          'karma-chrome-launcher'
+      //       ],
+      //       reporters: [ 'progress', 'coverage', 'junit' ],
+      //       preprocessors: {
+      //          'lib/**/!(*_spec).js': [ 'coverage' ]
+      //       },
+      //       junitReporter: {
+      //          outputDir: 'karma-output/'
+      //       },
+      //       coverageReporter: {
+      //          type : 'lcov',
+      //          dir : 'karma-output/',
+      //          instrumenters: { isparta: require( 'isparta' ) },
+      //          instrumenter: {
+      //             '**/*.js': 'isparta'
+      //          },
+      //          instrumenterOptions: {
+      //             isparta: { babel: { presets: 'es2015' } }
+      //          }
+      //       },
+      //       frameworks: [ 'systemjs', 'es6-shim', 'jasmine' ],
+      //       systemjs: {
+      //          configFile: 'system.config.js',
+      //          serveFiles: [
+      //             'lib/**/*.js',
+      //             'static/**/*.js',
+      //             'jspm_packages/**/*.js',
+      //          ],
+      //          config: {
+      //             transpiler: 'babel',
+      //             paths: {
+      //                'babel': 'babel', // makes karma-systemjs use the babel version installed and configured by jspm
+      //                'es6-module-loader': 'node_modules/es6-module-loader/dist/es6-module-loader.js',
+      //                'phantomjs-polyfill': 'node_modules/phantomjs-polyfill/bind-polyfill.js',
+      //                'systemjs': 'node_modules/systemjs/dist/system.js',
+      //                'system-polyfills': 'node_modules/systemjs/dist/system-polyfills.js',
+      //             }
+      //          }
+      //       }
+      //    },
+      //    unit: {
+      //       singleRun: true,
+      //       files: [ {
+      //          src: 'lib/**/spec/*_spec.js',
+      //          src: 'lib/loaders/spec/page_loader_spec.js',
+      //       } ]
+      //    }
+      // },
       eslint: {
          options: {
             config: '.eslintrc'
