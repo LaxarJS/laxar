@@ -16,6 +16,7 @@ module.exports = function (grunt) {
          options: {
             basePath: '',
             browsers: [ 'PhantomJS' ],
+            browserNoActivityTimeout: 100000,
             plugins: [
                'karma-jspm',
                'karma-jasmine',
