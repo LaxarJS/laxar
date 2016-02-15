@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#255](https://github.com/LaxarJS/laxar/issues/255): tooling: fixed test and enabled it for grunt-karma
 - [#254](https://github.com/LaxarJS/laxar/issues/254): documentation: improved and updated manuals
 - [#251](https://github.com/LaxarJS/laxar/issues/251): utilities: reactivated spec tests
 
