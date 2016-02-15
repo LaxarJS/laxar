@@ -2,6 +2,10 @@
 
 ## Last Changes
 
+- [#250](https://github.com/LaxarJS/laxar/issues/250): testing: updated spec runners to Jasmine 2.4
+- [#246](https://github.com/LaxarJS/laxar/issues/246): transformed AMD modules to es2015 modules
+    + **BREAKING CHANGE:** see ticket for details
+    
 
 ## v1.2.0
 
