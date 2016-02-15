@@ -76,6 +76,7 @@ module.exports = function (grunt) {
          profiling: karma( 'profiling' ),
          runtime: karma( 'runtime' ),
          testing: karma( 'testing' ),
+         tooling: karma( 'tooling' ),
          utilities: karma( 'utilities' ),
          widget_adapters: karma( 'widget_adapters' )
       },
