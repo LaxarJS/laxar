@@ -24,14 +24,14 @@ For *widgets*, LaxarJS manages the following assets:
 
   * the *HTML template* which defines the widget markup, and may be overwritten by the theme
 
-  * the *CSS stylesheet* refining the presentation of the widget, which is often overwritten by the theme, but which may also be missing completely
+  * the *CSS style sheet* refining the presentation of the widget, which is often overwritten by the theme, but which may also be missing completely
 
 For *activities*, LaxarJS only manages the `widget.json` descriptor, since activities lack an associated presentation.
 
-For *controls*, LaxarJS manages the `control.json` descriptor, and the theme-dependent CSS stylesheet (if any).
+For *controls*, LaxarJS manages the `control.json` descriptor, and the theme-dependent CSS style sheet (if any).
 Controls may sometimes choose to load HTML assets (preferably using RequireJS), but these are not covered by the themeing mechanism.
 
-For *layouts*, LaxarJS loads the AngularJS HTML template, and the CSS stylesheet (if any).
+For *layouts*, LaxarJS loads the AngularJS HTML template, and the CSS style sheet (if any).
 Both may be overridden by the application theme.
 
 
@@ -46,7 +46,7 @@ However, we chose a different approach for the following reasons:
 
 * The LaxarJS runtime knows when a widget is actually being displayed, and will only then instantiate the corresponding HTML template.
 
-* The CSS should be loaded *en bloc* using a single, optimized stylesheet right on application entry.
+* The CSS should be loaded *en bloc* using a single, optimized style sheet right on application entry.
   Deferring load of styles to the time where individual widgets are instantiated produces jitter and visual noise.
   Often, the page will look broken until the various CSS fragments have been loaded.
 
@@ -92,7 +92,7 @@ In most cases however, the predefined values should work just fine.
 ### Looking up Widget CSS and HTML Templates
 
 For widget CSS styles and HTML templates, the LaxarJS runtime first checks if a version is available within the theme.
-This means that you cannot only customize the CSS for a widget _x_ installed under `includes/widgets/cat/x` by placing a stylesheet at `<theme-folder>/widgets/category/x/css/x.css` but that you can also override the HTML at `<theme-folder>/widgets/category/x/x.html`.
+This means that you cannot only customize the CSS for a widget _x_ installed under `includes/widgets/cat/x` by placing a style sheet at `<theme-folder>/widgets/category/x/css/x.css` but that you can also override the HTML at `<theme-folder>/widgets/category/x/x.html`.
 
 When nothing was found among the assets bundled with the theme, the assets bundled with the widget are checked:
 For a widget installed under `bower_components/x/`, the paths `bower_components/x/a.theme/css/x.css` and `bower_components/x/a.theme/x.html` respectively will be checked when using a theme `a.theme`.

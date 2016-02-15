@@ -101,10 +101,10 @@ Sometimes a widget has to request for some other widget or activity on the page 
 This might be a longer running action such as a search or some server side validation.
 The requesting widget does not care about _who_ actually performs the request, but it is interested in _when_ the request has been fully processed by all respondents, and what is the outcome.
 
-As an example, consider a multi-part user sign-up process, where each of several widgets allows the user to enter and validate some of the information such as email address, payment information or a CAPTCHA.
+As an example, consider a multi-part user sign-up process, where each of several widgets allows the user to enter and validate some of the information such as email address, payment information or a *CAPTCHA*.
 Another widget offering a _Complete Sign-Up_ button would be responsible for the overall process of submitting the registration resource to a REST service and navigating to a different page.
 Before hitting the registration service, this widget would ask all input widgets to validate their respective sign-up details in order to provide immediate feedback to the user.
-Some of the widgets might have to query their own validation services though, such as the CAPTCHA widget.
+Some of the widgets might have to query their own validation services though, such as the aforementioned CAPTCHA-using widget.
 
 Using the _Request/Will/Did_ mechanism, such functionality can be achieved without the registration widget having to know any of the participant widgets:
 
@@ -245,16 +245,16 @@ It has only a few essential methods that allow to implement all patterns mention
      Events that start with the given sequence of (sub-)topics will be handled by this subscription.
      For example, a subscription to the pattern `didSave` will be triggered for the event `didSave.myDocument` as well as for the event `didSave.preferences-main`.
      Most of the time, widgets are only interested in very specific events related to resources they work with or actions they handle, so they use patterns such as `didReplace.someResource` where `someResource` is given by the page configuration.
-   
+
    - The `callback` is the function which will be called to process any matching events.
      Event subscription callbacks receive two arguments:
        + The `event` is this subscriber's copy of the payload, as published by the sender of the event.
        + The `meta` object contains additional information about the event, in particular the `sender` (identified by a string) and the `name` (under which the event was published).
-   
+
    - The `options` are usually not required for widgets:
      Using `options.subscriberId`, the subscriber can identify itself to the event bus.
      However, the LaxarJS runtime decorates each widget's event bus such that this option is always set correctly.
-  
+
   The method `subscribe` does not return a value.
 
 * `publish( eventName, payload [, options ] )`
