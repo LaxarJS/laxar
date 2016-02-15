@@ -31,7 +31,7 @@ At this point, the composition parameter names have been substituted by their va
 
 * For each configured widget instance, the page controller asks the _widget loader_ to provide it with a widget adapter for that instance, to control widget lifecycle.
 The widget controller written in JavaScript has already been loaded as an AMD module when entering the application.
-The loader fetches the _widget.json_, and knows how to get the widget template and CSS stylesheet, if applicable.
+The loader fetches the _widget.json_, and knows how to get the widget template and CSS style sheet, if applicable.
 Of course, all assets are loaded only once, even if a widget is instantiated several times during the lifetime of an application or even on the same page.
 All widgets are loaded asynchronously and in parallel, so there is no unnecessary delay.
 In production mode, all assets are served from the configured file listings, so that this process may happen very quickly.
@@ -60,7 +60,7 @@ Each widget integration technology is implemented as an AMD module with these pr
   It receives an array of AMD-modules, one for each matching widget module used by the application.
   The API of the widget modules depends on the integration technology, but usually there is at least a `name` to associate the modules to their _widget.json,_ a method to instantiate a controller for a given widget instance, and possibly a method to set up a view.
   For the _angular_ integration, the widget module simply yields the corresponding AngularJS module, so that controllers can be instantiated by using the AngularJS `$controller` service.
-  For the _plain_ integration, the widget module must have a method `create` to instantiate the controller, and optionally an array `injections` to specify services required by the widget, such as the EventBus.
+  For the _plain_ integration, the widget module must have a method `create` to instantiate the controller, and optionally an array `injections` to specify services required by the widget, such as the event bus.
   These injections are used as arguments to `create` in the order that they are listed in `injections`.
 
 * The method `create` is a factory that actually creates the widget adapter for a given widget instance.
@@ -117,11 +117,11 @@ All widget adapters must implement the following four methods, to support creati
   The argument is a config map, currently only having an `onBeforeControllerCreation` function as single property.
   This function acts as integration point for widget tests and should be called by the adapter just before the controller is instantiated.
   It expects the `environment` as first and all readily prepared injections for the widget as second argument.
-  
+
   When instantiating the widget controller, the adapter must provide it with the `context` from the widget loader environment.
   Because the view has not been setup at this point in time, the adapter should not yet manipulate the anchor element, nor make it available to the widget controller.
 
-* `domAttachTo`: called with a widget area as the first argument, and an optional (template) html string as the second argument.
+* `domAttachTo`: called with a widget area as the first argument, and an optional (template) HTML string as the second argument.
   The adapter is supposed to instantiate the template based on its implementation technology, and to associate it to the widget controller.
   Depending on the technology, this may happen through binding, for example through the shared _scope_ created by the _angular_ adapter.
   Alternatively, the adapter may call some technology-specific API of the controller and hand over the template.
@@ -142,5 +142,5 @@ For a simple example of a user-defined widget adapter, have a look at this [Back
 ## Using a Custom Adapter in a Project
 
 To use a custom integration technology, the corresponding AMD-module must be passed to the LaxarJS `bootstrap` method.
-This means that when working on a project that was created from the [LaxarJS application template](https://github.com/LaxarJS/grunt-init-laxar-application), the `init.js` must `require` the corresponding module, wrap it in an array and pass that array to `ax.bootstrap`.
-Of course, the widgets written for this integration technology must say so in their _widget.json._
+This means that when working on a project that was created by the [LaxarJS Yeoman generator](//github.com/LaxarJS/generator-laxarjs), the `init.js` must `require` the corresponding module, wrap it in an array and pass that array to `ax.bootstrap`.
+Of course, the widgets written for this integration technology must state so in their _widget.json._

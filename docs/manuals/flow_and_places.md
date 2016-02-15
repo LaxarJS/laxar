@@ -23,7 +23,7 @@ Let us start with an example for a simple `flow.json` file:
       "entry": {
          "redirectTo": "pageOne"
       },
-      
+
       "pageOne/:userId": {
          "page": "first_page"
       }
@@ -99,7 +99,7 @@ An example (for brevity the `entry` place is omitted):
             "next": "interests"
          }
       },
-      
+
       "interests/:userId": {
          "page": "interests",
          "targets": {
@@ -108,7 +108,7 @@ An example (for brevity the `entry` place is omitted):
             "help": "professionHelp"
          }
       },
-      
+
       "profession/:userId": {
          "page": "profession",
          "targets": {
@@ -116,14 +116,14 @@ An example (for brevity the `entry` place is omitted):
             "help": "professionHelp"
          }
       },
-      
+
       "interestsHelp/:userId": {
          "page": "interests_help",
          "targets": {
             "back": "interests"
          }
       },
-      
+
       "professionHelp/:userId": {
          "page": "profession_help",
          "targets": {
@@ -165,26 +165,26 @@ Let us add entry points to our example:
 ```JSON
 {
    "places": {
-   
+
       "entry": {
          "entryPoints": {
             "enterInterests": "interests",
             "enterProfession": "profession"
          }
       },
-   
+
       "introduction/:userId": {
          ...
       },
-      
+
       "interests/:userId": {
          ...
       },
-      
+
       "profession/:userId": {
          ...
       },
-      
+
       ...
    }
 }
@@ -204,7 +204,7 @@ So let us assume a JSP renders the bootstrapping code for the LaxarJS applicatio
    <body>
       <div data-ng-view style="display: none"></div>
       <div data-ax-page></div>
-   
+
       <script src="application/application.js"></script>
       <script src="require_config.js"></script>
       <script>
@@ -231,7 +231,7 @@ By using this mechanism the external application, in this example a simple JSP, 
 Here the external application may define a map of different exit points, which in fact are simple JavaScript functions, and the LaxarJS application selects which one to call when navigating to a specific target.
 Configuration of possible exit points also takes place in the global `window.laxar` [configuration object](configuration.md)  as `window.laxar.flow.exitPoints` property.
 
-Here we added to possible exitPoints to our example:
+Here we added two possible exit points to our example:
 
 ```html
 <!DOCTYPE html>
@@ -240,7 +240,7 @@ Here we added to possible exitPoints to our example:
    <body>
       <div data-ng-view style="display: none"></div>
       <div data-ax-page></div>
-   
+
       <script src="application/application.js"></script>
       <script src="require_config.js"></script>
       <script>
@@ -273,7 +273,7 @@ For this example two targets using the new exit points are defined (irrelevant p
 ```JSON
 {
    "places": {
-      
+
       "profession/:userId": {
          "page": "profession",
          "targets": {
@@ -283,15 +283,15 @@ For this example two targets using the new exit points are defined (irrelevant p
             "save": "save"
          }
       },
-      
+
       "save/:userId/:profession": {
          "exitPoint": "saveProfile"
       },
-      
+
       "cancel/:userId/:reasonForCancellation": {
          "exitPoint": "cancelProcess"
       }
-      
+
    }
 }
 ```

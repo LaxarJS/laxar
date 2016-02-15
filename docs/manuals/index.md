@@ -59,7 +59,7 @@ If you're already developing your first widgets and want to know which programma
 
 * [Configuration](configuration.md)
 
-   Documents the LaxarJS configuration API which can be used to configure widgets, and the builtin configuration options.
+   Documents the LaxarJS configuration API which can be used to configure widgets, and the built-in configuration options.
 
 * [Internationalization (i18n)](i18n.md)
 

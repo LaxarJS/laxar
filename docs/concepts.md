@@ -21,7 +21,7 @@ In order to run the application, there are additional secondary resources:
   * _controls_ which are used by the widgets to provide advanced user interface functionality, such as those provided by _LaxarJS UiKit_
   * _libraries_ used by widgets and activities, such as _moment.js_, _jQuery_, and _LaxarJS Patterns_.
 
-The following two sections first explain the primary application components, and than the underlying secondary components.
+The following two sections first explain the primary application components, and then the underlying secondary components.
 
 
 ## Primary Application Parts
@@ -37,7 +37,7 @@ So, both widgets and controls are parts of the user interface, but on different 
 
 To illustrate this with further examples, possible widgets _with their specific goals_ include:
 
-  * a ToDo list, _to check and plan what is to do_
+  * a to-do list, _to check and plan what is to do_
   * a shopping cart, _to review and edit purchase items_
   * a route planner displayed as a map, _to plan a journey_
   * a calendar displaying various events, _to schedule and check appointments_
@@ -62,7 +62,7 @@ A widget instance may be put onto any page, regardless of what other widgets (ev
 A _LaxarJS activity_ is a widget without a visual representation, performing a task for the user _behind the scenes_.
 To build upon the previous example, a _login widget_ might talk to an authentication service itself, but it might also delegate this task to an _authentication activity_ using the event bus.
 When the authentication mechanism changes (e.g. from a plain HTTPS login to OAuth) only the activity needs to be exchanged, while the widget might remain untouched.
-In contrast to libraries and regular AngularJS services, activities participate in the lifecycle of the page and are attached to the event bus, which allows them to communicate with other widgets using publish/subscribe. 
+In contrast to libraries and regular AngularJS services, activities participate in the lifecycle of the page and are attached to the event bus, which allows them to communicate with other widgets using publish/subscribe.
 
 Another possible example would be a _web search widget_ offering a search box with a list of web search results.
 Instead of hard-wiring the widget to a specific search engine, one could implement multiple engine-specific activities and choose depending on user preference.
@@ -77,7 +77,7 @@ To sum it up, widgets support direct user-interaction, while activities perform 
 
 A _LaxarJS page_ combines and configures widgets and activities that should be displayed together by embedding them in an HTML skeleton (the layout).
 When navigated to, the runtime loads the page and puts the widgets referenced by the page into the associated layout to display them.
-The page also defines the publish/subscribe topics that the widget instance use to communicate resource state and user actions. 
+The page also defines the publish/subscribe topics that the widget instance use to communicate resource state and user actions.
 
 An individual widget is still somewhat generic in that it allows to perform a specific task _in any context_.
 For example, a social buttons bar might allow to share _any content_, and the specific list of social sites to share on might be _configurable_.
@@ -128,7 +128,7 @@ The LaxarJS UiKit is based on Compass/SCSS to simplify the generation of user de
 The _runtime_ handles URL routing and loads the template associated with the current page definition.
 It instantiates all required widgets and activities, and tells them when everyone else is ready to receive their publish/subscribe-events.
 It also loads the corresponding templates and CSS files, or provides these assets from an optimized bundle in production.
-Once everything is set up, the runtime gets out of the way: it lets the widgets perform their tasks and communicate through the event bus as needed. 
+Once everything is set up, the runtime gets out of the way: it lets the widgets perform their tasks and communicate through the event bus as needed.
 
 
 ### The LaxarJS Event Bus

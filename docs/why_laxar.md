@@ -49,6 +49,7 @@ Widgets may be developed and tested completely in isolation, *relaxing* the tigh
 In the application, widgets are connected to each other in a declarative fashion using JSON *page definitions*.
 The *LaxarJS runtime* is responsible for loading and instantiating all widgets configured on the current page and to orchestrate them throughout the page lifecycle.
 Additionally, it performs the task of loading static assets such as HTML and CSS.
+Note that LaxarJS is also not limited to AngularJS: Widgets can be written in pretty much any technology (including React, or plain DOM), but AngularJS is currently supported best.
 
 Individual pages are interrelated through a *flow definition* which tells the runtime how to handle URLs and how to navigate between pages.
 Like pages, flows are written in a simple JSON format.

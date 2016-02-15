@@ -8,7 +8,7 @@ Preliminary readings:
 
 # Writing Compositions
 
-Although inheritance brings a bit of organization into pages, for bigger applications with many widgets on a page this is not sufficient.
+Although inheritance brings a bit of organization into pages, for bigger applications with many widgets on a page this may  not be sufficient.
 Very often most of a base page fits for all pages but some small things need to be adjusted for some of the pages that could otherwise be reused throughout the application.
 Another use case is to enable the reuse of a bundle of widgets multiple times within one page, each time only with some different configuration.
 
@@ -31,7 +31,9 @@ Instead we will start with the simple `popup_composition` we referenced above:
                "onActions": {
                   "type": "array",
                   "items": {
-                     "type": "string"
+                     "type": "string",
+                     "format": "topic",
+                     "axRole": "inlet"
                   }
                }
             }
@@ -41,7 +43,7 @@ Instead we will start with the simple `popup_composition` we referenced above:
    "areas": {
       ".": [
          {
-            "widget": "laxarjs/ax-popup-widget",
+            "widget": "amd:laxar-popup-widget",
             "id": "popup",
             "features": {
                "open": {
@@ -55,19 +57,19 @@ Instead we will start with the simple `popup_composition` we referenced above:
       ],
       "popup.content": [
          {
-            "widget": "laxarjs/ax-headline-widget",
+            "widget": "amd:laxar-headline-widget",
             "features": {
                "headline": {
-                  "htmlText": "Say hi to the popup",
+                  "i18nHtmlText": "Say hi to the popup",
                   "level": 4
                }
             }
          },
          {
-            "widget": "laxarjs/ax-command-bar-widget",
+            "widget": "amd:laxar-command-bar-widget",
             "features": {
                "close": {
-                  "enabled": true,
+                  "finish": true,
                   "action": "${topic:closeAction}"
                }
             }
@@ -93,11 +95,12 @@ Those strings are expressions that will be evaluated by the page loader when ass
 The `"${features.openPopup.onActions}"` expression is a reference to a feature defined within the `features` object and will hold the value configured in the page including the composition.
 Thus applied to the [example of the writing pages manual](#example_4), this will result in the array `[ "next" ]`.
 On the other hand the `"${topic:closeAction}"` expression generates a page wide unique event topic compatible string based on the local identifier `closeAction`.
-The result could thus be something like `"popupCompositionId0CloseAction"` which in fact is the id generated for the composition plus the local identifier.
-These topic expressions should always be used when there is the need to have an identifier that is only used within the scope of a composition to prevent naming collisions with topics of the page, other compositions or multiple usages of this composition within the same page.
+The result could thus be something like `"popupComposition-id0+closeAction"`, which is in fact the id generated for the composition itself, plus the local identifier.
+These *topic expressions* prevent naming collisions with topics of the page, other compositions or multiple usages of the same composition within the same page.
+They should always be used when there is the need to have an identifier that is only used within the scope of a composition.
 
 Notice that these expressions are only written as a string to be JSON compatible and that no string interpolation takes place.
-Thus something like `"myPrefix${topic:closeAction}"`would not be interpreted when assembling the page and simply be used as is.
+Thus something like `"myPrefix${topic:closeAction}"` would *not* be interpreted when assembling the page and simply be used as is.
 
 The assembled page thus looks similar to this:
 
@@ -107,10 +110,10 @@ The assembled page thus looks similar to this:
    "areas": {
       "header": [
          {
-            "widget": "laxarjs/ax-headline-widget",
+            "widget": "amd:laxar-headline-widget",
             "features": {
                "headline": {
-                  "htmlText": "Welcome!",
+                  "i18nHtmlText": "Welcome!",
                   "level": 3
                }
             }
@@ -118,7 +121,7 @@ The assembled page thus looks similar to this:
       ],
       "content": [
          {
-            "widget": "laxarjs/ax-command-bar-widget",
+            "widget": "amd:laxar-command-bar-widget",
             "features": {
                "next": {
                   "enabled": true
@@ -126,21 +129,21 @@ The assembled page thus looks similar to this:
             }
          },
          {
-            "widget": "laxarjs/ax-popup-widget",
-            "id": "popupCompositionId0Popup",
+            "widget": "amd:laxar-popup-widget",
+            "id": "popupComposition-id0-popup",
             "features": {
                "open": {
                   "onActions": [ "next" ]
                },
                "close": {
-                  "onActions": [ "popupCompositionId0CloseAction" ]
+                  "onActions": [ "popupComposition-id0+CloseAction" ]
                }
             }
          }
       ],
       "footer": [
          {
-            "widget": "laxarjs/ax-html-display-widget",
+            "widget": "amd:laxar-html-display-widget",
             "features": {
                "content": {
                   "resource": "footerTextResource"
@@ -148,22 +151,22 @@ The assembled page thus looks similar to this:
             }
          }
       ],
-      "popupCompositionId0Popup.content": [
+      "popupComposition-id0-popup.content": [
          {
-            "widget": "laxarjs/ax-headline-widget",
+            "widget": "amd:laxar-headline-widget",
             "features": {
                "headline": {
-                  "htmlText": "Say hi to the popup",
+                  "i18nHtmlText": "Say hi to the popup",
                   "level": 4
                }
             }
          },
          {
-            "widget": "laxarjs/ax-command-bar-widget",
+            "widget": "amd:laxar-command-bar-widget",
             "features": {
                "close": {
                   "enabled": true,
-                  "action": "popupCompositionId0CloseAction"
+                  "action": "popupComposition-id0+CloseAction"
                }
             }
          }
@@ -171,9 +174,9 @@ The assembled page thus looks similar to this:
    }
 }
 ```
-Note how also the id of the exported area was automatically adjusted to `"popupCompositionId0Popup.content"` to prevent naming clashes.
+Note how also the id of the exported area was automatically adjusted to `"popupComposition-id0-popup.content"` to prevent naming clashes.
 
-In our example it is currently only possible to close the *AxPopupWidget* from within itself via an action event published by the *AxCommandBarWidget*.
+In our example it is currently only possible to close the *laxar-popup-widget* from within itself via an action event published by the *laxar-command-bar-widget*.
 What if we additionally would like to close the popup on demand from outside based on another action?
 This is where the concept of *merged features* comes into play.
 *Merged features* allow us to merge or better concatenate two arrays, where one array is defined as a feature for the composition and the second array is defined in the `mergedFeatures` object.
@@ -193,7 +196,9 @@ This should become clear when looking at our adjusted example:
                "onActions": {
                   "type": "array",
                   "items": {
-                     "type": "string"
+                     "type": "string",
+                     "format": "topic",
+                     "axRole": "inlet"
                   }
                }
             }
@@ -203,10 +208,12 @@ This should become clear when looking at our adjusted example:
             "properties": {
                "onActions": {
                   "type": "array",
+                  "default": [],
                   "items": {
-                     "type": "string"
-                  },
-                  "default": []
+                     "type": "string",
+                     "format": "topic",
+                     "axRole": "inlet"
+                  }
                }
             }
          }
@@ -218,7 +225,7 @@ This should become clear when looking at our adjusted example:
    "areas": {
       ".": [
          {
-            "widget": "laxarjs/ax-popup-widget",
+            "widget": "amd:laxar-popup-widget",
             "id": "popup",
             "features": {
                "open": {
@@ -232,16 +239,16 @@ This should become clear when looking at our adjusted example:
       ],
       "popup.content": [
          {
-            "widget": "laxarjs/ax-headline-widget",
+            "widget": "amd:laxar-headline-widget",
             "features": {
                "headline": {
-                  "htmlText": "Say hi to the popup",
+                  "i18nHtmlText": "Say hi to the popup",
                   "level": 4
                }
             }
          },
          {
-            "widget": "laxarjs/ax-command-bar-widget",
+            "widget": "amd:laxar-command-bar-widget",
             "features": {
                "close": {
                   "enabled": true,
@@ -254,11 +261,11 @@ This should become clear when looking at our adjusted example:
 }
 ```
 
-Here we added the possibility to configured close actions for the *AxPopupWidget* as feature `closePopup.onActions`.
+Here we added the possibility to configured close actions for the *laxar-popup-widget* as feature `closePopup.onActions`.
 For this we then added an entry in the `mergedFeatures` map whose value is an array that has the internal generated topic as only item.
-This enables us to now reference this feature when configuring the *AxPopupWidget*.
+This enables us to now reference this feature when configuring the *laxar-popup-widget*.
 Instead of creating the array with the generated topic here, we can simply reference the feature directly as it is the case for the `openPopup.onActions` feature.
-For the configuration of the *AxCommandBarWidget* nothing changed.
+For the configuration of the *laxar-command-bar-widget* nothing changed.
 When using the composition it is now possible to provide additional close actions, but since we defined an empty array as default for the feature, this is not mandatory.
 
 # Appendix:
@@ -272,10 +279,10 @@ When using the composition it is now possible to provide additional close action
    "areas": {
       "header": [
          {
-            "widget": "laxarjs/ax-headline-widget",
+            "widget": "amd:laxar-headline-widget",
             "features": {
                "headline": {
-                  "htmlText": "Welcome!",
+                  "i18nHtmlText": "Welcome!",
                   "level": 3
                }
             }
@@ -283,7 +290,7 @@ When using the composition it is now possible to provide additional close action
       ],
       "content": [
          {
-            "widget": "laxarjs/ax-command-bar-widget",
+            "widget": "amd:laxar-command-bar-widget",
             "features": {
                "next": {
                   "enabled": true
@@ -301,7 +308,7 @@ When using the composition it is now possible to provide additional close action
       ],
       "footer": [
          {
-            "widget": "laxarjs/ax-html-display-bar-widget",
+            "widget": "amd:laxar-html-display-bar-widget",
             "features": {
                "content": {
                   "resource": "footerTextResource"
