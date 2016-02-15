@@ -40,28 +40,27 @@ This may happen when integrating a widget from a third party into an application
 
 ## How to Create a Widget
 
-The easiest way to create a widget is to use the appropriate _grunt-init_ template.
-Check out the [README](../../README.md) on how to obtain the grunt-init templates and on creating an application.
+The easiest way to create a widget is to use the [LaxarJS Yeoman generator](https://github.com/LaxarJS/generator-laxarjs).
+Check out the [README](../../README.md) on how to obtain it, and how to use it for creating an application.
 
 Start by creating a sub-directory for your new widget within the LaxarJS application.
 Each widget in an application lives within a sub-folder of the _widget root_ (`includes/widgets` by default).
 To change the widget root you can modify the RequireJS-path `'laxar-path-widgets'` in the require configuration.
-The widget path `includes/widgets/shopping/cart-widget` is used as an example path throughout this manual.
+The widget path `includes/widgets/shopping-cart-widget` is used as an example path throughout this manual.
 
-The sub-directory _shopping_ is the _widget category_ in the example path.
-Categories allow to organize widgets by their general business area, for example _shopping_, _social_, _finance_ and so on.
 The last component of the widget path is the _widget name_:
-It has to be unique throughout an application and must be written in lower case letters with components separated by underscores.
+It has to be unique throughout an application and should be written in lower case letters with components separated by dashes.
 Regular widget names always end in `-widget` whereas activities always end in `-activity`.
 
 To create the actual widget, run:
 
 ```sh
-grunt-init laxar-widget
+cd includes/widgets/shopping-cart-widget
+yo laxarjs:widget
 ```
 
-A wizard will ask for some details on the widget such as license and author, but you can always edit this information in the widget sources afterwards.
-In the following steps, it is assumed that you used the category _shopping_ and the widget name _cart-widget_ as above.
+The generator will ask for some details on the widget such as license and author, but you can always edit this information in the widget sources afterwards.
+In the following steps, it is assumed that you used the widget name _shopping-cart-widget_ as above.
 
 
 ### Widget Files
@@ -78,13 +77,13 @@ A newly created widget contains the following files:
   This specifies the _dependencies_ of your widget for use with [Bower](http://bower.io/).
   While not used directly by LaxarJS, it is the key to automated and isolated widget tests.
 
-* `cart-widget.js`
+* `shopping-cart-widget.js`
 
   The _business logic_ of your shopping cart (like calculating a total or changing item quantities) as an _AngularJS controller_.
   When your controller is instantiated by the LaxarJS runtime, it will receive an AngularJS scope (the model) and a reference to the event bus, which allows for communication with the world.
   When built for release, all controllers and their RequireJS-dependencies are bundled into a single, compressed JavaScript file.
 
-* `default.theme/cart-widget.html`
+* `default.theme/shopping-cart-widget.html`
 
   The _AngularJS HTML template_ defining the _appearance_ of your widget.
   When your widget is used on a page, LaxarJS will load this automatically and bind it to your widget controller's scope.
@@ -92,7 +91,7 @@ A newly created widget contains the following files:
   If Bootstrap does not suit you, feel free to use a different framework (or none at all), but keep in mind that this limits opportunities for widget reuse.
   Similarly to controllers, all widget templates will be preloaded within a single JSON file when your application is packaged for release.
 
-* `default.theme/(s)css/cart-widget.(s)css`
+* `default.theme/(s)css/shopping-cart-widget.(s)css`
 
   Widget-specific _style definitions_.
   Most of the time, your widget is fine just using CSS style definitions from the global application theme.
@@ -122,7 +121,7 @@ None of these files are loaded during regular application runtime:
   Configuration for the spec test.
   This file needs to be modified only if widget-specific external dependencies are required during testing.
 
-* `spec/cart-widget.spec.js`
+* `spec/shopping-cart-widget.spec.js`
 
   This is the actual [jasmine](http://jasmine.github.io/2.3/introduction.html) spec test.
   The test harness (providing a simulated LaxarJS event bus) has already been prepared for you.
@@ -137,7 +136,7 @@ For a very simple shopping cart this means
 
 * increasing or decreasing the quantity of individual positions within the cart.
 
-The grunt-init template has already created an empty controller along with some AngularJS infrastructure (module and injections).
+The Yeoman generator has already created an empty controller along with some AngularJS infrastructure (module and injections).
 For a shopping cart, this might be an appropriate starting implementation based on some dummy data:
 
 ```JS
@@ -215,19 +214,19 @@ The `features` property used within the headline comes from the _widget configur
 
 A widget may be styled using CSS.
 LaxarJS supports generating the CSS from SCSS source files, allowing to place common definitions for font size, color and much more within a shared "theme" folder.
-To keep things simple, you can ignore SCSS and themes for now and simply write a CSS file for your widget, in our case under `default.theme/css/cart-widget.css`.
+To keep things simple, you can ignore SCSS and themes for now and simply write a CSS file for your widget, in our case under `default.theme/css/shopping-cart-widget.css`.
 Once you are familiar with the basics, read the article on [creating themes](./creating_themes.md) for more information.
 
 Thanks to Bootstrap this widget does not require a lot of fancy styling:
 
 ```CSS
-.cart-widget .cart-amount,
-.cart-widget .cart-price {
+.shopping-cart-widget .cart-amount,
+.shopping-cart-widget .cart-price {
    text-align: right;
 }
 ```
 
-For best encapsulation, selectors should be prefixed with the widget class (`cart-widget`) as shown here.
+For best encapsulation, selectors should be prefixed with the widget class (`shopping-cart-widget`) as shown here.
 LaxarJS automatically adds this class to the widget container, so there is no need to specify it in the widget template.
 It is also recommended to prefix custom CSS classes as shown here (`cart-amount`, `cart-price`), just as you would prefix custom AngularJS elements or attributes when creating a directive.
 This makes widget styles more robust against changes in Bootstrap or other third party CSS.
@@ -242,7 +241,7 @@ For this reason, we make it configurable by adding a feature entry to the `widge
 
 ```JSON
 {
-   "name": "CartWidget",
+   "name": "shopping-cart-widget",
    "description": "Allows Users to Review and Modify Purchase Items",
 
    "features": {
@@ -282,7 +281,7 @@ Before we can take a look at the widget, we will need to integrate it into the p
       "header": [],
       "content": [
           {
-             "widget": "shopping/cart-widget",
+             "widget": "shopping-cart-widget",
              "features": {
                 "headline": {
                    "htmlText": "My Shopping Cart"
@@ -314,15 +313,15 @@ Now that you have learned the basics in creating widgets, take a closer look at 
 ## Testing a Widget
 
 One of the major goals of LaxarJS is to simplify the development _and testing_ of isolated components.
-For this reason, the testing infrastructure for your widget has already been added when using `grunt-init`.
+For this reason, the testing infrastructure for your widget has already been added when using `generator laxarjs:widget`.
 
 
 ### Writing Spec-Tests
 
 LaxarJS still contains a testing framework, which is deprecated starting from version 1.1.0 onwards.
 For backwards compatibility it won't be removed until the next major release 2.0.0 of LaxarJS, but when starting a new application, usage is discouraged.
-Instead the new, self-contained [LaxarJS Testing](https://github.com/LaxarJS/laxar-testing) framework should be used.
-There you'll also find manuals and [an introduction](https://github.com/LaxarJS/laxar-testing/blob/master/docs/manuals/introduction.md) on how to test widgets in isolation
+Instead the new, self-contained [LaxarJS Mocks](https://github.com/LaxarJS/laxar-mocks) framework should be used.
+There you'll also find manuals and [an introduction](https://github.com/LaxarJS/laxar-mocks/blob/master/docs/manuals/introduction.md) on how to test widgets in isolation
 
 
 
@@ -353,7 +352,7 @@ For more details on testing event bus communication, refer to the [article on ev
 
 ### Running the Test
 
-Now make sure that the development web server is still running and check out the test results using the [provided spec runner](http://localhost:8000/includes/widgets/shopping/cart-widget/spec/spec_runner.html):
+Now make sure that the development web server is still running and check out the test results using the [provided spec runner](http://localhost:8000/includes/widgets/shopping-cart-widget/spec/spec_runner.html):
 
 ![CartWidget](widgets_and_activities/cart_widget_spec.png)
 

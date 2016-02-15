@@ -20,7 +20,7 @@ This is because only one page in an extension chain may define a layout and this
 
 Configuring the layout is done via the `layout` property of the page object.
 Its value is the name of the layout which is in turn a relative path within the layout folder to where the specific layout's assets are located.
-If for example the desired layout is located at `popups/layout_one`, the according page (without any widgets yet) would look like this:
+If for example the desired layout is located at `popups/layout_one`, the corresponding page (without any widgets so far) would look like this:
 
 <a name="example_1"></a>
 ```JSON
@@ -29,7 +29,7 @@ If for example the desired layout is located at `popups/layout_one`, the accordi
 }
 ```
 
-Now let us assume the html file of `popups/layout_one` looks like this:
+Now let us assume the HTML file of `popups/layout_one` looks like this:
 
 <a name="example_2"></a>
 ```HTML
@@ -61,7 +61,7 @@ When adding widgets to an area, the order is important, as this is the order in 
 Each entry in the array is an object that can either reference a widget or a [composition](#compositions).
 It thus needs to specify either `widget` or `composition` as key.
 Additionally a page wide unique (even over inheritance) `id` property can be provided.
-This can be useful for debugging and is mandatory in case a widget provides one or more embedded areas, such as those created by the [AxPopupWidget](https://github.com/LaxarJS/ax-popup-widget).
+This can be useful for debugging and is mandatory in case a widget provides one or more embedded areas, such as those created by the [laxar-popup-widget](https://github.com/LaxarJS/ax-popup-widget).
 Finally it is possible to provide the configuration for features of a widget or a composition under the key `features`.
 
 Here is the example with some simple, exemplary content:
@@ -73,10 +73,10 @@ Here is the example with some simple, exemplary content:
    "areas": {
       "header": [
          {
-            "widget": "laxarjs/ax-headline-widget",
+            "widget": "amd:laxar-headline-widget",
             "features": {
                "headline": {
-                  "htmlText": "Welcome!",
+                  "i18nHtmlText": "Welcome!",
                   "level": 3
                }
             }
@@ -84,7 +84,7 @@ Here is the example with some simple, exemplary content:
       ],
       "content": [
          {
-            "widget": "laxarjs/ax-command-bar-widget",
+            "widget": "amd:laxar-command-bar-widget",
             "features": {
                "next": {
                   "enabled": true
@@ -102,7 +102,7 @@ Here is the example with some simple, exemplary content:
       ],
       "footer": [
          {
-            "widget": "laxarjs/ax-html-display-widget",
+            "widget": "amd:laxar-html-display-widget",
             "features": {
                "content": {
                   "resource": "footerTextResource"
@@ -135,7 +135,7 @@ To support this hassle-free, layouts are first-class citizens just as widgets or
             "id": "embedded"
          },
          {
-            "widget": "laxarjs/ax-command-bar-widget",
+            "widget": "amd:laxar-command-bar-widget",
             "features": {
                "next": {
                   "enabled": true
@@ -145,7 +145,7 @@ To support this hassle-free, layouts are first-class citizens just as widgets or
       ],
       "embedded.left": [
          {
-            "widget": "laxarjs/ax-html-display-widget",
+            "widget": "amd:laxar-html-display-widget",
             "features": {
                "content": {
                   "resource": "someResource"
@@ -172,17 +172,17 @@ Nevertheless it has its valid use cases as in every user interface there are som
 These should be extracted into one or more base pages, that define no layout and can be reused by all other pages defining the layout necessary to display their contents.
 
 Valid candidate widgets for base pages are application headlines, informational notes in a footer area or activities providing common tasks for all pages.
-Let us apply this to our example from above and extract the *AxHeadlineWidget* into a base page called `base_page.json`.
+Let us apply this to our example from above and extract the *laxar-headline-widget* into a base page called `base_page.json`.
 
 ```JSON
 {
    "areas": {
       "header": [
          {
-            "widget": "laxarjs/ax-headline-widget",
+            "widget": "amd:laxar-headline-widget",
             "features": {
                "headline": {
-                  "htmlText": "Welcome!",
+                  "i18nHtmlText": "Welcome!",
                   "level": 3
                }
             }
@@ -202,7 +202,7 @@ The parts already provided by the base page can then be deleted:
    "areas": {
       "content": [
          {
-            "widget": "laxarjs/ax-command-bar-widget",
+            "widget": "amd:laxar-command-bar-widget",
             "features": {
                "next": {
                   "enabled": true
@@ -220,7 +220,7 @@ The parts already provided by the base page can then be deleted:
       ],
       "footer": [
          {
-            "widget": "laxarjs/ax-html-display-widget",
+            "widget": "amd:laxar-html-display-widget",
             "features": {
                "content": {
                   "resource": "footerTextResource"
@@ -245,11 +245,11 @@ We therefore change the base page first and add an id to the existing headline:
    "areas": {
       "header": [
          {
-            "widget": "laxarjs/ax-headline-widget",
+            "widget": "amd:laxar-headline-widget",
             "id": "mainHeadline",
             "features": {
                "headline": {
-                  "htmlText": "Welcome!",
+                  "i18nHtmlText": "Welcome!",
                   "level": 3
                }
             }
@@ -268,11 +268,11 @@ Hence the page that has the need to add content can reference the given id using
    "areas": {
       "header": [
          {
-            "widget": "laxarjs/ax-headline-widget",
+            "widget": "amd:laxar-headline-widget",
             "insertBeforeId": "mainHeadline",
             "features": {
                 "headline": {
-                   "htmlText": "You just won one billion dollar!"
+                   "i18nHtmlText": "You just won one billion dollar!"
                 }
             }
          }
@@ -283,6 +283,6 @@ Hence the page that has the need to add content can reference the given id using
 }
 ```
 
-This is all one needs to know to build basic pages for LaxarJS.
+This is all one needs to build basic pages for LaxarJS.
 It might become necessary to split pages into smaller, possibly reusable chunks, which is the task compositions where designed for.
 So if the need arises, read on in the manual for [writing compositions](writing_compositions.md).

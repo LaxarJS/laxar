@@ -11,7 +11,7 @@ Preliminary readings:
 In LaxarJS, any non-trivial HTML element, [HTML5 Web Component](http://webcomponents.org/) or [AngularJS directive](https://docs.angularjs.org/guide/directive) is considered a _control_.
 While widgets and activities deal with business logic, controls handle the technical details of user interaction.
 To provide their business logic, widgets and activities often depend on libraries, which might be created by third parties or simply be used to share common functionality.
-In the latter case, be sure not to couple your controllers to tightly, e.g. the shared libraries should not allow to share state.
+In the latter case, be sure not to couple your controllers to tightly, e.g. a shared libraries should not allow to share state.
 
 Here are some examples of controls:
 
@@ -20,9 +20,9 @@ Here are some examples of controls:
   * an accordion control
   * a tab control
 
-LaxarJS helps when developing a custom control by managing and loading its AngularJS module, as well as its CSS stylesheet for you.
+LaxarJS helps when developing a custom control by managing and loading its AngularJS module, as well as its theme-dependent CSS style sheet for you.
 If (and only if) you _use_ a control in one or more widgets, LaxarJS will load its CSS according to the current [theme](./creating_themes.md), just like with widgets and layouts.
-When you remove the control from your widget, or the widget from your page, its code and asset will no longer add to your application footprint.
+When you remove the control from your widget, or the widget from your page, its code and assets will no longer increase your application footprint.
 This allows you to create and distribute large libraries of controls without fear of application bloat.
 
 
@@ -73,7 +73,7 @@ Here is the descriptor for our clock control:
 ```
 
 To ensure compatibility between each widget and its controls, both must use the same _integration technology_.
-As of LaxarJS 1.0, only "angular" is supported for controls, but future releases will allow for custom control technologies as well.
+Since LaxarJS 1.1, "angular" and "plain" are supported for controls out-of-the-box, and other technologies can be added through *adapters*, such as the [laxar-react-adapter](https://github.com/LaxarJS/laxar-react-adapter).
 The _name_ helps the LaxarJS runtime to load the correct AngularJS module and the right CSS styles.
 So, even if the directory or the RequireJS paths were something else, the runtime would still be able to load the control.
 
@@ -129,7 +129,7 @@ To add an actual Let us create a simple template at `includes/controls/my-clock-
 It is recommended to use the control name as a prefix for any custom CSS classes, to avoid collision with other controls and libraries.
 
 
-#### The CSS Stylesheet
+#### The CSS Style Sheet
 
 To automatically load your CSS depending on the theme, it has to be placed into a sub-directory `default.theme/css` of your require path and its file name must correspond to the control descriptor.
 In case of the clock control, the correct path would be `includes/controls/my-clock-control/default.theme/my-clock-control.css`.
@@ -154,7 +154,7 @@ Any widget that uses our clock should declare its AMD dependency using `controls
 ```
 
 This allows the runtime to load the RequireJS module and to register the AngularJS module during bootstrapping.
-Additionally this causes the control CSS to be loaded from the correct theme, and to be bundled when creating a release-version of your application. 
+Additionally this causes the control CSS to be loaded from the correct theme, and to be bundled when creating a release-version of your application.
 
 To actually get the control onto the screen, you have to reference it from your widget's HTML template:
 

@@ -17,8 +17,8 @@ Read on to understand the inner workings of a LaxarJS application.
 
 ## Application Lifecycle
 
-The [LaxarJS application template](//github.com/LaxarJS/grunt-init-laxar-application/tree/master/root) contains a `debug.html` which helps to bootstrap you application.
-Additionally, there is an `index.html` that allows you to run the application using optimized scripts and assets.
+The [LaxarJS Yeoman generator](//github.com/LaxarJS/generator-laxarjs) contains a `debug.html` contains all code needed to bootstrap you application during development.
+Additionally, there is an `index.html` that shows how to run the application using optimized scripts and assets.
 
 In your own application, you do not have to actually use these files:
 Instead you may copy the relevant parts into a [Ruby on Rails](http://rubyonrails.org/) or [Django](https://www.djangoproject.com/) template, or into a [JSP](http://en.wikipedia.org/wiki/JavaServer_Pages) and bootstrap LaxarJS from there.
@@ -105,7 +105,7 @@ If navigating to a new page, the startup process (described above) is repeated, 
 ### The File Resource Provider
 
 Internally, LaxarJS uses a single service to provide HTML, CSS and JSON assets used to instantiate widgets and controls:
-The _file resource provider_ is used to find out if a given template or stylesheet is available for the current theme.
+The _file resource provider_ is used to find out if a given template or style sheet is available for the current theme.
 It uses _resource listings_ (JSON files) to answer these queries without actually going to the web server.
 
 Resource listings also contain bundled resource contents to avoid HTTP requests in production (not during development).
@@ -128,7 +128,7 @@ To actually run the tasks, you will usually run one of the short _alias tasks_ d
 None of the tasks is strictly necessary to develop and run your application, but in concert they go a long way to avoid manual work or boilerplate code and to allow for an optimized user experience.
 In other words: you will not want to do without them.
 
-For the full story on the LaxarJS grunt tasks, consult the [grunt-laxar docs](https://github.com/LaxarJS/grunt-laxar#grunt-laxar-).
+For the full story on the LaxarJS grunt tasks, consult the [grunt-laxar documentation](https://github.com/LaxarJS/grunt-laxar#grunt-laxar-).
 The following list just gives a quick overview of the available tasks and what their job is.
 During day-to-day work, you will likely only use the alias tasks described in the next section, and will not have to deal with these tasks. However, this information may improve your understanding of LaxarJS:
 
@@ -161,7 +161,8 @@ During day-to-day work, you will likely only use the alias tasks described in th
 
 #### Task Aliases
 
-The aliases make sure that task dependencies are observed, plus they are easier to remember and type than the full tasks. To use them, define them in your `Gruntfile.js` or create your application from the current template (recommended).
+The aliases make sure that task dependencies are observed, plus they are easier to remember and type than the full tasks.
+To use them, define them in your `Gruntfile.js` or create your application from the current Yeoman generator (recommended).
 
   * `build` creates file listings and application dependencies, automatically runs when you start the development server
 
@@ -187,5 +188,5 @@ As you have seen, the LaxarJS tools provide a lot of useful functionality.
 However the _runtime_ does not require that grunt-laxar is installed, it just depends on the right files in the `var` directory.
 In fact, when deploying your application to a web server, you may omit the node modules entirely.
 
-This means that nothing stops you from using a different toolchain, say one that is based on [gulp.js](http://gulpjs.com/), as long as it produces the right assets.
+This means that nothing stops you from using a different tool chain, say one that is based on [gulp.js](http://gulpjs.com/), as long as it produces the right assets.
 Hopefully though, the tools provided with LaxarJS serve as a useful stepping stone towards your perfect build process.

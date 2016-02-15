@@ -29,7 +29,7 @@ $ bower install --save laxar-headline-widget
 
 This will also automatically install the latest version along with its Bower dependencies.
 To reference this widget from a JSON page definition, set the `widget` field to `'amd:laxar-headline-widget'`.
-This will use RequireJS to find the widget in the `bower_components` folder.
+This will cause LaxarJS to use RequireJS in order to find the widget in the `bower_components` folder.
 
 
 ### 2. Configure Paths for RequireJS

@@ -87,9 +87,10 @@ Here is an example for an AngularJS widget:
 define( [ 'angular', 'laxar-patterns' ], function( ng, patterns ) {
    Controller.$inject = [ '$scope' ];
    function Controller( $scope ) {
-      patterns.visibility.handlerFor( $scope )
-         .onShow( startExpensiveStuff )
-         .onHide( stopExpensiveStuff );
+      patterns.visibility.handlerFor( $scope, {
+         onShow: startExpensiveStuff,
+         onHide: stopExpensiveStuff
+      } );
    }
    // ...
 } );
@@ -107,7 +108,7 @@ Usually, controls (such as directives) should not interact with the event bus di
 because their lifetime is coupled to the DOM, they might not receive arbitrary events.
 So, usually the widget controller should pass visibility information to controls using some kind of binding.
 
-However, AngularJS directives may also use the axVisibilityService provided by the runtime, to handle visibility themselves.
+However, AngularJS directives may also use the visibility service provided by the runtime, to handle visibility themselves.
 For example, imagine a clock directive that renders an animated, analogue clock.
 Naturally, the clock animation should pause while the widget containing the clock is invisible:
 
@@ -131,8 +132,8 @@ module.directive( 'myClockControl', [
 ```
 
 Another example: the [laxar-show-hide-widget](https://github.com/LaxarJS/ax-show-hide-widget/) contains a directive that measures the contents of an embedded area in order to control an animation.
-Only while the widget is visible should measurement and animation be used, simply switching at all other times.
-For this, the axVisibilityService is used as well.
+Only while the widget is visible should measurement and animation be used, simply switching states at other times.
+For this, the visibility service is used as well.
 
 
 ## Controlling Visibility through Events
@@ -229,10 +230,10 @@ The runtime then automatically triggers visibility requests for the embedded are
 
   * Visibility events help to improve render times and to reduce CPU- and memory-use.
 
-  * Widgets may *react* to visibility changes by processing *didChangeAreaVisibility* events, directly or through the laxar-patterns visibility handler.
+  * Widgets may *react* to visibility changes by processing `didChangeAreaVisibility` events, directly or through the laxar-patterns visibility handler.
 
-  * The runtime publishes *didChangeAreaVisibility* events before *didNavigate*.
+  * The runtime publishes `didChangeAreaVisibility` events before`didNavigate`.
 
-  * AngularJS directives can use the *axVisibilityService* for simplified handling without help from their containing widget.
+  * AngularJS directives can use the `axVisibilityService` for simplified handling without help from their containing widget.
 
-  * Widgets that provide areas and that influence the visibility of those areas *should control* visibility by responding to *changeAreaVisibilityRequest* events. They should also trigger such requests after initiating a visibility change to any of their provided areas.
+  * Widgets that provide areas and that influence the visibility of those areas *should control* visibility by responding to `changeAreaVisibilityRequest` events. They should also trigger such requests after initiating a visibility change to any of their provided areas.
