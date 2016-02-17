@@ -52,7 +52,7 @@ module.exports = function (grunt) {
       },
       eslint: {
          options: {
-            config: '.eslintrc'
+            config: '.eslintrc.json'
          },
          src: [ 'lib/**/*.js' ]
       },

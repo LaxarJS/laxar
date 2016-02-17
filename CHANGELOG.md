@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#257](https://github.com/LaxarJS/laxar/issues/257): AngularJS: moved widget adapter to its own repository
+    + **BREAKING CHANGE:** see ticket for details
 - [#256](https://github.com/LaxarJS/laxar/issues/256): using locally installed jspm
 - [#254](https://github.com/LaxarJS/laxar/issues/254): documentation: improved and updated manuals
 - [#250](https://github.com/LaxarJS/laxar/issues/250): testing: updated spec runners to Jasmine 2.4
