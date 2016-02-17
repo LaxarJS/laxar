@@ -16,12 +16,6 @@ builder.config({
       'angular-sanitize': {
          build: false
       }
-   },
-   map: {
-      'laxar': 'laxar.js'
-   },
-   paths: {
-      'laxar': 'laxar.js'
    }
 });
 
