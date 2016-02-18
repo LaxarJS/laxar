@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#259](https://github.com/LaxarJS/laxar/issues/259): AngularJS: implemented widget area collector without angular
 - [#257](https://github.com/LaxarJS/laxar/issues/257): AngularJS: moved widget adapter to its own repository
     + **BREAKING CHANGE:** see ticket for details
 - [#256](https://github.com/LaxarJS/laxar/issues/256): using locally installed jspm
