@@ -65,7 +65,6 @@ module.exports = function (grunt) {
          default: {
             files: [ {
                src: [
-                  'lib/directives/*/*.js',
                   'lib/event_bus/event_bus.js',
                   'lib/file_resource_provider/file_resource_provider.js',
                   'lib/i18n/i18n.js',

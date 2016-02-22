@@ -5,7 +5,6 @@
  */
 import ng from 'angular';
 import log from './lib/logging/log';
-import * as directives from './lib/directives/directives';
 import * as eventBus from './lib/event_bus/event_bus';
 import * as fileResourceProvider from './lib/file_resource_provider/file_resource_provider';
 import * as i18n from './lib/i18n/i18n';
@@ -141,7 +140,6 @@ export {
    assert,
    bootstrap,
    configuration,
-   directives,
    fn,
    i18n,
    log,

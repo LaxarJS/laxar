@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#258](https://github.com/LaxarJS/laxar/issues/258): directives: moved from core to angular adapter
+    + **BREAKING CHANGE:** see ticket for details
 - [#259](https://github.com/LaxarJS/laxar/issues/259): AngularJS: implemented widget area collector without angular
 - [#257](https://github.com/LaxarJS/laxar/issues/257): AngularJS: moved widget adapter to its own repository
     + **BREAKING CHANGE:** see ticket for details
