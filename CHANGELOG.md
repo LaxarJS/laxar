@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#263](https://github.com/LaxarJS/laxar/issues/263): modules: made all modules stateless
+    + **BREAKING CHANGE:** see ticket for details
 - [#261](https://github.com/LaxarJS/laxar/issues/261): profiling: moved from core to angular adapter
     + **BREAKING CHANGE:** see ticket for details
 - [#258](https://github.com/LaxarJS/laxar/issues/258): directives: moved from core to angular adapter
