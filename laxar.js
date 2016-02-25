@@ -16,7 +16,8 @@ import * as object from './lib/utilities/object';
 import * as path from './lib/utilities/path';
 import storage from './lib/utilities/storage';
 import * as string from './lib/utilities/string';
-import runtime from './lib/runtime/runtime';
+import * as runtime from './lib/runtime/runtime';
+import { create as createServices } from './lib/runtime/services';
 import * as runtimeDependencies from './lib/runtime/runtime_dependencies';
 import * as controlsService from './lib/runtime/controls_service';
 import * as themeManager from './lib/runtime/theme_manager';
@@ -44,23 +45,24 @@ function bootstrap( widgetModules, optionalWidgetAdapters ) {
 
    setInstanceIdLogTag();
 
-   findAndLogDeprecatedSettings();
-
    log.trace( 'Bootstrapping LaxarJS...' );
+
+   // TODO this is only temporary, until the flow service is angular free and we use native fetch and promises
+   // let services = createServices( configuration, $q, $http, flowService );
 
    if( optionalWidgetAdapters && Array.isArray( optionalWidgetAdapters ) ) {
       adapters.addAdapters( optionalWidgetAdapters );
    }
-   var dependencies = [ runtime.module.name, runtimeDependencies.name ];
+   const dependencies = [ runtime.module.name, runtimeDependencies.name ];
 
    Object.keys( widgetModules ).forEach( function( technology ) {
-      var adapter = adapters.getFor( technology );
+      const adapter = adapters.getFor( technology );
       if( !adapter ) {
          log.error( 'Unknown widget technology: [0]', technology );
          return;
       }
 
-      var module = adapter.bootstrap( widgetModules[ technology ] );
+      const module = adapter.bootstrap( widgetModules[ technology ] );
       if( module && module.name ) {
          dependencies.push( module.name );
       }
@@ -69,72 +71,46 @@ function bootstrap( widgetModules, optionalWidgetAdapters ) {
    ng.element( document ).ready( function bootstrap() {
       ng.bootstrap( document, dependencies );
    } );
+
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function findAndLogDeprecatedSettings() {
-   var deprecatedConfiguration = {
-      'event_bus.timeout_ms': 'eventBusTimeoutMs',
-      'file_resource_provider.listings': 'fileListings',
-      'file_resource_provider.fileListings': 'fileListings',
-      'file_resource_provider.useEmbedded': 'useEmbeddedFileListings',
-      'portal.useMergedCss': 'useMergedCss',
-      'portal.theme': 'theme',
-      'portal.flow.entryPoint': 'flow.entryPoint',
-      'portal.flow.exitPoints': 'flow.exitPoints'
-   };
-
-   // Obtain global object in strict mode: http://stackoverflow.com/questions/3277182/
-   /*jshint evil:true*/
-   var global = new Function( 'return this' )();
-   ng.forEach( deprecatedConfiguration, function( newLocation, oldLocation ) {
-      var oldValue = object.path( global.laxar, oldLocation );
-      if( oldValue !== undefined ) {
-         log.warn( 'Found deprecated configuration key "[0]". Use "[1]" instead.', oldLocation, newLocation );
-         var newValue = object.path( global.laxar, newLocation );
-         if( newValue === undefined ) {
-            object.setPath( global.laxar, newLocation, oldValue );
-         }
-      }
-   } );
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function setInstanceIdLogTag() {
-   var instanceIdStorageKey = 'axLogTags.INST';
-   var store = storage.getApplicationSessionStorage();
-   var instanceId = store.getItem( instanceIdStorageKey );
+   const instanceIdStorageKey = 'axLogTags.INST';
+   const store = storage.getApplicationSessionStorage();
+   let instanceId = store.getItem( instanceIdStorageKey );
    if( !instanceId ) {
-      instanceId = '' + new Date().getTime() + Math.floor( Math.random() * 100 );
+      instanceId = '' + Date.now() + Math.floor( Math.random() * 100 );
       store.setItem( instanceIdStorageKey, instanceId );
    }
 
    log.addTag( 'INST', instanceId );
 }
 
-   // API to leverage tooling support.
-   // Not for direct use by widgets/activities!
-   //  - laxar-mocks needs this for widget tests
-   //  - laxar-patterns needs this to have the same (mocked) q version as the event bus
-   var _tooling = {
-      controlsService: controlsService,
-      eventBus: eventBus,
-      fileResourceProvider: fileResourceProvider,
-      path: path,
-      themeManager: themeManager,
-      widgetAdapters: adapters,
-      widgetLoader: widgetLoader,
-      runtimeDependenciesModule: runtimeDependencies,
-      provideQ: function() {
-         return runtime.api.provideQ();
-      },
-      // Prototype support for page inspection tools:
-      pages: pageToolingApi
-   };
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
+// API to leverage tooling support.
+// Not for direct use by widgets/activities!
+//  - laxar-mocks needs this for widget tests
+//  - laxar-patterns needs this to have the same (mocked) q version as the event bus
+const _tooling = {
+   controlsService: controlsService,
+   eventBus: eventBus,
+   fileResourceProvider: fileResourceProvider,
+   path: path,
+   themeManager: themeManager,
+   widgetAdapters: adapters,
+   widgetLoader: widgetLoader,
+   runtimeDependenciesModule: runtimeDependencies,
+   provideQ: function() {
+      return runtime.api.provideQ();
+   },
+   // Prototype support for page inspection tools:
+   pages: pageToolingApi
+};
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export {
    assert,
