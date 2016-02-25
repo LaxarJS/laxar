@@ -48,7 +48,8 @@ function bootstrap( widgetModules, optionalWidgetAdapters ) {
    log.trace( 'Bootstrapping LaxarJS...' );
 
    // TODO this is only temporary, until the flow service is angular free and we use native fetch and promises
-   // let services = createServices( configuration, $q, $http, flowService );
+   // const services = createServices( configuration, $q, $http, flowService );
+   // loadThemeCss( services );
 
    if( optionalWidgetAdapters && Array.isArray( optionalWidgetAdapters ) ) {
       adapters.addAdapters( optionalWidgetAdapters );
@@ -86,6 +87,17 @@ function setInstanceIdLogTag() {
    }
 
    log.addTag( 'INST', instanceId );
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function loadThemeCss( services ) {
+   services.themeManager
+      .urlProvider( path.join( services.paths.THEMES, '[theme]' ), null, [ services.paths.DEFAULT_THEME ] )
+      .provide( [ 'css/theme.css' ] )
+      .then( ( [ cssFile ] ) => {
+         services.cssLoader.load( cssFile );
+      } );
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
