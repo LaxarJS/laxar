@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#269](https://github.com/LaxarJS/laxar/issues/269): EventBus: fixed handling of single `did` response after multiple requests with individual `will` responses
 - [#293](https://github.com/LaxarJS/laxar/issues/293): loaders: mention composition name and ID when composition features fail validation
 - [#281](https://github.com/LaxarJS/laxar/issues/281): bootstrapping: improved state encapsulation for adapters and modules
     + **BREAKING CHANGE:** see ticket for details
