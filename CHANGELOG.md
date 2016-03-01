@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.2.1
+
 - [#268](https://github.com/LaxarJS/laxar/issues/268): EventBus: fixed handling of single `did` response after multiple requests with individual `will` responses
 - [#255](https://github.com/LaxarJS/laxar/issues/255): tooling: fixed test and enabled it for grunt-karma
 - [#254](https://github.com/LaxarJS/laxar/issues/254): documentation: improved and updated manuals
