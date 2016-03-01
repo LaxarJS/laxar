@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#267](https://github.com/LaxarJS/laxar/issues/267): flow: implemented without AngularJS (not yet in use)
+    + **BREAKING CHANGE:** see ticket for details
 - [#262](https://github.com/LaxarJS/laxar/issues/262): services: extracted stateful services
     + **BREAKING CHANGE:** see ticket for details
 - [#265](https://github.com/LaxarJS/laxar/issues/265): visibility service: moved from core to angular adapter
