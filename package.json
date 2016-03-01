@@ -52,7 +52,8 @@
       "angular-route": "npm:angular-route@^1.4.8",
       "angular-sanitize": "npm:angular-sanitize@^1.4.8",
       "jjv": "npm:jjv@^1.0.2",
-      "jjve": "npm:jjve@^0.5.1"
+      "jjve": "npm:jjve@^0.5.1",
+      "page": "npm:page@^1.6.4"
     },
     "devDependencies": {
       "angular-mocks": "npm:angular-mocks@1.4.8",

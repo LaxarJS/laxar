@@ -33,6 +33,7 @@ System.config({
     "jjv": "npm:jjv@1.0.2",
     "jjve": "npm:jjve@0.5.1",
     "laxar-jasmine-runner": "github:LaxarJS/laxar-jasmine-runner@0.1.1",
+    "page": "npm:page@1.6.4",
     "q": "npm:q@1.4.1",
     "github:LaxarJS/laxar-jasmine-runner@0.1.1": {
       "css": "github:systemjs/plugin-css@0.1.20",
@@ -77,8 +78,15 @@ System.config({
     "npm:jjv@1.0.2": {
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
+    "npm:page@1.6.4": {
+      "path-to-regexp": "npm:path-to-regexp@1.2.1",
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
     "npm:path-browserify@0.0.0": {
       "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:path-to-regexp@1.2.1": {
+      "isarray": "npm:isarray@0.0.1"
     },
     "npm:process@0.11.2": {
       "assert": "github:jspm/nodelibs-assert@0.1.0"
