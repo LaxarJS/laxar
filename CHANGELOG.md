@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#271](https://github.com/LaxarJS/laxar/issues/271): page: implemented without AngularJS (not yet in use)
 - [#267](https://github.com/LaxarJS/laxar/issues/267): flow: implemented without AngularJS (not yet in use)
     + **BREAKING CHANGE:** see ticket for details
 - [#262](https://github.com/LaxarJS/laxar/issues/262): services: extracted stateful services
