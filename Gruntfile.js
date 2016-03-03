@@ -3,7 +3,8 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
-/*jshint node: true*/
+/*eslint-env node*/
+/*eslint no-var:0*/
 module.exports = function (grunt) {
    'use strict';
 

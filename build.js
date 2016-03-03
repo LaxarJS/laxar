@@ -1,5 +1,5 @@
+/*eslint-env node*/
 /*eslint no-var:0*/
-/*global require*/
 var Builder = require('systemjs-builder');
 
 // optional constructor options
