@@ -3,7 +3,6 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
-import ng from 'angular';
 import log from './lib/logging/log';
 import * as eventBus from './lib/event_bus/event_bus';
 import * as fileResourceProvider from './lib/file_resource_provider/file_resource_provider';
@@ -16,9 +15,7 @@ import * as object from './lib/utilities/object';
 import * as path from './lib/utilities/path';
 import storage from './lib/utilities/storage';
 import * as string from './lib/utilities/string';
-import * as runtime from './lib/runtime/runtime';
 import { create as createServices } from './lib/runtime/services';
-import * as runtimeDependencies from './lib/runtime/runtime_dependencies';
 import * as controlsService from './lib/runtime/controls_service';
 import * as themeManager from './lib/runtime/theme_manager';
 import * as adapters from './lib/widget_adapters/adapters';
@@ -47,14 +44,12 @@ function bootstrap( widgetModules, optionalWidgetAdapters ) {
 
    log.trace( 'Bootstrapping LaxarJS...' );
 
-   // TODO this is only temporary, until the flow service is angular free and we use native fetch and promises
-   // const services = createServices( configuration, $q, $http, flowService );
-   // loadThemeCss( services );
+   const services = createServices( configuration );
+   loadThemeCss( services );
 
    if( optionalWidgetAdapters && Array.isArray( optionalWidgetAdapters ) ) {
       adapters.addAdapters( optionalWidgetAdapters );
    }
-   const dependencies = [ runtime.module.name, runtimeDependencies.name ];
 
    Object.keys( widgetModules ).forEach( function( technology ) {
       const adapter = adapters.getFor( technology );
@@ -63,16 +58,16 @@ function bootstrap( widgetModules, optionalWidgetAdapters ) {
          return;
       }
 
-      const module = adapter.bootstrap( widgetModules[ technology ] );
-      if( module && module.name ) {
-         dependencies.push( module.name );
-      }
+      adapter.bootstrap( widgetModules[ technology ], services );
    } );
 
-   ng.element( document ).ready( function bootstrap() {
-      ng.bootstrap( document, dependencies );
+   whenDocumentReady( () => {
+      log.trace( `Loading flow from "${services.paths.FLOW_JSON}"` );
+      services.pageService.createControllerFor( document.querySelector( '[data-ax-page]' ) );
+      services.flowService.controller()
+         .loadFlow( services.paths.FLOW_JSON )
+         .then( () => log.trace( 'Flow loaded' ), err => log.fatal( err ) );
    } );
-
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -95,9 +90,18 @@ function loadThemeCss( services ) {
    services.themeManager
       .urlProvider( path.join( services.paths.THEMES, '[theme]' ), null, [ services.paths.DEFAULT_THEME ] )
       .provide( [ 'css/theme.css' ] )
-      .then( ( [ cssFile ] ) => {
-         services.cssLoader.load( cssFile );
-      } );
+      .then( ( [ cssFile ] ) => services.cssLoader.load( cssFile ) );
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function whenDocumentReady( callback ) {
+   if( document.readyState === 'complete' ) {
+      callback();
+   }
+   else {
+      document.addEventListener( 'DOMContentLoaded', callback );
+   }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -105,7 +109,6 @@ function loadThemeCss( services ) {
 // API to leverage tooling support.
 // Not for direct use by widgets/activities!
 //  - laxar-mocks needs this for widget tests
-//  - laxar-patterns needs this to have the same (mocked) q version as the event bus
 const _tooling = {
    controlsService: controlsService,
    eventBus: eventBus,
@@ -114,10 +117,6 @@ const _tooling = {
    themeManager: themeManager,
    widgetAdapters: adapters,
    widgetLoader: widgetLoader,
-   runtimeDependenciesModule: runtimeDependencies,
-   provideQ: function() {
-      return runtime.api.provideQ();
-   },
    // Prototype support for page inspection tools:
    pages: pageToolingApi
 };
