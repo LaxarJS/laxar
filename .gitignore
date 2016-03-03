@@ -2,7 +2,6 @@
 /.grunt
 /jspm_packages
 /node_modules
-/bower_components
 /dist
 /karma-output
 npm-debug.log

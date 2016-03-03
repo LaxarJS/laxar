@@ -1,7 +1,4 @@
-bower_components/
+/jspm_packages
 /.idea
 /.grunt
-junit.xml
-npm-debug.log
-test-results.xml
-lcov.info
+/karma-output

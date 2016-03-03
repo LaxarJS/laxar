@@ -1,5 +1,341 @@
+System.registerDynamic("npm:core-js@1.2.6/library/modules/core.is-iterable.js", ["./$.classof", "./$.wks", "./$.iterators", "./$.core"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var classof = $__require('./$.classof'),
+      ITERATOR = $__require('./$.wks')('iterator'),
+      Iterators = $__require('./$.iterators');
+  module.exports = $__require('./$.core').isIterable = function(it) {
+    var O = Object(it);
+    return O[ITERATOR] !== undefined || '@@iterator' in O || Iterators.hasOwnProperty(classof(O));
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/fn/is-iterable.js", ["../modules/web.dom.iterable", "../modules/es6.string.iterator", "../modules/core.is-iterable"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  $__require('../modules/web.dom.iterable');
+  $__require('../modules/es6.string.iterator');
+  module.exports = $__require('../modules/core.is-iterable');
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:babel-runtime@5.8.34/core-js/is-iterable.js", ["core-js/library/fn/is-iterable"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = {
+    "default": $__require('core-js/library/fn/is-iterable'),
+    __esModule: true
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:babel-runtime@5.8.34/helpers/sliced-to-array.js", ["../core-js/get-iterator", "../core-js/is-iterable"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var _getIterator = $__require('../core-js/get-iterator')["default"];
+  var _isIterable = $__require('../core-js/is-iterable')["default"];
+  exports["default"] = (function() {
+    function sliceIterator(arr, i) {
+      var _arr = [];
+      var _n = true;
+      var _d = false;
+      var _e = undefined;
+      try {
+        for (var _i = _getIterator(arr),
+            _s; !(_n = (_s = _i.next()).done); _n = true) {
+          _arr.push(_s.value);
+          if (i && _arr.length === i)
+            break;
+        }
+      } catch (err) {
+        _d = true;
+        _e = err;
+      } finally {
+        try {
+          if (!_n && _i["return"])
+            _i["return"]();
+        } finally {
+          if (_d)
+            throw _e;
+        }
+      }
+      return _arr;
+    }
+    return function(arr, i) {
+      if (Array.isArray(arr)) {
+        return arr;
+      } else if (_isIterable(Object(arr))) {
+        return sliceIterator(arr, i);
+      } else {
+        throw new TypeError("Invalid attempt to destructure non-iterable instance");
+      }
+    };
+  })();
+  exports.__esModule = true;
+  global.define = __define;
+  return module.exports;
+});
+
+System.register('lib/i18n/i18n.js', ['npm:babel-runtime@5.8.34/core-js/object/keys.js', '../utilities/assert', '../utilities/string', '../utilities/configuration'], function (_export) {var _Object$keys, assert, string, configuration, 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   localize, 
+
+
+
+   primitives, 
+
+
+
+
+
+   fallbackTag, 
+
+   normalize, 
+
+
+
+
+
+
+   format, 
+   keys;
+
+
+
+
+
+
+
+
+
+   /**
+    * Shortcut to {@link localizeRelaxed}.
+    *
+    * @name localize
+    * @type {Function}
+    */
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   /**
+    * Localize the given internationalized object using the given languageTag.
+    *
+    * @param {String} languageTag
+    *    the languageTag to lookup a localization with. Maybe `undefined`, if the value is not i18n (app does
+    *    not use i18n)
+    * @param {*} i18nValue
+    *    a possibly internationalized value:
+    *    - when passing a primitive value, it is returned as-is
+    *    - when passing an object, the languageTag is used as a key within that object
+    * @param {*} [optionalFallback]
+    *    a value to use if no localization is available for the given language tag
+    *
+    * @return {*}
+    *    the localized value if found, `undefined` otherwise
+    */
+   function localizeStrict(languageTag, i18nValue, optionalFallback) {
+      assert(languageTag).hasType(String);
+      if (!i18nValue || primitives[typeof i18nValue]) {
+         // Value is not i18n
+         return i18nValue;}
+
+      assert(languageTag).isNotNull();
+
+      // Try one direct lookup before scanning the input keys,
+      // assuming that language-tags are written in consistent style.
+      var value = i18nValue[languageTag];
+      if (value !== undefined) {
+         return value;}
+
+
+      var lookupKey = normalize(languageTag);
+      var availableTags = keys(i18nValue);
+      var n = availableTags.length;
+      for (var i = 0; i < n; ++i) {
+         var t = availableTags[i];
+         if (normalize(t) === lookupKey) {
+            return i18nValue[t];}}
+
+
+
+      return optionalFallback;}
+
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   /**
+    * For controls (such as a date-picker), we cannot anticipate all required language tags, as they may be
+    * app-specific. The relaxed localize behaves like localize if an exact localization is available. If not,
+    * the language tag is successively generalized by stripping off the rightmost sub-tags until a
+    * localization is found. Eventually, a fallback ('en') is used.
+    *
+    * @param {String} languageTag
+    *    the languageTag to lookup a localization with. Maybe `undefined`, if the value is not i18n (app does
+    *    not use i18n)
+    * @param {*} i18nValue
+    *    a possibly internationalized value:
+    *    - when passing a primitive value, it is returned as-is
+    *    - when passing an object, the `languageTag` is used to look up a localization within that object
+    * @param {*} [optionalFallback]
+    *    a value to use if no localization is available for the given language tag
+    *
+    * @return {*}
+    *    the localized value if found, the fallback `undefined` otherwise
+    */
+   function localizeRelaxed(languageTag, i18nValue, optionalFallback) {
+      assert(languageTag).hasType(String);
+      if (!i18nValue || primitives[typeof i18nValue]) {
+         // Value is not i18n (app does not use it)
+         return i18nValue;}
+
+
+      var tagParts = languageTag ? languageTag.replace(/-/g, '_').split('_') : [];
+      while (tagParts.length > 0) {
+         var currentLocaleTag = tagParts.join('-');
+         var value = localizeStrict(currentLocaleTag, i18nValue);
+         if (value !== undefined) {
+            return value;}
+
+         tagParts.pop();}
+
+
+      if (fallbackTag === undefined) {
+         fallbackTag = configuration.get('i18n.fallback', 'en');}
+
+
+      return fallbackTag && localizeStrict(fallbackTag, i18nValue) || optionalFallback;}
+
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   /**
+    * Encapsulate a given languageTag in a partially applied localize function.
+    *
+    * @param {String} languageTag
+    *    the languageTag to lookup localizations with
+    * @param {*} [optionalFallback]
+    *    a value to use by the localizer function whenever no localization is available for the language tag
+    *
+    * @return {Localizer}
+    *    A single-arg localize-Function, which always uses the given language-tag. It also has a `.format`
+    *    -method, which can be used as a shortcut to `string.format( localize( x ), args )`
+    */
+   function localizer(languageTag, optionalFallback) {
+
+      /**
+       * @name Localizer
+       * @private
+       */
+      function partial(i18nValue) {
+         return localize(languageTag, i18nValue, optionalFallback);}
+
+
+      /**
+       * Shortcut to string.format, for simple chaining to the localizer.
+       *
+       * These are equal:
+       * - `string.format( i18n.localizer( tag )( i18nValue ), numericArgs, namedArgs )`
+       * - `i18n.localizer( tag ).format( i18nValue, numericArgs, namedArgs )`.
+       *
+       * @param {String} i18nValue
+       *    the value to localize and then format
+       * @param {Array} [optionalIndexedReplacements]
+       *    replacements for any numeric placeholders in the localized value
+       * @param {Object} [optionalNamedReplacements]
+       *    replacements for any named placeholders in the localized value
+       *
+       * @return {String}
+       *    the formatted string, taking i18n into account
+       *
+       * @memberOf Localizer
+       */
+      partial.format = function (i18nValue, optionalIndexedReplacements, optionalNamedReplacements) {
+         var formatString = localize(languageTag, i18nValue);
+         if (formatString === undefined) {
+            return optionalFallback;}
+
+         return format(formatString, optionalIndexedReplacements, optionalNamedReplacements);};
+
+
+      return partial;}
+
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   /**
+    * Retrieve the language tag of the current locale from an i18n model object, such as used on the scope.
+    *
+    * @param {{locale: String, tags: Object<String, String>}} i18n
+    *    an internationalization model, with reference to the currently active locale and a map from locales
+    *    to language tags
+    * @param {*} [optionalFallbackLanguageTag]
+    *    a language tag to use if no tags are found on the given object
+    *
+    * @return {String}
+    *    the localized value if found, `undefined` otherwise
+    */
+   function languageTagFromI18n(i18n, optionalFallbackLanguageTag) {
+      if (!i18n || !i18n.hasOwnProperty('tags')) {
+         return optionalFallbackLanguageTag;}
+
+      return i18n.tags[i18n.locale] || optionalFallbackLanguageTag;}
+
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function memoize(f) {
+      var cache = {};
+      return function (key) {
+         var value = cache[key];
+         if (value === undefined) {
+            value = f(key);
+            cache[key] = value;}
+
+         return value;};}return { setters: [function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_utilitiesAssert) {assert = _utilitiesAssert['default'];}, function (_utilitiesString) {string = _utilitiesString;}, function (_utilitiesConfiguration) {configuration = _utilitiesConfiguration;}], execute: function () {/**
+                                                                                                                                                                                                                                                                                                                                                                                       * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                                                                                                                                                                                       * Released under the MIT license.
+                                                                                                                                                                                                                                                                                                                                                                                       * http://laxarjs.org/license
+                                                                                                                                                                                                                                                                                                                                                                                       */ /**
+                                                                                                                                                                                                                                                                                                                                                                                           * Utilities for dealing with internationalization (i18n).
+                                                                                                                                                                                                                                                                                                                                                                                           *
+                                                                                                                                                                                                                                                                                                                                                                                           * When requiring `laxar`, it is available as `laxar.i18n`.
+                                                                                                                                                                                                                                                                                                                                                                                           *
+                                                                                                                                                                                                                                                                                                                                                                                           * @module i18n
+                                                                                                                                                                                                                                                                                                                                                                                           */'use strict';localize = localizeRelaxed; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+         primitives = { string: true, number: true, boolean: true };fallbackTag = undefined;normalize = memoize(function (languageTag) {return languageTag.toLowerCase().replace(/[-]/g, '_');}); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+         // Shortcuts: it is assumed that this module is used heavily (or not at all).
+         format = string.format;keys = _Object$keys;_export('localize', localize);_export('localizeStrict', localizeStrict);_export('localizeRelaxed', localizeRelaxed);_export('localizer', localizer);_export('languageTagFromI18n', languageTagFromI18n);} };});
+
 System.register("lib/utilities/fn.js", [], function (_export) {/**
-                                                                * Copyright 2015 aixigo AG
+                                                                * Copyright 2016 aixigo AG
                                                                 * Released under the MIT license.
                                                                 * http://laxarjs.org/license
                                                                 */
@@ -89,91 +425,45 @@ System.register("lib/utilities/fn.js", [], function (_export) {/**
 
 
 
+
+
    _tooling; //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   _export("debounce", debounce);function debounce(f, waitMs, immediate) {var MARK = {};var timeout, timestamp, result;var canceled = false;var debounced = function debounced() {var context = this;var args = [].slice.call(arguments);timestamp = _tooling.nowMilliseconds();var callNow = immediate && !timeout;if (!timeout) {timeout = _tooling.setTimeout(later, waitMs);}if (callNow && !canceled) {result = f.apply(context, args);}return result; /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                             * Check if the debounced function is ready for execution, and do so if it is.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                             * @param {Boolean} _force
-                                                                                                                                                                                                                                                                                                                                                                                                                                                             *    This is only relevant when mocking `fn._setTimeout` to implement a force/flush for tests.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                             *    If the parameter is passed as `true`, no timing checks are performed prior to execution.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                             */function later(_force) {var sinceLast = _tooling.nowMilliseconds() - timestamp;if (_force || sinceLast >= waitMs) {timeout = null;if (!immediate && !canceled) {result = f.apply(context, args);if (!timeout) {context = args = null;}}return;}timeout = _tooling.setTimeout(later, waitMs - sinceLast);}};debounced.cancel = function () {canceled = true;};return debounced;}return { setters: [], execute: function () {_tooling = { /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * Get the current time in milliseconds.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * This API is intended to be used from tests only.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        *
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @return {Number}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        *   the current time in milliseconds (`Date.now()`).
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        *   Ovewrride this from tests for reproducible results.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */nowMilliseconds: function nowMilliseconds() {return Date.now();}, 
-            /**
-             * By default, invoke window.setTimeout with the given arguments.
-             */
-            setTimeout: function setTimeout() {
+   _export("debounce", debounce);function debounce(f, waitMs, immediate) {var timeout = undefined; // -1 is only to make eslint shutup. It doesn't recognize, that `debounced` will be called multiple times
+      // but timestamp should only be read by `later` from another call.
+      var timestamp = -1;var result = undefined;var canceled = false;var debounced = function debounced() {for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {args[_key] = arguments[_key];}var context = this;timestamp = _tooling.nowMilliseconds();var callNow = immediate && !timeout;if (!timeout) {timeout = _tooling.setTimeout(later, waitMs);}if (callNow && !canceled) {result = f.apply(context, args);}return result; /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * Check if the debounced function is ready for execution, and do so if it is.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @param {Boolean} _force
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                      *    This is only relevant when mocking `fn._setTimeout` to implement a force/flush for tests.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                      *    If the parameter is passed as `true`, no timing checks are performed prior to execution.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */function later(_force) {var sinceLast = _tooling.nowMilliseconds() - timestamp;if (_force || sinceLast >= waitMs) {timeout = null;if (!immediate && !canceled) {result = f.apply(context, args);if (!timeout) {context = args = null;}}return;}timeout = _tooling.setTimeout(later, waitMs - sinceLast);}};debounced.cancel = function () {canceled = true;};return debounced;}return { setters: [], execute: function () {_tooling = { /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * Get the current time in milliseconds.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * This API is intended to be used from tests only.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @return {Number}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 *   the current time in milliseconds (`Date.now()`).
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 *   Ovewrride this from tests for reproducible results.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */nowMilliseconds: function nowMilliseconds() {return Date.now();}, /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * By default, invoke window.setTimeout with the given arguments.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */setTimeout: function setTimeout() {
                return window.setTimeout.apply(window, arguments);} };_export("_tooling", _tooling);} };});
 
-System.register('lib/runtime/runtime.js', ['angular', '../utilities/assert', '../utilities/path', '../loaders/paths'], function (_export) {/**
-                                                                                                                                            * Copyright 2015 aixigo AG
-                                                                                                                                            * Released under the MIT license.
-                                                                                                                                            * http://laxarjs.org/license
-                                                                                                                                            */'use strict';var ng, codeIsUnreachable, join, paths, 
+System.register("lib/runtime/browser.js", [], function (_export) {/**
+                                                                   * Copyright 2016 aixigo AG
+                                                                   * Released under the MIT license.
+                                                                   * http://laxarjs.org/license
+                                                                   */
 
+  /**
+   * Abstraction for browser api used internally by LaxarJS. We use this instead of the DOM and window directly
+   * to be able to easily mock during tests.
+   */"use strict";_export("create", create);
+  function create() {
 
+    return { 
+      location: function location() {return window.location;}, 
+      fetch: function fetch(input, init) {return window.fetch(input, init);} };}return { setters: [], execute: function () {} };});
 
-
-
-   _module, 
-   api;return { setters: [function (_angular) {ng = _angular['default'];}, function (_utilitiesAssert) {codeIsUnreachable = _utilitiesAssert.codeIsUnreachable;}, function (_utilitiesPath) {join = _utilitiesPath.join;}, function (_loadersPaths) {paths = _loadersPaths;}], execute: function () {_module = ng.module('axRuntime', []);api = { 
-            provideQ: function provideQ() {
-               codeIsUnreachable('Cannot provide q before AngularJS modules have been set up.');} };
-
-
-
-         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-         // Patching AngularJS with more aggressive scope destruction and memory leak prevention
-         _module.run(['$rootScope', '$window', function ($rootScope, $window) {
-            ng.element($window).one('unload', function () {
-               while ($rootScope.$$childHead) {
-                  $rootScope.$$childHead.$destroy();}
-
-               $rootScope.$destroy();});}]);
-
-
-
-         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-         // Initialize the theme manager
-         _module.run(['axCssLoader', 'axThemeManager', function (CssLoader, themeManager) {
-            themeManager.
-            urlProvider(join(paths.THEMES, '[theme]'), null, [paths.DEFAULT_THEME]).
-            provide(['css/theme.css']).
-            then(function (files) {
-               CssLoader.load(files[0]);});}]);
-
-
-
-         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-         // Initialize i18n for i18n controls in non-i18n widgets
-         _module.run(['$rootScope', 'axConfiguration', function ($rootScope, configuration) {
-            $rootScope.i18n = { 
-               locale: 'default', 
-               tags: configuration.get('i18n.locales', { 'default': 'en' }) };}]);
-
-
-
-         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-         // Provide q as a tooling API to make sure all clients see the same mocked version during testing
-         _module.run(['$q', function ($q) {
-            api.provideQ = function () {
-               return $q;};}]);
-
-
-
-         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         _export('default', 
-         { module: _module, api: api });} };});
-
-System.register('lib/event_bus/event_bus.js', ['npm:babel-runtime@5.8.34/core-js/object/keys', '../utilities/assert', '../logging/log', '../utilities/object'], function (_export) {var _Object$keys, assert, log, object, 
+System.register('lib/event_bus/event_bus.js', ['npm:babel-runtime@5.8.34/core-js/promise.js', 'npm:babel-runtime@5.8.34/core-js/object/keys.js', '../utilities/assert', '../logging/log', '../utilities/object'], function (_export) {var _Promise, _Object$keys, assert, log, object, 
 
 
 
@@ -188,10 +478,6 @@ System.register('lib/event_bus/event_bus.js', ['npm:babel-runtime@5.8.34/core-js
 
 
 
-
-   q_, 
-   nextTick_, 
-   timeoutFunction_, 
 
    WILDCARD, 
    SUBSCRIBER_FIELD, 
@@ -206,6 +492,10 @@ System.register('lib/event_bus/event_bus.js', ['npm:babel-runtime@5.8.34/core-js
    /**
     * Constructor for an event bus.
     *
+    * @param {Function} nextTick
+    *    a next tick function like `process.nextTick` or AngularJS' `$timeout`
+    * @param {Function} timeoutFunction
+    *    a timeout function like `window.setTimeout`  or AngularJS' `$timeout`
     * @param {Object} [optionalConfiguration]
     *    configuration for the event bus instance
     * @param {Number} optionalConfiguration.pendingDidTimeout
@@ -214,7 +504,9 @@ System.register('lib/event_bus/event_bus.js', ['npm:babel-runtime@5.8.34/core-js
     * @constructor
     * @private
     */
-   function EventBus(optionalConfiguration) {
+   function EventBus(nextTick, timeoutFunction, optionalConfiguration) {
+      this.nextTick_ = function (f) {return nextTick(f);};
+      this.timeoutFunction_ = function (f, ms) {return timeoutFunction(f, ms);};
       this.config_ = object.options(optionalConfiguration, { 
          pendingDidTimeout: 120000 });
 
@@ -223,7 +515,7 @@ System.register('lib/event_bus/event_bus.js', ['npm:babel-runtime@5.8.34/core-js
       this.eventQueue_ = [];
       this.subscriberTree_ = {};
 
-      this.waitingDeferreds_ = [];
+      this.waitingPromiseResolves_ = [];
       this.currentCycle_ = -1;
       this.errorHandler_ = defaultErrorHandler;
       this.mediator_ = ensureFunction();
@@ -643,16 +935,20 @@ System.register('lib/event_bus/event_bus.js', ['npm:babel-runtime@5.8.34/core-js
 
 
 
+
+
+
+
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    function enqueueEvent(self, eventItem) {
       if (self.eventQueue_.length === 0) {
-         nextTick_(function () {
+         self.nextTick_(function () {
             var queuedEvents = self.eventQueue_;
 
             self.eventQueue_ = [];
 
-            processWaitingDeferreds(self, processQueue(self, queuedEvents));});}
+            processWaitingPublishPromises(self, processQueue(self, queuedEvents));});}
 
 
       self.eventQueue_.push(eventItem);}
@@ -668,7 +964,7 @@ System.register('lib/event_bus/event_bus.js', ['npm:babel-runtime@5.8.34/core-js
          var subscribers = findSubscribers(self, meta.name);
          if (subscribers.length === 0) {
             self.currentCycle_ = -1;
-            return eventItem.publishedDeferred;}
+            return eventItem.resolvePublish;}
 
 
          var serializedEvent = null;
@@ -686,14 +982,14 @@ System.register('lib/event_bus/event_bus.js', ['npm:babel-runtime@5.8.34/core-js
 
 
             try {
-               var event;
+               var _event = undefined;
                if (subscriberItem.options.clone) {
-                  event = serializedEvent ? JSON.parse(serializedEvent) : eventItem.event;} else 
+                  _event = serializedEvent ? JSON.parse(serializedEvent) : eventItem.event;} else 
 
                {
-                  event = object.deepFreeze(eventItem.event, true);}
+                  _event = object.deepFreeze(eventItem.event, true);}
 
-               subscriberItem.subscriber(event, object.options(meta, { 
+               subscriberItem.subscriber(_event, object.options(meta, { 
                   unsubscribe: function unsubscribe() {
                      self.unsubscribe(subscriberItem.subscriber);} }));} 
 
@@ -724,26 +1020,22 @@ System.register('lib/event_bus/event_bus.js', ['npm:babel-runtime@5.8.34/core-js
 
          self.currentCycle_ = -1;
 
-         return eventItem.publishedDeferred;});}
+         return eventItem.resolvePublish;});}
 
 
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   function processWaitingDeferreds(self, newDeferreds) {
-      var waitingDeferreds = self.waitingDeferreds_;
-      self.waitingDeferreds_ = newDeferreds;
+   function processWaitingPublishPromises(self, newPromiseResolves) {
+      var waitingResolves = self.waitingPromiseResolves_;
+      self.waitingPromiseResolves_ = newPromiseResolves;
 
-      waitingDeferreds.forEach(function (deferred) {
-         deferred.resolve();});
-
+      waitingResolves.forEach(function (resolve) {return resolve();});
 
       if (self.eventQueue_.length === 0) {
          // nothing was queued by any subscriber. The publishers can instantly be notified of delivery.
-         newDeferreds.forEach(function (deferred) {
-            deferred.resolve();});
-
-         self.waitingDeferreds_ = [];}}
+         newPromiseResolves.forEach(function (resolve) {return resolve();});
+         self.waitingPromiseResolves_ = [];}}
 
 
 
@@ -856,6 +1148,10 @@ System.register('lib/event_bus/event_bus.js', ['npm:babel-runtime@5.8.34/core-js
    /**
     * Creates and returns a new event bus instance using the given configuration.
     *
+    * @param {Function} nextTick
+    *    a next tick function like `process.nextTick` or AngularJS' `$timeout`
+    * @param {Function} timeoutFunction
+    *    a timeout function like `window.setTimeout`  or AngularJS' `$timeout`
     * @param {Object} [optionalConfiguration]
     *    configuration for the event bus instance
     * @param {Number} optionalConfiguration.pendingDidTimeout
@@ -863,42 +1159,23 @@ System.register('lib/event_bus/event_bus.js', ['npm:babel-runtime@5.8.34/core-js
     *
     * @return {EventBus}
     */
-   function create(optionalConfiguration) {
-      assert(q_).isNotNull('Need a promise implementation like $q or Q');
-      assert(nextTick_).
+   function create(nextTick, timeoutFunction, optionalConfiguration) {
+      assert(nextTick).
       hasType(Function).isNotNull('Need a next tick implementation like $timeout');
-      assert(timeoutFunction_).
+      assert(timeoutFunction).
       hasType(Function).isNotNull('Need a timeout implementation like $timeout or setTimeout');
 
-      return new EventBus(optionalConfiguration);}
-
-
-   ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   /**
-    * Initializes the module.
-    *
-    * @param {Object} q
-    *    a promise library like AngularJS' `$q`
-    * @param {Function} nextTick
-    *    a next tick function like `process.nextTick` or AngularJS' `$timeout`
-    * @param {Function} timeoutFunction
-    *    a timeout function like `window.setTimeout`  or AngularJS' `$timeout`
-    */
-   function init(q, nextTick, timeoutFunction) {
-      q_ = q;
-      nextTick_ = nextTick;
-      timeoutFunction_ = timeoutFunction;}return { setters: [function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_utilitiesAssert) {assert = _utilitiesAssert['default'];}, function (_loggingLog) {log = _loggingLog['default'];}, function (_utilitiesObject) {object = _utilitiesObject;}], execute: function () {/**
-                                                                                                                                                                                                                                                                                                                                                                                 * Copyright 2015 aixigo AG
-                                                                                                                                                                                                                                                                                                                                                                                 * Released under the MIT license.
-                                                                                                                                                                                                                                                                                                                                                                                 * http://laxarjs.org/license
-                                                                                                                                                                                                                                                                                                                                                                                 */ /**
-                                                                                                                                                                                                                                                                                                                                                                                     * The *event_bus* module contains the implementation of the *LaxarJS EventBus*. In an application you'll
-                                                                                                                                                                                                                                                                                                                                                                                     * never use this module or instantiate an event bus instance directly. Instead within a widget the event bus
-                                                                                                                                                                                                                                                                                                                                                                                     * can be injected via service or accessed as property on the AngularJS `$scope` or `axContext` injections.
-                                                                                                                                                                                                                                                                                                                                                                                     *
-                                                                                                                                                                                                                                                                                                                                                                                     * @module event_bus
-                                                                                                                                                                                                                                                                                                                                                                                     */'use strict';_export('create', create);_export('init', init);WILDCARD = '*';SUBSCRIBER_FIELD = '.';INTERNAL_EVENTS_REGISTRY = 'ax__events';PART_SEPARATOR = '.';SUB_PART_SEPARATOR = '-';REQUEST_MATCHER = /^([^.])([^.]*)Request(\..+)?$/;EventBus.prototype.setErrorHandler = function (errorHandler) {this.errorHandler_ = ensureFunction(errorHandler, defaultErrorHandler);}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+      return new EventBus(nextTick, timeoutFunction, optionalConfiguration);}return { setters: [function (_babelRuntimeCoreJsPromise) {_Promise = _babelRuntimeCoreJsPromise['default'];}, function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_utilitiesAssert) {assert = _utilitiesAssert['default'];}, function (_loggingLog) {log = _loggingLog['default'];}, function (_utilitiesObject) {object = _utilitiesObject;}], execute: function () {/**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               * Released under the MIT license.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               * http://laxarjs.org/license
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */ /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * The *event_bus* module contains the implementation of the *LaxarJS EventBus*. In an application you'll
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * never use this module or instantiate an event bus instance directly. Instead within a widget the event bus
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * can be injected via service or accessed as property on the AngularJS `$scope` or `axContext` injections.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @module event_bus
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   */'use strict';_export('create', create);WILDCARD = '*';SUBSCRIBER_FIELD = '.';INTERNAL_EVENTS_REGISTRY = 'ax__events';PART_SEPARATOR = '.';SUB_PART_SEPARATOR = '-';REQUEST_MATCHER = /^([^.])([^.]*)Request(\..+)?$/;EventBus.prototype.setErrorHandler = function (errorHandler) {this.errorHandler_ = ensureFunction(errorHandler, defaultErrorHandler);}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
          /**
           * Sets a mediator, that has the chance to alter events shortly before their delivery to the according
           * subscribers. Its sole argument is the complete list of queued event items that should be delivered
@@ -996,7 +1273,7 @@ System.register('lib/event_bus/event_bus.js', ['npm:babel-runtime@5.8.34/core-js
           *
           * @param {Function} subscriber
           *    the function to unsubscribe
-          */EventBus.prototype.unsubscribe = function (subscriber) {assert(subscriber).hasType(Function).isNotNull();if (!subscriber.hasOwnProperty(INTERNAL_EVENTS_REGISTRY) || !Array.isArray(subscriber[INTERNAL_EVENTS_REGISTRY])) {return;}var self = this;var subscriberTree = this.subscriberTree_;subscriber[INTERNAL_EVENTS_REGISTRY].forEach(function (eventName) {unsubscribeRecursively(self, subscriberTree, eventName.split(PART_SEPARATOR), subscriber);});delete subscriber[INTERNAL_EVENTS_REGISTRY];};EventBus.prototype.publish = function (eventName, optionalEvent, optionalOptions) {assert(eventName).hasType(String).isNotNull();var event = JSON.parse(JSON.stringify(optionalEvent || {}));var options = object.options(optionalOptions, { deliverToSender: true, sender: event.sender || null });if (event.sender) {log.warn('Deprecation warning: The event sender should be set in the options, not the event itself.\n' + 'Sender: [0], Eventname: [1]', event.sender, eventName);}var eventItem = { meta: { name: eventName, cycleId: this.currentCycle_ > -1 ? this.currentCycle_ : this.cycleCounter_++, sender: options.sender, initiator: null, options: options }, event: event, publishedDeferred: q_.defer() };enqueueEvent(this, eventItem);notifyInspectors(this, { action: 'publish', source: options.sender, target: '-', event: eventName, eventObject: event, cycleId: eventItem.meta.cycleId });return eventItem.publishedDeferred.promise;}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+          */EventBus.prototype.unsubscribe = function (subscriber) {assert(subscriber).hasType(Function).isNotNull();if (!subscriber.hasOwnProperty(INTERNAL_EVENTS_REGISTRY) || !Array.isArray(subscriber[INTERNAL_EVENTS_REGISTRY])) {return;}var self = this;var subscriberTree = this.subscriberTree_;subscriber[INTERNAL_EVENTS_REGISTRY].forEach(function (eventName) {unsubscribeRecursively(self, subscriberTree, eventName.split(PART_SEPARATOR), subscriber);});delete subscriber[INTERNAL_EVENTS_REGISTRY];};EventBus.prototype.publish = function (eventName, optionalEvent, optionalOptions) {var _this = this;assert(eventName).hasType(String).isNotNull();var event = JSON.parse(JSON.stringify(optionalEvent || {}));var options = object.options(optionalOptions, { deliverToSender: true, sender: event.sender || null });if (event.sender) {log.warn('Deprecation warning: The event sender should be set in the options, not the event itself.\n' + 'Sender: [0], Eventname: [1]', event.sender, eventName);}return new _Promise(function (resolve) {var eventItem = { meta: { name: eventName, cycleId: _this.currentCycle_ > -1 ? _this.currentCycle_ : _this.cycleCounter_++, sender: options.sender, initiator: null, options: options }, event: event, resolvePublish: resolve };enqueueEvent(_this, eventItem);notifyInspectors(_this, { action: 'publish', source: options.sender, target: '-', event: eventName, eventObject: event, cycleId: eventItem.meta.cycleId });});}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
          /**
           * Publishes an event that follows the *request-will-did pattern* and awaits all replies. This pattern has
           * evolved over time and is of great use when handling the asynchronous nature of event bus events.
@@ -1027,266 +1304,1207 @@ System.register('lib/event_bus/event_bus.js', ['npm:babel-runtime@5.8.34/core-js
           *
           * @return {Promise}
           *   the delivery promise. It receives a list of all collected `did*` events and according meta information
-          */EventBus.prototype.publishAndGatherReplies = function (eventName, optionalEvent, optionalOptions) {assert(eventName).hasType(String).isNotNull();var matches = REQUEST_MATCHER.exec(eventName);assert.state(!!matches, 'Expected eventName to end with "Request" but got ' + eventName);var self = this;var options = object.options(optionalOptions, { pendingDidTimeout: this.config_.pendingDidTimeout });var eventNameSuffix = matches[1].toUpperCase() + matches[2];if (matches[3]) {eventNameSuffix += matches[3];}var deferred = q_.defer();var willWaitingForDid = [];var givenDidResponses = [];var cycleFinished = false;function willCollector(event, meta) {assert(meta.sender).hasType(String).isNotNull('A response with will to a request-event must contain a sender.');willWaitingForDid.push(meta.sender);}this.subscribe('will' + eventNameSuffix, willCollector, { subscriber: options.sender });function didCollector(event, meta) {givenDidResponses.push({ event: event, meta: meta });var senderIndex = willWaitingForDid.indexOf(meta.sender);if (senderIndex !== -1) {willWaitingForDid.splice(senderIndex, 1);}if (willWaitingForDid.length === 0 && cycleFinished) {finish();}}this.subscribe('did' + eventNameSuffix, didCollector, { subscriber: options.sender });var timeoutRef = timeoutFunction_(function () {if (willWaitingForDid.length > 0) {var message = 'Timeout while waiting for pending did' + eventNameSuffix + ' on ' + eventName + '.';self.errorHandler_(message, { 'Sender': options.sender, 'After ms timeout': options.pendingDidTimeout, 'Responses missing from': willWaitingForDid.join(', ') });finish(true);}}, options.pendingDidTimeout);this.publish(eventName, optionalEvent, options).then(function () {if (willWaitingForDid.length === 0) {// either there was no will or all did responses were already given in the same cycle as the will
+          */EventBus.prototype.publishAndGatherReplies = function (eventName, optionalEvent, optionalOptions) {assert(eventName).hasType(String).isNotNull();var matches = REQUEST_MATCHER.exec(eventName);assert.state(!!matches, 'Expected eventName to end with "Request" but got ' + eventName);var self = this;var options = object.options(optionalOptions, { pendingDidTimeout: this.config_.pendingDidTimeout });var eventNameSuffix = matches[1].toUpperCase() + matches[2];if (matches[3]) {eventNameSuffix += matches[3];}var deferred = {};deferred.promise = new _Promise(function (resolve, reject) {deferred.resolve = resolve;deferred.reject = reject;});var willWaitingForDid = [];var givenDidResponses = [];var cycleFinished = false;function willCollector(event, meta) {assert(meta.sender).hasType(String).isNotNull('A response with will to a request-event must contain a sender.');willWaitingForDid.push(meta.sender);}this.subscribe('will' + eventNameSuffix, willCollector, { subscriber: options.sender });function didCollector(event, meta) {givenDidResponses.push({ event: event, meta: meta });var senderIndex = willWaitingForDid.indexOf(meta.sender);if (senderIndex !== -1) {willWaitingForDid.splice(senderIndex, 1);}if (willWaitingForDid.length === 0 && cycleFinished) {finish();}}this.subscribe('did' + eventNameSuffix, didCollector, { subscriber: options.sender });var timeoutRef = this.timeoutFunction_(function () {if (willWaitingForDid.length > 0) {var message = 'Timeout while waiting for pending did' + eventNameSuffix + ' on ' + eventName + '.';self.errorHandler_(message, { 'Sender': options.sender, 'After ms timeout': options.pendingDidTimeout, 'Responses missing from': willWaitingForDid.join(', ') });finish(true);}}, options.pendingDidTimeout);this.publish(eventName, optionalEvent, options).then(function () {if (willWaitingForDid.length === 0) {// either there was no will or all did responses were already given in the same cycle as the will
                   finish();return;}cycleFinished = true;});function finish(wasCanceled) {clearTimeout(timeoutRef);self.unsubscribe(willCollector);self.unsubscribe(didCollector);(wasCanceled ? deferred.reject : deferred.resolve)(givenDidResponses);}return deferred.promise;};} };});
 
-System.register('lib/i18n/i18n.js', ['npm:babel-runtime@5.8.34/core-js/object/keys', '../utilities/assert', '../utilities/string', '../utilities/configuration'], function (_export) {var _Object$keys, assert, string, configuration, 
+System.registerDynamic("npm:core-js@1.2.6/library/modules/core.get-iterator.js", ["./$.an-object", "./core.get-iterator-method", "./$.core"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var anObject = $__require('./$.an-object'),
+      get = $__require('./core.get-iterator-method');
+  module.exports = $__require('./$.core').getIterator = function(it) {
+    var iterFn = get(it);
+    if (typeof iterFn != 'function')
+      throw TypeError(it + ' is not iterable!');
+    return anObject(iterFn.call(it));
+  };
+  global.define = __define;
+  return module.exports;
+});
 
+System.registerDynamic("npm:core-js@1.2.6/library/fn/get-iterator.js", ["../modules/web.dom.iterable", "../modules/es6.string.iterator", "../modules/core.get-iterator"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  $__require('../modules/web.dom.iterable');
+  $__require('../modules/es6.string.iterator');
+  module.exports = $__require('../modules/core.get-iterator');
+  global.define = __define;
+  return module.exports;
+});
 
+System.registerDynamic("npm:babel-runtime@5.8.34/core-js/get-iterator.js", ["core-js/library/fn/get-iterator"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = {
+    "default": $__require('core-js/library/fn/get-iterator'),
+    __esModule: true
+  };
+  global.define = __define;
+  return module.exports;
+});
 
+System.registerDynamic("npm:isarray@0.0.1/index.js", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = Array.isArray || function(arr) {
+    return Object.prototype.toString.call(arr) == '[object Array]';
+  };
+  global.define = __define;
+  return module.exports;
+});
 
+System.registerDynamic("npm:isarray@0.0.1.js", ["npm:isarray@0.0.1/index.js"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = $__require('npm:isarray@0.0.1/index.js');
+  global.define = __define;
+  return module.exports;
+});
 
+System.registerDynamic("npm:path-to-regexp@1.2.1/index.js", ["isarray"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var isarray = $__require('isarray');
+  module.exports = pathToRegexp;
+  module.exports.parse = parse;
+  module.exports.compile = compile;
+  module.exports.tokensToFunction = tokensToFunction;
+  module.exports.tokensToRegExp = tokensToRegExp;
+  var PATH_REGEXP = new RegExp(['(\\\\.)', '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^()])+)\\))?|\\(((?:\\\\.|[^()])+)\\))([+*?])?|(\\*))'].join('|'), 'g');
+  function parse(str) {
+    var tokens = [];
+    var key = 0;
+    var index = 0;
+    var path = '';
+    var res;
+    while ((res = PATH_REGEXP.exec(str)) != null) {
+      var m = res[0];
+      var escaped = res[1];
+      var offset = res.index;
+      path += str.slice(index, offset);
+      index = offset + m.length;
+      if (escaped) {
+        path += escaped[1];
+        continue;
+      }
+      if (path) {
+        tokens.push(path);
+        path = '';
+      }
+      var prefix = res[2];
+      var name = res[3];
+      var capture = res[4];
+      var group = res[5];
+      var suffix = res[6];
+      var asterisk = res[7];
+      var repeat = suffix === '+' || suffix === '*';
+      var optional = suffix === '?' || suffix === '*';
+      var delimiter = prefix || '/';
+      var pattern = capture || group || (asterisk ? '.*' : '[^' + delimiter + ']+?');
+      tokens.push({
+        name: name || key++,
+        prefix: prefix || '',
+        delimiter: delimiter,
+        optional: optional,
+        repeat: repeat,
+        pattern: escapeGroup(pattern)
+      });
+    }
+    if (index < str.length) {
+      path += str.substr(index);
+    }
+    if (path) {
+      tokens.push(path);
+    }
+    return tokens;
+  }
+  function compile(str) {
+    return tokensToFunction(parse(str));
+  }
+  function tokensToFunction(tokens) {
+    var matches = new Array(tokens.length);
+    for (var i = 0; i < tokens.length; i++) {
+      if (typeof tokens[i] === 'object') {
+        matches[i] = new RegExp('^' + tokens[i].pattern + '$');
+      }
+    }
+    return function(obj) {
+      var path = '';
+      var data = obj || {};
+      for (var i = 0; i < tokens.length; i++) {
+        var token = tokens[i];
+        if (typeof token === 'string') {
+          path += token;
+          continue;
+        }
+        var value = data[token.name];
+        var segment;
+        if (value == null) {
+          if (token.optional) {
+            continue;
+          } else {
+            throw new TypeError('Expected "' + token.name + '" to be defined');
+          }
+        }
+        if (isarray(value)) {
+          if (!token.repeat) {
+            throw new TypeError('Expected "' + token.name + '" to not repeat, but received "' + value + '"');
+          }
+          if (value.length === 0) {
+            if (token.optional) {
+              continue;
+            } else {
+              throw new TypeError('Expected "' + token.name + '" to not be empty');
+            }
+          }
+          for (var j = 0; j < value.length; j++) {
+            segment = encodeURIComponent(value[j]);
+            if (!matches[i].test(segment)) {
+              throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"');
+            }
+            path += (j === 0 ? token.prefix : token.delimiter) + segment;
+          }
+          continue;
+        }
+        segment = encodeURIComponent(value);
+        if (!matches[i].test(segment)) {
+          throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"');
+        }
+        path += token.prefix + segment;
+      }
+      return path;
+    };
+  }
+  function escapeString(str) {
+    return str.replace(/([.+*?=^!:${}()[\]|\/])/g, '\\$1');
+  }
+  function escapeGroup(group) {
+    return group.replace(/([=!:$\/()])/g, '\\$1');
+  }
+  function attachKeys(re, keys) {
+    re.keys = keys;
+    return re;
+  }
+  function flags(options) {
+    return options.sensitive ? '' : 'i';
+  }
+  function regexpToRegexp(path, keys) {
+    var groups = path.source.match(/\((?!\?)/g);
+    if (groups) {
+      for (var i = 0; i < groups.length; i++) {
+        keys.push({
+          name: i,
+          prefix: null,
+          delimiter: null,
+          optional: false,
+          repeat: false,
+          pattern: null
+        });
+      }
+    }
+    return attachKeys(path, keys);
+  }
+  function arrayToRegexp(path, keys, options) {
+    var parts = [];
+    for (var i = 0; i < path.length; i++) {
+      parts.push(pathToRegexp(path[i], keys, options).source);
+    }
+    var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options));
+    return attachKeys(regexp, keys);
+  }
+  function stringToRegexp(path, keys, options) {
+    var tokens = parse(path);
+    var re = tokensToRegExp(tokens, options);
+    for (var i = 0; i < tokens.length; i++) {
+      if (typeof tokens[i] !== 'string') {
+        keys.push(tokens[i]);
+      }
+    }
+    return attachKeys(re, keys);
+  }
+  function tokensToRegExp(tokens, options) {
+    options = options || {};
+    var strict = options.strict;
+    var end = options.end !== false;
+    var route = '';
+    var lastToken = tokens[tokens.length - 1];
+    var endsWithSlash = typeof lastToken === 'string' && /\/$/.test(lastToken);
+    for (var i = 0; i < tokens.length; i++) {
+      var token = tokens[i];
+      if (typeof token === 'string') {
+        route += escapeString(token);
+      } else {
+        var prefix = escapeString(token.prefix);
+        var capture = token.pattern;
+        if (token.repeat) {
+          capture += '(?:' + prefix + capture + ')*';
+        }
+        if (token.optional) {
+          if (prefix) {
+            capture = '(?:' + prefix + '(' + capture + '))?';
+          } else {
+            capture = '(' + capture + ')?';
+          }
+        } else {
+          capture = prefix + '(' + capture + ')';
+        }
+        route += capture;
+      }
+    }
+    if (!strict) {
+      route = (endsWithSlash ? route.slice(0, -2) : route) + '(?:\\/(?=$))?';
+    }
+    if (end) {
+      route += '$';
+    } else {
+      route += strict && endsWithSlash ? '' : '(?=\\/|$)';
+    }
+    return new RegExp('^' + route, flags(options));
+  }
+  function pathToRegexp(path, keys, options) {
+    keys = keys || [];
+    if (!isarray(keys)) {
+      options = keys;
+      keys = [];
+    } else if (!options) {
+      options = {};
+    }
+    if (path instanceof RegExp) {
+      return regexpToRegexp(path, keys, options);
+    }
+    if (isarray(path)) {
+      return arrayToRegexp(path, keys, options);
+    }
+    return stringToRegexp(path, keys, options);
+  }
+  global.define = __define;
+  return module.exports;
+});
 
+System.registerDynamic("npm:path-to-regexp@1.2.1.js", ["npm:path-to-regexp@1.2.1/index"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = $__require('npm:path-to-regexp@1.2.1/index');
+  global.define = __define;
+  return module.exports;
+});
 
+System.registerDynamic("npm:page@1.6.4/index.js", ["path-to-regexp", "process"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  (function(process) {
+    'use strict';
+    var pathtoRegexp = $__require('path-to-regexp');
+    module.exports = page;
+    var clickEvent = ('undefined' !== typeof document) && document.ontouchstart ? 'touchstart' : 'click';
+    var location = ('undefined' !== typeof window) && (window.history.location || window.location);
+    var dispatch = true;
+    var decodeURLComponents = true;
+    var base = '';
+    var running;
+    var hashbang = false;
+    var prevContext;
+    function page(path, fn) {
+      if ('function' === typeof path) {
+        return page('*', path);
+      }
+      if ('function' === typeof fn) {
+        var route = new Route(path);
+        for (var i = 1; i < arguments.length; ++i) {
+          page.callbacks.push(route.middleware(arguments[i]));
+        }
+      } else if ('string' === typeof path) {
+        page['string' === typeof fn ? 'redirect' : 'show'](path, fn);
+      } else {
+        page.start(path);
+      }
+    }
+    page.callbacks = [];
+    page.exits = [];
+    page.current = '';
+    page.len = 0;
+    page.base = function(path) {
+      if (0 === arguments.length)
+        return base;
+      base = path;
+    };
+    page.start = function(options) {
+      options = options || {};
+      if (running)
+        return;
+      running = true;
+      if (false === options.dispatch)
+        dispatch = false;
+      if (false === options.decodeURLComponents)
+        decodeURLComponents = false;
+      if (false !== options.popstate)
+        window.addEventListener('popstate', onpopstate, false);
+      if (false !== options.click) {
+        document.addEventListener(clickEvent, onclick, false);
+      }
+      if (true === options.hashbang)
+        hashbang = true;
+      if (!dispatch)
+        return;
+      var url = (hashbang && ~location.hash.indexOf('#!')) ? location.hash.substr(2) + location.search : location.pathname + location.search + location.hash;
+      page.replace(url, null, true, dispatch);
+    };
+    page.stop = function() {
+      if (!running)
+        return;
+      page.current = '';
+      page.len = 0;
+      running = false;
+      document.removeEventListener(clickEvent, onclick, false);
+      window.removeEventListener('popstate', onpopstate, false);
+    };
+    page.show = function(path, state, dispatch, push) {
+      var ctx = new Context(path, state);
+      page.current = ctx.path;
+      if (false !== dispatch)
+        page.dispatch(ctx);
+      if (false !== ctx.handled && false !== push)
+        ctx.pushState();
+      return ctx;
+    };
+    page.back = function(path, state) {
+      if (page.len > 0) {
+        history.back();
+        page.len--;
+      } else if (path) {
+        setTimeout(function() {
+          page.show(path, state);
+        });
+      } else {
+        setTimeout(function() {
+          page.show(base, state);
+        });
+      }
+    };
+    page.redirect = function(from, to) {
+      if ('string' === typeof from && 'string' === typeof to) {
+        page(from, function(e) {
+          setTimeout(function() {
+            page.replace(to);
+          }, 0);
+        });
+      }
+      if ('string' === typeof from && 'undefined' === typeof to) {
+        setTimeout(function() {
+          page.replace(from);
+        }, 0);
+      }
+    };
+    page.replace = function(path, state, init, dispatch) {
+      var ctx = new Context(path, state);
+      page.current = ctx.path;
+      ctx.init = init;
+      ctx.save();
+      if (false !== dispatch)
+        page.dispatch(ctx);
+      return ctx;
+    };
+    page.dispatch = function(ctx) {
+      var prev = prevContext,
+          i = 0,
+          j = 0;
+      prevContext = ctx;
+      function nextExit() {
+        var fn = page.exits[j++];
+        if (!fn)
+          return nextEnter();
+        fn(prev, nextExit);
+      }
+      function nextEnter() {
+        var fn = page.callbacks[i++];
+        if (ctx.path !== page.current) {
+          ctx.handled = false;
+          return;
+        }
+        if (!fn)
+          return unhandled(ctx);
+        fn(ctx, nextEnter);
+      }
+      if (prev) {
+        nextExit();
+      } else {
+        nextEnter();
+      }
+    };
+    function unhandled(ctx) {
+      if (ctx.handled)
+        return;
+      var current;
+      if (hashbang) {
+        current = base + location.hash.replace('#!', '');
+      } else {
+        current = location.pathname + location.search;
+      }
+      if (current === ctx.canonicalPath)
+        return;
+      page.stop();
+      ctx.handled = false;
+      location.href = ctx.canonicalPath;
+    }
+    page.exit = function(path, fn) {
+      if (typeof path === 'function') {
+        return page.exit('*', path);
+      }
+      var route = new Route(path);
+      for (var i = 1; i < arguments.length; ++i) {
+        page.exits.push(route.middleware(arguments[i]));
+      }
+    };
+    function decodeURLEncodedURIComponent(val) {
+      if (typeof val !== 'string') {
+        return val;
+      }
+      return decodeURLComponents ? decodeURIComponent(val.replace(/\+/g, ' ')) : val;
+    }
+    function Context(path, state) {
+      if ('/' === path[0] && 0 !== path.indexOf(base))
+        path = base + (hashbang ? '#!' : '') + path;
+      var i = path.indexOf('?');
+      this.canonicalPath = path;
+      this.path = path.replace(base, '') || '/';
+      if (hashbang)
+        this.path = this.path.replace('#!', '') || '/';
+      this.title = document.title;
+      this.state = state || {};
+      this.state.path = path;
+      this.querystring = ~i ? decodeURLEncodedURIComponent(path.slice(i + 1)) : '';
+      this.pathname = decodeURLEncodedURIComponent(~i ? path.slice(0, i) : path);
+      this.params = {};
+      this.hash = '';
+      if (!hashbang) {
+        if (!~this.path.indexOf('#'))
+          return;
+        var parts = this.path.split('#');
+        this.path = parts[0];
+        this.hash = decodeURLEncodedURIComponent(parts[1]) || '';
+        this.querystring = this.querystring.split('#')[0];
+      }
+    }
+    page.Context = Context;
+    Context.prototype.pushState = function() {
+      page.len++;
+      history.pushState(this.state, this.title, hashbang && this.path !== '/' ? '#!' + this.path : this.canonicalPath);
+    };
+    Context.prototype.save = function() {
+      history.replaceState(this.state, this.title, hashbang && this.path !== '/' ? '#!' + this.path : this.canonicalPath);
+    };
+    function Route(path, options) {
+      options = options || {};
+      this.path = (path === '*') ? '(.*)' : path;
+      this.method = 'GET';
+      this.regexp = pathtoRegexp(this.path, this.keys = [], options.sensitive, options.strict);
+    }
+    page.Route = Route;
+    Route.prototype.middleware = function(fn) {
+      var self = this;
+      return function(ctx, next) {
+        if (self.match(ctx.path, ctx.params))
+          return fn(ctx, next);
+        next();
+      };
+    };
+    Route.prototype.match = function(path, params) {
+      var keys = this.keys,
+          qsIndex = path.indexOf('?'),
+          pathname = ~qsIndex ? path.slice(0, qsIndex) : path,
+          m = this.regexp.exec(decodeURIComponent(pathname));
+      if (!m)
+        return false;
+      for (var i = 1,
+          len = m.length; i < len; ++i) {
+        var key = keys[i - 1];
+        var val = decodeURLEncodedURIComponent(m[i]);
+        if (val !== undefined || !(hasOwnProperty.call(params, key.name))) {
+          params[key.name] = val;
+        }
+      }
+      return true;
+    };
+    var onpopstate = (function() {
+      var loaded = false;
+      if ('undefined' === typeof window) {
+        return;
+      }
+      if (document.readyState === 'complete') {
+        loaded = true;
+      } else {
+        window.addEventListener('load', function() {
+          setTimeout(function() {
+            loaded = true;
+          }, 0);
+        });
+      }
+      return function onpopstate(e) {
+        if (!loaded)
+          return;
+        if (e.state) {
+          var path = e.state.path;
+          page.replace(path, e.state);
+        } else {
+          page.show(location.pathname + location.hash, undefined, undefined, false);
+        }
+      };
+    })();
+    function onclick(e) {
+      if (1 !== which(e))
+        return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey)
+        return;
+      if (e.defaultPrevented)
+        return;
+      var el = e.target;
+      while (el && 'A' !== el.nodeName)
+        el = el.parentNode;
+      if (!el || 'A' !== el.nodeName)
+        return;
+      if (el.hasAttribute('download') || el.getAttribute('rel') === 'external')
+        return;
+      var link = el.getAttribute('href');
+      if (!hashbang && el.pathname === location.pathname && (el.hash || '#' === link))
+        return;
+      if (link && link.indexOf('mailto:') > -1)
+        return;
+      if (el.target)
+        return;
+      if (!sameOrigin(el.href))
+        return;
+      var path = el.pathname + el.search + (el.hash || '');
+      if (typeof process !== 'undefined' && path.match(/^\/[a-zA-Z]:\//)) {
+        path = path.replace(/^\/[a-zA-Z]:\//, '/');
+      }
+      var orig = path;
+      if (path.indexOf(base) === 0) {
+        path = path.substr(base.length);
+      }
+      if (hashbang)
+        path = path.replace('#!', '');
+      if (base && orig === path)
+        return;
+      e.preventDefault();
+      page.show(orig);
+    }
+    function which(e) {
+      e = e || window.event;
+      return null === e.which ? e.button : e.which;
+    }
+    function sameOrigin(href) {
+      var origin = location.protocol + '//' + location.hostname;
+      if (location.port)
+        origin += ':' + location.port;
+      return (href && (0 === href.indexOf(origin)));
+    }
+    page.sameOrigin = sameOrigin;
+  })($__require('process'));
+  global.define = __define;
+  return module.exports;
+});
 
+System.registerDynamic("npm:page@1.6.4.js", ["npm:page@1.6.4/index"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = $__require('npm:page@1.6.4/index');
+  global.define = __define;
+  return module.exports;
+});
 
-
-
-
-
-
-
-   localize, 
-
-
-
-   primitives, 
-
-
-
-
-
-   fallbackTag, 
-
-   normalize, 
-
-
-
-
-
-
-   format, 
-   keys;
-
-
-
-
-
-
-
-
-
+System.register('lib/utilities/storage.js', ['./assert', './configuration'], function (_export) {/**
+                                                                                                  * Copyright 2016 aixigo AG
+                                                                                                  * Released under the MIT license.
+                                                                                                  * http://laxarjs.org/license
+                                                                                                  */
    /**
-    * Shortcut to {@link localizeRelaxed}.
+    * Provides a convenient api over the browser's `window.localStorage` and `window.sessionStorage` objects. If
+    * a browser doesn't support [web storage](http://www.w3.org/TR/webstorage/), a warning is logged to the
+    * `console` (if available) and a non-persistent in-memory store will be used instead. Note that this can for
+    * example also happen when using Mozilla Firefox with cookies disabled and as such isn't limited to older
+    * browsers.
     *
-    * @name localize
-    * @type {Function}
-    */
+    * Additionally, in contrast to plain *web storage* access, non-string values will be automatically passed
+    * through JSON (de-) serialization on storage or retrieval. All keys will be prepended with a combination of
+    * an arbitrary and a configured namespace to prevent naming clashes with other web applications running on
+    * the same host and port. All {@link StorageApi} accessor methods should then be called without any namespace
+    * since adding and removing it, is done automatically.
+    *
+    * When requiring `laxar`, it is available as `laxar.storage`.
+    *
+    * @module storage
+    */'use strict';var assert, configuration, 
 
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+   SESSION, 
+   LOCAL, 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   instance; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   _export('create', create); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
    /**
-    * Localize the given internationalized object using the given languageTag.
+    * @param {Object} backend
+    *    the K/V store, probably only accepting string values
+    * @param {String} namespace
+    *    prefix for all keys for namespacing purposes
     *
-    * @param {String} languageTag
-    *    the languageTag to lookup a localization with. Maybe `undefined`, if the value is not i18n (app does
-    *    not use i18n)
-    * @param {*} i18nValue
-    *    a possibly internationalized value:
-    *    - when passing a primitive value, it is returned as-is
-    *    - when passing an object, the languageTag is used as a key within that object
-    * @param {*} [optionalFallback]
-    *    a value to use if no localization is available for the given language tag
+    * @return {StorageApi}
+    *    a storage wrapper to the given backend with `getItem`, `setItem` and `removeItem` methods
     *
-    * @return {*}
-    *    the localized value if found, `undefined` otherwise
-    */
-   function localizeStrict(languageTag, i18nValue, optionalFallback) {
-      assert(languageTag).hasType(String);
-      if (!i18nValue || primitives[typeof i18nValue]) {
-         // Value is not i18n
-         return i18nValue;}
-
-      assert(languageTag).isNotNull();
-
-      // Try one direct lookup before scanning the input keys,
-      // assuming that language-tags are written in consistent style.
-      var value = i18nValue[languageTag];
-      if (value !== undefined) {
-         return value;}
-
-
-      var lookupKey = normalize(languageTag);
-      var availableTags = keys(i18nValue);
-      var n = availableTags.length;
-      for (var i = 0; i < n; ++i) {
-         var t = availableTags[i];
-         if (normalize(t) === lookupKey) {
-            return i18nValue[t];}}
-
-
-
-      return optionalFallback;}
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   /**
-    * For controls (such as a date-picker), we cannot anticipate all required language tags, as they may be
-    * app-specific. The relaxed localize behaves like localize if an exact localization is available. If not,
-    * the language tag is successively generalized by stripping off the rightmost sub-tags until a
-    * localization is found. Eventually, a fallback ('en') is used.
-    *
-    * @param {String} languageTag
-    *    the languageTag to lookup a localization with. Maybe `undefined`, if the value is not i18n (app does
-    *    not use i18n)
-    * @param {*} i18nValue
-    *    a possibly internationalized value:
-    *    - when passing a primitive value, it is returned as-is
-    *    - when passing an object, the `languageTag` is used to look up a localization within that object
-    * @param {*} [optionalFallback]
-    *    a value to use if no localization is available for the given language tag
-    *
-    * @return {*}
-    *    the localized value if found, the fallback `undefined` otherwise
-    */
-   function localizeRelaxed(languageTag, i18nValue, optionalFallback) {
-      assert(languageTag).hasType(String);
-      if (!i18nValue || primitives[typeof i18nValue]) {
-         // Value is not i18n (app does not use it)
-         return i18nValue;}
-
-
-      var tagParts = languageTag ? languageTag.replace(/-/g, '_').split('_') : [];
-      while (tagParts.length > 0) {
-         var currentLocaleTag = tagParts.join('-');
-         var value = localizeStrict(currentLocaleTag, i18nValue);
-         if (value !== undefined) {
-            return value;}
-
-         tagParts.pop();}
-
-
-      if (fallbackTag === undefined) {
-         fallbackTag = configuration.get('i18n.fallback', 'en');}
-
-
-      return fallbackTag && localizeStrict(fallbackTag, i18nValue) || optionalFallback;}
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   /**
-    * Encapsulate a given languageTag in a partially applied localize function.
-    *
-    * @param {String} languageTag
-    *    the languageTag to lookup localizations with
-    * @param {*} [optionalFallback]
-    *    a value to use by the localizer function whenever no localization is available for the language tag
-    *
-    * @return {Localizer}
-    *    A single-arg localize-Function, which always uses the given language-tag. It also has a `.format`
-    *    -method, which can be used as a shortcut to `string.format( localize( x ), args )`
-    */
-   function localizer(languageTag, optionalFallback) {
-
+    * @private
+    */function createStorage(backend, namespace) {/**
+                                                   * The api returned by one of the `get*Storage` functions of the *storage* module.
+                                                   *
+                                                   * @name StorageApi
+                                                   * @constructor
+                                                   */return { getItem: getItem, setItem: setItem, removeItem: removeItem }; ////////////////////////////////////////////////////////////////////////////////////////////////////////
       /**
-       * @name Localizer
-       * @private
-       */
-      function partial(i18nValue) {
-         return localize(languageTag, i18nValue, optionalFallback);}
-
-
+       * Retrieves a `value` by `key` from the store. JSON deserialization will automatically be applied.
+       *
+       * @param {String} key
+       *    the key of the item to retrieve (without namespace prefix)
+       *
+       * @return {*}
+       *    the value or `null` if it doesn't exist in the store
+       *
+       * @memberOf StorageApi
+       */function getItem(key) {var item = backend.getItem(namespace + '.' + key);return item ? JSON.parse(item) : item;} ////////////////////////////////////////////////////////////////////////////////////////////////////////
       /**
-       * Shortcut to string.format, for simple chaining to the localizer.
+       * Sets a `value` for a `key`. The value should be JSON serializable. An existing value will be
+       * overwritten.
        *
-       * These are equal:
-       * - `string.format( i18n.localizer( tag )( i18nValue ), numericArgs, namedArgs )`
-       * - `i18n.localizer( tag ).format( i18nValue, numericArgs, namedArgs )`.
+       * @param {String} key
+       *    the key of the item to set (without namespace prefix)
+       * @param {*} value
+       *    the new value to set
        *
-       * @param {String} i18nValue
-       *    the value to localize and then format
-       * @param {Array} [optionalIndexedReplacements]
-       *    replacements for any numeric placeholders in the localized value
-       * @param {Object} [optionalNamedReplacements]
-       *    replacements for any named placeholders in the localized value
+       * @memberOf StorageApi
+       */function setItem(key, value) {var nsKey = namespace + '.' + key;if (value === undefined) {backend.removeItem(nsKey);} else {backend.setItem(nsKey, JSON.stringify(value));}} ////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /**
+       * Removes the value associated with `key` from the store.
        *
-       * @return {String}
-       *    the formatted string, taking i18n into account
+       * @param {String} key
+       *    the key of the item to remove (without namespace prefix)
        *
-       * @memberOf Localizer
-       */
-      partial.format = function (i18nValue, optionalIndexedReplacements, optionalNamedReplacements) {
-         var formatString = localize(languageTag, i18nValue);
-         if (formatString === undefined) {
-            return optionalFallback;}
-
-         return format(formatString, optionalIndexedReplacements, optionalNamedReplacements);};
-
-
-      return partial;}
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+       * @memberOf StorageApi
+       */function removeItem(key) {backend.removeItem(namespace + '.' + key);}} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function getOrFakeBackend(webStorageName) {var store = window[webStorageName];if (store.setItem && store.getItem && store.removeItem) {try {var testKey = 'ax.storage.testItem'; // In iOS Safari Private Browsing, this will fail:
+            store.setItem(testKey, 1);store.removeItem(testKey);return store;} catch (e) {// setItem failed: must use fake storage
+         }}if (window.console) {var method = 'warn' in window.console ? 'warn' : 'log';window.console[method]('window.' + webStorageName + ' not available: Using non-persistent polyfill. \n' + 'Try disabling private browsing or enabling cookies.');}var backend = {};return { getItem: function getItem(key) {return backend[key] || null;}, setItem: function setItem(key, val) {backend[key] = val;}, removeItem: function removeItem(key) {if (key in backend) {delete backend[key];}} };} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function generateUniquePrefix() {var prefix = configuration.get('storagePrefix');if (prefix) {return prefix;}var str = configuration.get('name', '');var res = 0; /* jshint bitwise:false */for (var i = str.length - 1; i > 0; --i) {res = (res << 5) - res + str.charCodeAt(i);res |= 0;}return Math.abs(res);} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
    /**
-    * Retrieve the language tag of the current locale from an i18n model object, such as used on the scope.
+    * Creates a new storage module. In most cases this module will be called without arguments,
+    * but having the ability to provide them is useful e.g. for mocking purposes within tests.
+    * If the arguments are omitted, an attempt is made to access the native browser WebStorage api.
+    * If that fails, storage is only mocked by an in memory map (thus actually unavailable).
     *
-    * @param {{locale: String, tags: Object<String, String>}} i18n
-    *    an internationalization model, with reference to the currently active locale and a map from locales
-    *    to language tags
-    * @param {*} [optionalFallbackLanguageTag]
-    *    a language tag to use if no tags are found on the given object
+    * Developers are free to use polyfills to support cases where local- or session-storage may not be
+    * available. Just make sure to initialize the polyfills before this module.
     *
-    * @return {String}
-    *    the localized value if found, `undefined` otherwise
-    */
-   function languageTagFromI18n(i18n, optionalFallbackLanguageTag) {
-      if (!i18n || !i18n.hasOwnProperty('tags')) {
-         return optionalFallbackLanguageTag;}
+    * @param {Object} [localStorageBackend]
+    *    the backend for local storage, Default is `window.localStorage`
+    * @param {Object} [sessionStorageBackend]
+    *    the backend for session storage, Default is `window.sessionStorage`
+    *
+    * @return {Object}
+    *    a new storage module
+    */function create(localStorageBackend, sessionStorageBackend) {var localBackend = localStorageBackend || getOrFakeBackend(LOCAL);var sessionBackend = sessionStorageBackend || getOrFakeBackend(SESSION);var prefix = 'ax.' + generateUniquePrefix() + '.';return { /**
+                                                                                                                                                                                                                                                                         * Returns a local storage object for a specific local namespace.
+                                                                                                                                                                                                                                                                         *
+                                                                                                                                                                                                                                                                         * @param {String} namespace
+                                                                                                                                                                                                                                                                         *    the namespace to prepend to keys
+                                                                                                                                                                                                                                                                         *
+                                                                                                                                                                                                                                                                         * @return {StorageApi}
+                                                                                                                                                                                                                                                                         *    the local storage object
+                                                                                                                                                                                                                                                                         */getLocalStorage: function getLocalStorage(namespace) {assert(namespace).hasType(String).isNotNull();return createStorage(localBackend, prefix + namespace);}, /////////////////////////////////////////////////////////////////////////////////////////////////////
+         /**
+          * Returns a session storage object for a specific local namespace.
+          *
+          * @param {String} namespace
+          *    the namespace to prepend to keys
+          *
+          * @return {StorageApi}
+          *    the session storage object
+          */getSessionStorage: function getSessionStorage(namespace) {assert(namespace).hasType(String).isNotNull();return createStorage(sessionBackend, prefix + namespace);}, /////////////////////////////////////////////////////////////////////////////////////////////////////
+         /**
+          * Returns the local storage object for application scoped keys. This is equivalent to
+          * `storage.getLocalStorage( 'app' )`.
+          *
+          * @return {StorageApi}
+          *    the application local storage object
+          */getApplicationLocalStorage: function getApplicationLocalStorage() {return createStorage(localBackend, prefix + 'app');}, /////////////////////////////////////////////////////////////////////////////////////////////////////
+         /**
+          * Returns the session storage object for application scoped keys. This is equivalent to
+          * `storage.getSessionStorage( 'app' )`.
+          *
+          * @return {StorageApi}
+          *    the application session storage object
+          */getApplicationSessionStorage: function getApplicationSessionStorage() {return createStorage(sessionBackend, prefix + 'app');} };}return { setters: [function (_assert) {assert = _assert['default'];}, function (_configuration) {configuration = _configuration;}], execute: function () {SESSION = 'sessionStorage';LOCAL = 'localStorage';instance = create();_export('default', instance);} };});
 
-      return i18n.tags[i18n.locale] || optionalFallbackLanguageTag;}
+System.register('lib/utilities/timer.js', ['./object', './storage', '../logging/log'], function (_export) {/**
+                                                                                                            * Copyright 2016 aixigo AG
+                                                                                                            * Released under the MIT license.
+                                                                                                            * http://laxarjs.org/license
+                                                                                                            */'use strict';var object, storage, log, 
+
+
+
+
+   idCounter, 
+   store;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   _export('started', started);_export('resumedOrStarted', resumedOrStarted);function Timer(optionalOptions) {this.options_ = object.options(optionalOptions, { label: 'timer' + idCounter++, persistenceKey: null });this.startTime_ = null;this.stopTime_ = null;this.splitTimes_ = [];} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function now() {// cannot use window.performance, because timings need to be valid across pages:
+      return new Date().getTime();} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function saveIfPersistent(timer) {if (timer.options_.persistenceKey) {store.setItem(timer.options_.persistenceKey, { options: timer.options_, startTime: timer.startTime_, stopTime: timer.stopTime_, splitTimes: timer.splitTimes_ });}} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function restoreIfPersistent(timer) {if (timer.options_.persistenceKey) {var data = store.getItem(timer.options_.persistenceKey);if (data) {timer.options_ = data.options;timer.startTime_ = data.startTime;timer.stopTime_ = data.stopTime;timer.splitTimes_ = data.splitTimes;return true;}}return false;} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function removeIfPersistent(timer) {if (timer.options_.persistenceKey) {store.removeItem(timer.options_.persistenceKey);}} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function started(optionalOptions) {var timer = new Timer(optionalOptions);timer.start();return timer;}function resumedOrStarted(optionalOptions) {var timer = new Timer(optionalOptions);if (!restoreIfPersistent(timer)) {timer.start();}return timer;}return { setters: [function (_object) {object = _object;}, function (_storage) {storage = _storage['default'];}, function (_loggingLog) {log = _loggingLog['default'];}], execute: function () {idCounter = 0;store = storage.getSessionStorage('timer');Timer.prototype.getData = function () {return { label: this.options_.label, startTime: this.startTime_, stopTime: this.stopTime_, splitTimes: object.deepClone(this.splitTimes_) };}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+         Timer.prototype.start = function () {this.startTime_ = now();saveIfPersistent(this);}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+         Timer.prototype.splitTime = function (optionalLabel) {this.splitTimes_.push({ time: now(), label: optionalLabel || 'split' + this.splitTimes_.length });saveIfPersistent(this);}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+         Timer.prototype.stop = function () {this.stopTime_ = now();removeIfPersistent(this);}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+         Timer.prototype.stopAndLog = function (optionalLabel) {this.stop();var startTime = this.startTime_;var endTime = now();var label = optionalLabel || 'Timer Stopped';this.splitTimes_.push({ label: label, time: endTime });var message = [];message.push('Timer "', this.options_.label, '": ');message.push('start at ', new Date(startTime).toISOString(), ' (client), ');message.push(label, ' after ', (endTime - startTime).toFixed(0), 'ms ');message.push('(checkpoints: ');var intervals = [];this.splitTimes_.reduce(function (from, data) {intervals.push('"' + data.label + '"=' + (data.time - from).toFixed(0) + 'ms');return data.time;}, startTime);message.push(intervals.join(', '), ')');log.info(message.join(''));};} };});
 
-   function memoize(f) {
-      var cache = {};
-      return function (key) {
-         var value = cache[key];
-         if (value === undefined) {
-            value = f(key);
-            cache[key] = value;}
+System.register("static/schemas/flow.js", [], function (_export) {/**
+                                                                   * Copyright 2016 aixigo AG
+                                                                   * Released under the MIT license.
+                                                                   * http://laxarjs.org/license
+                                                                   */"use strict";return { setters: [], execute: function () {_export("default", 
+         { 
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "type": "object", 
+            "required": ["places"], 
+            "properties": { 
 
-         return value;};}return { setters: [function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_utilitiesAssert) {assert = _utilitiesAssert['default'];}, function (_utilitiesString) {string = _utilitiesString;}, function (_utilitiesConfiguration) {configuration = _utilitiesConfiguration;}], execute: function () {/**
-                                                                                                                                                                                                                                                                                                                                                                                       * Copyright 2015 aixigo AG
-                                                                                                                                                                                                                                                                                                                                                                                       * Released under the MIT license.
-                                                                                                                                                                                                                                                                                                                                                                                       * http://laxarjs.org/license
-                                                                                                                                                                                                                                                                                                                                                                                       */ /**
-                                                                                                                                                                                                                                                                                                                                                                                           * Utilities for dealing with internationalization (i18n).
-                                                                                                                                                                                                                                                                                                                                                                                           *
-                                                                                                                                                                                                                                                                                                                                                                                           * When requiring `laxar`, it is available as `laxar.i18n`.
-                                                                                                                                                                                                                                                                                                                                                                                           *
-                                                                                                                                                                                                                                                                                                                                                                                           * @module i18n
-                                                                                                                                                                                                                                                                                                                                                                                           */'use strict';localize = localizeRelaxed; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         primitives = { string: true, number: true, boolean: true };normalize = memoize(function (languageTag) {return languageTag.toLowerCase().replace(/[-]/g, '_');}); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         // Shortcuts: it is assumed that this module is used heavily (or not at all).
-         format = string.format;keys = _Object$keys;_export('localize', localize);_export('localizeStrict', localizeStrict);_export('localizeRelaxed', localizeRelaxed);_export('localizer', localizer);_export('languageTagFromI18n', languageTagFromI18n);} };});
+               "places": { 
+                  "type": "object", 
+                  "description": "The places for this flow.", 
+                  "patternProperties": { 
+                     "[a-z][a-zA-Z0-9_]*": { 
+                        "type": "object", 
+                        "properties": { 
 
-System.register('lib/file_resource_provider/file_resource_provider.js', ['npm:babel-runtime@5.8.34/core-js/object/keys', '../utilities/assert', '../utilities/string', '../utilities/path', '../utilities/configuration'], function (_export) {var _Object$keys, assert, string, path, configuration, 
+                           "redirectTo": { 
+                              "type": "string", 
+                              "description": "The place to redirect to when hitting this place." }, 
 
+                           "page": { 
+                              "type": "string", 
+                              "description": "The page to render for this place." }, 
 
-
-
-
-
-
-
-
-
+                           "targets": { 
+                              "type": "object", 
+                              "patternProperties": { 
+                                 "[a-z][a-zA-Z0-9_]*": { 
+                                    "type": "string" } }, 
 
 
+                              "description": "A map of symbolic targets to places reachable from this place." }, 
+
+                           "entryPoints": { 
+                              "type": "object", 
+                              "patternProperties": { 
+                                 "[a-z][a-zA-Z0-9_]*": { 
+                                    "type": "string" } }, 
+
+
+                              "description": "Entry points defined by this place." }, 
+
+                           "exitPoint": { 
+                              "type": "string", 
+                              "description": "The exit point to invoke when reaching this place." } }, 
+
+
+
+                        "additionalProperties": false } }, 
+
+
+                  "additionalProperties": false } }, 
+
+
+
+            "additionalProperties": false });} };});
+
+System.register('lib/runtime/flow_service.js', ['npm:babel-runtime@5.8.34/core-js/object/keys.js', 'npm:babel-runtime@5.8.34/core-js/get-iterator.js', 'page', '../json/validator', '../utilities/object', '../utilities/path', '../utilities/timer', '../logging/log', '../../static/schemas/flow'], function (_export) {var _Object$keys, _getIterator, pageRouter, createJsonValidator, object, path, timer, log, flowSchema, 
 
 
 
@@ -1296,8 +2514,402 @@ System.register('lib/file_resource_provider/file_resource_provider.js', ['npm:ba
 
 
 
-   q_, 
-   httpClient_, 
+
+
+
+   SESSION_KEY_TIMER, 
+
+   TARGET_SELF, 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   ROUTE_PARAMS_MATCHER;function create(fileResourceProvider, eventBus, configuration, browser, pageService) {var router = arguments.length <= 5 || arguments[5] === undefined ? pageRouter : arguments[5];var flowController = createFlowController();var api = { controller: function controller() {return flowController;}, constructPath: constructPath, constructAnchor: constructAnchor, constructAbsoluteUrl: constructAbsoluteUrl }; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /**
+       * Constructs a path, that is compatible to the expected arguments of `path()` from `path.js`. If a target
+       * is given as first argument, this is resolved using the currently active place.
+       *
+       * @param {String} targetOrPlace
+       *    the target or place id to construct the url for
+       * @param {Object} [optionalParameters]
+       *    optional map of place parameters. Missing parameters are taken from the parameters that were
+       *    passed to the currently active place
+       *
+       * @return {string}
+       *    the generated path
+       *
+       * @memberOf axFlowService
+       */function constructPath(targetOrPlace, optionalParameters) {var newParameters = object.options(optionalParameters, flowController.parameters());var placeName = flowController.placeNameForNavigationTarget(targetOrPlace, flowController.place());var place = flowController.places()[placeName];return place.expectedParameters.reduce(function (location, parameterName) {return location + '/' + encodePlaceParameter(newParameters[parameterName]);}, '/' + placeName);} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /**
+       * Constructs a path and prepends a `#` to make it directly usable as relative link within an
+       * application. If a target is given as first argument, this is resolved using the currently active
+       * place.
+       *
+       * @param {String} targetOrPlace
+       *    the target or place id to construct the url for
+       * @param {Object} [optionalParameters]
+       *    optional map of place parameters. Missing parameters are taken from the parameters that were
+       *    passed to the currently active place
+       *
+       * @return {string}
+       *    the generated anchor
+       *
+       * @memberOf axFlowService
+       */function constructAnchor(targetOrPlace, optionalParameters) {return '#!' + constructPath(targetOrPlace, optionalParameters);} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /**
+       * Constructs an absolute url to the given target or place using the given parameters application. If
+       * a target is given as first argument, this is resolved using the currently active place.
+       *
+       * @param {String} targetOrPlace
+       *    the target or place id to construct the url for
+       * @param {Object} [optionalParameters]
+       *    optional map of place parameters. Missing parameters are taken from the parameters that were
+       *    passed to the currently active place
+       *
+       * @return {string}
+       *    the generated url
+       *
+       * @memberOf axFlowService
+       */function constructAbsoluteUrl(targetOrPlace, optionalParameters) {var fullUrl = browser.location().href;var removeIndex = Math.min(fullUrl.indexOf('#'), fullUrl.indexOf('?'));return (removeIndex === -1 ? fullUrl : fullUrl.substr(0, removeIndex)) + constructAnchor(targetOrPlace, optionalParameters);}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+      function createFlowController() {var COLLABORATOR_ID = 'AxFlowController';var availablePlaces = {};var activeParameters = {};var activePlace = undefined;var navigationInProgress = false;var requestedTarget = TARGET_SELF;var controllerApi = { places: function places() {return availablePlaces;}, place: function place() {return object.deepClone(activePlace);}, parameters: function parameters() {return object.deepClone(activeParameters || {});}, placeNameForNavigationTarget: placeNameForNavigationTarget, loadFlow: function loadFlow(flowJson) {var flowFile = path.normalize(flowJson);return _loadFlow(flowFile, handleRouteChange).then(function (places) {availablePlaces = object.deepFreeze(places); // TODO make this configurable for server side rendering and non-hashbang urls
+                  router.base(browser.location().pathname);router.start({ hashbang: true, dispatch: true });return availablePlaces;});} }; ////////////////////////////////////////////////////////////////////////////////////////////////////////
+         eventBus.subscribe('navigateRequest', function (_ref) {var target = _ref.target;var parameters = _ref.data;if (navigationInProgress) {return;}requestedTarget = target;router(constructPath(target, parameters));}, { subscriber: COLLABORATOR_ID }); ////////////////////////////////////////////////////////////////////////////////////////////////////////
+         function handleRouteChange(place, context) {var parameters = decodeParametersFromContext(context);if (activePlace && place.id === activePlace.id && equals(parameters, activeParameters)) {navigationInProgress = false;log.trace('Canceling navigation to "' + place.id + '". Already there with same parameters.');return;}if (navigationInProgress) {log.trace('Canceling navigation to "' + place.id + '". Navigation already in progress.');return;}navigationInProgress = true;var navigationTimer = timer.started({ label: 'navigation (' + (activePlace ? activePlace.targets._self : '') + ' -> ' + place.targets._self + ')', persistenceKey: SESSION_KEY_TIMER });var navigateEvent = { target: requestedTarget, place: place.id, data: parameters };var options = { sender: COLLABORATOR_ID };return eventBus.publish('willNavigate.' + requestedTarget, navigateEvent, options).then(function () {if (activePlace && place.id === activePlace.id) {activeParameters = parameters;return;}return pageService.controller().tearDownPage().then(function () {log.setTag('PLCE', place.id);activeParameters = parameters;activePlace = place;}).then(function () {return pageService.controller().setupPage(place.page);});}).then(function () {return eventBus.publish('didNavigate.' + requestedTarget, navigateEvent, options);}).then(function () {requestedTarget = TARGET_SELF;navigationInProgress = false;navigationTimer.stopAndLog('didNavigate');}, function (err) {navigationInProgress = false;navigationTimer.stopAndLog('didNavigate');log.error('Failed to navigate to place "' + place.id + '". Error: [0]', err);});} ////////////////////////////////////////////////////////////////////////////////////////////////////////
+         function placeNameForNavigationTarget(targetOrPlaceName, place) {var placeName = object.path(place, 'targets.' + targetOrPlaceName, targetOrPlaceName);if (placeName in availablePlaces) {return placeName;}log.error('Unknown target or place "' + targetOrPlaceName + '". Current place: "' + place.id + '"');} ////////////////////////////////////////////////////////////////////////////////////////////////////////
+         return controllerApi;} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+      function _loadFlow(flowFile, routeRequestHandler) {return fileResourceProvider.provide(flowFile).then(function (flow) {validateFlowJson(flow);return flow.places;}).then(function (places) {return processPlaceParameters(places);}).then(function (places) {object.forEach(places, function (place, routeName) {if (place.redirectTo) {router.redirect('/' + routeName, '/' + place.redirectTo);return;}if (place.entryPoints) {router.redirect('/' + routeName, routeByEntryPoint(place.entryPoints));return;}if (place.exitPoint) {router('/' + routeName, function (context) {var exitFunction = configuration.get('flow.exitPoints.' + place.exitPoint);if (!exitFunction) {log.error('Exit point "' + place.exitPoint + '" does not exist for place "' + place.id + '".');return;}exitFunction(decodeParametersFromContext(context));});return;}if (!place.page) {log.warn('flow: invalid empty place: [0]', place.id);return;}router('/' + routeName, function (context) {return routeRequestHandler(place, context);});});if ('entry' in places) {// pageRouter.redirect( '/', '/entry' );
+               router('*', function (context) {log.trace('Received request for unknown route "' + context.path + '". Redirecting to entry');router('/entry');});} else {// TODO: make a redirect to some error page
+               router('*', function (context) {log.warn('Found no entry route to redirect to from unknown route "' + context.path + '"');});}return places; /////////////////////////////////////////////////////////////////////////////////////////////////////
+            function routeByEntryPoint(possibleEntryPoints) {var entryPoint = configuration.get('flow.entryPoint', { target: 'default', parameters: {} });var placeName = possibleEntryPoints[entryPoint.target];if (placeName) {var _ret = (function () {var targetPlace = places[placeName];var parameters = entryPoint.parameters || {};return { v: targetPlace.expectedParameters.reduce(function (uri, parameterName) {return uri + '/' + encodePlaceParameter(parameters[parameterName]);}, '/' + placeName) };})();if (typeof _ret === 'object') return _ret.v;}}});} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+      return api;} //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function decodeParametersFromContext(_ref2) {var params = _ref2.params;var parameters = {};_Object$keys(params || {}).forEach(function (key) {parameters[key] = decodePlaceParameter(params[key]);});return parameters;} //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function encodePlaceParameter(value) {return value == null ? '_' : value;} //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function decodePlaceParameter(value) {return value === '_' ? null : value;} //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function processPlaceParameters(places) {var processedRoutes = {};object.forEach(places, function (place, placeName) {place.expectedParameters = [];place.id = placeName;if (!place.targets) {place.targets = {};}if (!place.targets[TARGET_SELF]) {place.targets[TARGET_SELF] = placeName.split(/\/:/)[0];}var matches = undefined;while (matches = ROUTE_PARAMS_MATCHER.exec(placeName)) {var routeNameWithoutParams = placeName.substr(0, matches.index);place.expectedParameters.push(matches[1]);processedRoutes[routeNameWithoutParams] = place;}processedRoutes[placeName] = place;});return processedRoutes;} //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function validateFlowJson(flowJson) {var result = createJsonValidator(flowSchema).validate(flowJson);if (result.errors.length) {result.errors.forEach(function (error) {log.error(error.message);});throw new Error('Illegal flow.json format');}} //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function equals(a, b) {var aKeys = _Object$keys(a);var bKeys = _Object$keys(b);if (aKeys.length !== bKeys.length) {return false;}var _iteratorNormalCompletion = true;var _didIteratorError = false;var _iteratorError = undefined;try {for (var _iterator = _getIterator(aKeys), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {var key = _step.value;if (!(key in b) || a[key] !== b[key]) {return false;}}} catch (err) {_didIteratorError = true;_iteratorError = err;} finally {try {if (!_iteratorNormalCompletion && _iterator['return']) {_iterator['return']();}} finally {if (_didIteratorError) {throw _iteratorError;}}}return true;}return { setters: [function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_babelRuntimeCoreJsGetIterator) {_getIterator = _babelRuntimeCoreJsGetIterator['default'];}, function (_page) {pageRouter = _page['default'];}, function (_jsonValidator) {createJsonValidator = _jsonValidator.create;}, function (_utilitiesObject) {object = _utilitiesObject;}, function (_utilitiesPath) {path = _utilitiesPath;}, function (_utilitiesTimer) {timer = _utilitiesTimer;}, function (_loggingLog) {log = _loggingLog['default'];}, function (_staticSchemasFlow) {flowSchema = _staticSchemasFlow['default'];}], execute: function () {/**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             * Released under the MIT license.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             * http://laxarjs.org/license
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             */'use strict';_export('create', create);SESSION_KEY_TIMER = 'navigationTimer';TARGET_SELF = '_self';_export('TARGET_SELF', TARGET_SELF);ROUTE_PARAMS_MATCHER = /\/:([^\/]+)/ig;} };});
+
+System.register('lib/file_resource_provider/file_resource_provider.js', ['npm:babel-runtime@5.8.34/core-js/promise.js', 'npm:babel-runtime@5.8.34/core-js/object/keys.js', '../utilities/assert', '../utilities/path', '../utilities/configuration'], function (_export) {var _Promise, _Object$keys, assert, path, configuration, 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    BORDER_SLASHES_MATCHER, 
    ENTRY_TYPE_FILE;
 
@@ -1311,6 +2923,8 @@ System.register('lib/file_resource_provider/file_resource_provider.js', ['npm:ba
     * located at a path supported by a mapping, but is not found in that mapping (because it was added later),
     * it is assumed to be nonexistent.
     *
+    * @param {Object} browser
+    *    a browser abstraction
     * @param {String} rootPath
     *    the path to the root of the application. It is needed to prefix relative paths found in a listing
     *    with an absolute prefix
@@ -1318,9 +2932,10 @@ System.register('lib/file_resource_provider/file_resource_provider.js', ['npm:ba
     * @constructor
     * @private
     */
-   function FileResourceProvider(rootPath) {
-      this.useEmbedded_ = configuration.get('useEmbeddedFileListings', false);
+   function FileResourceProvider(browser, rootPath) {
+      this.browser_ = browser;
       this.rootPath_ = path.normalize(rootPath);
+      this.useEmbedded_ = configuration.get('useEmbeddedFileListings', false);
       this.fileListings_ = {};
       this.fileListingUris_ = {};
 
@@ -1411,8 +3026,6 @@ System.register('lib/file_resource_provider/file_resource_provider.js', ['npm:ba
 
 
 
-
-
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    /**
@@ -1424,19 +3037,19 @@ System.register('lib/file_resource_provider/file_resource_provider.js', ['npm:ba
     *
     * @private
     */
-   function entry(provider, resourcePath) {
-      var usablePrefixes = _Object$keys(provider.fileListingUris_).filter(function (prefix) {
+   function entry(self, resourcePath) {
+      var usablePrefixes = _Object$keys(self.fileListingUris_).filter(function (prefix) {
          return resourcePath.indexOf(prefix) === 0;});
 
 
       if (usablePrefixes.length) {
          var prefix = usablePrefixes[0];
-         return fetchListingForPath(provider, prefix).then(function (listing) {
-            return q_.when(lookup(provider, resourcePath, listing));});}
+         return fetchListingForPath(self, prefix).then(function (listing) {
+            return _Promise.resolve(lookup(self, resourcePath, listing));});}
 
 
 
-      return q_.reject();
+      return _Promise.reject();
 
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1464,16 +3077,14 @@ System.register('lib/file_resource_provider/file_resource_provider.js', ['npm:ba
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    function resourceTransform(path) {
-      return (/\.json$/.test(path) ? 
-         function (contents) {return JSON.parse(contents);} : 
-         function (contents) {return contents;});}
+      return (/\.json$/.test(path) ? function (contents) {return JSON.parse(contents);} : function (contents) {return contents;});}
 
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    function fetchListingForPath(self, path) {
       if (self.fileListings_[path]) {
-         return q_.when(self.fileListings_[path]);}
+         return _Promise.resolve(self.fileListings_[path]);}
 
 
       var listingUri = self.fileListingUris_[path];
@@ -1500,11 +3111,9 @@ System.register('lib/file_resource_provider/file_resource_provider.js', ['npm:ba
          return self.httpGets_[url];}
 
 
-      var promise = self.httpGets_[url] = httpClient_.
-      get(url, { transformResponse: [] }).
-      then(function (response) {
-         return q_.when(response.data);});
-
+      var promise = self.httpGets_[url] = self.browser_.
+      fetch(url).
+      then(function (response) {return response.text();});
 
       // Free memory when the response is complete:
       promise.then(function () {
@@ -1526,18 +3135,14 @@ System.register('lib/file_resource_provider/file_resource_provider.js', ['npm:ba
     */
    function httpHead(self, url) {
       if (url in self.httpHeadCache_) {
-         return q_.when(self.httpHeadCache_[url]);}
+         return _Promise.resolve(self.httpHeadCache_[url]);}
 
       if (url in self.httpHeads_) {
          return self.httpHeads_[url];}
 
 
-      var promise = self.httpHeads_[url] = httpClient_.head(url).
-      then(function () {
-         return true;}, 
-      function () {
-         return false;});
-
+      var promise = self.httpHeads_[url] = self.browser_.fetch(url, { method: 'HEAD' }).
+      then(function () {return true;}, function () {return false;});
 
       // Free memory and cache result when the response is complete:
       promise.then(function (result) {
@@ -1553,6 +3158,8 @@ System.register('lib/file_resource_provider/file_resource_provider.js', ['npm:ba
    /**
     * Creates and returns a new instance.
     *
+    * @param {Object} browser
+    *    a browser abstraction
     * @param {String} rootPath
     *    the path to the root of the application. It is needed to prefix relative paths found in a listing
     *    with an absolute prefix
@@ -1560,41 +3167,25 @@ System.register('lib/file_resource_provider/file_resource_provider.js', ['npm:ba
     * @return {FileResourceProvider}
     *    a new instance
     */
-   function create(rootPath) {
-      assert(q_).isNotNull('Need a promise implementation like $q or Q');
-      assert(httpClient_).isNotNull('Need a http client implementation like $http');
+   function create(browser, rootPath) {
+      assert(browser).hasProperty('fetch').isNotNull('Need a browser abstraction library providing fetch()');
 
-      return new FileResourceProvider(rootPath);}
-
-
-   ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   /**
-    * Initializes the module.
-    *
-    * @param {Object} q
-    *    a promise library like AngularJS' `$q`
-    * @param {Object} httpClient
-    *    a http client whose api conforms to AngularJS' `$http` service
-    */
-   function init(q, httpClient) {
-      q_ = q;
-      httpClient_ = httpClient;}return { setters: [function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_utilitiesAssert) {assert = _utilitiesAssert['default'];}, function (_utilitiesString) {string = _utilitiesString;}, function (_utilitiesPath) {path = _utilitiesPath;}, function (_utilitiesConfiguration) {configuration = _utilitiesConfiguration;}], execute: function () {/**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                  * Copyright 2015 aixigo AG
-                                                                                                                                                                                                                                                                                                                                                                                                                                                  * Released under the MIT license.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                  * http://laxarjs.org/license
-                                                                                                                                                                                                                                                                                                                                                                                                                                                  */ /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      * The *file_resource_provider* module defines a mechanism to load static assets from the web server of the
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      * LaxarJS application efficiently. Whenever a file should be requested from the server, the file resource
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      * provider should be used in favor of manual http requests, due to two reasons: During development it reduces
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      * the amount of `404` status replies for files that may or may not exist, and when making a release build,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      * file contents may optionally be embedded in the build bundle. This makes further http requests redundant,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      * which is especially relevant in high-latency networks, such as cellular networks.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      *
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      * This module should not be used directly, but via the `axFileResourceProvider` service provided by LaxarJS.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      *
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @module file_resource_provider
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      */'use strict';_export('create', create);_export('init', init);BORDER_SLASHES_MATCHER = /^\/|\/$/g;ENTRY_TYPE_FILE = 1;FileResourceProvider.prototype.provide = function (url) {var self = this;return entry(this, url).then(function (knownEntry) {if (typeof knownEntry === 'string') {return q_.when(knownEntry).then(resourceTransform(url));}return knownEntry !== false ? httpGet(self, url).then(resourceTransform(url)) : q_.reject();}, function () {return httpGet(self, url).then(resourceTransform(url));});}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+      return new FileResourceProvider(browser, rootPath);}return { setters: [function (_babelRuntimeCoreJsPromise) {_Promise = _babelRuntimeCoreJsPromise['default'];}, function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_utilitiesAssert) {assert = _utilitiesAssert['default'];}, function (_utilitiesPath) {path = _utilitiesPath;}, function (_utilitiesConfiguration) {configuration = _utilitiesConfiguration;}], execute: function () {/**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             * Released under the MIT license.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             * http://laxarjs.org/license
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             */ /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * The *file_resource_provider* module defines a mechanism to load static assets from the web server of the
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * LaxarJS application efficiently. Whenever a file should be requested from the server, the file resource
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * provider should be used in favor of manual http requests, due to two reasons: During development it reduces
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * the amount of `404` status replies for files that may or may not exist, and when making a release build,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * file contents may optionally be embedded in the build bundle. This makes further http requests redundant,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * which is especially relevant in high-latency networks, such as cellular networks.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * This module should not be used directly, but via the `axFileResourceProvider` service provided by LaxarJS.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @module file_resource_provider
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */'use strict';_export('create', create);BORDER_SLASHES_MATCHER = /^\/|\/$/g;ENTRY_TYPE_FILE = 1;FileResourceProvider.prototype.provide = function (url) {var self = this;return entry(this, url).then(function (knownEntry) {if (typeof knownEntry === 'string') {return _Promise.resolve(knownEntry);}return knownEntry !== false ? httpGet(self, url) : _Promise.reject();}, function () {return httpGet(self, url);}).then(resourceTransform(url));}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
          /**
           * Resolves the returned promise with `true` as argument, if the requested resource is available and
           * `false` otherwise.  If no listing for the path is available, a HEAD request takes place and either
@@ -1605,7 +3196,7 @@ System.register('lib/file_resource_provider/file_resource_provider.js', ['npm:ba
           *
           * @return {Promise}
           *    a promise that is always resolved with a boolean value
-          */FileResourceProvider.prototype.isAvailable = function isAvailable(url) {var self = this;return entry(self, url).then(function (knownEntry) {return q_.when(knownEntry !== false);}, function () {return httpHead(self, url).then(function (knownAvailable) {return q_.when(knownAvailable);});});}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+          */FileResourceProvider.prototype.isAvailable = function isAvailable(url) {var self = this;return entry(self, url).then(function (knownEntry) {return _Promise.resolve(knownEntry !== false);}, function () {return httpHead(self, url).then(function (knownAvailable) {return _Promise.resolve(knownAvailable);});});}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
          /**
           * Sets the uri to a file listing file for a given path.
           *
@@ -1624,8 +3215,1087 @@ System.register('lib/file_resource_provider/file_resource_provider.js', ['npm:ba
           *    the actual file listing
           */FileResourceProvider.prototype.setFileListingContents = function (directory, listing) {var filePathPrefix = path.join(this.rootPath_, directory);this.fileListingUris_[filePathPrefix] = '#';this.fileListings_[filePathPrefix] = listing;};} };});
 
+System.register("lib/runtime/heartbeat.js", [], function (_export) {/**
+                                                                     * Copyright 2016 aixigo AG
+                                                                     * Released under the MIT license.
+                                                                     * http://laxarjs.org/license
+                                                                     */"use strict";_export("create", create);
+   function create() {
+
+      var heartbeatListeners = [];
+      var nextQueue = [];
+      var beforeQueue = [];
+      var afterQueue = [];
+
+      var beatRequested = false;
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function registerHeartbeatListener(listener) {
+         heartbeatListeners.push(listener);
+
+         return function () {
+            var index = undefined;
+            while ((index = heartbeatListeners.indexOf(listener)) !== -1) {
+               heartbeatListeners.splice(index, 1);}};}
+
+
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      /**
+       * Schedules a function for the next heartbeat. If no heartbeat was triggered yet, it will be
+       * requested now.
+       *
+       * @param {Function} func
+       *    a function to schedule for the next tick
+       *
+       * @memberOf axHeartbeat
+       */
+      function onNext(func) {
+         if (!beatRequested) {
+            beatRequested = true;
+            setTimeout(function () {
+               while (beforeQueue.length) {beforeQueue.shift()();}
+               // The outer loop handles events published from apply-callbacks (watchers, promises).
+               do {
+                  while (nextQueue.length) {nextQueue.shift()();}
+
+                  heartbeatListeners.forEach(function (listener) {return listener();});} while (
+
+               nextQueue.length);
+               while (afterQueue.length) {afterQueue.shift()();}
+               beatRequested = false;}, 
+            0);}
+
+         nextQueue.push(func);}
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      /**
+       * Schedules a function to be called before the next heartbeat occurs. Note that `func` may never be
+       * called, if there is no next heartbeat.
+       *
+       * @param {Function} func
+       *    a function to call before the next heartbeat
+       *
+       * @memberOf axHeartbeat
+       */
+      function onBeforeNext(func) {
+         beforeQueue.push(func);}
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      /**
+       * Schedules a function to be called after the next heartbeat occured. Note that `func` may never be
+       * called, if there is no next heartbeat.
+       *
+       * @param {Function} func
+       *    a function to call after the next heartbeat
+       *
+       * @memberOf axHeartbeat
+       */
+      function onAfterNext(func) {
+         afterQueue.push(func);}
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      return { 
+         registerHeartbeatListener: registerHeartbeatListener, 
+         onBeforeNext: onBeforeNext, 
+         onNext: onNext, 
+         onAfterNext: onAfterNext };}return { setters: [], execute: function () {} };});
+
+System.registerDynamic("npm:babel-runtime@5.8.34/helpers/to-consumable-array.js", ["../core-js/array/from"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var _Array$from = $__require('../core-js/array/from')["default"];
+  exports["default"] = function(arr) {
+    if (Array.isArray(arr)) {
+      for (var i = 0,
+          arr2 = Array(arr.length); i < arr.length; i++)
+        arr2[i] = arr[i];
+      return arr2;
+    } else {
+      return _Array$from(arr);
+    }
+  };
+  exports.__esModule = true;
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/es6.array.from.js", ["./$.ctx", "./$.export", "./$.to-object", "./$.iter-call", "./$.is-array-iter", "./$.to-length", "./core.get-iterator-method", "./$.iter-detect"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var ctx = $__require('./$.ctx'),
+      $export = $__require('./$.export'),
+      toObject = $__require('./$.to-object'),
+      call = $__require('./$.iter-call'),
+      isArrayIter = $__require('./$.is-array-iter'),
+      toLength = $__require('./$.to-length'),
+      getIterFn = $__require('./core.get-iterator-method');
+  $export($export.S + $export.F * !$__require('./$.iter-detect')(function(iter) {
+    Array.from(iter);
+  }), 'Array', {from: function from(arrayLike) {
+      var O = toObject(arrayLike),
+          C = typeof this == 'function' ? this : Array,
+          $$ = arguments,
+          $$len = $$.length,
+          mapfn = $$len > 1 ? $$[1] : undefined,
+          mapping = mapfn !== undefined,
+          index = 0,
+          iterFn = getIterFn(O),
+          length,
+          result,
+          step,
+          iterator;
+      if (mapping)
+        mapfn = ctx(mapfn, $$len > 2 ? $$[2] : undefined, 2);
+      if (iterFn != undefined && !(C == Array && isArrayIter(iterFn))) {
+        for (iterator = iterFn.call(O), result = new C; !(step = iterator.next()).done; index++) {
+          result[index] = mapping ? call(iterator, mapfn, [step.value, index], true) : step.value;
+        }
+      } else {
+        length = toLength(O.length);
+        for (result = new C(length); length > index; index++) {
+          result[index] = mapping ? mapfn(O[index], index) : O[index];
+        }
+      }
+      result.length = index;
+      return result;
+    }});
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/fn/array/from.js", ["../../modules/es6.string.iterator", "../../modules/es6.array.from", "../../modules/$.core"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  $__require('../../modules/es6.string.iterator');
+  $__require('../../modules/es6.array.from');
+  module.exports = $__require('../../modules/$.core').Array.from;
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:babel-runtime@5.8.34/core-js/array/from.js", ["core-js/library/fn/array/from"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = {
+    "default": $__require('core-js/library/fn/array/from'),
+    __esModule: true
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.register('lib/runtime/area_helper.js', ['npm:babel-runtime@5.8.34/core-js/promise.js', 'npm:babel-runtime@5.8.34/core-js/array/from.js', '../utilities/object'], function (_export) {var _Promise, _Array$from, forEach;
+
+
+
+
+
+
+   /**
+    * The area helper manages widget areas, their DOM representation and their nesting structure.
+    *
+    * It tracks widget area visibility in order to compile widgets and to attach them to their areas when
+    * these become visible. It also tells the visibility service when change handlers need to be run. It does
+    * not interact with the event bus directly, but is consulted by the visibility manager to determine area
+    * nesting for visibility events.
+    */
+   function create(page) {
+
+      var exports = { 
+         setVisibility: setVisibility, 
+         areasInArea: areasInArea, 
+         areasInWidget: areasInWidget, 
+         register: register, 
+         exists: exists, 
+         attachWidgets: attachWidgets };
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      // all initially visible widgets should be attached together, to reduce jitter and unnecessary DOM ops
+      var freeToAttach = false;
+
+      // keep the dom element for each area, to attach widgets to
+      var areaToElement = {};
+
+      // track widget adapters waiting for their area to become available so that they may attach to its DOM
+      var areaToWaitingAdapters = {};
+
+      // the area name for each widget
+      var widgetIdToArea = {};
+      forEach(page.areas, function (widgets, areaName) {
+         widgets.forEach(function (widget) {
+            widgetIdToArea[widget.id] = areaName;});});
+
+
+
+      // for each widget with children, and each widget area with nested areas, store a list of child names
+      var areasInAreaMap = {};
+      var areasInWidgetMap = {};
+      forEach(page.areas, function (widgetEntries, areaName) {
+         var containerName = '';
+         if (areaName.indexOf('.') !== -1) {
+            var widgetId = areaName.split('.')[0];
+            areasInWidgetMap[widgetId] = areasInWidgetMap[widgetId] || [];
+            areasInWidgetMap[widgetId].push(areaName);
+            containerName = widgetIdToArea[widgetId];}
+
+         areasInAreaMap[containerName] = areasInAreaMap[containerName] || [];
+         areasInAreaMap[containerName].push(areaName);});
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function setVisibility(areaName, visible) {
+         if (visible && freeToAttach) {
+            attachWaitingAdapters(areaName);}
+
+         visibilityHelper.updateState(areaName, visible);}
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function areasInArea(containerName) {
+         return areasInAreaMap[containerName];}
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function areasInWidget(widgetId) {
+         return areasInWidgetMap[widgetId];}
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      /**
+       * Register a widget area
+       *
+       * @param {String} name
+       *    the area name as used in the page definition
+       * @param {HTMLElement} element
+       *    an HTML element representing the widget area
+       *
+       * @return {Function}
+       *    removes the according area from the registry again
+       */
+      function register(name, element) {
+         if (name in areaToElement) {
+            throw new Error('The area "' + name + '" is defined twice in the current layout.');}
+
+
+         areaToElement[name] = element;
+         if (freeToAttach && visibilityHelper.isVisible(name)) {
+            attachWaitingAdapters(name);}
+
+
+         return function () {
+            delete areaToElement[name];};}
+
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function exists(name) {
+         return name in areaToElement;}
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function attachWidgets(widgetAdapters) {
+         freeToAttach = true;
+         widgetAdapters.forEach(function (adapterRef) {
+            var areaName = widgetIdToArea[adapterRef.id];
+            areaToWaitingAdapters[areaName] = areaToWaitingAdapters[areaName] || [];
+            areaToWaitingAdapters[areaName].push(adapterRef);});
+
+         forEach(page.areas, function (widgets, areaName) {
+            if (visibilityHelper.isVisible(areaName)) {
+               attachWaitingAdapters(areaName);}});}
+
+
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      /** @private */
+      function attachWaitingAdapters(areaName) {
+         var waitingAdapters = areaToWaitingAdapters[areaName];
+         if (!waitingAdapters || !waitingAdapters.length) {return;}
+
+         var element = areaToElement[areaName];
+         if (!element) {return;}
+
+         // Make sure that all assets are available before proceeding, so that DOM update happens en bloc.
+         _Promise.all(waitingAdapters.map(function (adapterRef) {return adapterRef.templatePromise;})).
+         then(function (htmlTemplates) {
+            // prepare first/last bootstrap classes for appending widgets
+            var children = childrenOf(element);
+            var currentLast = children[children.length - 1];
+            if (currentLast) {removeClass(currentLast, 'last');}
+            var currentFirst = children[0];
+
+            waitingAdapters.forEach(function (adapterRef, i) {
+               adapterRef.adapter.domAttachTo(element, htmlTemplates[i]);});
+
+
+            // fix first/last bootstrap classes as needed
+            children = childrenOf(element);
+            if (!currentFirst) {
+               var first = children[0];
+               if (first) {addClass(first, 'first');}}
+
+            var last = children[children.length - 1];
+            if (last) {addClass(last, 'last');}});
+
+
+         delete areaToWaitingAdapters[areaName];}
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      // TODO: For now taken from previous axVisibilityService. Perhaps this might be simplified.
+      var knownState = {};
+      var visibilityHelper = { 
+
+         isVisible: function isVisible(area) {
+            return knownState[area] || false;}, 
+
+
+         ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+         /**
+          * Run all handlers registered for the given area and target state after the next heartbeat.
+          * Also remove any handlers that have been cleared since the last run.
+          * @private
+          */
+         updateState: function updateState(area, targetState) {
+            knownState[area] = targetState;} };
+
+
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      return exports;}
+
+
+
+   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function addClass(element, cssClass) {
+      if (element.classList) {
+         element.classList.add(cssClass);
+         return;}
+
+      element.className += ' ' + cssClass;}
+
+
+   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function removeClass(element, cssClass) {
+      if (element.classList) {
+         element.classList.remove(cssClass);
+         return;}
+
+      element.className = element.className.
+      split(' ').
+      map(function (c) {return c.trim();}).
+      filter(function (c) {return c !== cssClass;}).
+      join(' ');}
+
+
+   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function childrenOf(element) {
+      // we are only interested in element nodes
+      return _Array$from(element.childNodes).filter(function (_) {return _.nodeType === 1;});}
+
+
+   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function findWidgetAreas(rootElement) {
+      var areas = {};
+      _Array$from(rootElement.querySelectorAll('[ax-widget-area],[data-ax-widget-area]')).
+      forEach(function (elem) {
+         var name = elem.getAttribute('ax-widget-area') || elem.getAttribute('data-ax-widget-area');
+
+         areas[name] = elem;});
+
+      return areas;}return { setters: [function (_babelRuntimeCoreJsPromise) {_Promise = _babelRuntimeCoreJsPromise['default'];}, function (_babelRuntimeCoreJsArrayFrom) {_Array$from = _babelRuntimeCoreJsArrayFrom['default'];}, function (_utilitiesObject) {forEach = _utilitiesObject.forEach;}], execute: function () {/**
+                                                                                                                                                                                                                                                                                                                               * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                                                                                                                               * Released under the MIT license.
+                                                                                                                                                                                                                                                                                                                               * http://laxarjs.org/license
+                                                                                                                                                                                                                                                                                                                               */'use strict';_export('create', create);_export('findWidgetAreas', findWidgetAreas);} };});
+
+System.register('lib/runtime/layout_widget_adapter.js', ['npm:babel-runtime@5.8.34/core-js/object/keys.js', './area_helper'], function (_export) {var _Object$keys, findWidgetAreas;
+
+
+
+
+
+
+   function create(areaHelper, layout, widget) {
+
+      var exports = { 
+         createController: createController, 
+         domAttachTo: domAttachTo, 
+         domDetach: domDetach, 
+         destroy: destroy };
+
+      var layoutNode = undefined;
+      var deregister = function deregister() {};
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function createController() {}
+      // noop
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function domAttachTo(areaElement, htmlTemplate) {
+         if (layoutNode) {
+            areaElement.appendChild(layoutNode);
+            return;}
+
+
+         layoutNode = document.createElement('div');
+         layoutNode.id = widget.id;
+         layoutNode.className = layout.className;
+         layoutNode.innerHTML = htmlTemplate;
+
+         var areas = findWidgetAreas(layoutNode);
+         var deregisterFuncs = _Object$keys(areas).
+         map(function (areaName) {return areaHelper.register(widget.id + '.' + areaName, areas[areaName]);});
+         deregister = function () {return deregisterFuncs.forEach(function (func) {return func();});};
+
+         areaElement.appendChild(layoutNode);}
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function domDetach() {
+         if (layoutNode.parentNode) {
+            layoutNode.parentNode.removeChild(layoutNode);}}
+
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function destroy() {
+         deregister();
+         layoutNode = null;}
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      return exports;}return { setters: [function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_area_helper) {findWidgetAreas = _area_helper.findWidgetAreas;}], execute: function () {/**
+                                                                                                                                                                                                                                                 * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                                                 * Released under the MIT license.
+                                                                                                                                                                                                                                                 * http://laxarjs.org/license
+                                                                                                                                                                                                                                                 */'use strict';_export('create', create);} };});
+
+System.register('lib/runtime/page_service.js', ['npm:babel-runtime@5.8.34/helpers/to-consumable-array.js', 'npm:babel-runtime@5.8.34/core-js/promise.js', 'npm:babel-runtime@5.8.34/core-js/object/keys.js', '../utilities/assert', './area_helper', './layout_widget_adapter', '../tooling/pages'], function (_export) {var _toConsumableArray, _Promise, _Object$keys, assert, createAreaHelper, findWidgetAreas, createLayoutWidgetAdapter, pageTooling;
+
+
+
+
+
+
+
+
+
+   function create(eventBus, heartbeat, pageLoader, layoutLoader, widgetLoader, themeManager, localeManager, visibilityManager) {
+
+      assert(eventBus).isNotNull();
+      assert(heartbeat).isNotNull();
+      assert(pageLoader).isNotNull();
+      assert(layoutLoader).isNotNull();
+      assert(widgetLoader).isNotNull();
+      assert(themeManager).isNotNull();
+      assert(localeManager).isNotNull();
+      assert(visibilityManager).isNotNull();
+
+      var pageController = undefined;
+
+      var pageServiceApi = { 
+         createControllerFor: function createControllerFor(pageElement) {
+            assert.state(!pageController, 'Cannot create a page controller more than once.');
+            assert.state(
+            pageElement instanceof HTMLElement, 
+            'A page controller can only be created for a valid DOM element.');
+
+
+            pageController = createPageController(pageElement);
+            return pageController;}, 
+
+         controller: function controller() {return pageController;} };
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function createPageController(pageElement) {
+
+         var api = { 
+            setupPage: setupPage, 
+            tearDownPage: tearDownPage };
+
+
+         heartbeat.registerHeartbeatListener(function () {
+            viewChangeApplyFunctions.forEach(function (applyFunction) {return applyFunction();});});
+
+
+         pageElement.innerHTML = '';
+
+         /** Delay between sending didLifeCycle and attaching widget templates. */
+         var WIDGET_ATTACH_DELAY_MS = 5;
+         var COLLABORATOR_ID = 'AxPageController';
+         var LIFECYCLE_EVENT = { lifecycleId: 'default' };
+         var EVENT_OPTIONS = { sender: COLLABORATOR_ID };
+         var DEFAULT_AREAS = [
+         { name: 'activities', hidden: true }, 
+         { name: 'popups' }, 
+         { name: 'popovers' }];
+
+
+         var viewChangeApplyFunctions = [];
+         var activeWidgetAdapterWrappers = [];
+         var cleanUpLayout = function cleanUpLayout() {};
+
+         ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+         function setupPage(pageName) {
+            assert(pageName).hasType(String).isNotNull();
+
+            var areaHelper = undefined;
+
+            return pageLoader.load(pageName).
+            then(function (page) {
+               areaHelper = createAreaHelper(page);
+               visibilityManager.setAreaHelper(areaHelper);
+
+               var layoutPromise = layoutLoader.load(page.layout).
+               then(function (layoutInfo) {return cleanUpLayout = renderLayout(pageElement, areaHelper, layoutInfo);});
+
+               localeManager.subscribe();
+               var layoutWidget = function layoutWidget(widget) {return layoutWidgetAdapterFor(areaHelper, widget);};
+
+               // instantiate controllers wrapped by widget adapters
+               var widgetPromises = widgetsForPage(page).
+               map(function (widget) {return 'layout' in widget ? layoutWidget(widget) : widgetLoader.load(widget);});
+
+               return _Promise.all([].concat(_toConsumableArray(widgetPromises), [layoutPromise])).
+               then(function (results) {return results.slice(0, -1);});}).
+
+            then(function (widgetAdapterWrappers) {
+               pageTooling.setCurrentPage(pageName);
+               viewChangeApplyFunctions = 
+               widgetAdapterWrappers.reduce(function (viewChangeApplyFunctions, adapter) {
+                  if (typeof adapter.applyViewChanges === 'function' && 
+                  viewChangeApplyFunctions.indexOf(adapter.applyViewChanges) === -1) {
+                     return [].concat(_toConsumableArray(viewChangeApplyFunctions), [adapter.applyViewChanges]);}
+
+                  return viewChangeApplyFunctions;}, 
+               []);
+               activeWidgetAdapterWrappers = widgetAdapterWrappers;}).
+
+            then(localeManager.initialize).
+            then(function () {
+               var theme = themeManager.getTheme();
+               return eventBus.publish('didChangeTheme.' + theme, { theme: theme }, EVENT_OPTIONS);}).
+
+            then(function () {
+               return eventBus.publishAndGatherReplies(
+               'beginLifecycleRequest.default', LIFECYCLE_EVENT, EVENT_OPTIONS);}).
+
+
+            then(visibilityManager.initialize)
+            // Give the widgets (a little) time to settle on the event bus before $digesting and painting:
+            .then(function () {return delay(WIDGET_ATTACH_DELAY_MS);}).
+            then(function () {return areaHelper.attachWidgets(activeWidgetAdapterWrappers);});}
+
+
+         ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+         function tearDownPage() {
+            visibilityManager.unsubscribe();
+            localeManager.unsubscribe();
+
+            return eventBus.
+            publishAndGatherReplies('endLifecycleRequest.default', LIFECYCLE_EVENT, EVENT_OPTIONS).
+            then(function () {
+               activeWidgetAdapterWrappers.forEach(function (wrapper) {return wrapper.destroy();});
+               activeWidgetAdapterWrappers = [];
+               cleanUpLayout();
+               cleanUpLayout = function () {};
+               viewChangeApplyFunctions = [];});}
+
+
+
+         ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+         function widgetsForPage(page) {
+            return _Object$keys(page.areas).reduce(function (widgets, areaName) {
+               var areaWidgets = page.areas[areaName];
+               return areaWidgets.reduce(function (widgets, widget) {
+                  widget.area = areaName;
+                  return [].concat(_toConsumableArray(widgets), [widget]);}, 
+               widgets);}, 
+            []);}
+
+
+         ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+         function layoutWidgetAdapterFor(areaHelper, widget) {
+            return layoutLoader.load(widget.layout).
+            then(function (layout) {
+               var adapter = createLayoutWidgetAdapter(areaHelper, layout, { 
+                  area: widget.area, 
+                  id: widget.id, 
+                  path: widget.layout });
+
+
+               return { 
+                  id: widget.id, 
+                  adapter: adapter, 
+                  destroy: adapter.destroy, 
+                  templatePromise: _Promise.resolve(layout.htmlContent) };});}
+
+
+
+
+         ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+         function renderLayout(pageElement, areaHelper, layoutInfo) {
+
+            addClass(pageElement, layoutInfo.className);
+            pageElement.innerHTML = layoutInfo.htmlContent;
+
+            var areas = findWidgetAreas(pageElement);
+            var deregisterFuncs = _Object$keys(areas).
+            map(function (areaName) {return areaHelper.register(areaName, areas[areaName]);});
+
+            DEFAULT_AREAS.forEach(function (area) {
+               if (areaHelper.exists(area.name)) {
+                  return;}
+
+
+               var node = document.createElement('div');
+               // We only set the attribute here for debugging purposes
+               node.setAttribute('ax-widget-area', area.name);
+               if (area.hidden) {
+                  node.style.display = 'none';}
+
+               deregisterFuncs.push(areaHelper.register(area.name, node));
+               pageElement.appendChild(node);});
+
+
+            return function () {
+               deregisterFuncs.forEach(function (func) {return func();});
+               removeClass(pageElement, layoutInfo.className);};}
+
+
+
+         ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+         return api;}
+
+
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      return pageServiceApi;}
+
+
+
+   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function addClass(element, cssClass) {
+      if (element.classList) {
+         element.classList.add(cssClass);
+         return;}
+
+      element.className += ' ' + cssClass;}
+
+
+   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function removeClass(element, cssClass) {
+      if (element.classList) {
+         element.classList.remove(cssClass);
+         return;}
+
+      element.className = element.className.
+      split(' ').
+      map(function (c) {return c.trim();}).
+      filter(function (c) {return c !== cssClass;}).
+      join(' ');}
+
+
+   //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function delay(ms) {
+      return new _Promise(function (resolve) {return setTimeout(resolve, ms);});}return { setters: [function (_babelRuntimeHelpersToConsumableArray) {_toConsumableArray = _babelRuntimeHelpersToConsumableArray['default'];}, function (_babelRuntimeCoreJsPromise) {_Promise = _babelRuntimeCoreJsPromise['default'];}, function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_utilitiesAssert) {assert = _utilitiesAssert['default'];}, function (_area_helper) {createAreaHelper = _area_helper.create;findWidgetAreas = _area_helper.findWidgetAreas;}, function (_layout_widget_adapter) {createLayoutWidgetAdapter = _layout_widget_adapter.create;}, function (_toolingPages) {pageTooling = _toolingPages['default'];}], execute: function () {/**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  * Released under the MIT license.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  * http://laxarjs.org/license
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  */'use strict';_export('create', create);} };});
+
+System.register('lib/runtime/locale_event_manager.js', ['npm:babel-runtime@5.8.34/core-js/promise.js', 'npm:babel-runtime@5.8.34/core-js/object/keys.js', '../utilities/object'], function (_export) {var _Promise, _Object$keys, deepClone, 
+
+
+
+
+
+
+   senderOptions, 
+   subscriberOptions;
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   /**
+    * The LocaleManager initializes the locale(s) and implements changes to them.
+    *
+    * Before publishing the state of all configured locales, it listens to change requests, allowing
+    * widgets and activities (such as a LocaleSwitcherWidget) to influence the state of locales before
+    * the navigation is complete.
+    */
+   function create(eventBus, configuration) {
+
+      var exports = { 
+         initialize: initialize, 
+         subscribe: subscribe, 
+         unsubscribe: unsubscribe };
+
+
+      var configLocales_ = configuration.get('i18n.locales', { 'default': 'en' });
+      var i18n = undefined;
+      var initialized = undefined;
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function handleRequest(event) {
+         i18n[event.locale] = event.languageTag;
+         if (initialized) {
+            publish(event.locale);}}
+
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function publish(locale) {
+         var event = { locale: locale, languageTag: i18n[locale] };
+         return eventBus.publish('didChangeLocale.' + locale, event, senderOptions);}
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function initialize() {
+         initialized = true;
+         return _Promise.all(_Object$keys(configLocales_).map(publish));}
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function unsubscribe() {
+         eventBus.unsubscribe(handleRequest);}
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function subscribe() {
+         i18n = deepClone(configLocales_);
+         initialized = false;
+
+         eventBus.subscribe('changeLocaleRequest', handleRequest, subscriberOptions);}
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      return exports;}return { setters: [function (_babelRuntimeCoreJsPromise) {_Promise = _babelRuntimeCoreJsPromise['default'];}, function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_utilitiesObject) {deepClone = _utilitiesObject.deepClone;}], execute: function () {/**
+                                                                                                                                                                                                                                                                                                                                        * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                                                                                                                                        * Released under the MIT license.
+                                                                                                                                                                                                                                                                                                                                        * http://laxarjs.org/license
+                                                                                                                                                                                                                                                                                                                                        */'use strict';_export('create', create);senderOptions = { sender: 'AxPageController' };subscriberOptions = { subscriber: 'AxPageController' };} };});
+
+System.register('lib/runtime/visibility_event_manager.js', ['npm:babel-runtime@5.8.34/core-js/promise.js'], function (_export) {var _Promise, 
+
+
+
+
+   senderOptions, 
+   subscriberOptions;
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   /**
+    * The visibility event manager initializes and coordinates events for widget area visibility.
+    *
+    * It subscribes to all visibility changes and propagates them to nested widget areas
+    * (if applicable). It is not concerned with the resulting DOM-visibility of individual controls:
+    * the `axVisibilityService` takes care of that.
+    *
+    * @return {{initialize: Function}}
+    *    a function to trigger initialization of the manager and initial widget visibility
+    */
+   function create(eventBus) {
+
+      var exports = { 
+         initialize: initialize, 
+         setAreaHelper: setAreaHelper, 
+         unsubscribe: unsubscribe };
+
+
+      var areaHelper_ = undefined;
+      var ROOT = '';
+
+      function setAreaHelper(areaHelper) {
+         areaHelper_ = areaHelper;}
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function initialize() {
+         // broadcast visibility changes in individual widgets to their nested areas
+         eventBus.subscribe('changeWidgetVisibilityRequest', handleChangeWidgetRequest, subscriberOptions);
+
+         // broadcast visibility changes in widget areas to their nested areas
+         eventBus.subscribe('changeAreaVisibilityRequest', handleChangeAreaRequest, subscriberOptions);
+
+         return implementAreaChange(ROOT, true);}
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function handleChangeWidgetRequest(event) {
+         var affectedAreas = areaHelper_.areasInWidget(event.widget);
+         var will = ['willChangeWidgetVisibility', event.widget, event.visible].join('.');
+         var did = ['didChangeWidgetVisibility', event.widget, event.visible].join('.');
+
+         eventBus.publish(will, event, senderOptions);
+
+         _Promise.all((affectedAreas || []).map(event.visible ? show : hide)).
+         then(function () {return eventBus.publish(did, event, senderOptions);});}
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function handleChangeAreaRequest(event) {
+         return initiateAreaChange(event.area, event.visible);}
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function show(area) {
+         return requestAreaChange(area, true);}
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function hide(area) {
+         return requestAreaChange(area, false);}
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      /**
+       * First, publish a `changeAreaVisibilityRequest` to ask if some widget would like to manage the
+       * given area's visibility.
+       * If no widget responds, self-issue a will/did-response to notify interested widgets in the area
+       * of their new visibility status.
+       * In either case, manage the propagation to nested areas and inform the area helper so that it
+       * may compile and attach the templates of any newly visible widgets.
+       *
+       * @param {String} area
+       *    the area whose visibility to update
+       * @param {Boolean} visible
+       *    the new visibility state of the given area, to the best knowledge of the client
+       */
+      function requestAreaChange(area, visible) {
+         var request = ['changeAreaVisibilityRequest', area].join('.');
+         var event = { area: area, visible: visible };
+         return eventBus.publishAndGatherReplies(request, event, senderOptions).
+         then(function (responses) {
+            if (responses.length === 0) {
+               // no one took responsibility, so the event manager determines visibility by area nesting
+               return initiateAreaChange(area, visible);}
+
+            // assume the first 'did'-response to be authoritative:
+            var response = responses[0];
+            return implementAreaChange(area, response.event.visible);});}
+
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      /**
+       * Set the new visibility state for the given area, then issue requests for the child areas.
+       * Inform the area helper so that it may compile and attach the templates of any newly visible
+       * widgets.
+       */
+      function initiateAreaChange(area, visible) {
+         var will = ['willChangeAreaVisibility', area, visible].join('.');
+         var event = { area: area, visible: visible };
+         return eventBus.publish(will, event, senderOptions).
+         then(function () {return implementAreaChange(area, visible);}).
+         then(function () {
+            var did = ['didChangeAreaVisibility', area, visible].join('.');
+            return eventBus.publish(did, event, senderOptions);});}
+
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function implementAreaChange(ofArea, areaVisible) {
+         areaHelper_.setVisibility(ofArea, areaVisible);
+         var children = areaHelper_.areasInArea(ofArea);
+         if (!children) {
+            return _Promise.resolve();}
+
+
+         return _Promise.all(children.map(areaVisible ? show : hide));}
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function unsubscribe() {
+         eventBus.unsubscribe(handleChangeAreaRequest);
+         eventBus.unsubscribe(handleChangeWidgetRequest);}
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      return exports;}return { setters: [function (_babelRuntimeCoreJsPromise) {_Promise = _babelRuntimeCoreJsPromise['default'];}], execute: function () {/**
+                                                                                                                                                            * Copyright 2016 aixigo AG
+                                                                                                                                                            * Released under the MIT license.
+                                                                                                                                                            * http://laxarjs.org/license
+                                                                                                                                                            */'use strict';_export('create', create);senderOptions = { sender: 'AxPageController', deliverToSender: false };subscriberOptions = { subscriber: 'AxPageController' };} };});
+
+System.register('lib/loaders/css_loader.js', ['../utilities/object', '../utilities/path'], function (_export) {/**
+                                                                                                                * Copyright 2016 aixigo AG
+                                                                                                                * Released under the MIT license.
+                                                                                                                * http://laxarjs.org/license
+                                                                                                                */'use strict';var forEach, path;_export('create', create);
+
+
+
+   function create(configuration, themeManager, productPath) {
+      var mergedCssFileLoaded = [].some.call(document.getElementsByTagName('link'), function (link) {
+         return link.hasAttribute('data-ax-merged-css');});
+
+
+      if (mergedCssFileLoaded) {
+         return { load: function load() {} };}
+
+
+      var loadedFiles = [];
+      var loader = { 
+         /**
+          * If not already loaded, loads the given file into the current page by appending a `link` element to
+          * the document's `head` element.
+          *
+          * Additionally it works around a
+          * [style sheet limit](http://support.microsoft.com/kb/262161) in older Internet Explorers
+          * (version < 10). The workaround is based on
+          * [this test](http://john.albin.net/ie-css-limits/993-style-test.html).
+          *
+          * @param {String} url
+          *    the url of the css file to load
+          *
+          * @memberOf axCssLoader
+          */
+         load: function load(url) {
+
+            if (loadedFiles.indexOf(url) === -1) {
+               if (hasStyleSheetLimit()) {
+                  // Here we most probably have an Internet Explorer having the limit of at most 31 stylesheets
+                  // per page. As a workaround we use style tags with import statements. Each style tag may
+                  // have 31 import statement. This gives us 31 * 31 = 961 possible stylesheets to include ...
+                  // Link to the problem on microsoft.com: http://support.microsoft.com/kb/262161
+                  // Solution based on ideas found here: http://john.albin.net/css/ie-stylesheets-not-loading
+
+                  var styleManagerId = 'cssLoaderStyleSheet' + Math.floor(loadedFiles.length / 30);
+                  if (!document.getElementById(styleManagerId)) {
+                     addHeadElement('style', { 
+                        type: 'text/css', 
+                        id: styleManagerId });}
+
+
+
+                  document.getElementById(styleManagerId).styleSheet.addImport(url);} else 
+
+               {
+                  addHeadElement('link', { 
+                     type: 'text/css', 
+                     id: 'cssLoaderStyleSheet' + loadedFiles.length, 
+                     rel: 'stylesheet', 
+                     href: url });}
+
+
+
+               loadedFiles.push(url);}} };
+
+
+
+
+      if (configuration.get('useMergedCss', false)) {
+         loader.load(path.join(productPath, 'const/static/css', themeManager.getTheme() + '.theme.css'));
+         return { load: function load() {} };}
+
+
+      return loader;
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function hasStyleSheetLimit() {
+         if (typeof hasStyleSheetLimit.result !== 'boolean') {
+            hasStyleSheetLimit.result = false;
+            if (document.createStyleSheet) {
+               var uaMatch = navigator.userAgent.match(/MSIE ?(\d+(\.\d+)?)[^\d]/i);
+               if (!uaMatch || parseFloat(uaMatch[1]) < 10) {
+                  // There is no feature test for this problem without running into it. We therefore test
+                  // for a browser knowing document.createStyleSheet (should only be IE) and afterwards check,
+                  // if it is a version prior to 10 as the problem is fixed since that version. In any other
+                  // case we assume the worst case and trigger the hack for limited browsers.
+                  hasStyleSheetLimit.result = true;}}}
+
+
+
+         return hasStyleSheetLimit.result;}
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      function addHeadElement(elementName, attributes) {
+         var element = document.createElement(elementName);
+         forEach(attributes, function (val, key) {
+            element[key] = val;});
+
+         document.getElementsByTagName('head')[0].appendChild(element);}}return { setters: [function (_utilitiesObject) {forEach = _utilitiesObject.forEach;}, function (_utilitiesPath) {path = _utilitiesPath;}], execute: function () {
+
+         ;} };});
+
 System.register('lib/loaders/layout_loader.js', ['../utilities/path'], function (_export) {/**
-                                                                                            * Copyright 2015 aixigo AG
+                                                                                            * Copyright 2016 aixigo AG
                                                                                             * Released under the MIT license.
                                                                                             * http://laxarjs.org/license
                                                                                             */'use strict';var path;_export('create', create);
@@ -1671,1060 +4341,6 @@ System.register('lib/loaders/layout_loader.js', ['../utilities/path'], function 
                html: results[0], 
                css: results[1], 
                className: layoutName.replace(/\//g, '').replace(/_/g, '-') + '-layout' };});}}return { setters: [function (_utilitiesPath) {path = _utilitiesPath;}], execute: function () {} };});
-
-System.register('lib/runtime/runtime_services.js', ['angular', '../event_bus/event_bus', '../i18n/i18n', '../file_resource_provider/file_resource_provider', '../logging/log', '../utilities/object', '../utilities/path', '../loaders/layout_loader', '../loaders/paths', '../utilities/configuration', './controls_service', './theme_manager'], function (_export) {/**
-                                                                                                                                                                                                                                                                                                                                                                        * Copyright 2015 aixigo AG
-                                                                                                                                                                                                                                                                                                                                                                        * Released under the MIT license.
-                                                                                                                                                                                                                                                                                                                                                                        * http://laxarjs.org/license
-                                                                                                                                                                                                                                                                                                                                                                        */
-   /**
-    * This module provides some services for AngularJS DI. Although it is fine to use these services in widgets,
-    * most of them are primarily intended to be used internally by LaxarJS. Documentation is nevertheless of use
-    * when e.g. they need to be mocked during tests.
-    *
-    * @module axRuntimeServices
-    */
-
-
-
-
-   // TODO: should be changed to "import * as log" as soon as default export in log is removed
-   'use strict';var ng, eventBus, i18n, fileResourceProvider, log, object, path, layoutLoader, paths, configuration, controlsService, themeManager, 
-
-
-
-
-
-
-
-
-   _module, 
-
-
-
-   $qProvider_, 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   CONFIG_KEY_HTTP_LOGGING_HEADER, 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   sensitiveData, 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   name;function eventBusErrorHandler(message, optionalErrorInformation) {log.error('EventBus: ' + message);if (optionalErrorInformation) {ng.forEach(optionalErrorInformation, function (info, title) {var formatString = '   - [0]: [1:%o]';if (sensitiveData.indexOf(title) !== -1) {formatString = '   - [0]: [1:%o:anonymize]';}log.error(formatString, title, info);if (info instanceof Error && info.stack) {log.error('   - Stacktrace: ' + info.stack);}});}} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   return { setters: [function (_angular) {ng = _angular['default'];}, function (_event_busEvent_bus) {eventBus = _event_busEvent_bus;}, function (_i18nI18n) {i18n = _i18nI18n;}, function (_file_resource_providerFile_resource_provider) {fileResourceProvider = _file_resource_providerFile_resource_provider;}, function (_loggingLog) {log = _loggingLog['default'];}, function (_utilitiesObject) {object = _utilitiesObject;}, function (_utilitiesPath) {path = _utilitiesPath;}, function (_loadersLayout_loader) {layoutLoader = _loadersLayout_loader;}, function (_loadersPaths) {paths = _loadersPaths;}, function (_utilitiesConfiguration) {configuration = _utilitiesConfiguration;}, function (_controls_service) {controlsService = _controls_service;}, function (_theme_manager) {themeManager = _theme_manager;}], execute: function () {_module = ng.module('axRuntimeServices', []); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         _module.config(['$qProvider', '$httpProvider', function ($qProvider, $httpProvider) {$qProvider_ = $qProvider;if (configuration.get(CONFIG_KEY_HTTP_LOGGING_HEADER)) {$httpProvider.interceptors.push('axLogHttpInterceptor');}}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * This is a scheduler for asynchronous tasks (like nodejs' `process.nextTick`)  trimmed for performance.
-          * It is intended for use cases where many tasks are scheduled in succession within one JavaScript event
-          * loop. It integrates into the AngularJS *$digest* cycle, while trying to minimize the amount of full
-          * *$digest* cycles.
-          *
-          * For example in LaxarJS the global event bus instance ({@link axGlobalEventBus}) uses this service.
-          *
-          * @name axHeartbeat
-          * @injection
-          */_module.factory('axHeartbeat', ['$window', '$rootScope', 'axPageService', function ($window, $rootScope, pageService) {var nextQueue = [];var beatRequested = false;var rootScopeDigested = false;$rootScope.$watch(function () {rootScopeDigested = true;}); /**
-                                                                                                                                                                                                                                                                           * Schedules a function for the next heartbeat. If no heartbeat was triggered yet, it will be
-                                                                                                                                                                                                                                                                           * requested now.
-                                                                                                                                                                                                                                                                           *
-                                                                                                                                                                                                                                                                           * @param {Function} func
-                                                                                                                                                                                                                                                                           *    a function to schedule for the next tick
-                                                                                                                                                                                                                                                                           *
-                                                                                                                                                                                                                                                                           * @memberOf axHeartbeat
-                                                                                                                                                                                                                                                                           */function onNext(func) {if (!beatRequested) {beatRequested = true;$window.setTimeout(function () {while (beforeQueue.length) {beforeQueue.shift()();} // The outer loop handles events published from apply-callbacks (watchers, promises).
-                     do {while (nextQueue.length) {nextQueue.shift()();}rootScopeDigested = false;var pageController = pageService.controller();if (pageController) {pageController.applyViewChanges();} // Since LaxarJS itself still heavily depends on AngularJS and its digest cycle concept,
-                        // we need to make sure that a digest cycle is triggered, even if there is no widget
-                        // based on angular technology requesting it. This can be removed as soon as
-                        // https://github.com/LaxarJS/laxar/issues/216 is fixed
-                        if (!rootScopeDigested) {$rootScope.$apply();}} while (nextQueue.length);while (afterQueue.length) {afterQueue.shift()();}beatRequested = false;}, 0);}nextQueue.push(func);}var beforeQueue = []; /**
-                                                                                                                                                                                                                            * Schedules a function to be called before the next heartbeat occurs. Note that `func` may never be
-                                                                                                                                                                                                                            * called, if there is no next heartbeat.
-                                                                                                                                                                                                                            *
-                                                                                                                                                                                                                            * @param {Function} func
-                                                                                                                                                                                                                            *    a function to call before the next heartbeat
-                                                                                                                                                                                                                            *
-                                                                                                                                                                                                                            * @memberOf axHeartbeat
-                                                                                                                                                                                                                            */function onBeforeNext(func) {beforeQueue.push(func);}var afterQueue = []; /**
-                                                                                                                                                                                                                                                                                                         * Schedules a function to be called after the next heartbeat occured. Note that `func` may never be
-                                                                                                                                                                                                                                                                                                         * called, if there is no next heartbeat.
-                                                                                                                                                                                                                                                                                                         *
-                                                                                                                                                                                                                                                                                                         * @param {Function} func
-                                                                                                                                                                                                                                                                                                         *    a function to call after the next heartbeat
-                                                                                                                                                                                                                                                                                                         *
-                                                                                                                                                                                                                                                                                                         * @memberOf axHeartbeat
-                                                                                                                                                                                                                                                                                                         */function onAfterNext(func) {afterQueue.push(func);}return { onBeforeNext: onBeforeNext, onNext: onNext, onAfterNext: onAfterNext };}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * A timestamp function, provided as a service to support the jasmine mock clock during testing. The
-          * mock-free implementation simply uses `new Date().getTime()`. Whenever a simple timestamp is needed in a
-          * widget, this service can be used to allow for hassle-free testing.
-          *
-          * Example:
-          * ```js
-          * Controller.$inject = [ 'axTimestamp' ];
-          * function Controller( axTimestamp ) {
-          *    var currentTimestamp = axTimestamp();
-          * };
-          * ```
-          *
-          * @name axTimestamp
-          * @injection
-          */_module.factory('axTimestamp', function () {return function () {return new Date().getTime();};}); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * Provides access to the control-implementation-modules used by a widget.
-          * Further documentation on the api can be found at the *controls_service* module api doc.
-          *
-          * @name axControls
-          * @injection
-          */_module.factory('axControls', ['axFileResourceProvider', function (fileResourceProvider) {return controlsService.create(fileResourceProvider);}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * The global event bus instance provided by the LaxarJS runtime. Widgets **should never** use this, as
-          * subscriptions won't be removed when a widget is destroyed. Instead widgets should always either use the
-          * `eventBus` property on their local `$scope` object or the service `axEventBus`. These take care of all
-          * subscriptions on widget destructions and thus prevent from leaking memory and other side effects.
-          *
-          * This service instead can be used by other services, that live throughout the whole lifetime of an
-          * application or take care of unsubscribing from events themselves. Further documentation on the api can
-          * be found at the *event_bus* module api doc.
-          *
-          * @name axGlobalEventBus
-          * @injection
-          */_module.factory('axGlobalEventBus', ['$injector', '$window', 'axHeartbeat', 'axConfiguration', function ($injector, $window, heartbeat, configuration) {// LaxarJS/laxar#48: Use event bus ticks instead of $apply to run promise callbacks
-            var $q = $injector.invoke($qProvider_.$get, $qProvider_, { $rootScope: { $evalAsync: heartbeat.onNext } });eventBus.init($q, heartbeat.onNext, function (f, t) {// MSIE Bug, we have to wrap set timeout to pass assertion
-               $window.setTimeout(f, t);});var bus = eventBus.create({ pendingDidTimeout: configuration.get('eventBusTimeoutMs', 120 * 1000) });bus.setErrorHandler(eventBusErrorHandler);return bus;}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * Provides access to the global configuration, otherwise accessible via the *configuration* module.
-          * Further documentation can be found there.
-          *
-          * @name axConfiguration
-          * @injection
-          */_module.factory('axConfiguration', [function () {return configuration;}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * Provides access to the i18n api, otherwise accessible via the *i18n* module. Further documentation can
-          * be found there.
-          *
-          * @name axI18n
-          * @injection
-          */_module.factory('axI18n', [function () {return i18n;}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * A global, pre-configured file resource provider instance. Further documentation on the api can
-          * be found at the *file_resource_provider* module api doc.
-          *
-          * This service has already all the file listings configured under `window.laxar.fileListings`. These can
-          * either be uris to listing JSON files or already embedded JSON objects of the directory tree.
-          *
-          * @name axFileResourceProvider
-          * @injection
-          */_module.factory('axFileResourceProvider', ['$q', '$http', 'axConfiguration', function ($q, $http, configuration) {fileResourceProvider.init($q, $http);var provider = fileResourceProvider.create(paths.PRODUCT);var listings = configuration.get('fileListings');if (listings) {ng.forEach(listings, function (value, key) {if (typeof value === 'string') {provider.setFileListingUri(key, value);} else {provider.setFileListingContents(key, value);}});}return provider;}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * Provides access to the configured theme and theme relevant assets via a theme manager instance. Further
-          * documentation on the api can be found at the *theme_manager* module api doc.
-          *
-          * @name axThemeManager
-          * @injection
-          */_module.factory('axThemeManager', ['$q', 'axConfiguration', 'axFileResourceProvider', function ($q, configuration, fileResourceProvider) {var theme = configuration.get('theme');var manager = themeManager.create(fileResourceProvider, $q, theme);return { getTheme: manager.getTheme.bind(manager), urlProvider: manager.urlProvider.bind(manager) };}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * Loads a layout relative to the path `laxar-path-root` configured via RequireJS (by default
-          * `/application/layouts`), taking the configured theme into account. If a CSS file is found, it will
-          * directly be loaded into the page. A HTML template will instead get returned for manual insertion at the
-          * correct DOM location. For this service there is also the companion directive *axLayout* available.
-          *
-          * Example:
-          * ```js
-          * myNgModule.directive( [ 'axLayoutLoader', function( axLayoutLoader ) {
-          *    return {
-          *       link: function( scope, element, attrs ) {
-          *          axLayoutLoader.load( 'myLayout' )
-          *             .then( function( layoutInfo ) {
-          *                element.html( layoutInfo.html );
-          *             } );
-          *       }
-          *    };
-          * } ] );
-          * ```
-          *
-          * @name axLayoutLoader
-          * @injection
-          */_module.factory('axLayoutLoader', ['$templateCache', 'axCssLoader', 'axThemeManager', 'axFileResourceProvider', function ($templateCache, cssLoader, themeManager, fileResourceProvider) {return layoutLoader.create(paths.LAYOUTS, paths.THEMES, cssLoader, themeManager, fileResourceProvider, $templateCache);}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * A service to load css files on demand during development. If a merged release css file has already been
-          * loaded (marked with a `data-ax-merged-css` html attribute at the according `link` tag) or `useMergedCss`
-          * is configured as `true`, the `load` method will simply be a noop. In the latter case the merged css file
-          * will be loaded once by this service.
-          *
-          * @name axCssLoader
-          * @injection
-          */_module.factory('axCssLoader', ['axConfiguration', 'axThemeManager', function (configuration, themeManager) {var mergedCssFileLoaded = [].some.call(document.getElementsByTagName('link'), function (link) {return link.hasAttribute('data-ax-merged-css');});if (mergedCssFileLoaded) {return { load: function load() {} };}var loadedFiles = [];var loader = { /**
-                                                                                                                                                                                                                                                                                                                                                                              * If not already loaded, loads the given file into the current page by appending a `link` element to
-                                                                                                                                                                                                                                                                                                                                                                              * the document's `head` element.
-                                                                                                                                                                                                                                                                                                                                                                              *
-                                                                                                                                                                                                                                                                                                                                                                              * Additionally it works around a
-                                                                                                                                                                                                                                                                                                                                                                              * [style sheet limit](http://support.microsoft.com/kb/262161) in older Internet Explorers
-                                                                                                                                                                                                                                                                                                                                                                              * (version < 10). The workaround is based on
-                                                                                                                                                                                                                                                                                                                                                                              * [this test](http://john.albin.net/ie-css-limits/993-style-test.html).
-                                                                                                                                                                                                                                                                                                                                                                              *
-                                                                                                                                                                                                                                                                                                                                                                              * @param {String} url
-                                                                                                                                                                                                                                                                                                                                                                              *    the url of the css file to load
-                                                                                                                                                                                                                                                                                                                                                                              *
-                                                                                                                                                                                                                                                                                                                                                                              * @memberOf axCssLoader
-                                                                                                                                                                                                                                                                                                                                                                              */load: function load(url) {if (loadedFiles.indexOf(url) === -1) {if (hasStyleSheetLimit()) {// Here we most probably have an Internet Explorer having the limit of at most 31 stylesheets
-                        // per page. As a workaround we use style tags with import statements. Each style tag may
-                        // have 31 import statement. This gives us 31 * 31 = 961 possible stylesheets to include ...
-                        // Link to the problem on microsoft.com: http://support.microsoft.com/kb/262161
-                        // Solution based on ideas found here: http://john.albin.net/css/ie-stylesheets-not-loading
-                        var styleManagerId = 'cssLoaderStyleSheet' + Math.floor(loadedFiles.length / 30);if (!document.getElementById(styleManagerId)) {addHeadElement('style', { type: 'text/css', id: styleManagerId });}document.getElementById(styleManagerId).styleSheet.addImport(url);} else {addHeadElement('link', { type: 'text/css', id: 'cssLoaderStyleSheet' + loadedFiles.length, rel: 'stylesheet', href: url });}loadedFiles.push(url);}} };if (configuration.get('useMergedCss', false)) {loader.load(path.join(paths.PRODUCT, 'var/static/css', themeManager.getTheme() + '.theme.css'));return { load: function load() {} };}return loader; ////////////////////////////////////////////////////////////////////////////////////////////////////////
-            function hasStyleSheetLimit() {if (typeof hasStyleSheetLimit.result !== 'boolean') {hasStyleSheetLimit.result = false;if (document.createStyleSheet) {var uaMatch = navigator.userAgent.match(/MSIE ?(\d+(\.\d+)?)[^\d]/i);if (!uaMatch || parseFloat(uaMatch[1]) < 10) {// There is no feature test for this problem without running into it. We therefore test
-                        // for a browser knowing document.createStyleSheet (should only be IE) and afterwards check,
-                        // if it is a version prior to 10 as the problem is fixed since that version. In any other
-                        // case we assume the worst case and trigger the hack for limited browsers.
-                        hasStyleSheetLimit.result = true;}}}return hasStyleSheetLimit.result;} ////////////////////////////////////////////////////////////////////////////////////////////////////////
-            function addHeadElement(elementName, attributes) {var element = document.createElement(elementName);ng.forEach(attributes, function (val, key) {element[key] = val;});document.getElementsByTagName('head')[0].appendChild(element);}}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * Directives should use this service to stay informed about visibility changes to their widget.
-          * They should not attempt to determine their visibility from the event bus (no DOM information),
-          * nor poll it from the browser (too expensive).
-          *
-          * In contrast to the visibility events received over the event bus, these handlers will fire _after_ the
-          * visibility change has been implemented in the DOM, at which point in time the actual browser rendering
-          * state should correspond to the information conveyed in the event.
-          *
-          * The visibility service allows to register for onShow/onHide/onChange. When cleared, all handlers for
-          * the given scope will be cleared. Handlers are automatically cleared as soon as the given scope is
-          * destroyed. Handlers will be called whenever the given scope's visibility changes due to the widget
-          * becoming visible/invisible. Handlers will _not_ be called on state changes originating _from within_ the
-          * widget such as those caused by `ngShow`.
-          *
-          * If a widget becomes visible at all, the corresponding handlers for onChange and onShow are guaranteed
-          * to be called at least once.
-          *
-          * @name axVisibilityService
-          * @injection
-          */_module.factory('axVisibilityService', ['axHeartbeat', '$rootScope', function (heartbeat, $rootScope) {/**
-                                                                                                                    * Create a DOM visibility handler for the given scope.
-                                                                                                                    *
-                                                                                                                    * @param {Object} scope
-                                                                                                                    *    the scope from which to infer visibility. Must be a widget scope or nested in a widget scope
-                                                                                                                    *
-                                                                                                                    * @return {axVisibilityServiceHandler}
-                                                                                                                    *    a visibility handler for the given scope
-                                                                                                                    *
-                                                                                                                    * @memberOf axVisibilityService
-                                                                                                                    */function handlerFor(scope) {var handlerId = scope.$id;scope.$on('$destroy', clear); // Find the widget scope among the ancestors:
-               var widgetScope = scope;while (widgetScope !== $rootScope && !(widgetScope.widget && widgetScope.widget.area)) {widgetScope = widgetScope.$parent;}var areaName = widgetScope.widget && widgetScope.widget.area;if (!areaName) {throw new Error('axVisibilityService: could not determine widget area for scope: ' + handlerId);} /**
-                                                                                                                                                                                                                                                                                                                                                  * A scope bound visibility handler.
-                                                                                                                                                                                                                                                                                                                                                  *
-                                                                                                                                                                                                                                                                                                                                                  * @name axVisibilityServiceHandler
-                                                                                                                                                                                                                                                                                                                                                  */var api = { /**
-                                                                                                                                                                                                                                                                                                                                                                 * Determine if the governing widget scope's DOM is visible right now.
-                                                                                                                                                                                                                                                                                                                                                                 *
-                                                                                                                                                                                                                                                                                                                                                                 * @return {Boolean}
-                                                                                                                                                                                                                                                                                                                                                                 *    `true` if the widget associated with this handler is visible right now, else `false`
-                                                                                                                                                                                                                                                                                                                                                                 *
-                                                                                                                                                                                                                                                                                                                                                                 * @memberOf axVisibilityServiceHandler
-                                                                                                                                                                                                                                                                                                                                                                 */isVisible: function isVisible() {return _isVisible(areaName);}, //////////////////////////////////////////////////////////////////////////////////////////////////
-                  /**
-                   * Schedule a handler to be called with the new DOM visibility on any DOM visibility change.
-                   *
-                   * @param {Function<Boolean>} handler
-                   *    the callback to process visibility changes
-                   *
-                   * @return {axVisibilityServiceHandler}
-                   *    this visibility handler (for chaining)
-                   *
-                   * @memberOf axVisibilityServiceHandler
-                   */onChange: function onChange(handler) {addHandler(handlerId, areaName, handler, true);addHandler(handlerId, areaName, handler, false);return api;}, //////////////////////////////////////////////////////////////////////////////////////////////////
-                  /**
-                   * Schedule a handler to be called with the new DOM visibility when it has changed to `true`.
-                   *
-                   * @param {Function<Boolean>} handler
-                   *    the callback to process visibility changes
-                   *
-                   * @return {axVisibilityServiceHandler}
-                   *    this visibility handler (for chaining)
-                   *
-                   * @memberOf axVisibilityServiceHandler
-                   */onShow: function onShow(handler) {addHandler(handlerId, areaName, handler, true);return api;}, //////////////////////////////////////////////////////////////////////////////////////////////////
-                  /**
-                   * Schedule a handler to be called with the new DOM visibility when it has changed to `false`.
-                   *
-                   * @param {Function<Boolean>} handler
-                   *    the callback to process visibility changes
-                   *
-                   * @return {axVisibilityServiceHandler}
-                   *    this visibility handler (for chaining)
-                   *
-                   * @memberOf axVisibilityServiceHandler
-                   */onHide: function onHide(handler) {addHandler(handlerId, areaName, handler, false);return api;}, //////////////////////////////////////////////////////////////////////////////////////////////////
-                  /**
-                   * Removes all visibility handlers.
-                   *
-                   * @return {axVisibilityServiceHandler}
-                   *    this visibility handler (for chaining)
-                   *
-                   * @memberOf axVisibilityServiceHandler
-                   */clear: clear };return api; /////////////////////////////////////////////////////////////////////////////////////////////////////
-               function clear() {clearHandlers(handlerId);return api;}} ////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // track state to inform handlers that register after visibility for a given area was initialized
-            var knownState; // store the registered show/hide-handlers by governing widget area
-            var showHandlers;var hideHandlers; // secondary lookup-table to track removal, avoiding O(n^2) cost for deleting n handlers in a row
-            var handlersById;return { isVisible: _isVisible, handlerFor: handlerFor, // runtime-internal api for use by the page controller
-               _updateState: updateState, _reset: reset }; ////////////////////////////////////////////////////////////////////////////////////////////////////////
-            function reset() {knownState = {};showHandlers = {};hideHandlers = {};handlersById = {};} ////////////////////////////////////////////////////////////////////////////////////////////////////////
-            /**
-             * Determine if the given area's content DOM is visible right now.
-             * @param {String} area
-             *    the full name of the widget area to query
-             *
-             * @return {Boolean}
-             *    `true` if the area is visible right now, else `false`.
-             *
-             * @memberOf axVisibilityService
-             */function _isVisible(area) {return knownState[area] || false;} ////////////////////////////////////////////////////////////////////////////////////////////////////////
-            /**
-             * Run all handlers registered for the given area and target state after the next heartbeat.
-             * Also remove any handlers that have been cleared since the last run.
-             * @private
-             */function updateState(area, targetState) {if (knownState[area] === targetState) {return;}knownState[area] = targetState;heartbeat.onAfterNext(function () {var areaHandlers = (targetState ? showHandlers : hideHandlers)[area];if (!areaHandlers) {return;}for (var i = areaHandlers.length - 1; i >= 0; --i) {var handlerRef = areaHandlers[i];if (handlerRef.handler === null) {areaHandlers.splice(i, 1);} else {handlerRef.handler(targetState);}}});} ////////////////////////////////////////////////////////////////////////////////////////////////////////
-            /**
-             * Add a show/hide-handler for a given area and visibility state. Execute the handler right away if the
-             * state is already known.
-             * @private
-             */function addHandler(id, area, handler, targetState) {var handlerRef = { handler: handler };handlersById[id] = handlersById[id] || [];handlersById[id].push(handlerRef);var areaHandlers = targetState ? showHandlers : hideHandlers;areaHandlers[area] = areaHandlers[area] || [];areaHandlers[area].push(handlerRef); // State already known? In that case, initialize:
-               if (area in knownState && knownState[area] === targetState) {handler(targetState);}} ////////////////////////////////////////////////////////////////////////////////////////////////////////
-            function clearHandlers(id) {if (handlersById[id]) {handlersById[id].forEach(function (matchingHandlerRef) {matchingHandlerRef.handler = null;});}}}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         _module.factory('axLogHttpInterceptor', ['axConfiguration', function (configuration) {var headerKey = configuration.get(CONFIG_KEY_HTTP_LOGGING_HEADER, null);return headerKey ? { request: function request(config) {var headerValue = '';ng.forEach(log.gatherTags(), function (tagValue, tagName) {headerValue += '[' + tagName + ':' + tagValue + ']';});if (headerValue) {if (config.headers[headerKey]) {log.warn('axLogHttpInterceptor: Overwriting existing header "[0]"', headerKey);}config.headers[headerKey] = headerValue;}return config;} } : {};}]);CONFIG_KEY_HTTP_LOGGING_HEADER = 'logging.http.header'; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * Overrides the default `$exceptionHandler` service of AngularJS, using the LaxarJS logger for output.
-          *
-          * @name $exceptionHandler
-          * @injection
-          * @private
-          */_module.provider('$exceptionHandler', function () {var handler = function handler(exception, cause) {var msg = exception.message || exception;log.error('There was an exception: ' + msg + ', \nstack: ');log.error(exception.stack + ', \n');log.error('  Cause: ' + cause);};this.$get = [function () {return handler;}];}); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         sensitiveData = ['Published event'];name = _module.name;_export('name', name);_export('default', _module);} };});
 
 System.register("static/schemas/page.js", [], function (_export) {/**
                                                                    * Copyright 2016 aixigo AG
@@ -2798,7 +4414,8 @@ System.register("static/schemas/page.js", [], function (_export) {/**
 
             "additionalProperties": false });} };});
 
-System.register('lib/loaders/page_loader.js', ['npm:babel-runtime@5.8.34/core-js/object/keys', '../utilities/assert', '../utilities/object', '../utilities/string', '../utilities/path', '../json/validator', './features_provider', '../../static/schemas/page'], function (_export) {var _Object$keys, assert, object, string, path, jsonValidator, featuresProvider, pageSchema, 
+System.register('lib/loaders/page_loader.js', ['npm:babel-runtime@5.8.34/core-js/promise.js', 'npm:babel-runtime@5.8.34/core-js/object/keys.js', '../utilities/assert', '../utilities/object', '../utilities/string', '../utilities/path', '../json/validator', './features_provider', '../tooling/pages', '../../static/schemas/page'], function (_export) {var _Promise, _Object$keys, assert, object, string, path, jsonValidator, featuresProvider, pageTooling, pageSchema, 
+
 
 
 
@@ -2823,9 +4440,7 @@ System.register('lib/loaders/page_loader.js', ['npm:babel-runtime@5.8.34/core-js
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   function PageLoader(q, httpClient, baseUrl, fileResourceProvider) {
-      this.q_ = q;
-      this.httpClient_ = httpClient;
+   function PageLoader(baseUrl, fileResourceProvider) {
       this.baseUrl_ = baseUrl;
       this.fileResourceProvider_ = fileResourceProvider;
       this.idCounter_ = 0;}
@@ -2855,8 +4470,8 @@ System.register('lib/loaders/page_loader.js', ['npm:babel-runtime@5.8.34/core-js
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    function loadPageRecursively(self, pageName, extensionChain) {
-      var page;
-      var pageSelfLink = assetUrl(self.baseUrl_, pageName);
+      var page = undefined;
+      var pageUrl = assetUrl(self.baseUrl_, pageName);
 
       if (extensionChain.indexOf(pageName) !== -1) {
          throwError(
@@ -2865,30 +4480,30 @@ System.register('lib/loaders/page_loader.js', ['npm:babel-runtime@5.8.34/core-js
 
 
 
-      return load(self, pageSelfLink).
+      return load(self, pageUrl).
       then(function (foundPage) {
          validatePage(foundPage, pageName);
 
          page = foundPage;
          page.name = pageName.replace(JSON_SUFFIX_MATCHER, '');
-         page.selfLink = pageSelfLink;
 
          if (!page.areas) {
             page.areas = {};}}, 
 
       function () {
-         throwError({ name: pageName }, 'Page could not be found at location "' + pageSelfLink + '"');}).
+         throwError({ name: pageName }, 'Page could not be found at location "' + pageUrl + '"');}).
 
       then(function () {
          return processExtends(self, page, extensionChain);}).
 
       then(function () {
-         return processCompositions(self, page, [], page);}).
+         return processCompositions(self, page, pageName);}).
 
       then(function () {
-         return postProcessWidgets(self, page);}).
+         return checkForDuplicateWidgetIds(self, page);}).
 
       then(function () {
+         pageTooling.setPageDefinition(pageName, page, pageTooling.FLAT);
          return page;});}
 
 
@@ -2938,69 +4553,92 @@ System.register('lib/loaders/page_loader.js', ['npm:babel-runtime@5.8.34/core-js
    //
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   function processCompositions(self, page, compositionChain, topPage) {
-      var promise = self.q_.when();
-      var seenCompositionIdCount = {};
+   function processCompositions(self, topPage, topPageName) {
 
-      object.forEach(page.areas, function (widgets) {
-         /*jshint loopfunc:true*/
-         for (var i = widgets.length - 1; i >= 0; --i) {
-            (function (widgetSpec, index) {
-               if (has(widgetSpec, 'composition')) {
+      return processNestedCompositions(topPage, null, []);
+
+      function processNestedCompositions(page, instanceId, compositionChain) {
+
+         var promise = _Promise.resolve();
+         var seenCompositionIdCount = {};
+
+         object.forEach(page.areas, function (widgets) {
+            /*jshint loopfunc:true*/
+            for (var i = widgets.length - 1; i >= 0; --i) {
+               (function (widgetSpec, index) {
                   if (widgetSpec.enabled === false) {
                      return;}
 
 
-                  var compositionName = widgetSpec.composition;
-                  if (compositionChain.indexOf(compositionName) !== -1) {
-                     var message = 'Cycle in compositions detected: ' + 
-                     compositionChain.concat([compositionName]).join(' -> ');
-                     throwError(topPage, message);}
+                  if (has(widgetSpec, 'widget')) {
+                     if (!has(widgetSpec, 'id')) {
+                        var widgetName = widgetSpec.widget.split('/').pop();
+                        widgetSpec.id = nextId(self, widgetName.replace(SEGMENTS_MATCHER, dashToCamelcase));}
+
+                     return;}
 
 
-                  if (!has(widgetSpec, 'id')) {
-                     var escapedCompositionName = 
-                     widgetSpec.composition.replace(SEGMENTS_MATCHER, dashToCamelcase);
-                     widgetSpec.id = nextId(self, escapedCompositionName);}
+                  if (has(widgetSpec, 'composition')) {(function () {
+                        var compositionName = widgetSpec.composition;
+                        if (compositionChain.indexOf(compositionName) !== -1) {
+                           var message = 'Cycle in compositions detected: ' + 
+                           compositionChain.concat([compositionName]).join(' -> ');
+                           throwError(topPage, message);}
 
 
-                  if (widgetSpec.id in seenCompositionIdCount) {
-                     seenCompositionIdCount[widgetSpec.id]++;} else 
-
-                  {
-                     seenCompositionIdCount[widgetSpec.id] = 1;}
-
-
-                  // Loading compositionUrl can be started asynchronously, but replacing the according widgets
-                  // in the page needs to take place in order. Otherwise the order of widgets could be messed up.
-                  promise = promise.
-                  then(function () {
-                     return load(self, assetUrl(self.baseUrl_, compositionName));}).
-
-                  then(function (composition) {
-                     return prefixCompositionIds(composition, widgetSpec);}).
-
-                  then(function (composition) {
-                     return processCompositionExpressions(composition, widgetSpec, throwError.bind(null, topPage));}).
-
-                  then(function (composition) {
-                     var chain = compositionChain.concat(compositionName);
-                     return processCompositions(self, composition, chain, topPage).
-                     then(function () {
-                        return composition;});}).
+                        if (!has(widgetSpec, 'id')) {
+                           var escapedCompositionName = 
+                           widgetSpec.composition.replace(SEGMENTS_MATCHER, dashToCamelcase);
+                           widgetSpec.id = nextId(self, escapedCompositionName);}
 
 
-                  then(function (composition) {
-                     mergeCompositionAreasWithPageAreas(composition, page, widgets, index);});}})(
+                        if (widgetSpec.id in seenCompositionIdCount) {
+                           seenCompositionIdCount[widgetSpec.id]++;} else 
+
+                        {
+                           seenCompositionIdCount[widgetSpec.id] = 1;}
 
 
-            widgets[i], i);}});
+                        // Loading compositionUrl can be started asynchronously, but replacing the according widgets
+                        // in the page needs to take place in order. Otherwise the order of widgets could be messed up.
+                        promise = promise.
+                        then(function () {
+                           return load(self, assetUrl(self.baseUrl_, compositionName));}).
+
+                        then(function (composition) {
+                           return prefixCompositionIds(composition, widgetSpec);}).
+
+                        then(function (composition) {
+                           return processCompositionExpressions(composition, widgetSpec, throwError.bind(null, topPage));}).
+
+                        then(function (composition) {
+                           var chain = compositionChain.concat(compositionName);
+                           return processNestedCompositions(composition, widgetSpec.id, chain).
+                           then(function () {
+                              pageTooling.setCompositionDefinition(topPageName, widgetSpec.id, composition, pageTooling.FLAT);
+                              return composition;});}).
+
+
+                        then(function (composition) {
+                           mergeCompositionAreasWithPageAreas(composition, page, widgets, index);});})();}})(
+
+
+               widgets[i], i);}});
 
 
 
-      checkForDuplicateCompositionIds(page, seenCompositionIdCount);
+         // now that all IDs have been created, we can store a copy of the page prior to composition expansion
+         if (page === topPage) {
+            pageTooling.setPageDefinition(topPageName, page, pageTooling.COMPACT);} else 
 
-      return promise;}
+         {
+            pageTooling.setCompositionDefinition(topPageName, instanceId, page, pageTooling.COMPACT);}
+
+
+         checkForDuplicateCompositionIds(page, seenCompositionIdCount);
+
+         return promise;}}
+
 
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3054,13 +4692,13 @@ System.register('lib/loaders/page_loader.js', ['npm:babel-runtime@5.8.34/core-js
       composition.features = iterateOverExpressions(composition.features || {}, replaceExpression);
       expressionData.features = featuresProvider.featuresForWidget(composition, widgetSpec, throwPageError);
 
-      if (typeof composition.mergedFeatures === 'object') {
-         var mergedFeatures = iterateOverExpressions(composition.mergedFeatures, replaceExpression);
+      if (typeof composition.mergedFeatures === 'object') {(function () {
+            var mergedFeatures = iterateOverExpressions(composition.mergedFeatures, replaceExpression);
 
-         _Object$keys(mergedFeatures).forEach(function (featurePath) {
-            var currentValue = object.path(expressionData.features, featurePath, []);
-            var values = mergedFeatures[featurePath];
-            object.setPath(expressionData.features, featurePath, values.concat(currentValue));});}
+            _Object$keys(mergedFeatures).forEach(function (featurePath) {
+               var currentValue = object.path(expressionData.features, featurePath, []);
+               var values = mergedFeatures[featurePath];
+               object.setPath(expressionData.features, featurePath, values.concat(currentValue));});})();}
 
 
 
@@ -3074,7 +4712,7 @@ System.register('lib/loaders/page_loader.js', ['npm:babel-runtime@5.8.34/core-js
 
          var possibleNegation = matches[1];
          var expression = matches[2];
-         var result;
+         var result = undefined;
          if (expression.indexOf(COMPOSITION_TOPIC_PREFIX) === 0) {
             result = topicFromId(widgetSpec.id) + 
             SUBTOPIC_SEPARATOR + expression.substr(COMPOSITION_TOPIC_PREFIX.length);} else 
@@ -3143,7 +4781,7 @@ System.register('lib/loaders/page_loader.js', ['npm:babel-runtime@5.8.34/core-js
    //
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   function postProcessWidgets(self, page) {
+   function checkForDuplicateWidgetIds(self, page) {
       var idCount = {};
 
       object.forEach(page.areas, function (widgetList, index) {
@@ -3151,15 +4789,7 @@ System.register('lib/loaders/page_loader.js', ['npm:babel-runtime@5.8.34/core-js
             if (widgetSpec.enabled === false) {
                return false;}
 
-
-            if (has(widgetSpec, 'widget')) {
-               if (!has(widgetSpec, 'id')) {
-                  var widgetName = widgetSpec.widget.split('/').pop();
-                  widgetSpec.id = nextId(self, widgetName.replace(SEGMENTS_MATCHER, dashToCamelcase));}
-
-
-               idCount[widgetSpec.id] = idCount[widgetSpec.id] ? idCount[widgetSpec.id] + 1 : 1;}
-
+            idCount[widgetSpec.id] = idCount[widgetSpec.id] ? idCount[widgetSpec.id] + 1 : 1;
             return true;});});
 
 
@@ -3195,7 +4825,7 @@ System.register('lib/loaders/page_loader.js', ['npm:babel-runtime@5.8.34/core-js
    function mergeWidgetLists(targetList, sourceList, page) {
       sourceList.forEach(function (widgetConfiguration) {
          if (widgetConfiguration.insertBeforeId) {
-            for (var i = 0, length = targetList.length; i < length; ++i) {
+            for (var i = 0, _length = targetList.length; i < _length; ++i) {
                if (targetList[i].id === widgetConfiguration.insertBeforeId) {
                   targetList.splice(i, 0, widgetConfiguration);
                   return;}}
@@ -3232,11 +4862,6 @@ System.register('lib/loaders/page_loader.js', ['npm:babel-runtime@5.8.34/core-js
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    function load(self, url) {
-      if (!self.fileResourceProvider_) {
-         return self.httpClient_.get(url).then(function (response) {
-            return response.data;});}
-
-
       return self.fileResourceProvider_.provide(url);}
 
 
@@ -3274,555 +4899,27 @@ System.register('lib/loaders/page_loader.js', ['npm:babel-runtime@5.8.34/core-js
    /**
     * Creates and returns a new page loader instance.
     *
-    * @param {Object} q
-    *    a Promise library conforming to $q from AngularJS
-    * @param {Object} httpClient
-    *    a http client conforming to $http from AngularJS
     * @param {String} baseUrl
     *    the url where all pages are located
     * @param {FileResourceProvider} fileResourceProvider
-    *    a FileResourceProvider as a smarter alternative to httpClient, used if provided
-    * @returns {PageLoader}
+    *    a FileResourceProvider to load application assets
+   
+    * @return {PageLoader}
     *    a page loader instance
     *
     * @private
     */
-   function create(q, httpClient, baseUrl, fileResourceProvider) {
-      assert(q).isNotNull();
-      if (fileResourceProvider === null) {
-         assert(httpClient).isNotNull();}
-
+   function create(baseUrl, fileResourceProvider) {
       assert(baseUrl).isNotNull();
-      return new PageLoader(q, httpClient, baseUrl, fileResourceProvider);}return { setters: [function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_utilitiesAssert) {assert = _utilitiesAssert['default'];}, function (_utilitiesObject) {object = _utilitiesObject;}, function (_utilitiesString) {string = _utilitiesString;}, function (_utilitiesPath) {path = _utilitiesPath;}, function (_jsonValidator) {jsonValidator = _jsonValidator;}, function (_features_provider) {featuresProvider = _features_provider;}, function (_staticSchemasPage) {pageSchema = _staticSchemasPage['default'];}], execute: function () {/**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * Copyright 2015 aixigo AG
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * Released under the MIT license.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * http://laxarjs.org/license
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          */'use strict';_export('create', create);SEGMENTS_MATCHER = /[_/-]./g;ID_SEPARATOR = '-';ID_SEPARATOR_MATCHER = /\-/g;SUBTOPIC_SEPARATOR = '+';JSON_SUFFIX_MATCHER = /\.json$/;COMPOSITION_EXPRESSION_MATCHER = /^(!?)\$\{([^}]+)\}$/;COMPOSITION_TOPIC_PREFIX = 'topic:';PageLoader.prototype.loadPage = function (pageName) {return loadPageRecursively(this, pageName, []);};} };});
-
-System.register('lib/loaders/features_provider.js', ['npm:babel-runtime@5.8.34/core-js/object/keys', '../json/validator', '../utilities/object', '../utilities/string'], function (_export) {var _Object$keys, jsonValidator, object, string, 
-
-
-
-
-
-
-
-
-
-   TOPIC_IDENTIFIER, 
-   SUB_TOPIC_FORMAT, 
-   TOPIC_FORMAT, 
-   FLAG_TOPIC_FORMAT, 
-
-
-   LANGUAGE_TAG_FORMAT;
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function featuresForWidget(widgetSpecification, widgetConfiguration, throwError) {
-      if (!widgetSpecification.features) {
-         return {};}
-
-
-      var featureConfiguration = widgetConfiguration.features || {};
-      var featuresSpec = widgetSpecification.features;
-      if (!('$schema' in featuresSpec)) {
-         // we assume an "old style" feature specification (i.e. first level type specification is omitted)
-         // if no schema version was defined.
-         featuresSpec = { 
-            $schema: 'http://json-schema.org/draft-03/schema#', 
-            type: 'object', 
-            properties: widgetSpecification.features };}
-
-
-
-      object.forEach(featuresSpec.properties, function (feature, name) {
-         // ensure that simple object/array features are at least defined
-         if (name in featureConfiguration) {
-            return;}
-
-
-         if (feature.type === 'object') {
-            featureConfiguration[name] = {};} else 
-
-         if (feature.type === 'array') {
-            featureConfiguration[name] = [];}});
-
-
-
-      var validator = createFeaturesValidator(featuresSpec);
-      var report = validator.validate(featureConfiguration);
-
-      if (report.errors.length > 0) {
-         var message = 'Validation for widget features failed. Errors: ';
-
-         report.errors.forEach(function (error) {
-            message += '\n - ' + error.message.replace(/\[/g, '\\[');});
-
-
-         throwError(message);}
-
-
-      return featureConfiguration;}
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function createFeaturesValidator(featuresSpec) {
-      var validator = jsonValidator.create(featuresSpec, { 
-         prohibitAdditionalProperties: true, 
-         useDefault: true });
-
-
-      // allows 'mySubTopic0815', 'MY_SUB_TOPIC+OK' and variations:
-      validator.addFormat('sub-topic', function (subTopic) {
-         return typeof subTopic !== 'string' || SUB_TOPIC_FORMAT.test(subTopic);});
-
-
-      // allows 'myTopic', 'myTopic-mySubTopic-SUB_0815+OK' and variations:
-      validator.addFormat('topic', function (topic) {
-         return typeof topic !== 'string' || TOPIC_FORMAT.test(topic);});
-
-
-      // allows 'myTopic', '!myTopic-mySubTopic-SUB_0815+OK' and variations:
-      validator.addFormat('flag-topic', function (flagTopic) {
-         return typeof flagTopic !== 'string' || FLAG_TOPIC_FORMAT.test(flagTopic);});
-
-
-      // allows 'de_DE', 'en-x-laxarJS' and such:
-      validator.addFormat('language-tag', function (languageTag) {
-         return typeof languageTag !== 'string' || LANGUAGE_TAG_FORMAT.test(languageTag);});
-
-
-      // checks that object keys have the 'topic' format
-      validator.addFormat('topic-map', function (topicMap) {
-         return typeof topicMap !== 'object' || _Object$keys(topicMap).every(function (topic) {
-            return TOPIC_FORMAT.test(topic);});});
-
-
-
-      // checks that object keys have the 'language-tag' format
-      validator.addFormat('localization', function (localization) {
-         return typeof localization !== 'object' || _Object$keys(localization).every(function (tag) {
-            return LANGUAGE_TAG_FORMAT.test(tag);});});
-
-
-
-      return validator;}
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   return { setters: [function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_jsonValidator) {jsonValidator = _jsonValidator;}, function (_utilitiesObject) {object = _utilitiesObject;}, function (_utilitiesString) {string = _utilitiesString;}], execute: function () {/**
-                                                                                                                                                                                                                                                                                                                                    * Copyright 2015 aixigo AG
-                                                                                                                                                                                                                                                                                                                                    * Released under the MIT license.
-                                                                                                                                                                                                                                                                                                                                    * http://laxarjs.org/license
-                                                                                                                                                                                                                                                                                                                                    */ // JSON schema formats:
-         'use strict';TOPIC_IDENTIFIER = '([a-z][+a-zA-Z0-9]*|[A-Z][+A-Z0-9]*)';SUB_TOPIC_FORMAT = new RegExp('^' + TOPIC_IDENTIFIER + '$');TOPIC_FORMAT = new RegExp('^(' + TOPIC_IDENTIFIER + '(-' + TOPIC_IDENTIFIER + ')*)$');FLAG_TOPIC_FORMAT = new RegExp('^[!]?(' + TOPIC_IDENTIFIER + '(-' + TOPIC_IDENTIFIER + ')*)$'); // simplified RFC-5646 language-tag matcher with underscore/dash relaxation:
-         // the parts are: language *("-"|"_" script|region|variant) *("-"|"_" extension|privateuse)
-         LANGUAGE_TAG_FORMAT = /^[a-z]{2,8}([-_][a-z0-9]{2,8})*([-_][a-z0-9][-_][a-z0-9]{2,8})*$/i;_export('featuresForWidget', featuresForWidget);} };});
-
-System.register('lib/loaders/widget_loader.js', ['../utilities/assert', '../logging/log', '../utilities/path', '../utilities/object', '../utilities/string', './paths', './features_provider', '../widget_adapters/adapters'], function (_export) {/**
-                                                                                                                                                                                                                                                    * Copyright 2015 aixigo AG
-                                                                                                                                                                                                                                                    * Released under the MIT license.
-                                                                                                                                                                                                                                                    * http://laxarjs.org/license
-                                                                                                                                                                                                                                                    */'use strict';var assert, log, path, object, string, paths, featuresProvider, adapters, 
-
-
-
-
-
-
-
-
-
-   TYPE_WIDGET, 
-   TYPE_ACTIVITY, 
-   TECHNOLOGY_ANGULAR, 
-
-   DEFAULT_INTEGRATION, 
-
-   ID_SEPARATOR, 
-   INVALID_ID_MATCHER;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   _export('create', create); /**
-                               * @param {Q} q
-                               *    a promise library
-                               * @param {Object} services
-                               *    all services available to the loader an widgets
-                               *
-                               * @returns {{load: Function}}
-                               */function create(q, services) {var controlsService = services.axControls;var fileResourceProvider = services.axFileResourceProvider;var themeManager = services.axThemeManager;var cssLoader = services.axCssLoader;var eventBus = services.axGlobalEventBus;return { load: load }; ////////////////////////////////////////////////////////////////////////////////////////////////////////
-      /**
-       * Load a widget using an appropriate adapter
-       *
-       * First, get the given widget's specification to validate and instantiate the widget features.
-       * Then, instantiate a widget adapter matching the widget's technology. Using the adapter, create the
-       * widget controller. The adapter is returned and can be used to attach the widget to the DOM, or to
-       * destroy it.
-       *
-       * @param {Object} widgetConfiguration
-       *    a widget instance configuration (as used in page definitions) to instantiate the widget from
-       * @param {Object} [optionalOptions]
-       *    map of additonal options
-       * @param {Function} optionalOptions.onBeforeControllerCreation
-       *    a function to call just before the controller is set up. It receives environment and adapter
-       *    specific injections as arguments
-       *
-       * @return {Promise} a promise for a widget adapter, with an already instantiated controller
-       */function load(widgetConfiguration, optionalOptions) {var resolvedWidgetPath = path.resolveAssetPath(widgetConfiguration.widget, paths.WIDGETS, 'local');var widgetJsonPath = path.join(resolvedWidgetPath, 'widget.json');var options = object.options(optionalOptions, { onBeforeControllerCreation: function onBeforeControllerCreation() {} });return fileResourceProvider.provide(widgetJsonPath).then(function (specification) {// The control-descriptors must be loaded prior to controller creation.
-            // This allows the widget controller to synchronously instantiate controls.
-            return q.all((specification.controls || []).map(controlsService.load)).then(function (descriptors) {descriptors.forEach(checkTechnologyCompatibility(specification));return specification;});}).then(function (specification) {var integration = object.options(specification.integration, DEFAULT_INTEGRATION);var type = integration.type;var technology = integration.technology; // Handle legacy widget code:
-            if (type === TECHNOLOGY_ANGULAR) {type = TYPE_WIDGET;}if (type !== TYPE_WIDGET && type !== TYPE_ACTIVITY) {throwError(widgetConfiguration, 'unknown integration type ' + type);}var throwWidgetError = throwError.bind(null, widgetConfiguration);var features = featuresProvider.featuresForWidget(specification, widgetConfiguration, throwWidgetError);var anchorElement = document.createElement('DIV');anchorElement.className = normalizeClassName(specification.name);anchorElement.id = 'ax' + ID_SEPARATOR + widgetConfiguration.id;var widgetEventBus = createEventBusForWidget(eventBus, specification, widgetConfiguration);var adapterFactory = adapters.getFor(technology);var adapter = adapterFactory.create({ anchorElement: anchorElement, context: { eventBus: widgetEventBus, features: features, id: createIdGeneratorForWidget(widgetConfiguration.id), widget: { area: widgetConfiguration.area, id: widgetConfiguration.id, path: widgetConfiguration.widget } }, specification: specification }, services);adapter.createController(options);return { id: widgetConfiguration.id, adapter: adapter, destroy: function destroy() {widgetEventBus.release();adapter.destroy();}, applyViewChanges: adapterFactory.applyViewChanges || null, templatePromise: loadAssets(resolvedWidgetPath, integration, specification, widgetConfiguration) };}, function (err) {var message = 'Could not load spec for widget [0] from [1]: [2]';log.error(message, widgetConfiguration.widget, widgetJsonPath, err);});} ////////////////////////////////////////////////////////////////////////////////////////////////////////
-      /**
-       * Locates and loads the widget HTML template for this widget (if any) as well as any CSS stylesheets
-       * used by this widget or its controls.
-       *
-       * @param widgetPath
-       *    The path suffix used to look up the widget, as given in the instance configuration.
-       * @param integration
-       *    Details on the integration type and technology: Activities do not require assets.
-       * @param widgetSpecification
-       *    The widget specification, used to find out if any controls need to be loaded.
-       * @param widgetConfiguration
-       *    The widget instance configuration
-       *
-       * @return {Promise<String>}
-       *    A promise that will be resolved with the contents of any HTML template for this widget, or with
-       *    `null` if there is no template (for example, if this is an activity).
-       */function loadAssets(widgetPath, integration, widgetSpecification, widgetConfiguration) {return integration.type === TYPE_ACTIVITY ? q.when(null) : resolve().then(function (urls) {urls.cssFileUrls.forEach(function (url) {cssLoader.load(url);});return urls.templateUrl ? fileResourceProvider.provide(urls.templateUrl) : null;}); /////////////////////////////////////////////////////////////////////////////////////////////////////
-         function resolve() {// the name from the widget.json
-            var specifiedName = widgetSpecification.name;var specifiedHtmlFile = specifiedName + '.html';var specifiedCssFile = path.join('css/', specifiedName + '.css'); // for backward compatibility: the name inferred from the reference
-            var technicalName = widgetPath.split('/').pop();var technicalHtmlFile = technicalName + '.html';var technicalCssFile = path.join('css/', technicalName + '.css');var refPath = path.extractScheme(widgetConfiguration.widget).ref;var promises = [];promises.push(themeManager.urlProvider(path.join(widgetPath, '[theme]'), path.join(paths.THEMES, '[theme]', 'widgets', specifiedName), [path.join(paths.THEMES, '[theme]', 'widgets', refPath)]).provide([specifiedHtmlFile, specifiedCssFile, technicalHtmlFile, technicalCssFile]));promises = promises.concat(loadControlAssets());return q.all(promises).then(function (results) {var widgetUrls = results[0];var cssUrls = results.slice(1).map(function (urls) {return urls[0];}).concat(widgetUrls[1] || widgetUrls[3]).filter(function (url) {return !!url;});return { templateUrl: widgetUrls[0] || widgetUrls[2] || '', cssFileUrls: cssUrls };});} /////////////////////////////////////////////////////////////////////////////////////////////////////
-         function loadControlAssets() {return (widgetSpecification.controls || []).map(function (controlRef) {var descriptor = controlsService.descriptor(controlRef);var resolvedPath = controlsService.resolve(controlRef);var name = descriptor.name;var cssPathInControl = path.join(resolvedPath, '[theme]');var cssPathInTheme = path.join(paths.THEMES, '[theme]', 'controls', name);if (descriptor._compatibility_0x) {// LaxarJS v0.x compatibility: use compatibility paths to load CSS.
-                  log.warn('Deprecation: Control is missing control.json descriptor: [0]', controlRef);cssPathInTheme = path.join(paths.THEMES, '[theme]', controlRef);}return themeManager.urlProvider(cssPathInControl, cssPathInTheme).provide([path.join('css/', name + '.css')]);});}}}function checkTechnologyCompatibility(widgetDescriptor) {return function (controlDescriptor) {var controlTechnology = (controlDescriptor.integration || DEFAULT_INTEGRATION).technology;if (controlTechnology === 'plain') {// plain is always compatible
-            return;}var widgetTechnology = (widgetDescriptor.integration || DEFAULT_INTEGRATION).technology;if (widgetTechnology === controlTechnology) {return;}log.warn('Incompatible integration technologies: widget [0] ([1]) cannot use control [2] ([3])', widgetDescriptor.name, widgetTechnology, controlDescriptor.name, controlTechnology);};} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function normalizeClassName(str) {return str.replace(/([a-z0-9])([A-Z])/g, function ($_, $0, $1) {return $0 + '-' + $1;}).replace(/_/g, '-').toLowerCase();} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function throwError(widgetConfiguration, message) {throw new Error(string.format('Error loading widget "[widget]" (id: "[id]"): [0]', [message], widgetConfiguration));} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function createIdGeneratorForWidget(widgetId) {var charCodeOfA = 'a'.charCodeAt(0);function fixLetter(l) {// We map invalid characters deterministically to valid lower case letters. Thereby a collision of
-         // two ids with different invalid characters at the same positions is less likely to occur.
-         return String.fromCharCode(charCodeOfA + l.charCodeAt(0) % 26);}var prefix = 'ax' + ID_SEPARATOR + widgetId.replace(INVALID_ID_MATCHER, fixLetter) + ID_SEPARATOR;return function (localId) {return prefix + ('' + localId).replace(INVALID_ID_MATCHER, fixLetter);};} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function createEventBusForWidget(eventBus, widgetSpecification, widgetConfiguration) {
-
-      var collaboratorId = 'widget.' + widgetSpecification.name + '#' + widgetConfiguration.id;
-
-      function forward(to) {
-         return function () {
-            return eventBus[to].apply(eventBus, arguments);};}
-
-
-
-      function augmentOptions(optionalOptions) {
-         return object.options(optionalOptions, { sender: collaboratorId });}
-
-
-      var subscriptions = [];
-      function unsubscribe(subscriber) {
-         eventBus.unsubscribe(subscriber);}
-
-
-      return { 
-         addInspector: forward('addInspector'), 
-         setErrorHandler: forward('setErrorHandler'), 
-         setMediator: forward('setMediator'), 
-         unsubscribe: unsubscribe, 
-         subscribe: function subscribe(eventName, subscriber, optionalOptions) {
-            subscriptions.push(subscriber);
-
-            var options = object.options(optionalOptions, { subscriber: collaboratorId });
-
-            eventBus.subscribe(eventName, subscriber, options);}, 
-
-         publish: function publish(eventName, optionalEvent, optionalOptions) {
-            return eventBus.publish(eventName, optionalEvent, augmentOptions(optionalOptions));}, 
-
-         publishAndGatherReplies: function publishAndGatherReplies(eventName, optionalEvent, optionalOptions) {
-            return eventBus.publishAndGatherReplies(eventName, optionalEvent, augmentOptions(optionalOptions));}, 
-
-         release: function release() {
-            subscriptions.forEach(unsubscribe);} };}return { setters: [function (_utilitiesAssert) {assert = _utilitiesAssert['default'];}, function (_loggingLog) {log = _loggingLog['default'];}, function (_utilitiesPath) {path = _utilitiesPath;}, function (_utilitiesObject) {object = _utilitiesObject;}, function (_utilitiesString) {string = _utilitiesString;}, function (_paths) {paths = _paths;}, function (_features_provider) {featuresProvider = _features_provider;}, function (_widget_adaptersAdapters) {adapters = _widget_adaptersAdapters;}], execute: function () {TYPE_WIDGET = 'widget';TYPE_ACTIVITY = 'activity';TECHNOLOGY_ANGULAR = 'angular';DEFAULT_INTEGRATION = { type: TYPE_WIDGET, technology: TECHNOLOGY_ANGULAR };ID_SEPARATOR = '-';INVALID_ID_MATCHER = /[^A-Za-z0-9_\.-]/g;} };});
-
-System.register('lib/runtime/layout_widget_adapter.js', ['angular'], function (_export) {/**
-                                                                                          * Copyright 2015 aixigo AG
-                                                                                          * Released under the MIT license.
-                                                                                          * http://laxarjs.org/license
-                                                                                          */'use strict';var ng, 
-
-
-   $compile, 
-   $rootScope, 
-   _module, 
-
-
-
-
-
-
-
-   name;_export('create', create);
-   function create(layout, widget) {
-
-      var exports = { 
-         createController: createController, 
-         domAttachTo: domAttachTo, 
-         domDetach: domDetach, 
-         destroy: destroy };
-
-      var layoutElement;
-      var scope;
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function createController() {}
-      // noop
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function domAttachTo(areaElement, htmlTemplate) {
-         scope = $rootScope.$new();
-         scope.widget = widget;
-
-         var layoutNode = document.createElement('div');
-         layoutNode.id = widget.id;
-         layoutNode.className = layout.className;
-         layoutNode.innerHTML = htmlTemplate;
-
-         layoutElement = $compile(layoutNode)(scope);
-         areaElement.appendChild(layoutNode);}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function domDetach() {
-         layoutElement.remove();}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function destroy() {
-         if (scope) {
-            scope.$destroy();}
-
-         scope = null;}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      return exports;}return { setters: [function (_angular) {ng = _angular['default'];}], execute: function () {_module = ng.module('axLayoutWidgetAdapter', []).run(['$compile', '$rootScope', function (_$compile_, _$rootScope_) {$compile = _$compile_;$rootScope = _$rootScope_;}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         name = _module.name;_export('name', name);} };});
-
-System.registerDynamic("npm:jjv@1.0.2/lib/jjv", [], true, function($__require, exports, module) {
+      assert(fileResourceProvider).isNotNull();
+
+      return new PageLoader(baseUrl, fileResourceProvider);}return { setters: [function (_babelRuntimeCoreJsPromise) {_Promise = _babelRuntimeCoreJsPromise['default'];}, function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_utilitiesAssert) {assert = _utilitiesAssert['default'];}, function (_utilitiesObject) {object = _utilitiesObject;}, function (_utilitiesString) {string = _utilitiesString;}, function (_utilitiesPath) {path = _utilitiesPath;}, function (_jsonValidator) {jsonValidator = _jsonValidator;}, function (_features_provider) {featuresProvider = _features_provider;}, function (_toolingPages) {pageTooling = _toolingPages['default'];}, function (_staticSchemasPage) {pageSchema = _staticSchemasPage['default'];}], execute: function () {/**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * Released under the MIT license.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * http://laxarjs.org/license
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          */'use strict';_export('create', create);SEGMENTS_MATCHER = /[_/-]./g;ID_SEPARATOR = '-';ID_SEPARATOR_MATCHER = /\-/g;SUBTOPIC_SEPARATOR = '+';JSON_SUFFIX_MATCHER = /\.json$/;COMPOSITION_EXPRESSION_MATCHER = /^(!?)\$\{([^}]+)\}$/;COMPOSITION_TOPIC_PREFIX = 'topic:';PageLoader.prototype.load = function (pageName) {return loadPageRecursively(this, pageName, []);};} };});
+
+System.registerDynamic("npm:jjv@1.0.2/lib/jjv.js", [], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -4557,7 +5654,7 @@ System.registerDynamic("npm:jjv@1.0.2/lib/jjv", [], true, function($__require, e
   return module.exports;
 });
 
-System.registerDynamic("npm:jjv@1.0.2/index", ["./lib/jjv"], true, function($__require, exports, module) {
+System.registerDynamic("npm:jjv@1.0.2/index.js", ["./lib/jjv"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -4567,17 +5664,17 @@ System.registerDynamic("npm:jjv@1.0.2/index", ["./lib/jjv"], true, function($__r
   return module.exports;
 });
 
-System.registerDynamic("npm:jjv@1.0.2", ["npm:jjv@1.0.2/index"], true, function($__require, exports, module) {
+System.registerDynamic("npm:jjv@1.0.2.js", ["npm:jjv@1.0.2/index.js"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
   global.define = undefined;
-  module.exports = $__require('npm:jjv@1.0.2/index');
+  module.exports = $__require('npm:jjv@1.0.2/index.js');
   global.define = __define;
   return module.exports;
 });
 
-System.registerDynamic("npm:jjve@0.5.1/jjve", [], true, function($__require, exports, module) {
+System.registerDynamic("npm:jjve@0.5.1/jjve.js", [], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -4854,88 +5951,24 @@ System.registerDynamic("npm:jjve@0.5.1/jjve", [], true, function($__require, exp
   return module.exports;
 });
 
-System.registerDynamic("npm:jjve@0.5.1", ["npm:jjve@0.5.1/jjve"], true, function($__require, exports, module) {
+System.registerDynamic("npm:jjve@0.5.1.js", ["npm:jjve@0.5.1/jjve.js"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
   global.define = undefined;
-  module.exports = $__require('npm:jjve@0.5.1/jjve');
+  module.exports = $__require('npm:jjve@0.5.1/jjve.js');
   global.define = __define;
   return module.exports;
 });
 
-System.register('lib/json/schema.js', ['npm:babel-runtime@5.8.34/core-js/object/keys', '../utilities/object'], function (_export) {var _Object$keys, object;
+System.register('lib/json/schema.js', ['npm:babel-runtime@5.8.34/core-js/object/keys.js'], function (_export) {var _Object$keys;
 
 
 
 
+   function prohibitAdditionalProperties(schema) {
+      prohibitAdditionalPropertiesRecursively(schema);}
 
-
-   function transformV3V4Recursively(schema, parentKey, parentSchema, originalParentSchema) {
-      var resultingSchema = {};
-
-      _Object$keys(schema).forEach(function (key) {
-
-         var value = schema[key];
-
-         switch (key) {
-            case 'required':
-               if (value !== true) {
-                  break;}
-
-
-               if (isNamedProperty(parentKey, originalParentSchema) && !('default' in schema)) {
-                  if (!('required' in parentSchema)) {
-                     parentSchema.required = [];}
-
-                  parentSchema.required.push(parentKey);}
-
-               break;
-
-            case 'items':
-               resultingSchema[key] = transformV3V4Recursively(value, key, resultingSchema, schema);
-               break;
-
-            case 'additionalProperties':
-               if (typeof value === 'object') {
-                  resultingSchema[key] = transformV3V4Recursively(value, key, resultingSchema, schema);} else 
-
-               {
-                  resultingSchema[key] = value;}
-
-               break;
-
-            case 'properties':
-            case 'patternProperties':
-               resultingSchema[key] = {};
-               object.forEach(value, function (patternSchema, pattern) {
-                  resultingSchema[key][pattern] = 
-                  transformV3V4Recursively(patternSchema, pattern, resultingSchema, schema);});
-
-               break;
-
-            default:
-               resultingSchema[key] = value;}});
-
-
-
-
-
-      // LaxarJS specific: transform "not required" to "allow null"
-      if (isNamedProperty(parentKey, originalParentSchema) && !schema.required) {
-         var propertyType = resultingSchema.type;
-         if (typeof propertyType === 'string' && propertyType !== 'null') {
-            resultingSchema.type = [propertyType, 'null'];} else 
-
-         if (Array.isArray(propertyType) && propertyType.indexOf('null') === -1) {
-            propertyType.push('null');}}
-
-
-
-      return resultingSchema;}
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    function prohibitAdditionalPropertiesRecursively(schema) {
       if (('properties' in schema || 'patternProperties' in schema) && 
@@ -4960,49 +5993,14 @@ System.register('lib/json/schema.js', ['npm:babel-runtime@5.8.34/core-js/object/
 
 
       if ('items' in schema) {
-         prohibitAdditionalPropertiesRecursively(schema.items);}}
-
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function isNamedProperty(key, parentSchema) {
-      return parentSchema && 
-      schemaAllowsType(parentSchema, 'object') && 
-      object.path(parentSchema, 'properties.' + key);}
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function schemaAllowsType(schema, type) {
-      var schemaType = schema.type;
-      if (typeof schemaType === 'string') {
-         return schemaType === type;}
-
-      if (Array.isArray(schemaType)) {
-         return schemaType.indexOf(type) !== -1;}
-
-
-      return true;}
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function transformV3ToV4(schema) {
-      return transformV3V4Recursively(schema);}
-
-
-   ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function prohibitAdditionalProperties(schema) {
-      prohibitAdditionalPropertiesRecursively(schema);}return { setters: [function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_utilitiesObject) {object = _utilitiesObject;}], execute: function () {/**
-                                                                                                                                                                                                                                                                 * Copyright 2015 aixigo AG
-                                                                                                                                                                                                                                                                 * Released under the MIT license.
-                                                                                                                                                                                                                                                                 * http://laxarjs.org/license
-                                                                                                                                                                                                                                                                 */'use strict';_export('transformV3ToV4', transformV3ToV4);_export('prohibitAdditionalProperties', prohibitAdditionalProperties);} };});
+         prohibitAdditionalPropertiesRecursively(schema.items);}}return { setters: [function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}], execute: function () {/**
+                                                                                                                                                                                                                 * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                 * Released under the MIT license.
+                                                                                                                                                                                                                 * http://laxarjs.org/license
+                                                                                                                                                                                                                 */'use strict';_export('prohibitAdditionalProperties', prohibitAdditionalProperties);} };});
 
 System.register('lib/json/validator.js', ['jjv', 'jjve', './schema', '../utilities/object'], function (_export) {/**
-                                                                                                                  * Copyright 2015 aixigo AG
+                                                                                                                  * Copyright 2016 aixigo AG
                                                                                                                   * Released under the MIT license.
                                                                                                                   * http://laxarjs.org/license
                                                                                                                   */'use strict';var jjv, jjve, schema, objectUtils, 
@@ -5073,19 +6071,13 @@ System.register('lib/json/validator.js', ['jjv', 'jjve', './schema', '../utiliti
 
       env.defaultOptions = objectUtils.options(options, env.defaultOptions);
 
-      if (!('$schema' in jsonSchema) || jsonSchema.$schema !== JSON_SCHEMA_V4_URI) {
-         // While schema draft v4 is directly supported by the underlying validator, we need to transform
-         // older v3 schemas to valid v4 schemas. Furthermore all of our existing schemas are v3 without
-         // version info. Thus, whenever we find a schema without version info or a version info that isn't
-         // v4, we assume a v3 schema and translate it to v4.
-         // Note that only the small subset of v3 features is transformed v4 features that is needed for
-         // legacy schemas.
-         // Using `this` reference for testability / spying
-         jsonSchema = schema.transformV3ToV4(jsonSchema);
-         jsonSchema.$schema = JSON_SCHEMA_V4_URI;
+      if (!('$schema' in jsonSchema)) {
+         throw new Error('Missing schema version. Use the $schema property to define it.');}
 
-         env.addType('any', function (value) {
-            return true;});}
+
+      if (jsonSchema.$schema !== JSON_SCHEMA_V4_URI) {
+         throw new Error('Unsupported schema version "' + 
+         jsonSchema.$schema + '". Only V4 is supported: "' + JSON_SCHEMA_V4_URI + '".');}
 
 
 
@@ -5105,2373 +6097,469 @@ System.register('lib/json/validator.js', ['jjv', 'jjve', './schema', '../utiliti
 
          JSON_SCHEMA_V4_URI);} };});
 
-System.register('lib/utilities/storage.js', ['./assert', './configuration'], function (_export) {/**
-                                                                                                  * Copyright 2015 aixigo AG
-                                                                                                  * Released under the MIT license.
-                                                                                                  * http://laxarjs.org/license
-                                                                                                  */
-   /**
-    * Provides a convenient api over the browser's `window.localStorage` and `window.sessionStorage` objects. If
-    * a browser doesn't support [web storage](http://www.w3.org/TR/webstorage/), a warning is logged to the
-    * `console` (if available) and a non-persistent in-memory store will be used instead. Note that this can for
-    * example also happen when using Mozilla Firefox with cookies disabled and as such isn't limited to older
-    * browsers.
-    *
-    * Additionally, in contrast to plain *web storage* access, non-string values will be automatically passed
-    * through JSON (de-) serialization on storage or retrieval. All keys will be prepended with a combination of
-    * an arbitrary and a configured namespace to prevent naming clashes with other web applications running on
-    * the same host and port. All {@link StorageApi} accessor methods should then be called without any namespace
-    * since adding and removing it, is done automatically.
-    *
-    * When requiring `laxar`, it is available as `laxar.storage`.
-    *
-    * @module storage
-    */'use strict';var assert, configuration, 
+System.register('lib/loaders/features_provider.js', ['npm:babel-runtime@5.8.34/core-js/object/keys.js', '../json/validator', '../utilities/object'], function (_export) {var _Object$keys, jsonValidator, object, 
 
 
 
-   SESSION, 
-   LOCAL, 
 
 
 
 
 
+   TOPIC_IDENTIFIER, 
+   SUB_TOPIC_FORMAT, 
+   TOPIC_FORMAT, 
+   FLAG_TOPIC_FORMAT, 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   instance; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   _export('create', create); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   /**
-    * @param {Object} backend
-    *    the K/V store, probably only accepting string values
-    * @param {String} namespace
-    *    prefix for all keys for namespacing purposes
-    *
-    * @return {StorageApi}
-    *    a storage wrapper to the given backend with `getItem`, `setItem` and `removeItem` methods
-    *
-    * @private
-    */function createStorage(backend, namespace) {/**
-                                                   * The api returned by one of the `get*Storage` functions of the *storage* module.
-                                                   *
-                                                   * @name StorageApi
-                                                   * @constructor
-                                                   */return { getItem: getItem, setItem: setItem, removeItem: removeItem }; ////////////////////////////////////////////////////////////////////////////////////////////////////////
-      /**
-       * Retrieves a `value` by `key` from the store. JSON deserialization will automatically be applied.
-       *
-       * @param {String} key
-       *    the key of the item to retrieve (without namespace prefix)
-       *
-       * @return {*}
-       *    the value or `null` if it doesn't exist in the store
-       *
-       * @memberOf StorageApi
-       */function getItem(key) {var item = backend.getItem(namespace + '.' + key);return item ? JSON.parse(item) : item;} ////////////////////////////////////////////////////////////////////////////////////////////////////////
-      /**
-       * Sets a `value` for a `key`. The value should be JSON serializable. An existing value will be
-       * overwritten.
-       *
-       * @param {String} key
-       *    the key of the item to set (without namespace prefix)
-       * @param {*} value
-       *    the new value to set
-       *
-       * @memberOf StorageApi
-       */function setItem(key, value) {var nsKey = namespace + '.' + key;if (value === undefined) {backend.removeItem(nsKey);} else {backend.setItem(nsKey, JSON.stringify(value));}} ////////////////////////////////////////////////////////////////////////////////////////////////////////
-      /**
-       * Removes the value associated with `key` from the store.
-       *
-       * @param {String} key
-       *    the key of the item to remove (without namespace prefix)
-       *
-       * @memberOf StorageApi
-       */function removeItem(key) {backend.removeItem(namespace + '.' + key);}} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function getOrFakeBackend(webStorageName) {var store = window[webStorageName];if (store.setItem && store.getItem && store.removeItem) {try {var testKey = 'ax.storage.testItem'; // In iOS Safari Private Browsing, this will fail:
-            store.setItem(testKey, 1);store.removeItem(testKey);return store;} catch (e) {// setItem failed: must use fake storage
-         }}if (window.console) {var method = 'warn' in window.console ? 'warn' : 'log';window.console[method]('window.' + webStorageName + ' not available: Using non-persistent polyfill. \n' + 'Try disabling private browsing or enabling cookies.');}var backend = {};return { getItem: function getItem(key) {return backend[key] || null;}, setItem: function setItem(key, val) {backend[key] = val;}, removeItem: function removeItem(key) {if (key in backend) {delete backend[key];}} };} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function generateUniquePrefix() {var prefix = configuration.get('storagePrefix');if (prefix) {return prefix;}var str = configuration.get('name', '');var res = 0; /* jshint bitwise:false */for (var i = str.length - 1; i > 0; --i) {res = (res << 5) - res + str.charCodeAt(i);res |= 0;}return Math.abs(res);} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   /**
-    * Creates a new storage module. In most cases this module will be called without arguments,
-    * but having the ability to provide them is useful e.g. for mocking purposes within tests.
-    * If the arguments are omitted, an attempt is made to access the native browser WebStorage api.
-    * If that fails, storage is only mocked by an in memory map (thus actually unavailable).
-    *
-    * Developers are free to use polyfills to support cases where local- or session-storage may not be
-    * available. Just make sure to initialize the polyfills before this module.
-    *
-    * @param {Object} [localStorageBackend]
-    *    the backend for local storage, Default is `window.localStorage`
-    * @param {Object} [sessionStorageBackend]
-    *    the backend for session storage, Default is `window.sessionStorage`
-    *
-    * @return {Object}
-    *    a new storage module
-    */function create(localStorageBackend, sessionStorageBackend) {var localBackend = localStorageBackend || getOrFakeBackend(LOCAL);var sessionBackend = sessionStorageBackend || getOrFakeBackend(SESSION);var prefix = 'ax.' + generateUniquePrefix() + '.';return { /**
-                                                                                                                                                                                                                                                                         * Returns a local storage object for a specific local namespace.
-                                                                                                                                                                                                                                                                         *
-                                                                                                                                                                                                                                                                         * @param {String} namespace
-                                                                                                                                                                                                                                                                         *    the namespace to prepend to keys
-                                                                                                                                                                                                                                                                         *
-                                                                                                                                                                                                                                                                         * @return {StorageApi}
-                                                                                                                                                                                                                                                                         *    the local storage object
-                                                                                                                                                                                                                                                                         */getLocalStorage: function getLocalStorage(namespace) {assert(namespace).hasType(String).isNotNull();return createStorage(localBackend, prefix + namespace);}, /////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * Returns a session storage object for a specific local namespace.
-          *
-          * @param {String} namespace
-          *    the namespace to prepend to keys
-          *
-          * @return {StorageApi}
-          *    the session storage object
-          */getSessionStorage: function getSessionStorage(namespace) {assert(namespace).hasType(String).isNotNull();return createStorage(sessionBackend, prefix + namespace);}, /////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * Returns the local storage object for application scoped keys. This is equivalent to
-          * `storage.getLocalStorage( 'app' )`.
-          *
-          * @return {StorageApi}
-          *    the application local storage object
-          */getApplicationLocalStorage: function getApplicationLocalStorage() {return createStorage(localBackend, prefix + 'app');}, /////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * Returns the session storage object for application scoped keys. This is equivalent to
-          * `storage.getSessionStorage( 'app' )`.
-          *
-          * @return {StorageApi}
-          *    the application session storage object
-          */getApplicationSessionStorage: function getApplicationSessionStorage() {return createStorage(sessionBackend, prefix + 'app');} };}return { setters: [function (_assert) {assert = _assert['default'];}, function (_configuration) {configuration = _configuration;}], execute: function () {SESSION = 'sessionStorage';LOCAL = 'localStorage';instance = create();_export('default', instance);} };});
-
-System.register('lib/utilities/timer.js', ['./object', './storage', '../logging/log'], function (_export) {/**
-                                                                                                            * Copyright 2015 aixigo AG
-                                                                                                            * Released under the MIT license.
-                                                                                                            * http://laxarjs.org/license
-                                                                                                            */'use strict';var object, storage, log, 
-
-
-
-
-   idCounter, 
-   store;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   _export('started', started);_export('resumedOrStarted', resumedOrStarted);function Timer(optionalOptions) {this.options_ = object.options(optionalOptions, { label: 'timer' + idCounter++, persistenceKey: null });this.startTime_ = null;this.stopTime_ = null;this.splitTimes_ = [];} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function now() {// cannot use window.performance, because timings need to be valid across pages:
-      return new Date().getTime();} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function saveIfPersistent(timer) {if (timer.options_.persistenceKey) {store.setItem(timer.options_.persistenceKey, { options: timer.options_, startTime: timer.startTime_, stopTime: timer.stopTime_, splitTimes: timer.splitTimes_ });}} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function restoreIfPersistent(timer) {if (timer.options_.persistenceKey) {var data = store.getItem(timer.options_.persistenceKey);if (data) {timer.options_ = data.options;timer.startTime_ = data.startTime;timer.stopTime_ = data.stopTime;timer.splitTimes_ = data.splitTimes;return true;}}return false;} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function removeIfPersistent(timer) {if (timer.options_.persistenceKey) {store.removeItem(timer.options_.persistenceKey);}} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function started(optionalOptions) {var timer = new Timer(optionalOptions);timer.start();return timer;}function resumedOrStarted(optionalOptions) {var timer = new Timer(optionalOptions);if (!restoreIfPersistent(timer)) {timer.start();}return timer;}return { setters: [function (_object) {object = _object;}, function (_storage) {storage = _storage['default'];}, function (_loggingLog) {log = _loggingLog['default'];}], execute: function () {idCounter = 0;store = storage.getSessionStorage('timer');Timer.prototype.getData = function () {return { label: this.options_.label, startTime: this.startTime_, stopTime: this.stopTime_, splitTimes: object.deepClone(this.splitTimes_) };}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         Timer.prototype.start = function () {this.startTime_ = now();saveIfPersistent(this);}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         Timer.prototype.splitTime = function (optionalLabel) {this.splitTimes_.push({ time: now(), label: optionalLabel || 'split' + this.splitTimes_.length });saveIfPersistent(this);}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         Timer.prototype.stop = function () {this.stopTime_ = now();removeIfPersistent(this);}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         Timer.prototype.stopAndLog = function (optionalLabel) {this.stop();var startTime = this.startTime_;var endTime = now();var label = optionalLabel || 'Timer Stopped';this.splitTimes_.push({ label: label, time: endTime });var message = [];message.push('Timer "', this.options_.label, '": ');message.push('start at ', new Date(startTime).toISOString(), ' (client), ');message.push(label, ' after ', (endTime - startTime).toFixed(0), 'ms ');message.push('(checkpoints: ');var intervals = [];this.splitTimes_.reduce(function (from, data) {intervals.push('"' + data.label + '"=' + (data.time - from).toFixed(0) + 'ms');return data.time;}, startTime);message.push(intervals.join(', '), ')');log.info(message.join(''));};} };});
-
-System.register("static/schemas/flow.js", [], function (_export) {/**
-                                                                   * Copyright 2016 aixigo AG
-                                                                   * Released under the MIT license.
-                                                                   * http://laxarjs.org/license
-                                                                   */"use strict";return { setters: [], execute: function () {_export("default", 
-         { 
-            "$schema": "http://json-schema.org/draft-04/schema#", 
-            "type": "object", 
-            "required": ["places"], 
-            "properties": { 
-
-               "places": { 
-                  "type": "object", 
-                  "description": "The places for this flow.", 
-                  "patternProperties": { 
-                     "[a-z][a-zA-Z0-9_]*": { 
-                        "type": "object", 
-                        "properties": { 
-
-                           "redirectTo": { 
-                              "type": "string", 
-                              "description": "The place to redirect to when hitting this place." }, 
-
-                           "page": { 
-                              "type": "string", 
-                              "description": "The page to render for this place." }, 
-
-                           "targets": { 
-                              "type": "object", 
-                              "patternProperties": { 
-                                 "[a-z][a-zA-Z0-9_]*": { 
-                                    "type": "string" } }, 
-
-
-                              "description": "A map of symbolic targets to places reachable from this place." }, 
-
-                           "entryPoints": { 
-                              "type": "object", 
-                              "patternProperties": { 
-                                 "[a-z][a-zA-Z0-9_]*": { 
-                                    "type": "string" } }, 
-
-
-                              "description": "Entry points defined by this place." }, 
-
-                           "exitPoint": { 
-                              "type": "string", 
-                              "description": "The exit point to invoke when reaching this place." } }, 
-
-
-
-                        "additionalProperties": false } }, 
-
-
-                  "additionalProperties": false } }, 
-
-
-
-            "additionalProperties": false });} };});
-
-System.register('lib/runtime/flow.js', ['angular', 'angular-route', '../logging/log', '../json/validator', '../utilities/object', '../utilities/timer', '../utilities/path', '../loaders/paths', '../../static/schemas/flow'], function (_export) {/**
-                                                                                                                                                                                                                                                    * Copyright 2015 aixigo AG
-                                                                                                                                                                                                                                                    * Released under the MIT license.
-                                                                                                                                                                                                                                                    * http://laxarjs.org/license
-                                                                                                                                                                                                                                                    */
-   /**
-    * The *flow* module is responsible for the handling of all tasks regarding navigation and routing and as such
-    * is part of the LaxarJS core. It is your communication partner on the other end of the event bus for
-    * `navigateRequest`, `willNavigate` and `didNavigate` events. For application developers it additionally
-    * provides the `axFlowService`, which can be used for some flow specific tasks.
-    *
-    * @module flow
-    */'use strict';
-
-
-   // TODO: should be changed to "import * as log" as soon as default export in log is removed
-   var ng, ngRoute, log, jsonValidator, object, timer, path, paths, flowSchema, 
-
-
-
-
-
-
-
-   _module, 
-
-
-
-   $routeProvider_, 
-
-
-
-
-
-
-
-   fileResourceProvider_, 
-   exitPoints_, 
-   entryPoint_, 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   SESSION_KEY_TIMER, 
-   TARGET_SELF, 
-
-   activeTarget_, 
-   activePlace_, 
-   activeParameters_, 
-
-   places_, 
-   previousNavigateRequestSubscription_, 
-   navigationInProgress_, 
-   navigationTimer_, 
-
-   eventOptions, 
-   subscriberOptions, 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   ROUTE_PARAMS_MATCHER, 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   name; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function decodeExpectedPlaceParameters(parameters, place) {var result = {};ng.forEach(place.expectedParameters, function (parameterName) {result[parameterName] = decodePlaceParameter(parameters[parameterName]);});return result;} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function placeNameForNavigationTarget(targetOrPlaceName, activePlace) {var placeName = object.path(activePlace, 'targets.' + targetOrPlaceName, targetOrPlaceName);if (placeName in places_) {return placeName;}log.error('Unknown target or place "[0]".', targetOrPlaceName);} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function encodePlaceParameter(value) {if (value == null) {return '_';}return typeof value === 'string' ? value.replace(/\//g, '%2F') : value;} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function decodePlaceParameter(value) {if (value == null || value === '' || value === '_') {return null;}return typeof value === 'string' ? value.replace(/%2F/g, '/') : value;} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   //
-   // Flow Loading tasks
-   //
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function loadFlow(flowFile) {return fetchPlaces(flowFile).then(function (places) {places_ = processPlaceParameters(places);object.forEach(places_, function (place, routeName) {assembleRoute(routeName, place);});$routeProvider_.otherwise({ redirectTo: '/entry' });});} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function assembleRoute(routeName, _place) {if (_place.redirectTo) {$routeProvider_.when('/' + routeName, { redirectTo: _place.redirectTo });return;}if (_place.entryPoints) {$routeProvider_.when('/' + routeName, { redirectTo: routeByEntryPoint(_place.entryPoints) });return;}if (!_place.page && !_place.exitPoint) {log.warn('flow: invalid empty place: [0]', _place.id);return;}$routeProvider_.when('/' + routeName, { template: '<!---->', controller: 'AxFlowController', resolve: { place: function place() {return _place;} } });} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function routeByEntryPoint(possibleEntryPoints) {var entryPoint = entryPoint_ || { target: 'default', parameters: {} };var placeName = possibleEntryPoints[entryPoint.target];if (placeName) {var targetPlace = places_[placeName];var uri = placeName;var parameters = entryPoint.parameters || {};object.forEach(targetPlace.expectedParameters, function (parameterName) {uri += '/' + encodePlaceParameter(parameters[parameterName]);});return uri;}} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function processPlaceParameters(places) {var processedRoutes = {};object.forEach(places, function (place, placeName) {place.expectedParameters = [];place.id = placeName;if (!place.targets) {place.targets = {};}if (!place.targets[TARGET_SELF]) {place.targets[TARGET_SELF] = placeName.split(/\/:/)[0];}var matches;while (matches = ROUTE_PARAMS_MATCHER.exec(placeName)) {var routeNameWithoutParams = placeName.substr(0, matches.index);place.expectedParameters.push(matches[1]);processedRoutes[routeNameWithoutParams] = place;}processedRoutes[placeName] = place;});return processedRoutes;} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function fetchPlaces(flowFile) {return fileResourceProvider_.provide(flowFile).then(function (flow) {validateFlowJson(flow);return flow.places;}, function (err) {throw new Error('Failed to load "' + flowFile + '". Cause: ' + err);});} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function validateFlowJson(flowJson) {var result = jsonValidator.create(flowSchema).validate(flowJson);if (result.errors.length) {result.errors.forEach(function (error) {log.error('[0]', error.message);});throw new Error('Illegal flow.json format');}} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   return { setters: [function (_angular) {ng = _angular['default'];}, function (_angularRoute) {ngRoute = _angularRoute;}, function (_loggingLog) {log = _loggingLog['default'];}, function (_jsonValidator) {jsonValidator = _jsonValidator;}, function (_utilitiesObject) {object = _utilitiesObject;}, function (_utilitiesTimer) {timer = _utilitiesTimer;}, function (_utilitiesPath) {path = _utilitiesPath;}, function (_loadersPaths) {paths = _loadersPaths;}, function (_staticSchemasFlow) {flowSchema = _staticSchemasFlow['default'];}], execute: function () {_module = ng.module('axFlow', ['ngRoute']); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         _module.config(['$routeProvider', function ($routeProvider) {$routeProvider_ = $routeProvider;}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         _module.run(['$route', 'axConfiguration', 'axFileResourceProvider', function ($route, configuration, fileResourceProvider) {fileResourceProvider_ = fileResourceProvider;entryPoint_ = configuration.get('flow.entryPoint');exitPoints_ = configuration.get('flow.exitPoints'); // idea for lazy loading routes using $routeProvider and $route.reload() found here:
-            // https://groups.google.com/d/msg/angular/mrcy_2BZavQ/Mqte8AvEh0QJ
-            loadFlow(path.normalize(paths.FLOW_JSON)).then(function () {return $route.reload();});}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         SESSION_KEY_TIMER = 'navigationTimer';TARGET_SELF = '_self';activeTarget_ = TARGET_SELF;activePlace_ = null;activeParameters_ = {};navigationInProgress_ = false;eventOptions = { sender: 'AxFlowController' };subscriberOptions = { subscriber: 'AxFlowController' }; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         _module.controller('AxFlowController', ['$window', '$location', '$routeParams', 'place', 'axGlobalEventBus', 'axFlowService', 'axPageService', function FlowController($window, $location, $routeParams, place, eventBus, flowService, pageService) {// The flow controller is instantiated on route change by AngularJS. It then announces the start of
-            // navigation ("willNavigate") and initiates loading of the new page. As soon as the new page is
-            // loaded, the "didNavigate" event finishes the navigation logic. The flow controller then starts to
-            // listen for subsequent navigateRequests.
-            if (previousNavigateRequestSubscription_) {eventBus.unsubscribe(previousNavigateRequestSubscription_);previousNavigateRequestSubscription_ = null;}var previousPlace = activePlace_;activePlace_ = place;activeParameters_ = decodeExpectedPlaceParameters($routeParams, place);if (typeof place.exitPoint === 'string') {var exit = place.exitPoint;if (exitPoints_ && typeof exitPoints_[exit] === 'function') {exitPoints_[exit](activeParameters_);return;}throw new Error('Exitpoint "' + exit + '" does not exist.');}navigationInProgress_ = true;var navigateEvent = { target: activeTarget_ };var didNavigateEvent = object.options({ data: {}, place: place.id }, navigateEvent);eventBus.publish('willNavigate.' + activeTarget_, navigateEvent, eventOptions).then(function () {didNavigateEvent.data = activeParameters_;if (place === previousPlace) {return finishNavigation(activeTarget_, didNavigateEvent);}return pageService.controller().tearDownPage().then(function () {navigationTimer_ = timer.resumedOrStarted({ label: ['loadTimer (', place.target ? place.target._self : place.id, ')'].join(''), persistenceKey: SESSION_KEY_TIMER });return pageService.controller().setupPage(place.page);}).then(function () {return finishNavigation(activeTarget_, didNavigateEvent);}).then(function () {navigationTimer_.stopAndLog('didNavigate');});}).then(null, function (error) {log.error(error);}); /////////////////////////////////////////////////////////////////////////////////////////////////////
-            function handleNavigateRequest(event, meta) {if (navigationInProgress_) {// make sure that at most one navigate request be handled at the same time
-                  return;}navigationInProgress_ = true;activeTarget_ = event.target;var placeName = placeNameForNavigationTarget(activeTarget_, place);var newPlace = places_[placeName];navigationTimer_ = timer.started({ label: ['navigation (', place ? place.targets._self : '', ' -> ', newPlace.targets._self, ')'].join(''), persistenceKey: SESSION_KEY_TIMER });var newPath = flowService.constructPath(event.target, event.data);if (newPath !== $location.path()) {// this will instantiate another flow controller
-                  $location.path(newPath);meta.unsubscribe();} else {// nothing to do:
-                  navigationInProgress_ = false;}} /////////////////////////////////////////////////////////////////////////////////////////////////////
-            function finishNavigation(currentTarget_, didNavigateEvent) {eventBus.subscribe('navigateRequest', handleNavigateRequest, subscriberOptions);log.setTag('PLCE', place.id);if (previousNavigateRequestSubscription_) {eventBus.unsubscribe(previousNavigateRequestSubscription_);}previousNavigateRequestSubscription_ = handleNavigateRequest;navigationInProgress_ = false;return eventBus.publish('didNavigate.' + currentTarget_, didNavigateEvent, eventOptions);}}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * A service providing some flow specific tasks that may be useful from within widgets.
-          *
-          * @name axFlowService
-          * @injection
-          */_module.factory('axFlowService', ['$location', function ($location) {var flowService = { /**
-                                                                                                      * Constructs a path, that is compatible to the expected arguments of `$location.path()` from
-                                                                                                      * AngularJS. If a target is given as first argument, this is resolved using the currently active
-                                                                                                      * place.
-                                                                                                      *
-                                                                                                      * @param {String} targetOrPlace
-                                                                                                      *    the target or place id to construct the url for
-                                                                                                      * @param {Object} [optionalParameters]
-                                                                                                      *    optional map of place parameters. Missing parameters are taken from the parameters that were
-                                                                                                      *    passed to the currently active place
-                                                                                                      *
-                                                                                                      * @return {string}
-                                                                                                      *    the generated path
-                                                                                                      *
-                                                                                                      * @memberOf axFlowService
-                                                                                                      */constructPath: function constructPath(targetOrPlace, optionalParameters) {var newParameters = object.options(optionalParameters, activeParameters_ || {});var placeName = placeNameForNavigationTarget(targetOrPlace, activePlace_);var place = places_[placeName];var location = '/' + placeName;object.forEach(place.expectedParameters, function (parameterName) {location += '/' + encodePlaceParameter(newParameters[parameterName]);});return location;}, /////////////////////////////////////////////////////////////////////////////////////////////////////
-               /**
-                * Constructs a path and prepends a `#` to make it directly usable as relative link within an
-                * application. If a target is given as first argument, this is resolved using the currently active
-                * place.
-                *
-                * @param {String} targetOrPlace
-                *    the target or place id to construct the url for
-                * @param {Object} [optionalParameters]
-                *    optional map of place parameters. Missing parameters are taken from the parameters that were
-                *    passed to the currently active place
-                *
-                * @return {string}
-                *    the generated anchor
-                *
-                * @memberOf axFlowService
-                */constructAnchor: function constructAnchor(targetOrPlace, optionalParameters) {return '#' + flowService.constructPath(targetOrPlace, optionalParameters);}, /////////////////////////////////////////////////////////////////////////////////////////////////////
-               /**
-                * Constructs an absolute url to the given target or place using the given parameters application. If
-                * a target is given as first argument, this is resolved using the currently active place.
-                *
-                * @param {String} targetOrPlace
-                *    the target or place id to construct the url for
-                * @param {Object} [optionalParameters]
-                *    optional map of place parameters. Missing parameters are taken from the parameters that were
-                *    passed to the currently active place
-                *
-                * @return {string}
-                *    the generated url
-                *
-                * @memberOf axFlowService
-                */constructAbsoluteUrl: function constructAbsoluteUrl(targetOrPlace, optionalParameters) {var absUrl = $location.absUrl().split('#')[0];return absUrl + flowService.constructAnchor(targetOrPlace, optionalParameters);}, /////////////////////////////////////////////////////////////////////////////////////////////////////
-               /**
-                * Returns a copy of the currently active place.
-                *
-                * @return {Object}
-                *    the currently active place
-                *
-                * @memberOf axFlowService
-                */place: function place() {return object.deepClone(activePlace_);} }; ////////////////////////////////////////////////////////////////////////////////////////////////////////
-            return flowService;}]);ROUTE_PARAMS_MATCHER = /\/:([^\/]+)/ig;name = _module.name;_export('name', name);_export('default', _module);} };});
-
-System.register('lib/runtime/area_helper.js', ['angular'], function (_export) {/**
-                                                                                * Copyright 2015 aixigo AG
-                                                                                * Released under the MIT license.
-                                                                                * http://laxarjs.org/license
-                                                                                */
-
-
-   /**
-    * The area helper manages widget areas, their DOM representation and their nesting structure.
-    *
-    * It tracks widget area visibility in order to compile widgets and to attach them to their areas when
-    * these become visible. It also tells the visibility service when change handlers need to be run. It does
-    * not interact with the event bus directly, but is consulted by the visibility manager to determine area
-    * nesting for visibility events.
-    */'use strict';var ng;_export('create', create);
-   function create(q, page, visibilityService) {
-
-      var exports = { 
-         setVisibility: setVisibility, 
-         areasInArea: areasInArea, 
-         areasInWidget: areasInWidget, 
-         register: register, 
-         exists: exists, 
-         attachWidgets: attachWidgets };
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      // forget about any visibility handlers/state from a previous page
-      visibilityService._reset();
-
-      // all initially visible widgets should be attached together, to reduce jitter and unnecessary DOM ops
-      var freeToAttach = false;
-
-      // keep the dom element for each area, to attach widgets to
-      var areaToElement = {};
-
-      // track widget adapters waiting for their area to become available so that they may attach to its DOM
-      var areaToWaitingAdapters = {};
-
-      // the area name for each widget
-      var widgetIdToArea = {};
-      ng.forEach(page.areas, function (widgets, areaName) {
-         widgets.forEach(function (widget) {
-            widgetIdToArea[widget.id] = areaName;});});
-
-
-
-      // for each widget with children, and each widget area with nested areas, store a list of child names
-      var areasInAreaMap = {};
-      var areasInWidgetMap = {};
-      ng.forEach(page.areas, function (widgetEntries, areaName) {
-         var containerName = '';
-         if (areaName.indexOf('.') !== -1) {
-            var widgetId = areaName.split('.')[0];
-            areasInWidgetMap[widgetId] = areasInWidgetMap[widgetId] || [];
-            areasInWidgetMap[widgetId].push(areaName);
-            containerName = widgetIdToArea[widgetId];}
-
-         areasInAreaMap[containerName] = areasInAreaMap[containerName] || [];
-         areasInAreaMap[containerName].push(areaName);});
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function setVisibility(areaName, visible) {
-         if (visible && freeToAttach) {
-            attachWaitingAdapters(areaName);}
-
-         visibilityService._updateState(areaName, visible);}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function areasInArea(containerName) {
-         return areasInAreaMap[containerName];}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function areasInWidget(widgetId) {
-         return areasInWidgetMap[widgetId];}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      /**
-       * Register a widget area
-       *
-       * @param {String} name
-       *    the area name as used in the page definition
-       * @param {HTMLElement} element
-       *    an HTML element representing the widget area
-       */
-      function register(name, element) {
-         if (name in areaToElement) {
-            throw new Error('The area "' + name + '" is defined twice in the current layout.');}
-
-
-         areaToElement[name] = element;
-         if (freeToAttach && visibilityService.isVisible(name)) {
-            attachWaitingAdapters(name);}
-
-         return function () {
-            delete areaToElement[name];};}
-
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function exists(name) {
-         return name in areaToElement;}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function attachWidgets(widgetAdapters) {
-         freeToAttach = true;
-         widgetAdapters.forEach(function (adapterRef) {
-            var areaName = widgetIdToArea[adapterRef.id];
-            areaToWaitingAdapters[areaName] = areaToWaitingAdapters[areaName] || [];
-            areaToWaitingAdapters[areaName].push(adapterRef);});
-
-         ng.forEach(page.areas, function (widgets, areaName) {
-            if (visibilityService.isVisible(areaName)) {
-               attachWaitingAdapters(areaName);}});}
-
-
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      /** @private */
-      function attachWaitingAdapters(areaName) {
-         var waitingAdapters = areaToWaitingAdapters[areaName];
-         if (!waitingAdapters || !waitingAdapters.length) {return;}
-         var element = areaToElement[areaName];
-         if (!element) {return;}
-
-         q.all(waitingAdapters.map(function (adapterRef) {
-            // Make sure that all assets are available before proceeding, so that DOM update happens en bloc.
-            return adapterRef.templatePromise;})).
-
-         then(function (htmlTemplates) {
-            // prepare first/last bootstrap classes for appending widgets
-            var currentLast = element.lastChild;
-            if (currentLast) {ng.element(currentLast).removeClass('last');}
-            var currentFirst = element.firstChild;
-
-            waitingAdapters.forEach(function (adapterRef, i) {
-               adapterRef.adapter.domAttachTo(element, htmlTemplates[i]);});
-
-
-            // fix first/last bootstrap classes as needed
-            if (!currentFirst) {
-               var first = element.firstChild;
-               if (first) {first.className += ' first';}}
-
-            var last = element.lastChild;
-            if (last) {last.className += ' last';}});
-
-
-         delete areaToWaitingAdapters[areaName];}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      return exports;}return { setters: [function (_angular) {ng = _angular['default'];}], execute: function () {} };});
-
-System.register('lib/runtime/locale_event_manager.js', ['npm:babel-runtime@5.8.34/core-js/object/keys', '../utilities/object'], function (_export) {var _Object$keys, deepClone, 
-
-
-
-
-
-
-   senderOptions, 
-   subscriberOptions;
+   LANGUAGE_TAG_FORMAT;
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   /**
-    * The LocaleManager initializes the locale(s) and implements changes to them.
-    *
-    * Before publishing the state of all configured locales, it listens to change requests, allowing
-    * widgets and activities (such as a LocaleSwitcherWidget) to influence the state of locales before
-    * the navigation is complete.
-    */
-   function create($q, eventBus, configuration) {
-
-      var exports = { 
-         initialize: initialize, 
-         subscribe: subscribe, 
-         unsubscribe: unsubscribe };
-
-
-      var configLocales_ = configuration.get('i18n.locales', { 'default': 'en' });
-      var i18n;
-      var initialized;
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function handleRequest(event) {
-         i18n[event.locale] = event.languageTag;
-         if (initialized) {
-            publish(event.locale);}}
-
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function publish(locale) {
-         var event = { locale: locale, languageTag: i18n[locale] };
-         return eventBus.publish('didChangeLocale.' + locale, event, senderOptions);}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function initialize() {
-         initialized = true;
-         return $q.all(_Object$keys(configLocales_).map(publish));}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function unsubscribe() {
-         eventBus.unsubscribe(handleRequest);}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function subscribe() {
-         i18n = deepClone(configLocales_);
-         initialized = false;
-
-         eventBus.subscribe('changeLocaleRequest', handleRequest, subscriberOptions);}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      return exports;}return { setters: [function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_utilitiesObject) {deepClone = _utilitiesObject.deepClone;}], execute: function () {/**
-                                                                                                                                                                                                                                             * Copyright 2015 aixigo AG
-                                                                                                                                                                                                                                             * Released under the MIT license.
-                                                                                                                                                                                                                                             * http://laxarjs.org/license
-                                                                                                                                                                                                                                             */'use strict';_export('create', create);senderOptions = { sender: 'AxPageController' };subscriberOptions = { subscriber: 'AxPageController' };} };});
-
-System.register('lib/runtime/visibility_event_manager.js', [], function (_export) {/**
-                                                                                    * Copyright 2015 aixigo AG
-                                                                                    * Released under the MIT license.
-                                                                                    * http://laxarjs.org/license
-                                                                                    */'use strict';var 
-   senderOptions, 
-   subscriberOptions;_export('create', create);
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   /**
-    * The visibility event manager initializes and coordinates events for widget area visibility.
-    *
-    * It subscribes to all visibility changes and propagates them to nested widget areas
-    * (if applicable). It is not concerned with the resulting DOM-visibility of individual controls:
-    * the `axVisibilityService` takes care of that.
-    *
-    * @return {{initialize: Function}}
-    *    a function to trigger initialization of the manager and initial widget visibility
-    */
-   function create($q, eventBus) {
-
-      var exports = { 
-         initialize: initialize, 
-         setAreaHelper: setAreaHelper, 
-         unsubscribe: unsubscribe };
-
-
-      var areaHelper_;
-      var ROOT = '';
-
-      function setAreaHelper(areaHelper) {
-         areaHelper_ = areaHelper;}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function initialize() {
-         // broadcast visibility changes in individual widgets to their nested areas
-         eventBus.subscribe('changeWidgetVisibilityRequest', handleChangeWidgetRequest, subscriberOptions);
-
-         // broadcast visibility changes in widget areas to their nested areas
-         eventBus.subscribe('changeAreaVisibilityRequest', handleChangeAreaRequest, subscriberOptions);
-
-         return implementAreaChange(ROOT, true);}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function handleChangeWidgetRequest(event) {
-         var affectedAreas = areaHelper_.areasInWidget(event.widget);
-         var will = ['willChangeWidgetVisibility', event.widget, event.visible].join('.');
-         var did = ['didChangeWidgetVisibility', event.widget, event.visible].join('.');
-
-         eventBus.publish(will, event, senderOptions);
-
-         $q.all((affectedAreas || []).map(event.visible ? show : hide)).
-         then(function () {
-            eventBus.publish(did, event, senderOptions);});}
-
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function handleChangeAreaRequest(event) {
-         return initiateAreaChange(event.area, event.visible);}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function show(area) {
-         return requestAreaChange(area, true);}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function hide(area) {
-         return requestAreaChange(area, false);}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      /**
-       * First, publish a `changeAreaVisibilityRequest` to ask if some widget would like to manage the
-       * given area's visibility.
-       * If no widget responds, self-issue a will/did-response to notify interested widgets in the area
-       * of their new visibility status.
-       * In either case, manage the propagation to nested areas and inform the area helper so that it
-       * may compile and attach the templates of any newly visible widgets.
-       *
-       * @param {String} area
-       *    the area whose visibility to update
-       * @param {Boolean} visible
-       *    the new visibility state of the given area, to the best knowledge of the client
-       */
-      function requestAreaChange(area, visible) {
-         var request = ['changeAreaVisibilityRequest', area].join('.');
-         var event = { area: area, visible: visible };
-         return eventBus.publishAndGatherReplies(request, event, senderOptions).
-         then(function (responses) {
-            if (responses.length === 0) {
-               // no one took responsibility, so the event manager determines visibility by area nesting
-               return initiateAreaChange(area, visible);}
-
-            // assume the first 'did'-response to be authoritative:
-            var response = responses[0];
-            return implementAreaChange(area, response.event.visible);});}
-
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      /**
-       * Set the new visibility state for the given area, then issue requests for the child areas.
-       * Inform the area helper so that it may compile and attach the templates of any newly visible
-       * widgets.
-       */
-      function initiateAreaChange(area, visible) {
-         var will = ['willChangeAreaVisibility', area, visible].join('.');
-         var event = { area: area, visible: visible };
-         return eventBus.publish(will, event, senderOptions).
-         then(function () {
-            return implementAreaChange(area, visible);}).
-
-         then(function () {
-            var did = ['didChangeAreaVisibility', area, visible].join('.');
-            return eventBus.publish(did, event, senderOptions);});}
-
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function implementAreaChange(ofArea, areaVisible) {
-         areaHelper_.setVisibility(ofArea, areaVisible);
-         var children = areaHelper_.areasInArea(ofArea);
-         if (!children) {
-            return $q.when();}
-
-
-         return $q.all(children.map(areaVisible ? show : hide));}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      function unsubscribe() {
-         eventBus.unsubscribe(handleChangeAreaRequest);
-         eventBus.unsubscribe(handleChangeWidgetRequest);}
-
-
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      return exports;}return { setters: [], execute: function () {senderOptions = { sender: 'AxPageController', deliverToSender: false };subscriberOptions = { subscriber: 'AxPageController' };} };});
-
-System.register('lib/runtime/page.js', ['../utilities/assert', 'angular', '../directives/layout/layout', '../loaders/page_loader', '../loaders/widget_loader', '../loaders/paths', './layout_widget_adapter', './flow', './area_helper', './locale_event_manager', './visibility_event_manager'], function (_export) {/**
-                                                                                                                                                                                                                                                                                                                       * Copyright 2015 aixigo AG
-                                                                                                                                                                                                                                                                                                                       * Released under the MIT license.
-                                                                                                                                                                                                                                                                                                                       * http://laxarjs.org/license
-                                                                                                                                                                                                                                                                                                                       */'use strict';var codeIsUnreachable, ng, layoutModule, pageLoader, widgetLoader, paths, layoutWidgetAdapter, flowModule, createAreaHelper, createLocaleEventManager, createVisibilityEventManager, 
-
-
-
-
-
-
-
-
-
-
-
-
-   _module, 
-
-
-   WIDGET_ATTACH_DELAY_MS, 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   name;return { setters: [function (_utilitiesAssert) {codeIsUnreachable = _utilitiesAssert.codeIsUnreachable;}, function (_angular) {ng = _angular['default'];}, function (_directivesLayoutLayout) {layoutModule = _directivesLayoutLayout;}, function (_loadersPage_loader) {pageLoader = _loadersPage_loader;}, function (_loadersWidget_loader) {widgetLoader = _loadersWidget_loader;}, function (_loadersPaths) {paths = _loadersPaths;}, function (_layout_widget_adapter) {layoutWidgetAdapter = _layout_widget_adapter;}, function (_flow) {flowModule = _flow;}, function (_area_helper) {createAreaHelper = _area_helper.create;}, function (_locale_event_manager) {createLocaleEventManager = _locale_event_manager.create;}, function (_visibility_event_manager) {createVisibilityEventManager = _visibility_event_manager.create;}], execute: function () {_module = ng.module('axPage', [layoutModule.name, layoutWidgetAdapter.name, flowModule.name]); /** Delay between sending didLifeCycle and attaching widget templates. */WIDGET_ATTACH_DELAY_MS = 5; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * Mediates between the AxFlowController which has no ties to the DOM and the stateful AxPageController
-          */_module.service('axPageService', [function () {var pageController;return { controller: function controller() {return pageController;}, registerPageController: function registerPageController(controller) {pageController = controller;return function () {pageController = null;};}, controllerForScope: function controllerForScope(scope) {return pageController;} };}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * Manages widget adapters and their DOM for the current page
-          */(function () {var pageControllerDependencies = ['$scope', '$q', '$timeout', 'axPageService'];var axServiceDependencies = ['axConfiguration', 'axControls', 'axCssLoader', 'axFileResourceProvider', 'axFlowService', 'axGlobalEventBus', 'axHeartbeat', 'axI18n', 'axLayoutLoader', 'axThemeManager', 'axTimestamp', 'axVisibilityService'];var createPageControllerInjected = pageControllerDependencies.concat(axServiceDependencies).concat(function ($scope, $q, $timeout, pageService) {var axServices = {};var injections = [].slice.call(arguments);axServiceDependencies.forEach(function (name, index) {axServices[name] = injections[pageControllerDependencies.length + index];});var visibilityService = axServices.axVisibilityService;var configuration = axServices.axConfiguration;var layoutLoader = axServices.axLayoutLoader;var eventBus = axServices.axGlobalEventBus;var fileResourceProvider = axServices.axFileResourceProvider;var themeManager = axServices.axThemeManager;var self = this;var pageLoader_ = pageLoader.create($q, null, paths.PAGES, fileResourceProvider);var areaHelper_;var widgetAdapters_ = [];var viewChangeApplyFunctions_ = [];var theme = themeManager.getTheme();var localeManager = createLocaleEventManager($q, eventBus, configuration);var visibilityManager = createVisibilityEventManager($q, eventBus);var lifecycleEvent = { lifecycleId: 'default' };var senderOptions = { sender: 'AxPageController' };var renderLayout = function renderLayout(layoutInfo) {codeIsUnreachable('No renderer for page layout ' + layoutInfo.className);};var cleanup = pageService.registerPageController(this);$scope.$on('$destroy', cleanup); /////////////////////////////////////////////////////////////////////////////////////////////////////
-               function widgetsForPage(page) {var widgets = [];ng.forEach(page.areas, function (area, areaName) {area.forEach(function (widget) {widget.area = areaName;widgets.push(widget);});});return widgets;} /////////////////////////////////////////////////////////////////////////////////////////////////////
-               function beginLifecycle() {return eventBus.publishAndGatherReplies('beginLifecycleRequest.default', lifecycleEvent, senderOptions);} /////////////////////////////////////////////////////////////////////////////////////////////////////
-               function publishTheme() {return eventBus.publish('didChangeTheme.' + theme, { theme: theme }, senderOptions);} /////////////////////////////////////////////////////////////////////////////////////////////////////
-               /**
-                * Instantiate all widget controllers on this page, and then load their UI.
-                *
-                * @return {Promise}
-                *    A promise that is resolved when all controllers have been instantiated, and when the initial
-                *    events have been sent.
-                */function setupPage(pageName) {var widgetLoader_ = widgetLoader.create($q, axServices);var layoutDeferred = $q.defer();var pagePromise = pageLoader_.loadPage(pageName).then(function (page) {areaHelper_ = createAreaHelper($q, page, visibilityService);visibilityManager.setAreaHelper(areaHelper_);self.areas = areaHelper_;layoutLoader.load(page.layout).then(layoutDeferred.resolve);localeManager.subscribe(); // instantiate controllers
-                     var widgets = widgetsForPage(page);return $q.all(widgets.map(function (widget) {if ('layout' in widget) {return createLayoutWidgetAdapter(widget);}return widgetLoader_.load(widget);}));}).then(function (widgetAdapters) {widgetAdapters.forEach(function (adapter) {if (typeof adapter.applyViewChanges === 'function' && viewChangeApplyFunctions_.indexOf(adapter.applyViewChanges) === -1) {viewChangeApplyFunctions_.push(adapter.applyViewChanges);}});widgetAdapters_ = widgetAdapters;}).then(localeManager.initialize).then(publishTheme).then(beginLifecycle).then(visibilityManager.initialize);var layoutReady = layoutDeferred.promise.then(function (result) {// function wrapper is necessary here to dereference `renderlayout` _after_ the layout is ready
-                     renderLayout(result);}); // Give the widgets (a little) time to settle on the event bus before $digesting and painting:
-                  var widgetsInitialized = pagePromise.then(function () {return $timeout(function () {}, WIDGET_ATTACH_DELAY_MS, false);});return $q.all([layoutReady, widgetsInitialized]).then(function () {areaHelper_.attachWidgets(widgetAdapters_);});} /////////////////////////////////////////////////////////////////////////////////////////////////////
-               function tearDownPage() {visibilityManager.unsubscribe();localeManager.unsubscribe();return eventBus.publishAndGatherReplies('endLifecycleRequest.default', lifecycleEvent, senderOptions).then(function () {widgetAdapters_.forEach(function (adapterRef) {adapterRef.destroy();});widgetAdapters_ = [];viewChangeApplyFunctions_ = [];});} /////////////////////////////////////////////////////////////////////////////////////////////////////
-               function registerLayoutRenderer(render) {renderLayout = render;} /////////////////////////////////////////////////////////////////////////////////////////////////////
-               function createLayoutWidgetAdapter(widget) {return layoutLoader.load(widget.layout).then(function (layout) {var adapter = layoutWidgetAdapter.create(layout, { area: widget.area, id: widget.id, path: widget.layout });return { id: widget.id, adapter: adapter, destroy: adapter.destroy, templatePromise: $q.when(layout.htmlContent) };});} /////////////////////////////////////////////////////////////////////////////////////////////////////
-               function applyViewChanges() {viewChangeApplyFunctions_.forEach(function (applyFunction) {applyFunction();});} /////////////////////////////////////////////////////////////////////////////////////////////////////
-               this.applyViewChanges = applyViewChanges;this.setupPage = setupPage;this.tearDownPage = tearDownPage;this.registerLayoutRenderer = registerLayoutRenderer;});_module.controller('AxPageController', createPageControllerInjected);})(); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         _module.directive('axPage', ['$compile', function ($compile) {var defaultAreas = [{ name: 'activities', hidden: true }, { name: 'popups' }, { name: 'popovers' }];return { restrict: 'A', template: '<div data-ng-class="layoutClass"></div>', replace: true, scope: true, controller: 'AxPageController', link: function link(scope, element, attrs, controller) {controller.registerLayoutRenderer(function (layoutInfo) {scope.layoutClass = layoutInfo.className;element.html(layoutInfo.htmlContent);$compile(element.contents())(scope);var defaultAreaHtml = defaultAreas.reduce(function (html, area) {if (!controller.areas.exists(area.name)) {return html + '<div data-ax-widget-area="' + area.name + '"' + (area.hidden ? ' style="display: none;"' : '') + '></div>';}return html;}, '');if (defaultAreaHtml) {element.append($compile(defaultAreaHtml)(scope));}});} };}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         name = _module.name;_export('name', name);_export('default', _module);} };});
-
-System.register('lib/directives/id/id.js', ['angular', '../../utilities/assert'], function (_export) {/**
-                                                                                                       * Copyright 2015 aixigo AG
-                                                                                                       * Released under the MIT license.
-                                                                                                       * http://laxarjs.org/license
-                                                                                                       */
-   /**
-    * A module for the `axId` and `axFor` directives.
-    *
-    * @module axId
-    */'use strict';var ng, assert, 
-
-
-
-   _module, 
-
-
-
-   ID_DIRECTIVE_NAME, 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   FOR_DIRECTIVE_NAME, 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   name;return { setters: [function (_angular) {ng = _angular['default'];}, function (_utilitiesAssert) {assert = _utilitiesAssert['default'];}], execute: function () {_module = ng.module('axId', []); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         ID_DIRECTIVE_NAME = 'axId'; /**
-                                      * This directive should be used within a widget whenever a unique id for a DOM element should be created.
-                                      * It's value is evaluated as AngularJS expression and used as a local identifier to generate a distinct,
-                                      * unique document wide id.
-                                      *
-                                      * A common use case is in combination with {@link axFor} for input fields having a label.
-                                      *
-                                      * Example:
-                                      * ```html
-                                      * <label ax-for="'userName'">Please enter your name:</label>
-                                      * <input ax-id="'userName'" type="text" ng-model="username">
-                                      * ```
-                                      *
-                                      * @name axId
-                                      * @directive
-                                      */_module.directive(ID_DIRECTIVE_NAME, [function () {return { restrict: 'A', link: function link(scope, element, attrs) {var localId = scope.$eval(attrs[ID_DIRECTIVE_NAME]);assert.state(localId, 'directive axId needs a non-empty local id, e.g. ax-id="\'myLocalId\'".');element.attr('id', scope.id(localId));} };}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         FOR_DIRECTIVE_NAME = 'axFor'; /**
-                                        * This directive should be used within a widget whenever an id, generated using the {@link axId} directive,
-                                        * should be referenced at a `label` element.
-                                        *
-                                        * Example:
-                                        * ```html
-                                        * <label ax-for="'userName'">Please enter your name:</label>
-                                        * <input ax-id="'userName'" type="text" ng-model="username">
-                                        * ```
-                                        *
-                                        * @name axFor
-                                        * @directive
-                                        */_module.directive(FOR_DIRECTIVE_NAME, [function () {return { restrict: 'A', link: function link(scope, element, attrs) {var localId = scope.$eval(attrs[FOR_DIRECTIVE_NAME]);assert.state(localId, 'directive axFor needs a non-empty local id, e.g. ax-for="\'myLocalId\'".');element.attr('for', scope.id(localId));} };}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         name = _module.name;_export('name', name);} };});
-
-System.register('lib/directives/layout/layout.js', ['angular', '../../logging/log'], function (_export) {/**
-                                                                                                          * Copyright 2015 aixigo AG
-                                                                                                          * Released under the MIT license.
-                                                                                                          * http://laxarjs.org/license
-                                                                                                          */
-   /**
-    * A module for the `axLayout` directive.
-    *
-    * @module axLayout
-    */'use strict';var ng, log, 
-
-
-
-   _module, 
-
-   DIRECTIVE_NAME, 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   name;return { setters: [function (_angular) {ng = _angular['default'];}, function (_loggingLog) {log = _loggingLog['default'];}], execute: function () {_module = ng.module('axLayout', []);DIRECTIVE_NAME = 'axLayout'; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * This directive uses the *axLayoutLoader* service to load a given layout and compile it as child to the
-          * element the directive is set on. In contrast to *ngInclude* it doesn't watch the provided expression for
-          * performance reasons and takes LaxarJS theming into account when loading the assets.
-          *
-          * @name axLayout
-          * @directive
-          */_module.directive(DIRECTIVE_NAME, ['axLayoutLoader', '$compile', function (layoutLoader, $compile) {return { restrict: 'A', link: function link(scope, element, attrs) {var layoutName = scope.$eval(attrs[DIRECTIVE_NAME]);layoutLoader.load(layoutName).then(function (layoutInfo) {element.html(layoutInfo.htmlContent);element.addClass(layoutInfo.className);$compile(element.contents())(scope);scope.$emit('axLayoutLoaded', layoutName);}, function (err) {log.error('axLayout: could not load layout [0], error: [1]', layoutName, err);});} };}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         name = _module.name;_export('name', name);} };});
-
-System.register('lib/directives/widget_area/widget_area.js', ['angular', '../../utilities/string'], function (_export) {/**
-                                                                                                                         * Copyright 2015 aixigo AG
-                                                                                                                         * Released under the MIT license.
-                                                                                                                         * http://laxarjs.org/license
-                                                                                                                         */
-   /**
-    * A module for the `axWidgetArea` directive.
-    *
-    * @module axWidgetArea
-    */'use strict';var ng, string, 
-
-
-
-   _module, 
-
-   DIRECTIVE_NAME, 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   name;return { setters: [function (_angular) {ng = _angular['default'];}, function (_utilitiesString) {string = _utilitiesString['default'];}], execute: function () {_module = ng.module('axWidgetArea', []);DIRECTIVE_NAME = 'axWidgetArea'; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         /**
-          * The *axWidgetArea* directive is used to mark DOM elements as possible containers for widgets. They're
-          * most commonly used in layouts using static names. These areas can then be referenced from within page
-          * definitions in order to add widgets to them. Additionally it is possible that widgets expose widget
-          * areas themselves. In that case the name given within the widget template is prefixed with the id of the
-          * widget instance, separated by a dot. If, within a widget, a name is dynamic (i.e. can be configured via
-          * feature configuration), the corresponding `ax-widget-area-binding` attribute can be set to bind a name.
-          *
-          * Example:
-          * ```html
-          * <div ax-widget-area="myArea"><!-- Here will be widgets --></div>
-          * ```
-          *
-          * Example with binding:
-          * ```html
-          * <div ax-widget-area
-          *      ax-widget-area-binding="features.content.areaName">
-          *    <!-- Here will be widgets -->
-          * </div>
-          * ```
-          *
-          * @name axWidgetArea
-          * @directive
-          */_module.directive(DIRECTIVE_NAME, ['axPageService', function (pageService) {return { restrict: 'A', link: function link(scope, element, attrs) {var widgetId = scope.widget && scope.widget.id;var areaName = attrs[DIRECTIVE_NAME];if (!areaName) {if (attrs[DIRECTIVE_NAME + 'Binding']) {areaName = scope.$eval(attrs[DIRECTIVE_NAME + 'Binding']);} else {var message = 'axWidgetArea: area at at [0] has neither a name nor a binding assigned.';var context = widgetId || scope.layoutClass;throw new Error(string.format(message, [context]));}}if (widgetId) {// If a widget is found in a parent scope, this area must be an area contained in that widget.
-                     // Therefore the areaName is prefixed with the id of that widget.
-                     areaName = widgetId + '.' + areaName;}var areasController = pageService.controllerForScope(scope).areas;var deregister = areasController.register(areaName, element[0]);scope.$on('$destroy', deregister);} };}]); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         name = _module.name;_export('name', name);} };});
-
-System.register('lib/directives/directives.js', ['./id/id', './layout/layout', './widget_area/widget_area'], function (_export) {/**
-                                                                                                                                  * Copyright 2015 aixigo AG
-                                                                                                                                  * Released under the MIT license.
-                                                                                                                                  * http://laxarjs.org/license
-                                                                                                                                  */'use strict';var id, layout, widgetArea;return { setters: [function (_idId) {id = _idId;}, function (_layoutLayout) {layout = _layoutLayout;}, function (_widget_areaWidget_area) {widgetArea = _widget_areaWidget_area;}], execute: function () {_export('id', 
-
-
-
-
-      id);_export('layout', layout);_export('widgetArea', widgetArea);} };});
-
-System.register('lib/profiling/output.js', ['npm:babel-runtime@5.8.34/core-js/object/keys', 'angular'], function (_export) {var _Object$keys, ng, 
-
-
-
-
-
-
-   win;
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function logForId(axProfiling, wlKey, id) {
-      var profilingData = axProfiling.items;
-      var isScopeId = !!id.match(/^[A-Za-z0-9]{3}$/) && id in profilingData;
-      var scopeId = id;
-      var watchers = [];
-
-      if (isScopeId) {
-         watchers = profilingData[id].watchers;} else 
-
-      {
-         scopeId = axProfiling.widgetIdToScopeId[id];
-         watchers = 
-         flatMap(_Object$keys(profilingData).
-         map(function (id) {
-            return profilingData[id];}).
-
-         filter(function (item) {
-            return item.context.widgetId === id;}), 
-
-         function (item) {
-            return item.watchers;});}
-
-
-
-
-      var ngContext = [].slice.call(win.document.getElementsByClassName('ng-scope'), 0).
-      concat([win.document]).
-      map(function (element) {
-         return { 
-            element: element, 
-            scope: ng.element(element).scope() };}).
-
-
-      filter(function (item) {
-         return item.scope.$id === scopeId;})[
-      0] || null;
-
-      consoleLog('Showing details for %s with id "%s"', isScopeId ? 'scope' : 'widget', id);
-
-      if (ngContext) {
-         consoleLog('Context: Scope: %o, Element %o', ngContext.scope, ngContext.element);}
-
-
-      var data = watchers.map(function (entry) {
-         var result = {};
-
-         if (!wlKey || wlKey === 'watchFn') {
-            var w = entry.watchFn;
-            result['Watcher'] = w.name;
-            result['Watcher ms total'] = toPrecision(w.time, 3);
-            result['Watcher ms average'] = toPrecision(average(w.time, w.count), 3);
-            result['Watcher # executions'] = w.count;}
-
-
-         if (!wlKey || wlKey === 'listener') {
-            var l = entry.listener;
-            result['Listener'] = l.name;
-            result['Listener ms total'] = toPrecision(l.time, 3);
-            result['Listener ms average'] = toPrecision(average(l.time, l.count), 3);
-            result['Listener # executions'] = l.count;}
-
-
-         return result;});
-
-      logTabularData(data);}
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function logAll(axProfiling, wlKey) {
-      var profilingData = axProfiling.items;
-      var data = [];
-      var totalWatchFunctions = 0;
-      var totalWatchExpressions = 0;
-      var totalTime = 0;
-      var totalExecutions = 0;
-
-      var dataByWidgetId = {};
-      ng.forEach(profilingData, function (item, key) {
-         var widgetId = item.context.widgetId;
-         if (!widgetId) {
-            dataByWidgetId[key] = item;
+   function featuresForWidget(widgetSpecification, widgetConfiguration, throwError) {
+      if (!widgetSpecification.features || _Object$keys(widgetSpecification.features).length === 0) {
+         return {};}
+
+
+      var featureConfiguration = widgetConfiguration.features || {};
+      var featuresSpec = widgetSpecification.features;
+      // if( !( '$schema' in featuresSpec ) ) {
+      //    // we assume an "old style" feature specification (i.e. first level type specification is omitted)
+      //    // if no schema version was defined.
+      //    featuresSpec = {
+      //       $schema: 'http://json-schema.org/draft-03/schema#',
+      //       type: 'object',
+      //       properties: widgetSpecification.features
+      //    };
+      // }
+      var validator = createFeaturesValidator(featuresSpec);
+
+      object.forEach(featuresSpec.properties, function (feature, name) {
+         // ensure that simple object/array features are at least defined
+         if (name in featureConfiguration) {
             return;}
 
 
-         if (!(widgetId in dataByWidgetId)) {
-            dataByWidgetId[widgetId] = { 
-               context: item.context, 
-               watchers: [] };}
+         if (feature.type === 'object') {
+            featureConfiguration[name] = {};} else 
+
+         if (feature.type === 'array') {
+            featureConfiguration[name] = [];}});
 
 
 
-         [].push.apply(dataByWidgetId[widgetId].watchers, item.watchers);});
+      var report = validator.validate(featureConfiguration);
+
+      if (report.errors.length > 0) {
+         var message = 'Validation for widget features failed. Errors: ';
+
+         report.errors.forEach(function (error) {
+            message += '\n - ' + error.message.replace(/\[/g, '\\[');});
 
 
-      ng.forEach(dataByWidgetId, function (item) {
-         var time = 0;
-         var executions = 0;
-         var noOfFunctions = 0;
-         var noOfStrings = 0;
-
-         item.watchers.forEach(function (entry) {
-            time += entry[wlKey].time;
-            executions += entry[wlKey].count;
-            noOfFunctions += entry[wlKey].type === 'f' ? 1 : 0;
-            noOfStrings += entry[wlKey].type === 's' ? 1 : 0;}, 
-         0);
-
-         data.push({ 
-            'Widget name': item.context.widgetName || '?', 
-            'Widget id': item.context.widgetId || '?', 
-            'Scope id': item.context.widgetScopeId || item.context.scopeId, 
-            '# functions': noOfFunctions, 
-            '# strings': noOfStrings, 
-            '# total:': noOfFunctions + noOfStrings, 
-            'ms total': toPrecision(time, 3), 
-            'ms average': toPrecision(average(time, executions), 3), 
-            '# of executions': executions });
+         throwError(message);}
 
 
-         totalWatchFunctions += noOfFunctions;
-         totalWatchExpressions += noOfStrings;
-         totalTime += time;
-         totalExecutions += executions;});
-
-
-      data.push({ 
-         'Widget name': '', 
-         'Widget id': '', 
-         'Scope id': 'Total:', 
-         '# functions': totalWatchFunctions, 
-         '# strings': totalWatchExpressions, 
-         '# total:': totalWatchFunctions + totalWatchExpressions, 
-         'ms total': toPrecision(totalTime, 3), 
-         'ms average': toPrecision(average(totalTime, totalExecutions), 3), 
-         '# of executions': totalExecutions });
-
-
-      logTabularData(data);}
+      return featureConfiguration;}
 
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   function average(time, count) {
-      return count > 0 ? time / count : 0;}
+   function createFeaturesValidator(featuresSpec) {
+      var validator = jsonValidator.create(featuresSpec, { 
+         prohibitAdditionalProperties: true, 
+         useDefault: true });
+
+
+      // allows 'mySubTopic0815', 'MY_SUB_TOPIC+OK' and constiations:
+      validator.addFormat('sub-topic', function (subTopic) {
+         return typeof subTopic !== 'string' || SUB_TOPIC_FORMAT.test(subTopic);});
+
+
+      // allows 'myTopic', 'myTopic-mySubTopic-SUB_0815+OK' and constiations:
+      validator.addFormat('topic', function (topic) {
+         return typeof topic !== 'string' || TOPIC_FORMAT.test(topic);});
+
+
+      // allows 'myTopic', '!myTopic-mySubTopic-SUB_0815+OK' and constiations:
+      validator.addFormat('flag-topic', function (flagTopic) {
+         return typeof flagTopic !== 'string' || FLAG_TOPIC_FORMAT.test(flagTopic);});
+
+
+      // allows 'de_DE', 'en-x-laxarJS' and such:
+      validator.addFormat('language-tag', function (languageTag) {
+         return typeof languageTag !== 'string' || LANGUAGE_TAG_FORMAT.test(languageTag);});
+
+
+      // checks that object keys have the 'topic' format
+      validator.addFormat('topic-map', function (topicMap) {
+         return typeof topicMap !== 'object' || _Object$keys(topicMap).every(function (topic) {
+            return TOPIC_FORMAT.test(topic);});});
+
+
+
+      // checks that object keys have the 'language-tag' format
+      validator.addFormat('localization', function (localization) {
+         return typeof localization !== 'object' || _Object$keys(localization).every(function (tag) {
+            return LANGUAGE_TAG_FORMAT.test(tag);});});
+
+
+
+      return validator;}return { setters: [function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_jsonValidator) {jsonValidator = _jsonValidator;}, function (_utilitiesObject) {object = _utilitiesObject;}], execute: function () {/**
+                                                                                                                                                                                                                                                                                               * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                                                                                               * Released under the MIT license.
+                                                                                                                                                                                                                                                                                               * http://laxarjs.org/license
+                                                                                                                                                                                                                                                                                               */ // JSON schema formats:
+         'use strict';_export('featuresForWidget', featuresForWidget);TOPIC_IDENTIFIER = '([a-z][+a-zA-Z0-9]*|[A-Z][+A-Z0-9]*)';SUB_TOPIC_FORMAT = new RegExp('^' + TOPIC_IDENTIFIER + '$');TOPIC_FORMAT = new RegExp('^(' + TOPIC_IDENTIFIER + '(-' + TOPIC_IDENTIFIER + ')*)$');FLAG_TOPIC_FORMAT = new RegExp('^[!]?(' + TOPIC_IDENTIFIER + '(-' + TOPIC_IDENTIFIER + ')*)$'); // simplified RFC-5646 language-tag matcher with underscore/dash relaxation:
+         // the parts are: language *("-"|"_" script|region|constiant) *("-"|"_" extension|privateuse)
+         LANGUAGE_TAG_FORMAT = /^[a-z]{2,8}([-_][a-z0-9]{2,8})*([-_][a-z0-9][-_][a-z0-9]{2,8})*$/i;} };});
+
+System.register('lib/loaders/widget_loader.js', ['npm:babel-runtime@5.8.34/core-js/promise.js', '../logging/log', '../utilities/path', '../utilities/object', '../utilities/string', './paths', './features_provider', '../widget_adapters/adapters', '../tooling/pages'], function (_export) {var _Promise, log, path, object, string, paths, featuresProvider, adapters, pageTooling, 
+
+
+
+
+
+
+
+
+
+
+
+
+
+   TYPE_WIDGET, 
+   TYPE_ACTIVITY, 
+   TECHNOLOGY_ANGULAR, 
+
+   DEFAULT_INTEGRATION, 
+
+   ID_SEPARATOR, 
+   INVALID_ID_MATCHER;
+
+   /**
+    * @param {Q} q
+    *    a promise library
+    * @param {Object} services
+    *    all services available to the loader an widgets
+    *
+    * @returns {{load: Function}}
+    */
+   function create(fileResourceProvider, eventBus, controls, cssLoader, themeManager) {
+
+      return { load: load };
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      /**
+       * Load a widget using an appropriate adapter
+       *
+       * First, get the given widget's specification to validate and instantiate the widget features.
+       * Then, instantiate a widget adapter matching the widget's technology. Using the adapter, create the
+       * widget controller. The adapter is returned and can be used to attach the widget to the DOM, or to
+       * destroy it.
+       *
+       * @param {Object} widgetConfiguration
+       *    a widget instance configuration (as used in page definitions) to instantiate the widget from
+       * @param {Object} [optionalOptions]
+       *    map of additonal options
+       * @param {Function} optionalOptions.onBeforeControllerCreation
+       *    a function to call just before the controller is set up. It receives environment and adapter
+       *    specific injections as arguments
+       *
+       * @return {Promise} a promise for a widget adapter, with an already instantiated controller
+       */
+      function load(widgetConfiguration, optionalOptions) {
+
+         var resolvedWidgetPath = path.resolveAssetPath(widgetConfiguration.widget, paths.WIDGETS, 'local');
+         var widgetJsonPath = path.join(resolvedWidgetPath, 'widget.json');
+
+         var options = object.options(optionalOptions, { 
+            onBeforeControllerCreation: function onBeforeControllerCreation() {} });
+
+
+         return fileResourceProvider.
+         provide(widgetJsonPath).
+         then(function (specification) {
+            // The control-descriptors must be loaded prior to controller creation.
+            // This allows the widget controller to synchronously instantiate controls.
+            return _Promise.all((specification.controls || []).map(controls.load)).
+            then(function (descriptors) {
+               descriptors.forEach(checkTechnologyCompatibility(specification));
+               return specification;});}).
+
+
+         then(function (specification) {
+            pageTooling.setWidgetDescriptor(widgetConfiguration.widget, specification);
+
+            var integration = object.options(specification.integration, DEFAULT_INTEGRATION);
+            var type = integration.type;
+            var technology = integration.technology;
+            // Handle legacy widget code:
+            if (type === TECHNOLOGY_ANGULAR) {
+               type = TYPE_WIDGET;}
+
+            if (type !== TYPE_WIDGET && type !== TYPE_ACTIVITY) {
+               throwError(widgetConfiguration, 'unknown integration type ' + type);}
+
+
+            var throwWidgetError = throwError.bind(null, widgetConfiguration);
+            var features = 
+            featuresProvider.featuresForWidget(specification, widgetConfiguration, throwWidgetError);
+            var anchorElement = document.createElement('DIV');
+            anchorElement.className = normalizeClassName(specification.name);
+            anchorElement.id = 'ax' + ID_SEPARATOR + widgetConfiguration.id;
+            var widgetEventBus = 
+            createEventBusForWidget(eventBus, specification, widgetConfiguration);
+
+            var adapterFactory = adapters.getFor(technology);
+            var adapter = adapterFactory.create({ 
+               anchorElement: anchorElement, 
+               context: { 
+                  eventBus: widgetEventBus, 
+                  features: features, 
+                  id: createIdGeneratorForWidget(widgetConfiguration.id), 
+                  widget: { 
+                     area: widgetConfiguration.area, 
+                     id: widgetConfiguration.id, 
+                     path: widgetConfiguration.widget } }, 
+
+
+               specification: specification });
+
+            adapter.createController(options);
+
+            return { 
+               id: widgetConfiguration.id, 
+               adapter: adapter, 
+               destroy: function destroy() {
+                  widgetEventBus.release();
+                  adapter.destroy();}, 
+
+               applyViewChanges: adapterFactory.applyViewChanges || null, 
+               templatePromise: loadAssets(
+               resolvedWidgetPath, 
+               integration, 
+               specification, 
+               widgetConfiguration) };}, 
+
+
+
+         function (err) {
+            var message = 'Could not load spec for widget [0] from [1]: [2]';
+            log.error(message, widgetConfiguration.widget, widgetJsonPath, err);});}
+
+
+
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+      /**
+       * Locates and loads the widget HTML template for this widget (if any) as well as any CSS stylesheets
+       * used by this widget or its controls.
+       *
+       * @param widgetPath
+       *    The path suffix used to look up the widget, as given in the instance configuration.
+       * @param integration
+       *    Details on the integration type and technology: Activities do not require assets.
+       * @param widgetSpecification
+       *    The widget specification, used to find out if any controls need to be loaded.
+       * @param widgetConfiguration
+       *    The widget instance configuration
+       *
+       * @return {Promise<String>}
+       *    A promise that will be resolved with the contents of any HTML template for this widget, or with
+       *    `null` if there is no template (for example, if this is an activity).
+       */
+      function loadAssets(widgetPath, integration, widgetSpecification, widgetConfiguration) {
+         if (integration.type === TYPE_ACTIVITY) {
+            return _Promise.resolve(null);}
+
+
+         return resolve().
+         then(function (urls) {
+            urls.cssFileUrls.forEach(function (url) {return cssLoader.load(url);});
+            return urls.templateUrl ? fileResourceProvider.provide(urls.templateUrl) : null;});
+
+
+         /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+         function resolve() {
+            // the name from the widget.json
+            var specifiedName = widgetSpecification.name;
+            var specifiedHtmlFile = specifiedName + '.html';
+            var specifiedCssFile = path.join('css/', specifiedName + '.css');
+            // for backward compatibility: the name inferred from the reference
+            var technicalName = widgetPath.split('/').pop();
+            var technicalHtmlFile = technicalName + '.html';
+            var technicalCssFile = path.join('css/', technicalName + '.css');
+
+            var refPath = path.extractScheme(widgetConfiguration.widget).ref;
+            var promises = [];
+            promises.push(themeManager.urlProvider(
+            path.join(widgetPath, '[theme]'), 
+            path.join(paths.THEMES, '[theme]', 'widgets', specifiedName), 
+            [path.join(paths.THEMES, '[theme]', 'widgets', refPath)]).
+            provide([
+            specifiedHtmlFile, 
+            specifiedCssFile, 
+            technicalHtmlFile, 
+            technicalCssFile]));
+
+
+            promises = promises.concat(loadControlAssets());
+            return _Promise.all(promises).
+            then(function (results) {
+               var widgetUrls = results[0];
+               var cssUrls = results.slice(1).
+               map(function (urls) {return urls[0];}).
+               concat(widgetUrls[1] || widgetUrls[3]).
+               filter(function (url) {return !!url;});
+
+               return { 
+                  templateUrl: widgetUrls[0] || widgetUrls[2] || '', 
+                  cssFileUrls: cssUrls };});}
+
+
+
+
+         /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+         function loadControlAssets() {
+            return (widgetSpecification.controls || []).
+            map(function (controlRef) {
+               var descriptor = controls.descriptor(controlRef);
+               var resolvedPath = controls.resolve(controlRef);
+               var name = descriptor.name;
+
+               var cssPathInControl = path.join(resolvedPath, '[theme]');
+               var cssPathInTheme = path.join(paths.THEMES, '[theme]', 'controls', name);
+               if (descriptor._compatibility_0x) {
+                  // LaxarJS v0.x compatibility: use compatibility paths to load CSS.
+                  log.warn('Deprecation: Control is missing control.json descriptor: [0]', controlRef);
+                  cssPathInTheme = path.join(paths.THEMES, '[theme]', controlRef);}
+
+               return themeManager.
+               urlProvider(cssPathInControl, cssPathInTheme).
+               provide([path.join('css/', name + '.css')]);});}}}
+
+
+
+
 
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   function toPrecision(number, precision) {
-      var factor = precision === 0 ? 1 : Math.pow(10, precision);
-      return Math.round(number * factor) / factor;}
+   function checkTechnologyCompatibility(widgetDescriptor) {
+      return function (controlDescriptor) {
+         var controlTechnology = (controlDescriptor.integration || DEFAULT_INTEGRATION).technology;
+         if (controlTechnology === 'plain') {
+            // plain is always compatible
+            return;}
 
 
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function flatMap(arr, func) {
-      return Array.prototype.concat.apply([], arr.map(func));}
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function consoleLog(msg, arg /*, ... */) {
-      if (!win.console || !win.console.log) {
-         return;}
+         var widgetTechnology = (widgetDescriptor.integration || DEFAULT_INTEGRATION).technology;
+         if (widgetTechnology === controlTechnology) {
+            return;}
 
 
-      // MSIE8 does not support console.log.apply( ... )
-      // The following call is equivalent to: console.log.apply( console, args );
-      Function.apply.apply(win.console.log, [win.console, arguments]);}
+         log.warn(
+         'Incompatible integration technologies: widget [0] ([1]) cannot use control [2] ([3])', 
+         widgetDescriptor.name, widgetTechnology, controlDescriptor.name, controlTechnology);};}
 
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function logTabularData(data) {
-      if (win.console.table) {
-         win.console.table(data);} else 
-
-      {
-         consoleLog(JSON.stringify(data, null, 2));}}
 
 
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   function create(windowObject) {
-      win = windowObject;
+   function normalizeClassName(str) {
+      return str.
+      replace(/([a-z0-9])([A-Z])/g, function ($_, $0, $1) {
+         return $0 + '-' + $1;}).
+
+      replace(/_/g, '-').
+      toLowerCase();}
+
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function throwError(widgetConfiguration, message) {
+      throw new Error(string.format(
+      'Error loading widget "[widget]" (id: "[id]"): [0]', [message], widgetConfiguration));}
+
+
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function createIdGeneratorForWidget(widgetId) {
+      var charCodeOfA = 'a'.charCodeAt(0);
+      function fixLetter(l) {
+         // We map invalid characters deterministically to valid lower case letters. Thereby a collision of
+         // two ids with different invalid characters at the same positions is less likely to occur.
+         return String.fromCharCode(charCodeOfA + l.charCodeAt(0) % 26);}
+
+
+      var prefix = 'ax' + ID_SEPARATOR + widgetId.replace(INVALID_ID_MATCHER, fixLetter) + ID_SEPARATOR;
+      return function (localId) {
+         return prefix + ('' + localId).replace(INVALID_ID_MATCHER, fixLetter);};}
+
+
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function createEventBusForWidget(eventBus, widgetSpecification, widgetConfiguration) {
+
+      var collaboratorId = 'widget.' + widgetSpecification.name + '#' + widgetConfiguration.id;
+
+      function forward(to) {
+         return function () {
+            return eventBus[to].apply(eventBus, arguments);};}
+
+
+
+      function augmentOptions(optionalOptions) {
+         return object.options(optionalOptions, { sender: collaboratorId });}
+
+
+      var subscriptions = [];
+      function unsubscribe(subscriber) {
+         eventBus.unsubscribe(subscriber);}
+
 
       return { 
-         log: consoleLog, 
-         logForId: logForId, 
-         logAll: logAll };}return { setters: [function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_angular) {ng = _angular['default'];}], execute: function () {/**
-                                                                                                                                                                                                                            * Copyright 2015 aixigo AG
-                                                                                                                                                                                                                            * Released under the MIT license.
-                                                                                                                                                                                                                            * http://laxarjs.org/license
-                                                                                                                                                                                                                            */'use strict';_export('create', create);} };});
+         addInspector: forward('addInspector'), 
+         setErrorHandler: forward('setErrorHandler'), 
+         setMediator: forward('setMediator'), 
+         unsubscribe: unsubscribe, 
+         subscribe: function subscribe(eventName, subscriber, optionalOptions) {
+            subscriptions.push(subscriber);
 
-System.register('lib/profiling/profiling.js', ['npm:babel-runtime@5.8.34/core-js/object/keys', 'angular', './output'], function (_export) {var _Object$keys, ng, output, 
+            var options = object.options(optionalOptions, { subscriber: collaboratorId });
 
+            eventBus.subscribe(eventName, subscriber, options);}, 
 
+         publish: function publish(eventName, optionalEvent, optionalOptions) {
+            return eventBus.publish(eventName, optionalEvent, augmentOptions(optionalOptions));}, 
 
+         publishAndGatherReplies: function publishAndGatherReplies(eventName, optionalEvent, optionalOptions) {
+            return eventBus.publishAndGatherReplies(eventName, optionalEvent, augmentOptions(optionalOptions));}, 
 
+         release: function release() {
+            subscriptions.forEach(unsubscribe);} };}return { setters: [function (_babelRuntimeCoreJsPromise) {_Promise = _babelRuntimeCoreJsPromise['default'];}, function (_loggingLog) {log = _loggingLog['default'];}, function (_utilitiesPath) {path = _utilitiesPath;}, function (_utilitiesObject) {object = _utilitiesObject;}, function (_utilitiesString) {string = _utilitiesString;}, function (_paths) {paths = _paths;}, function (_features_provider) {featuresProvider = _features_provider;}, function (_widget_adaptersAdapters) {adapters = _widget_adaptersAdapters;}, function (_toolingPages) {pageTooling = _toolingPages['default'];}], execute: function () {/**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * Released under the MIT license.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * http://laxarjs.org/license
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       */'use strict';_export('create', create);TYPE_WIDGET = 'widget';TYPE_ACTIVITY = 'activity';TECHNOLOGY_ANGULAR = 'angular';DEFAULT_INTEGRATION = { type: TYPE_WIDGET, technology: TECHNOLOGY_ANGULAR };ID_SEPARATOR = '-';INVALID_ID_MATCHER = /[^A-Za-z0-9_\.-]/g;} };});
 
+System.register('lib/runtime/services.js', ['./browser', './controls_service', '../event_bus/event_bus', './flow_service', '../file_resource_provider/file_resource_provider', './heartbeat', './page_service', './theme_manager', './locale_event_manager', './visibility_event_manager', '../loaders/css_loader', '../loaders/layout_loader', '../loaders/page_loader', '../loaders/widget_loader', '../utilities/object', '../logging/log'], function (_export) {/**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                     * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                     * Released under the MIT license.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                     * http://laxarjs.org/license
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                     */'use strict';var createBrowser, createControlsService, createEventBus, createFlowService, createFrp, createHeartbeat, createPageService, createThemeManager, createLocaleEventManager, createVisibilityEventManager, createCssLoader, createLayoutLoader, createPageLoader, createWidgetLoader, forEach, log;_export('create', create);
 
 
-   _module, 
 
 
 
-   config, 
-   axProfiling, 
-   origWatch, 
-   win, 
-   out, 
 
 
 
@@ -7484,249 +6572,109 @@ System.register('lib/profiling/profiling.js', ['npm:babel-runtime@5.8.34/core-js
 
 
 
+   function create(configuration) {
 
+      var services = {};
 
+      var browser = createBrowser();
+      var paths = createPaths(configuration);
+      var fileResourceProvider = createFrp(browser, paths.PRODUCT);
+      forEach(configuration.get('fileListings', {}), function (value, key) {
+         if (typeof value === 'string') {
+            fileResourceProvider.setFileListingUri(key, value);} else 
 
+         {
+            fileResourceProvider.setFileListingContents(key, value);}});
 
 
 
+      var heartbeat = createHeartbeat();
+      var eventBus = createEventBus(heartbeat.onNext, function (f, t) {
+         // MSIE Bug, we have to wrap set timeout to pass assertion
+         setTimeout(f, t);}, 
+      { pendingDidTimeout: configuration.get('eventBusTimeoutMs', 120 * 1000) });
+      eventBus.setErrorHandler(eventBusErrorHandler);
 
+      var themeManager = createThemeManager(fileResourceProvider, configuration.get('theme'));
+      var cssLoader = createCssLoader(configuration, themeManager, paths.PRODUCT);
+      var layoutLoader = 
+      createLayoutLoader(paths.LAYOUTS, paths.THEMES, cssLoader, themeManager, fileResourceProvider);
+      var pageLoader = createPageLoader(paths.PAGES, fileResourceProvider);
+      var controls = createControlsService(fileResourceProvider);
+      var widgetLoader = 
+      createWidgetLoader(fileResourceProvider, eventBus, controls, cssLoader, themeManager);
+      var localeManager = createLocaleEventManager(eventBus, configuration);
+      var visibilityManager = createVisibilityEventManager(eventBus);
+      var pageService = createPageService(
+      eventBus, 
+      heartbeat, 
+      pageLoader, 
+      layoutLoader, 
+      widgetLoader, 
+      themeManager, 
+      localeManager, 
+      visibilityManager);
 
 
+      var flowService = createFlowService(
+      fileResourceProvider, 
+      eventBus, 
+      configuration, 
+      browser, 
+      pageService);
 
 
+      services.configuration = configuration;
+      services.controls = controls;
+      services.cssLoader = cssLoader;
+      services.fileResourceProvider = fileResourceProvider;
+      services.flowService = flowService;
+      services.globalEventBus = eventBus;
+      services.heartbeat = heartbeat;
+      services.layoutLoader = layoutLoader;
+      services.pageService = pageService;
+      services.paths = paths;
+      services.themeManager = themeManager;
 
+      return services;
 
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+      function eventBusErrorHandler(message, optionalErrorInformation) {
+         var sensitiveData = ['Published event'];
 
+         log.error('EventBus: ' + message);
 
+         if (optionalErrorInformation) {
+            forEach(optionalErrorInformation, function (info, title) {
+               var formatString = '   - [0]: [1:%o]';
+               if (sensitiveData.indexOf(title) !== -1) {
+                  formatString = '   - [0]: [1:%o:anonymize]';}
 
 
+               log.error(formatString, title, info);
 
+               if (info instanceof Error && info.stack) {
+                  log.error('   - Stacktrace: ' + info.stack);}});}}
 
 
 
 
 
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+      function createPaths(configuration) {
+         return { 
+            PRODUCT: configuration.get('paths.product', ''), 
+            THEMES: configuration.get('paths.themes', 'includes/themes'), 
+            LAYOUTS: configuration.get('paths.layouts', 'application/layouts'), 
+            CONTROLS: configuration.get('paths.controls', 'includes/controls'), 
+            WIDGETS: configuration.get('paths.widgets', 'includes/widgets'), 
+            PAGES: configuration.get('paths.pages', 'application/pages'), 
+            FLOW_JSON: configuration.get('paths.flowJson', 'application/flow/flow.json'), 
+            DEFAULT_THEME: configuration.get('paths.defaultTheme', 'includes/themes/default.theme') };}}return { setters: [function (_browser) {createBrowser = _browser.create;}, function (_controls_service) {createControlsService = _controls_service.create;}, function (_event_busEvent_bus) {createEventBus = _event_busEvent_bus.create;}, function (_flow_service) {createFlowService = _flow_service.create;}, function (_file_resource_providerFile_resource_provider) {createFrp = _file_resource_providerFile_resource_provider.create;}, function (_heartbeat) {createHeartbeat = _heartbeat.create;}, function (_page_service) {createPageService = _page_service.create;}, function (_theme_manager) {createThemeManager = _theme_manager.create;}, function (_locale_event_manager) {createLocaleEventManager = _locale_event_manager.create;}, function (_visibility_event_manager) {createVisibilityEventManager = _visibility_event_manager.create;}, function (_loadersCss_loader) {createCssLoader = _loadersCss_loader.create;}, function (_loadersLayout_loader) {createLayoutLoader = _loadersLayout_loader.create;}, function (_loadersPage_loader) {createPageLoader = _loadersPage_loader.create;}, function (_loadersWidget_loader) {createWidgetLoader = _loadersWidget_loader.create;}, function (_utilitiesObject) {forEach = _utilitiesObject.forEach;}, function (_loggingLog) {log = _loggingLog['default'];}], execute: function () {} };});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   FUNCTION_NAME_REGEXP, 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   name; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function attachProfiling(scope, watchExp, listener, objectEquality) {var watcherIsFunction = typeof watchExp === 'function';var listenerIsFunction = typeof listener === 'function';var items = axProfiling.items;var context = determineContext(scope);if (!(scope.$id in items)) {items[scope.$id] = { context: context, watchers: [] };scope.$on('$destroy', function () {detachProfiling(scope);delete items[scope.$id];});}if (context.widgetScopeId) {if (!(context.widgetId in axProfiling.widgetIdToScopeId)) {axProfiling.widgetIdToScopeId[context.widgetId] = context.widgetScopeId;}}var profilingEntry = { watchFn: { type: watcherIsFunction ? 'f' : 's', name: watcherIsFunction ? functionName(watchExp) + '()' : watchExp, time: 0, count: 0 }, listener: { type: listenerIsFunction ? 'f' : 's', name: listenerIsFunction ? functionName(listener) + '()' : listener, time: 0, count: 0 } };items[scope.$id].watchers.push(profilingEntry);var stopWatching = origWatch.call(scope, watchExp, listener, objectEquality);var watchEntry = scope.$$watchers[0];watchEntry.get = instrumentFunction(watchEntry.get, profilingEntry.watchFn);watchEntry.fn = instrumentFunction(watchEntry.fn, profilingEntry.listener);return function () {stopWatching();detachProfiling(scope);};} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function detachProfiling(scope) {delete axProfiling.items[scope.$id];_Object$keys(axProfiling.widgetIdToScopeId).forEach(function (widgetId) {if (axProfiling.widgetIdToScopeId[widgetId] === scope.$id) {delete axProfiling.widgetIdToScopeId[widgetId];}});} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function instrumentFunction(func, entry) {return function () {var start = win.performance.now();var result = func.apply(null, arguments);var time = win.performance.now() - start;++entry.count;entry.time += time;return result;};} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function determineContext(scope) {var current = scope;while (!current.hasOwnProperty('widget') && current !== current.$root) {current = current.$parent;}var isInWidget = !!current.widget;return { widgetName: isInWidget ? current.widget.path : '', widgetId: isInWidget ? current.widget.id : '', widgetScopeId: isInWidget ? current.$id : null, scopeId: scope.$id };} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function functionName(func) {if (func.name && typeof func.name === 'string') {return func.name;}var match = FUNCTION_NAME_REGEXP.exec(func.toString());if (match) {return match[1].trim();}return '[anonymous]';} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function printHelp() {out.log('Available commands:\n\n' + ' - help():\n' + '     prints this help\n\n' + ' - log( [scopeOrWidgetId] ):\n' + '     If the argument is omitted this is the same as calling\n' + '     logWatchers() first and logListeners() afterwards.\n' + '     Otherwise all listeners and watchers of the widget or scope\n' + '     with the given id are logged in one table\n\n' + ' - logWatchers( [scopeOrWidgetId] ):\n' + '     If the argument is omitted the watchers of all scopes belonging to\n' + '     a specific widget or of global scopes are logged.\n' + '     Otherwise more detailed data for the watchers of the given scope\n' + '     or widget are logged.\n\n' + ' - logListeners( [scopeOrWidgetId] ):\n' + '     If the argument is omitted the listeners of all scopes belonging to\n' + '     a specific widget or of global scopes are logged.\n' + '     Otherwise more detailed data for the listeners of the given scope\n' + '     or widget are logged.\n\n' + ' - reset():\n' + '     Resets all "# of executions" and millisecond data to zero.');} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   return { setters: [function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_angular) {ng = _angular['default'];}, function (_output) {output = _output;}], execute: function () {/**
-                                                                                                                                                                                                                                            * Copyright 2015 aixigo AG
-                                                                                                                                                                                                                                            * Released under the MIT license.
-                                                                                                                                                                                                                                            * http://laxarjs.org/license
-                                                                                                                                                                                                                                            */'use strict';_module = ng.module('axProfiling', []); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         _module.run(['$rootScope', '$window', 'axConfiguration', function ($rootScope, $window, configuration) {win = $window;config = configuration.get('profiling', { enabled: false });out = output.create($window);if (config.enabled !== true) {return;}if (!win.performance || !win.performance.now) {out.log('Performance api is not available. Profiling is disabled.');return;}out.log('%c!!! Profiling enabled. Application performance will suffer !!!', 'font-weight: bold; font-size: 1.2em');out.log('Type "axProfiling.help()" to get a list of available methods');var scopePrototype = $rootScope.constructor.prototype;axProfiling = $window.axProfiling = { items: {}, widgetIdToScopeId: {}, logWatchers: function logWatchers(id) {if (id && typeof id === 'string') {out.logForId(axProfiling, 'watchFn', id);} else {out.logAll(axProfiling, 'watchFn');}}, logListeners: function logListeners(id) {if (id && typeof id === 'string') {out.logForId(axProfiling, 'listener', id);} else {out.logAll(axProfiling, 'listener');}}, log: function log(id) {if (id && typeof id === 'string') {out.logForId(axProfiling, null, id);} else {out.log('All listeners:');out.logAll(axProfiling, 'listener');out.log('All watchers:');out.logAll(axProfiling, 'watchFn');}}, reset: function reset() {_Object$keys(axProfiling.items).forEach(function (key) {axProfiling.items[key].watchers.forEach(function (watcher) {watcher.watchFn.time = 0;watcher.watchFn.count = 0;watcher.listener.time = 0;watcher.listener.count = 0;});});}, help: printHelp };origWatch = scopePrototype.$watch;scopePrototype.$watch = function (watchExp, listener, objectEquality) {return attachProfiling(this, watchExp, listener, objectEquality || false);};}]);FUNCTION_NAME_REGEXP = /^[ ]*function([^\(]*?)\(/;name = _module.name;_export('name', name);_export('default', _module);} };});
-
-System.register('lib/runtime/runtime_dependencies.js', ['angular', 'angular-sanitize', './runtime_services', './flow', './page', '../directives/directives', '../profiling/profiling'], function (_export) {/**
-                                                                                                                                                                                                             * Copyright 2015 aixigo AG
-                                                                                                                                                                                                             * Released under the MIT license.
-                                                                                                                                                                                                             * http://laxarjs.org/license
-                                                                                                                                                                                                             */'use strict';var ng, ngSanitizeModule, runtimeServicesModule, flowModule, pageModule, directives, profilingModule, 
-
-
-
-
-
-
-
-
-   name;return { setters: [function (_angular) {ng = _angular['default'];}, function (_angularSanitize) {ngSanitizeModule = _angularSanitize;}, function (_runtime_services) {runtimeServicesModule = _runtime_services;}, function (_flow) {flowModule = _flow;}, function (_page) {pageModule = _page;}, function (_directivesDirectives) {directives = _directivesDirectives;}, function (_profilingProfiling) {profilingModule = _profilingProfiling;}], execute: function () {name = ng.module('axRuntimeDependencies', [
-         'ngSanitize', 
-
-         runtimeServicesModule.name, 
-         flowModule.name, 
-         pageModule.name, 
-         directives.id.name, 
-         directives.widgetArea.name, 
-         profilingModule.name]).
-         name;_export('name', name);} };});
-
-System.register('lib/utilities/string.js', ['npm:babel-runtime@5.8.34/core-js/object/freeze', 'npm:babel-runtime@5.8.34/core-js/object/keys'], function (_export) {var _Object$freeze, _Object$keys, 
+System.register('lib/utilities/string.js', ['npm:babel-runtime@5.8.34/core-js/object/freeze.js', 'npm:babel-runtime@5.8.34/core-js/object/keys.js'], function (_export) {var _Object$freeze, _Object$keys, 
 
 
 
@@ -8113,7 +7061,7 @@ System.register('lib/utilities/string.js', ['npm:babel-runtime@5.8.34/core-js/ob
     *
     * Example:
     * ```javascript
-    * var format = string.createFormatter( {
+    * const format = string.createFormatter( {
     *    'm': function( value ) {
     *       return value.amount + ' ' + value.currency;
     *    },
@@ -8137,7 +7085,7 @@ System.register('lib/utilities/string.js', ['npm:babel-runtime@5.8.34/core-js/ob
     * placeholder string.
     *
     * ```javascript
-    * var format = string.createFormatter( null, {
+    * const format = string.createFormatter( null, {
     *    flip: function( value ) {
     *       return ( '' + s ).split( '' ).reverse().join( '' );
     *    },
@@ -8158,10 +7106,10 @@ System.register('lib/utilities/string.js', ['npm:babel-runtime@5.8.34/core-js/ob
     * @return {Function}
     *    A function having the same api as {@link format}
     */function createFormatter(typeFormatters, optionalValueMappers) {if (!typeFormatters) {typeFormatters = DEFAULT_FORMATTERS;}if (!optionalValueMappers) {optionalValueMappers = {};}function format(string, optionalIndexedReplacements, optionalNamedReplacements) {if (typeof string !== 'string') {return defaultTypeFormatter(typeFormatters)(string);}var indexed = Array.isArray(optionalIndexedReplacements) ? optionalIndexedReplacements : [];var named = {};if (optionalNamedReplacements) {named = optionalNamedReplacements || {};} else if (!Array.isArray(optionalIndexedReplacements)) {named = optionalIndexedReplacements || {};}var chars = string.split('');var output = '';for (var i = 0, len = chars.length; i < len; ++i) {if (chars[i] === BACKSLASH) {if (i + 1 === len) {throw new Error('Unterminated escaping sequence at index ' + i + ' of string: "' + string + '".');}output += chars[++i];} else if (chars[i] === OPENING_BRACKET) {var closingIndex = string.indexOf(CLOSING_BRACKET, i + 1);if (closingIndex === -1) {throw new Error('Unterminated placeholder at index ' + i + ' of string: "' + string + '".');}var key = string.substring(i + 1, closingIndex);output += replacePlaceholder(key, named, indexed, { string: string, index: i });i = closingIndex;} else {output += chars[i];}}return output;} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-      function replacePlaceholder(placeholder, named, indexed, context) {var specifier = '';var subSpecifierString = '';var placeholderParts = placeholder.split(':');var key = placeholderParts[0];var value;if (INTEGER_MATCHER.test(key) && key < indexed.length) {value = indexed[key];} else if (key in named) {value = named[key];} else {return OPENING_BRACKET + placeholder + CLOSING_BRACKET;}if (placeholderParts.length > 1) {if (placeholderParts[1].charAt(0) !== '%') {value = defaultTypeFormatter(typeFormatters)(value);}return placeholderParts.slice(1).reduce(function (value, part) {if (part.indexOf('%') === 0) {var specifierMatch = part.match(/^%(.*)(\w)$/);specifier = specifierMatch ? specifierMatch[2] : '';subSpecifierString = specifierMatch ? specifierMatch[1] : '';if (specifier in typeFormatters) {return typeFormatters[specifier](value, subSpecifierString);} else {var knownSpecifiers = _Object$keys(typeFormatters).filter(function (_) {return _ !== 'default';}).map(function (_) {return '%' + _;}).join(', ');throw new Error('Unknown format specifier "%' + specifier + '" for placeholder' + ' at index ' + context.index + ' of string: "' + context.string + '" (Known specifiers are: ' + knownSpecifiers + ').');}} else if (part in optionalValueMappers) {return optionalValueMappers[part](value);}return value;}, value);}return defaultTypeFormatter(typeFormatters)(value);} ////////////////////////////////////////////////////////////////////////////////////////////////////////
+      function replacePlaceholder(placeholder, named, indexed, context) {var specifier = '';var subSpecifierString = '';var placeholderParts = placeholder.split(':');var key = placeholderParts[0];var value = undefined;if (INTEGER_MATCHER.test(key) && key < indexed.length) {value = indexed[key];} else if (key in named) {value = named[key];} else {return OPENING_BRACKET + placeholder + CLOSING_BRACKET;}if (placeholderParts.length > 1) {if (placeholderParts[1].charAt(0) !== '%') {value = defaultTypeFormatter(typeFormatters)(value);}return placeholderParts.slice(1).reduce(function (value, part) {if (part.indexOf('%') === 0) {var specifierMatch = part.match(/^%(.*)(\w)$/);specifier = specifierMatch ? specifierMatch[2] : '';subSpecifierString = specifierMatch ? specifierMatch[1] : '';if (specifier in typeFormatters) {return typeFormatters[specifier](value, subSpecifierString);} else {var knownSpecifiers = _Object$keys(typeFormatters).filter(function (_) {return _ !== 'default';}).map(function (_) {return '%' + _;}).join(', ');throw new Error('Unknown format specifier "%' + specifier + '" for placeholder' + ' at index ' + context.index + ' of string: "' + context.string + '" (Known specifiers are: ' + knownSpecifiers + ').');}} else if (part in optionalValueMappers) {return optionalValueMappers[part](value);}return value;}, value);}return defaultTypeFormatter(typeFormatters)(value);} ////////////////////////////////////////////////////////////////////////////////////////////////////////
       return format;} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
    function defaultTypeFormatter(typeFormatters) {if ('default' in typeFormatters) {return typeFormatters['default'];}return DEFAULT_FORMATTERS['default'];}return { setters: [function (_babelRuntimeCoreJsObjectFreeze) {_Object$freeze = _babelRuntimeCoreJsObjectFreeze['default'];}, function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}], execute: function () {/**
-                                                                                                                                                                                                                                                                                                                                                                                                                       * Copyright 2015 aixigo AG
+                                                                                                                                                                                                                                                                                                                                                                                                                       * Copyright 2016 aixigo AG
                                                                                                                                                                                                                                                                                                                                                                                                                        * Released under the MIT license.
                                                                                                                                                                                                                                                                                                                                                                                                                        * http://laxarjs.org/license
                                                                                                                                                                                                                                                                                                                                                                                                                        */ /**
@@ -8173,11 +7121,12 @@ System.register('lib/utilities/string.js', ['npm:babel-runtime@5.8.34/core-js/ob
                                                                                                                                                                                                                                                                                                                                                                                                                            */'use strict';_export('format', format);_export('createFormatter', createFormatter);DEFAULT_FORMATTERS = { 's': function s(input) {return '' + input;}, 'd': function d(input) {return input.toFixed(0);}, 'i': function i(input, subSpecifierString) {return DEFAULT_FORMATTERS.d(input, subSpecifierString);}, 'f': function f(input, subSpecifierString) {var precision = subSpecifierString.match(/^\.(\d)$/);if (precision) {return input.toFixed(precision[1]);}return '' + input;}, 'o': function o(input) {return JSON.stringify(input);}, 'default': function _default(input, subSpecifierString) {return DEFAULT_FORMATTERS.s(input, subSpecifierString);} };_export('DEFAULT_FORMATTERS', DEFAULT_FORMATTERS);if (typeof _Object$freeze === 'function') {_Object$freeze(DEFAULT_FORMATTERS);}DEFAULT_FORMATTER = createFormatter(DEFAULT_FORMATTERS);BACKSLASH = '\\';OPENING_BRACKET = '[';CLOSING_BRACKET = ']';INTEGER_MATCHER = /^[0-9]+$/;} };});
 
 System.register('lib/loaders/paths.js', [], function (_export) {/**
-                                                                 * Copyright 2015 aixigo AG
+                                                                 * Copyright 2016 aixigo AG
                                                                  * Released under the MIT license.
                                                                  * http://laxarjs.org/license
                                                                  */
-  // TODO: fix these paths, especially the one for the default theme
+  // TODO: fix constructing these paths. They should be loaded from the configuration with some defaults
+  // defined here
   'use strict';var PRODUCT, 
   THEMES, 
   LAYOUTS, 
@@ -8191,7 +7140,7 @@ System.register('lib/loaders/paths.js', [], function (_export) {/**
       { PRODUCT: PRODUCT, THEMES: THEMES, LAYOUTS: LAYOUTS, CONTROLS: CONTROLS, WIDGETS: WIDGETS, PAGES: PAGES, FLOW_JSON: FLOW_JSON, DEFAULT_THEME: DEFAULT_THEME });} };});
 
 System.register('lib/runtime/controls_service.js', ['../utilities/path', '../utilities/string', '../loaders/paths'], function (_export) {/**
-                                                                                                                                          * Copyright 2015 aixigo AG
+                                                                                                                                          * Copyright 2016 aixigo AG
                                                                                                                                           * Released under the MIT license.
                                                                                                                                           * http://laxarjs.org/license
                                                                                                                                           */
@@ -8331,8 +7280,1421 @@ System.register('lib/runtime/controls_service.js', ['../utilities/path', '../uti
          var resolvedControlPath = resolve(controlRef);
          return descriptors[resolvedControlPath];}}return { setters: [function (_utilitiesPath) {path = _utilitiesPath;}, function (_utilitiesString) {format = _utilitiesString.format;}, function (_loadersPaths) {paths = _loadersPaths;}], execute: function () {} };});
 
+System.registerDynamic("npm:core-js@1.2.6/library/modules/es6.object.to-string.js", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  "format cjs";
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.string-at.js", ["./$.to-integer", "./$.defined"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var toInteger = $__require('./$.to-integer'),
+      defined = $__require('./$.defined');
+  module.exports = function(TO_STRING) {
+    return function(that, pos) {
+      var s = String(defined(that)),
+          i = toInteger(pos),
+          l = s.length,
+          a,
+          b;
+      if (i < 0 || i >= l)
+        return TO_STRING ? '' : undefined;
+      a = s.charCodeAt(i);
+      return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff ? TO_STRING ? s.charAt(i) : a : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
+    };
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/es6.string.iterator.js", ["./$.string-at", "./$.iter-define"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var $at = $__require('./$.string-at')(true);
+  $__require('./$.iter-define')(String, 'String', function(iterated) {
+    this._t = String(iterated);
+    this._i = 0;
+  }, function() {
+    var O = this._t,
+        index = this._i,
+        point;
+    if (index >= O.length)
+      return {
+        value: undefined,
+        done: true
+      };
+    point = $at(O, index);
+    this._i += point.length;
+    return {
+      value: point,
+      done: false
+    };
+  });
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.add-to-unscopables.js", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = function() {};
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.iter-step.js", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = function(done, value) {
+    return {
+      value: value,
+      done: !!done
+    };
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.iobject.js", ["./$.cof"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var cof = $__require('./$.cof');
+  module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it) {
+    return cof(it) == 'String' ? it.split('') : Object(it);
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.to-iobject.js", ["./$.iobject", "./$.defined"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var IObject = $__require('./$.iobject'),
+      defined = $__require('./$.defined');
+  module.exports = function(it) {
+    return IObject(defined(it));
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.iter-create.js", ["./$", "./$.property-desc", "./$.set-to-string-tag", "./$.hide", "./$.wks"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var $ = $__require('./$'),
+      descriptor = $__require('./$.property-desc'),
+      setToStringTag = $__require('./$.set-to-string-tag'),
+      IteratorPrototype = {};
+  $__require('./$.hide')(IteratorPrototype, $__require('./$.wks')('iterator'), function() {
+    return this;
+  });
+  module.exports = function(Constructor, NAME, next) {
+    Constructor.prototype = $.create(IteratorPrototype, {next: descriptor(1, next)});
+    setToStringTag(Constructor, NAME + ' Iterator');
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.iter-define.js", ["./$.library", "./$.export", "./$.redefine", "./$.hide", "./$.has", "./$.iterators", "./$.iter-create", "./$.set-to-string-tag", "./$", "./$.wks"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var LIBRARY = $__require('./$.library'),
+      $export = $__require('./$.export'),
+      redefine = $__require('./$.redefine'),
+      hide = $__require('./$.hide'),
+      has = $__require('./$.has'),
+      Iterators = $__require('./$.iterators'),
+      $iterCreate = $__require('./$.iter-create'),
+      setToStringTag = $__require('./$.set-to-string-tag'),
+      getProto = $__require('./$').getProto,
+      ITERATOR = $__require('./$.wks')('iterator'),
+      BUGGY = !([].keys && 'next' in [].keys()),
+      FF_ITERATOR = '@@iterator',
+      KEYS = 'keys',
+      VALUES = 'values';
+  var returnThis = function() {
+    return this;
+  };
+  module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
+    $iterCreate(Constructor, NAME, next);
+    var getMethod = function(kind) {
+      if (!BUGGY && kind in proto)
+        return proto[kind];
+      switch (kind) {
+        case KEYS:
+          return function keys() {
+            return new Constructor(this, kind);
+          };
+        case VALUES:
+          return function values() {
+            return new Constructor(this, kind);
+          };
+      }
+      return function entries() {
+        return new Constructor(this, kind);
+      };
+    };
+    var TAG = NAME + ' Iterator',
+        DEF_VALUES = DEFAULT == VALUES,
+        VALUES_BUG = false,
+        proto = Base.prototype,
+        $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT],
+        $default = $native || getMethod(DEFAULT),
+        methods,
+        key;
+    if ($native) {
+      var IteratorPrototype = getProto($default.call(new Base));
+      setToStringTag(IteratorPrototype, TAG, true);
+      if (!LIBRARY && has(proto, FF_ITERATOR))
+        hide(IteratorPrototype, ITERATOR, returnThis);
+      if (DEF_VALUES && $native.name !== VALUES) {
+        VALUES_BUG = true;
+        $default = function values() {
+          return $native.call(this);
+        };
+      }
+    }
+    if ((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+      hide(proto, ITERATOR, $default);
+    }
+    Iterators[NAME] = $default;
+    Iterators[TAG] = returnThis;
+    if (DEFAULT) {
+      methods = {
+        values: DEF_VALUES ? $default : getMethod(VALUES),
+        keys: IS_SET ? $default : getMethod(KEYS),
+        entries: !DEF_VALUES ? $default : getMethod('entries')
+      };
+      if (FORCED)
+        for (key in methods) {
+          if (!(key in proto))
+            redefine(proto, key, methods[key]);
+        }
+      else
+        $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
+    }
+    return methods;
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/es6.array.iterator.js", ["./$.add-to-unscopables", "./$.iter-step", "./$.iterators", "./$.to-iobject", "./$.iter-define"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var addToUnscopables = $__require('./$.add-to-unscopables'),
+      step = $__require('./$.iter-step'),
+      Iterators = $__require('./$.iterators'),
+      toIObject = $__require('./$.to-iobject');
+  module.exports = $__require('./$.iter-define')(Array, 'Array', function(iterated, kind) {
+    this._t = toIObject(iterated);
+    this._i = 0;
+    this._k = kind;
+  }, function() {
+    var O = this._t,
+        kind = this._k,
+        index = this._i++;
+    if (!O || index >= O.length) {
+      this._t = undefined;
+      return step(1);
+    }
+    if (kind == 'keys')
+      return step(0, index);
+    if (kind == 'values')
+      return step(0, O[index]);
+    return step(0, [index, O[index]]);
+  }, 'values');
+  Iterators.Arguments = Iterators.Array;
+  addToUnscopables('keys');
+  addToUnscopables('values');
+  addToUnscopables('entries');
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/web.dom.iterable.js", ["./es6.array.iterator", "./$.iterators"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  $__require('./es6.array.iterator');
+  var Iterators = $__require('./$.iterators');
+  Iterators.NodeList = Iterators.HTMLCollection = Iterators.Array;
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.library.js", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = true;
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.strict-new.js", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = function(it, Constructor, name) {
+    if (!(it instanceof Constructor))
+      throw TypeError(name + ": use the 'new' operator!");
+    return it;
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.iter-call.js", ["./$.an-object"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var anObject = $__require('./$.an-object');
+  module.exports = function(iterator, fn, value, entries) {
+    try {
+      return entries ? fn(anObject(value)[0], value[1]) : fn(value);
+    } catch (e) {
+      var ret = iterator['return'];
+      if (ret !== undefined)
+        anObject(ret.call(iterator));
+      throw e;
+    }
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.is-array-iter.js", ["./$.iterators", "./$.wks"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var Iterators = $__require('./$.iterators'),
+      ITERATOR = $__require('./$.wks')('iterator'),
+      ArrayProto = Array.prototype;
+  module.exports = function(it) {
+    return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.to-integer.js", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var ceil = Math.ceil,
+      floor = Math.floor;
+  module.exports = function(it) {
+    return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.to-length.js", ["./$.to-integer"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var toInteger = $__require('./$.to-integer'),
+      min = Math.min;
+  module.exports = function(it) {
+    return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0;
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.classof.js", ["./$.cof", "./$.wks"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var cof = $__require('./$.cof'),
+      TAG = $__require('./$.wks')('toStringTag'),
+      ARG = cof(function() {
+        return arguments;
+      }()) == 'Arguments';
+  module.exports = function(it) {
+    var O,
+        T,
+        B;
+    return it === undefined ? 'Undefined' : it === null ? 'Null' : typeof(T = (O = Object(it))[TAG]) == 'string' ? T : ARG ? cof(O) : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.iterators.js", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = {};
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/core.get-iterator-method.js", ["./$.classof", "./$.wks", "./$.iterators", "./$.core"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var classof = $__require('./$.classof'),
+      ITERATOR = $__require('./$.wks')('iterator'),
+      Iterators = $__require('./$.iterators');
+  module.exports = $__require('./$.core').getIteratorMethod = function(it) {
+    if (it != undefined)
+      return it[ITERATOR] || it['@@iterator'] || Iterators[classof(it)];
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.for-of.js", ["./$.ctx", "./$.iter-call", "./$.is-array-iter", "./$.an-object", "./$.to-length", "./core.get-iterator-method"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var ctx = $__require('./$.ctx'),
+      call = $__require('./$.iter-call'),
+      isArrayIter = $__require('./$.is-array-iter'),
+      anObject = $__require('./$.an-object'),
+      toLength = $__require('./$.to-length'),
+      getIterFn = $__require('./core.get-iterator-method');
+  module.exports = function(iterable, entries, fn, that) {
+    var iterFn = getIterFn(iterable),
+        f = ctx(fn, that, entries ? 2 : 1),
+        index = 0,
+        length,
+        step,
+        iterator;
+    if (typeof iterFn != 'function')
+      throw TypeError(iterable + ' is not iterable!');
+    if (isArrayIter(iterFn))
+      for (length = toLength(iterable.length); length > index; index++) {
+        entries ? f(anObject(step = iterable[index])[0], step[1]) : f(iterable[index]);
+      }
+    else
+      for (iterator = iterFn.call(iterable); !(step = iterator.next()).done; ) {
+        call(iterator, f, step.value, entries);
+      }
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.set-proto.js", ["./$", "./$.is-object", "./$.an-object", "./$.ctx"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var getDesc = $__require('./$').getDesc,
+      isObject = $__require('./$.is-object'),
+      anObject = $__require('./$.an-object');
+  var check = function(O, proto) {
+    anObject(O);
+    if (!isObject(proto) && proto !== null)
+      throw TypeError(proto + ": can't set as prototype!");
+  };
+  module.exports = {
+    set: Object.setPrototypeOf || ('__proto__' in {} ? function(test, buggy, set) {
+      try {
+        set = $__require('./$.ctx')(Function.call, getDesc(Object.prototype, '__proto__').set, 2);
+        set(test, []);
+        buggy = !(test instanceof Array);
+      } catch (e) {
+        buggy = true;
+      }
+      return function setPrototypeOf(O, proto) {
+        check(O, proto);
+        if (buggy)
+          O.__proto__ = proto;
+        else
+          set(O, proto);
+        return O;
+      };
+    }({}, false) : undefined),
+    check: check
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.same-value.js", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = Object.is || function is(x, y) {
+    return x === y ? x !== 0 || 1 / x === 1 / y : x != x && y != y;
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.an-object.js", ["./$.is-object"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var isObject = $__require('./$.is-object');
+  module.exports = function(it) {
+    if (!isObject(it))
+      throw TypeError(it + ' is not an object!');
+    return it;
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.species-constructor.js", ["./$.an-object", "./$.a-function", "./$.wks"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var anObject = $__require('./$.an-object'),
+      aFunction = $__require('./$.a-function'),
+      SPECIES = $__require('./$.wks')('species');
+  module.exports = function(O, D) {
+    var C = anObject(O).constructor,
+        S;
+    return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? D : aFunction(S);
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.invoke.js", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = function(fn, args, that) {
+    var un = that === undefined;
+    switch (args.length) {
+      case 0:
+        return un ? fn() : fn.call(that);
+      case 1:
+        return un ? fn(args[0]) : fn.call(that, args[0]);
+      case 2:
+        return un ? fn(args[0], args[1]) : fn.call(that, args[0], args[1]);
+      case 3:
+        return un ? fn(args[0], args[1], args[2]) : fn.call(that, args[0], args[1], args[2]);
+      case 4:
+        return un ? fn(args[0], args[1], args[2], args[3]) : fn.call(that, args[0], args[1], args[2], args[3]);
+    }
+    return fn.apply(that, args);
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.html.js", ["./$.global"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = $__require('./$.global').document && document.documentElement;
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.dom-create.js", ["./$.is-object", "./$.global"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var isObject = $__require('./$.is-object'),
+      document = $__require('./$.global').document,
+      is = isObject(document) && isObject(document.createElement);
+  module.exports = function(it) {
+    return is ? document.createElement(it) : {};
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.task.js", ["./$.ctx", "./$.invoke", "./$.html", "./$.dom-create", "./$.global", "./$.cof", "process"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  (function(process) {
+    var ctx = $__require('./$.ctx'),
+        invoke = $__require('./$.invoke'),
+        html = $__require('./$.html'),
+        cel = $__require('./$.dom-create'),
+        global = $__require('./$.global'),
+        process = global.process,
+        setTask = global.setImmediate,
+        clearTask = global.clearImmediate,
+        MessageChannel = global.MessageChannel,
+        counter = 0,
+        queue = {},
+        ONREADYSTATECHANGE = 'onreadystatechange',
+        defer,
+        channel,
+        port;
+    var run = function() {
+      var id = +this;
+      if (queue.hasOwnProperty(id)) {
+        var fn = queue[id];
+        delete queue[id];
+        fn();
+      }
+    };
+    var listner = function(event) {
+      run.call(event.data);
+    };
+    if (!setTask || !clearTask) {
+      setTask = function setImmediate(fn) {
+        var args = [],
+            i = 1;
+        while (arguments.length > i)
+          args.push(arguments[i++]);
+        queue[++counter] = function() {
+          invoke(typeof fn == 'function' ? fn : Function(fn), args);
+        };
+        defer(counter);
+        return counter;
+      };
+      clearTask = function clearImmediate(id) {
+        delete queue[id];
+      };
+      if ($__require('./$.cof')(process) == 'process') {
+        defer = function(id) {
+          process.nextTick(ctx(run, id, 1));
+        };
+      } else if (MessageChannel) {
+        channel = new MessageChannel;
+        port = channel.port2;
+        channel.port1.onmessage = listner;
+        defer = ctx(port.postMessage, port, 1);
+      } else if (global.addEventListener && typeof postMessage == 'function' && !global.importScripts) {
+        defer = function(id) {
+          global.postMessage(id + '', '*');
+        };
+        global.addEventListener('message', listner, false);
+      } else if (ONREADYSTATECHANGE in cel('script')) {
+        defer = function(id) {
+          html.appendChild(cel('script'))[ONREADYSTATECHANGE] = function() {
+            html.removeChild(this);
+            run.call(id);
+          };
+        };
+      } else {
+        defer = function(id) {
+          setTimeout(ctx(run, id, 1), 0);
+        };
+      }
+    }
+    module.exports = {
+      set: setTask,
+      clear: clearTask
+    };
+  })($__require('process'));
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.cof.js", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var toString = {}.toString;
+  module.exports = function(it) {
+    return toString.call(it).slice(8, -1);
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.microtask.js", ["./$.global", "./$.task", "./$.cof", "process"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  (function(process) {
+    var global = $__require('./$.global'),
+        macrotask = $__require('./$.task').set,
+        Observer = global.MutationObserver || global.WebKitMutationObserver,
+        process = global.process,
+        Promise = global.Promise,
+        isNode = $__require('./$.cof')(process) == 'process',
+        head,
+        last,
+        notify;
+    var flush = function() {
+      var parent,
+          domain,
+          fn;
+      if (isNode && (parent = process.domain)) {
+        process.domain = null;
+        parent.exit();
+      }
+      while (head) {
+        domain = head.domain;
+        fn = head.fn;
+        if (domain)
+          domain.enter();
+        fn();
+        if (domain)
+          domain.exit();
+        head = head.next;
+      }
+      last = undefined;
+      if (parent)
+        parent.enter();
+    };
+    if (isNode) {
+      notify = function() {
+        process.nextTick(flush);
+      };
+    } else if (Observer) {
+      var toggle = 1,
+          node = document.createTextNode('');
+      new Observer(flush).observe(node, {characterData: true});
+      notify = function() {
+        node.data = toggle = -toggle;
+      };
+    } else if (Promise && Promise.resolve) {
+      notify = function() {
+        Promise.resolve().then(flush);
+      };
+    } else {
+      notify = function() {
+        macrotask.call(global, flush);
+      };
+    }
+    module.exports = function asap(fn) {
+      var task = {
+        fn: fn,
+        next: undefined,
+        domain: isNode && process.domain
+      };
+      if (last)
+        last.next = task;
+      if (!head) {
+        head = task;
+        notify();
+      }
+      last = task;
+    };
+  })($__require('process'));
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.property-desc.js", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = function(bitmap, value) {
+    return {
+      enumerable: !(bitmap & 1),
+      configurable: !(bitmap & 2),
+      writable: !(bitmap & 4),
+      value: value
+    };
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.hide.js", ["./$", "./$.property-desc", "./$.descriptors"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var $ = $__require('./$'),
+      createDesc = $__require('./$.property-desc');
+  module.exports = $__require('./$.descriptors') ? function(object, key, value) {
+    return $.setDesc(object, key, createDesc(1, value));
+  } : function(object, key, value) {
+    object[key] = value;
+    return object;
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.redefine.js", ["./$.hide"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = $__require('./$.hide');
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.redefine-all.js", ["./$.redefine"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var redefine = $__require('./$.redefine');
+  module.exports = function(target, src) {
+    for (var key in src)
+      redefine(target, key, src[key]);
+    return target;
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.has.js", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var hasOwnProperty = {}.hasOwnProperty;
+  module.exports = function(it, key) {
+    return hasOwnProperty.call(it, key);
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.set-to-string-tag.js", ["./$", "./$.has", "./$.wks"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var def = $__require('./$').setDesc,
+      has = $__require('./$.has'),
+      TAG = $__require('./$.wks')('toStringTag');
+  module.exports = function(it, tag, stat) {
+    if (it && !has(it = stat ? it : it.prototype, TAG))
+      def(it, TAG, {
+        configurable: true,
+        value: tag
+      });
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.descriptors.js", ["./$.fails"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = !$__require('./$.fails')(function() {
+    return Object.defineProperty({}, 'a', {get: function() {
+        return 7;
+      }}).a != 7;
+  });
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.set-species.js", ["./$.core", "./$", "./$.descriptors", "./$.wks"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var core = $__require('./$.core'),
+      $ = $__require('./$'),
+      DESCRIPTORS = $__require('./$.descriptors'),
+      SPECIES = $__require('./$.wks')('species');
+  module.exports = function(KEY) {
+    var C = core[KEY];
+    if (DESCRIPTORS && C && !C[SPECIES])
+      $.setDesc(C, SPECIES, {
+        configurable: true,
+        get: function() {
+          return this;
+        }
+      });
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.shared.js", ["./$.global"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var global = $__require('./$.global'),
+      SHARED = '__core-js_shared__',
+      store = global[SHARED] || (global[SHARED] = {});
+  module.exports = function(key) {
+    return store[key] || (store[key] = {});
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.uid.js", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var id = 0,
+      px = Math.random();
+  module.exports = function(key) {
+    return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.wks.js", ["./$.shared", "./$.uid", "./$.global"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var store = $__require('./$.shared')('wks'),
+      uid = $__require('./$.uid'),
+      Symbol = $__require('./$.global').Symbol;
+  module.exports = function(name) {
+    return store[name] || (store[name] = Symbol && Symbol[name] || (Symbol || uid)('Symbol.' + name));
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.iter-detect.js", ["./$.wks"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var ITERATOR = $__require('./$.wks')('iterator'),
+      SAFE_CLOSING = false;
+  try {
+    var riter = [7][ITERATOR]();
+    riter['return'] = function() {
+      SAFE_CLOSING = true;
+    };
+    Array.from(riter, function() {
+      throw 2;
+    });
+  } catch (e) {}
+  module.exports = function(exec, skipClosing) {
+    if (!skipClosing && !SAFE_CLOSING)
+      return false;
+    var safe = false;
+    try {
+      var arr = [7],
+          iter = arr[ITERATOR]();
+      iter.next = function() {
+        safe = true;
+      };
+      arr[ITERATOR] = function() {
+        return iter;
+      };
+      exec(arr);
+    } catch (e) {}
+    return safe;
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:process@0.11.2/browser.js", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var process = module.exports = {};
+  var queue = [];
+  var draining = false;
+  var currentQueue;
+  var queueIndex = -1;
+  function cleanUpNextTick() {
+    draining = false;
+    if (currentQueue.length) {
+      queue = currentQueue.concat(queue);
+    } else {
+      queueIndex = -1;
+    }
+    if (queue.length) {
+      drainQueue();
+    }
+  }
+  function drainQueue() {
+    if (draining) {
+      return;
+    }
+    var timeout = setTimeout(cleanUpNextTick);
+    draining = true;
+    var len = queue.length;
+    while (len) {
+      currentQueue = queue;
+      queue = [];
+      while (++queueIndex < len) {
+        if (currentQueue) {
+          currentQueue[queueIndex].run();
+        }
+      }
+      queueIndex = -1;
+      len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    clearTimeout(timeout);
+  }
+  process.nextTick = function(fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+      for (var i = 1; i < arguments.length; i++) {
+        args[i - 1] = arguments[i];
+      }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+      setTimeout(drainQueue, 0);
+    }
+  };
+  function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+  }
+  Item.prototype.run = function() {
+    this.fun.apply(null, this.array);
+  };
+  process.title = 'browser';
+  process.browser = true;
+  process.env = {};
+  process.argv = [];
+  process.version = '';
+  process.versions = {};
+  function noop() {}
+  process.on = noop;
+  process.addListener = noop;
+  process.once = noop;
+  process.off = noop;
+  process.removeListener = noop;
+  process.removeAllListeners = noop;
+  process.emit = noop;
+  process.binding = function(name) {
+    throw new Error('process.binding is not supported');
+  };
+  process.cwd = function() {
+    return '/';
+  };
+  process.chdir = function(dir) {
+    throw new Error('process.chdir is not supported');
+  };
+  process.umask = function() {
+    return 0;
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:process@0.11.2.js", ["npm:process@0.11.2/browser.js"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = $__require('npm:process@0.11.2/browser.js');
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("github:jspm/nodelibs-process@0.1.2/index.js", ["process"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = System._nodeRequire ? process : $__require('process');
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("github:jspm/nodelibs-process@0.1.2.js", ["github:jspm/nodelibs-process@0.1.2/index"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = $__require('github:jspm/nodelibs-process@0.1.2/index');
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/es6.promise.js", ["./$", "./$.library", "./$.global", "./$.ctx", "./$.classof", "./$.export", "./$.is-object", "./$.an-object", "./$.a-function", "./$.strict-new", "./$.for-of", "./$.set-proto", "./$.same-value", "./$.wks", "./$.species-constructor", "./$.microtask", "./$.descriptors", "./$.redefine-all", "./$.set-to-string-tag", "./$.set-species", "./$.core", "./$.iter-detect", "process"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  (function(process) {
+    'use strict';
+    var $ = $__require('./$'),
+        LIBRARY = $__require('./$.library'),
+        global = $__require('./$.global'),
+        ctx = $__require('./$.ctx'),
+        classof = $__require('./$.classof'),
+        $export = $__require('./$.export'),
+        isObject = $__require('./$.is-object'),
+        anObject = $__require('./$.an-object'),
+        aFunction = $__require('./$.a-function'),
+        strictNew = $__require('./$.strict-new'),
+        forOf = $__require('./$.for-of'),
+        setProto = $__require('./$.set-proto').set,
+        same = $__require('./$.same-value'),
+        SPECIES = $__require('./$.wks')('species'),
+        speciesConstructor = $__require('./$.species-constructor'),
+        asap = $__require('./$.microtask'),
+        PROMISE = 'Promise',
+        process = global.process,
+        isNode = classof(process) == 'process',
+        P = global[PROMISE],
+        Wrapper;
+    var testResolve = function(sub) {
+      var test = new P(function() {});
+      if (sub)
+        test.constructor = Object;
+      return P.resolve(test) === test;
+    };
+    var USE_NATIVE = function() {
+      var works = false;
+      function P2(x) {
+        var self = new P(x);
+        setProto(self, P2.prototype);
+        return self;
+      }
+      try {
+        works = P && P.resolve && testResolve();
+        setProto(P2, P);
+        P2.prototype = $.create(P.prototype, {constructor: {value: P2}});
+        if (!(P2.resolve(5).then(function() {}) instanceof P2)) {
+          works = false;
+        }
+        if (works && $__require('./$.descriptors')) {
+          var thenableThenGotten = false;
+          P.resolve($.setDesc({}, 'then', {get: function() {
+              thenableThenGotten = true;
+            }}));
+          works = thenableThenGotten;
+        }
+      } catch (e) {
+        works = false;
+      }
+      return works;
+    }();
+    var sameConstructor = function(a, b) {
+      if (LIBRARY && a === P && b === Wrapper)
+        return true;
+      return same(a, b);
+    };
+    var getConstructor = function(C) {
+      var S = anObject(C)[SPECIES];
+      return S != undefined ? S : C;
+    };
+    var isThenable = function(it) {
+      var then;
+      return isObject(it) && typeof(then = it.then) == 'function' ? then : false;
+    };
+    var PromiseCapability = function(C) {
+      var resolve,
+          reject;
+      this.promise = new C(function($$resolve, $$reject) {
+        if (resolve !== undefined || reject !== undefined)
+          throw TypeError('Bad Promise constructor');
+        resolve = $$resolve;
+        reject = $$reject;
+      });
+      this.resolve = aFunction(resolve), this.reject = aFunction(reject);
+    };
+    var perform = function(exec) {
+      try {
+        exec();
+      } catch (e) {
+        return {error: e};
+      }
+    };
+    var notify = function(record, isReject) {
+      if (record.n)
+        return;
+      record.n = true;
+      var chain = record.c;
+      asap(function() {
+        var value = record.v,
+            ok = record.s == 1,
+            i = 0;
+        var run = function(reaction) {
+          var handler = ok ? reaction.ok : reaction.fail,
+              resolve = reaction.resolve,
+              reject = reaction.reject,
+              result,
+              then;
+          try {
+            if (handler) {
+              if (!ok)
+                record.h = true;
+              result = handler === true ? value : handler(value);
+              if (result === reaction.promise) {
+                reject(TypeError('Promise-chain cycle'));
+              } else if (then = isThenable(result)) {
+                then.call(result, resolve, reject);
+              } else
+                resolve(result);
+            } else
+              reject(value);
+          } catch (e) {
+            reject(e);
+          }
+        };
+        while (chain.length > i)
+          run(chain[i++]);
+        chain.length = 0;
+        record.n = false;
+        if (isReject)
+          setTimeout(function() {
+            var promise = record.p,
+                handler,
+                console;
+            if (isUnhandled(promise)) {
+              if (isNode) {
+                process.emit('unhandledRejection', value, promise);
+              } else if (handler = global.onunhandledrejection) {
+                handler({
+                  promise: promise,
+                  reason: value
+                });
+              } else if ((console = global.console) && console.error) {
+                console.error('Unhandled promise rejection', value);
+              }
+            }
+            record.a = undefined;
+          }, 1);
+      });
+    };
+    var isUnhandled = function(promise) {
+      var record = promise._d,
+          chain = record.a || record.c,
+          i = 0,
+          reaction;
+      if (record.h)
+        return false;
+      while (chain.length > i) {
+        reaction = chain[i++];
+        if (reaction.fail || !isUnhandled(reaction.promise))
+          return false;
+      }
+      return true;
+    };
+    var $reject = function(value) {
+      var record = this;
+      if (record.d)
+        return;
+      record.d = true;
+      record = record.r || record;
+      record.v = value;
+      record.s = 2;
+      record.a = record.c.slice();
+      notify(record, true);
+    };
+    var $resolve = function(value) {
+      var record = this,
+          then;
+      if (record.d)
+        return;
+      record.d = true;
+      record = record.r || record;
+      try {
+        if (record.p === value)
+          throw TypeError("Promise can't be resolved itself");
+        if (then = isThenable(value)) {
+          asap(function() {
+            var wrapper = {
+              r: record,
+              d: false
+            };
+            try {
+              then.call(value, ctx($resolve, wrapper, 1), ctx($reject, wrapper, 1));
+            } catch (e) {
+              $reject.call(wrapper, e);
+            }
+          });
+        } else {
+          record.v = value;
+          record.s = 1;
+          notify(record, false);
+        }
+      } catch (e) {
+        $reject.call({
+          r: record,
+          d: false
+        }, e);
+      }
+    };
+    if (!USE_NATIVE) {
+      P = function Promise(executor) {
+        aFunction(executor);
+        var record = this._d = {
+          p: strictNew(this, P, PROMISE),
+          c: [],
+          a: undefined,
+          s: 0,
+          d: false,
+          v: undefined,
+          h: false,
+          n: false
+        };
+        try {
+          executor(ctx($resolve, record, 1), ctx($reject, record, 1));
+        } catch (err) {
+          $reject.call(record, err);
+        }
+      };
+      $__require('./$.redefine-all')(P.prototype, {
+        then: function then(onFulfilled, onRejected) {
+          var reaction = new PromiseCapability(speciesConstructor(this, P)),
+              promise = reaction.promise,
+              record = this._d;
+          reaction.ok = typeof onFulfilled == 'function' ? onFulfilled : true;
+          reaction.fail = typeof onRejected == 'function' && onRejected;
+          record.c.push(reaction);
+          if (record.a)
+            record.a.push(reaction);
+          if (record.s)
+            notify(record, false);
+          return promise;
+        },
+        'catch': function(onRejected) {
+          return this.then(undefined, onRejected);
+        }
+      });
+    }
+    $export($export.G + $export.W + $export.F * !USE_NATIVE, {Promise: P});
+    $__require('./$.set-to-string-tag')(P, PROMISE);
+    $__require('./$.set-species')(PROMISE);
+    Wrapper = $__require('./$.core')[PROMISE];
+    $export($export.S + $export.F * !USE_NATIVE, PROMISE, {reject: function reject(r) {
+        var capability = new PromiseCapability(this),
+            $$reject = capability.reject;
+        $$reject(r);
+        return capability.promise;
+      }});
+    $export($export.S + $export.F * (!USE_NATIVE || testResolve(true)), PROMISE, {resolve: function resolve(x) {
+        if (x instanceof P && sameConstructor(x.constructor, this))
+          return x;
+        var capability = new PromiseCapability(this),
+            $$resolve = capability.resolve;
+        $$resolve(x);
+        return capability.promise;
+      }});
+    $export($export.S + $export.F * !(USE_NATIVE && $__require('./$.iter-detect')(function(iter) {
+      P.all(iter)['catch'](function() {});
+    })), PROMISE, {
+      all: function all(iterable) {
+        var C = getConstructor(this),
+            capability = new PromiseCapability(C),
+            resolve = capability.resolve,
+            reject = capability.reject,
+            values = [];
+        var abrupt = perform(function() {
+          forOf(iterable, false, values.push, values);
+          var remaining = values.length,
+              results = Array(remaining);
+          if (remaining)
+            $.each.call(values, function(promise, index) {
+              var alreadyCalled = false;
+              C.resolve(promise).then(function(value) {
+                if (alreadyCalled)
+                  return;
+                alreadyCalled = true;
+                results[index] = value;
+                --remaining || resolve(results);
+              }, reject);
+            });
+          else
+            resolve(results);
+        });
+        if (abrupt)
+          reject(abrupt.error);
+        return capability.promise;
+      },
+      race: function race(iterable) {
+        var C = getConstructor(this),
+            capability = new PromiseCapability(C),
+            reject = capability.reject;
+        var abrupt = perform(function() {
+          forOf(iterable, false, function(promise) {
+            C.resolve(promise).then(capability.resolve, reject);
+          });
+        });
+        if (abrupt)
+          reject(abrupt.error);
+        return capability.promise;
+      }
+    });
+  })($__require('process'));
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/fn/promise.js", ["../modules/es6.object.to-string", "../modules/es6.string.iterator", "../modules/web.dom.iterable", "../modules/es6.promise", "../modules/$.core"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  $__require('../modules/es6.object.to-string');
+  $__require('../modules/es6.string.iterator');
+  $__require('../modules/web.dom.iterable');
+  $__require('../modules/es6.promise');
+  module.exports = $__require('../modules/$.core').Promise;
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:babel-runtime@5.8.34/core-js/promise.js", ["core-js/library/fn/promise"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = {
+    "default": $__require('core-js/library/fn/promise'),
+    __esModule: true
+  };
+  global.define = __define;
+  return module.exports;
+});
+
 System.register('lib/utilities/path.js', ['./assert'], function (_export) {/**
-                                                                            * Copyright 2015 aixigo AG
+                                                                            * Copyright 2016 aixigo AG
                                                                             * Released under the MIT license.
                                                                             * http://laxarjs.org/license
                                                                             */
@@ -8343,7 +8705,6 @@ System.register('lib/utilities/path.js', ['./assert'], function (_export) {/**
    PATH_SEPARATOR, 
    PARENT, 
    ABSOLUTE, 
-
 
 
 
@@ -8495,23 +8856,22 @@ System.register('lib/utilities/path.js', ['./assert'], function (_export) {/**
     *
     * @return {String}
     *    the joined path
-    */function join() /* firstFragment, secondFragment, ... */{var fragments = Array.prototype.slice.call(arguments, 0);if (fragments.length === 0) {return '';}var prefix = '';fragments = fragments.reduce(function (fragments, fragment) {assert(fragment).hasType(String).isNotNull();var matchAbsolute = ABSOLUTE.exec(fragment);if (matchAbsolute) {prefix = matchAbsolute[1];fragment = matchAbsolute[2];return fragment.split(PATH_SEPARATOR);}return fragments.concat(fragment.split(PATH_SEPARATOR));}, []);var pathStack = normalizeFragments(fragments);return prefix + pathStack.join(PATH_SEPARATOR);}function normalize(path) {var prefix = '';var matchAbsolute = ABSOLUTE.exec(path);if (matchAbsolute) {prefix = matchAbsolute[1];path = matchAbsolute[2];}var pathStack = normalizeFragments(path.split(PATH_SEPARATOR));return prefix + pathStack.join(PATH_SEPARATOR);}function relative(from, path) {var matchAbsoluteFrom = ABSOLUTE.exec(from);var matchAbsolutePath = ABSOLUTE.exec(path);assert(matchAbsoluteFrom).isNotNull();assert(matchAbsolutePath).isNotNull();var fromStack = normalizeFragments(matchAbsoluteFrom[2].split(PATH_SEPARATOR));var pathStack = normalizeFragments(matchAbsolutePath[2].split(PATH_SEPARATOR));return fromStack.reduce(function (path, fragment) {if (path[0] === fragment) {path.shift();} else {path.unshift('..');}return path;}, pathStack).join(PATH_SEPARATOR) || '.';}function resolveAssetPath(refWithScheme, defaultAssetDirectory, optionalDefaultScheme) {var info = extractScheme(refWithScheme, optionalDefaultScheme || 'amd');if (typeof schemeLoaders[info.scheme] !== 'function') {throw new Error('Unknown schema type "' + info.scheme + '" in reference "' + refWithScheme + '".');}return normalize(schemeLoaders[info.scheme](info.ref, defaultAssetDirectory));} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    */function join() {for (var _len = arguments.length, fragments = Array(_len), _key = 0; _key < _len; _key++) {fragments[_key] = arguments[_key];}if (fragments.length === 0) {return '';}var prefix = '';fragments = fragments.reduce(function (fragments, fragment) {assert(fragment).hasType(String).isNotNull();var matchAbsolute = ABSOLUTE.exec(fragment);if (matchAbsolute) {prefix = matchAbsolute[1];fragment = matchAbsolute[2];return fragment.split(PATH_SEPARATOR);}return fragments.concat(fragment.split(PATH_SEPARATOR));}, []);var pathStack = normalizeFragments(fragments);return prefix + pathStack.join(PATH_SEPARATOR);}function normalize(path) {var prefix = '';var matchAbsolute = ABSOLUTE.exec(path);if (matchAbsolute) {prefix = matchAbsolute[1];path = matchAbsolute[2];}var pathStack = normalizeFragments(path.split(PATH_SEPARATOR));return prefix + pathStack.join(PATH_SEPARATOR);}function relative(from, path) {var matchAbsoluteFrom = ABSOLUTE.exec(from);var matchAbsolutePath = ABSOLUTE.exec(path);assert(matchAbsoluteFrom).isNotNull();assert(matchAbsolutePath).isNotNull();var fromStack = normalizeFragments(matchAbsoluteFrom[2].split(PATH_SEPARATOR));var pathStack = normalizeFragments(matchAbsolutePath[2].split(PATH_SEPARATOR));return fromStack.reduce(function (path, fragment) {if (path[0] === fragment) {path.shift();} else {path.unshift('..');}return path;}, pathStack).join(PATH_SEPARATOR) || '.';}function resolveAssetPath(refWithScheme, defaultAssetDirectory, optionalDefaultScheme) {var info = extractScheme(refWithScheme, optionalDefaultScheme || 'amd');if (typeof schemeLoaders[info.scheme] !== 'function') {throw new Error('Unknown schema type "' + info.scheme + '" in reference "' + refWithScheme + '".');}return normalize(schemeLoaders[info.scheme](info.ref, defaultAssetDirectory));} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
    function extractScheme(ref, defaultScheme) {var parts = ref.split(':');return { scheme: parts.length === 2 ? parts[0] : defaultScheme, ref: parts.length === 2 ? parts[1] : parts[0] };}function normalizeFragments(fragments) {return fragments.reduce(function (pathStack, fragment) {fragment = fragment.replace(/^\/+|\/+$/g, '');if (fragment === '' || fragment === '.') {return pathStack;}if (pathStack.length === 0) {return [fragment];}if (fragment === PARENT && pathStack.length > 0 && pathStack[pathStack.length - 1] !== PARENT) {pathStack.pop();return pathStack;}pathStack.push(fragment);
          return pathStack;}, 
       []);}return { setters: [function (_assert) {assert = _assert['default'];}], execute: function () {PATH_SEPARATOR = '/';PARENT = '..';ABSOLUTE = /^([a-z0-9]+:\/\/[^\/]+\/|\/)(.*)$/;schemeLoaders = { local: function local(ref, defaultAssetDirectory) {return join(defaultAssetDirectory, ref);}, amd: function amd(ref) {// TODO NEEDS FIX A: amd references should already be resolved by the grunt task
                return System.normalizeSync(ref).replace(/\.js$/, '');} };} };});
 
-System.register('lib/runtime/theme_manager.js', ['../utilities/path'], function (_export) {/**
-                                                                                            * Copyright 2015 aixigo AG
-                                                                                            * Released under the MIT license.
-                                                                                            * http://laxarjs.org/license
-                                                                                            */
-   /**
-    * The theme manager simplifies lookup of theme specific assets. It should be used via AngularJS DI as
-    * *axThemeManager* service.
-    *
-    * @module theme_manager
-    */
+System.register('lib/runtime/theme_manager.js', ['npm:babel-runtime@5.8.34/core-js/promise.js', '../utilities/path'], function (_export) {var _Promise, path;
+
+
+
+
+
+
+
+
+
 
 
    /**
@@ -8523,9 +8883,8 @@ System.register('lib/runtime/theme_manager.js', ['../utilities/path'], function 
     *    the theme to use
     *
     * @constructor
-    */'use strict';var path;_export('create', create);
-   function ThemeManager(fileResourceProvider, q, theme) {
-      this.q_ = q;
+    */
+   function ThemeManager(fileResourceProvider, theme) {
       this.fileResourceProvider_ = fileResourceProvider;
       this.theme_ = theme;}
 
@@ -8604,23 +8963,16 @@ System.register('lib/runtime/theme_manager.js', ['../utilities/path'], function 
 
 
 
-
-
-
-
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    function findExistingPath(self, searchPrefixes, fileName) {
       if (searchPrefixes.length === 0) {
-         return self.q_.when(null);}
+         return _Promise.resolve(null);}
 
 
       return self.fileResourceProvider_.isAvailable(path.join(searchPrefixes[0], fileName)).
       then(function (available) {
-         if (available) {
-            return self.q_.when(searchPrefixes[0]);}
-
-         return findExistingPath(self, searchPrefixes.slice(1), fileName);});}
+         return available ? searchPrefixes[0] : findExistingPath(self, searchPrefixes.slice(1), fileName);});}
 
 
 
@@ -8631,15 +8983,21 @@ System.register('lib/runtime/theme_manager.js', ['../utilities/path'], function 
     *
     * @param {FileResourceProvider} fileResourceProvider
     *    the file resource provider used for theme file lookup
-    * @param {$q} q
-    *    a `$q` like promise library
     * @param {String} theme
     *    the theme to use
     *
     * @returns {ThemeManager}
     */
-   function create(fileResourceProvider, q, theme) {
-      return new ThemeManager(fileResourceProvider, q, theme);}return { setters: [function (_utilitiesPath) {path = _utilitiesPath;}], execute: function () {ThemeManager.prototype.getTheme = function () {return this.theme_;}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function create(fileResourceProvider, theme) {
+      return new ThemeManager(fileResourceProvider, theme);}return { setters: [function (_babelRuntimeCoreJsPromise) {_Promise = _babelRuntimeCoreJsPromise['default'];}, function (_utilitiesPath) {path = _utilitiesPath;}], execute: function () {/**
+                                                                                                                                                                                                                                                      * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                                                      * Released under the MIT license.
+                                                                                                                                                                                                                                                      * http://laxarjs.org/license
+                                                                                                                                                                                                                                                      */ /**
+                                                                                                                                                                                                                                                          * The theme manager simplifies lookup of theme specific assets.
+                                                                                                                                                                                                                                                          *
+                                                                                                                                                                                                                                                          * @module theme_manager
+                                                                                                                                                                                                                                                          */'use strict';_export('create', create);ThemeManager.prototype.getTheme = function () {return this.theme_;}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
          /**
           * Returns a URL provider for specific path patterns that are used to lookup themed artifacts. The token
           * `[theme]` will be replaced by the name of the currently active theme (plus `.theme` suffix) or by
@@ -8661,9 +9019,9 @@ System.register('lib/runtime/theme_manager.js', ['../utilities/path'], function 
                         searchPrefixes.push(artifactPathPattern.replace('[theme]', themeDirectory));}if (themePathPattern) {// second-highest precedence: themes with embedded artifact styles:
                         searchPrefixes.push(themePathPattern.replace('[theme]', themeDirectory));}}(fallbackPathPatterns || []).forEach(function (pattern) {// additional paths, usually for backward compatibility
                      if (self.theme_ !== 'default' || pattern.indexOf('[theme]') === -1) {searchPrefixes.push(pattern.replace('[theme]', themeDirectory));}});if (artifactPathPattern) {// fall back to default theme provided by the artifact
-                     searchPrefixes.push(artifactPathPattern.replace('[theme]', 'default.theme'));}var promises = [];fileNames.forEach(function (fileName) {promises.push(findExistingPath(self, searchPrefixes, fileName));});return self.q_.all(promises).then(function (results) {return results.map(function (result, i) {return result !== null ? path.join(result, fileNames[i]) : null;});});} };};} };});
+                     searchPrefixes.push(artifactPathPattern.replace('[theme]', 'default.theme'));}var promises = fileNames.map(function (fileName) {return findExistingPath(self, searchPrefixes, fileName);});return _Promise.all(promises).then(function (results) {return results.map(function (result, i) {return result !== null ? path.join(result, fileNames[i]) : null;});});} };};} };});
 
-System.registerDynamic("npm:core-js@1.2.6/library/modules/$", [], true, function($__require, exports, module) {
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.js", [], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -8685,7 +9043,7 @@ System.registerDynamic("npm:core-js@1.2.6/library/modules/$", [], true, function
   return module.exports;
 });
 
-System.registerDynamic("npm:core-js@1.2.6/library/fn/object/define-property", ["../../modules/$"], true, function($__require, exports, module) {
+System.registerDynamic("npm:core-js@1.2.6/library/fn/object/define-property.js", ["../../modules/$"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -8698,7 +9056,7 @@ System.registerDynamic("npm:core-js@1.2.6/library/fn/object/define-property", ["
   return module.exports;
 });
 
-System.registerDynamic("npm:babel-runtime@5.8.34/core-js/object/define-property", ["core-js/library/fn/object/define-property"], true, function($__require, exports, module) {
+System.registerDynamic("npm:babel-runtime@5.8.34/core-js/object/define-property.js", ["core-js/library/fn/object/define-property"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -8711,7 +9069,7 @@ System.registerDynamic("npm:babel-runtime@5.8.34/core-js/object/define-property"
   return module.exports;
 });
 
-System.registerDynamic("npm:babel-runtime@5.8.34/helpers/define-property", ["../core-js/object/define-property"], true, function($__require, exports, module) {
+System.registerDynamic("npm:babel-runtime@5.8.34/helpers/define-property.js", ["../core-js/object/define-property"], true, function($__require, exports, module) {
   "use strict";
   ;
   var global = this,
@@ -8736,80 +9094,17 @@ System.registerDynamic("npm:babel-runtime@5.8.34/helpers/define-property", ["../
   return module.exports;
 });
 
-System.registerDynamic("npm:core-js@1.2.6/library/modules/$.defined", [], true, function($__require, exports, module) {
-  ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
-  module.exports = function(it) {
-    if (it == undefined)
-      throw TypeError("Can't call method on  " + it);
-    return it;
-  };
-  global.define = __define;
-  return module.exports;
-});
-
-System.registerDynamic("npm:core-js@1.2.6/library/modules/$.to-object", ["./$.defined"], true, function($__require, exports, module) {
-  ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
-  var defined = $__require('./$.defined');
-  module.exports = function(it) {
-    return Object(defined(it));
-  };
-  global.define = __define;
-  return module.exports;
-});
-
-System.registerDynamic("npm:core-js@1.2.6/library/modules/es6.object.keys", ["./$.to-object", "./$.object-sap"], true, function($__require, exports, module) {
-  ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
-  var toObject = $__require('./$.to-object');
-  $__require('./$.object-sap')('keys', function($keys) {
-    return function keys(it) {
-      return $keys(toObject(it));
-    };
-  });
-  global.define = __define;
-  return module.exports;
-});
-
-System.registerDynamic("npm:core-js@1.2.6/library/fn/object/keys", ["../../modules/es6.object.keys", "../../modules/$.core"], true, function($__require, exports, module) {
-  ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
-  $__require('../../modules/es6.object.keys');
-  module.exports = $__require('../../modules/$.core').Object.keys;
-  global.define = __define;
-  return module.exports;
-});
-
-System.registerDynamic("npm:babel-runtime@5.8.34/core-js/object/keys", ["core-js/library/fn/object/keys"], true, function($__require, exports, module) {
-  ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
-  module.exports = {
-    "default": $__require('core-js/library/fn/object/keys'),
-    __esModule: true
-  };
-  global.define = __define;
-  return module.exports;
-});
-
 System.register('lib/widget_adapters/plain_adapter.js', [], function (_export) {/**
-                                                                                 * Copyright 2015 aixigo AG
+                                                                                 * Copyright 2016 aixigo AG
                                                                                  * Released under the MIT license.
                                                                                  * http://laxarjs.org/license
                                                                                  */'use strict';var 
+   laxarServices, 
+
    widgetModules, 
 
    technology;
+
 
 
 
@@ -8834,7 +9129,6 @@ System.register('lib/widget_adapters/plain_adapter.js', [], function (_export) {
     * @param {String}      environment.context.widget.id
     * @param {String}      environment.context.widget.path
     * @param {Object}      environment.specification
-    * @param {Object}      services
     *
     * @return {Object}
     */_export('bootstrap', bootstrap);
@@ -8920,20 +9214,118 @@ System.register('lib/widget_adapters/plain_adapter.js', [], function (_export) {
 
 
 
-
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
    _export('create', create);_export('applyViewChanges', applyViewChanges); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function bootstrap(modules) {modules.forEach(function (module) {widgetModules[module.name] = module;});}function create(environment, services) {var exports = { createController: createController, domAttachTo: domAttachTo, domDetach: domDetach, destroy: function destroy() {} };var widgetName = environment.specification.name;var moduleName = widgetName.replace(/^./, function (_) {return _.toLowerCase();});var context = environment.context;var controller = null; ////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function bootstrap(modules, services) {laxarServices = services;modules.forEach(function (module) {widgetModules[module.name] = module;});}function create(environment) {var exports = { createController: createController, domAttachTo: domAttachTo, domDetach: domDetach, destroy: function destroy() {} };var widgetName = environment.specification.name;var moduleName = widgetName.replace(/^./, function (_) {return _.toLowerCase();});var context = environment.context;var controller = null; ////////////////////////////////////////////////////////////////////////////////////////////////////////
       function createController(config) {var module = widgetModules[moduleName];var injector = createInjector();var injections = (module.injections || []).map(function (injection) {return injector.get(injection);});config.onBeforeControllerCreation(environment, injector.get());controller = module.create.apply(module, injections);} ////////////////////////////////////////////////////////////////////////////////////////////////////////
       function domAttachTo(areaElement, htmlTemplate) {if (htmlTemplate === null) {return;}environment.anchorElement.innerHTML = htmlTemplate;areaElement.appendChild(environment.anchorElement);controller.renderTo(environment.anchorElement);} ////////////////////////////////////////////////////////////////////////////////////////////////////////
       function domDetach() {var parent = environment.anchorElement.parentNode;if (parent) {parent.removeChild(environment.anchorElement);}} ////////////////////////////////////////////////////////////////////////////////////////////////////////
       function createInjector() {var map = { axContext: context, axEventBus: context.eventBus, axFeatures: context.features || {} }; /////////////////////////////////////////////////////////////////////////////////////////////////////
-         return { get: function get(name) {if (arguments.length === 0) {return map;}if (name in map) {return map[name];}if (name in services) {return services[name];}throw new Error('Unknown dependency "' + name + '".');} };} ////////////////////////////////////////////////////////////////////////////////////////////////////////
+         return { get: function get(name) {if (arguments.length === 0) {return map;}if (name in map) {return map[name];}if (name in laxarServices) {return laxarServices[name];}throw new Error('Unknown dependency "' + name + '".');} };} ////////////////////////////////////////////////////////////////////////////////////////////////////////
       return exports;}function applyViewChanges() {// no-op
-   }return { setters: [], execute: function () {widgetModules = {};technology = 'plain';_export('technology', technology);} };});
+   }return { setters: [], execute: function () {laxarServices = undefined;widgetModules = {};technology = 'plain';_export('technology', technology);} };});
+
+System.register('lib/widget_adapters/adapters.js', ['npm:babel-runtime@5.8.34/helpers/define-property.js', 'npm:babel-runtime@5.8.34/core-js/object/keys.js', './plain_adapter'], function (_export) {var _defineProperty, _Object$keys, plainAdapter, 
+
+
+
+
+
+
+   adapters;
+
+
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function getFor(technology) {
+      return adapters[technology];}
+
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function getSupportedTechnologies() {
+      return _Object$keys(adapters);}
+
+
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   function addAdapters(additionalAdapters) {
+      additionalAdapters.forEach(function (adapter) {
+         adapters[adapter.technology] = adapter;});}return { setters: [function (_babelRuntimeHelpersDefineProperty) {_defineProperty = _babelRuntimeHelpersDefineProperty['default'];}, function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_plain_adapter) {plainAdapter = _plain_adapter;}], execute: function () {/**
+                                                                                                                                                                                                                                                                                                                                                                                  * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                                                                                                                                                                                  * Released under the MIT license.
+                                                                                                                                                                                                                                                                                                                                                                                  * http://laxarjs.org/license
+                                                                                                                                                                                                                                                                                                                                                                                  */'use strict';_export('getFor', getFor);_export('getSupportedTechnologies', getSupportedTechnologies);_export('addAdapters', addAdapters);adapters = _defineProperty({}, plainAdapter.technology, plainAdapter);} };});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.defined.js", [], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = function(it) {
+    if (it == undefined)
+      throw TypeError("Can't call method on  " + it);
+    return it;
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.to-object.js", ["./$.defined"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var defined = $__require('./$.defined');
+  module.exports = function(it) {
+    return Object(defined(it));
+  };
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/modules/es6.object.keys.js", ["./$.to-object", "./$.object-sap"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  var toObject = $__require('./$.to-object');
+  $__require('./$.object-sap')('keys', function($keys) {
+    return function keys(it) {
+      return $keys(toObject(it));
+    };
+  });
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:core-js@1.2.6/library/fn/object/keys.js", ["../../modules/es6.object.keys", "../../modules/$.core"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  $__require('../../modules/es6.object.keys');
+  module.exports = $__require('../../modules/$.core').Object.keys;
+  global.define = __define;
+  return module.exports;
+});
+
+System.registerDynamic("npm:babel-runtime@5.8.34/core-js/object/keys.js", ["core-js/library/fn/object/keys"], true, function($__require, exports, module) {
+  ;
+  var global = this,
+      __define = global.define;
+  global.define = undefined;
+  module.exports = {
+    "default": $__require('core-js/library/fn/object/keys'),
+    __esModule: true
+  };
+  global.define = __define;
+  return module.exports;
+});
 
 System.register('lib/utilities/assert.js', [], function (_export) {/**
-                                                                    * Copyright 2015 aixigo AG
+                                                                    * Copyright 2016 aixigo AG
                                                                     * Released under the MIT license.
                                                                     * http://laxarjs.org/license
                                                                     */
@@ -9211,7 +9603,7 @@ System.register('lib/utilities/assert.js', [], function (_export) {/**
          _export('default', assert);codeIsUnreachable = assert.codeIsUnreachable;_export('codeIsUnreachable', codeIsUnreachable);state = assert.state;_export('state', state);} };});
 
 System.register('lib/utilities/configuration.js', ['./object'], function (_export) {/**
-                                                                                     * Copyright 2015 aixigo AG
+                                                                                     * Copyright 2016 aixigo AG
                                                                                      * Released under the MIT license.
                                                                                      * http://laxarjs.org/license
                                                                                      */
@@ -9263,7 +9655,7 @@ System.register('lib/utilities/configuration.js', ['./object'], function (_expor
     return path(global.laxar, key, optionalDefault);}return { setters: [function (_object) {path = _object.path;}], execute: function () {global = new Function('return this')();} };});
 
 System.register('lib/logging/console_channel.js', [], function (_export) {/**
-                                                                           * Copyright 2015 aixigo AG
+                                                                           * Copyright 2016 aixigo AG
                                                                            * Released under the MIT license.
                                                                            * http://laxarjs.org/license
                                                                            */'use strict';var 
@@ -9300,13 +9692,12 @@ System.register('lib/logging/console_channel.js', [], function (_export) {/**
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    function mergeTextAndReplacements(text, replacements) {
-      var pos = 0;
-      var character;
-      var buffer = '';
       var parts = [];
+      var pos = 0;
+      var buffer = '';
 
       while (pos < text.length) {
-         character = text.charAt(pos);
+         var character = text.charAt(pos);
 
          switch (character) {
             case '\\':
@@ -9348,7 +9739,7 @@ System.register('lib/logging/console_channel.js', [], function (_export) {/**
 
       return parts;}return { setters: [], execute: function () {winConsole = undefined;} };});
 
-System.registerDynamic("npm:core-js@1.2.6/library/modules/es6.object.is-frozen", ["./$.is-object", "./$.object-sap"], true, function($__require, exports, module) {
+System.registerDynamic("npm:core-js@1.2.6/library/modules/es6.object.is-frozen.js", ["./$.is-object", "./$.object-sap"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -9363,7 +9754,7 @@ System.registerDynamic("npm:core-js@1.2.6/library/modules/es6.object.is-frozen",
   return module.exports;
 });
 
-System.registerDynamic("npm:core-js@1.2.6/library/fn/object/is-frozen", ["../../modules/es6.object.is-frozen", "../../modules/$.core"], true, function($__require, exports, module) {
+System.registerDynamic("npm:core-js@1.2.6/library/fn/object/is-frozen.js", ["../../modules/es6.object.is-frozen", "../../modules/$.core"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -9374,7 +9765,7 @@ System.registerDynamic("npm:core-js@1.2.6/library/fn/object/is-frozen", ["../../
   return module.exports;
 });
 
-System.registerDynamic("npm:babel-runtime@5.8.34/core-js/object/is-frozen", ["core-js/library/fn/object/is-frozen"], true, function($__require, exports, module) {
+System.registerDynamic("npm:babel-runtime@5.8.34/core-js/object/is-frozen.js", ["core-js/library/fn/object/is-frozen"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -9387,7 +9778,7 @@ System.registerDynamic("npm:babel-runtime@5.8.34/core-js/object/is-frozen", ["co
   return module.exports;
 });
 
-System.registerDynamic("npm:core-js@1.2.6/library/modules/$.is-object", [], true, function($__require, exports, module) {
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.is-object.js", [], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -9399,7 +9790,7 @@ System.registerDynamic("npm:core-js@1.2.6/library/modules/$.is-object", [], true
   return module.exports;
 });
 
-System.registerDynamic("npm:core-js@1.2.6/library/modules/$.global", [], true, function($__require, exports, module) {
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.global.js", [], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -9411,7 +9802,7 @@ System.registerDynamic("npm:core-js@1.2.6/library/modules/$.global", [], true, f
   return module.exports;
 });
 
-System.registerDynamic("npm:core-js@1.2.6/library/modules/$.a-function", [], true, function($__require, exports, module) {
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.a-function.js", [], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -9425,7 +9816,7 @@ System.registerDynamic("npm:core-js@1.2.6/library/modules/$.a-function", [], tru
   return module.exports;
 });
 
-System.registerDynamic("npm:core-js@1.2.6/library/modules/$.ctx", ["./$.a-function"], true, function($__require, exports, module) {
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.ctx.js", ["./$.a-function"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -9457,7 +9848,7 @@ System.registerDynamic("npm:core-js@1.2.6/library/modules/$.ctx", ["./$.a-functi
   return module.exports;
 });
 
-System.registerDynamic("npm:core-js@1.2.6/library/modules/$.export", ["./$.global", "./$.core", "./$.ctx"], true, function($__require, exports, module) {
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.export.js", ["./$.global", "./$.core", "./$.ctx"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -9507,7 +9898,7 @@ System.registerDynamic("npm:core-js@1.2.6/library/modules/$.export", ["./$.globa
   return module.exports;
 });
 
-System.registerDynamic("npm:core-js@1.2.6/library/modules/$.fails", [], true, function($__require, exports, module) {
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.fails.js", [], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -9523,7 +9914,7 @@ System.registerDynamic("npm:core-js@1.2.6/library/modules/$.fails", [], true, fu
   return module.exports;
 });
 
-System.registerDynamic("npm:core-js@1.2.6/library/modules/$.object-sap", ["./$.export", "./$.core", "./$.fails"], true, function($__require, exports, module) {
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.object-sap.js", ["./$.export", "./$.core", "./$.fails"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -9543,7 +9934,7 @@ System.registerDynamic("npm:core-js@1.2.6/library/modules/$.object-sap", ["./$.e
   return module.exports;
 });
 
-System.registerDynamic("npm:core-js@1.2.6/library/modules/es6.object.freeze", ["./$.is-object", "./$.object-sap"], true, function($__require, exports, module) {
+System.registerDynamic("npm:core-js@1.2.6/library/modules/es6.object.freeze.js", ["./$.is-object", "./$.object-sap"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -9558,7 +9949,7 @@ System.registerDynamic("npm:core-js@1.2.6/library/modules/es6.object.freeze", ["
   return module.exports;
 });
 
-System.registerDynamic("npm:core-js@1.2.6/library/modules/$.core", [], true, function($__require, exports, module) {
+System.registerDynamic("npm:core-js@1.2.6/library/modules/$.core.js", [], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -9570,7 +9961,7 @@ System.registerDynamic("npm:core-js@1.2.6/library/modules/$.core", [], true, fun
   return module.exports;
 });
 
-System.registerDynamic("npm:core-js@1.2.6/library/fn/object/freeze", ["../../modules/es6.object.freeze", "../../modules/$.core"], true, function($__require, exports, module) {
+System.registerDynamic("npm:core-js@1.2.6/library/fn/object/freeze.js", ["../../modules/es6.object.freeze", "../../modules/$.core"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -9581,7 +9972,7 @@ System.registerDynamic("npm:core-js@1.2.6/library/fn/object/freeze", ["../../mod
   return module.exports;
 });
 
-System.registerDynamic("npm:babel-runtime@5.8.34/core-js/object/freeze", ["core-js/library/fn/object/freeze"], true, function($__require, exports, module) {
+System.registerDynamic("npm:babel-runtime@5.8.34/core-js/object/freeze.js", ["core-js/library/fn/object/freeze"], true, function($__require, exports, module) {
   ;
   var global = this,
       __define = global.define;
@@ -9594,7 +9985,7 @@ System.registerDynamic("npm:babel-runtime@5.8.34/core-js/object/freeze", ["core-
   return module.exports;
 });
 
-System.register('lib/utilities/object.js', ['npm:babel-runtime@5.8.34/core-js/object/is-frozen', 'npm:babel-runtime@5.8.34/core-js/object/freeze'], function (_export) {var _Object$isFrozen, _Object$freeze, 
+System.register('lib/utilities/object.js', ['npm:babel-runtime@5.8.34/core-js/object/is-frozen.js', 'npm:babel-runtime@5.8.34/core-js/object/freeze.js'], function (_export) {var _Object$isFrozen, _Object$freeze, 
 
 
 
@@ -9606,7 +9997,6 @@ System.register('lib/utilities/object.js', ['npm:babel-runtime@5.8.34/core-js/ob
 
 
 
-   slice, 
 
 
 
@@ -9897,20 +10287,7 @@ System.register('lib/utilities/object.js', ['npm:babel-runtime@5.8.34/core-js/ob
 
 
 
-   hasOwnProp; /**
-                * Copies the properties from a set of source objects over to the target object. Properties of sources
-                * later in the arguments list overwrite existing properties in the target and earlier source objects.
-                *
-                * @param {Object} target
-                *    the target object to modify
-                * @param {...Object} sources
-                *    the source objects to copy over
-                *
-                * @return {Object}
-                *    the modified target object
-                *
-                * @type {Function}
-                */function extend(target, sources) {return applyForAll(slice.call(arguments, 0), function (target, source, key) {target[key] = source[key];});} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   hasOwnProp;function extend(target) {for (var _len = arguments.length, sources = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {sources[_key - 1] = arguments[_key];}return applyForAll([target].concat(sources), function (target, source, key) {target[key] = source[key];});} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
    /**
     * Returns all properties from `obj` with missing properties completed from `defaults`. If `obj` is `null`
     * or `undefined`, an empty object is automatically created. `obj` and `defaults` are not modified by this
@@ -10004,7 +10381,7 @@ System.register('lib/utilities/object.js', ['npm:babel-runtime@5.8.34/core-js/ob
     *    the clone
     */function deepClone(object) {if (!object || typeof object !== 'object') {return object;} // Not using underscore here for performance reasons. Plain for-loops are twice as fast as each and map
       // in all common browsers.
-      var result;if (Array.isArray(object)) {result = [];for (var i = 0, length = object.length; i < length; ++i) {result[i] = deepClone(object[i]);}} else {result = {};for (var key in object) {if (hasOwnProperty(object, key)) {result[key] = deepClone(object[key]);}}}return result;} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+      var result = undefined;if (Array.isArray(object)) {result = [];for (var i = 0, _length = object.length; i < _length; ++i) {result[i] = deepClone(object[i]);}} else {result = {};for (var key in object) {if (hasOwnProperty(object, key)) {result[key] = deepClone(object[key]);}}}return result;} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
    /**
     * Freezes an object, optionally recursively, in any browser capable of freezing objects. In any other
     * browser this method simply returns its first value, i.e. is an identity operation.
@@ -10033,7 +10410,7 @@ System.register('lib/utilities/object.js', ['npm:babel-runtime@5.8.34/core-js/ob
     *
     * @private
     */function hasOwnProperty(object, property) {return hasOwnProp.call(object, property);}return { setters: [function (_babelRuntimeCoreJsObjectIsFrozen) {_Object$isFrozen = _babelRuntimeCoreJsObjectIsFrozen['default'];}, function (_babelRuntimeCoreJsObjectFreeze) {_Object$freeze = _babelRuntimeCoreJsObjectFreeze['default'];}], execute: function () {/**
-                                                                                                                                                                                                                                                                                                                                                                  * Copyright 2015 aixigo AG
+                                                                                                                                                                                                                                                                                                                                                                  * Copyright 2016 aixigo AG
                                                                                                                                                                                                                                                                                                                                                                   * Released under the MIT license.
                                                                                                                                                                                                                                                                                                                                                                   * http://laxarjs.org/license
                                                                                                                                                                                                                                                                                                                                                                   */ /**
@@ -10042,10 +10419,23 @@ System.register('lib/utilities/object.js', ['npm:babel-runtime@5.8.34/core-js/ob
                                                                                                                                                                                                                                                                                                                                                                       * When requiring `laxar`, it is available as `laxar.object`.
                                                                                                                                                                                                                                                                                                                                                                       *
                                                                                                                                                                                                                                                                                                                                                                       * @module object
-                                                                                                                                                                                                                                                                                                                                                                      */'use strict';_export('extend', extend);_export('options', options);_export('forEach', forEach);_export('path', path);_export('setPath', setPath);_export('deepClone', deepClone);_export('deepFreeze', deepFreeze);slice = Array.prototype.slice;hasOwnProp = Object.prototype.hasOwnProperty;} };});
+                                                                                                                                                                                                                                                                                                                                                                      */ /**
+                                                                                                                                                                                                                                                                                                                                                                          * Copies the properties from a set of source objects over to the target object. Properties of sources
+                                                                                                                                                                                                                                                                                                                                                                          * later in the arguments list overwrite existing properties in the target and earlier source objects.
+                                                                                                                                                                                                                                                                                                                                                                          *
+                                                                                                                                                                                                                                                                                                                                                                          * @param {Object} target
+                                                                                                                                                                                                                                                                                                                                                                          *    the target object to modify
+                                                                                                                                                                                                                                                                                                                                                                          * @param {...Object} sources
+                                                                                                                                                                                                                                                                                                                                                                          *    the source objects to copy over
+                                                                                                                                                                                                                                                                                                                                                                          *
+                                                                                                                                                                                                                                                                                                                                                                          * @return {Object}
+                                                                                                                                                                                                                                                                                                                                                                          *    the modified target object
+                                                                                                                                                                                                                                                                                                                                                                          *
+                                                                                                                                                                                                                                                                                                                                                                          * @type {Function}
+                                                                                                                                                                                                                                                                                                                                                                          */'use strict';_export('extend', extend);_export('options', options);_export('forEach', forEach);_export('path', path);_export('setPath', setPath);_export('deepClone', deepClone);_export('deepFreeze', deepFreeze);hasOwnProp = Object.prototype.hasOwnProperty;} };});
 
 System.register('lib/logging/log.js', ['../utilities/assert', '../utilities/configuration', './console_channel', '../utilities/object'], function (_export) {/**
-                                                                                                                                                              * Copyright 2015 aixigo AG
+                                                                                                                                                              * Copyright 2016 aixigo AG
                                                                                                                                                               * Released under the MIT license.
                                                                                                                                                               * http://laxarjs.org/license
                                                                                                                                                               */
@@ -10058,27 +10448,24 @@ System.register('lib/logging/log.js', ['../utilities/assert', '../utilities/conf
     * When requiring `laxar`, an instance of the `Logger` type is available as `laxar.log`.
     *
     * @module log
+    */
+
+
+
+
+
+   /**
+    * By default available log levels, sorted by increasing log level:
+    * - TRACE (level 100)
+    * - DEBUG (level 200)
+    * - INFO (level 300)
+    * - WARN (level 400)
+    * - ERROR (level 500)
+    * - FATAL (level 600)
+    *
+    * @type {Object}
     */'use strict';var assert, configuration, consoleChannel, options, forEach, 
-
-
-
-
-
-   slice, 
-
-
-
-
-
-
-
-
-
-
-
    level, 
-
-
 
 
 
@@ -10410,7 +10797,7 @@ System.register('lib/logging/log.js', ['../utilities/assert', '../utilities/conf
     *
     * @constructor
     * @private
-    */function Logger() {this.queueSize_ = 100;this.channels_ = [consoleChannel];this.counter_ = 0;this.messageQueue_ = [];this.threshold_ = 0;this.tags_ = {};this.level = options(configuration.get('logging.levels', {}), level);this.levelToName_ = (function (logger, levels) {var result = {};forEach(levels, function (level, levelName) {logger[levelName.toLowerCase()] = function () {var args = [level].concat(slice.call(arguments, 0));return this.log.apply(this, args);};result[level] = levelName;});return result;})(this, this.level);this.setLogThreshold(configuration.get('logging.threshold', 'INFO'));} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    */function Logger() {var _this = this;var self = this;this.queueSize_ = 100;this.channels_ = [consoleChannel];this.counter_ = 0;this.messageQueue_ = [];this.threshold_ = 0;this.tags_ = {};this.level = options(configuration.get('logging.levels', {}), level);this.levelToName_ = (function (logger, levels) {var result = {};forEach(levels, function (level, levelName) {logger[levelName.toLowerCase()] = function () {for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {args[_key] = arguments[_key];}return self.log.apply(_this, [level].concat(args));};result[level] = levelName;});return result;})(this, this.level);this.setLogThreshold(configuration.get('logging.threshold', 'INFO'));} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
    /**
     * Creates and returns a new logger instance. Intended for testing purposes only.
     *
@@ -10423,7 +10810,7 @@ System.register('lib/logging/log.js', ['../utilities/assert', '../utilities/conf
 
 
       var rows = e.stack.split(/[\n]/);
-      var interpreterFunction;
+      var interpreterFunction = undefined;
       if (rows[0] === 'Error') {
          rows.splice(0, 1);
          interpreterFunction = function chromeStackInterpreter(row) {
@@ -10462,17 +10849,7 @@ System.register('lib/logging/log.js', ['../utilities/assert', '../utilities/conf
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    // TODO: change default export to named exports. Need to get rid of the prototype stuff for this
-   return { setters: [function (_utilitiesAssert) {assert = _utilitiesAssert['default'];}, function (_utilitiesConfiguration) {configuration = _utilitiesConfiguration;}, function (_console_channel) {consoleChannel = _console_channel.log;}, function (_utilitiesObject) {options = _utilitiesObject.options;forEach = _utilitiesObject.forEach;}], execute: function () {slice = Array.prototype.slice; /**
-                                                                                                                                                                                                                                                                                                                                                                                                             * By default available log levels, sorted by increasing log level:
-                                                                                                                                                                                                                                                                                                                                                                                                             * - TRACE (level 100)
-                                                                                                                                                                                                                                                                                                                                                                                                             * - DEBUG (level 200)
-                                                                                                                                                                                                                                                                                                                                                                                                             * - INFO (level 300)
-                                                                                                                                                                                                                                                                                                                                                                                                             * - WARN (level 400)
-                                                                                                                                                                                                                                                                                                                                                                                                             * - ERROR (level 500)
-                                                                                                                                                                                                                                                                                                                                                                                                             * - FATAL (level 600)
-                                                                                                                                                                                                                                                                                                                                                                                                             *
-                                                                                                                                                                                                                                                                                                                                                                                                             * @type {Object}
-                                                                                                                                                                                                                                                                                                                                                                                                             */level = { TRACE: 100, DEBUG: 200, INFO: 300, WARN: 400, ERROR: 500, FATAL: 600 };Logger.prototype.create = function () {return new Logger();}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+   return { setters: [function (_utilitiesAssert) {assert = _utilitiesAssert['default'];}, function (_utilitiesConfiguration) {configuration = _utilitiesConfiguration;}, function (_console_channel) {consoleChannel = _console_channel.log;}, function (_utilitiesObject) {options = _utilitiesObject.options;forEach = _utilitiesObject.forEach;}], execute: function () {level = { TRACE: 100, DEBUG: 200, INFO: 300, WARN: 400, ERROR: 500, FATAL: 600 };Logger.prototype.create = function () {return new Logger();}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
          /**
           * Logs a message. A message may contain placeholders in the form `[#]` where `#` resembles the index
           * within the list of `replacements`. `replacements` are incrementally counted starting at `0`. If the
@@ -10487,7 +10864,7 @@ System.register('lib/logging/log.js', ['../utilities/assert', '../utilities/conf
           *    the message to log
           * @param {...*} replacements
           *    objects that should replace placeholders within the message
-          */Logger.prototype.log = function (level, message, replacements) {if (level < this.threshold_) {return;}var messageObject = { id: this.counter_++, level: this.levelToName_[level], text: message, replacements: slice.call(arguments, 2) || [], time: new Date(), tags: this.gatherTags(), sourceInfo: gatherSourceInformation() };this.channels_.forEach(function (channel) {channel(messageObject);});if (this.messageQueue_.length === this.queueSize_) {this.messageQueue_.shift();}this.messageQueue_.push(messageObject);}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+          */Logger.prototype.log = function (level, message) {for (var _len2 = arguments.length, replacements = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {replacements[_key2 - 2] = arguments[_key2];}if (level < this.threshold_) {return;}var messageObject = { id: this.counter_++, level: this.levelToName_[level], text: message, replacements: replacements, time: new Date(), tags: this.gatherTags(), sourceInfo: gatherSourceInformation() };this.channels_.forEach(function (channel) {channel(messageObject);});if (this.messageQueue_.length === this.queueSize_) {this.messageQueue_.shift();}this.messageQueue_.push(messageObject);}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
          /**
           * Logs a message in log level `TRACE`. See {@link Logger#log} for further information.
           *
@@ -10624,22 +11001,7 @@ System.register('lib/logging/log.js', ['../utilities/assert', '../utilities/conf
           */Logger.prototype.setLogThreshold = function (threshold) {if (typeof threshold === 'string') {assert.state(threshold.toUpperCase() in this.level, 'Unsupported log threshold "' + threshold + '".');threshold = this.level[threshold.toUpperCase()];}assert(threshold).hasType(Number);this.threshold_ = threshold;}; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
          CHROME_AND_IE_STACK_MATCHER = /\(?([^\( ]+)\:(\d+)\:(\d+)\)?$/;FIRE_FOX_STACK_MATCHER = /@(.+)\:(\d+)$/;EMPTY_CALL_INFORMATION = { file: '?', line: -1, char: -1 };_export('default', new Logger());} };});
 
-System.register('lib/widget_adapters/angular_adapter.js', ['angular', '../utilities/assert', '../logging/log'], function (_export) {/**
-                                                                                                                                     * Copyright 2015 aixigo AG
-                                                                                                                                     * Released under the MIT license.
-                                                                                                                                     * http://laxarjs.org/license
-                                                                                                                                     */'use strict';var ng, assert, log, 
-
-
-
-
-   $compile, 
-   $controller, 
-   $rootScope, 
-
-   controllerNames, 
-
-   technology;
+System.register('lib/tooling/pages.js', ['npm:babel-runtime@5.8.34/core-js/object/keys.js', '../utilities/object', '../logging/log'], function (_export) {var _Object$keys, deepClone, log, 
 
 
 
@@ -10647,6 +11009,16 @@ System.register('lib/widget_adapters/angular_adapter.js', ['angular', '../utilit
 
 
 
+   enabled, 
+
+   currentPageInfo, 
+
+
+
+
+
+
+   listeners;
 
 
 
@@ -10663,25 +11035,13 @@ System.register('lib/widget_adapters/angular_adapter.js', ['angular', '../utilit
 
 
 
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   /**
-    *
-    * @param {Object}      environment
-    * @param {HTMLElement} environment.anchorElement
-    * @param {Object}      environment.context
-    * @param {EventBus}    environment.context.eventBus
-    * @param {Object}      environment.context.features
-    * @param {Function}    environment.context.id
-    * @param {Object}      environment.context.widget
-    * @param {String}      environment.context.widget.area
-    * @param {String}      environment.context.widget.id
-    * @param {String}      environment.context.widget.path
-    * @param {Object}      environment.specification
-    * @param {Object}      services
-    *
-    * @return {Object}
-    */_export('bootstrap', bootstrap);
+
+
+
+
+
+
 
 
 
@@ -10769,3595 +11129,47 @@ System.register('lib/widget_adapters/angular_adapter.js', ['angular', '../utilit
 
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   _export('create', create);
 
+   function cleanup() {
+      var currentRef = currentPageInfo.pageReference;
+      ['pageDefinitions', 'compositionDefinitions'].
+      forEach(function (collection) {
+         _Object$keys(currentPageInfo[collection]).
+         filter(function (ref) {return ref !== currentRef;}).
+         forEach(function (ref) {delete currentPageInfo[collection][ref];});});}return { setters: [function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_utilitiesObject) {deepClone = _utilitiesObject.deepClone;}, function (_loggingLog) {log = _loggingLog['default'];}], execute: function () {/**
+                                                                                                                                                                                                                                                                                                                                                               * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                                                                                                                                                               * Released under the MIT license.
+                                                                                                                                                                                                                                                                                                                                                               * http://laxarjs.org/license
+                                                                                                                                                                                                                                                                                                                                                               */'use strict';enabled = false;currentPageInfo = { pageReference: null, pageDefinitions: {}, compositionDefinitions: {}, widgetDescriptors: {} };listeners = [];_export('default', { /** Use to access the flattened page model, where compositions have been expanded. */FLAT: 'FLAT', /** Use to access the compact page/composition model, where compositions have not been expanded. */COMPACT: 'COMPACT', /** Start collecting page/composition data. */enable: function enable() {enabled = true;}, /** Stop collecting page/composition data and clean up. */disable: function disable() {enabled = false;currentPageInfo.pageReference = null;currentPageInfo.widgetDescriptors = {};cleanup();}, /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * Access the current page information.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * Everything is returned as a copy, sothis object cannot be used to modify the host application.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @return {Object}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          *   the current page information, with the following properties:
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          *    - `pageDefinitions` {Object}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          *       both the original as well as the expanded/flattened page model for each available page
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          *    - `compositionDefinitions` {Object}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          *       both the original as well as the expanded/flattened composition model for each composition of
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          *       any available page
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          *    - `widgetDescriptors` {Object}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          *       the widget descriptor for each widget that was referenced
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          *    - `pageReference` {String}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          *       the reference for the current page, to lookup page/composition definitions
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          */current: function current() {if (!enabled) {log.warn('laxar page tooling: trying to access data, but collecting it was never enabled');}return deepClone(currentPageInfo);}, /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * Add a listener function to be notified whenever the page information changes.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * As a side-effect, this also automatically enables collecting page/composition data.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @param {Function}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          *   The listener to add. Will be called with the current page information whenever that changes.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          */addListener: function addListener(listener) {enabled = true;listeners.push(listener);}, /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     * Remove a page information listener function.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     * @param {Function}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     *   The listener to remove
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     */removeListener: function removeListener(listener) {listeners = listeners.filter(function (_) {return _ !== listener;});}, ////////////////////////////////////////////////////////////////////////////////////////////////////////
+            /** @private */setWidgetDescriptor: function setWidgetDescriptor(ref, descriptor) {if (!enabled) {return;}currentPageInfo.widgetDescriptors[ref] = descriptor;}, /** @private */setPageDefinition: function setPageDefinition(ref, page, type) {if (!enabled) {return;}var definitions = currentPageInfo.pageDefinitions;definitions[ref] = definitions[ref] || { FLAT: null, COMPACT: null };definitions[ref][type] = deepClone(page);}, /** @private */setCompositionDefinition: function setCompositionDefinition(pageRef, compositionInstanceId, composition, type) {if (!enabled) {return;}var definitions = currentPageInfo.compositionDefinitions;var definitionsByInstance = definitions[pageRef] = definitions[pageRef] || {};definitionsByInstance[compositionInstanceId] = definitionsByInstance[compositionInstanceId] || { FLAT: null, COMPACT: null };definitionsByInstance[compositionInstanceId][type] = deepClone(composition);}, /** @private */setCurrentPage: function setCurrentPage(ref) {if (!enabled) {return;}currentPageInfo.pageReference = ref;listeners.forEach(function (listener) {listener(deepClone(currentPageInfo));});cleanup();} });} };});
 
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   _export('applyViewChanges', applyViewChanges); ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function bootstrap(widgetModules) {var dependencies = (widgetModules || []).map(function (module) {// for lookup, use a normalized module name that can also be derived from the widget.json name:
-         var moduleKey = normalize(module.name);controllerNames[moduleKey] = capitalize(module.name) + 'Controller'; // add an additional lookup entry for deprecated "my.category.MyWidget" style module names:
-         supportPreviousNaming(module.name);return module.name;});return ng.module('axAngularWidgetAdapter', dependencies).run(['$compile', '$controller', '$rootScope', function (_$compile_, _$controller_, _$rootScope_) {$controller = _$controller_;$compile = _$compile_;$rootScope = _$rootScope_;}]);}function create(environment, services) {// services are not relevant for now, since all LaxarJS services are already available via AngularJS DI.
-      var exports = { createController: createController, domAttachTo: domAttachTo, domDetach: domDetach, destroy: destroy };var context = environment.context;var scope_;var injections_; ////////////////////////////////////////////////////////////////////////////////////////////////////////
-      function createController(config) {var moduleKey = normalize(environment.specification.name);var controllerName = controllerNames[moduleKey];injections_ = { axContext: context, axEventBus: context.eventBus, axFeatures: context.features || {} };Object.defineProperty(injections_, '$scope', { enumerable: true, get: function get() {if (!scope_) {scope_ = $rootScope.$new();ng.extend(scope_, context);}return scope_;} });config.onBeforeControllerCreation(environment, injections_);$controller(controllerName, injections_);} ////////////////////////////////////////////////////////////////////////////////////////////////////////
-      /**
-       * Synchronously attach the widget DOM to the given area.
-       *
-       * @param {HTMLElement} areaElement
-       *    The widget area to attach this widget to.
-       * @param {String} templateHtml
-       *
-       */function domAttachTo(areaElement, templateHtml) {if (templateHtml === null) {return;}var element = ng.element(environment.anchorElement);element.html(templateHtml);areaElement.appendChild(environment.anchorElement);$compile(environment.anchorElement)(injections_.$scope);templateHtml = null;} ////////////////////////////////////////////////////////////////////////////////////////////////////////
-      function domDetach() {var parent = environment.anchorElement.parentNode;if (parent) {parent.removeChild(environment.anchorElement);}} ////////////////////////////////////////////////////////////////////////////////////////////////////////
-      function destroy() {if (scope_) {scope_.$destroy();}} ////////////////////////////////////////////////////////////////////////////////////////////////////////
-      return exports;}function applyViewChanges() {$rootScope.$apply();}function capitalize(_) {return _.replace(/^./, function (_) {return _.toUpperCase();});} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function normalize(moduleName) {return moduleName.replace(/([a-zA-Z0-9])[-_]([a-zA-Z0-9])/g, function ($_, $1, $2) {return $1 + $2.toUpperCase();}).replace(/^[A-Z]/, function ($_) {return $_.toLowerCase();});} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function supportPreviousNaming(moduleName) {if (moduleName.indexOf('.') === -1) {
-         return;}
-
-
-      var lookupName = moduleName.replace(/^.*\.([^.]+)$/, function ($_, $1) {
-         return $1.replace(/_(.)/g, function ($_, $1) {return $1.toUpperCase();});});
-
-      controllerNames[lookupName] = controllerNames[moduleName] = moduleName + '.Controller';
-
-      log.warn('Deprecation: AngularJS widget module name "' + moduleName + '" violates naming rules! ' + 
-      'Module should be named "' + lookupName + '". ' + 
-      'Controller should be named "' + capitalize(lookupName) + 'Controller".');}return { setters: [function (_angular) {ng = _angular['default'];}, function (_utilitiesAssert) {assert = _utilitiesAssert['default'];}, function (_loggingLog) {log = _loggingLog['default'];}], execute: function () {controllerNames = {};technology = 'angular';_export('technology', technology);} };});
-
-System.register('lib/widget_adapters/adapters.js', ['npm:babel-runtime@5.8.34/helpers/define-property', 'npm:babel-runtime@5.8.34/core-js/object/keys', './plain_adapter', './angular_adapter'], function (_export) {var _defineProperty, _Object$keys, plainAdapter, angularAdapter, _adapters, 
-
-
-
-
-
-
-
-
-   adapters;
-
-
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function getFor(technology) {
-      return adapters[technology];}
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function getSupportedTechnologies() {
-      return _Object$keys(adapters);}
-
-
-   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-   function addAdapters(additionalAdapters) {
-      additionalAdapters.forEach(function (adapter) {
-         adapters[adapter.technology] = adapter;});}return { setters: [function (_babelRuntimeHelpersDefineProperty) {_defineProperty = _babelRuntimeHelpersDefineProperty['default'];}, function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_plain_adapter) {plainAdapter = _plain_adapter;}, function (_angular_adapter) {angularAdapter = _angular_adapter;}], execute: function () {/**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    * Copyright 2015 aixigo AG
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    * Released under the MIT license.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    * http://laxarjs.org/license
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    */'use strict';_export('getFor', getFor);_export('getSupportedTechnologies', getSupportedTechnologies);_export('addAdapters', addAdapters);adapters = (_adapters = {}, _defineProperty(_adapters, plainAdapter.technology, plainAdapter), _defineProperty(_adapters, angularAdapter.technology, angularAdapter), _adapters);} };});
-
-System.registerDynamic("npm:process@0.11.2/browser", [], true, function($__require, exports, module) {
-  ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
-  var process = module.exports = {};
-  var queue = [];
-  var draining = false;
-  var currentQueue;
-  var queueIndex = -1;
-  function cleanUpNextTick() {
-    draining = false;
-    if (currentQueue.length) {
-      queue = currentQueue.concat(queue);
-    } else {
-      queueIndex = -1;
-    }
-    if (queue.length) {
-      drainQueue();
-    }
-  }
-  function drainQueue() {
-    if (draining) {
-      return;
-    }
-    var timeout = setTimeout(cleanUpNextTick);
-    draining = true;
-    var len = queue.length;
-    while (len) {
-      currentQueue = queue;
-      queue = [];
-      while (++queueIndex < len) {
-        if (currentQueue) {
-          currentQueue[queueIndex].run();
-        }
-      }
-      queueIndex = -1;
-      len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    clearTimeout(timeout);
-  }
-  process.nextTick = function(fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-      for (var i = 1; i < arguments.length; i++) {
-        args[i - 1] = arguments[i];
-      }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-      setTimeout(drainQueue, 0);
-    }
-  };
-  function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-  }
-  Item.prototype.run = function() {
-    this.fun.apply(null, this.array);
-  };
-  process.title = 'browser';
-  process.browser = true;
-  process.env = {};
-  process.argv = [];
-  process.version = '';
-  process.versions = {};
-  function noop() {}
-  process.on = noop;
-  process.addListener = noop;
-  process.once = noop;
-  process.off = noop;
-  process.removeListener = noop;
-  process.removeAllListeners = noop;
-  process.emit = noop;
-  process.binding = function(name) {
-    throw new Error('process.binding is not supported');
-  };
-  process.cwd = function() {
-    return '/';
-  };
-  process.chdir = function(dir) {
-    throw new Error('process.chdir is not supported');
-  };
-  process.umask = function() {
-    return 0;
-  };
-  global.define = __define;
-  return module.exports;
-});
-
-System.registerDynamic("npm:process@0.11.2", ["npm:process@0.11.2/browser"], true, function($__require, exports, module) {
-  ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
-  module.exports = $__require('npm:process@0.11.2/browser');
-  global.define = __define;
-  return module.exports;
-});
-
-System.registerDynamic("github:jspm/nodelibs-process@0.1.2/index", ["process"], true, function($__require, exports, module) {
-  ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
-  module.exports = System._nodeRequire ? process : $__require('process');
-  global.define = __define;
-  return module.exports;
-});
-
-System.registerDynamic("github:jspm/nodelibs-process@0.1.2", ["github:jspm/nodelibs-process@0.1.2/index"], true, function($__require, exports, module) {
-  ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
-  module.exports = $__require('github:jspm/nodelibs-process@0.1.2/index');
-  global.define = __define;
-  return module.exports;
-});
-
-System.registerDynamic("npm:es6-shim@0.34.2/es6-shim", ["process"], true, function($__require, exports, module) {
-  ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
-  "format cjs";
-  (function(process) {
-    (function(root, factory) {
-      if (typeof define === 'function' && define.amd) {
-        define(factory);
-      } else if (typeof exports === 'object') {
-        module.exports = factory();
-      } else {
-        root.returnExports = factory();
-      }
-    }(this, function() {
-      'use strict';
-      var _apply = Function.call.bind(Function.apply);
-      var _call = Function.call.bind(Function.call);
-      var isArray = Array.isArray;
-      var keys = Object.keys;
-      var not = function notThunker(func) {
-        return function notThunk() {
-          return !_apply(func, this, arguments);
-        };
-      };
-      var throwsError = function(func) {
-        try {
-          func();
-          return false;
-        } catch (e) {
-          return true;
-        }
-      };
-      var valueOrFalseIfThrows = function valueOrFalseIfThrows(func) {
-        try {
-          return func();
-        } catch (e) {
-          return false;
-        }
-      };
-      var isCallableWithoutNew = not(throwsError);
-      var arePropertyDescriptorsSupported = function() {
-        return !throwsError(function() {
-          Object.defineProperty({}, 'x', {get: function() {}});
-        });
-      };
-      var supportsDescriptors = !!Object.defineProperty && arePropertyDescriptorsSupported();
-      var functionsHaveNames = (function foo() {}).name === 'foo';
-      var _forEach = Function.call.bind(Array.prototype.forEach);
-      var _reduce = Function.call.bind(Array.prototype.reduce);
-      var _filter = Function.call.bind(Array.prototype.filter);
-      var _some = Function.call.bind(Array.prototype.some);
-      var defineProperty = function(object, name, value, force) {
-        if (!force && name in object) {
-          return;
-        }
-        if (supportsDescriptors) {
-          Object.defineProperty(object, name, {
-            configurable: true,
-            enumerable: false,
-            writable: true,
-            value: value
-          });
-        } else {
-          object[name] = value;
-        }
-      };
-      var defineProperties = function(object, map, forceOverride) {
-        _forEach(keys(map), function(name) {
-          var method = map[name];
-          defineProperty(object, name, method, !!forceOverride);
-        });
-      };
-      var _toString = Function.call.bind(Object.prototype.toString);
-      var isCallable = typeof/abc/ === 'function' ? function IsCallableSlow(x) {
-        return typeof x === 'function' && _toString(x) === '[object Function]';
-      } : function IsCallableFast(x) {
-        return typeof x === 'function';
-      };
-      var Value = {
-        getter: function(object, name, getter) {
-          if (!supportsDescriptors) {
-            throw new TypeError('getters require true ES5 support');
-          }
-          Object.defineProperty(object, name, {
-            configurable: true,
-            enumerable: false,
-            get: getter
-          });
-        },
-        proxy: function(originalObject, key, targetObject) {
-          if (!supportsDescriptors) {
-            throw new TypeError('getters require true ES5 support');
-          }
-          var originalDescriptor = Object.getOwnPropertyDescriptor(originalObject, key);
-          Object.defineProperty(targetObject, key, {
-            configurable: originalDescriptor.configurable,
-            enumerable: originalDescriptor.enumerable,
-            get: function getKey() {
-              return originalObject[key];
-            },
-            set: function setKey(value) {
-              originalObject[key] = value;
-            }
-          });
-        },
-        redefine: function(object, property, newValue) {
-          if (supportsDescriptors) {
-            var descriptor = Object.getOwnPropertyDescriptor(object, property);
-            descriptor.value = newValue;
-            Object.defineProperty(object, property, descriptor);
-          } else {
-            object[property] = newValue;
-          }
-        },
-        defineByDescriptor: function(object, property, descriptor) {
-          if (supportsDescriptors) {
-            Object.defineProperty(object, property, descriptor);
-          } else if ('value' in descriptor) {
-            object[property] = descriptor.value;
-          }
-        },
-        preserveToString: function(target, source) {
-          if (source && isCallable(source.toString)) {
-            defineProperty(target, 'toString', source.toString.bind(source), true);
-          }
-        }
-      };
-      var create = Object.create || function(prototype, properties) {
-        var Prototype = function Prototype() {};
-        Prototype.prototype = prototype;
-        var object = new Prototype();
-        if (typeof properties !== 'undefined') {
-          keys(properties).forEach(function(key) {
-            Value.defineByDescriptor(object, key, properties[key]);
-          });
-        }
-        return object;
-      };
-      var supportsSubclassing = function(C, f) {
-        if (!Object.setPrototypeOf) {
-          return false;
-        }
-        return valueOrFalseIfThrows(function() {
-          var Sub = function Subclass(arg) {
-            var o = new C(arg);
-            Object.setPrototypeOf(o, Subclass.prototype);
-            return o;
-          };
-          Object.setPrototypeOf(Sub, C);
-          Sub.prototype = create(C.prototype, {constructor: {value: Sub}});
-          return f(Sub);
-        });
-      };
-      var getGlobal = function() {
-        if (typeof self !== 'undefined') {
-          return self;
-        }
-        if (typeof window !== 'undefined') {
-          return window;
-        }
-        if (typeof global !== 'undefined') {
-          return global;
-        }
-        throw new Error('unable to locate global object');
-      };
-      var globals = getGlobal();
-      var globalIsFinite = globals.isFinite;
-      var _indexOf = Function.call.bind(String.prototype.indexOf);
-      var _concat = Function.call.bind(Array.prototype.concat);
-      var _sort = Function.call.bind(Array.prototype.sort);
-      var _strSlice = Function.call.bind(String.prototype.slice);
-      var _push = Function.call.bind(Array.prototype.push);
-      var _pushApply = Function.apply.bind(Array.prototype.push);
-      var _shift = Function.call.bind(Array.prototype.shift);
-      var _max = Math.max;
-      var _min = Math.min;
-      var _floor = Math.floor;
-      var _abs = Math.abs;
-      var _log = Math.log;
-      var _sqrt = Math.sqrt;
-      var _hasOwnProperty = Function.call.bind(Object.prototype.hasOwnProperty);
-      var ArrayIterator;
-      var noop = function() {};
-      var Symbol = globals.Symbol || {};
-      var symbolSpecies = Symbol.species || '@@species';
-      var numberIsNaN = Number.isNaN || function isNaN(value) {
-        return value !== value;
-      };
-      var numberIsFinite = Number.isFinite || function isFinite(value) {
-        return typeof value === 'number' && globalIsFinite(value);
-      };
-      var isStandardArguments = function isArguments(value) {
-        return _toString(value) === '[object Arguments]';
-      };
-      var isLegacyArguments = function isArguments(value) {
-        return value !== null && typeof value === 'object' && typeof value.length === 'number' && value.length >= 0 && _toString(value) !== '[object Array]' && _toString(value.callee) === '[object Function]';
-      };
-      var isArguments = isStandardArguments(arguments) ? isStandardArguments : isLegacyArguments;
-      var Type = {
-        primitive: function(x) {
-          return x === null || (typeof x !== 'function' && typeof x !== 'object');
-        },
-        object: function(x) {
-          return x !== null && typeof x === 'object';
-        },
-        string: function(x) {
-          return _toString(x) === '[object String]';
-        },
-        regex: function(x) {
-          return _toString(x) === '[object RegExp]';
-        },
-        symbol: function(x) {
-          return typeof globals.Symbol === 'function' && typeof x === 'symbol';
-        }
-      };
-      var overrideNative = function overrideNative(object, property, replacement) {
-        var original = object[property];
-        defineProperty(object, property, replacement, true);
-        Value.preserveToString(object[property], original);
-      };
-      var hasSymbols = typeof Symbol === 'function' && typeof Symbol['for'] === 'function' && Type.symbol(Symbol());
-      var $iterator$ = Type.symbol(Symbol.iterator) ? Symbol.iterator : '_es6-shim iterator_';
-      if (globals.Set && typeof new globals.Set()['@@iterator'] === 'function') {
-        $iterator$ = '@@iterator';
-      }
-      if (!globals.Reflect) {
-        defineProperty(globals, 'Reflect', {});
-      }
-      var Reflect = globals.Reflect;
-      var $String = String;
-      var ES = {
-        Call: function Call(F, V) {
-          var args = arguments.length > 2 ? arguments[2] : [];
-          if (!ES.IsCallable(F)) {
-            throw new TypeError(F + ' is not a function');
-          }
-          return _apply(F, V, args);
-        },
-        RequireObjectCoercible: function(x, optMessage) {
-          if (x == null) {
-            throw new TypeError(optMessage || 'Cannot call method on ' + x);
-          }
-          return x;
-        },
-        TypeIsObject: function(x) {
-          if (x === void 0 || x === null || x === true || x === false) {
-            return false;
-          }
-          return typeof x === 'function' || typeof x === 'object';
-        },
-        ToObject: function(o, optMessage) {
-          return Object(ES.RequireObjectCoercible(o, optMessage));
-        },
-        IsCallable: isCallable,
-        IsConstructor: function(x) {
-          return ES.IsCallable(x);
-        },
-        ToInt32: function(x) {
-          return ES.ToNumber(x) >> 0;
-        },
-        ToUint32: function(x) {
-          return ES.ToNumber(x) >>> 0;
-        },
-        ToNumber: function(value) {
-          if (_toString(value) === '[object Symbol]') {
-            throw new TypeError('Cannot convert a Symbol value to a number');
-          }
-          return +value;
-        },
-        ToInteger: function(value) {
-          var number = ES.ToNumber(value);
-          if (numberIsNaN(number)) {
-            return 0;
-          }
-          if (number === 0 || !numberIsFinite(number)) {
-            return number;
-          }
-          return (number > 0 ? 1 : -1) * _floor(_abs(number));
-        },
-        ToLength: function(value) {
-          var len = ES.ToInteger(value);
-          if (len <= 0) {
-            return 0;
-          }
-          if (len > Number.MAX_SAFE_INTEGER) {
-            return Number.MAX_SAFE_INTEGER;
-          }
-          return len;
-        },
-        SameValue: function(a, b) {
-          if (a === b) {
-            if (a === 0) {
-              return 1 / a === 1 / b;
-            }
-            return true;
-          }
-          return numberIsNaN(a) && numberIsNaN(b);
-        },
-        SameValueZero: function(a, b) {
-          return (a === b) || (numberIsNaN(a) && numberIsNaN(b));
-        },
-        IsIterable: function(o) {
-          return ES.TypeIsObject(o) && (typeof o[$iterator$] !== 'undefined' || isArguments(o));
-        },
-        GetIterator: function(o) {
-          if (isArguments(o)) {
-            return new ArrayIterator(o, 'value');
-          }
-          var itFn = ES.GetMethod(o, $iterator$);
-          if (!ES.IsCallable(itFn)) {
-            throw new TypeError('value is not an iterable');
-          }
-          var it = ES.Call(itFn, o);
-          if (!ES.TypeIsObject(it)) {
-            throw new TypeError('bad iterator');
-          }
-          return it;
-        },
-        GetMethod: function(o, p) {
-          var func = ES.ToObject(o)[p];
-          if (func === void 0 || func === null) {
-            return void 0;
-          }
-          if (!ES.IsCallable(func)) {
-            throw new TypeError('Method not callable: ' + p);
-          }
-          return func;
-        },
-        IteratorComplete: function(iterResult) {
-          return !!(iterResult.done);
-        },
-        IteratorClose: function(iterator, completionIsThrow) {
-          var returnMethod = ES.GetMethod(iterator, 'return');
-          if (returnMethod === void 0) {
-            return;
-          }
-          var innerResult,
-              innerException;
-          try {
-            innerResult = ES.Call(returnMethod, iterator);
-          } catch (e) {
-            innerException = e;
-          }
-          if (completionIsThrow) {
-            return;
-          }
-          if (innerException) {
-            throw innerException;
-          }
-          if (!ES.TypeIsObject(innerResult)) {
-            throw new TypeError("Iterator's return method returned a non-object.");
-          }
-        },
-        IteratorNext: function(it) {
-          var result = arguments.length > 1 ? it.next(arguments[1]) : it.next();
-          if (!ES.TypeIsObject(result)) {
-            throw new TypeError('bad iterator');
-          }
-          return result;
-        },
-        IteratorStep: function(it) {
-          var result = ES.IteratorNext(it);
-          var done = ES.IteratorComplete(result);
-          return done ? false : result;
-        },
-        Construct: function(C, args, newTarget, isES6internal) {
-          var target = typeof newTarget === 'undefined' ? C : newTarget;
-          if (!isES6internal && Reflect.construct) {
-            return Reflect.construct(C, args, target);
-          }
-          var proto = target.prototype;
-          if (!ES.TypeIsObject(proto)) {
-            proto = Object.prototype;
-          }
-          var obj = create(proto);
-          var result = ES.Call(C, obj, args);
-          return ES.TypeIsObject(result) ? result : obj;
-        },
-        SpeciesConstructor: function(O, defaultConstructor) {
-          var C = O.constructor;
-          if (C === void 0) {
-            return defaultConstructor;
-          }
-          if (!ES.TypeIsObject(C)) {
-            throw new TypeError('Bad constructor');
-          }
-          var S = C[symbolSpecies];
-          if (S === void 0 || S === null) {
-            return defaultConstructor;
-          }
-          if (!ES.IsConstructor(S)) {
-            throw new TypeError('Bad @@species');
-          }
-          return S;
-        },
-        CreateHTML: function(string, tag, attribute, value) {
-          var S = ES.ToString(string);
-          var p1 = '<' + tag;
-          if (attribute !== '') {
-            var V = ES.ToString(value);
-            var escapedV = V.replace(/"/g, '&quot;');
-            p1 += ' ' + attribute + '="' + escapedV + '"';
-          }
-          var p2 = p1 + '>';
-          var p3 = p2 + S;
-          return p3 + '</' + tag + '>';
-        },
-        IsRegExp: function IsRegExp(argument) {
-          if (!ES.TypeIsObject(argument)) {
-            return false;
-          }
-          var isRegExp = argument[Symbol.match];
-          if (typeof isRegExp !== 'undefined') {
-            return !!isRegExp;
-          }
-          return Type.regex(argument);
-        },
-        ToString: function ToString(string) {
-          return $String(string);
-        }
-      };
-      if (supportsDescriptors && hasSymbols) {
-        var defineWellKnownSymbol = function defineWellKnownSymbol(name) {
-          if (Type.symbol(Symbol[name])) {
-            return Symbol[name];
-          }
-          var sym = Symbol['for']('Symbol.' + name);
-          Object.defineProperty(Symbol, name, {
-            configurable: false,
-            enumerable: false,
-            writable: false,
-            value: sym
-          });
-          return sym;
-        };
-        if (!Type.symbol(Symbol.search)) {
-          var symbolSearch = defineWellKnownSymbol('search');
-          var originalSearch = String.prototype.search;
-          defineProperty(RegExp.prototype, symbolSearch, function search(string) {
-            return ES.Call(originalSearch, string, [this]);
-          });
-          var searchShim = function search(regexp) {
-            var O = ES.RequireObjectCoercible(this);
-            if (regexp !== null && typeof regexp !== 'undefined') {
-              var searcher = ES.GetMethod(regexp, symbolSearch);
-              if (typeof searcher !== 'undefined') {
-                return ES.Call(searcher, regexp, [O]);
-              }
-            }
-            return ES.Call(originalSearch, O, [ES.ToString(regexp)]);
-          };
-          overrideNative(String.prototype, 'search', searchShim);
-        }
-        if (!Type.symbol(Symbol.replace)) {
-          var symbolReplace = defineWellKnownSymbol('replace');
-          var originalReplace = String.prototype.replace;
-          defineProperty(RegExp.prototype, symbolReplace, function replace(string, replaceValue) {
-            return ES.Call(originalReplace, string, [this, replaceValue]);
-          });
-          var replaceShim = function replace(searchValue, replaceValue) {
-            var O = ES.RequireObjectCoercible(this);
-            if (searchValue !== null && typeof searchValue !== 'undefined') {
-              var replacer = ES.GetMethod(searchValue, symbolReplace);
-              if (typeof replacer !== 'undefined') {
-                return ES.Call(replacer, searchValue, [O, replaceValue]);
-              }
-            }
-            return ES.Call(originalReplace, O, [ES.ToString(searchValue), replaceValue]);
-          };
-          overrideNative(String.prototype, 'replace', replaceShim);
-        }
-        if (!Type.symbol(Symbol.split)) {
-          var symbolSplit = defineWellKnownSymbol('split');
-          var originalSplit = String.prototype.split;
-          defineProperty(RegExp.prototype, symbolSplit, function split(string, limit) {
-            return ES.Call(originalSplit, string, [this, limit]);
-          });
-          var splitShim = function split(separator, limit) {
-            var O = ES.RequireObjectCoercible(this);
-            if (separator !== null && typeof separator !== 'undefined') {
-              var splitter = ES.GetMethod(separator, symbolSplit);
-              if (typeof splitter !== 'undefined') {
-                return ES.Call(splitter, separator, [O, limit]);
-              }
-            }
-            return ES.Call(originalSplit, O, [ES.ToString(separator), limit]);
-          };
-          overrideNative(String.prototype, 'split', splitShim);
-        }
-        var symbolMatchExists = Type.symbol(Symbol.match);
-        var stringMatchIgnoresSymbolMatch = symbolMatchExists && (function() {
-          var o = {};
-          o[Symbol.match] = function() {
-            return 42;
-          };
-          return 'a'.match(o) !== 42;
-        }());
-        if (!symbolMatchExists || stringMatchIgnoresSymbolMatch) {
-          var symbolMatch = defineWellKnownSymbol('match');
-          var originalMatch = String.prototype.match;
-          defineProperty(RegExp.prototype, symbolMatch, function match(string) {
-            return ES.Call(originalMatch, string, [this]);
-          });
-          var matchShim = function match(regexp) {
-            var O = ES.RequireObjectCoercible(this);
-            if (regexp !== null && typeof regexp !== 'undefined') {
-              var matcher = ES.GetMethod(regexp, symbolMatch);
-              if (typeof matcher !== 'undefined') {
-                return ES.Call(matcher, regexp, [O]);
-              }
-            }
-            return ES.Call(originalMatch, O, [ES.ToString(regexp)]);
-          };
-          overrideNative(String.prototype, 'match', matchShim);
-        }
-      }
-      var wrapConstructor = function wrapConstructor(original, replacement, keysToSkip) {
-        Value.preserveToString(replacement, original);
-        if (Object.setPrototypeOf) {
-          Object.setPrototypeOf(original, replacement);
-        }
-        if (supportsDescriptors) {
-          _forEach(Object.getOwnPropertyNames(original), function(key) {
-            if (key in noop || keysToSkip[key]) {
-              return;
-            }
-            Value.proxy(original, key, replacement);
-          });
-        } else {
-          _forEach(Object.keys(original), function(key) {
-            if (key in noop || keysToSkip[key]) {
-              return;
-            }
-            replacement[key] = original[key];
-          });
-        }
-        replacement.prototype = original.prototype;
-        Value.redefine(original.prototype, 'constructor', replacement);
-      };
-      var defaultSpeciesGetter = function() {
-        return this;
-      };
-      var addDefaultSpecies = function(C) {
-        if (supportsDescriptors && !_hasOwnProperty(C, symbolSpecies)) {
-          Value.getter(C, symbolSpecies, defaultSpeciesGetter);
-        }
-      };
-      var addIterator = function(prototype, impl) {
-        var implementation = impl || function iterator() {
-          return this;
-        };
-        defineProperty(prototype, $iterator$, implementation);
-        if (!prototype[$iterator$] && Type.symbol($iterator$)) {
-          prototype[$iterator$] = implementation;
-        }
-      };
-      var createDataProperty = function createDataProperty(object, name, value) {
-        if (supportsDescriptors) {
-          Object.defineProperty(object, name, {
-            configurable: true,
-            enumerable: true,
-            writable: true,
-            value: value
-          });
-        } else {
-          object[name] = value;
-        }
-      };
-      var createDataPropertyOrThrow = function createDataPropertyOrThrow(object, name, value) {
-        createDataProperty(object, name, value);
-        if (!ES.SameValue(object[name], value)) {
-          throw new TypeError('property is nonconfigurable');
-        }
-      };
-      var emulateES6construct = function(o, defaultNewTarget, defaultProto, slots) {
-        if (!ES.TypeIsObject(o)) {
-          throw new TypeError('Constructor requires `new`: ' + defaultNewTarget.name);
-        }
-        var proto = defaultNewTarget.prototype;
-        if (!ES.TypeIsObject(proto)) {
-          proto = defaultProto;
-        }
-        var obj = create(proto);
-        for (var name in slots) {
-          if (_hasOwnProperty(slots, name)) {
-            var value = slots[name];
-            defineProperty(obj, name, value, true);
-          }
-        }
-        return obj;
-      };
-      if (String.fromCodePoint && String.fromCodePoint.length !== 1) {
-        var originalFromCodePoint = String.fromCodePoint;
-        overrideNative(String, 'fromCodePoint', function fromCodePoint(codePoints) {
-          return ES.Call(originalFromCodePoint, this, arguments);
-        });
-      }
-      var StringShims = {
-        fromCodePoint: function fromCodePoint(codePoints) {
-          var result = [];
-          var next;
-          for (var i = 0,
-              length = arguments.length; i < length; i++) {
-            next = Number(arguments[i]);
-            if (!ES.SameValue(next, ES.ToInteger(next)) || next < 0 || next > 0x10FFFF) {
-              throw new RangeError('Invalid code point ' + next);
-            }
-            if (next < 0x10000) {
-              _push(result, String.fromCharCode(next));
-            } else {
-              next -= 0x10000;
-              _push(result, String.fromCharCode((next >> 10) + 0xD800));
-              _push(result, String.fromCharCode((next % 0x400) + 0xDC00));
-            }
-          }
-          return result.join('');
-        },
-        raw: function raw(callSite) {
-          var cooked = ES.ToObject(callSite, 'bad callSite');
-          var rawString = ES.ToObject(cooked.raw, 'bad raw value');
-          var len = rawString.length;
-          var literalsegments = ES.ToLength(len);
-          if (literalsegments <= 0) {
-            return '';
-          }
-          var stringElements = [];
-          var nextIndex = 0;
-          var nextKey,
-              next,
-              nextSeg,
-              nextSub;
-          while (nextIndex < literalsegments) {
-            nextKey = ES.ToString(nextIndex);
-            nextSeg = ES.ToString(rawString[nextKey]);
-            _push(stringElements, nextSeg);
-            if (nextIndex + 1 >= literalsegments) {
-              break;
-            }
-            next = nextIndex + 1 < arguments.length ? arguments[nextIndex + 1] : '';
-            nextSub = ES.ToString(next);
-            _push(stringElements, nextSub);
-            nextIndex += 1;
-          }
-          return stringElements.join('');
-        }
-      };
-      if (String.raw && String.raw({raw: {
-          0: 'x',
-          1: 'y',
-          length: 2
-        }}) !== 'xy') {
-        overrideNative(String, 'raw', StringShims.raw);
-      }
-      defineProperties(String, StringShims);
-      var stringRepeat = function repeat(s, times) {
-        if (times < 1) {
-          return '';
-        }
-        if (times % 2) {
-          return repeat(s, times - 1) + s;
-        }
-        var half = repeat(s, times / 2);
-        return half + half;
-      };
-      var stringMaxLength = Infinity;
-      var StringPrototypeShims = {
-        repeat: function repeat(times) {
-          var thisStr = ES.ToString(ES.RequireObjectCoercible(this));
-          var numTimes = ES.ToInteger(times);
-          if (numTimes < 0 || numTimes >= stringMaxLength) {
-            throw new RangeError('repeat count must be less than infinity and not overflow maximum string size');
-          }
-          return stringRepeat(thisStr, numTimes);
-        },
-        startsWith: function startsWith(searchString) {
-          var S = ES.ToString(ES.RequireObjectCoercible(this));
-          if (ES.IsRegExp(searchString)) {
-            throw new TypeError('Cannot call method "startsWith" with a regex');
-          }
-          var searchStr = ES.ToString(searchString);
-          var position;
-          if (arguments.length > 1) {
-            position = arguments[1];
-          }
-          var start = _max(ES.ToInteger(position), 0);
-          return _strSlice(S, start, start + searchStr.length) === searchStr;
-        },
-        endsWith: function endsWith(searchString) {
-          var S = ES.ToString(ES.RequireObjectCoercible(this));
-          if (ES.IsRegExp(searchString)) {
-            throw new TypeError('Cannot call method "endsWith" with a regex');
-          }
-          var searchStr = ES.ToString(searchString);
-          var len = S.length;
-          var endPosition;
-          if (arguments.length > 1) {
-            endPosition = arguments[1];
-          }
-          var pos = typeof endPosition === 'undefined' ? len : ES.ToInteger(endPosition);
-          var end = _min(_max(pos, 0), len);
-          return _strSlice(S, end - searchStr.length, end) === searchStr;
-        },
-        includes: function includes(searchString) {
-          if (ES.IsRegExp(searchString)) {
-            throw new TypeError('"includes" does not accept a RegExp');
-          }
-          var searchStr = ES.ToString(searchString);
-          var position;
-          if (arguments.length > 1) {
-            position = arguments[1];
-          }
-          return _indexOf(this, searchStr, position) !== -1;
-        },
-        codePointAt: function codePointAt(pos) {
-          var thisStr = ES.ToString(ES.RequireObjectCoercible(this));
-          var position = ES.ToInteger(pos);
-          var length = thisStr.length;
-          if (position >= 0 && position < length) {
-            var first = thisStr.charCodeAt(position);
-            var isEnd = (position + 1 === length);
-            if (first < 0xD800 || first > 0xDBFF || isEnd) {
-              return first;
-            }
-            var second = thisStr.charCodeAt(position + 1);
-            if (second < 0xDC00 || second > 0xDFFF) {
-              return first;
-            }
-            return ((first - 0xD800) * 1024) + (second - 0xDC00) + 0x10000;
-          }
-        }
-      };
-      if (String.prototype.includes && 'a'.includes('a', Infinity) !== false) {
-        overrideNative(String.prototype, 'includes', StringPrototypeShims.includes);
-      }
-      if (String.prototype.startsWith && String.prototype.endsWith) {
-        var startsWithRejectsRegex = throwsError(function() {
-          '/a/'.startsWith(/a/);
-        });
-        var startsWithHandlesInfinity = 'abc'.startsWith('a', Infinity) === false;
-        if (!startsWithRejectsRegex || !startsWithHandlesInfinity) {
-          overrideNative(String.prototype, 'startsWith', StringPrototypeShims.startsWith);
-          overrideNative(String.prototype, 'endsWith', StringPrototypeShims.endsWith);
-        }
-      }
-      if (hasSymbols) {
-        var startsWithSupportsSymbolMatch = valueOrFalseIfThrows(function() {
-          var re = /a/;
-          re[Symbol.match] = false;
-          return '/a/'.startsWith(re);
-        });
-        if (!startsWithSupportsSymbolMatch) {
-          overrideNative(String.prototype, 'startsWith', StringPrototypeShims.startsWith);
-        }
-        var endsWithSupportsSymbolMatch = valueOrFalseIfThrows(function() {
-          var re = /a/;
-          re[Symbol.match] = false;
-          return '/a/'.endsWith(re);
-        });
-        if (!endsWithSupportsSymbolMatch) {
-          overrideNative(String.prototype, 'endsWith', StringPrototypeShims.endsWith);
-        }
-        var includesSupportsSymbolMatch = valueOrFalseIfThrows(function() {
-          var re = /a/;
-          re[Symbol.match] = false;
-          return '/a/'.includes(re);
-        });
-        if (!includesSupportsSymbolMatch) {
-          overrideNative(String.prototype, 'includes', StringPrototypeShims.includes);
-        }
-      }
-      defineProperties(String.prototype, StringPrototypeShims);
-      var ws = ['\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003', '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028', '\u2029\uFEFF'].join('');
-      var trimRegexp = new RegExp('(^[' + ws + ']+)|([' + ws + ']+$)', 'g');
-      var trimShim = function trim() {
-        return ES.ToString(ES.RequireObjectCoercible(this)).replace(trimRegexp, '');
-      };
-      var nonWS = ['\u0085', '\u200b', '\ufffe'].join('');
-      var nonWSregex = new RegExp('[' + nonWS + ']', 'g');
-      var isBadHexRegex = /^[\-+]0x[0-9a-f]+$/i;
-      var hasStringTrimBug = nonWS.trim().length !== nonWS.length;
-      defineProperty(String.prototype, 'trim', trimShim, hasStringTrimBug);
-      var StringIterator = function(s) {
-        ES.RequireObjectCoercible(s);
-        this._s = ES.ToString(s);
-        this._i = 0;
-      };
-      StringIterator.prototype.next = function() {
-        var s = this._s,
-            i = this._i;
-        if (typeof s === 'undefined' || i >= s.length) {
-          this._s = void 0;
-          return {
-            value: void 0,
-            done: true
-          };
-        }
-        var first = s.charCodeAt(i),
-            second,
-            len;
-        if (first < 0xD800 || first > 0xDBFF || (i + 1) === s.length) {
-          len = 1;
-        } else {
-          second = s.charCodeAt(i + 1);
-          len = (second < 0xDC00 || second > 0xDFFF) ? 1 : 2;
-        }
-        this._i = i + len;
-        return {
-          value: s.substr(i, len),
-          done: false
-        };
-      };
-      addIterator(StringIterator.prototype);
-      addIterator(String.prototype, function() {
-        return new StringIterator(this);
-      });
-      var ArrayShims = {
-        from: function from(items) {
-          var C = this;
-          var mapFn;
-          if (arguments.length > 1) {
-            mapFn = arguments[1];
-          }
-          var mapping,
-              T;
-          if (typeof mapFn === 'undefined') {
-            mapping = false;
-          } else {
-            if (!ES.IsCallable(mapFn)) {
-              throw new TypeError('Array.from: when provided, the second argument must be a function');
-            }
-            if (arguments.length > 2) {
-              T = arguments[2];
-            }
-            mapping = true;
-          }
-          var usingIterator = typeof(isArguments(items) || ES.GetMethod(items, $iterator$)) !== 'undefined';
-          var length,
-              result,
-              i;
-          if (usingIterator) {
-            result = ES.IsConstructor(C) ? Object(new C()) : [];
-            var iterator = ES.GetIterator(items);
-            var next,
-                nextValue;
-            i = 0;
-            while (true) {
-              next = ES.IteratorStep(iterator);
-              if (next === false) {
-                break;
-              }
-              nextValue = next.value;
-              try {
-                if (mapping) {
-                  nextValue = typeof T === 'undefined' ? mapFn(nextValue, i) : _call(mapFn, T, nextValue, i);
-                }
-                result[i] = nextValue;
-              } catch (e) {
-                ES.IteratorClose(iterator, true);
-                throw e;
-              }
-              i += 1;
-            }
-            length = i;
-          } else {
-            var arrayLike = ES.ToObject(items);
-            length = ES.ToLength(arrayLike.length);
-            result = ES.IsConstructor(C) ? Object(new C(length)) : new Array(length);
-            var value;
-            for (i = 0; i < length; ++i) {
-              value = arrayLike[i];
-              if (mapping) {
-                value = typeof T === 'undefined' ? mapFn(value, i) : _call(mapFn, T, value, i);
-              }
-              result[i] = value;
-            }
-          }
-          result.length = length;
-          return result;
-        },
-        of: function of() {
-          var len = arguments.length;
-          var C = this;
-          var A = isArray(C) || !ES.IsCallable(C) ? new Array(len) : ES.Construct(C, [len]);
-          for (var k = 0; k < len; ++k) {
-            createDataPropertyOrThrow(A, k, arguments[k]);
-          }
-          A.length = len;
-          return A;
-        }
-      };
-      defineProperties(Array, ArrayShims);
-      addDefaultSpecies(Array);
-      var iteratorResult = function(x) {
-        return {
-          value: x,
-          done: arguments.length === 0
-        };
-      };
-      ArrayIterator = function(array, kind) {
-        this.i = 0;
-        this.array = array;
-        this.kind = kind;
-      };
-      defineProperties(ArrayIterator.prototype, {next: function() {
-          var i = this.i,
-              array = this.array;
-          if (!(this instanceof ArrayIterator)) {
-            throw new TypeError('Not an ArrayIterator');
-          }
-          if (typeof array !== 'undefined') {
-            var len = ES.ToLength(array.length);
-            for (; i < len; i++) {
-              var kind = this.kind;
-              var retval;
-              if (kind === 'key') {
-                retval = i;
-              } else if (kind === 'value') {
-                retval = array[i];
-              } else if (kind === 'entry') {
-                retval = [i, array[i]];
-              }
-              this.i = i + 1;
-              return {
-                value: retval,
-                done: false
-              };
-            }
-          }
-          this.array = void 0;
-          return {
-            value: void 0,
-            done: true
-          };
-        }});
-      addIterator(ArrayIterator.prototype);
-      var orderKeys = function orderKeys(a, b) {
-        var aNumeric = String(ES.ToInteger(a)) === a;
-        var bNumeric = String(ES.ToInteger(b)) === b;
-        if (aNumeric && bNumeric) {
-          return b - a;
-        } else if (aNumeric && !bNumeric) {
-          return -1;
-        } else if (!aNumeric && bNumeric) {
-          return 1;
-        } else {
-          return a.localeCompare(b);
-        }
-      };
-      var getAllKeys = function getAllKeys(object) {
-        var ownKeys = [];
-        var keys = [];
-        for (var key in object) {
-          _push(_hasOwnProperty(object, key) ? ownKeys : keys, key);
-        }
-        _sort(ownKeys, orderKeys);
-        _sort(keys, orderKeys);
-        return _concat(ownKeys, keys);
-      };
-      var ObjectIterator = function(object, kind) {
-        defineProperties(this, {
-          object: object,
-          array: getAllKeys(object),
-          kind: kind
-        });
-      };
-      defineProperties(ObjectIterator.prototype, {next: function next() {
-          var key;
-          var array = this.array;
-          if (!(this instanceof ObjectIterator)) {
-            throw new TypeError('Not an ObjectIterator');
-          }
-          while (array.length > 0) {
-            key = _shift(array);
-            if (!(key in this.object)) {
-              continue;
-            }
-            if (this.kind === 'key') {
-              return iteratorResult(key);
-            } else if (this.kind === 'value') {
-              return iteratorResult(this.object[key]);
-            } else {
-              return iteratorResult([key, this.object[key]]);
-            }
-          }
-          return iteratorResult();
-        }});
-      addIterator(ObjectIterator.prototype);
-      var arrayOfSupportsSubclassing = Array.of === ArrayShims.of || (function() {
-        var Foo = function Foo(len) {
-          this.length = len;
-        };
-        Foo.prototype = [];
-        var fooArr = Array.of.apply(Foo, [1, 2]);
-        return fooArr instanceof Foo && fooArr.length === 2;
-      }());
-      if (!arrayOfSupportsSubclassing) {
-        overrideNative(Array, 'of', ArrayShims.of);
-      }
-      var ArrayPrototypeShims = {
-        copyWithin: function copyWithin(target, start) {
-          var o = ES.ToObject(this);
-          var len = ES.ToLength(o.length);
-          var relativeTarget = ES.ToInteger(target);
-          var relativeStart = ES.ToInteger(start);
-          var to = relativeTarget < 0 ? _max(len + relativeTarget, 0) : _min(relativeTarget, len);
-          var from = relativeStart < 0 ? _max(len + relativeStart, 0) : _min(relativeStart, len);
-          var end;
-          if (arguments.length > 2) {
-            end = arguments[2];
-          }
-          var relativeEnd = typeof end === 'undefined' ? len : ES.ToInteger(end);
-          var finalItem = relativeEnd < 0 ? _max(len + relativeEnd, 0) : _min(relativeEnd, len);
-          var count = _min(finalItem - from, len - to);
-          var direction = 1;
-          if (from < to && to < (from + count)) {
-            direction = -1;
-            from += count - 1;
-            to += count - 1;
-          }
-          while (count > 0) {
-            if (from in o) {
-              o[to] = o[from];
-            } else {
-              delete o[to];
-            }
-            from += direction;
-            to += direction;
-            count -= 1;
-          }
-          return o;
-        },
-        fill: function fill(value) {
-          var start;
-          if (arguments.length > 1) {
-            start = arguments[1];
-          }
-          var end;
-          if (arguments.length > 2) {
-            end = arguments[2];
-          }
-          var O = ES.ToObject(this);
-          var len = ES.ToLength(O.length);
-          start = ES.ToInteger(typeof start === 'undefined' ? 0 : start);
-          end = ES.ToInteger(typeof end === 'undefined' ? len : end);
-          var relativeStart = start < 0 ? _max(len + start, 0) : _min(start, len);
-          var relativeEnd = end < 0 ? len + end : end;
-          for (var i = relativeStart; i < len && i < relativeEnd; ++i) {
-            O[i] = value;
-          }
-          return O;
-        },
-        find: function find(predicate) {
-          var list = ES.ToObject(this);
-          var length = ES.ToLength(list.length);
-          if (!ES.IsCallable(predicate)) {
-            throw new TypeError('Array#find: predicate must be a function');
-          }
-          var thisArg = arguments.length > 1 ? arguments[1] : null;
-          for (var i = 0,
-              value; i < length; i++) {
-            value = list[i];
-            if (thisArg) {
-              if (_call(predicate, thisArg, value, i, list)) {
-                return value;
-              }
-            } else if (predicate(value, i, list)) {
-              return value;
-            }
-          }
-        },
-        findIndex: function findIndex(predicate) {
-          var list = ES.ToObject(this);
-          var length = ES.ToLength(list.length);
-          if (!ES.IsCallable(predicate)) {
-            throw new TypeError('Array#findIndex: predicate must be a function');
-          }
-          var thisArg = arguments.length > 1 ? arguments[1] : null;
-          for (var i = 0; i < length; i++) {
-            if (thisArg) {
-              if (_call(predicate, thisArg, list[i], i, list)) {
-                return i;
-              }
-            } else if (predicate(list[i], i, list)) {
-              return i;
-            }
-          }
-          return -1;
-        },
-        keys: function keys() {
-          return new ArrayIterator(this, 'key');
-        },
-        values: function values() {
-          return new ArrayIterator(this, 'value');
-        },
-        entries: function entries() {
-          return new ArrayIterator(this, 'entry');
-        }
-      };
-      if (Array.prototype.keys && !ES.IsCallable([1].keys().next)) {
-        delete Array.prototype.keys;
-      }
-      if (Array.prototype.entries && !ES.IsCallable([1].entries().next)) {
-        delete Array.prototype.entries;
-      }
-      if (Array.prototype.keys && Array.prototype.entries && !Array.prototype.values && Array.prototype[$iterator$]) {
-        defineProperties(Array.prototype, {values: Array.prototype[$iterator$]});
-        if (Type.symbol(Symbol.unscopables)) {
-          Array.prototype[Symbol.unscopables].values = true;
-        }
-      }
-      if (functionsHaveNames && Array.prototype.values && Array.prototype.values.name !== 'values') {
-        var originalArrayPrototypeValues = Array.prototype.values;
-        overrideNative(Array.prototype, 'values', function values() {
-          return ES.Call(originalArrayPrototypeValues, this, arguments);
-        });
-        defineProperty(Array.prototype, $iterator$, Array.prototype.values, true);
-      }
-      defineProperties(Array.prototype, ArrayPrototypeShims);
-      addIterator(Array.prototype, function() {
-        return this.values();
-      });
-      if (Object.getPrototypeOf) {
-        addIterator(Object.getPrototypeOf([].values()));
-      }
-      var arrayFromSwallowsNegativeLengths = (function() {
-        return valueOrFalseIfThrows(function() {
-          return Array.from({length: -1}).length === 0;
-        });
-      }());
-      var arrayFromHandlesIterables = (function() {
-        var arr = Array.from([0].entries());
-        return arr.length === 1 && isArray(arr[0]) && arr[0][0] === 0 && arr[0][1] === 0;
-      }());
-      if (!arrayFromSwallowsNegativeLengths || !arrayFromHandlesIterables) {
-        overrideNative(Array, 'from', ArrayShims.from);
-      }
-      var arrayFromHandlesUndefinedMapFunction = (function() {
-        return valueOrFalseIfThrows(function() {
-          return Array.from([0], void 0);
-        });
-      }());
-      if (!arrayFromHandlesUndefinedMapFunction) {
-        var origArrayFrom = Array.from;
-        overrideNative(Array, 'from', function from(items) {
-          if (arguments.length > 1 && typeof arguments[1] !== 'undefined') {
-            return ES.Call(origArrayFrom, this, arguments);
-          } else {
-            return _call(origArrayFrom, this, items);
-          }
-        });
-      }
-      var int32sAsOne = -(Math.pow(2, 32) - 1);
-      var toLengthsCorrectly = function(method, reversed) {
-        var obj = {length: int32sAsOne};
-        obj[reversed ? ((obj.length >>> 0) - 1) : 0] = true;
-        return valueOrFalseIfThrows(function() {
-          _call(method, obj, function() {
-            throw new RangeError('should not reach here');
-          }, []);
-          return true;
-        });
-      };
-      if (!toLengthsCorrectly(Array.prototype.forEach)) {
-        var originalForEach = Array.prototype.forEach;
-        overrideNative(Array.prototype, 'forEach', function forEach(callbackFn) {
-          return ES.Call(originalForEach, this.length >= 0 ? this : [], arguments);
-        }, true);
-      }
-      if (!toLengthsCorrectly(Array.prototype.map)) {
-        var originalMap = Array.prototype.map;
-        overrideNative(Array.prototype, 'map', function map(callbackFn) {
-          return ES.Call(originalMap, this.length >= 0 ? this : [], arguments);
-        }, true);
-      }
-      if (!toLengthsCorrectly(Array.prototype.filter)) {
-        var originalFilter = Array.prototype.filter;
-        overrideNative(Array.prototype, 'filter', function filter(callbackFn) {
-          return ES.Call(originalFilter, this.length >= 0 ? this : [], arguments);
-        }, true);
-      }
-      if (!toLengthsCorrectly(Array.prototype.some)) {
-        var originalSome = Array.prototype.some;
-        overrideNative(Array.prototype, 'some', function some(callbackFn) {
-          return ES.Call(originalSome, this.length >= 0 ? this : [], arguments);
-        }, true);
-      }
-      if (!toLengthsCorrectly(Array.prototype.every)) {
-        var originalEvery = Array.prototype.every;
-        overrideNative(Array.prototype, 'every', function every(callbackFn) {
-          return ES.Call(originalEvery, this.length >= 0 ? this : [], arguments);
-        }, true);
-      }
-      if (!toLengthsCorrectly(Array.prototype.reduce)) {
-        var originalReduce = Array.prototype.reduce;
-        overrideNative(Array.prototype, 'reduce', function reduce(callbackFn) {
-          return ES.Call(originalReduce, this.length >= 0 ? this : [], arguments);
-        }, true);
-      }
-      if (!toLengthsCorrectly(Array.prototype.reduceRight, true)) {
-        var originalReduceRight = Array.prototype.reduceRight;
-        overrideNative(Array.prototype, 'reduceRight', function reduceRight(callbackFn) {
-          return ES.Call(originalReduceRight, this.length >= 0 ? this : [], arguments);
-        }, true);
-      }
-      var lacksOctalSupport = Number('0o10') !== 8;
-      var lacksBinarySupport = Number('0b10') !== 2;
-      var trimsNonWhitespace = _some(nonWS, function(c) {
-        return Number(c + 0 + c) === 0;
-      });
-      if (lacksOctalSupport || lacksBinarySupport || trimsNonWhitespace) {
-        var OrigNumber = Number;
-        var binaryRegex = /^0b[01]+$/i;
-        var octalRegex = /^0o[0-7]+$/i;
-        var isBinary = binaryRegex.test.bind(binaryRegex);
-        var isOctal = octalRegex.test.bind(octalRegex);
-        var toPrimitive = function(O) {
-          var result;
-          if (typeof O.valueOf === 'function') {
-            result = O.valueOf();
-            if (Type.primitive(result)) {
-              return result;
-            }
-          }
-          if (typeof O.toString === 'function') {
-            result = O.toString();
-            if (Type.primitive(result)) {
-              return result;
-            }
-          }
-          throw new TypeError('No default value');
-        };
-        var hasNonWS = nonWSregex.test.bind(nonWSregex);
-        var isBadHex = isBadHexRegex.test.bind(isBadHexRegex);
-        var NumberShim = (function() {
-          var NumberShim = function Number(value) {
-            var primValue;
-            if (arguments.length > 0) {
-              primValue = Type.primitive(value) ? value : toPrimitive(value, 'number');
-            } else {
-              primValue = 0;
-            }
-            if (typeof primValue === 'string') {
-              primValue = ES.Call(trimShim, primValue);
-              if (isBinary(primValue)) {
-                primValue = parseInt(_strSlice(primValue, 2), 2);
-              } else if (isOctal(primValue)) {
-                primValue = parseInt(_strSlice(primValue, 2), 8);
-              } else if (hasNonWS(primValue) || isBadHex(primValue)) {
-                primValue = NaN;
-              }
-            }
-            var receiver = this;
-            var valueOfSucceeds = valueOrFalseIfThrows(function() {
-              OrigNumber.prototype.valueOf.call(receiver);
-              return true;
-            });
-            if (receiver instanceof NumberShim && !valueOfSucceeds) {
-              return new OrigNumber(primValue);
-            }
-            return OrigNumber(primValue);
-          };
-          return NumberShim;
-        }());
-        wrapConstructor(OrigNumber, NumberShim, {});
-        Number = NumberShim;
-        Value.redefine(globals, 'Number', NumberShim);
-      }
-      var maxSafeInteger = Math.pow(2, 53) - 1;
-      defineProperties(Number, {
-        MAX_SAFE_INTEGER: maxSafeInteger,
-        MIN_SAFE_INTEGER: -maxSafeInteger,
-        EPSILON: 2.220446049250313e-16,
-        parseInt: globals.parseInt,
-        parseFloat: globals.parseFloat,
-        isFinite: numberIsFinite,
-        isInteger: function isInteger(value) {
-          return numberIsFinite(value) && ES.ToInteger(value) === value;
-        },
-        isSafeInteger: function isSafeInteger(value) {
-          return Number.isInteger(value) && _abs(value) <= Number.MAX_SAFE_INTEGER;
-        },
-        isNaN: numberIsNaN
-      });
-      defineProperty(Number, 'parseInt', globals.parseInt, Number.parseInt !== globals.parseInt);
-      if (![, 1].find(function(item, idx) {
-        return idx === 0;
-      })) {
-        overrideNative(Array.prototype, 'find', ArrayPrototypeShims.find);
-      }
-      if ([, 1].findIndex(function(item, idx) {
-        return idx === 0;
-      }) !== 0) {
-        overrideNative(Array.prototype, 'findIndex', ArrayPrototypeShims.findIndex);
-      }
-      var isEnumerableOn = Function.bind.call(Function.bind, Object.prototype.propertyIsEnumerable);
-      var ensureEnumerable = function ensureEnumerable(obj, prop) {
-        if (supportsDescriptors && isEnumerableOn(obj, prop)) {
-          Object.defineProperty(obj, prop, {enumerable: false});
-        }
-      };
-      var sliceArgs = function sliceArgs() {
-        var initial = Number(this);
-        var len = arguments.length;
-        var desiredArgCount = len - initial;
-        var args = new Array(desiredArgCount < 0 ? 0 : desiredArgCount);
-        for (var i = initial; i < len; ++i) {
-          args[i - initial] = arguments[i];
-        }
-        return args;
-      };
-      var assignTo = function assignTo(source) {
-        return function assignToSource(target, key) {
-          target[key] = source[key];
-          return target;
-        };
-      };
-      var assignReducer = function(target, source) {
-        var sourceKeys = keys(Object(source));
-        var symbols;
-        if (ES.IsCallable(Object.getOwnPropertySymbols)) {
-          symbols = _filter(Object.getOwnPropertySymbols(Object(source)), isEnumerableOn(source));
-        }
-        return _reduce(_concat(sourceKeys, symbols || []), assignTo(source), target);
-      };
-      var ObjectShims = {
-        assign: function(target, source) {
-          var to = ES.ToObject(target, 'Cannot convert undefined or null to object');
-          return _reduce(ES.Call(sliceArgs, 1, arguments), assignReducer, to);
-        },
-        is: function is(a, b) {
-          return ES.SameValue(a, b);
-        }
-      };
-      var assignHasPendingExceptions = Object.assign && Object.preventExtensions && (function() {
-        var thrower = Object.preventExtensions({1: 2});
-        try {
-          Object.assign(thrower, 'xy');
-        } catch (e) {
-          return thrower[1] === 'y';
-        }
-      }());
-      if (assignHasPendingExceptions) {
-        overrideNative(Object, 'assign', ObjectShims.assign);
-      }
-      defineProperties(Object, ObjectShims);
-      if (supportsDescriptors) {
-        var ES5ObjectShims = {setPrototypeOf: (function(Object, magic) {
-            var set;
-            var checkArgs = function(O, proto) {
-              if (!ES.TypeIsObject(O)) {
-                throw new TypeError('cannot set prototype on a non-object');
-              }
-              if (!(proto === null || ES.TypeIsObject(proto))) {
-                throw new TypeError('can only set prototype to an object or null' + proto);
-              }
-            };
-            var setPrototypeOf = function(O, proto) {
-              checkArgs(O, proto);
-              _call(set, O, proto);
-              return O;
-            };
-            try {
-              set = Object.getOwnPropertyDescriptor(Object.prototype, magic).set;
-              _call(set, {}, null);
-            } catch (e) {
-              if (Object.prototype !== {}[magic]) {
-                return;
-              }
-              set = function(proto) {
-                this[magic] = proto;
-              };
-              setPrototypeOf.polyfill = setPrototypeOf(setPrototypeOf({}, null), Object.prototype) instanceof Object;
-            }
-            return setPrototypeOf;
-          }(Object, '__proto__'))};
-        defineProperties(Object, ES5ObjectShims);
-      }
-      if (Object.setPrototypeOf && Object.getPrototypeOf && Object.getPrototypeOf(Object.setPrototypeOf({}, null)) !== null && Object.getPrototypeOf(Object.create(null)) === null) {
-        (function() {
-          var FAKENULL = Object.create(null);
-          var gpo = Object.getPrototypeOf,
-              spo = Object.setPrototypeOf;
-          Object.getPrototypeOf = function(o) {
-            var result = gpo(o);
-            return result === FAKENULL ? null : result;
-          };
-          Object.setPrototypeOf = function(o, p) {
-            var proto = p === null ? FAKENULL : p;
-            return spo(o, proto);
-          };
-          Object.setPrototypeOf.polyfill = false;
-        }());
-      }
-      var objectKeysAcceptsPrimitives = !throwsError(function() {
-        Object.keys('foo');
-      });
-      if (!objectKeysAcceptsPrimitives) {
-        var originalObjectKeys = Object.keys;
-        overrideNative(Object, 'keys', function keys(value) {
-          return originalObjectKeys(ES.ToObject(value));
-        });
-        keys = Object.keys;
-      }
-      if (Object.getOwnPropertyNames) {
-        var objectGOPNAcceptsPrimitives = !throwsError(function() {
-          Object.getOwnPropertyNames('foo');
-        });
-        if (!objectGOPNAcceptsPrimitives) {
-          var cachedWindowNames = typeof window === 'object' ? Object.getOwnPropertyNames(window) : [];
-          var originalObjectGetOwnPropertyNames = Object.getOwnPropertyNames;
-          overrideNative(Object, 'getOwnPropertyNames', function getOwnPropertyNames(value) {
-            var val = ES.ToObject(value);
-            if (_toString(val) === '[object Window]') {
-              try {
-                return originalObjectGetOwnPropertyNames(val);
-              } catch (e) {
-                return _concat([], cachedWindowNames);
-              }
-            }
-            return originalObjectGetOwnPropertyNames(val);
-          });
-        }
-      }
-      if (Object.getOwnPropertyDescriptor) {
-        var objectGOPDAcceptsPrimitives = !throwsError(function() {
-          Object.getOwnPropertyDescriptor('foo', 'bar');
-        });
-        if (!objectGOPDAcceptsPrimitives) {
-          var originalObjectGetOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-          overrideNative(Object, 'getOwnPropertyDescriptor', function getOwnPropertyDescriptor(value, property) {
-            return originalObjectGetOwnPropertyDescriptor(ES.ToObject(value), property);
-          });
-        }
-      }
-      if (Object.seal) {
-        var objectSealAcceptsPrimitives = !throwsError(function() {
-          Object.seal('foo');
-        });
-        if (!objectSealAcceptsPrimitives) {
-          var originalObjectSeal = Object.seal;
-          overrideNative(Object, 'seal', function seal(value) {
-            if (!Type.object(value)) {
-              return value;
-            }
-            return originalObjectSeal(value);
-          });
-        }
-      }
-      if (Object.isSealed) {
-        var objectIsSealedAcceptsPrimitives = !throwsError(function() {
-          Object.isSealed('foo');
-        });
-        if (!objectIsSealedAcceptsPrimitives) {
-          var originalObjectIsSealed = Object.isSealed;
-          overrideNative(Object, 'isSealed', function isSealed(value) {
-            if (!Type.object(value)) {
-              return true;
-            }
-            return originalObjectIsSealed(value);
-          });
-        }
-      }
-      if (Object.freeze) {
-        var objectFreezeAcceptsPrimitives = !throwsError(function() {
-          Object.freeze('foo');
-        });
-        if (!objectFreezeAcceptsPrimitives) {
-          var originalObjectFreeze = Object.freeze;
-          overrideNative(Object, 'freeze', function freeze(value) {
-            if (!Type.object(value)) {
-              return value;
-            }
-            return originalObjectFreeze(value);
-          });
-        }
-      }
-      if (Object.isFrozen) {
-        var objectIsFrozenAcceptsPrimitives = !throwsError(function() {
-          Object.isFrozen('foo');
-        });
-        if (!objectIsFrozenAcceptsPrimitives) {
-          var originalObjectIsFrozen = Object.isFrozen;
-          overrideNative(Object, 'isFrozen', function isFrozen(value) {
-            if (!Type.object(value)) {
-              return true;
-            }
-            return originalObjectIsFrozen(value);
-          });
-        }
-      }
-      if (Object.preventExtensions) {
-        var objectPreventExtensionsAcceptsPrimitives = !throwsError(function() {
-          Object.preventExtensions('foo');
-        });
-        if (!objectPreventExtensionsAcceptsPrimitives) {
-          var originalObjectPreventExtensions = Object.preventExtensions;
-          overrideNative(Object, 'preventExtensions', function preventExtensions(value) {
-            if (!Type.object(value)) {
-              return value;
-            }
-            return originalObjectPreventExtensions(value);
-          });
-        }
-      }
-      if (Object.isExtensible) {
-        var objectIsExtensibleAcceptsPrimitives = !throwsError(function() {
-          Object.isExtensible('foo');
-        });
-        if (!objectIsExtensibleAcceptsPrimitives) {
-          var originalObjectIsExtensible = Object.isExtensible;
-          overrideNative(Object, 'isExtensible', function isExtensible(value) {
-            if (!Type.object(value)) {
-              return false;
-            }
-            return originalObjectIsExtensible(value);
-          });
-        }
-      }
-      if (Object.getPrototypeOf) {
-        var objectGetProtoAcceptsPrimitives = !throwsError(function() {
-          Object.getPrototypeOf('foo');
-        });
-        if (!objectGetProtoAcceptsPrimitives) {
-          var originalGetProto = Object.getPrototypeOf;
-          overrideNative(Object, 'getPrototypeOf', function getPrototypeOf(value) {
-            return originalGetProto(ES.ToObject(value));
-          });
-        }
-      }
-      var hasFlags = supportsDescriptors && (function() {
-        var desc = Object.getOwnPropertyDescriptor(RegExp.prototype, 'flags');
-        return desc && ES.IsCallable(desc.get);
-      }());
-      if (supportsDescriptors && !hasFlags) {
-        var regExpFlagsGetter = function flags() {
-          if (!ES.TypeIsObject(this)) {
-            throw new TypeError('Method called on incompatible type: must be an object.');
-          }
-          var result = '';
-          if (this.global) {
-            result += 'g';
-          }
-          if (this.ignoreCase) {
-            result += 'i';
-          }
-          if (this.multiline) {
-            result += 'm';
-          }
-          if (this.unicode) {
-            result += 'u';
-          }
-          if (this.sticky) {
-            result += 'y';
-          }
-          return result;
-        };
-        Value.getter(RegExp.prototype, 'flags', regExpFlagsGetter);
-      }
-      var regExpSupportsFlagsWithRegex = supportsDescriptors && valueOrFalseIfThrows(function() {
-        return String(new RegExp(/a/g, 'i')) === '/a/i';
-      });
-      var regExpNeedsToSupportSymbolMatch = hasSymbols && supportsDescriptors && (function() {
-        var regex = /./;
-        regex[Symbol.match] = false;
-        return RegExp(regex) === regex;
-      }());
-      if (supportsDescriptors && (!regExpSupportsFlagsWithRegex || regExpNeedsToSupportSymbolMatch)) {
-        var flagsGetter = Object.getOwnPropertyDescriptor(RegExp.prototype, 'flags').get;
-        var sourceDesc = Object.getOwnPropertyDescriptor(RegExp.prototype, 'source') || {};
-        var legacySourceGetter = function() {
-          return this.source;
-        };
-        var sourceGetter = ES.IsCallable(sourceDesc.get) ? sourceDesc.get : legacySourceGetter;
-        var OrigRegExp = RegExp;
-        var RegExpShim = (function() {
-          return function RegExp(pattern, flags) {
-            var patternIsRegExp = ES.IsRegExp(pattern);
-            var calledWithNew = this instanceof RegExp;
-            if (!calledWithNew && patternIsRegExp && typeof flags === 'undefined' && pattern.constructor === RegExp) {
-              return pattern;
-            }
-            var P = pattern;
-            var F = flags;
-            if (Type.regex(pattern)) {
-              P = ES.Call(sourceGetter, pattern);
-              F = typeof flags === 'undefined' ? ES.Call(flagsGetter, pattern) : flags;
-              return new RegExp(P, F);
-            } else if (patternIsRegExp) {
-              P = pattern.source;
-              F = typeof flags === 'undefined' ? pattern.flags : flags;
-            }
-            return new OrigRegExp(pattern, flags);
-          };
-        }());
-        wrapConstructor(OrigRegExp, RegExpShim, {$input: true});
-        RegExp = RegExpShim;
-        Value.redefine(globals, 'RegExp', RegExpShim);
-      }
-      if (supportsDescriptors) {
-        var regexGlobals = {
-          input: '$_',
-          lastMatch: '$&',
-          lastParen: '$+',
-          leftContext: '$`',
-          rightContext: '$\''
-        };
-        _forEach(keys(regexGlobals), function(prop) {
-          if (prop in RegExp && !(regexGlobals[prop] in RegExp)) {
-            Value.getter(RegExp, regexGlobals[prop], function get() {
-              return RegExp[prop];
-            });
-          }
-        });
-      }
-      addDefaultSpecies(RegExp);
-      var inverseEpsilon = 1 / Number.EPSILON;
-      var roundTiesToEven = function roundTiesToEven(n) {
-        return (n + inverseEpsilon) - inverseEpsilon;
-      };
-      var BINARY_32_EPSILON = Math.pow(2, -23);
-      var BINARY_32_MAX_VALUE = Math.pow(2, 127) * (2 - BINARY_32_EPSILON);
-      var BINARY_32_MIN_VALUE = Math.pow(2, -126);
-      var numberCLZ = Number.prototype.clz;
-      delete Number.prototype.clz;
-      var MathShims = {
-        acosh: function acosh(value) {
-          var x = Number(value);
-          if (Number.isNaN(x) || value < 1) {
-            return NaN;
-          }
-          if (x === 1) {
-            return 0;
-          }
-          if (x === Infinity) {
-            return x;
-          }
-          return _log(x / Math.E + _sqrt(x + 1) * _sqrt(x - 1) / Math.E) + 1;
-        },
-        asinh: function asinh(value) {
-          var x = Number(value);
-          if (x === 0 || !globalIsFinite(x)) {
-            return x;
-          }
-          return x < 0 ? -Math.asinh(-x) : _log(x + _sqrt(x * x + 1));
-        },
-        atanh: function atanh(value) {
-          var x = Number(value);
-          if (Number.isNaN(x) || x < -1 || x > 1) {
-            return NaN;
-          }
-          if (x === -1) {
-            return -Infinity;
-          }
-          if (x === 1) {
-            return Infinity;
-          }
-          if (x === 0) {
-            return x;
-          }
-          return 0.5 * _log((1 + x) / (1 - x));
-        },
-        cbrt: function cbrt(value) {
-          var x = Number(value);
-          if (x === 0) {
-            return x;
-          }
-          var negate = x < 0,
-              result;
-          if (negate) {
-            x = -x;
-          }
-          if (x === Infinity) {
-            result = Infinity;
-          } else {
-            result = Math.exp(_log(x) / 3);
-            result = (x / (result * result) + (2 * result)) / 3;
-          }
-          return negate ? -result : result;
-        },
-        clz32: function clz32(value) {
-          var x = Number(value);
-          var number = ES.ToUint32(x);
-          if (number === 0) {
-            return 32;
-          }
-          return numberCLZ ? ES.Call(numberCLZ, number) : 31 - _floor(_log(number + 0.5) * Math.LOG2E);
-        },
-        cosh: function cosh(value) {
-          var x = Number(value);
-          if (x === 0) {
-            return 1;
-          }
-          if (Number.isNaN(x)) {
-            return NaN;
-          }
-          if (!globalIsFinite(x)) {
-            return Infinity;
-          }
-          if (x < 0) {
-            x = -x;
-          }
-          if (x > 21) {
-            return Math.exp(x) / 2;
-          }
-          return (Math.exp(x) + Math.exp(-x)) / 2;
-        },
-        expm1: function expm1(value) {
-          var x = Number(value);
-          if (x === -Infinity) {
-            return -1;
-          }
-          if (!globalIsFinite(x) || x === 0) {
-            return x;
-          }
-          if (_abs(x) > 0.5) {
-            return Math.exp(x) - 1;
-          }
-          var t = x;
-          var sum = 0;
-          var n = 1;
-          while (sum + t !== sum) {
-            sum += t;
-            n += 1;
-            t *= x / n;
-          }
-          return sum;
-        },
-        hypot: function hypot(x, y) {
-          var result = 0;
-          var largest = 0;
-          for (var i = 0; i < arguments.length; ++i) {
-            var value = _abs(Number(arguments[i]));
-            if (largest < value) {
-              result *= (largest / value) * (largest / value);
-              result += 1;
-              largest = value;
-            } else {
-              result += (value > 0 ? (value / largest) * (value / largest) : value);
-            }
-          }
-          return largest === Infinity ? Infinity : largest * _sqrt(result);
-        },
-        log2: function log2(value) {
-          return _log(value) * Math.LOG2E;
-        },
-        log10: function log10(value) {
-          return _log(value) * Math.LOG10E;
-        },
-        log1p: function log1p(value) {
-          var x = Number(value);
-          if (x < -1 || Number.isNaN(x)) {
-            return NaN;
-          }
-          if (x === 0 || x === Infinity) {
-            return x;
-          }
-          if (x === -1) {
-            return -Infinity;
-          }
-          return (1 + x) - 1 === 0 ? x : x * (_log(1 + x) / ((1 + x) - 1));
-        },
-        sign: function sign(value) {
-          var number = Number(value);
-          if (number === 0) {
-            return number;
-          }
-          if (Number.isNaN(number)) {
-            return number;
-          }
-          return number < 0 ? -1 : 1;
-        },
-        sinh: function sinh(value) {
-          var x = Number(value);
-          if (!globalIsFinite(x) || x === 0) {
-            return x;
-          }
-          if (_abs(x) < 1) {
-            return (Math.expm1(x) - Math.expm1(-x)) / 2;
-          }
-          return (Math.exp(x - 1) - Math.exp(-x - 1)) * Math.E / 2;
-        },
-        tanh: function tanh(value) {
-          var x = Number(value);
-          if (Number.isNaN(x) || x === 0) {
-            return x;
-          }
-          if (x === Infinity) {
-            return 1;
-          }
-          if (x === -Infinity) {
-            return -1;
-          }
-          var a = Math.expm1(x);
-          var b = Math.expm1(-x);
-          if (a === Infinity) {
-            return 1;
-          }
-          if (b === Infinity) {
-            return -1;
-          }
-          return (a - b) / (Math.exp(x) + Math.exp(-x));
-        },
-        trunc: function trunc(value) {
-          var x = Number(value);
-          return x < 0 ? -_floor(-x) : _floor(x);
-        },
-        imul: function imul(x, y) {
-          var a = ES.ToUint32(x);
-          var b = ES.ToUint32(y);
-          var ah = (a >>> 16) & 0xffff;
-          var al = a & 0xffff;
-          var bh = (b >>> 16) & 0xffff;
-          var bl = b & 0xffff;
-          return ((al * bl) + (((ah * bl + al * bh) << 16) >>> 0) | 0);
-        },
-        fround: function fround(x) {
-          var v = Number(x);
-          if (v === 0 || v === Infinity || v === -Infinity || numberIsNaN(v)) {
-            return v;
-          }
-          var sign = Math.sign(v);
-          var abs = _abs(v);
-          if (abs < BINARY_32_MIN_VALUE) {
-            return sign * roundTiesToEven(abs / BINARY_32_MIN_VALUE / BINARY_32_EPSILON) * BINARY_32_MIN_VALUE * BINARY_32_EPSILON;
-          }
-          var a = (1 + BINARY_32_EPSILON / Number.EPSILON) * abs;
-          var result = a - (a - abs);
-          if (result > BINARY_32_MAX_VALUE || numberIsNaN(result)) {
-            return sign * Infinity;
-          }
-          return sign * result;
-        }
-      };
-      defineProperties(Math, MathShims);
-      defineProperty(Math, 'log1p', MathShims.log1p, Math.log1p(-1e-17) !== -1e-17);
-      defineProperty(Math, 'asinh', MathShims.asinh, Math.asinh(-1e7) !== -Math.asinh(1e7));
-      defineProperty(Math, 'tanh', MathShims.tanh, Math.tanh(-2e-17) !== -2e-17);
-      defineProperty(Math, 'acosh', MathShims.acosh, Math.acosh(Number.MAX_VALUE) === Infinity);
-      defineProperty(Math, 'cbrt', MathShims.cbrt, Math.abs(1 - Math.cbrt(1e-300) / 1e-100) / Number.EPSILON > 8);
-      defineProperty(Math, 'sinh', MathShims.sinh, Math.sinh(-2e-17) !== -2e-17);
-      var expm1OfTen = Math.expm1(10);
-      defineProperty(Math, 'expm1', MathShims.expm1, expm1OfTen > 22025.465794806719 || expm1OfTen < 22025.4657948067165168);
-      var origMathRound = Math.round;
-      var roundHandlesBoundaryConditions = Math.round(0.5 - Number.EPSILON / 4) === 0 && Math.round(-0.5 + Number.EPSILON / 3.99) === 1;
-      var smallestPositiveNumberWhereRoundBreaks = inverseEpsilon + 1;
-      var largestPositiveNumberWhereRoundBreaks = 2 * inverseEpsilon - 1;
-      var roundDoesNotIncreaseIntegers = [smallestPositiveNumberWhereRoundBreaks, largestPositiveNumberWhereRoundBreaks].every(function(num) {
-        return Math.round(num) === num;
-      });
-      defineProperty(Math, 'round', function round(x) {
-        var floor = _floor(x);
-        var ceil = floor === -1 ? -0 : floor + 1;
-        return x - floor < 0.5 ? floor : ceil;
-      }, !roundHandlesBoundaryConditions || !roundDoesNotIncreaseIntegers);
-      Value.preserveToString(Math.round, origMathRound);
-      var origImul = Math.imul;
-      if (Math.imul(0xffffffff, 5) !== -5) {
-        Math.imul = MathShims.imul;
-        Value.preserveToString(Math.imul, origImul);
-      }
-      if (Math.imul.length !== 2) {
-        overrideNative(Math, 'imul', function imul(x, y) {
-          return ES.Call(origImul, Math, arguments);
-        });
-      }
-      var PromiseShim = (function() {
-        var setTimeout = globals.setTimeout;
-        if (typeof setTimeout !== 'function' && typeof setTimeout !== 'object') {
-          return;
-        }
-        ES.IsPromise = function(promise) {
-          if (!ES.TypeIsObject(promise)) {
-            return false;
-          }
-          if (typeof promise._promise === 'undefined') {
-            return false;
-          }
-          return true;
-        };
-        var PromiseCapability = function(C) {
-          if (!ES.IsConstructor(C)) {
-            throw new TypeError('Bad promise constructor');
-          }
-          var capability = this;
-          var resolver = function(resolve, reject) {
-            if (capability.resolve !== void 0 || capability.reject !== void 0) {
-              throw new TypeError('Bad Promise implementation!');
-            }
-            capability.resolve = resolve;
-            capability.reject = reject;
-          };
-          capability.resolve = void 0;
-          capability.reject = void 0;
-          capability.promise = new C(resolver);
-          if (!(ES.IsCallable(capability.resolve) && ES.IsCallable(capability.reject))) {
-            throw new TypeError('Bad promise constructor');
-          }
-        };
-        var makeZeroTimeout;
-        if (typeof window !== 'undefined' && ES.IsCallable(window.postMessage)) {
-          makeZeroTimeout = function() {
-            var timeouts = [];
-            var messageName = 'zero-timeout-message';
-            var setZeroTimeout = function(fn) {
-              _push(timeouts, fn);
-              window.postMessage(messageName, '*');
-            };
-            var handleMessage = function(event) {
-              if (event.source === window && event.data === messageName) {
-                event.stopPropagation();
-                if (timeouts.length === 0) {
-                  return;
-                }
-                var fn = _shift(timeouts);
-                fn();
-              }
-            };
-            window.addEventListener('message', handleMessage, true);
-            return setZeroTimeout;
-          };
-        }
-        var makePromiseAsap = function() {
-          var P = globals.Promise;
-          var pr = P && P.resolve && P.resolve();
-          return pr && function(task) {
-            return pr.then(task);
-          };
-        };
-        var enqueue = ES.IsCallable(globals.setImmediate) ? globals.setImmediate : typeof process === 'object' && process.nextTick ? process.nextTick : makePromiseAsap() || (ES.IsCallable(makeZeroTimeout) ? makeZeroTimeout() : function(task) {
-          setTimeout(task, 0);
-        });
-        var PROMISE_IDENTITY = function(x) {
-          return x;
-        };
-        var PROMISE_THROWER = function(e) {
-          throw e;
-        };
-        var PROMISE_PENDING = 0;
-        var PROMISE_FULFILLED = 1;
-        var PROMISE_REJECTED = 2;
-        var PROMISE_FULFILL_OFFSET = 0;
-        var PROMISE_REJECT_OFFSET = 1;
-        var PROMISE_CAPABILITY_OFFSET = 2;
-        var PROMISE_FAKE_CAPABILITY = {};
-        var enqueuePromiseReactionJob = function(handler, capability, argument) {
-          enqueue(function() {
-            promiseReactionJob(handler, capability, argument);
-          });
-        };
-        var promiseReactionJob = function(handler, promiseCapability, argument) {
-          var handlerResult,
-              f;
-          if (promiseCapability === PROMISE_FAKE_CAPABILITY) {
-            return handler(argument);
-          }
-          try {
-            handlerResult = handler(argument);
-            f = promiseCapability.resolve;
-          } catch (e) {
-            handlerResult = e;
-            f = promiseCapability.reject;
-          }
-          f(handlerResult);
-        };
-        var fulfillPromise = function(promise, value) {
-          var _promise = promise._promise;
-          var length = _promise.reactionLength;
-          if (length > 0) {
-            enqueuePromiseReactionJob(_promise.fulfillReactionHandler0, _promise.reactionCapability0, value);
-            _promise.fulfillReactionHandler0 = void 0;
-            _promise.rejectReactions0 = void 0;
-            _promise.reactionCapability0 = void 0;
-            if (length > 1) {
-              for (var i = 1,
-                  idx = 0; i < length; i++, idx += 3) {
-                enqueuePromiseReactionJob(_promise[idx + PROMISE_FULFILL_OFFSET], _promise[idx + PROMISE_CAPABILITY_OFFSET], value);
-                promise[idx + PROMISE_FULFILL_OFFSET] = void 0;
-                promise[idx + PROMISE_REJECT_OFFSET] = void 0;
-                promise[idx + PROMISE_CAPABILITY_OFFSET] = void 0;
-              }
-            }
-          }
-          _promise.result = value;
-          _promise.state = PROMISE_FULFILLED;
-          _promise.reactionLength = 0;
-        };
-        var rejectPromise = function(promise, reason) {
-          var _promise = promise._promise;
-          var length = _promise.reactionLength;
-          if (length > 0) {
-            enqueuePromiseReactionJob(_promise.rejectReactionHandler0, _promise.reactionCapability0, reason);
-            _promise.fulfillReactionHandler0 = void 0;
-            _promise.rejectReactions0 = void 0;
-            _promise.reactionCapability0 = void 0;
-            if (length > 1) {
-              for (var i = 1,
-                  idx = 0; i < length; i++, idx += 3) {
-                enqueuePromiseReactionJob(_promise[idx + PROMISE_REJECT_OFFSET], _promise[idx + PROMISE_CAPABILITY_OFFSET], reason);
-                promise[idx + PROMISE_FULFILL_OFFSET] = void 0;
-                promise[idx + PROMISE_REJECT_OFFSET] = void 0;
-                promise[idx + PROMISE_CAPABILITY_OFFSET] = void 0;
-              }
-            }
-          }
-          _promise.result = reason;
-          _promise.state = PROMISE_REJECTED;
-          _promise.reactionLength = 0;
-        };
-        var createResolvingFunctions = function(promise) {
-          var alreadyResolved = false;
-          var resolve = function(resolution) {
-            var then;
-            if (alreadyResolved) {
-              return;
-            }
-            alreadyResolved = true;
-            if (resolution === promise) {
-              return rejectPromise(promise, new TypeError('Self resolution'));
-            }
-            if (!ES.TypeIsObject(resolution)) {
-              return fulfillPromise(promise, resolution);
-            }
-            try {
-              then = resolution.then;
-            } catch (e) {
-              return rejectPromise(promise, e);
-            }
-            if (!ES.IsCallable(then)) {
-              return fulfillPromise(promise, resolution);
-            }
-            enqueue(function() {
-              promiseResolveThenableJob(promise, resolution, then);
-            });
-          };
-          var reject = function(reason) {
-            if (alreadyResolved) {
-              return;
-            }
-            alreadyResolved = true;
-            return rejectPromise(promise, reason);
-          };
-          return {
-            resolve: resolve,
-            reject: reject
-          };
-        };
-        var optimizedThen = function(then, thenable, resolve, reject) {
-          if (then === Promise$prototype$then) {
-            _call(then, thenable, resolve, reject, PROMISE_FAKE_CAPABILITY);
-          } else {
-            _call(then, thenable, resolve, reject);
-          }
-        };
-        var promiseResolveThenableJob = function(promise, thenable, then) {
-          var resolvingFunctions = createResolvingFunctions(promise);
-          var resolve = resolvingFunctions.resolve;
-          var reject = resolvingFunctions.reject;
-          try {
-            optimizedThen(then, thenable, resolve, reject);
-          } catch (e) {
-            reject(e);
-          }
-        };
-        var Promise$prototype,
-            Promise$prototype$then;
-        var Promise = (function() {
-          var PromiseShim = function Promise(resolver) {
-            if (!(this instanceof PromiseShim)) {
-              throw new TypeError('Constructor Promise requires "new"');
-            }
-            if (this && this._promise) {
-              throw new TypeError('Bad construction');
-            }
-            if (!ES.IsCallable(resolver)) {
-              throw new TypeError('not a valid resolver');
-            }
-            var promise = emulateES6construct(this, PromiseShim, Promise$prototype, {_promise: {
-                result: void 0,
-                state: PROMISE_PENDING,
-                reactionLength: 0,
-                fulfillReactionHandler0: void 0,
-                rejectReactionHandler0: void 0,
-                reactionCapability0: void 0
-              }});
-            var resolvingFunctions = createResolvingFunctions(promise);
-            var reject = resolvingFunctions.reject;
-            try {
-              resolver(resolvingFunctions.resolve, reject);
-            } catch (e) {
-              reject(e);
-            }
-            return promise;
-          };
-          return PromiseShim;
-        }());
-        Promise$prototype = Promise.prototype;
-        var _promiseAllResolver = function(index, values, capability, remaining) {
-          var alreadyCalled = false;
-          return function(x) {
-            if (alreadyCalled) {
-              return;
-            }
-            alreadyCalled = true;
-            values[index] = x;
-            if ((--remaining.count) === 0) {
-              var resolve = capability.resolve;
-              resolve(values);
-            }
-          };
-        };
-        var performPromiseAll = function(iteratorRecord, C, resultCapability) {
-          var it = iteratorRecord.iterator;
-          var values = [],
-              remaining = {count: 1},
-              next,
-              nextValue;
-          var index = 0;
-          while (true) {
-            try {
-              next = ES.IteratorStep(it);
-              if (next === false) {
-                iteratorRecord.done = true;
-                break;
-              }
-              nextValue = next.value;
-            } catch (e) {
-              iteratorRecord.done = true;
-              throw e;
-            }
-            values[index] = void 0;
-            var nextPromise = C.resolve(nextValue);
-            var resolveElement = _promiseAllResolver(index, values, resultCapability, remaining);
-            remaining.count += 1;
-            optimizedThen(nextPromise.then, nextPromise, resolveElement, resultCapability.reject);
-            index += 1;
-          }
-          if ((--remaining.count) === 0) {
-            var resolve = resultCapability.resolve;
-            resolve(values);
-          }
-          return resultCapability.promise;
-        };
-        var performPromiseRace = function(iteratorRecord, C, resultCapability) {
-          var it = iteratorRecord.iterator,
-              next,
-              nextValue,
-              nextPromise;
-          while (true) {
-            try {
-              next = ES.IteratorStep(it);
-              if (next === false) {
-                iteratorRecord.done = true;
-                break;
-              }
-              nextValue = next.value;
-            } catch (e) {
-              iteratorRecord.done = true;
-              throw e;
-            }
-            nextPromise = C.resolve(nextValue);
-            optimizedThen(nextPromise.then, nextPromise, resultCapability.resolve, resultCapability.reject);
-          }
-          return resultCapability.promise;
-        };
-        defineProperties(Promise, {
-          all: function all(iterable) {
-            var C = this;
-            if (!ES.TypeIsObject(C)) {
-              throw new TypeError('Promise is not object');
-            }
-            var capability = new PromiseCapability(C);
-            var iterator,
-                iteratorRecord;
-            try {
-              iterator = ES.GetIterator(iterable);
-              iteratorRecord = {
-                iterator: iterator,
-                done: false
-              };
-              return performPromiseAll(iteratorRecord, C, capability);
-            } catch (e) {
-              var exception = e;
-              if (iteratorRecord && !iteratorRecord.done) {
-                try {
-                  ES.IteratorClose(iterator, true);
-                } catch (ee) {
-                  exception = ee;
-                }
-              }
-              var reject = capability.reject;
-              reject(exception);
-              return capability.promise;
-            }
-          },
-          race: function race(iterable) {
-            var C = this;
-            if (!ES.TypeIsObject(C)) {
-              throw new TypeError('Promise is not object');
-            }
-            var capability = new PromiseCapability(C);
-            var iterator,
-                iteratorRecord;
-            try {
-              iterator = ES.GetIterator(iterable);
-              iteratorRecord = {
-                iterator: iterator,
-                done: false
-              };
-              return performPromiseRace(iteratorRecord, C, capability);
-            } catch (e) {
-              var exception = e;
-              if (iteratorRecord && !iteratorRecord.done) {
-                try {
-                  ES.IteratorClose(iterator, true);
-                } catch (ee) {
-                  exception = ee;
-                }
-              }
-              var reject = capability.reject;
-              reject(exception);
-              return capability.promise;
-            }
-          },
-          reject: function reject(reason) {
-            var C = this;
-            if (!ES.TypeIsObject(C)) {
-              throw new TypeError('Bad promise constructor');
-            }
-            var capability = new PromiseCapability(C);
-            var rejectFunc = capability.reject;
-            rejectFunc(reason);
-            return capability.promise;
-          },
-          resolve: function resolve(v) {
-            var C = this;
-            if (!ES.TypeIsObject(C)) {
-              throw new TypeError('Bad promise constructor');
-            }
-            if (ES.IsPromise(v)) {
-              var constructor = v.constructor;
-              if (constructor === C) {
-                return v;
-              }
-            }
-            var capability = new PromiseCapability(C);
-            var resolveFunc = capability.resolve;
-            resolveFunc(v);
-            return capability.promise;
-          }
-        });
-        defineProperties(Promise$prototype, {
-          'catch': function(onRejected) {
-            return this.then(null, onRejected);
-          },
-          then: function then(onFulfilled, onRejected) {
-            var promise = this;
-            if (!ES.IsPromise(promise)) {
-              throw new TypeError('not a promise');
-            }
-            var C = ES.SpeciesConstructor(promise, Promise);
-            var resultCapability;
-            var returnValueIsIgnored = arguments.length > 2 && arguments[2] === PROMISE_FAKE_CAPABILITY;
-            if (returnValueIsIgnored && C === Promise) {
-              resultCapability = PROMISE_FAKE_CAPABILITY;
-            } else {
-              resultCapability = new PromiseCapability(C);
-            }
-            var fulfillReactionHandler = ES.IsCallable(onFulfilled) ? onFulfilled : PROMISE_IDENTITY;
-            var rejectReactionHandler = ES.IsCallable(onRejected) ? onRejected : PROMISE_THROWER;
-            var _promise = promise._promise;
-            var value;
-            if (_promise.state === PROMISE_PENDING) {
-              if (_promise.reactionLength === 0) {
-                _promise.fulfillReactionHandler0 = fulfillReactionHandler;
-                _promise.rejectReactionHandler0 = rejectReactionHandler;
-                _promise.reactionCapability0 = resultCapability;
-              } else {
-                var idx = 3 * (_promise.reactionLength - 1);
-                _promise[idx + PROMISE_FULFILL_OFFSET] = fulfillReactionHandler;
-                _promise[idx + PROMISE_REJECT_OFFSET] = rejectReactionHandler;
-                _promise[idx + PROMISE_CAPABILITY_OFFSET] = resultCapability;
-              }
-              _promise.reactionLength += 1;
-            } else if (_promise.state === PROMISE_FULFILLED) {
-              value = _promise.result;
-              enqueuePromiseReactionJob(fulfillReactionHandler, resultCapability, value);
-            } else if (_promise.state === PROMISE_REJECTED) {
-              value = _promise.result;
-              enqueuePromiseReactionJob(rejectReactionHandler, resultCapability, value);
-            } else {
-              throw new TypeError('unexpected Promise state');
-            }
-            return resultCapability.promise;
-          }
-        });
-        PROMISE_FAKE_CAPABILITY = new PromiseCapability(Promise);
-        Promise$prototype$then = Promise$prototype.then;
-        return Promise;
-      }());
-      if (globals.Promise) {
-        delete globals.Promise.accept;
-        delete globals.Promise.defer;
-        delete globals.Promise.prototype.chain;
-      }
-      if (typeof PromiseShim === 'function') {
-        defineProperties(globals, {Promise: PromiseShim});
-        var promiseSupportsSubclassing = supportsSubclassing(globals.Promise, function(S) {
-          return S.resolve(42).then(function() {}) instanceof S;
-        });
-        var promiseIgnoresNonFunctionThenCallbacks = !throwsError(function() {
-          globals.Promise.reject(42).then(null, 5).then(null, noop);
-        });
-        var promiseRequiresObjectContext = throwsError(function() {
-          globals.Promise.call(3, noop);
-        });
-        var promiseResolveBroken = (function(Promise) {
-          var p = Promise.resolve(5);
-          p.constructor = {};
-          var p2 = Promise.resolve(p);
-          return (p === p2);
-        }(globals.Promise));
-        var getsThenSynchronously = supportsDescriptors && (function() {
-          var count = 0;
-          var thenable = Object.defineProperty({}, 'then', {get: function() {
-              count += 1;
-            }});
-          Promise.resolve(thenable);
-          return count === 1;
-        }());
-        var BadResolverPromise = function BadResolverPromise(executor) {
-          var p = new Promise(executor);
-          executor(3, function() {});
-          this.then = p.then;
-          this.constructor = BadResolverPromise;
-        };
-        BadResolverPromise.prototype = Promise.prototype;
-        BadResolverPromise.all = Promise.all;
-        var hasBadResolverPromise = valueOrFalseIfThrows(function() {
-          return !!BadResolverPromise.all([1, 2]);
-        });
-        if (!promiseSupportsSubclassing || !promiseIgnoresNonFunctionThenCallbacks || !promiseRequiresObjectContext || promiseResolveBroken || !getsThenSynchronously || hasBadResolverPromise) {
-          Promise = PromiseShim;
-          overrideNative(globals, 'Promise', PromiseShim);
-        }
-        if (Promise.all.length !== 1) {
-          var origAll = Promise.all;
-          overrideNative(Promise, 'all', function all(iterable) {
-            return ES.Call(origAll, this, arguments);
-          });
-        }
-        if (Promise.race.length !== 1) {
-          var origRace = Promise.race;
-          overrideNative(Promise, 'race', function race(iterable) {
-            return ES.Call(origRace, this, arguments);
-          });
-        }
-        if (Promise.resolve.length !== 1) {
-          var origResolve = Promise.resolve;
-          overrideNative(Promise, 'resolve', function resolve(x) {
-            return ES.Call(origResolve, this, arguments);
-          });
-        }
-        if (Promise.reject.length !== 1) {
-          var origReject = Promise.reject;
-          overrideNative(Promise, 'reject', function reject(r) {
-            return ES.Call(origReject, this, arguments);
-          });
-        }
-        ensureEnumerable(Promise, 'all');
-        ensureEnumerable(Promise, 'race');
-        ensureEnumerable(Promise, 'resolve');
-        ensureEnumerable(Promise, 'reject');
-        addDefaultSpecies(Promise);
-      }
-      var testOrder = function(a) {
-        var b = keys(_reduce(a, function(o, k) {
-          o[k] = true;
-          return o;
-        }, {}));
-        return a.join(':') === b.join(':');
-      };
-      var preservesInsertionOrder = testOrder(['z', 'a', 'bb']);
-      var preservesNumericInsertionOrder = testOrder(['z', 1, 'a', '3', 2]);
-      if (supportsDescriptors) {
-        var fastkey = function fastkey(key) {
-          if (!preservesInsertionOrder) {
-            return null;
-          }
-          if (typeof key === 'undefined' || key === null) {
-            return '^' + ES.ToString(key);
-          } else if (typeof key === 'string') {
-            return '$' + key;
-          } else if (typeof key === 'number') {
-            if (!preservesNumericInsertionOrder) {
-              return 'n' + key;
-            }
-            return key;
-          } else if (typeof key === 'boolean') {
-            return 'b' + key;
-          }
-          return null;
-        };
-        var emptyObject = function emptyObject() {
-          return Object.create ? Object.create(null) : {};
-        };
-        var addIterableToMap = function addIterableToMap(MapConstructor, map, iterable) {
-          if (isArray(iterable) || Type.string(iterable)) {
-            _forEach(iterable, function(entry) {
-              if (!ES.TypeIsObject(entry)) {
-                throw new TypeError('Iterator value ' + entry + ' is not an entry object');
-              }
-              map.set(entry[0], entry[1]);
-            });
-          } else if (iterable instanceof MapConstructor) {
-            _call(MapConstructor.prototype.forEach, iterable, function(value, key) {
-              map.set(key, value);
-            });
-          } else {
-            var iter,
-                adder;
-            if (iterable !== null && typeof iterable !== 'undefined') {
-              adder = map.set;
-              if (!ES.IsCallable(adder)) {
-                throw new TypeError('bad map');
-              }
-              iter = ES.GetIterator(iterable);
-            }
-            if (typeof iter !== 'undefined') {
-              while (true) {
-                var next = ES.IteratorStep(iter);
-                if (next === false) {
-                  break;
-                }
-                var nextItem = next.value;
-                try {
-                  if (!ES.TypeIsObject(nextItem)) {
-                    throw new TypeError('Iterator value ' + nextItem + ' is not an entry object');
-                  }
-                  _call(adder, map, nextItem[0], nextItem[1]);
-                } catch (e) {
-                  ES.IteratorClose(iter, true);
-                  throw e;
-                }
-              }
-            }
-          }
-        };
-        var addIterableToSet = function addIterableToSet(SetConstructor, set, iterable) {
-          if (isArray(iterable) || Type.string(iterable)) {
-            _forEach(iterable, function(value) {
-              set.add(value);
-            });
-          } else if (iterable instanceof SetConstructor) {
-            _call(SetConstructor.prototype.forEach, iterable, function(value) {
-              set.add(value);
-            });
-          } else {
-            var iter,
-                adder;
-            if (iterable !== null && typeof iterable !== 'undefined') {
-              adder = set.add;
-              if (!ES.IsCallable(adder)) {
-                throw new TypeError('bad set');
-              }
-              iter = ES.GetIterator(iterable);
-            }
-            if (typeof iter !== 'undefined') {
-              while (true) {
-                var next = ES.IteratorStep(iter);
-                if (next === false) {
-                  break;
-                }
-                var nextValue = next.value;
-                try {
-                  _call(adder, set, nextValue);
-                } catch (e) {
-                  ES.IteratorClose(iter, true);
-                  throw e;
-                }
-              }
-            }
-          }
-        };
-        var collectionShims = {
-          Map: (function() {
-            var empty = {};
-            var MapEntry = function MapEntry(key, value) {
-              this.key = key;
-              this.value = value;
-              this.next = null;
-              this.prev = null;
-            };
-            MapEntry.prototype.isRemoved = function isRemoved() {
-              return this.key === empty;
-            };
-            var isMap = function isMap(map) {
-              return !!map._es6map;
-            };
-            var requireMapSlot = function requireMapSlot(map, method) {
-              if (!ES.TypeIsObject(map) || !isMap(map)) {
-                throw new TypeError('Method Map.prototype.' + method + ' called on incompatible receiver ' + ES.ToString(map));
-              }
-            };
-            var MapIterator = function MapIterator(map, kind) {
-              requireMapSlot(map, '[[MapIterator]]');
-              this.head = map._head;
-              this.i = this.head;
-              this.kind = kind;
-            };
-            MapIterator.prototype = {next: function next() {
-                var i = this.i,
-                    kind = this.kind,
-                    head = this.head,
-                    result;
-                if (typeof this.i === 'undefined') {
-                  return {
-                    value: void 0,
-                    done: true
-                  };
-                }
-                while (i.isRemoved() && i !== head) {
-                  i = i.prev;
-                }
-                while (i.next !== head) {
-                  i = i.next;
-                  if (!i.isRemoved()) {
-                    if (kind === 'key') {
-                      result = i.key;
-                    } else if (kind === 'value') {
-                      result = i.value;
-                    } else {
-                      result = [i.key, i.value];
-                    }
-                    this.i = i;
-                    return {
-                      value: result,
-                      done: false
-                    };
-                  }
-                }
-                this.i = void 0;
-                return {
-                  value: void 0,
-                  done: true
-                };
-              }};
-            addIterator(MapIterator.prototype);
-            var Map$prototype;
-            var MapShim = function Map() {
-              if (!(this instanceof Map)) {
-                throw new TypeError('Constructor Map requires "new"');
-              }
-              if (this && this._es6map) {
-                throw new TypeError('Bad construction');
-              }
-              var map = emulateES6construct(this, Map, Map$prototype, {
-                _es6map: true,
-                _head: null,
-                _storage: emptyObject(),
-                _size: 0
-              });
-              var head = new MapEntry(null, null);
-              head.next = head.prev = head;
-              map._head = head;
-              if (arguments.length > 0) {
-                addIterableToMap(Map, map, arguments[0]);
-              }
-              return map;
-            };
-            Map$prototype = MapShim.prototype;
-            Value.getter(Map$prototype, 'size', function() {
-              if (typeof this._size === 'undefined') {
-                throw new TypeError('size method called on incompatible Map');
-              }
-              return this._size;
-            });
-            defineProperties(Map$prototype, {
-              get: function get(key) {
-                requireMapSlot(this, 'get');
-                var fkey = fastkey(key);
-                if (fkey !== null) {
-                  var entry = this._storage[fkey];
-                  if (entry) {
-                    return entry.value;
-                  } else {
-                    return;
-                  }
-                }
-                var head = this._head,
-                    i = head;
-                while ((i = i.next) !== head) {
-                  if (ES.SameValueZero(i.key, key)) {
-                    return i.value;
-                  }
-                }
-              },
-              has: function has(key) {
-                requireMapSlot(this, 'has');
-                var fkey = fastkey(key);
-                if (fkey !== null) {
-                  return typeof this._storage[fkey] !== 'undefined';
-                }
-                var head = this._head,
-                    i = head;
-                while ((i = i.next) !== head) {
-                  if (ES.SameValueZero(i.key, key)) {
-                    return true;
-                  }
-                }
-                return false;
-              },
-              set: function set(key, value) {
-                requireMapSlot(this, 'set');
-                var head = this._head,
-                    i = head,
-                    entry;
-                var fkey = fastkey(key);
-                if (fkey !== null) {
-                  if (typeof this._storage[fkey] !== 'undefined') {
-                    this._storage[fkey].value = value;
-                    return this;
-                  } else {
-                    entry = this._storage[fkey] = new MapEntry(key, value);
-                    i = head.prev;
-                  }
-                }
-                while ((i = i.next) !== head) {
-                  if (ES.SameValueZero(i.key, key)) {
-                    i.value = value;
-                    return this;
-                  }
-                }
-                entry = entry || new MapEntry(key, value);
-                if (ES.SameValue(-0, key)) {
-                  entry.key = +0;
-                }
-                entry.next = this._head;
-                entry.prev = this._head.prev;
-                entry.prev.next = entry;
-                entry.next.prev = entry;
-                this._size += 1;
-                return this;
-              },
-              'delete': function(key) {
-                requireMapSlot(this, 'delete');
-                var head = this._head,
-                    i = head;
-                var fkey = fastkey(key);
-                if (fkey !== null) {
-                  if (typeof this._storage[fkey] === 'undefined') {
-                    return false;
-                  }
-                  i = this._storage[fkey].prev;
-                  delete this._storage[fkey];
-                }
-                while ((i = i.next) !== head) {
-                  if (ES.SameValueZero(i.key, key)) {
-                    i.key = i.value = empty;
-                    i.prev.next = i.next;
-                    i.next.prev = i.prev;
-                    this._size -= 1;
-                    return true;
-                  }
-                }
-                return false;
-              },
-              clear: function clear() {
-                requireMapSlot(this, 'clear');
-                this._size = 0;
-                this._storage = emptyObject();
-                var head = this._head,
-                    i = head,
-                    p = i.next;
-                while ((i = p) !== head) {
-                  i.key = i.value = empty;
-                  p = i.next;
-                  i.next = i.prev = head;
-                }
-                head.next = head.prev = head;
-              },
-              keys: function keys() {
-                requireMapSlot(this, 'keys');
-                return new MapIterator(this, 'key');
-              },
-              values: function values() {
-                requireMapSlot(this, 'values');
-                return new MapIterator(this, 'value');
-              },
-              entries: function entries() {
-                requireMapSlot(this, 'entries');
-                return new MapIterator(this, 'key+value');
-              },
-              forEach: function forEach(callback) {
-                requireMapSlot(this, 'forEach');
-                var context = arguments.length > 1 ? arguments[1] : null;
-                var it = this.entries();
-                for (var entry = it.next(); !entry.done; entry = it.next()) {
-                  if (context) {
-                    _call(callback, context, entry.value[1], entry.value[0], this);
-                  } else {
-                    callback(entry.value[1], entry.value[0], this);
-                  }
-                }
-              }
-            });
-            addIterator(Map$prototype, Map$prototype.entries);
-            return MapShim;
-          }()),
-          Set: (function() {
-            var isSet = function isSet(set) {
-              return set._es6set && typeof set._storage !== 'undefined';
-            };
-            var requireSetSlot = function requireSetSlot(set, method) {
-              if (!ES.TypeIsObject(set) || !isSet(set)) {
-                throw new TypeError('Set.prototype.' + method + ' called on incompatible receiver ' + ES.ToString(set));
-              }
-            };
-            var Set$prototype;
-            var SetShim = function Set() {
-              if (!(this instanceof Set)) {
-                throw new TypeError('Constructor Set requires "new"');
-              }
-              if (this && this._es6set) {
-                throw new TypeError('Bad construction');
-              }
-              var set = emulateES6construct(this, Set, Set$prototype, {
-                _es6set: true,
-                '[[SetData]]': null,
-                _storage: emptyObject()
-              });
-              if (!set._es6set) {
-                throw new TypeError('bad set');
-              }
-              if (arguments.length > 0) {
-                addIterableToSet(Set, set, arguments[0]);
-              }
-              return set;
-            };
-            Set$prototype = SetShim.prototype;
-            var decodeKey = function(key) {
-              var k = key;
-              if (k === '^null') {
-                return null;
-              } else if (k === '^undefined') {
-                return void 0;
-              } else {
-                var first = k.charAt(0);
-                if (first === '$') {
-                  return _strSlice(k, 1);
-                } else if (first === 'n') {
-                  return +_strSlice(k, 1);
-                } else if (first === 'b') {
-                  return k === 'btrue';
-                }
-              }
-              return +k;
-            };
-            var ensureMap = function ensureMap(set) {
-              if (!set['[[SetData]]']) {
-                var m = set['[[SetData]]'] = new collectionShims.Map();
-                _forEach(keys(set._storage), function(key) {
-                  var k = decodeKey(key);
-                  m.set(k, k);
-                });
-                set['[[SetData]]'] = m;
-              }
-              set._storage = null;
-            };
-            Value.getter(SetShim.prototype, 'size', function() {
-              requireSetSlot(this, 'size');
-              if (this._storage) {
-                return keys(this._storage).length;
-              }
-              ensureMap(this);
-              return this['[[SetData]]'].size;
-            });
-            defineProperties(SetShim.prototype, {
-              has: function has(key) {
-                requireSetSlot(this, 'has');
-                var fkey;
-                if (this._storage && (fkey = fastkey(key)) !== null) {
-                  return !!this._storage[fkey];
-                }
-                ensureMap(this);
-                return this['[[SetData]]'].has(key);
-              },
-              add: function add(key) {
-                requireSetSlot(this, 'add');
-                var fkey;
-                if (this._storage && (fkey = fastkey(key)) !== null) {
-                  this._storage[fkey] = true;
-                  return this;
-                }
-                ensureMap(this);
-                this['[[SetData]]'].set(key, key);
-                return this;
-              },
-              'delete': function(key) {
-                requireSetSlot(this, 'delete');
-                var fkey;
-                if (this._storage && (fkey = fastkey(key)) !== null) {
-                  var hasFKey = _hasOwnProperty(this._storage, fkey);
-                  return (delete this._storage[fkey]) && hasFKey;
-                }
-                ensureMap(this);
-                return this['[[SetData]]']['delete'](key);
-              },
-              clear: function clear() {
-                requireSetSlot(this, 'clear');
-                if (this._storage) {
-                  this._storage = emptyObject();
-                }
-                if (this['[[SetData]]']) {
-                  this['[[SetData]]'].clear();
-                }
-              },
-              values: function values() {
-                requireSetSlot(this, 'values');
-                ensureMap(this);
-                return this['[[SetData]]'].values();
-              },
-              entries: function entries() {
-                requireSetSlot(this, 'entries');
-                ensureMap(this);
-                return this['[[SetData]]'].entries();
-              },
-              forEach: function forEach(callback) {
-                requireSetSlot(this, 'forEach');
-                var context = arguments.length > 1 ? arguments[1] : null;
-                var entireSet = this;
-                ensureMap(entireSet);
-                this['[[SetData]]'].forEach(function(value, key) {
-                  if (context) {
-                    _call(callback, context, key, key, entireSet);
-                  } else {
-                    callback(key, key, entireSet);
-                  }
-                });
-              }
-            });
-            defineProperty(SetShim.prototype, 'keys', SetShim.prototype.values, true);
-            addIterator(SetShim.prototype, SetShim.prototype.values);
-            return SetShim;
-          }())
-        };
-        if (globals.Map || globals.Set) {
-          var mapAcceptsArguments = valueOrFalseIfThrows(function() {
-            return new Map([[1, 2]]).get(1) === 2;
-          });
-          if (!mapAcceptsArguments) {
-            var OrigMapNoArgs = globals.Map;
-            globals.Map = function Map() {
-              if (!(this instanceof Map)) {
-                throw new TypeError('Constructor Map requires "new"');
-              }
-              var m = new OrigMapNoArgs();
-              if (arguments.length > 0) {
-                addIterableToMap(Map, m, arguments[0]);
-              }
-              delete m.constructor;
-              Object.setPrototypeOf(m, globals.Map.prototype);
-              return m;
-            };
-            globals.Map.prototype = create(OrigMapNoArgs.prototype);
-            defineProperty(globals.Map.prototype, 'constructor', globals.Map, true);
-            Value.preserveToString(globals.Map, OrigMapNoArgs);
-          }
-          var testMap = new Map();
-          var mapUsesSameValueZero = (function() {
-            var m = new Map([[1, 0], [2, 0], [3, 0], [4, 0]]);
-            m.set(-0, m);
-            return m.get(0) === m && m.get(-0) === m && m.has(0) && m.has(-0);
-          }());
-          var mapSupportsChaining = testMap.set(1, 2) === testMap;
-          if (!mapUsesSameValueZero || !mapSupportsChaining) {
-            var origMapSet = Map.prototype.set;
-            overrideNative(Map.prototype, 'set', function set(k, v) {
-              _call(origMapSet, this, k === 0 ? 0 : k, v);
-              return this;
-            });
-          }
-          if (!mapUsesSameValueZero) {
-            var origMapGet = Map.prototype.get;
-            var origMapHas = Map.prototype.has;
-            defineProperties(Map.prototype, {
-              get: function get(k) {
-                return _call(origMapGet, this, k === 0 ? 0 : k);
-              },
-              has: function has(k) {
-                return _call(origMapHas, this, k === 0 ? 0 : k);
-              }
-            }, true);
-            Value.preserveToString(Map.prototype.get, origMapGet);
-            Value.preserveToString(Map.prototype.has, origMapHas);
-          }
-          var testSet = new Set();
-          var setUsesSameValueZero = (function(s) {
-            s['delete'](0);
-            s.add(-0);
-            return !s.has(0);
-          }(testSet));
-          var setSupportsChaining = testSet.add(1) === testSet;
-          if (!setUsesSameValueZero || !setSupportsChaining) {
-            var origSetAdd = Set.prototype.add;
-            Set.prototype.add = function add(v) {
-              _call(origSetAdd, this, v === 0 ? 0 : v);
-              return this;
-            };
-            Value.preserveToString(Set.prototype.add, origSetAdd);
-          }
-          if (!setUsesSameValueZero) {
-            var origSetHas = Set.prototype.has;
-            Set.prototype.has = function has(v) {
-              return _call(origSetHas, this, v === 0 ? 0 : v);
-            };
-            Value.preserveToString(Set.prototype.has, origSetHas);
-            var origSetDel = Set.prototype['delete'];
-            Set.prototype['delete'] = function SetDelete(v) {
-              return _call(origSetDel, this, v === 0 ? 0 : v);
-            };
-            Value.preserveToString(Set.prototype['delete'], origSetDel);
-          }
-          var mapSupportsSubclassing = supportsSubclassing(globals.Map, function(M) {
-            var m = new M([]);
-            m.set(42, 42);
-            return m instanceof M;
-          });
-          var mapFailsToSupportSubclassing = Object.setPrototypeOf && !mapSupportsSubclassing;
-          var mapRequiresNew = (function() {
-            try {
-              return !(globals.Map() instanceof globals.Map);
-            } catch (e) {
-              return e instanceof TypeError;
-            }
-          }());
-          if (globals.Map.length !== 0 || mapFailsToSupportSubclassing || !mapRequiresNew) {
-            var OrigMap = globals.Map;
-            globals.Map = function Map() {
-              if (!(this instanceof Map)) {
-                throw new TypeError('Constructor Map requires "new"');
-              }
-              var m = new OrigMap();
-              if (arguments.length > 0) {
-                addIterableToMap(Map, m, arguments[0]);
-              }
-              delete m.constructor;
-              Object.setPrototypeOf(m, Map.prototype);
-              return m;
-            };
-            globals.Map.prototype = OrigMap.prototype;
-            defineProperty(globals.Map.prototype, 'constructor', globals.Map, true);
-            Value.preserveToString(globals.Map, OrigMap);
-          }
-          var setSupportsSubclassing = supportsSubclassing(globals.Set, function(S) {
-            var s = new S([]);
-            s.add(42, 42);
-            return s instanceof S;
-          });
-          var setFailsToSupportSubclassing = Object.setPrototypeOf && !setSupportsSubclassing;
-          var setRequiresNew = (function() {
-            try {
-              return !(globals.Set() instanceof globals.Set);
-            } catch (e) {
-              return e instanceof TypeError;
-            }
-          }());
-          if (globals.Set.length !== 0 || setFailsToSupportSubclassing || !setRequiresNew) {
-            var OrigSet = globals.Set;
-            globals.Set = function Set() {
-              if (!(this instanceof Set)) {
-                throw new TypeError('Constructor Set requires "new"');
-              }
-              var s = new OrigSet();
-              if (arguments.length > 0) {
-                addIterableToSet(Set, s, arguments[0]);
-              }
-              delete s.constructor;
-              Object.setPrototypeOf(s, Set.prototype);
-              return s;
-            };
-            globals.Set.prototype = OrigSet.prototype;
-            defineProperty(globals.Set.prototype, 'constructor', globals.Set, true);
-            Value.preserveToString(globals.Set, OrigSet);
-          }
-          var mapIterationThrowsStopIterator = !valueOrFalseIfThrows(function() {
-            return (new Map()).keys().next().done;
-          });
-          if (typeof globals.Map.prototype.clear !== 'function' || new globals.Set().size !== 0 || new globals.Map().size !== 0 || typeof globals.Map.prototype.keys !== 'function' || typeof globals.Set.prototype.keys !== 'function' || typeof globals.Map.prototype.forEach !== 'function' || typeof globals.Set.prototype.forEach !== 'function' || isCallableWithoutNew(globals.Map) || isCallableWithoutNew(globals.Set) || typeof(new globals.Map().keys().next) !== 'function' || mapIterationThrowsStopIterator || !mapSupportsSubclassing) {
-            defineProperties(globals, {
-              Map: collectionShims.Map,
-              Set: collectionShims.Set
-            }, true);
-          }
-          if (globals.Set.prototype.keys !== globals.Set.prototype.values) {
-            defineProperty(globals.Set.prototype, 'keys', globals.Set.prototype.values, true);
-          }
-          addIterator(Object.getPrototypeOf((new globals.Map()).keys()));
-          addIterator(Object.getPrototypeOf((new globals.Set()).keys()));
-          if (functionsHaveNames && globals.Set.prototype.has.name !== 'has') {
-            var anonymousSetHas = globals.Set.prototype.has;
-            overrideNative(globals.Set.prototype, 'has', function has(key) {
-              return _call(anonymousSetHas, this, key);
-            });
-          }
-        }
-        defineProperties(globals, collectionShims);
-        addDefaultSpecies(globals.Map);
-        addDefaultSpecies(globals.Set);
-      }
-      var throwUnlessTargetIsObject = function throwUnlessTargetIsObject(target) {
-        if (!ES.TypeIsObject(target)) {
-          throw new TypeError('target must be an object');
-        }
-      };
-      var ReflectShims = {
-        apply: function apply() {
-          return ES.Call(ES.Call, null, arguments);
-        },
-        construct: function construct(constructor, args) {
-          if (!ES.IsConstructor(constructor)) {
-            throw new TypeError('First argument must be a constructor.');
-          }
-          var newTarget = arguments.length > 2 ? arguments[2] : constructor;
-          if (!ES.IsConstructor(newTarget)) {
-            throw new TypeError('new.target must be a constructor.');
-          }
-          return ES.Construct(constructor, args, newTarget, 'internal');
-        },
-        deleteProperty: function deleteProperty(target, key) {
-          throwUnlessTargetIsObject(target);
-          if (supportsDescriptors) {
-            var desc = Object.getOwnPropertyDescriptor(target, key);
-            if (desc && !desc.configurable) {
-              return false;
-            }
-          }
-          return delete target[key];
-        },
-        enumerate: function enumerate(target) {
-          throwUnlessTargetIsObject(target);
-          return new ObjectIterator(target, 'key');
-        },
-        has: function has(target, key) {
-          throwUnlessTargetIsObject(target);
-          return key in target;
-        }
-      };
-      if (Object.getOwnPropertyNames) {
-        Object.assign(ReflectShims, {ownKeys: function ownKeys(target) {
-            throwUnlessTargetIsObject(target);
-            var keys = Object.getOwnPropertyNames(target);
-            if (ES.IsCallable(Object.getOwnPropertySymbols)) {
-              _pushApply(keys, Object.getOwnPropertySymbols(target));
-            }
-            return keys;
-          }});
-      }
-      var callAndCatchException = function ConvertExceptionToBoolean(func) {
-        return !throwsError(func);
-      };
-      if (Object.preventExtensions) {
-        Object.assign(ReflectShims, {
-          isExtensible: function isExtensible(target) {
-            throwUnlessTargetIsObject(target);
-            return Object.isExtensible(target);
-          },
-          preventExtensions: function preventExtensions(target) {
-            throwUnlessTargetIsObject(target);
-            return callAndCatchException(function() {
-              Object.preventExtensions(target);
-            });
-          }
-        });
-      }
-      if (supportsDescriptors) {
-        var internalGet = function get(target, key, receiver) {
-          var desc = Object.getOwnPropertyDescriptor(target, key);
-          if (!desc) {
-            var parent = Object.getPrototypeOf(target);
-            if (parent === null) {
-              return void 0;
-            }
-            return internalGet(parent, key, receiver);
-          }
-          if ('value' in desc) {
-            return desc.value;
-          }
-          if (desc.get) {
-            return ES.Call(desc.get, receiver);
-          }
-          return void 0;
-        };
-        var internalSet = function set(target, key, value, receiver) {
-          var desc = Object.getOwnPropertyDescriptor(target, key);
-          if (!desc) {
-            var parent = Object.getPrototypeOf(target);
-            if (parent !== null) {
-              return internalSet(parent, key, value, receiver);
-            }
-            desc = {
-              value: void 0,
-              writable: true,
-              enumerable: true,
-              configurable: true
-            };
-          }
-          if ('value' in desc) {
-            if (!desc.writable) {
-              return false;
-            }
-            if (!ES.TypeIsObject(receiver)) {
-              return false;
-            }
-            var existingDesc = Object.getOwnPropertyDescriptor(receiver, key);
-            if (existingDesc) {
-              return Reflect.defineProperty(receiver, key, {value: value});
-            } else {
-              return Reflect.defineProperty(receiver, key, {
-                value: value,
-                writable: true,
-                enumerable: true,
-                configurable: true
-              });
-            }
-          }
-          if (desc.set) {
-            _call(desc.set, receiver, value);
-            return true;
-          }
-          return false;
-        };
-        Object.assign(ReflectShims, {
-          defineProperty: function defineProperty(target, propertyKey, attributes) {
-            throwUnlessTargetIsObject(target);
-            return callAndCatchException(function() {
-              Object.defineProperty(target, propertyKey, attributes);
-            });
-          },
-          getOwnPropertyDescriptor: function getOwnPropertyDescriptor(target, propertyKey) {
-            throwUnlessTargetIsObject(target);
-            return Object.getOwnPropertyDescriptor(target, propertyKey);
-          },
-          get: function get(target, key) {
-            throwUnlessTargetIsObject(target);
-            var receiver = arguments.length > 2 ? arguments[2] : target;
-            return internalGet(target, key, receiver);
-          },
-          set: function set(target, key, value) {
-            throwUnlessTargetIsObject(target);
-            var receiver = arguments.length > 3 ? arguments[3] : target;
-            return internalSet(target, key, value, receiver);
-          }
-        });
-      }
-      if (Object.getPrototypeOf) {
-        var objectDotGetPrototypeOf = Object.getPrototypeOf;
-        ReflectShims.getPrototypeOf = function getPrototypeOf(target) {
-          throwUnlessTargetIsObject(target);
-          return objectDotGetPrototypeOf(target);
-        };
-      }
-      if (Object.setPrototypeOf && ReflectShims.getPrototypeOf) {
-        var willCreateCircularPrototype = function(object, lastProto) {
-          var proto = lastProto;
-          while (proto) {
-            if (object === proto) {
-              return true;
-            }
-            proto = ReflectShims.getPrototypeOf(proto);
-          }
-          return false;
-        };
-        Object.assign(ReflectShims, {setPrototypeOf: function setPrototypeOf(object, proto) {
-            throwUnlessTargetIsObject(object);
-            if (proto !== null && !ES.TypeIsObject(proto)) {
-              throw new TypeError('proto must be an object or null');
-            }
-            if (proto === Reflect.getPrototypeOf(object)) {
-              return true;
-            }
-            if (Reflect.isExtensible && !Reflect.isExtensible(object)) {
-              return false;
-            }
-            if (willCreateCircularPrototype(object, proto)) {
-              return false;
-            }
-            Object.setPrototypeOf(object, proto);
-            return true;
-          }});
-      }
-      var defineOrOverrideReflectProperty = function(key, shim) {
-        if (!ES.IsCallable(globals.Reflect[key])) {
-          defineProperty(globals.Reflect, key, shim);
-        } else {
-          var acceptsPrimitives = valueOrFalseIfThrows(function() {
-            globals.Reflect[key](1);
-            globals.Reflect[key](NaN);
-            globals.Reflect[key](true);
-            return true;
-          });
-          if (acceptsPrimitives) {
-            overrideNative(globals.Reflect, key, shim);
-          }
-        }
-      };
-      Object.keys(ReflectShims).forEach(function(key) {
-        defineOrOverrideReflectProperty(key, ReflectShims[key]);
-      });
-      if (functionsHaveNames && globals.Reflect.getPrototypeOf.name !== 'getPrototypeOf') {
-        var originalReflectGetProto = globals.Reflect.getPrototypeOf;
-        overrideNative(globals.Reflect, 'getPrototypeOf', function getPrototypeOf(target) {
-          return _call(originalReflectGetProto, globals.Reflect, target);
-        });
-      }
-      if (globals.Reflect.setPrototypeOf) {
-        if (valueOrFalseIfThrows(function() {
-          globals.Reflect.setPrototypeOf(1, {});
-          return true;
-        })) {
-          overrideNative(globals.Reflect, 'setPrototypeOf', ReflectShims.setPrototypeOf);
-        }
-      }
-      if (globals.Reflect.defineProperty) {
-        if (!valueOrFalseIfThrows(function() {
-          var basic = !globals.Reflect.defineProperty(1, 'test', {value: 1});
-          var extensible = typeof Object.preventExtensions !== 'function' || !globals.Reflect.defineProperty(Object.preventExtensions({}), 'test', {});
-          return basic && extensible;
-        })) {
-          overrideNative(globals.Reflect, 'defineProperty', ReflectShims.defineProperty);
-        }
-      }
-      if (globals.Reflect.construct) {
-        if (!valueOrFalseIfThrows(function() {
-          var F = function F() {};
-          return globals.Reflect.construct(function() {}, [], F) instanceof F;
-        })) {
-          overrideNative(globals.Reflect, 'construct', ReflectShims.construct);
-        }
-      }
-      if (String(new Date(NaN)) !== 'Invalid Date') {
-        var dateToString = Date.prototype.toString;
-        var shimmedDateToString = function toString() {
-          var valueOf = +this;
-          if (valueOf !== valueOf) {
-            return 'Invalid Date';
-          }
-          return ES.Call(dateToString, this);
-        };
-        overrideNative(Date.prototype, 'toString', shimmedDateToString);
-      }
-      var stringHTMLshims = {
-        anchor: function anchor(name) {
-          return ES.CreateHTML(this, 'a', 'name', name);
-        },
-        big: function big() {
-          return ES.CreateHTML(this, 'big', '', '');
-        },
-        blink: function blink() {
-          return ES.CreateHTML(this, 'blink', '', '');
-        },
-        bold: function bold() {
-          return ES.CreateHTML(this, 'b', '', '');
-        },
-        fixed: function fixed() {
-          return ES.CreateHTML(this, 'tt', '', '');
-        },
-        fontcolor: function fontcolor(color) {
-          return ES.CreateHTML(this, 'font', 'color', color);
-        },
-        fontsize: function fontsize(size) {
-          return ES.CreateHTML(this, 'font', 'size', size);
-        },
-        italics: function italics() {
-          return ES.CreateHTML(this, 'i', '', '');
-        },
-        link: function link(url) {
-          return ES.CreateHTML(this, 'a', 'href', url);
-        },
-        small: function small() {
-          return ES.CreateHTML(this, 'small', '', '');
-        },
-        strike: function strike() {
-          return ES.CreateHTML(this, 'strike', '', '');
-        },
-        sub: function sub() {
-          return ES.CreateHTML(this, 'sub', '', '');
-        },
-        sup: function sub() {
-          return ES.CreateHTML(this, 'sup', '', '');
-        }
-      };
-      _forEach(Object.keys(stringHTMLshims), function(key) {
-        var method = String.prototype[key];
-        var shouldOverwrite = false;
-        if (ES.IsCallable(method)) {
-          var output = _call(method, '', ' " ');
-          var quotesCount = _concat([], output.match(/"/g)).length;
-          shouldOverwrite = output !== output.toLowerCase() || quotesCount > 2;
-        } else {
-          shouldOverwrite = true;
-        }
-        if (shouldOverwrite) {
-          overrideNative(String.prototype, key, stringHTMLshims[key]);
-        }
-      });
-      var JSONstringifiesSymbols = (function() {
-        if (!hasSymbols) {
-          return false;
-        }
-        var stringify = typeof JSON === 'object' && typeof JSON.stringify === 'function' ? JSON.stringify : null;
-        if (!stringify) {
-          return false;
-        }
-        if (typeof stringify(Symbol()) !== 'undefined') {
-          return true;
-        }
-        if (stringify([Symbol()]) !== '[null]') {
-          return true;
-        }
-        var obj = {a: Symbol()};
-        obj[Symbol()] = true;
-        if (stringify(obj) !== '{}') {
-          return true;
-        }
-        return false;
-      }());
-      var JSONstringifyAcceptsObjectSymbol = valueOrFalseIfThrows(function() {
-        if (!hasSymbols) {
-          return true;
-        }
-        return JSON.stringify(Object(Symbol())) === '{}' && JSON.stringify([Object(Symbol())]) === '[{}]';
-      });
-      if (JSONstringifiesSymbols || !JSONstringifyAcceptsObjectSymbol) {
-        var origStringify = JSON.stringify;
-        overrideNative(JSON, 'stringify', function stringify(value) {
-          if (typeof value === 'symbol') {
-            return;
-          }
-          var replacer;
-          if (arguments.length > 1) {
-            replacer = arguments[1];
-          }
-          var args = [value];
-          if (!isArray(replacer)) {
-            var replaceFn = ES.IsCallable(replacer) ? replacer : null;
-            var wrappedReplacer = function(key, val) {
-              var parsedValue = replaceFn ? _call(replaceFn, this, key, val) : val;
-              if (typeof parsedValue !== 'symbol') {
-                if (Type.symbol(parsedValue)) {
-                  return assignTo({})(parsedValue);
-                } else {
-                  return parsedValue;
-                }
-              }
-            };
-            args.push(wrappedReplacer);
-          } else {
-            args.push(replacer);
-          }
-          if (arguments.length > 2) {
-            args.push(arguments[2]);
-          }
-          return origStringify.apply(this, args);
-        });
-      }
-      return globals;
-    }));
-  })($__require('process'));
-  global.define = __define;
-  return module.exports;
-});
-
-System.registerDynamic("npm:es6-shim@0.34.2", ["npm:es6-shim@0.34.2/es6-shim"], true, function($__require, exports, module) {
-  ;
-  var global = this,
-      __define = global.define;
-  global.define = undefined;
-  module.exports = $__require('npm:es6-shim@0.34.2/es6-shim');
-  global.define = __define;
-  return module.exports;
-});
-
-System.register('laxar', ['npm:babel-runtime@5.8.34/core-js/object/keys', 'angular', './lib/logging/log', './lib/directives/directives', './lib/event_bus/event_bus', './lib/file_resource_provider/file_resource_provider', './lib/i18n/i18n', './lib/loaders/widget_loader', './lib/utilities/assert', './lib/utilities/configuration', './lib/utilities/fn', './lib/utilities/object', './lib/utilities/path', './lib/utilities/storage', './lib/utilities/string', './lib/runtime/runtime', './lib/runtime/runtime_dependencies', './lib/runtime/controls_service', './lib/runtime/theme_manager', './lib/widget_adapters/adapters'], function (_export) {var _Object$keys, ng, log, directives, eventBus, fileResourceProvider, i18n, widgetLoader, assert, configuration, fn, object, path, storage, string, runtime, runtimeDependencies, controlsService, themeManager, adapters, 
-
-
-
-
-
-
-
-
-
+System.register('laxar.js', ['npm:babel-runtime@5.8.34/helpers/sliced-to-array.js', 'npm:babel-runtime@5.8.34/core-js/object/keys.js', './lib/logging/log', './lib/event_bus/event_bus', './lib/file_resource_provider/file_resource_provider', './lib/i18n/i18n', './lib/loaders/widget_loader', './lib/utilities/assert', './lib/utilities/configuration', './lib/utilities/fn', './lib/utilities/object', './lib/utilities/path', './lib/utilities/storage', './lib/utilities/string', './lib/runtime/services', './lib/runtime/controls_service', './lib/runtime/theme_manager', './lib/widget_adapters/adapters', './lib/tooling/pages'], function (_export) {var _slicedToArray, _Object$keys, log, eventBus, fileResourceProvider, i18n, widgetLoader, assert, configuration, fn, object, path, storage, string, createServices, controlsService, themeManager, adapters, pageToolingApi, 
 
 
 
@@ -14483,16 +11295,17 @@ System.register('laxar', ['npm:babel-runtime@5.8.34/core-js/object/keys', 'angul
               *    all AngularJS modules that should instantly be loaded (most probably the widgets)
               * @param {{create: Function}[]} optionalWidgetAdapters
               *    an optional array of user-defined widget adapter modules
-              */function bootstrap(widgetModules, optionalWidgetAdapters) {setInstanceIdLogTag();findAndLogDeprecatedSettings();log.trace('Bootstrapping LaxarJS...');if (optionalWidgetAdapters && Array.isArray(optionalWidgetAdapters)) {adapters.addAdapters(optionalWidgetAdapters);}var dependencies = [runtime.module.name, runtimeDependencies.name];_Object$keys(widgetModules).forEach(function (technology) {var adapter = adapters.getFor(technology);if (!adapter) {log.error('Unknown widget technology: [0]', technology);return;}var module = adapter.bootstrap(widgetModules[technology]);if (module && module.name) {dependencies.push(module.name);}});ng.element(document).ready(function bootstrap() {ng.bootstrap(document, dependencies);});} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function findAndLogDeprecatedSettings() {var deprecatedConfiguration = { 'event_bus.timeout_ms': 'eventBusTimeoutMs', 'file_resource_provider.listings': 'fileListings', 'file_resource_provider.fileListings': 'fileListings', 'file_resource_provider.useEmbedded': 'useEmbeddedFileListings', 'portal.useMergedCss': 'useMergedCss', 'portal.theme': 'theme', 'portal.flow.entryPoint': 'flow.entryPoint', 'portal.flow.exitPoints': 'flow.exitPoints' }; // Obtain global object in strict mode: http://stackoverflow.com/questions/3277182/
-      /*jshint evil:true*/var global = new Function('return this')();ng.forEach(deprecatedConfiguration, function (newLocation, oldLocation) {var oldValue = object.path(global.laxar, oldLocation);if (oldValue !== undefined) {log.warn('Found deprecated configuration key "[0]". Use "[1]" instead.', oldLocation, newLocation);var newValue = object.path(global.laxar, newLocation);if (newValue === undefined) {object.setPath(global.laxar, newLocation, oldValue);}}});} ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-   function setInstanceIdLogTag() {var instanceIdStorageKey = 'axLogTags.INST';var store = storage.getApplicationSessionStorage();var instanceId = store.getItem(instanceIdStorageKey);if (!instanceId) {instanceId = '' + new Date().getTime() + Math.floor(Math.random() * 100);store.setItem(instanceIdStorageKey, instanceId);}log.addTag('INST', instanceId);} // API to leverage tooling support.
+              */function bootstrap(widgetModules, optionalWidgetAdapters) {setInstanceIdLogTag();log.trace('Bootstrapping LaxarJS...');var services = createServices(configuration);loadThemeCss(services);if (optionalWidgetAdapters && Array.isArray(optionalWidgetAdapters)) {adapters.addAdapters(optionalWidgetAdapters);}_Object$keys(widgetModules).forEach(function (technology) {var adapter = adapters.getFor(technology);if (!adapter) {log.error('Unknown widget technology: [0]', technology);return;}adapter.bootstrap(widgetModules[technology], services);});whenDocumentReady(function () {log.trace('Loading flow from "' + services.paths.FLOW_JSON + '"');services.pageService.createControllerFor(document.querySelector('[data-ax-page]'));services.flowService.controller().loadFlow(services.paths.FLOW_JSON).then(function () {return log.trace('Flow loaded');}, function (err) {return log.fatal(err);});});} //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function setInstanceIdLogTag() {var instanceIdStorageKey = 'axLogTags.INST';var store = storage.getApplicationSessionStorage();var instanceId = store.getItem(instanceIdStorageKey);if (!instanceId) {instanceId = '' + Date.now() + Math.floor(Math.random() * 100);store.setItem(instanceIdStorageKey, instanceId);}log.addTag('INST', instanceId);} //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function loadThemeCss(services) {services.themeManager.urlProvider(path.join(services.paths.THEMES, '[theme]'), null, [services.paths.DEFAULT_THEME]).provide(['css/theme.css']).then(function (_ref) {var _ref2 = _slicedToArray(_ref, 1);var cssFile = _ref2[0];return services.cssLoader.load(cssFile);});} //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   function whenDocumentReady(callback) {if (document.readyState === 'complete') {callback();} else {document.addEventListener('DOMContentLoaded', callback);}} //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   // API to leverage tooling support.
    // Not for direct use by widgets/activities!
    //  - laxar-mocks needs this for widget tests
-   //  - laxar-patterns needs this to have the same (mocked) q version as the event bus
-   return { setters: [function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_angular) {ng = _angular['default'];}, function (_libLoggingLog) {log = _libLoggingLog['default'];}, function (_libDirectivesDirectives) {directives = _libDirectivesDirectives;}, function (_libEvent_busEvent_bus) {eventBus = _libEvent_busEvent_bus;}, function (_libFile_resource_providerFile_resource_provider) {fileResourceProvider = _libFile_resource_providerFile_resource_provider;}, function (_libI18nI18n) {i18n = _libI18nI18n;}, function (_libLoadersWidget_loader) {widgetLoader = _libLoadersWidget_loader;}, function (_libUtilitiesAssert) {assert = _libUtilitiesAssert['default'];}, function (_libUtilitiesConfiguration) {configuration = _libUtilitiesConfiguration;}, function (_libUtilitiesFn) {fn = _libUtilitiesFn['default'];}, function (_libUtilitiesObject) {object = _libUtilitiesObject;}, function (_libUtilitiesPath) {path = _libUtilitiesPath;}, function (_libUtilitiesStorage) {storage = _libUtilitiesStorage['default'];}, function (_libUtilitiesString) {string = _libUtilitiesString;}, function (_libRuntimeRuntime) {runtime = _libRuntimeRuntime['default'];}, function (_libRuntimeRuntime_dependencies) {runtimeDependencies = _libRuntimeRuntime_dependencies;}, function (_libRuntimeControls_service) {controlsService = _libRuntimeControls_service;}, function (_libRuntimeTheme_manager) {themeManager = _libRuntimeTheme_manager;}, function (_libWidget_adaptersAdapters) {adapters = _libWidget_adaptersAdapters;}], execute: function () {/**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * Copyright 2015 aixigo AG
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * Released under the MIT license.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * http://laxarjs.org/license
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */'use strict';_tooling = { controlsService: controlsService, eventBus: eventBus, fileResourceProvider: fileResourceProvider, path: path, themeManager: themeManager, widgetAdapters: adapters, widgetLoader: widgetLoader, runtimeDependenciesModule: runtimeDependencies, provideQ: function provideQ() {return runtime.api.provideQ();} }; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-         _export('assert', assert);_export('bootstrap', bootstrap);_export('configuration', configuration);_export('directives', directives);_export('fn', fn);_export('i18n', i18n);_export('log', log);_export('object', object);_export('storage', storage);_export('string', string);_export('_tooling', _tooling);} };});
+   return { setters: [function (_babelRuntimeHelpersSlicedToArray) {_slicedToArray = _babelRuntimeHelpersSlicedToArray['default'];}, function (_babelRuntimeCoreJsObjectKeys) {_Object$keys = _babelRuntimeCoreJsObjectKeys['default'];}, function (_libLoggingLog) {log = _libLoggingLog['default'];}, function (_libEvent_busEvent_bus) {eventBus = _libEvent_busEvent_bus;}, function (_libFile_resource_providerFile_resource_provider) {fileResourceProvider = _libFile_resource_providerFile_resource_provider;}, function (_libI18nI18n) {i18n = _libI18nI18n;}, function (_libLoadersWidget_loader) {widgetLoader = _libLoadersWidget_loader;}, function (_libUtilitiesAssert) {assert = _libUtilitiesAssert['default'];}, function (_libUtilitiesConfiguration) {configuration = _libUtilitiesConfiguration;}, function (_libUtilitiesFn) {fn = _libUtilitiesFn['default'];}, function (_libUtilitiesObject) {object = _libUtilitiesObject;}, function (_libUtilitiesPath) {path = _libUtilitiesPath;}, function (_libUtilitiesStorage) {storage = _libUtilitiesStorage['default'];}, function (_libUtilitiesString) {string = _libUtilitiesString;}, function (_libRuntimeServices) {createServices = _libRuntimeServices.create;}, function (_libRuntimeControls_service) {controlsService = _libRuntimeControls_service;}, function (_libRuntimeTheme_manager) {themeManager = _libRuntimeTheme_manager;}, function (_libWidget_adaptersAdapters) {adapters = _libWidget_adaptersAdapters;}, function (_libToolingPages) {pageToolingApi = _libToolingPages['default'];}], execute: function () {/**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * Copyright 2016 aixigo AG
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * Released under the MIT license.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              * http://laxarjs.org/license
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              */'use strict';_tooling = { controlsService: controlsService, eventBus: eventBus, fileResourceProvider: fileResourceProvider, path: path, themeManager: themeManager, widgetAdapters: adapters, widgetLoader: widgetLoader, // Prototype support for page inspection tools:
+            pages: pageToolingApi }; //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+         _export('assert', assert);_export('bootstrap', bootstrap);_export('configuration', configuration);_export('fn', fn);_export('i18n', i18n);_export('log', log);_export('object', object);_export('storage', storage);_export('string', string);_export('_tooling', _tooling);} };});
