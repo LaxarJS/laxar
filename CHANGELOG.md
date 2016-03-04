@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#264](https://github.com/LaxarJS/laxar/issues/264): configuration: paths are now configurable via application configuration
+    + **BREAKING CHANGE:** see ticket for details
+
 
 ## v2.0.0-alpha.0
 
