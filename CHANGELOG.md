@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#277](https://github.com/LaxarJS/laxar/issues/277): loaders: Fix problem with insertBeforeId in compositions
+- [#274](https://github.com/LaxarJS/laxar/issues/274): loaders: Fix handling of compositions without '.' area
 - [#268](https://github.com/LaxarJS/laxar/issues/268): EventBus: fixed handling of single `did` response after multiple requests with individual `will` responses
 - [#255](https://github.com/LaxarJS/laxar/issues/255): tooling: fixed test and enabled it for grunt-karma
 - [#254](https://github.com/LaxarJS/laxar/issues/254): documentation: improved and updated manuals
