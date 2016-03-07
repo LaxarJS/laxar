@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#279](https://github.com/LaxarJS/laxar/issues/279): bootstrapping: a custom node for the page can now be used
+    + **BREAKING CHANGE:** see ticket for details
 - [#264](https://github.com/LaxarJS/laxar/issues/264): configuration: paths are now configurable via application configuration
     + **BREAKING CHANGE:** see ticket for details
 
