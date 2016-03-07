@@ -22,23 +22,45 @@ import * as adapters from './lib/widget_adapters/adapters';
 import pageToolingApi from './lib/tooling/pages';
 
 
+let widgetModules = [];
+
 /**
- * Bootstraps AngularJS on the current `window.document` and sets up the LaxarJS runtime. All AngularJS
- * module names of widgets that are passed to this method will be passed to `angular.bootstrap` as initial
- * dependencies, along with internal laxar modules. This is needed because AngularJS currently doesn't
- * support lazy loading of modules. The `portal_angular_dependencies` grunt task of LaxarJS will collect
- * all widgets reachable for the given `flow.json`, define them as dependencies of an amd module, that will
- * return the names of their respective AngularJS modules. This list of module names can simply be passed
- * to the `boostrap` method.
+ * Register all additional widget adapter modules that will be used. Only the adapter for plain JavaScript
+ * widgets is included.
  *
  * @memberOf laxar
  *
- * @param {String[]} widgetModules
- *    all AngularJS modules that should instantly be loaded (most probably the widgets)
- * @param {{create: Function}[]} optionalWidgetAdapters
- *    an optional array of user-defined widget adapter modules
+ * @param {Object[]} widgetAdapters the widget adapter modules to register
  */
-function bootstrap( widgetModules, optionalWidgetAdapters ) {
+export function registerWidgetAdapters( widgetAdapters ) {
+   adapters.addAdapters( widgetAdapters );
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Register all widget modules that will be available throughout the LaxarJS application. Note that for every
+ * integration technology there needs to be a registered adapter available.
+ * See {@link #registerWidgetAdapters()}.
+ *
+ * @memberOf laxar
+ *
+ * @param  {Object[]} modules the widget modules to register
+ */
+export function registerWidgetModules( modules ) {
+   widgetModules = modules;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Bootstraps AngularJS on the provided `anchorElement` and sets up the LaxarJS runtime.
+ *
+ * @memberOf laxar
+ *
+ * @param {HTMLElement} anchorElement the element to insert the page in
+ */
+export function bootstrap( anchorElement ) {
 
    setInstanceIdLogTag();
 
@@ -47,11 +69,7 @@ function bootstrap( widgetModules, optionalWidgetAdapters ) {
    const services = createServices( configuration );
    loadThemeCss( services );
 
-   if( optionalWidgetAdapters && Array.isArray( optionalWidgetAdapters ) ) {
-      adapters.addAdapters( optionalWidgetAdapters );
-   }
-
-   Object.keys( widgetModules ).forEach( function( technology ) {
+   Object.keys( widgetModules ).forEach( technology => {
       const adapter = adapters.getFor( technology );
       if( !adapter ) {
          log.error( 'Unknown widget technology: [0]', technology );
@@ -63,10 +81,13 @@ function bootstrap( widgetModules, optionalWidgetAdapters ) {
 
    whenDocumentReady( () => {
       log.trace( `Loading flow from "${services.paths.FLOW_JSON}"` );
-      services.pageService.createControllerFor( document.querySelector( '[data-ax-page]' ) );
+      services.pageService.createControllerFor( anchorElement );
       services.flowService.controller()
          .loadFlow( services.paths.FLOW_JSON )
-         .then( () => log.trace( 'Flow loaded' ), err => log.fatal( err ) );
+         .then( () => log.trace( 'Flow loaded' ), err => {
+            log.fatal( 'Failed to load' );
+            log.fatal( 'Error [0].\nStack: [1]', err, err.stack );
+         } );
    } );
 }
 
@@ -106,9 +127,8 @@ function whenDocumentReady( callback ) {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// API to leverage tooling support.
-// Not for direct use by widgets/activities!
-//  - laxar-mocks needs this for widget tests
+// API to leverage tooling support. Not for direct use by widgets/activities!
+// For example laxar-mocks needs this for widget tests
 const _tooling = {
    controlsService: controlsService,
    eventBus: eventBus,
@@ -125,7 +145,6 @@ const _tooling = {
 
 export {
    assert,
-   bootstrap,
    configuration,
    fn,
    i18n,
