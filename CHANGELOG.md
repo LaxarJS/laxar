@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#285](https://github.com/LaxarJS/laxar/issues/285): page loader: improved error message for missing composition
 - [#277](https://github.com/LaxarJS/laxar/issues/277): loaders: Fix problem with insertBeforeId in compositions
 - [#274](https://github.com/LaxarJS/laxar/issues/274): loaders: Fix handling of compositions without '.' area
 - [#268](https://github.com/LaxarJS/laxar/issues/268): EventBus: fixed handling of single `did` response after multiple requests with individual `will` responses
