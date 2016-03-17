@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.2.3
+
 - [#285](https://github.com/LaxarJS/laxar/issues/285): page loader: improved error message for missing composition
 
 
