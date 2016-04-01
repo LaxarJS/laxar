@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#289](https://github.com/LaxarJS/laxar/issues/289): page loader: merged namespaces for widget- and composition-ids
+
 
 ## v1.2.3
 
