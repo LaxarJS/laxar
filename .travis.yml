@@ -7,3 +7,6 @@ notifications:
    irc:
       channels: "chat.freenode.net#laxarjs"
       template: "%{repository_slug} (%{commit}) [%{branch}]: %{message}"
+branches:
+   except:
+      - /^feature\/.*$/
