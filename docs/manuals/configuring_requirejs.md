@@ -1,18 +1,17 @@
+# Configuring RequireJS for Widgets and Controls
+
 [« return to the manuals](index.md)
+
+## The Need for Configuration
+
+Widgets and Controls perform very different tasks and are of varying complexity.
+In many cases only the event bus is needed as communication interface and all logic is contained within the implementation of an artifact.
 
 Preliminary readings:
 
 * [Widgets and Activities](widgets_and_activities.md)
 * [Infrastructure and Tools](infrastructure_and_tools.md)
 
-
-# Configuring RequireJS for Widgets and Controls
-
-
-## The Need for Configuration
-
-Widgets and Controls perform very different tasks and are of varying complexity.
-In many cases only the event bus is needed as communication interface and all logic is contained within the implementation of an artifact.
 However, sooner or later one will come to a point, where third party libraries are useful or even necessary for a widget or control, or where own code should be extracted into a separate library.
 When using such external dependencies, it is never a good idea to assume a specific location for it.
 Instead, a widget should add a dependency to an according [named module](http://requirejs.org/docs/whyamd.html#namedmodules), where the actual location of a module can then be configured independently by using the [configuration API of RequireJS](http://requirejs.org/docs/api.html).

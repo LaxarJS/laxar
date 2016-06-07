@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#295](https://github.com/LaxarJS/laxar/issues/295): documentation: fixed order of preliminary readings
+
 
 ## v1.2.4
 

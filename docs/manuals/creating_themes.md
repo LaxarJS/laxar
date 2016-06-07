@@ -1,19 +1,17 @@
-[« return to the manuals](index.md)
-
-Preliminary readings:
-
-* [LaxarJS Core Concepts](../concepts.md)
-* [Widgets and Activities](./widgets_and_activities.md)
-* [Writing Pages](./writing_pages.md)
-
-
 # Creating Themes
+
+[« return to the manuals](index.md)
 
 Sometimes you would like to use _one widget_ in _two or more applications_.
 For this, usually you want the widget to _behave identically_, but _look differently_.
 Alternatively, sometimes you would like to offer the same application in different appearances.
 LaxarJS has the concept of _themes_ to help you achieve these things.
 
+Preliminary readings:
+
+* [LaxarJS Core Concepts](../concepts.md)
+* [Widgets and Activities](./widgets_and_activities.md)
+* [Writing Pages](./writing_pages.md)
 
 ## Why Themes?
 

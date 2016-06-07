@@ -1,4 +1,9 @@
+# Assets and the FileResourceProvider
+
 [« return to the manuals](index.md)
+
+Widgets and controls depend on various non-JavaScript resources which have to be loaded into the browser somehow.
+These resources are also called *assets*.
 
 Preliminary readings:
 
@@ -6,11 +11,6 @@ Preliminary readings:
 * [Creating Themes](creating_themes.md)
 * [Infrastructure and Tools](infrastructure_and_tools.md)
 
-
-# Assets and the FileResourceProvider
-
-Widgets and controls depend on various non-JavaScript resources which have to be loaded into the browser somehow.
-These resources are also called *assets*.
 Because of the LaxarJS themes feature, the specific set of HTML/CSS assets used by any widget always depend on the application where it is used.
 
 In order to avoid excessive configuration, assets are selected based on their path in the directory tree of an application.

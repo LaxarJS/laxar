@@ -1,15 +1,13 @@
-[« return to the manuals](index.md)
-
-Preliminary readings:
-
-* [LaxarJS Core Concepts](../concepts.md)
-
-
 # Widgets and Activities
+
+[« return to the manuals](index.md)
 
 Widgets and activities are the _"work horse"_ of any LaxarJS application.
 They make up the bulk of the user interface and provide all client-side application logic.
 
+Preliminary readings:
+
+* [LaxarJS Core Concepts](../concepts.md)
 
 ## Widget Responsibilities
 
