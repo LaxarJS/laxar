@@ -1,4 +1,8 @@
+# Working with Visibility Events
+
 [« return to the manuals](index.md)
+
+Visibility events help to improve performance by allowing widgets to determine if they are visible to the user or if they currently reside in the background.
 
 Preliminary readings:
 
@@ -6,11 +10,6 @@ Preliminary readings:
 * [Widgets and Activities](widgets_and_activities.md)
 * [Events and Publish/Subscribe](events.md)
 * [Writing Pages](writing_pages.md)
-
-
-# Working with Visibility Events
-
-> Visibility events help to improve performance by allowing widgets to determine if they are visible to the user or if they currently reside in the background.
 
 Note that while this manual is rather longish, there is a [TL;DR](#summary-tldr) at the bottom.
 

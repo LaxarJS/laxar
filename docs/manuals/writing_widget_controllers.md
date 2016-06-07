@@ -1,15 +1,15 @@
+# Writing Widget Controllers
+
 [« return to the manuals](index.md)
+
+The basic layout and properties of a widget controller and its module depend on the underlying integration technology.
 
 Preliminary readings:
 
 * [LaxarJS Core Concepts](../concepts.md)
 * [Widgets and Activities](widgets_and_activities.md)
 
-
-# Writing Widget Controllers
-
-The basic layout and properties of a widget controller and its module depend on the underlying integration technology.
-As soon as this is set up, communication mostly takes place over the event bus using common [events](events.md), and all functional code is written in the style specific to the corresponding technology.
+As soon as the controller has been instantiated, communication mostly takes place over the event bus using common [events](events.md), and all functionality is written in the style specific to the corresponding technology.
 Additionally some libraries may be used to simplify recurring tasks, like e.g. [LaxarJS Patterns](https://github.com/LaxarJS/laxar-patterns/) for common event bus interaction patterns.
 
 The purpose of this manual is to describe how a basic setup for a widget using one of the built-in technologies is established.

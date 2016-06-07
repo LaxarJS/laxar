@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#295](https://github.com/LaxarJS/laxar/issues/295): documentation: fixed order of preliminary readings
 - [#289](https://github.com/LaxarJS/laxar/issues/289): page loader: merged namespaces for widget- and composition-ids
 - [#285](https://github.com/LaxarJS/laxar/issues/285): page loader: improved error message for missing composition
 - [#277](https://github.com/LaxarJS/laxar/issues/277): loaders: Fix problem with insertBeforeId in compositions

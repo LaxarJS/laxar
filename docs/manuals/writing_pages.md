@@ -1,15 +1,14 @@
+# Writing Pages
+
 [« return to the manuals](index.md)
+
+Pages are written in a declarative fashion using the JSON format.
+They are defined using a simple object with some specific properties that will be explained in this document.
 
 Preliminary readings:
 
 * [LaxarJS Core Concepts](../concepts.md)
 * [Widgets and Activities](widgets_and_activities.md)
-
-
-# Writing Pages
-
-Pages are written in a declarative fashion using the JSON format.
-Starting point is a simple object and some specific properties that will be explained in this document.
 
 
 ## <a name="layouts_and_areas"></a>Layouts and Areas

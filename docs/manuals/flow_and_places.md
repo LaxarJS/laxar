@@ -1,4 +1,9 @@
+# Flow and Places
+
 [« return to the manuals](index.md)
+
+Every application consisting of more than one page needs a concept for navigating between these pages.
+In LaxarJS this is achieved by a *flow* defining a set of *places* in a declarative fashion.
 
 Preliminary readings:
 
@@ -6,14 +11,10 @@ Preliminary readings:
 * [Configuration](configuration.md)
 * [Writing Pages](writing_pages.md)
 
-
-# Flow and Places
-
-Every application consisting of more than one page needs a concept for navigating between these pages.
-In LaxarJS this is achieved by a *flow* defining a set of *places* in a declarative fashion.
 Each place corresponds to a single page that should be rendered, or some other content displayed to the user.
 Currently the definition of one single flow file is possible, which can by default be found within the application at the path `application/flow/flow.json`.
 This can be adjusted as `laxar-path-flow` in the *require configuration* of your application.
+
 
 Let us start with an example for a simple `flow.json` file:
 

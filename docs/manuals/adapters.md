@@ -1,15 +1,15 @@
+# Creating an Adapter for a new Widget Technology
+
 [« return to the manuals](index.md)
+
+LaxarJS widgets do not have to be written using AngularJS.
+While [our own widgets](http://laxarjs.github.io/widget-browser) are usually written in AngularJS, this should not prevent you from using an (MVC) framework of your choice, such as [Backbone.js](http://backbonejs.org), [Knockout](http://knockoutjs.com/) or [React](https://facebook.github.io/react/).
 
 Preliminary readings:
 
 * [Widgets and Activities](widgets_and_activities.md)
 * [Infrastructure and Tools](infrastructure_and_tools.md)
 
-
-# Creating an Adapter for a new Widget Technology
-
-LaxarJS widgets do not have to be written using AngularJS.
-While [our own widgets](http://laxarjs.github.io/widget-browser) are usually written in AngularJS, this should not prevent you from using an (MVC) framework of your choice, such as [Backbone.js](http://backbonejs.org), [Knockout](http://knockoutjs.com/) or [React](https://facebook.github.io/react/).
 Because widgets communicate through the event bus only, you could rewrite any widget within your application in any framework you like, and none of the other widgets would be any the wiser.
 This is a great way to upgrade step-by-step from an older technology to newer tools, because only a single widget at a time is at risk, not your entire application.
 

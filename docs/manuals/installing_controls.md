@@ -1,10 +1,10 @@
-[« return to the manuals](index.md)
+# Installing Controls
 
-## Installing Controls
+[« return to the manuals](index.md)
 
 You can use third party controls or the LaxarJS controls which are available via Bower.
 Alternatively you can clone them using git.
-We published the controls on [github](https://github.com/LaxarJS?utf8=%E2%9C%93&query=control).
+We published our controls on [github](https://github.com/LaxarJS?utf8=%E2%9C%93&query=control).
 
 
 ## Usage

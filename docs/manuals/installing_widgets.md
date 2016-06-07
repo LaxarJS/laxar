@@ -1,16 +1,15 @@
+# Installing Third Party Widgets
+
 [« return to the manuals](index.md)
+
+One of [the advantages](../why_laxar.md) of LaxarJS is the concept of isolated, reusable widgets.
+This begs the question as to how an existing LaxarJS widget can be added to your application.
 
 Preliminary readings:
 
 * [LaxarJS Core Concepts](../concepts.md)
 * [Widgets and Activities](widgets_and_activities.md)
 * [Writing Pages](writing_pages.md)
-
-
-# Installing Third Party Widgets
-
-One of [the advantages](../why_laxar.md) of LaxarJS is the concept of isolated, reusable widgets.
-This begs the question as to how an existing LaxarJS widget can be added to your application.
 
 
 ## Installing Widgets Using Bower

@@ -1,14 +1,13 @@
+# Events and Publish-Subscribe
+
 [« return to the manuals](index.md)
+
+The key concept that distinguishes LaxarJS applications from other AngularJS applications is the _publish-subscribe_ (or _pub/sub)_ architecture.
+It helps to isolate building blocks such as widgets and activities by moving the coupling from implementation (no module imports, no service contracts) to configuration (of event topics).
 
 Preliminary readings:
 
 * [LaxarJS Core Concepts](../concepts.md)
-
-
-# Events and Publish-Subscribe
-
-The key concept that distinguishes LaxarJS applications from other AngularJS applications is the _publish-subscribe_ (or _pub/sub)_ architecture.
-It helps to isolate building blocks such as widgets and activities by moving the coupling from implementation (no module imports, no service contracts) to configuration (of event topics).
 
 LaxarJS consistently uses the term _events_ rather than _messages_, to point out two key aspects of its pub/sub-architecture:
  * events convey information about _what happened_ (rather than _who is receiver_)
