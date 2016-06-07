@@ -1,4 +1,11 @@
+# Infrastructure and Tools
+
 [« return to the manuals](index.md)
+
+What does actually happen when you navigate to a LaxarJS page using the browser?
+How does LaxarJS load your widgets, their assets and styles?
+And what is the difference between the `debug.html` and `index.html` in the application template?
+Read on to understand the inner workings of a LaxarJS application.
 
 Preliminary readings:
 
@@ -6,14 +13,6 @@ Preliminary readings:
 
 > *Note:* with LaxarJS v1.1.0, the grunt-based infrastructure has been completely overhauled.
 > For the previous manual, make sure to browse the [v1.0.0 documentation](https://github.com/LaxarJS/laxar/blob/v1.0.0/docs/manuals/infrastructure_and_tools.md).
-
-
-# Infrastructure and Tools
-
-What does actually happen when you navigate to a LaxarJS page using the browser?
-How does LaxarJS load your widgets, their assets and styles?
-And what is the difference between the `debug.html` and `index.html` in the application template?
-Read on to understand the inner workings of a LaxarJS application.
 
 ## Application Lifecycle
 

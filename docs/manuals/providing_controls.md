@@ -1,15 +1,15 @@
+# Controls and Libraries
+
 [« return to the manuals](index.md)
+
+In LaxarJS, any non-trivial HTML element, [HTML5 Web Component](http://webcomponents.org/) or [AngularJS directive](https://docs.angularjs.org/guide/directive) is considered a _control_.
+While widgets and activities deal with business logic, controls handle the technical details of user interaction.
 
 Preliminary readings:
 
 * [LaxarJS Core Concepts](../concepts.md)
 * [Widgets and Activities](./widgets_and_activities.md)
 
-
-# Controls and Libraries
-
-In LaxarJS, any non-trivial HTML element, [HTML5 Web Component](http://webcomponents.org/) or [AngularJS directive](https://docs.angularjs.org/guide/directive) is considered a _control_.
-While widgets and activities deal with business logic, controls handle the technical details of user interaction.
 To provide their business logic, widgets and activities often depend on libraries, which might be created by third parties or simply be used to share common functionality.
 In the latter case, be sure not to couple your controllers to tightly, e.g. a shared libraries should not allow to share state.
 

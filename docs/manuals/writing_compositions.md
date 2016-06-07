@@ -1,14 +1,14 @@
+# Writing Compositions
+
 [« return to the manuals](index.md)
+
+Although inheritance brings a bit of organization into pages, for bigger applications with many widgets on a page this may  not be sufficient. *Compositions* are here to help you.
 
 Preliminary readings:
 
 * [LaxarJS Core Concepts](../concepts.md)
 * [Writing Pages](writing_pages.md)
 
-
-# Writing Compositions
-
-Although inheritance brings a bit of organization into pages, for bigger applications with many widgets on a page this may  not be sufficient.
 Very often most of a base page fits for all pages but some small things need to be adjusted for some of the pages that could otherwise be reused throughout the application.
 Another use case is to enable the reuse of a bundle of widgets multiple times within one page, each time only with some different configuration.
 

@@ -1,13 +1,13 @@
+# LaxarJS Configuration in an Application
+
 [« return to the manuals](index.md)
+
+LaxarJS has a built-in configuration API which is available to libraries and widgets as `laxar.configuration`.
+In contrast to the bower- and RequireJS-configuration, this configuration is designed to be used at application run time.
 
 Preliminary readings:
 
 * [Widgets and Activities](widgets_and_activities.md)
-
-# LaxarJS Configuration in an Application
-
-LaxarJS has a built-in configuration API which is available to libraries and widgets as `laxar.configuration`.
-In contrast to the bower- and RequireJS-configuration, this configuration is designed to be used at application run time.
 
 
 ## What is LaxarJS Configuration Used for?

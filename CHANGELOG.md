@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#295](https://github.com/LaxarJS/laxar/issues/295): documentation: fixed order of preliminary readings
 - [#279](https://github.com/LaxarJS/laxar/issues/279): bootstrapping: a custom node for the page can now be used
     + **BREAKING CHANGE:** see ticket for details
 - [#264](https://github.com/LaxarJS/laxar/issues/264): configuration: paths are now configurable via application configuration
