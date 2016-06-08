@@ -1,5 +1,5 @@
 
-# object
+# string
 
 Utilities for dealing with strings.
 
