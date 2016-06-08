@@ -45,7 +45,7 @@ What do the individual elements mean?
 
   * The `axPage` directive determines where LaxarJS will place the layout for the current page.
 
-  * The `ngView` directive integrates the [$ngRoute](https://docs.angularjs.org/api/ngRoute)-service, which the [LaxarJS flow](./flow_and_pages.md) uses for URL routing.
+  * The `ngView` directive integrates the [$ngRoute](https://docs.angularjs.org/api/ngRoute)-service, which the [LaxarJS flow](./flow_and_places.md) uses for URL routing.
 
   * The `application/application.js` contains the [LaxarJS configuration](./configuration.md) for your application.
     The `data-ax-application-mode` attribute allows to differentiate configuration between _DEBUG_ and _PRODUCTION_ mode.
