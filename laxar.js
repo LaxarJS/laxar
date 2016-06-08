@@ -18,40 +18,9 @@ import * as string from './lib/utilities/string';
 import { create as createServices } from './lib/runtime/services';
 import * as controlsService from './lib/runtime/controls_service';
 import * as themeManager from './lib/runtime/theme_manager';
-import * as adapters from './lib/widget_adapters/adapters';
+import * as plainAdapter from './lib/widget_adapters/plain_adapter';
 import pageToolingApi from './lib/tooling/pages';
 
-
-let widgetModules = [];
-
-/**
- * Register all additional widget adapter modules that will be used. Only the adapter for plain JavaScript
- * widgets is included.
- *
- * @memberOf laxar
- *
- * @param {Object[]} widgetAdapters the widget adapter modules to register
- */
-export function registerWidgetAdapters( widgetAdapters ) {
-   adapters.addAdapters( widgetAdapters );
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/**
- * Register all widget modules that will be available throughout the LaxarJS application. Note that for every
- * integration technology there needs to be a registered adapter available.
- * See {@link #registerWidgetAdapters()}.
- *
- * @memberOf laxar
- *
- * @param  {Object[]} modules the widget modules to register
- */
-export function registerWidgetModules( modules ) {
-   widgetModules = modules;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Bootstraps AngularJS on the provided `anchorElement` and sets up the LaxarJS runtime.
@@ -60,24 +29,16 @@ export function registerWidgetModules( modules ) {
  *
  * @param {HTMLElement} anchorElement the element to insert the page in
  */
-export function bootstrap( anchorElement ) {
+export function bootstrap( anchorElement, { widgetAdapters, widgetModules } ) {
 
    setInstanceIdLogTag();
 
    log.trace( 'Bootstrapping LaxarJS...' );
 
-   const services = createServices( configuration );
+   const adapters = [ plainAdapter, ...widgetAdapters ];
+   const services = createServices( configuration, adapters );
    loadThemeCss( services );
-
-   Object.keys( widgetModules ).forEach( technology => {
-      const adapter = adapters.getFor( technology );
-      if( !adapter ) {
-         log.error( 'Unknown widget technology: [0]', technology );
-         return;
-      }
-
-      adapter.bootstrap( widgetModules[ technology ], services );
-   } );
+   bootstrapWidgetAdapters( services, adapters, widgetModules );
 
    whenDocumentReady( () => {
       log.trace( `Loading flow from "${services.paths.FLOW_JSON}"` );
@@ -116,6 +77,25 @@ function loadThemeCss( services ) {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+function bootstrapWidgetAdapters( services, adapters, widgetModules ) {
+   const widgetAdapters = {};
+   adapters.forEach( adapter => {
+      widgetAdapters[ adapter.technology ] = adapter;
+   } );
+
+   Object.keys( widgetModules ).forEach( technology => {
+      const adapter = widgetAdapters[ technology ];
+      if( !adapter ) {
+         log.fatal( 'Unknown widget technology: [0]', technology );
+         return;
+      }
+
+      adapter.bootstrap( widgetModules[ technology ], services );
+   } );
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function whenDocumentReady( callback ) {
    if( document.readyState === 'complete' ) {
       callback();
@@ -135,7 +115,6 @@ const _tooling = {
    fileResourceProvider: fileResourceProvider,
    path: path,
    themeManager: themeManager,
-   widgetAdapters: adapters,
    widgetLoader: widgetLoader,
    // Prototype support for page inspection tools:
    pages: pageToolingApi

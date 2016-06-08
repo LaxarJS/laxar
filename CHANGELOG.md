@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#281](https://github.com/LaxarJS/laxar/issues/281): bootstrapping: improved state encapsulation for adapters and modules
+    + **BREAKING CHANGE:** see ticket for details
 - [#295](https://github.com/LaxarJS/laxar/issues/295): documentation: fixed order of preliminary readings
 - [#279](https://github.com/LaxarJS/laxar/issues/279): bootstrapping: a custom node for the page can now be used
     + **BREAKING CHANGE:** see ticket for details
