@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#286](https://github.com/LaxarJS/laxar/issues/286): flow: fixed flow-validation error message format
 - [#277](https://github.com/LaxarJS/laxar/issues/277): loaders: Fix problem with insertBeforeId in compositions
 - [#274](https://github.com/LaxarJS/laxar/issues/274): loaders: Fix handling of compositions without '.' area
 - [#296](https://github.com/LaxarJS/laxar/issues/296): documentation: fixed string API doc module name
