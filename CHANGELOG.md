@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#293](https://github.com/LaxarJS/laxar/issues/293): loaders: mention composition name and ID when composition features fail validation
 - [#281](https://github.com/LaxarJS/laxar/issues/281): bootstrapping: improved state encapsulation for adapters and modules
     + **BREAKING CHANGE:** see ticket for details
 - [#284](https://github.com/LaxarJS/laxar/issues/284): documentation: fixed broken link
