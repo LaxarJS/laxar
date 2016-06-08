@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#293](https://github.com/LaxarJS/laxar/issues/293): page loader: mention composition name and ID when composition features fail validation
 - [#284](https://github.com/LaxarJS/laxar/issues/284): documentation: fixed broken link
 - [#295](https://github.com/LaxarJS/laxar/issues/295): documentation: fixed order of preliminary readings
 - [#289](https://github.com/LaxarJS/laxar/issues/289): page loader: merged namespaces for widget- and composition-ids
