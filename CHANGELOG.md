@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.2.7
+
 - [#301](https://github.com/LaxarJS/laxar/issues/301) changelog: removed erroneous entry for (#293) from `v1.2.6`.
 
 
