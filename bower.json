@@ -1,31 +1,22 @@
 {
-   "name": "laxar",
-   "version": "2.0.0-alpha.0",
-   "description": "Building large applications is hard, so don't do that!",
-   "private": true,
-   "authors": [],
-   "license": "MIT",
-   "main": "laxar.js",
-   "ignore": [
-      ".*",
-      "Gruntfile.js",
-      "node_modules",
-      "bower_components",
-      "docs"
-   ],
-   "dependencies": {
-      "angular": "~1.3.16 || ~1.4.1",
-      "angular-mocks": "~1.3.16 || ~1.4.1",
-      "angular-sanitize": "~1.3.16 || ~1.4.1",
-      "angular-route": "~1.3.16 || ~1.4.1",
-      "jjv": "1.0.x",
-      "jjve": "silas/jjve#0.5.x",
-      "jquery": "1.11.x",
-      "q_mock": "LaxarJS/q_mock#0.1.x",
-      "requirejs": "2.1.x",
-      "requirejs-plugins": "1.0.x"
-   },
-   "devDependencies": {
-      "jasmine": "~1.3.1"
-   }
+  "name": "laxar",
+  "description": "Building large applications is hard, so don't do that!",
+  "main": "laxar.js",
+  "authors": [
+    "aixigo AG"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/LaxarJS/laxar",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jjve": "silas/jjve#^0.5.1",
+    "jjv": "^1.0.2",
+    "page": "^1.7.1"
+  }
 }
