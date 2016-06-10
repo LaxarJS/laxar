@@ -2,12 +2,13 @@
 
 ## Last Changes
 
+- [#301](https://github.com/LaxarJS/laxar/issues/301) changelog: removed erroneous entry for (#293) from `v1.2.6`.
+
 
 ## v1.2.6
 
 - [#296](https://github.com/LaxarJS/laxar/issues/296): documentation: fixed string API doc module name
 - [#297](https://github.com/LaxarJS/laxar/issues/297): project: updated .gitignore for better v2.0 compatibility
-- [#293](https://github.com/LaxarJS/laxar/issues/293): page loader: mention composition name and ID when composition features fail validation
 - [#284](https://github.com/LaxarJS/laxar/issues/284): documentation: fixed broken link
 
 
