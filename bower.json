@@ -11,8 +11,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "spec"
   ],
   "dependencies": {
     "jjve": "silas/jjve#^0.5.1",
