@@ -11,52 +11,45 @@
     "url": "https://github.com/LaxarJS/laxar.git"
   },
   "scripts": {
-    "test": "grunt test --continue",
-    "build": "node build.js",
-    "prepublish": "fixinstall && jspm install"
+    "prepublish": "npm run apidoc && npm run optimize",
+    "apidoc": "grunt apidoc",
+    "optimize": "webpack --config webpack.dist.config.js",
+    "test": "npm run karma && npm run eslint",
+    "browser-spec": "webpack --config webpack.browser-spec.config.js && webpack-dev-server --port 8201 --config webpack.browser-spec.config.js",
+    "karma": "karma start karma.config.js",
+    "eslint": "eslint laxar.js lib"
   },
   "dependencies": {
     "jjv": "~1.0.0",
-    "jjve": "~0.5.0"
+    "jjve": "~0.5.0",
+    "page": "~1.7.1"
   },
   "devDependencies": {
+    "babel-polyfill": "^6.9.1",
+    "eslint": "^2.13.1",
+    "glob": "^7.0.5",
     "grunt": "~0.4.4",
     "grunt-cli": "~0.1.13",
     "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-karma": "^0.12.1",
-    "grunt-laxar": "~1.0.0",
-    "grunt-markdown": "~0.5.0",
-    "gruntify-eslint": "^2.0.0",
+    "grunt-laxar": "^1.1.3",
     "jasmine-core": "^2.4.1",
-    "jspm": "^0.16.27",
-    "karma": "^0.13.19",
+    "karma": "^1.0.0",
     "karma-chrome-launcher": "^0.2.2",
     "karma-firefox-launcher": "^0.1.7",
+    "karma-ie-launcher": "^1.0.0",
     "karma-jasmine": "^0.3.6",
-    "karma-jspm": "^2.0.2",
     "karma-junit-reporter": "^0.3.8",
     "karma-phantomjs-launcher": "^0.2.3",
+    "karma-safari-launcher": "^1.0.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^1.7.0",
     "phantomjs": "^2.1.3",
-    "systemjs": "^0.19.17",
-    "systemjs-builder": "^0.15.3"
+    "sourcemapped-stacktrace": "^1.1.2",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
   },
   "bugs": {
     "url": "https://github.com/LaxarJS/laxar/issues",
     "email": "info@laxarjs.org"
-  },
-  "jspm": {
-    "configFile": "system.config.js",
-    "dependencies": {
-      "jjv": "npm:jjv@^1.0.2",
-      "jjve": "npm:jjve@^0.5.1",
-      "page": "npm:page@^1.6.4"
-    },
-    "devDependencies": {
-      "babel": "npm:babel-core@^5.8.24",
-      "babel-runtime": "npm:babel-runtime@^5.8.24",
-      "core-js": "npm:core-js@^1.1.4",
-      "laxar-jasmine-runner": "github:LaxarJS/laxar-jasmine-runner@^0.1.1"
-    }
   }
 }

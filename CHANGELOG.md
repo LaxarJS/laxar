@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#298](https://github.com/LaxarJS/laxar/issues/298): modules: load using webpack
+    + **BREAKING CHANGE:** see ticket for details
 - [#299](https://github.com/LaxarJS/laxar/issues/299): plain widget adapter: fixed injectable service names
 - [#291](https://github.com/LaxarJS/laxar/issues/291): page loader: merged namespaces for widget- and composition-ids
 - [#286](https://github.com/LaxarJS/laxar/issues/286): flow: fixed flow-validation error message format

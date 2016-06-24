@@ -4,6 +4,9 @@
 /dist
 /jspm_packages
 /karma-output
+/spec-output
 /node_modules
 .sass-cache
 npm-debug.log
+*.bundle.js
+*.js.map
