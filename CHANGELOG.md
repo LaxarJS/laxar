@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#303](https://github.com/LaxarJS/laxar/issues/298): modules: eliminated all global state
+    + **BREAKING CHANGE:** see ticket for details
 - [#298](https://github.com/LaxarJS/laxar/issues/298): modules: load using webpack
     + **BREAKING CHANGE:** see ticket for details
 - [#299](https://github.com/LaxarJS/laxar/issues/299): plain widget adapter: fixed injectable service names

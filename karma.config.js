@@ -3,7 +3,7 @@
 
 
 const webpackConfig = Object.assign( {}, require('./webpack.base.config') );
-delete webpackConfig.entry;
+delete webpackConfig.entry.laxar;
 delete webpackConfig.plugins;
 webpackConfig.devtool = 'inline-source-map';
 
@@ -15,11 +15,11 @@ module.exports = function(config) {
 
       // frameworks to use
       // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-      frameworks: ['jasmine'],
+      frameworks: [ 'jasmine' ],
 
       // list of files / patterns to load in the browser
       files: [
-         'node_modules/babel-polyfill/dist/polyfill.js',
+         'karma.polyfills.js',
          'lib/*/spec/spec-runner.js'
       ],
 
@@ -30,6 +30,7 @@ module.exports = function(config) {
       // preprocess matching files before serving them to the browser
       // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
       preprocessors: {
+         'karma.polyfills.js':  [ 'webpack', 'sourcemap' ],
          'lib/*/spec/spec-runner.js': [ 'webpack', 'sourcemap' ]
       },
       webpack: webpackConfig,

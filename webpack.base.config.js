@@ -3,7 +3,10 @@
 const path = require( 'path' );
 
 module.exports = {
-   entry: './laxar.js',
+   entry: {
+      laxar: './laxar.js',
+      polyfills: './karma.polyfills.js'
+   },
    module: {
       noParse: /bower_components\/page\/page\.js/,
       loaders: [
