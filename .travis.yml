@@ -9,6 +9,9 @@ before_install:
 node_js:
 - '0.12'
 - '0.10'
+branches:
+   except:
+      - /^feature\/.*$/
 notifications:
   irc:
     channels: 'chat.freenode.net#laxarjs'
