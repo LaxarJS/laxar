@@ -1,4 +1,4 @@
-/jspm_packages
 /.idea
 /.grunt
 /karma-output
+/spec-output

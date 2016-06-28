@@ -29,7 +29,7 @@ npm install -g generator-laxarjs
 
 _Note that_, depending on your workstation setup, you might have to use `sudo` when running `npm install` with the `-g` option.
 Make sure that your `PATH` includes the global `node_modules/bin` directory.
-For additional information and troubleshooting, consult the documentation of [npm](https://docs.npmjs.com) and [Yeoman](http://yeoman.io/learning) respectively. 
+For additional information and troubleshooting, consult the documentation of [npm](https://docs.npmjs.com) and [Yeoman](http://yeoman.io/learning) respectively.
 
 
 ### Create a LaxarJS Application from Our Template
@@ -110,3 +110,31 @@ Have fun developing your first LaxarJS application.
 
 Make sure to have a look at the [manuals](docs/manuals/index.md) and and check out the demo applications on the [LaxarJS website](http://laxarjs.org/).
 If you're already developing your first widgets and want to know which programmatic APIs are provided by LaxarJS, have a look at the [API docs](docs/api).
+
+
+
+### Hacking LaxarJS itself
+
+Instead of using a compiled library within a project, you can also clone this repository:
+
+```sh
+git clone https://github.com/LaxarJS/laxar.git
+cd laxar
+npm install
+```
+
+To see changes in your application, either configure your project to work with the sources (e.g. by using webpack), or rebuild the webpack bundles by running `npm run optimize`.
+
+To run the automated karma tests:
+
+```sh
+npm test
+```
+
+To generate HTML spec runners for opening in your web browser, so that you can e.g. use the browser's developer tools:
+
+```sh
+npm run browser-spec
+```
+
+Now you can select a spec-runner by surfing to http://localhost:8201/spec-output/.

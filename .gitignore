@@ -1,8 +1,12 @@
 /.idea
 /.grunt
-/jspm_packages
-/node_modules
+/bower_components
 /dist
+/jspm_packages
 /karma-output
-npm-debug.log
+/spec-output
+/node_modules
 .sass-cache
+npm-debug.log
+*.bundle.js
+*.js.map

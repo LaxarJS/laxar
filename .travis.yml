@@ -3,12 +3,9 @@ sudo: false
 env:
   global:
     secure: WJ90FlrmvbBvvAGsMbl20UzAPbQSBYA6txJx1Ft8I59cBpXeTuYhae98Hd7wF1DRMN9p8EMVuPS7bxxqlATX/ymffqqwbyZ7S4pNiChnP4Jx/AVYDNOtNMcFNcPJ6tGVSokq1L6ZfPTYV6ZltooP2ZV3eahsglvVobJ3zAl2vlE=
-before_install:
-- npm install -g jspm
-- jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN
 node_js:
-- '0.12'
-- '0.10'
+- '4'
+- '6'
 branches:
    except:
       - /^feature\/.*$/
