@@ -14,7 +14,6 @@ This module should not be used directly, but via the `axFileResourceProvider` se
 
 **Module Members**
 - [create](#create)
-- [init](#init)
 
 **Types**
 - [FileResourceProvider](#FileResourceProvider)
@@ -24,27 +23,20 @@ This module should not be used directly, but via the `axFileResourceProvider` se
   - [FileResourceProvider#setFileListingContents](#FileResourceProvider#setFileListingContents)
 
 ## Module Members
-#### <a name="create"></a>create( rootPath )
+#### <a name="create"></a>create( configuration, browser, rootPath )
 Creates and returns a new instance.
 
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
+| configuration | `Object` |  a laxarjs application configuration |
+| browser | `Object` |  a browser abstraction |
 | rootPath | `String` |  the path to the root of the application. It is needed to prefix relative paths found in a listing with an absolute prefix |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
 | `FileResourceProvider` |  a new instance |
-
-#### <a name="init"></a>init( q, httpClient )
-Initializes the module.
-
-##### Parameters
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| q | `Object` |  a promise library like AngularJS' `$q` |
-| httpClient | `Object` |  a http client whose api conforms to AngularJS' `$http` service |
 
 ## Types
 ### <a name="FileResourceProvider"></a>FileResourceProvider

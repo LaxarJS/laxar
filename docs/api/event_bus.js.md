@@ -9,7 +9,6 @@ can be injected via service or accessed as property on the AngularJS `$scope` or
 
 **Module Members**
 - [create](#create)
-- [init](#init)
 
 **Types**
 - [EventBus](#EventBus)
@@ -22,12 +21,15 @@ can be injected via service or accessed as property on the AngularJS `$scope` or
   - [EventBus#publishAndGatherReplies](#EventBus#publishAndGatherReplies)
 
 ## Module Members
-#### <a name="create"></a>create( optionalConfiguration )
+#### <a name="create"></a>create( nextTick, timeoutFunction, browser, optionalConfiguration )
 Creates and returns a new event bus instance using the given configuration.
 
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
+| nextTick | `Function` |  a next tick function like `process.nextTick` or AngularJS' `$timeout` |
+| timeoutFunction | `Function` |  a timeout function like `window.setTimeout`  or AngularJS' `$timeout` |
+| browser | `Object` |  a timeout function like `window.setTimeout`  or AngularJS' `$timeout` |
 | _optionalConfiguration_ | `Object` |  configuration for the event bus instance |
 | _optionalConfiguration.pendingDidTimeout_ | `Number` |  the timeout in milliseconds used by [EventBus#publishAndGatherReplies](#EventBus#publishAndGatherReplies). Default is 120000ms |
 
@@ -35,16 +37,6 @@ Creates and returns a new event bus instance using the given configuration.
 | Type | Description |
 | ---- | ----------- |
 | `EventBus` |   |
-
-#### <a name="init"></a>init( q, nextTick, timeoutFunction )
-Initializes the module.
-
-##### Parameters
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| q | `Object` |  a promise library like AngularJS' `$q` |
-| nextTick | `Function` |  a next tick function like `process.nextTick` or AngularJS' `$timeout` |
-| timeoutFunction | `Function` |  a timeout function like `window.setTimeout`  or AngularJS' `$timeout` |
 
 ## Types
 ### <a name="EventBus"></a>EventBus

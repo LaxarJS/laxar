@@ -8,7 +8,7 @@ module.exports = {
       polyfills: './karma.polyfills.js'
    },
    module: {
-      noParse: /bower_components\/page\/page\.js/,
+      noParse: /node_modules\/page\/page\.js/,
       loaders: [
          {
             test: /\.js$/,
@@ -24,10 +24,10 @@ module.exports = {
    },
    resolve: {
       root: [
-         path.resolve( './bower_components' )
+         path.resolve( './node_modules' )
       ],
       alias: {
-         'page': path.resolve( './bower_components/page/page' )
+         'page': path.resolve( './node_modules/page/page' )
       }
    }
 };

@@ -53,16 +53,18 @@ export function bootstrap( anchorElement, { widgetAdapters, widgetModules, whenS
       whenServicesReady( publicServices );
    }
 
-   whenDocumentReady( () => {
-      log.trace( `Loading flow from "${services.paths.FLOW_JSON}"` );
-      services.pageService.createControllerFor( anchorElement );
-      services.flowService.controller()
-         .loadFlow( services.paths.FLOW_JSON )
-         .then( () => log.trace( 'Flow loaded' ), err => {
-            log.fatal( 'Failed to load' );
-            log.fatal( 'Error [0].\nStack: [1]', err, err.stack );
-         } );
-   } );
+   if( services.paths.FLOW_JSON ) {
+      whenDocumentReady( () => {
+         log.trace( `Loading flow from "${services.paths.FLOW_JSON}"` );
+         services.pageService.createControllerFor( anchorElement );
+         services.flowService.controller()
+            .loadFlow( services.paths.FLOW_JSON )
+            .then( () => log.trace( 'Flow loaded' ), err => {
+               log.fatal( 'Failed to load' );
+               log.fatal( 'Error [0].\nStack: [1]', err, err.stack );
+            } );
+      } );
+   }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -116,7 +118,7 @@ function ensureInstanceId( log, storage ) {
 // Stores the fallback logger. The initial log is replaced with a correctly configured instance as soon as
 // the laxarjs services have been bootstrapped.
 let fallbackLog = createLog(
-   createConfiguration( { logging: { level: 'INFO' } } ),
+   createConfiguration( { logging: { threshold: 'INFO' } } ),
    createBrowser()
 );
 

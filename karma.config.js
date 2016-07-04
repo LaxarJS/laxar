@@ -2,10 +2,11 @@
 /* eslint-env node */
 
 
-const webpackConfig = Object.assign( {}, require('./webpack.base.config') );
+const webpackConfig = Object.assign( {}, require('./webpack.base.config' ) );
 delete webpackConfig.entry.laxar;
 delete webpackConfig.plugins;
 webpackConfig.devtool = 'inline-source-map';
+webpackConfig.node = { fs: 'empty' };
 
 module.exports = function(config) {
    config.set({
@@ -38,7 +39,7 @@ module.exports = function(config) {
       // test results reporter to use
       // possible values: 'dots', 'progress'
       // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-      reporters: ['progress'],
+      reporters: [ 'progress' ],
       unit: {
          singleRun: true,
       },

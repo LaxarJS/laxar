@@ -10,10 +10,11 @@ When requiring `laxar`, an instance of the `Logger` type is available as `laxar.
 
 ## Contents
 
+**Module Members**
+- [- unknown -](#- unknown -)
+
 **Types**
-- [level](#level)
 - [Logger](#Logger)
-  - [Logger#create](#Logger#create)
   - [Logger#log](#Logger#log)
   - [Logger#trace](#Logger#trace)
   - [Logger#debug](#Logger#debug)
@@ -29,8 +30,8 @@ When requiring `laxar`, an instance of the `Logger` type is available as `laxar.
   - [Logger#gatherTags](#Logger#gatherTags)
   - [Logger#setLogThreshold](#Logger#setLogThreshold)
 
-## Types
-### <a name="level"></a>level
+## Module Members
+#### <a name="- unknown -"></a>- unknown -()
 By default available log levels, sorted by increasing log level:
 - TRACE (level 100)
 - DEBUG (level 200)
@@ -39,15 +40,8 @@ By default available log levels, sorted by increasing log level:
 - ERROR (level 500)
 - FATAL (level 600)
 
+## Types
 ### <a name="Logger"></a>Logger
-
-#### <a name="Logger#create"></a>Logger#create()
-Creates and returns a new logger instance. Intended for testing purposes only.
-
-##### Returns
-| Type | Description |
-| ---- | ----------- |
-| `Logger` |  a new logger instance |
 
 #### <a name="Logger#log"></a>Logger#log( level, message, replacements )
 Logs a message. A message may contain placeholders in the form `[#]` where `#` resembles the index
