@@ -17,7 +17,5 @@
     "jjve": "silas/jjve#^0.5.1",
     "jjv": "~1.0.2",
     "page": "~1.7.1"
-  },
-  "devDependencies": {
   }
 }
