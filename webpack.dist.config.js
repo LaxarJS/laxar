@@ -17,11 +17,33 @@ const webpack = require( 'webpack' );
 const baseConfig = require( './webpack.base.config' );
 
 module.exports = [
+   polyfillsConfig(),
    distConfig(),
    distMinConfig(),
    distWithDepsConfig(),
    distWithDepsMinConfig()
 ];
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function polyfillsConfig() {
+
+   const config = Object.assign( {}, baseConfig );
+
+   config.output = {
+      path: path.resolve( __dirname ),
+      filename: 'dist/polyfills.js',
+   };
+
+   config.externals = {};
+
+   config.plugins = [
+      new webpack.SourceMapDevToolPlugin( {
+         filename: 'dist/polyfills.js.map'
+      } )
+   ];
+   return config;
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

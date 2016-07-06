@@ -20,7 +20,7 @@ module.exports = function(config) {
 
       // list of files / patterns to load in the browser
       files: [
-         'karma.polyfills.js',
+         'polyfills.js',
          'lib/*/spec/spec-runner.js'
       ],
 
@@ -31,7 +31,7 @@ module.exports = function(config) {
       // preprocess matching files before serving them to the browser
       // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
       preprocessors: {
-         'karma.polyfills.js':  [ 'webpack', 'sourcemap' ],
+         'polyfills.js':  [ 'webpack', 'sourcemap' ],
          'lib/*/spec/spec-runner.js': [ 'webpack', 'sourcemap' ]
       },
       webpack: webpackConfig,

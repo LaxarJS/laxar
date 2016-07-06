@@ -2,3 +2,4 @@
 /.grunt
 /karma-output
 /spec-output
+/bower_components

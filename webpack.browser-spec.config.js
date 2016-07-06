@@ -20,18 +20,18 @@ const webpack = require( 'webpack' );
 const baseConfig = require( './webpack.base.config' );
 const config =  Object.assign( {}, baseConfig );
 
-const specPattern = './lib/*/spec/spec-runner.js';
-const regexPattern = specPattern.replace( '*', '(.*)' );
+const specPattern = './lib/{SPEC}/spec/spec-runner.js';
+const globPattern = specPattern.replace( '{SPEC}', '**' );
+const regexPattern = specPattern.replace( '{SPEC}', '(.*)' );
 
-config.entry = glob.sync( specPattern ).reduce( ( acc, path ) => {
-   const match = path.match( regexPattern );
-   if( !match ) {
+config.entry = glob.sync( globPattern )
+   .reduce( ( acc, path ) => {
+      const match = path.match( regexPattern );
+      if( match && match[ 1 ] ) {
+         acc[ match[ 1 ] + '/spec-runner' ] = path;
+      }
       return acc;
-   }
-   const name = match[ 1 ];
-   acc[ name + '/spec-runner' ] = path;
-   return acc;
-}, {} );
+   }, {} );
 
 config.entry.polyfills = baseConfig.entry.polyfills;
 
@@ -65,8 +65,6 @@ function JasmineHtmlRunnerWebpackPlugin( optionalOptions ) {
             .forEach( ( chunk ) => {
                const context = Object.assign( {}, {
                   title: `${chunk.name} Spec ${options.title||''}`,
-                  host: 'localhost',
-                  port: 8201,
                   polyfills: options.polyfills
                }, options );
                const source = expand( context );
@@ -111,7 +109,6 @@ function JasmineHtmlRunnerWebpackPlugin( optionalOptions ) {
                </script>
            </head>
            <body>
-             <script type="text/javascript" src="http://${ctx.host}:${ctx.port}/webpack-dev-server.js"></script>
              <script type="text/javascript" src="spec-runner.bundle.js"></script>
            </body>
          </html>

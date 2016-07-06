@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#312](https://github.com/LaxarJS/laxar/issues/312): provide required polyfills as bundle
+    + NEW FEATURE: see ticket for details
+
 
 ## v2.0.0-alpha.1
 

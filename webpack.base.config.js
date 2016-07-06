@@ -5,7 +5,7 @@ const path = require( 'path' );
 module.exports = {
    entry: {
       laxar: './laxar.js',
-      polyfills: './karma.polyfills.js'
+      polyfills: './polyfills.js'
    },
    module: {
       noParse: /node_modules\/page\/page\.js/,
