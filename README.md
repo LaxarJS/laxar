@@ -31,6 +31,8 @@ However, the following browser capabilities are required:
    + Fetch
    + Array.from
 
+These polyfills can simply be obtained by loading `dist/polyfills.js` through a script tag.
+
 
 ### Hacking LaxarJS itself
 
@@ -56,4 +58,4 @@ To generate HTML spec runners for opening in your web browser, so that you can e
 npm run browser-spec
 ```
 
-Now you can select a spec-runner by surfing to http://localhost:8201/spec-output/.
+Now you can select a spec-runner by surfing to http://localhost:8081/spec-output/.

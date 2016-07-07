@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#311](https://github.com/LaxarJS/laxar/issues/311): moved webpack-jasmine-html-runner-plugin to its own project
 - [#312](https://github.com/LaxarJS/laxar/issues/312): provide required polyfills as bundle
     + NEW FEATURE: see ticket for details
 
