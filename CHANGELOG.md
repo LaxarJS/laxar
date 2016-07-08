@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#313](https://github.com/LaxarJS/laxar/issues/313): added i18n mock
+
 
 ## v2.0.0-alpha.2
 

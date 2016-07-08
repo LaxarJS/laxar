@@ -13,7 +13,7 @@
   "scripts": {
     "prepublish": "npm run apidoc && npm run optimize",
     "apidoc": "grunt apidoc",
-    "optimize": "webpack --config webpack.dist.config.js",
+    "optimize": "webpack",
     "test": "npm run karma && npm run eslint",
     "browser-spec": "webpack --config webpack.browser-spec.config.js && webpack-dev-server --port 8081 --inline --config webpack.browser-spec.config.js",
     "karma": "karma start karma.config.js",

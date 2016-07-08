@@ -1,8 +1,5 @@
 language: node_js
 sudo: false
-env:
-  global:
-    secure: WJ90FlrmvbBvvAGsMbl20UzAPbQSBYA6txJx1Ft8I59cBpXeTuYhae98Hd7wF1DRMN9p8EMVuPS7bxxqlATX/ymffqqwbyZ7S4pNiChnP4Jx/AVYDNOtNMcFNcPJ6tGVSokq1L6ZfPTYV6ZltooP2ZV3eahsglvVobJ3zAl2vlE=
 node_js:
 - '4'
 - '6'

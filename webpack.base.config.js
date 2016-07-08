@@ -5,8 +5,6 @@
  */
 /* eslint-env node */
 
-const path = require( 'path' );
-
 module.exports = {
    entry: {
       laxar: './laxar.js',
@@ -17,22 +15,15 @@ module.exports = {
       loaders: [
          {
             test: /\.js$/,
-            exclude: /(node_modules|bower_components)/,
+            exclude: /node_modules/,
             loader: 'babel-loader'
          },
          {
             test: /\.json$/,
-            exclude: /(node_modules|bower_components)/,
+            exclude: /node_modules/,
             loader: 'json-loader'
          }
       ]
    },
-   resolve: {
-      root: [
-         path.resolve( './node_modules' )
-      ],
-      alias: {
-         'page': path.resolve( './node_modules/page/page' )
-      }
-   }
+   resolve: {}
 };
