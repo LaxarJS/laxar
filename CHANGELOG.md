@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#314](https://github.com/LaxarJS/laxar/issues/314): re-enabled junit reporting and firefox/chrome tests
 - [#313](https://github.com/LaxarJS/laxar/issues/313): added i18n mock
 
 
