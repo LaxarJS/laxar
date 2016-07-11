@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#302](https://github.com/LaxarJS/laxar/issues/302): added and applied comprehensive eslint rules
+
 
 ## v2.0.0-alpha.3
 

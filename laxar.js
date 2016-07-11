@@ -15,6 +15,13 @@ import { create as createBrowser } from './lib/runtime/browser';
 import { create as createLog } from './lib/logging/log';
 import * as plainAdapter from './lib/widget_adapters/plain_adapter';
 
+// Stores the fallback logger. The initial log is replaced with a correctly configured instance as soon as
+// the laxarjs services have been bootstrapped.
+let fallbackLog = createLog(
+   createConfiguration( { logging: { threshold: 'INFO' } } ),
+   createBrowser()
+);
+
 /**
  * Bootstraps AngularJS on the provided `anchorElement` and sets up the LaxarJS runtime.
  *
@@ -23,8 +30,9 @@ import * as plainAdapter from './lib/widget_adapters/plain_adapter';
  * @param {HTMLElement} anchorElement the element to insert the page in
  * @param {Object} optionalOptions
  */
-export function bootstrap( anchorElement, { widgetAdapters, widgetModules, whenServicesReady, configuration } ) {
-
+export function bootstrap(
+   anchorElement, { widgetAdapters, widgetModules, whenServicesReady, configuration }
+) {
    const services = createServices( configuration || {} );
 
    const { globalEventBus, log, i18n, themeManager, cssLoader, paths, storage, widgetLoader } = services;
@@ -115,13 +123,6 @@ function ensureInstanceId( log, storage ) {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Stores the fallback logger. The initial log is replaced with a correctly configured instance as soon as
-// the laxarjs services have been bootstrapped.
-let fallbackLog = createLog(
-   createConfiguration( { logging: { threshold: 'INFO' } } ),
-   createBrowser()
-);
-
 /**
  * To ease the transition from laxarjs v1 to laxarjs v2, a global log fallback is provided.
  * Clients should prefer the widget-level injection `axLog` (TODO, #306) or use the global log-service,
@@ -129,10 +130,10 @@ let fallbackLog = createLog(
  */
 const log = object.tabulate(
    method => {
-      return function() {
+      return ( ...args ) => {
          // TODO, #306: enable this deprecation warning
          // fallbackLog.warn( 'Deprecation warning: avoid using laxar.log and prefer the axLog injection' );
-         fallbackLog[ method ].apply( fallbackLog, arguments );
+         fallbackLog[ method ]( ...args );
       };
    },
    Object.keys( fallbackLog )
