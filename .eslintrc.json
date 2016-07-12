@@ -102,6 +102,7 @@
       "no-new-object": "warn",
       "no-spaced-func": "warn",
       "no-trailing-spaces": "warn",
+      "no-underscore-dangle": "warn",
       "no-whitespace-before-property": "warn",
       "object-curly-spacing": [ "warn", "always" ],
       "one-var": [ "warn", "never" ],
