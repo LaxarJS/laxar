@@ -32,6 +32,7 @@
       "no-implicit-coercion": [ "error", { "allow": [ "!!" ], "string": false } ],
       "no-implicit-globals": "error",
       "no-implied-eval": "error",
+      "no-loop-func": "error",
       "no-multi-spaces": "error",
       "no-multi-str": "error",
       "no-new-func": "error",
