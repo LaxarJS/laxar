@@ -130,6 +130,7 @@
       "no-useless-rename": "warn",
       "no-var": "error",
       "object-shorthand": "warn",
+      "prefer-arrow-callback": "warn",
       "prefer-const": "warn",
       "template-curly-spacing": [ "warn", "never" ]
    }
