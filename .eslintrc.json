@@ -134,6 +134,7 @@
       "prefer-rest-params": "warn",
       "prefer-const": "warn",
       "prefer-spread": "warn",
+      "prefer-template": "warn",
       "template-curly-spacing": [ "warn", "never" ]
    }
 }

@@ -115,7 +115,7 @@ function ensureInstanceId( log, storage ) {
    const store = storage.getApplicationSessionStorage();
    let instanceId = store.getItem( instanceIdStorageKey );
    if( !instanceId ) {
-      instanceId = '' + Date.now() + Math.floor( Math.random() * 100 );
+      instanceId = `${Date.now()}${Math.floor( Math.random() * 100 )}`;
       store.setItem( instanceIdStorageKey, instanceId );
    }
    log.addTag( 'INST', instanceId );
