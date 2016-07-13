@@ -13,6 +13,17 @@
    "rules": {
       "no-console": "warn",
       "no-debugger": "warn",
+      "valid-jsdoc": [ "warn", {
+         "requireReturn": false,
+         "preferType": {
+            "object": "Object"
+         },
+         "prefer": {
+            "returns": "return",
+            "arg": "param",
+            "argument": "param"
+         }
+      } ],
 
       "array-callback-return": "error",
       "consistent-return": "error",
@@ -102,7 +113,6 @@
       "no-new-object": "warn",
       "no-spaced-func": "warn",
       "no-trailing-spaces": "warn",
-      "no-underscore-dangle": "warn",
       "no-whitespace-before-property": "warn",
       "object-curly-spacing": [ "warn", "always" ],
       "one-var": [ "warn", "never" ],
@@ -131,7 +141,12 @@
       "no-useless-rename": "warn",
       "no-var": "error",
       "object-shorthand": "warn",
+      "prefer-arrow-callback": "warn",
+      "prefer-rest-params": "warn",
       "prefer-const": "warn",
+      "prefer-spread": "warn",
+      "prefer-template": "warn",
+      "rest-spread-spacing": [ "warn", "never" ],
       "template-curly-spacing": [ "warn", "never" ]
    }
 }

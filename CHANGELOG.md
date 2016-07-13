@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#315](https://github.com/LaxarJS/laxar/issues/315): added and applied some more complex eslint rules
 - [#302](https://github.com/LaxarJS/laxar/issues/302): added and applied comprehensive eslint rules
 
 
