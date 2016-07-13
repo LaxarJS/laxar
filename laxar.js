@@ -27,13 +27,30 @@ let fallbackLog = createLog(
  *
  * @memberOf laxar
  *
- * @param {HTMLElement} anchorElement the element to insert the page in
- * @param {Object} optionalOptions
+ * @param {HTMLElement} anchorElement
+ *    the element to insert the page in
+ * @param {Object} [optionalOptions]
+ *    optional options for bootstrapping
+ * @param {Array} optionalOptions.widgetAdapters
+ *    widget adapters that are used in this application
+ * @param {Object} optionalOptions.widgetModules
+ *    map from widget technology to the list of widgets using that technology, for use in the application
+ * @param {Function} optionalOptions.whenServicesReady
+ *    a callback that is called with services as soon as they are available
+ * @param {Object} optionalOptions.configuration
+ *    configuration for the laxar application. See http://laxarjs.org/docs/laxar-latest/manuals/configuration/
+ *    for further information on available properties
  */
 export function bootstrap(
-   anchorElement, { widgetAdapters, widgetModules, whenServicesReady, configuration }
+   anchorElement, { widgetAdapters = [], widgetModules = {}, whenServicesReady, configuration = {} } = {}
 ) {
-   const services = createServices( configuration || {} );
+   assert( anchorElement ).hasType( HTMLElement ).isNotNull();
+   assert( widgetAdapters ).hasType( Array ).isNotNull();
+   assert( widgetModules ).hasType( Object ).isNotNull();
+   assert( whenServicesReady ).hasType( Function );
+   assert( configuration ).hasType( Object ).isNotNull();
+
+   const services = createServices( configuration );
 
    const { globalEventBus, log, i18n, themeManager, cssLoader, paths, storage, widgetLoader } = services;
    themeManager.loadThemeCss( cssLoader, paths );
@@ -115,7 +132,7 @@ function ensureInstanceId( log, storage ) {
    const store = storage.getApplicationSessionStorage();
    let instanceId = store.getItem( instanceIdStorageKey );
    if( !instanceId ) {
-      instanceId = '' + Date.now() + Math.floor( Math.random() * 100 );
+      instanceId = `${Date.now()}${Math.floor( Math.random() * 100 )}`;
       store.setItem( instanceIdStorageKey, instanceId );
    }
    log.addTag( 'INST', instanceId );
