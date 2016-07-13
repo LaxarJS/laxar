@@ -13,6 +13,17 @@
    "rules": {
       "no-console": "warn",
       "no-debugger": "warn",
+      "valid-jsdoc": [ "warn", {
+         "requireReturn": false,
+         "preferType": {
+            "object": "Object"
+         },
+         "prefer": {
+            "returns": "return",
+            "arg": "param",
+            "argument": "param"
+         }
+      } ],
 
       "array-callback-return": "error",
       "consistent-return": "error",
@@ -135,6 +146,7 @@
       "prefer-const": "warn",
       "prefer-spread": "warn",
       "prefer-template": "warn",
+      "rest-spread-spacing": [ "warn", "never" ],
       "template-curly-spacing": [ "warn", "never" ]
    }
 }
