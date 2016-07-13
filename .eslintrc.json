@@ -133,6 +133,7 @@
       "prefer-arrow-callback": "warn",
       "prefer-rest-params": "warn",
       "prefer-const": "warn",
+      "prefer-spread": "warn",
       "template-curly-spacing": [ "warn", "never" ]
    }
 }
