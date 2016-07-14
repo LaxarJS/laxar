@@ -4,7 +4,6 @@
  * http://laxarjs.org/license
  */
 import assert from './lib/utilities/assert';
-import fn from './lib/utilities/fn';
 import * as object from './lib/utilities/object';
 import * as string from './lib/utilities/string';
 
@@ -162,6 +161,5 @@ export {
    assert,
    object,
    string,
-   fn,
    log
 };
