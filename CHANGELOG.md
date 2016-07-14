@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#305](https://github.com/LaxarJS/laxar/issues/305): widget-areas: no longer generate first/last classes
+    + **BREAKING CHANGE:** see ticket for details
 - [#320](https://github.com/LaxarJS/laxar/issues/320): use shared eslint configuration
 - [#315](https://github.com/LaxarJS/laxar/issues/315): added and applied some more complex eslint rules
 - [#302](https://github.com/LaxarJS/laxar/issues/302): added and applied comprehensive eslint rules
