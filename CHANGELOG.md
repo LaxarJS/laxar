@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#319](https://github.com/LaxarJS/laxar/issues/319): storage: simplified prefix generation
 - [#305](https://github.com/LaxarJS/laxar/issues/305): widget-areas: no longer generate first/last classes
     + **BREAKING CHANGE:** see ticket for details
 - [#320](https://github.com/LaxarJS/laxar/issues/320): use shared eslint configuration
