@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#324](https://github.com/LaxarJS/laxar/issues/324): project: es2015 object-rest/spread, array.includes
 - [#318](https://github.com/LaxarJS/laxar/issues/318): logging: improved source location reporting
     + NEW FEATURE: see ticket for details
 - [#316](https://github.com/LaxarJS/laxar/issues/316): fn: removed
