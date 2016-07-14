@@ -11,7 +11,7 @@ import { create as createServices } from './lib/runtime/services';
 import { createLogErrorHandler } from './lib/event_bus/event_bus';
 import { create as createConfiguration } from './lib/runtime/configuration';
 import { create as createBrowser } from './lib/runtime/browser';
-import { create as createLog } from './lib/logging/log';
+import { create as createLog, BLACKBOX } from './lib/logging/log';
 import * as plainAdapter from './lib/widget_adapters/plain_adapter';
 
 // Stores the fallback logger. The initial log is replaced with a correctly configured instance as soon as
@@ -149,7 +149,7 @@ const log = object.tabulate(
       return ( ...args ) => {
          // TODO, #306: enable this deprecation warning
          // fallbackLog.warn( 'Deprecation warning: avoid using laxar.log and prefer the axLog injection' );
-         fallbackLog[ method ]( ...args );
+         fallbackLog[ method ]( ...args, BLACKBOX );
       };
    },
    Object.keys( fallbackLog )
