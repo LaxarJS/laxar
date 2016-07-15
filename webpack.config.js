@@ -32,7 +32,7 @@ function polyfillsConfig() {
 
    config.output = {
       path: path.resolve( __dirname ),
-      filename: 'dist/polyfills.js',
+      filename: 'dist/polyfills.js'
    };
 
    config.externals = {};

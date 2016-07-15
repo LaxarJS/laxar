@@ -16,7 +16,7 @@ const webpack = require( 'webpack' );
 const WebpackJasmineHtmlRunnerPlugin = require( 'webpack-jasmine-html-runner-plugin' );
 
 const baseConfig = require( './webpack.base.config' );
-const config =  Object.assign( {}, baseConfig );
+const config = Object.assign( {}, baseConfig );
 
 config.entry = WebpackJasmineHtmlRunnerPlugin.entry( './lib/[name]/spec/spec-runner.js' );
 config.entry.polyfills = baseConfig.entry.polyfills;

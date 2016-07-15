@@ -18,7 +18,7 @@ module.exports = function(config) {
          'lib/*/spec/spec-runner.js'
       ],
       preprocessors: {
-         'polyfills.js':  [ 'webpack', 'sourcemap' ],
+         'polyfills.js': [ 'webpack', 'sourcemap' ],
          'lib/*/spec/spec-runner.js': [ 'webpack', 'sourcemap' ]
       },
       webpack: webpackConfig,
@@ -28,7 +28,7 @@ module.exports = function(config) {
          outputDir: 'karma-output/'
       },
       port: 9876,
-      browsers: browsers,
+      browsers,
       customLaunchers: {
          ChromeTravisCi: {
             base: 'Chrome',
