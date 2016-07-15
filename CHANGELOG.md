@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.2.8
+
 - [#322](https://github.com/LaxarJS/laxar/issues/322): logging: fixed source location reporting
 
 
