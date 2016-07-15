@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#322](https://github.com/LaxarJS/laxar/issues/322): logging: fixed source location reporting
 - [#296](https://github.com/LaxarJS/laxar/issues/296): documentation: fixed string API doc module name
 - [#297](https://github.com/LaxarJS/laxar/issues/297): project: updated .gitignore for better v2.0 compatibility
 - [#293](https://github.com/LaxarJS/laxar/issues/293): page loader: mention composition name and ID when composition features fail validation
