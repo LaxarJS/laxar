@@ -48,8 +48,8 @@ export function bootstrap(
 
    const services = createServices( configuration );
 
-   const { globalEventBus, log, i18n, themeManager, cssLoader, paths, storage, widgetLoader } = services;
-   themeManager.loadThemeCss( cssLoader, paths );
+   const { globalEventBus, log, i18n, themeManager, paths, storage, widgetLoader } = services;
+   themeManager.loadThemeCss( paths );
 
    const publicServices = {
       configuration: services.configuration,
