@@ -2,7 +2,7 @@
 
 ## Last Changes
 
-- [#324](https://github.com/LaxarJS/laxar/issues/324): removed asset-loading compatibility code for pre-1.0 widgets
+- [#273](https://github.com/LaxarJS/laxar/issues/273): removed asset-loading compatibility code for pre-1.0 widgets
     + **BREAKING CHANGE:** see ticket for details
 - [#310](https://github.com/LaxarJS/laxar/issues/310): services: adjusted set of services available to application artifacts
     + **BREAKING CHANGE:** see ticket for details
