@@ -62,10 +62,10 @@ export function bootstrap(
       tooling: services.toolingProviders
    };
    if( services.configuration.get( 'tooling.enabled' ) ) {
-      if( !window.laxarTooling ) {
-         window.laxarTooling = {};
+      if( !window.laxarInstances ) {
+         window.laxarInstances = {};
       }
-      window.laxarTooling[ services.configuration.get( 'name' ) ] = publicServices;
+      window.laxarInstances[ services.configuration.get( 'name' ) ] = publicServices;
    }
 
    const adapterModules = [ plainAdapter, ...widgetAdapters ];
