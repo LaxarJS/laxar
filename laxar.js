@@ -8,7 +8,6 @@ import * as object from './lib/utilities/object';
 import * as string from './lib/utilities/string';
 
 import { create as createServices } from './lib/runtime/services';
-import { createLogErrorHandler } from './lib/event_bus/event_bus';
 import { create as createConfiguration } from './lib/runtime/configuration';
 import { create as createBrowser } from './lib/runtime/browser';
 import { create as createLog, BLACKBOX } from './lib/logging/log';
@@ -85,8 +84,6 @@ export function bootstrap(
 
    fallbackLog = log;
 
-   // TODO (#310) move out into application space (`whenServicesReady` callback)?
-   globalEventBus.setErrorHandler( createLogErrorHandler( log ) );
    // TODO (#310) move out into application space (`whenServicesReady` callback)?
    ensureInstanceId( log, storage );
 
