@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#329](https://github.com/LaxarJS/laxar/issues/329): made any access to laxarInstances go through a laxar API
+    + NEW FEATURE: see ticket for details
 - [#273](https://github.com/LaxarJS/laxar/issues/273): removed asset-loading compatibility code for pre-1.0 widgets
     + **BREAKING CHANGE:** see ticket for details
 - [#310](https://github.com/LaxarJS/laxar/issues/310): services: adjusted set of services available to application artifacts

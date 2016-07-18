@@ -14,6 +14,19 @@ import { create as createBrowser } from './lib/runtime/browser';
 import { create as createLog, BLACKBOX } from './lib/logging/log';
 import * as plainAdapter from './lib/widget_adapters/plain_adapter';
 
+// Get a reference to the global object of the JS environment.
+// See http://stackoverflow.com/a/6930376 for details
+let global;
+try {
+   // eslint-disable-next-line no-new-func, no-eval
+   global = Function( 'return this' )() || (1, eval)( 'this' );
+}
+catch(e) {
+   // if it forbids eval, it's probably a browser
+   global = window;
+}
+
+
 // Stores the fallback logger. The initial log is replaced with a correctly configured instance as soon as
 // the laxarjs services have been bootstrapped.
 let fallbackLog = createLog(
@@ -61,11 +74,9 @@ export function bootstrap(
       storage,
       tooling: services.toolingProviders
    };
+
    if( services.configuration.get( 'tooling.enabled' ) ) {
-      if( !window.laxarInstances ) {
-         window.laxarInstances = {};
-      }
-      window.laxarInstances[ services.configuration.get( 'name' ) ] = publicServices;
+      instances()[ services.configuration.get( 'name', 'unnamed' ) ] = publicServices;
    }
 
    const adapterModules = [ plainAdapter, ...widgetAdapters ];
@@ -142,10 +153,31 @@ function ensureInstanceId( log, storage ) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
+ * Provide tooling access to LaxarJS services.
+ *
+ * Each laxar#bootstrap call creates a new set of services such as a logger, global event bus etc. For tools
+ * like the laxar-developer-tools-widget, it may be necessary to access these services for a given instance,
+ * or for all instances.
+ *
+ * @param {String} [optionalName]
+ *   The configuration name of a LaxarJS instance to inspect.
+ *   May be omitted to access all application instances by name.
+ *
+ * @return {Object}
+ *   The tooling services for a specified instance, or for all instances that have tooling enabled.
+ */
+function instances( optionalName ) {
+   const instances = global.laxarInstances = ( global.laxarInstances || {} );
+   return optionalName ? instances[ optionalName ] : instances;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
  * To ease the transition from laxarjs v1 to laxarjs v2, a global log fallback is provided.
  * Clients should prefer the widget-level injection `axLog` (TODO, #306) or use the global log-service,
  * which can be obtained by enabling tooling in the configuration and using the log service from
- * `window.laxarTooling[*application name from configuration*].log`.
+ * `laxar.instances(*application name from configuration*).log`.
  */
 const log = object.tabulate(
    method => {
@@ -164,5 +196,6 @@ export {
    assert,
    object,
    string,
+   instances,
    log
 };
