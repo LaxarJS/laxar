@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#310](https://github.com/LaxarJS/laxar/issues/310): services: adjusted set of services available to application artifacts
+    + **BREAKING CHANGE:** see ticket for details
 - [#325](https://github.com/LaxarJS/laxar/issues/325): project: improved browser-spec reporting
 - [#324](https://github.com/LaxarJS/laxar/issues/324): project: es2015 object-rest/spread, array.includes
 - [#318](https://github.com/LaxarJS/laxar/issues/318): logging: improved source location reporting

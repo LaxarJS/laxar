@@ -29,14 +29,14 @@ Creates and returns a new event bus instance using the given configuration.
 | -------- | ---- | ----------- |
 | nextTick | `Function` |  a next tick function like `process.nextTick` or AngularJS' `$timeout` |
 | timeoutFunction | `Function` |  a timeout function like `window.setTimeout`  or AngularJS' `$timeout` |
-| browser | `Object` |  a timeout function like `window.setTimeout`  or AngularJS' `$timeout` |
+| browser | `Object` |  the browser api adapter |
 | _optionalConfiguration_ | `Object` |  configuration for the event bus instance |
 | _optionalConfiguration.pendingDidTimeout_ | `Number` |  the timeout in milliseconds used by [EventBus#publishAndGatherReplies](#EventBus#publishAndGatherReplies). Default is 120000ms |
 
 ##### Returns
 | Type | Description |
 | ---- | ----------- |
-| `EventBus` |   |
+| `EventBus` |  an event bus instance |
 
 ## Types
 ### <a name="EventBus"></a>EventBus
