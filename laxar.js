@@ -34,38 +34,43 @@ let fallbackLog = createLog(
  *    widget adapters that are used in this application
  * @param {Object} optionalOptions.widgetModules
  *    map from widget technology to the list of widgets using that technology, for use in the application
- * @param {Function} optionalOptions.whenServicesReady
- *    a callback that is called with services as soon as they are available
  * @param {Object} optionalOptions.configuration
  *    configuration for the laxar application. See http://laxarjs.org/docs/laxar-latest/manuals/configuration/
  *    for further information on available properties
  */
 export function bootstrap(
-   anchorElement, { widgetAdapters = [], widgetModules = {}, whenServicesReady, configuration = {} } = {}
+   anchorElement, { widgetAdapters = [], widgetModules = {}, configuration = {} } = {}
 ) {
    assert( anchorElement ).hasType( HTMLElement ).isNotNull();
    assert( widgetAdapters ).hasType( Array ).isNotNull();
    assert( widgetModules ).hasType( Object ).isNotNull();
-   assert( whenServicesReady ).hasType( Function );
    assert( configuration ).hasType( Object ).isNotNull();
 
    const services = createServices( configuration );
 
    const { globalEventBus, log, i18n, themeManager, cssLoader, paths, storage, widgetLoader } = services;
    themeManager.loadThemeCss( cssLoader, paths );
-   const adapterModules = [ plainAdapter, ...widgetAdapters ];
-   const adapters = bootstrapWidgetAdapters( services, adapterModules, widgetModules );
-   widgetLoader.registerWidgetAdapters( adapters );
 
-   // TODO (#310) define exact set of publicy visible services, plus naming (injection-style or module-style?)
    const publicServices = {
       configuration: services.configuration,
       globalEventBus,
+      heartbeat: services.heartbeat,
       i18n,
       log,
+      pageService: services.pageService,
       storage,
       tooling: services.toolingProviders
    };
+   if( services.configuration.get( 'tooling.enabled' ) ) {
+      if( !window.laxarTooling ) {
+         window.laxarTooling = {};
+      }
+      window.laxarTooling[ services.configuration.get( 'name' ) ] = publicServices;
+   }
+
+   const adapterModules = [ plainAdapter, ...widgetAdapters ];
+   const adapters = bootstrapWidgetAdapters( publicServices, adapterModules, widgetModules );
+   widgetLoader.registerWidgetAdapters( adapters );
 
    fallbackLog = log;
 
@@ -73,9 +78,6 @@ export function bootstrap(
    globalEventBus.setErrorHandler( createLogErrorHandler( log ) );
    // TODO (#310) move out into application space (`whenServicesReady` callback)?
    ensureInstanceId( log, storage );
-   if( whenServicesReady ) {
-      whenServicesReady( publicServices );
-   }
 
    if( services.paths.FLOW_JSON ) {
       whenDocumentReady( () => {
@@ -142,7 +144,8 @@ function ensureInstanceId( log, storage ) {
 /**
  * To ease the transition from laxarjs v1 to laxarjs v2, a global log fallback is provided.
  * Clients should prefer the widget-level injection `axLog` (TODO, #306) or use the global log-service,
- * which can be obtained using the `whenServicesReady` callback to `bootstrap`.
+ * which can be obtained by enabling tooling in the configuration and using the log service from
+ * `window.laxarTooling[*application name from configuration*].log`.
  */
 const log = object.tabulate(
    method => {

@@ -11,7 +11,8 @@ When requiring `laxar`, an instance of the `Logger` type is available as `laxar.
 ## Contents
 
 **Module Members**
-- [- unknown -](#- unknown -)
+- [level](#level)
+- [BLACKBOX](#BLACKBOX)
 
 **Types**
 - [Logger](#Logger)
@@ -31,7 +32,7 @@ When requiring `laxar`, an instance of the `Logger` type is available as `laxar.
   - [Logger#setLogThreshold](#Logger#setLogThreshold)
 
 ## Module Members
-#### <a name="- unknown -"></a>- unknown -()
+#### <a name="level"></a>level()
 By default available log levels, sorted by increasing log level:
 - TRACE (level 100)
 - DEBUG (level 200)
@@ -39,6 +40,10 @@ By default available log levels, sorted by increasing log level:
 - WARN (level 400)
 - ERROR (level 500)
 - FATAL (level 600)
+
+#### <a name="BLACKBOX"></a>BLACKBOX()
+Pass this as an additional replacement parameter to a log-method to blackbox your logging call.
+Blackboxed callers are ignored when logging the source information (file, line).
 
 ## Types
 ### <a name="Logger"></a>Logger

@@ -29,7 +29,7 @@ Creates and returns a new instance.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| configuration | `Object` |  a laxarjs application configuration |
+| configuration | `Object` |  the configuration api for the configuration the application was bootstrapped with |
 | browser | `Object` |  a browser abstraction |
 | rootPath | `String` |  the path to the root of the application. It is needed to prefix relative paths found in a listing with an absolute prefix |
 
