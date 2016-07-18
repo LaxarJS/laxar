@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#328](https://github.com/LaxarJS/laxar/issues/328): allow to configure if and how the instanceId is generated
+    + NEW FEATURE: see ticket for details
 - [#327](https://github.com/LaxarJS/laxar/issues/327): EventBus: simplified internal API
 - [#329](https://github.com/LaxarJS/laxar/issues/329): made any access to laxarInstances go through a laxar API
     + NEW FEATURE: see ticket for details

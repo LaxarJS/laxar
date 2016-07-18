@@ -18,9 +18,9 @@ import * as plainAdapter from './lib/widget_adapters/plain_adapter';
 let global;
 try {
    // eslint-disable-next-line no-new-func, no-eval
-   global = Function( 'return this' )() || (1, eval)( 'this' );
+   global = Function( 'return this' )() || ( 1, eval )( 'this' );
 }
-catch(e) {
+catch( _ ) {
    // if it forbids eval, it's probably a browser
    global = window;
 }
@@ -74,18 +74,12 @@ export function bootstrap(
       tooling: services.toolingProviders
    };
 
-   if( services.configuration.get( 'tooling.enabled' ) ) {
-      instances()[ services.configuration.get( 'name', 'unnamed' ) ] = publicServices;
-   }
-
    const adapterModules = [ plainAdapter, ...widgetAdapters ];
    const adapters = bootstrapWidgetAdapters( publicServices, adapterModules, widgetModules );
    widgetLoader.registerWidgetAdapters( adapters );
 
    fallbackLog = log;
-
-   // TODO (#310) move out into application space (`whenServicesReady` callback)?
-   ensureInstanceId( log, storage );
+   announceInstance( services );
 
    if( services.paths.FLOW_JSON ) {
       whenDocumentReady( () => {
@@ -136,15 +130,28 @@ function bootstrapWidgetAdapters( services, adapterModules, widgetModulesByTechn
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function ensureInstanceId( log, storage ) {
+function announceInstance( publicServices ) {
+   const { configuration, log, storage } = publicServices;
+
+   if( configuration.get( 'tooling.enabled' ) ) {
+      instances()[ configuration.get( 'name', 'unnamed' ) ] = publicServices;
+   }
+
+   const idGenerator = configuration.get( 'logging.instanceId', simpleId );
+   if( idGenerator === false ) { return; }
+
    const instanceIdStorageKey = 'axLogTags.INST';
    const store = storage.getApplicationSessionStorage();
    let instanceId = store.getItem( instanceIdStorageKey );
    if( !instanceId ) {
-      instanceId = `${Date.now()}${Math.floor( Math.random() * 100 )}`;
+      instanceId = idGenerator();
       store.setItem( instanceIdStorageKey, instanceId );
    }
    log.addTag( 'INST', instanceId );
+
+   function simpleId() {
+      return `${Date.now()}${Math.floor( Math.random() * 100 )}`;
+   }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
