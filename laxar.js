@@ -23,7 +23,8 @@ define( [
    './lib/runtime/controls_service',
    './lib/runtime/theme_manager',
    './lib/widget_adapters/adapters',
-   './lib/tooling/pages'
+   './lib/tooling/pages',
+   './lib/tooling/external_api'
 ], function(
    ng,
    log,
@@ -44,7 +45,8 @@ define( [
    controlsService,
    themeManager,
    adapters,
-   pageToolingApi
+   pageToolingApi,
+   externalApi
 ) {
    'use strict';
 
@@ -75,7 +77,7 @@ define( [
       if( optionalWidgetAdapters && Array.isArray( optionalWidgetAdapters ) ) {
          adapters.addAdapters( optionalWidgetAdapters );
       }
-      var dependencies = [ runtime.module.name, runtimeDependencies.name ];
+      var dependencies = [ runtime.module.name, runtimeDependencies.name, externalApi.name ];
 
       Object.keys( widgetModules ).forEach( function( technology ) {
          var adapter = adapters.getFor( technology );
