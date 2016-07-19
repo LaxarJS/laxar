@@ -51,14 +51,14 @@ let fallbackLog = createLog(
  *    for further information on available properties
  */
 export function bootstrap(
-   anchorElement, { widgetAdapters = [], widgetModules = {}, configuration = {} } = {}
+   anchorElement, { widgetAdapters = [], widgetModules = {}, configuration = {}, resources = {} } = {}
 ) {
    assert( anchorElement ).hasType( HTMLElement ).isNotNull();
    assert( widgetAdapters ).hasType( Array ).isNotNull();
    assert( widgetModules ).hasType( Object ).isNotNull();
    assert( configuration ).hasType( Object ).isNotNull();
 
-   const services = createServices( configuration );
+   const services = createServices( configuration, resources );
 
    const { globalEventBus, log, i18n, themeManager, paths, storage, widgetLoader } = services;
    themeManager.loadThemeCss( paths );
@@ -89,7 +89,7 @@ export function bootstrap(
             .loadFlow( services.paths.FLOW_JSON )
             .then( () => log.trace( 'Flow loaded' ), err => {
                log.fatal( 'Failed to load' );
-               log.fatal( 'Error [0].\nStack: [1]', err, err.stack );
+               log.fatal( 'Error [0].\nStack: [1]', err, err && err.stack );
             } );
       } );
    }
