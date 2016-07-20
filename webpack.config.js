@@ -21,7 +21,8 @@ module.exports = [
    distConfig(),
    distMinConfig(),
    distWithDepsConfig(),
-   distWithDepsMinConfig()
+   distWithDepsMinConfig(),
+   distWithDepsAndCompatibilityConfig()
 ];
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,6 +30,8 @@ module.exports = [
 function polyfillsConfig() {
 
    const config = Object.assign( {}, baseConfig );
+
+   config.entry = './polyfills.js';
 
    config.output = {
       path: path.resolve( __dirname ),
@@ -50,6 +53,8 @@ function polyfillsConfig() {
 function distConfig() {
 
    const config = Object.assign( {}, baseConfig );
+
+   config.entry = './laxar.js';
 
    config.output = {
       path: path.resolve( __dirname ),
@@ -80,6 +85,8 @@ function distMinConfig() {
 
    const config = Object.assign( {}, distConfig() );
 
+   config.entry = './laxar.js';
+
    config.output = Object.assign( {}, config.output, {
       filename: 'dist/laxar.min.js'
    } );
@@ -105,6 +112,8 @@ function distWithDepsConfig() {
 
    const config = Object.assign( {}, distConfig() );
 
+   config.entry = './laxar.js';
+
    config.output = Object.assign( {}, config.output, {
       filename: 'dist/laxar.with-deps.js'
    } );
@@ -122,9 +131,34 @@ function distWithDepsConfig() {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+function distWithDepsAndCompatibilityConfig() {
+
+   const config = Object.assign( {}, distConfig() );
+
+   config.entry = './laxar-compatibility.js';
+
+   config.output = Object.assign( {}, config.output, {
+      filename: 'dist/laxar-compatibility.with-deps.js'
+   } );
+
+   config.externals = {};
+
+   config.plugins = [
+      new webpack.SourceMapDevToolPlugin( {
+         filename: 'dist/laxar-compatibility.with-deps.js.map'
+      } )
+   ];
+
+   return config;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function distWithDepsMinConfig() {
 
    const config = Object.assign( {}, distConfig() );
+
+   config.entry = './laxar.js';
 
    config.output = Object.assign( {}, config.output, {
       filename: 'dist/laxar.with-deps.min.js'

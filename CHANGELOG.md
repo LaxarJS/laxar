@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#334](https://github.com/LaxarJS/laxar/issues/334): added LaxarJS v1.x compatibility helpers
+    + NEW FEATURE: see ticket for details
 - [#331](https://github.com/LaxarJS/laxar/issues/331): widget services: added axAreaHelper service
 - [#306](https://github.com/LaxarJS/laxar/issues/306): log: added as property to widget context object
 - [#326](https://github.com/LaxarJS/laxar/issues/326): documentation: added manual for injectable widget services

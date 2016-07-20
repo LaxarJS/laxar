@@ -8,10 +8,8 @@ import * as object from './lib/utilities/object';
 import * as string from './lib/utilities/string';
 
 import { create as createServices } from './lib/runtime/services';
-import { create as createConfiguration } from './lib/runtime/configuration';
-import { create as createBrowser } from './lib/runtime/browser';
-import { create as createLog, BLACKBOX } from './lib/logging/log';
 import * as plainAdapter from './lib/widget_adapters/plain_adapter';
+
 
 // Get a reference to the global object of the JS environment.
 // See http://stackoverflow.com/a/6930376 for details
@@ -25,13 +23,6 @@ catch( _ ) {
    global = window;
 }
 
-
-// Stores the fallback logger. The initial log is replaced with a correctly configured instance as soon as
-// the laxarjs services have been bootstrapped.
-let fallbackLog = createLog(
-   createConfiguration( { logging: { threshold: 'INFO' } } ),
-   createBrowser()
-);
 
 /**
  * Bootstraps AngularJS on the provided `anchorElement` and sets up the LaxarJS runtime.
@@ -80,7 +71,6 @@ export function bootstrap(
    const adapters = bootstrapWidgetAdapters( publicServices, adapterModules, widgetModules );
    widgetLoader.registerWidgetAdapters( adapters );
 
-   fallbackLog = log;
    announceInstance( services );
 
    if( services.paths.FLOW_JSON ) {
@@ -179,29 +169,9 @@ function instances( optionalName ) {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/**
- * To ease the transition from laxarjs v1 to laxarjs v2, a global log fallback is provided.
- * Clients should prefer the widget-level injection `axLog` (TODO, #306) or use the global log-service,
- * which can be obtained by enabling tooling in the configuration and using the log service from
- * `laxar.instances(*application name from configuration*).log`.
- */
-const log = object.tabulate(
-   method => {
-      return ( ...args ) => {
-         // TODO, #306: enable this deprecation warning
-         // fallbackLog.warn( 'Deprecation warning: avoid using laxar.log and prefer the axLog injection' );
-         fallbackLog[ method ]( ...args, BLACKBOX );
-      };
-   },
-   Object.keys( fallbackLog )
-);
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 export {
    assert,
    object,
    string,
-   instances,
-   log
+   instances
 };
