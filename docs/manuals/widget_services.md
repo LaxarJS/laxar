@@ -13,6 +13,13 @@ Preliminary readings:
 
 ## Available Services
 
+### `axAreaHelper`
+
+A very thin wrapper around the internal area helper that manages existing areas, their hierarchy and visibility.
+The wrapper only allows registering new areas that are nested in the widget.
+De-registration is handled automatically as needed by the wrapper.
+
+
 ### `axConfiguration`
 
 The global API for accessing the configuration the application was bootstrapped with.
