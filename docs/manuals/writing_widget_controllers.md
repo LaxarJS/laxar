@@ -71,7 +71,7 @@ When implementing a plain widget, its AMD module must simply return an object wi
   Each item is the name of a service to inject into a new controller instance.
   The order in this list determines the order the services are passed into the `create` function.
 
-  [Available injections](#available-injections) are listed below.
+  Read the [documentation for widget services](./widget_services.md) to see what APIs are available for injection.
 
 An example of a simple plain widget, called `my-plain-widget`:
 

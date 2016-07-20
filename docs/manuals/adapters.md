@@ -30,14 +30,14 @@ Since that is a somewhat simplified explanation, let us look into it in more det
 At this point, the composition parameter names have been substituted by their values and unique widget IDs have been generated, but default values for the widget features have not been applied yet.
 
 * For each configured widget instance, the page controller asks the _widget loader_ to provide it with a widget adapter for that instance, to control widget lifecycle.
-The widget controller written in JavaScript has already been loaded as an AMD module when entering the application.
+The widget controller written in JavaScript has already been loaded as a module (AMD, CommonJS or ES6) when entering the application.
 The loader fetches the _widget.json_, and knows how to get the widget template and CSS style sheet, if applicable.
 Of course, all assets are loaded only once, even if a widget is instantiated several times during the lifetime of an application or even on the same page.
 All widgets are loaded asynchronously and in parallel, so there is no unnecessary delay.
 In production mode, all assets are served from the configured file listings, so that this process may happen very quickly.
 
 * As soon as the widget loader has loaded the _widget.json_ for a widget instance, it validates the feature configuration and fills in missing default values.
-Next, it sets up an event-bus wrapper for the widget, that always fills in the _sender_ (on publish) and _subscriber_ (on subscribe) with the widget id.
+Next, it sets up an event bus wrapper for the widget, that always fills in the _sender_ (on publish) and _subscriber_ (on subscribe) with the widget id.
 This wrapper also ensures that the widget is unsubscribed from all events when the page is teared down later on.
 
 * Now all that is left to do is kicking off the widget controller with the augmented feature configuration, and loading and instantiating the widget template.
@@ -45,13 +45,14 @@ Both of these steps are specific to the implementation technology of the widget.
 For AngularJS, a new _scope_ is created for the controller, and the controller class is instantiated using the AngularJS `$controller` service.
 As soon as the widget becomes visible (usually right away, but possibly only after its containing popup/tab/panel/... is shown), the template is compiled, linked to the new scope, and inserted into the page DOM.
 These tasks are performed by the _widget adapter_, selected based on the integration technology that is declared in the _widget.json._
-LaxarJS ships with adapters for two integration technologies: _angular_ and _plain_.
+LaxarJS ships with an adapter for _plain_ integration technology.
 The _plain_ adapter requires no additional dependencies, and is meant for widgets that directly access the browser DOM for their rendering.
+Adapters for _angular_ and _react_ are available as separate repositories and can be used as needed.
 
 
 ## The Integration Technology API
 
-Each widget integration technology is implemented as an AMD module with these properties:
+Each widget integration technology is implemented as a module with these properties:
 
 * The `technology` is a string that identifies the widget adapter.
   It is compared to the `integration.technology` field of each _widget.json_ to determine which adapter must be used for each widget in the application.
@@ -63,9 +64,9 @@ Each widget integration technology is implemented as an AMD module with these pr
   For the _plain_ integration, the widget module must have a method `create` to instantiate the controller, and optionally an array `injections` to specify services required by the widget, such as the event bus.
   These injections are used as arguments to `create` in the order that they are listed in `injections`.
 
-* The method `create` is a factory that actually creates the widget adapter for a given widget instance.
+* The method `create` of the adapter is a factory that actually creates the widget adapter for a given widget instance.
   Each widget instance has its own adapter instance, so that the adapter is free to maintain state information specific to the current widget instance, as may be required by the integration technology.
-  For each widget to be instantiated, `create` is called with an _environment_ object containing the instance configuration and other context information for the widget controller, chiefly the instance's handle to the event bus.
+  For each widget to be instantiated, `create` is called with an _environment_ object containing the instance configuration, available services to be injected into widgets, and other context information for the widget controller, chiefly the instance's handle to the event bus.
 
 * Optionally an adapter may provide a method called `applyViewChanges`.
   Whenever the _LaxarJS_ runtime carried out some task that may have tampered with the model of one or more widgets, like the asynchronous delivery of event bus events, this method gets called.
@@ -100,6 +101,10 @@ The environment has the following properties:
   It automatically gets assigned an ID matching the widget ID, which is useful to identify a widget within the DOM, and a CSS class which should be used to restrict styles to the widget.
   If necessary, Widgets may manipulate DOM outside of their anchor, for example to show an overlay.
   But if they do, they are responsible for cleanup, and they should never modify the DOM of other widgets.
+
+* The `services` object contains all services, that may be injected into a widget instance by using the respective injection mechanism of the underlying technology.
+It offers both access to global API but also services specifically adapted for single widget instances.
+Since the list is rather long and mostly relevant for widget authors the services are described in their own [document](./widget_services.md).
 
 * The `specification` contains the widget meta information from the _widget.json._
   This information is not intended to be passed through to the widget controller.

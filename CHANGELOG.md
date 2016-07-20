@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#326](https://github.com/LaxarJS/laxar/issues/326): documentation: added manual for injectable widget services
 - [#321](https://github.com/LaxarJS/laxar/issues/321): simplified file listings API and file resource provider
     + **BREAKING CHANGE:** see ticket for details
 - [#328](https://github.com/LaxarJS/laxar/issues/328): allow to configure if and how the instanceId is generated
