@@ -30,6 +30,8 @@ The `context` object contains information that may be of use to the widget contr
 * `id`: a function that takes a string and returns a unique ID that may be given to a DOM-element of this widget instance.
   This is mainly intended to associate form controls with their labels (using the HTML attributes `id` and `for`), without breaking multiple widget instances on a single page.
 
+* `log`: same as [axLog](#-axlog-)
+
 * `widget`: only rarely needed, this object provides additional meta information about the widget.
   There is the containing `area` name, the instance `id` as a string and the `path` that was used to instantiate the widget.
 

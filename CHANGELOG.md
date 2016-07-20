@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#306](https://github.com/LaxarJS/laxar/issues/306): log: added as property to widget context object
 - [#326](https://github.com/LaxarJS/laxar/issues/326): documentation: added manual for injectable widget services
 - [#321](https://github.com/LaxarJS/laxar/issues/321): simplified file listings API and file resource provider
     + **BREAKING CHANGE:** see ticket for details
