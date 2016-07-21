@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-alpha.4
+
 - [#335](https://github.com/LaxarJS/laxar/issues/335): widget services: build lazily, allow to decorate
     + NEW FEATURE: see ticket for details
 - [#334](https://github.com/LaxarJS/laxar/issues/334): added LaxarJS v1.x compatibility helpers
