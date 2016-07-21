@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#308](https://github.com/LaxarJS/laxar/issues/308): event bus: removed setMediator and setErrorHandler
+    + **BREAKING CHANGE:** see ticket for details
+
 
 ## v2.0.0-alpha.4
 
