@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#335](https://github.com/LaxarJS/laxar/issues/335): widget services: build lazily, allow to decorate
+    + NEW FEATURE: see ticket for details
 - [#334](https://github.com/LaxarJS/laxar/issues/334): added LaxarJS v1.x compatibility helpers
     + NEW FEATURE: see ticket for details
 - [#331](https://github.com/LaxarJS/laxar/issues/331): widget services: added axAreaHelper service

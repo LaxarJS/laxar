@@ -54,49 +54,39 @@ Adapters for _angular_ and _react_ are available as separate repositories and ca
 
 Each widget integration technology is implemented as a module with these properties:
 
-* The `technology` is a string that identifies the widget adapter.
+* The module field `technology` is a string that identifies the widget adapter technology, such as "angular" or "react".
   It is compared to the `integration.technology` field of each _widget.json_ to determine which adapter must be used for each widget in the application.
 
-* The method `bootstrap` is called once during application startup to initialize support for the integration technology.
-  It receives an array of AMD-modules, one for each matching widget module used by the application.
-  The API of the widget modules depends on the integration technology, but usually there is at least a `name` to associate the modules to their _widget.json,_ a method to instantiate a controller for a given widget instance, and possibly a method to set up a view.
-  For the _angular_ integration, the widget module simply yields the corresponding AngularJS module, so that controllers can be instantiated by using the AngularJS `$controller` service.
-  For the _plain_ integration, the widget module must have a method `create` to instantiate the controller, and optionally an array `injections` to specify services required by the widget, such as the event bus.
-  These injections are used as arguments to `create` in the order that they are listed in `injections`.
+* The module method `bootstrap` prepares the adapter for a LaxarJS bootstrap instance.
+  The method receives an array of modules, which contain the widgets and controls matching the adapter's technology.
+  It returns an *adapter factory* object which is used to create individual adapter instances for the live widgets. The adapter factory is an object with these properties:
 
-* The method `create` of the adapter is a factory that actually creates the widget adapter for a given widget instance.
-  Each widget instance has its own adapter instance, so that the adapter is free to maintain state information specific to the current widget instance, as may be required by the integration technology.
-  For each widget to be instantiated, `create` is called with an _environment_ object containing the instance configuration, available services to be injected into widgets, and other context information for the widget controller, chiefly the instance's handle to the event bus.
+   - `technology`: the same string as provided by the module
 
-* Optionally an adapter may provide a method called `applyViewChanges`.
-  Whenever the _LaxarJS_ runtime carried out some task that may have tampered with the model of one or more widgets, like the asynchronous delivery of event bus events, this method gets called.
-  It should then do whatever necessary to achieve consistency again.
-  In case of _AngularJS_ this is a call to `$rootScope.$apply()`, while the plain adapter simply does nothing.
+   - `create`: the actual factory method to create an adapter for a given widget instance. Each widget instance has its own adapter instance, so that the adapter is free to maintain state information specific to its widget, as may be required by the integration technology.
+   For each widget to be instantiated, `create` is called with an _environment_ which has the widget `specification`, the containing DOM `anchorElement`, and the widget `services`. See below for more detailed information on the environment, and on the adapter instance that `create` returns.
+
+   - `serviceDecorators` (optional): Usually, services passed to `create` can be used *as-is*, without technology-specific changes. However, some technologies may need to modify individual services. For these cases, adapter factories may specify so-called *service decorators* by returning a map of service names to decorator functions from this method. Each decorator will be called with the original injection (such as `axContext`, `axId` etc.) when that is requested. Decorators may then decide to return a modified injection or a completely new    version.
+
+   - `applyViewChanges` (optionally): Whenever the _LaxarJS_ runtime may have caused a change to the internal state of one or more widgets, for example by asynchronous delivery of event bus events, this method gets called.
+   It should then do whatever necessary to update the view of all its adapter instances. In case of _angular_ this is a call to `$rootScope.$apply()`, while the *plain* adapter simply does nothing.
+
+  The API of the widget modules themselves depends on the integration technology, but usually there is at least a `name` to associate the modules to their _widget.json,_ a method to instantiate a controller for a given widget instance, and possibly a method to set up a view.
+
+   - For the _plain_ integration, the widget module must have a method `create` to instantiate the controller, and optionally an array  `injections` to specify services required by the widget, such as the event bus.
+   These injections are used as arguments to `create` in the order that they are listed in `injections`.
+
+   - For the [_angular_ integration](http://laxarjs.org/docs/laxar-angular-adapter-latest/), the widget module simply yields the corresponding AngularJS module, so that controllers can be instantiated by using the AngularJS `$controller` service.
+
+  All "global" state of the adapter should be encapsulated in the return value of the `bootstrap` method, so that multiple LaxarJS applications may coexist in the same JavaScript environment, each with their own adapter factories, without hurting each other.
 
 Before going into details on the widget adapter API, let us have a look at the environment that is used to create widget adapters.
 
 
 ### The Widget Loader Environment
 
-Before creating an adapter, the widget loader collects all required information and bundles it into an _environment_ object.
+Before creating an adapter for an individual widget instance, the widget loader collects all required information and bundles it into an _environment_ object.
 The environment has the following properties:
-
-* The `context` object contains information that may be of use to the widget controller:
-
-  * `eventBus`: a handle to the event bus instance for this widget.
-
-  * `features`: the complete feature configuration for this instance, with defaults filled in from the widget configuration schema.
-
-  * `id`: a function that takes a string and returns a unique ID that may be given to a DOM-element of this widget instance.
-    This is mainly intended to associate form controls with their labels (using the HTML attributes `id` and `for`), without breaking multiple widget instances on a single page.
-
-  * `log`: a handle to the log instance for this widget.
-
-  * `widget`: only rarely needed, this object provides additional meta information about the widget.
-    There is the containing `area` name, the instance `id` as a string and the `path` that was used to instantiate the widget.
-
-  Adapters are supposed to make the context available to widget controllers, preferably through an injection `axContext`.
-  The _angular_ adapter provides this injection as a lightweight alternative to the `$scope` injection, which has the same properties.
 
 * The `anchorElement` is a standard HTMLElement meant to contain all widget view UI.
   If the adapter uses a templating system, the instantiated template should be appended to this anchor.
@@ -104,9 +94,9 @@ The environment has the following properties:
   If necessary, Widgets may manipulate DOM outside of their anchor, for example to show an overlay.
   But if they do, they are responsible for cleanup, and they should never modify the DOM of other widgets.
 
-* The `services` object contains all services, that may be injected into a widget instance by using the respective injection mechanism of the underlying technology.
-It offers both access to global API but also services specifically adapted for single widget instances.
-Since the list is rather long and mostly relevant for widget authors the services are described in their own [document](./widget_services.md).
+* The `services` object contains all services that may be injected into a widget.
+  It offers access to global APIs, but also services specifically adapted for individual widget instances.
+  Since the list is rather long and mostly relevant for widget authors, the services are described in their own [document](./widget_services.md).
 
 * The `specification` contains the widget meta information from the _widget.json._
   This information is not intended to be passed through to the widget controller.
@@ -118,7 +108,7 @@ Having been created from an environment, all widget adapter instances expose the
 
 ### The Widget Adapter API
 
-All widget adapters must implement the following four methods, to support creation and destruction of controller and view:
+All widget adapter instances produced by `create` must implement the following four methods, to support creation and destruction of controller and view:
 
 * `createController`: called to instantiate the widget controller.
   The argument is a config map, currently only having an `onBeforeControllerCreation` function as single property.
