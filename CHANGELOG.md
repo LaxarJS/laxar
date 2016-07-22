@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#339](https://github.com/LaxarJS/laxar/issues/339): event bus: return unsubscribe function on subscription
 - [#338](https://github.com/LaxarJS/laxar/issues/338): event bus: automatically remove inspectors on widget destruction
     + **BREAKING CHANGE:** see ticket for details
 - [#308](https://github.com/LaxarJS/laxar/issues/308): event bus: removed setMediator and setErrorHandler
