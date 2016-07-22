@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#338](https://github.com/LaxarJS/laxar/issues/338): event bus: automatically remove inspectors on widget destruction
+    + **BREAKING CHANGE:** see ticket for details
 - [#308](https://github.com/LaxarJS/laxar/issues/308): event bus: removed setMediator and setErrorHandler
     + **BREAKING CHANGE:** see ticket for details
 
