@@ -3,6 +3,8 @@ sudo: false
 node_js:
   - '4'
   - '6'
+addons:
+  firefox: "38.0"
 before_script:
   - "export CHROME_BIN=chromium-browser"
   - "export DISPLAY=:99.0"
