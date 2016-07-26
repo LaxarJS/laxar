@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#337](https://github.com/LaxarJS/laxar/issues/337): widget adapters: removed applyViewChanges from widget adapter api
+    + **BREAKING CHANGE:** see ticket for details
 - [#340](https://github.com/LaxarJS/laxar/issues/340): heartbeat: call listeners asynchronously so that event bus promises have already been processed
 - [#339](https://github.com/LaxarJS/laxar/issues/339): event bus: return unsubscribe function on subscription
 - [#338](https://github.com/LaxarJS/laxar/issues/338): event bus: automatically remove inspectors on widget destruction
