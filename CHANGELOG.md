@@ -3,6 +3,7 @@
 ## Last Changes
 
 - [#307](https://github.com/LaxarJS/laxar/issues/307): flow: improved page.js integration
+    + NEW FEATURE: see ticket for details
 - [#337](https://github.com/LaxarJS/laxar/issues/337): widget adapters: removed applyViewChanges from widget adapter api
     + **BREAKING CHANGE:** see ticket for details
 - [#340](https://github.com/LaxarJS/laxar/issues/340): heartbeat: call listeners asynchronously so that event bus promises have already been processed
