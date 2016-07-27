@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#304](https://github.com/LaxarJS/laxar/issues/304): loaders: replaced dynamic artifact resolution with prebuilt artifacts listing
+    + **BREAKING CHANGE:** see ticket for details
 - [#270](https://github.com/LaxarJS/laxar/issues/270): json validator: simplified return value
 - [#307](https://github.com/LaxarJS/laxar/issues/307): flow: improved page.js integration
     + NEW FEATURE: see ticket for details
