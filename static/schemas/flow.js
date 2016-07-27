@@ -3,17 +3,34 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
+
+/* eslint-disable quotes,max-len */
 export default {
    "$schema": "http://json-schema.org/draft-04/schema#",
    "type": "object",
    "required": [ "places" ],
    "properties": {
 
+      "redirectOn": {
+         "type": "object",
+         "description": "Globally defined redirects for certain edge cases",
+         "properties": {
+            "unknownPlace": {
+               "type": "string",
+               "description": "This place is loaded whenever the requested place doesn't exist."
+            },
+            "error": {
+               "type": "string",
+               "description": "This place is loaded whenever an unrecoverable error during routing is detected."
+            }
+         }
+      },
+
       "places": {
          "type": "object",
          "description": "The places for this flow.",
          "patternProperties": {
-            "[a-z][a-zA-Z0-9_]*": {
+            "^([a-z][a-zA-Z0-9_]*)?": {
                "type": "object",
                "properties": {
 

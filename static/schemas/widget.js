@@ -3,6 +3,8 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
+
+/* eslint-disable quotes,max-len */
 export default {
    "$schema": "http://json-schema.org/draft-04/schema#",
    "type": "object",
