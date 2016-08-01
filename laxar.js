@@ -35,8 +35,6 @@ catch( _ ) {
  *    optional options for bootstrapping
  * @param {Array} optionalOptions.widgetAdapters
  *    widget adapters that are used in this application
- * @param {Object} optionalOptions.widgetModules
- *    map from widget technology to the list of widgets using that technology, for use in the application
  * @param {Object} optionalOptions.configuration
  *    configuration for the laxar application. See http://laxarjs.org/docs/laxar-latest/manuals/configuration/
  *    for further information on available properties

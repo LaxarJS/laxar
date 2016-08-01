@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#346](https://github.com/LaxarJS/laxar/issues/346): testing: added spec-tests for the various mocks
 - [#304](https://github.com/LaxarJS/laxar/issues/304): loaders: replaced dynamic artifact resolution with prebuilt artifacts listing
     + **BREAKING CHANGE:** see ticket for details
 - [#270](https://github.com/LaxarJS/laxar/issues/270): json validator: simplified return value
