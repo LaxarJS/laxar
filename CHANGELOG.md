@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#309](https://github.com/LaxarJS/laxar/issues/309): runtime: slightly simplified area helper
 - [#333](https://github.com/LaxarJS/laxar/issues/333): added `axVisibility` injection to replace the visibility helper of patterns
     + NEW FEATURE: see ticket for details
 - [#346](https://github.com/LaxarJS/laxar/issues/346): testing: added spec-tests for the various mocks
