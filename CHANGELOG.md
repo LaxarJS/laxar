@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#347](https://github.com/LaxarJS/laxar/issues/347): timer: removed resumedOrStarted and added missing tests
 - [#300](https://github.com/LaxarJS/laxar/issues/300): plain widget adapter: added axWithDom service and renamed DOM ready hook
     + **BREAKING CHANGE:** see ticket for details
 - [#309](https://github.com/LaxarJS/laxar/issues/309): runtime: slightly simplified area helper
