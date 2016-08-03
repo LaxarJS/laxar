@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#300](https://github.com/LaxarJS/laxar/issues/300): plain widget adapter: added axWithDom service and renamed DOM ready hook
+    + **BREAKING CHANGE:** see ticket for details
 - [#309](https://github.com/LaxarJS/laxar/issues/309): runtime: slightly simplified area helper
 - [#333](https://github.com/LaxarJS/laxar/issues/333): added `axVisibility` injection to replace the visibility helper of patterns
     + NEW FEATURE: see ticket for details

@@ -44,7 +44,7 @@ catch( _ ) {
 export function bootstrap(
    anchorElement, { widgetAdapters = [], configuration = {}, artifacts = {} } = {}
 ) {
-   assert( anchorElement ).hasType( HTMLElement ).isNotNull();
+   assert( anchorElement ).isNotNull();
    assert( widgetAdapters ).hasType( Array ).isNotNull();
    assert( artifacts ).hasType( Object ).isNotNull();
    assert( configuration ).hasType( Object ).isNotNull();
