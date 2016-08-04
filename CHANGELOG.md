@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#332](https://github.com/LaxarJS/laxar/issues/332): widget services: added axI18n service
+    + NEW FEATURE: see ticket for details
 - [#344](https://github.com/LaxarJS/laxar/issues/344): widget services: added axAssets service
 - [#345](https://github.com/LaxarJS/laxar/issues/345): added `axConfiguration.ensure`, collected configuration defaults in `services`
 - [#347](https://github.com/LaxarJS/laxar/issues/347): timer: removed resumedOrStarted and added missing tests

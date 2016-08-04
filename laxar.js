@@ -51,14 +51,13 @@ export function bootstrap(
 
    const services = createServices( configuration, artifacts );
 
-   const { globalEventBus, log, i18n, storage, themeLoader, widgetLoader } = services;
+   const { globalEventBus, log, storage, themeLoader, widgetLoader } = services;
    themeLoader.load();
 
    const publicServices = {
       configuration: services.configuration,
       globalEventBus,
       heartbeat: services.heartbeat,
-      i18n,
       log,
       pageService: services.pageService,
       storage,
