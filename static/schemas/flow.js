@@ -23,7 +23,9 @@ export default {
                "type": "string",
                "description": "This place is loaded whenever an unrecoverable error during routing is detected."
             }
-         }
+         },
+         "default": {},
+         "additionalProperties": false
       },
 
       "places": {

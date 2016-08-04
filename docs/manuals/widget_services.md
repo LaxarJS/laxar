@@ -20,6 +20,27 @@ The wrapper only allows registering new areas that are nested in the widget.
 De-registration is handled automatically as needed by the wrapper.
 
 
+### `axAssets`
+
+Provides access to all assets for a widget that are located within its directory and that are configured to be available as assets.
+The service itself is a function that returns a promise resolved with the contents of the given asset.
+Additionally the service has three other functions as properties for more specific access:
+
+* `url`: instead of the content, the promise will be resolved with the url to the asset
+
+* `forTheme`: resolves content for an asset in the active theme or alternatively from the default theme
+
+* `urlForTheme`: resolves the url for an asset in the active theme or alternatively from the default theme
+
+The service itself and its `url` function expect a path as argument that is relative to the widget directory.
+`forTheme` and `urlForTheme` expect a path as argument that is relative to the theme folders.
+So for `my-widget/my.theme/data.json` one would pass `data.json` as argument to these functions.
+If the file would not exist in the `my.theme` directory but in the default theme (`default.theme` directory) it would be read from there.
+Configuration of available assets takes place in the `widget.json` and needs to be exact.
+If an asset isn't configured there, it won't be available.
+Configuration of these assets is explained [here](widgets_and_activities.md).
+
+
 ### `axConfiguration`
 
 The global API for accessing the configuration the application was bootstrapped with.

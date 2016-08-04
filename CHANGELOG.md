@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#344](https://github.com/LaxarJS/laxar/issues/344): widget services: added axAssets service
 - [#345](https://github.com/LaxarJS/laxar/issues/345): added `axConfiguration.ensure`, collected configuration defaults in `services`
 - [#347](https://github.com/LaxarJS/laxar/issues/347): timer: removed resumedOrStarted and added missing tests
 - [#300](https://github.com/LaxarJS/laxar/issues/300): plain widget adapter: added axWithDom service and renamed DOM ready hook
