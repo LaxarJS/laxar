@@ -3,6 +3,14 @@
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
+
+/**
+ * The API entry point for boostrapping LaxarJS applications.
+ * Also, provides a couple of utilities to deal with assertions, objects and strings.
+ *
+ * @module laxar
+ */
+
 import assert from './lib/utilities/assert';
 import * as object from './lib/utilities/object';
 import * as string from './lib/utilities/string';
@@ -27,8 +35,6 @@ catch( _ ) {
 /**
  * Bootstraps AngularJS on the provided `anchorElement` and sets up the LaxarJS runtime.
  *
- * @memberOf laxar
- *
  * @param {HTMLElement} anchorElement
  *    the element to insert the page in
  * @param {Object} [optionalOptions]
@@ -40,6 +46,8 @@ catch( _ ) {
  *    for further information on available properties
  * @param {Object} optionalOptions.artifacts
  *    an artifact listing for the application, generated build tools (webpack / grunt-laxar)
+ *
+ * @memberof laxar
  */
 export function bootstrap(
    anchorElement, { widgetAdapters = [], configuration = {}, artifacts = {} } = {}
@@ -61,11 +69,12 @@ export function bootstrap(
       log,
       pageService: services.pageService,
       storage,
-      tooling: services.toolingProviders
+      tooling: services.toolingProviders,
+      widgetLoader: services.widgetLoader
    };
 
    const adapterModules = [ plainAdapter, ...widgetAdapters ];
-   const adapters = bootstrapWidgetAdapters( publicServices, adapterModules, artifacts );
+   const adapters = bootstrapWidgetAdapters( anchorElement, publicServices, adapterModules, artifacts );
    widgetLoader.registerWidgetAdapters( adapters );
 
    announceInstance( services );
@@ -103,7 +112,7 @@ function whenDocumentReady( callback ) {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function bootstrapWidgetAdapters( services, adapterModules, { widgets, controls } ) {
+function bootstrapWidgetAdapters( anchorElement, services, adapterModules, { widgets, controls } ) {
    const { log } = services;
    const adapterModulesByTechnology = {};
    const modulesByTechnology = {};
@@ -125,7 +134,7 @@ function bootstrapWidgetAdapters( services, adapterModules, { widgets, controls 
    Object.keys( adapterModulesByTechnology ).forEach( technology => {
       const adapterModule = adapterModulesByTechnology[ technology ];
       const widgetModules = modulesByTechnology[ technology ];
-      adapters.push( adapterModule.bootstrap( widgetModules, services ) );
+      adapters.push( adapterModule.bootstrap( widgetModules, services, anchorElement ) );
    } );
    return adapters;
 }
@@ -183,5 +192,6 @@ export {
    assert,
    object,
    string,
-   instances
+   instances,
+   plainAdapter
 };

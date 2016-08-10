@@ -9,6 +9,8 @@
  *
  * It behaves like LaxarJS v2.x, but adds exports for `configuration`, `i18n`, `log` and `storage`.
  * When each of these global exports is used by application code for the first time, a warning is logged.
+ *
+ * @module laxar-compatibility
  */
 import { assert, bootstrap as laxarBootstrap, instances, object, string } from './laxar';
 import { create as createBrowser } from './lib/runtime/browser';

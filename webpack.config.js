@@ -17,166 +17,66 @@ const webpack = require( 'webpack' );
 const baseConfig = require( './webpack.base.config' );
 
 module.exports = [
-   polyfillsConfig(),
-   distConfig(),
-   distMinConfig(),
-   distWithDepsConfig(),
-   distWithDepsMinConfig(),
-   distWithDepsAndCompatibilityConfig()
+   distConfig( './laxar.js', 'laxar.js' ),
+   distConfig( './laxar.js', 'laxar.min.js', { minify: true } ),
+   distConfig( './laxar.js', 'laxar.with-deps.js', { externals: {} } ),
+   distConfig( './laxar.js', 'laxar.with-deps.min.js', { minify: true, externals: {} } ),
+
+   distConfig(
+      './laxar-compatibility.js',
+      'laxar-compatibility.with-deps.js',
+      { externals: {} }
+   ),
+
+   distConfig(
+      './laxar-widget-service-mocks.js',
+      'laxar-widget-service-mocks.js',
+      { externals: { laxar: 'laxar' } }
+   ),
+
+   distConfig( './polyfills.js', 'polyfills.js', { externals: {} } )
 ];
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function polyfillsConfig() {
+function distConfig( entry, output, optionalOptions ) {
+   const options = Object.assign( {
+      minify: false,
+      externals: {
+         'page': 'page',
+         'jjv': 'jjv',
+         'jjve': 'jjve'
+      }
+   }, optionalOptions || {} );
 
    const config = Object.assign( {}, baseConfig );
 
-   config.entry = './polyfills.js';
+   config.entry = entry;
 
    config.output = {
       path: path.resolve( __dirname ),
-      filename: 'dist/polyfills.js'
-   };
-
-   config.externals = {};
-
-   config.plugins = [
-      new webpack.SourceMapDevToolPlugin( {
-         filename: 'dist/polyfills.js.map'
-      } )
-   ];
-   return config;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function distConfig() {
-
-   const config = Object.assign( {}, baseConfig );
-
-   config.entry = './laxar.js';
-
-   config.output = {
-      path: path.resolve( __dirname ),
-      filename: 'dist/laxar.js',
+      filename: `dist/${output}`,
       library: 'laxar',
       libraryTarget: 'umd',
       umdNamedDefine: true
    };
 
-   config.externals = {
-      'page': 'page',
-      'jjv': 'jjv',
-      'jjve': 'jjve'
-   };
+   config.externals = options.externals;
 
    config.plugins = [
       new webpack.SourceMapDevToolPlugin( {
-         filename: 'dist/laxar.js.map'
+         filename: `dist/${output}.map`
       } )
    ];
 
-   return config;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function distMinConfig() {
-
-   const config = Object.assign( {}, distConfig() );
-
-   config.entry = './laxar.js';
-
-   config.output = Object.assign( {}, config.output, {
-      filename: 'dist/laxar.min.js'
-   } );
-
-   config.plugins = [
-      new webpack.SourceMapDevToolPlugin( {
-         filename: 'dist/laxar.min.js.map'
-      } ),
-      new webpack.optimize.UglifyJsPlugin( {
-         compress: {
-            warnings: false
-         },
-         sourceMap: true
-      } )
-   ];
-
-   return config;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function distWithDepsConfig() {
-
-   const config = Object.assign( {}, distConfig() );
-
-   config.entry = './laxar.js';
-
-   config.output = Object.assign( {}, config.output, {
-      filename: 'dist/laxar.with-deps.js'
-   } );
-
-   config.externals = {};
-
-   config.plugins = [
-      new webpack.SourceMapDevToolPlugin( {
-         filename: 'dist/laxar.with-deps.js.map'
-      } )
-   ];
-
-   return config;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function distWithDepsAndCompatibilityConfig() {
-
-   const config = Object.assign( {}, distConfig() );
-
-   config.entry = './laxar-compatibility.js';
-
-   config.output = Object.assign( {}, config.output, {
-      filename: 'dist/laxar-compatibility.with-deps.js'
-   } );
-
-   config.externals = {};
-
-   config.plugins = [
-      new webpack.SourceMapDevToolPlugin( {
-         filename: 'dist/laxar-compatibility.with-deps.js.map'
-      } )
-   ];
-
-   return config;
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function distWithDepsMinConfig() {
-
-   const config = Object.assign( {}, distConfig() );
-
-   config.entry = './laxar.js';
-
-   config.output = Object.assign( {}, config.output, {
-      filename: 'dist/laxar.with-deps.min.js'
-   } );
-
-   config.externals = {};
-
-   config.plugins = [
-      new webpack.SourceMapDevToolPlugin( {
-         filename: 'dist/laxar.with-deps.min.js.map'
-      } ),
-      new webpack.optimize.UglifyJsPlugin( {
-         compress: {
-            warnings: false
-         },
-         sourceMap: true
-      } )
-   ];
+   if( options.minify ) {
+      config.plugins.push(
+         new webpack.optimize.UglifyJsPlugin( {
+            compress: { warnings: false },
+            sourceMap: true
+         } )
+      );
+   }
 
    return config;
 }

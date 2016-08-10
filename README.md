@@ -14,7 +14,7 @@ Have a look at the [LaxarJS homepage](http://laxarjs.org) for demos and more inf
 ## Getting Started
 
 *Warning:* This is the LaxarJS *development branch.*
-You may want to browse the [LaxarJS release documentation]().
+You may want to browse the [LaxarJS release documentation](http://laxarjs.org/docs/laxar-latest/).
 
 
 ### Requirements
