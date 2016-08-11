@@ -1,9 +1,10 @@
 
 # event_bus
 
-The *event_bus* module contains the implementation of the *LaxarJS EventBus*. In an application you'll
-never use this module or instantiate an event bus instance directly. Instead within a widget the event bus
-can be injected via service or accessed as property on the AngularJS `$scope` or `axContext` injections.
+The *event_bus* module contains the implementation of the *LaxarJS EventBus*.
+In an application you'll never use this module or instantiate an event bus instance directly.
+Instead within a widget the event bus can be injected as `axEventBus` or accessed as property on the
+`axContext` injection.
 
 ## Contents
 
@@ -12,26 +13,22 @@ can be injected via service or accessed as property on the AngularJS `$scope` or
 
 **Types**
 - [EventBus](#EventBus)
-  - [EventBus#setErrorHandler](#EventBus#setErrorHandler)
-  - [EventBus#setMediator](#EventBus#setMediator)
   - [EventBus#addInspector](#EventBus#addInspector)
   - [EventBus#subscribe](#EventBus#subscribe)
-  - [EventBus#unsubscribe](#EventBus#unsubscribe)
   - [EventBus#publish](#EventBus#publish)
   - [EventBus#publishAndGatherReplies](#EventBus#publishAndGatherReplies)
 
 ## Module Members
-#### <a name="create"></a>create( nextTick, timeoutFunction, browser, optionalConfiguration )
+#### <a name="create"></a>create( configuration, log, nextTick, timeoutFunction )
 Creates and returns a new event bus instance using the given configuration.
 
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| nextTick | `Function` |  a next tick function like `process.nextTick` or AngularJS' `$timeout` |
-| timeoutFunction | `Function` |  a timeout function like `window.setTimeout`  or AngularJS' `$timeout` |
-| browser | `Object` |  the browser api adapter |
-| _optionalConfiguration_ | `Object` |  configuration for the event bus instance |
-| _optionalConfiguration.pendingDidTimeout_ | `Number` |  the timeout in milliseconds used by [EventBus#publishAndGatherReplies](#EventBus#publishAndGatherReplies). Default is 120000ms |
+| _configuration_ | `Object` |  configuration for the event bus instance. The key `eventBusTimeoutMs` is used to determine the will/did timeout. |
+| _log_ | `Object` |  a logger to use for error reporting |
+| _nextTick_ | `Function` |  a next tick function like `process.nextTick` or AngularJS' `$timeout` |
+| _timeoutFunction_ | `Function` |  a timeout function like `window.setTimeout` or AngularJS' `$timeout` |
 
 ##### Returns
 | Type | Description |
@@ -40,38 +37,6 @@ Creates and returns a new event bus instance using the given configuration.
 
 ## Types
 ### <a name="EventBus"></a>EventBus
-
-#### <a name="EventBus#setErrorHandler"></a>EventBus#setErrorHandler( errorHandler )
-Sets a handler for all errors that may occur during event processing. It receives an error message as
-first argument and a map with additional information on the problem as second argument. There may be
-instances of `Error` as values within the map.
-The default error handler simply logs all issues to `console.error` or `console.log` if available.
-
-##### Parameters
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| errorHandler | `Function` |  the error handler |
-
-#### <a name="EventBus#setMediator"></a>EventBus#setMediator( mediator )
-Sets a mediator, that has the chance to alter events shortly before their delivery to the according
-subscribers. Its sole argument is the complete list of queued event items that should be delivered
-during the current JavaScript event loop. It then needs to return this list, including optional
-modifications, again. Event items may be added or deleted at will, but the return type needs to be an
-array containing zero or more event item-like objects.
-
-An event item has these properties:
-- `meta`: map with meta information for this event
-  - `name`: full name of the published event
-  - `cycleId`: the id of the cycle the event was published in
-  - `sender`: name of sender (if available)
-  - `initiator`: name of the sender initiating the current event cycle (if available)
-  - `options`: map of options given when publishing the event
-- `event`: the event payload it self as published by the sender
-
-##### Parameters
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| mediator | `Function` |  the mediator function |
 
 #### <a name="EventBus#addInspector"></a>EventBus#addInspector( inspector )
 Adds an inspector, that gets notified when certain actions within the event bus take place. Currently
@@ -97,7 +62,7 @@ being called for future event bus actions.
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| inspector | `Function` |  the inspector function to add |
+| _inspector_ | `Function` |  the inspector function to add |
 
 ##### Returns
 | Type | Description |
@@ -115,50 +80,44 @@ all valid event names:
 - `.event`: matches `some.event`, `any.event`, `any.event.again`
 - `some..event`: matches `some.fancy.event`, `some.special.event`
 
-Additionally *subtopics* are supported. A subtopic are fragments of a topic, separated from another by
+Additionally *subtopics* are supported. Subtopics are fragments of a topic, separated from another by
 simple dashes (`-`). Here only suffixes of subtopics may be omitted when subscribing. Thus subscribing
 to `some.event` would match an event published with name `some.event-again` or even
 `some.event-another.again`.
 
+**The subscriber function**
+
 When an event is delivered, the subscriber function receives two arguments:
-The first one is the event object as it was published. If `clone` yields `true` this is a simple deep
-copy of the object (note that only properties passing a JSON-(de)serialization remain). If `false` the
-object is frozen using `Object.freeze` recursively in browsers that support freezing. In any other
-browser this is just an identity operation.
+The first one is the event object as it was published. If `optionalOptions.clone` yields `true` this is a
+simple deep copy of the object (note that only properties passing a JSON-(de)serialization remain). If
+`false` the object is frozen using `Object.freeze` recursively.
 
 The second one is a meta object with these properties:
 
-- `unsubscribe`: A function to directly unsubscribe the called subscriber from further events
 - `name`: The name of the event as it actually was published (i.e. without wildcards).
 - `cycleId`: The id of the cycle the event was published (and delivered) in
 - `sender`: The id of the event sender, may be `null`.
 - `initiator`: The id of the initiator of the cycle. Currently not implemented, thus always `null`.
 - `options`: The options that were passed to `publish` or `publishAndGatherReplies` respectively.
 
-Note that the subscriber function will receive a property `ax__events` to keep track of all events this
-function was attached to. This is necessary to make [EventBus#unsubscribe](#EventBus#unsubscribe) work.
-
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| eventName | `String` |  the name of the event to subscribe to |
-| subscriber | `Function` |  a function to call whenever an event matching `eventName` is published |
+| _eventName_ | `String` |  the name of the event to subscribe to |
+| _subscriber_ | `Function` |  a function to call whenever an event matching `eventName` is published |
 | _optionalOptions_ | `Object` |  additional options for the subscribe action |
 | _optionalOptions.subscriber_ | `String` |  the id of the subscriber. Default is `null` |
 | _optionalOptions.clone_ | `Boolean` |  if `false` the event will be send frozen to the subscriber, otherwise it will receive a deep copy. Default is `true` |
 
-#### <a name="EventBus#unsubscribe"></a>EventBus#unsubscribe( subscriber )
-Removes all subscriptions of the given subscriber.
-
-##### Parameters
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| subscriber | `Function` |  the function to unsubscribe |
+##### Returns
+| Type | Description |
+| ---- | ----------- |
+| `Function` |  a function that when called unsubscribes from this subscription again |
 
 #### <a name="EventBus#publish"></a>EventBus#publish( eventName, optionalEvent, optionalOptions )
-Asynchronously publishes an event on the event bus. The returned promise will be queued as soon as this
+Asynchronously publishes an event on the event bus. The returned promise will be enqueued as soon as this
 event is delivered and, if during delivery a new event was enqueued, resolved after that new event was
-delivered. If no new event is queued during delivery of this event, the promise is instantly resolved.
+delivered. If no new event is published during delivery of this event, the promise is instantly resolved.
 To make this a bit clearer, lets assume we publish and thus enqueue an event at time `t`. It then will
 be delivered at time `t+1`. At that precise moment the promise is enqueued to be resolved soon. We then
 distinguish between two cases:
@@ -181,7 +140,7 @@ mentioned above. Practically this is used internally for the implementation of
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| eventName | `String` |  the name of the event to publish |
+| _eventName_ | `String` |  the name of the event to publish |
 | _optionalEvent_ | `Object` |  the event to publish |
 | _optionalOptions_ | `Object` |  additional options for the publish action |
 | _optionalOptions.sender_ | `String` |  the id of the event sender. Default is `null` |
@@ -200,19 +159,19 @@ Certain rules need to be fulfilled: First the initiator needs to call this metho
 name has the suffix `Request`, e.g. `takeActionRequest`. All collaborators that want to react to this
 event then either do so in the same event cycle by sending a `didTakeAction` event or announce that they
 will do something asynchronously by publishing a `willTakeAction` event. In the latter case they need to
-broadcast the fulfillment of their action by sending a `didTakeAction` event. Note that for both events
-the same sender name needs to be given. Otherwise they cannot be mapped and the event bus doesn't know
-if all asynchronous replies were already received.
+broadcast the fulfillment of their action some time later by sending a `didTakeAction` event. Note that for
+both events the same sender name needs to be given. Otherwise they cannot be mapped and the event bus
+doesn't know if all asynchronous replies were already received.
 
 Additionally a timer is started using either the globally configured `pendingDidTimeout` ms value or the
 value provided as option to this method. If that timer expires before all `did*` events to all given
 `will*` events were received, the error handler is called to handle the incident and the promise is
-rejected with all response received up to now.
+rejected with all responses received up to now.
 
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| eventName | `String` |  the name of the event to publish |
+| _eventName_ | `String` |  the name of the event to publish |
 | _optionalEvent_ | `Object` |  the event to publish |
 | _optionalOptions_ | `Object` |  additional options for the publish action |
 | _optionalOptions.sender_ | `String` |  the id of the event sender. Default is `null` |

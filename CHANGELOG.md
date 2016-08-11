@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#354](https://github.com/LaxarJS/laxar/issues/354): event bus: removed unsubscribe methods
+    + **BREAKING CHANGE:** see ticket for details
 - [#353](https://github.com/LaxarJS/laxar/issues/353): log: changed level to levels
     + **BREAKING CHANGE:** see ticket for details
 - [#332](https://github.com/LaxarJS/laxar/issues/332): widget services: added axI18n service
