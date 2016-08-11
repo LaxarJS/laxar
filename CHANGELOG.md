@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#353](https://github.com/LaxarJS/laxar/issues/353): log: changed level to levels
+    + **BREAKING CHANGE:** see ticket for details
 - [#332](https://github.com/LaxarJS/laxar/issues/332): widget services: added axI18n service
     + NEW FEATURE: see ticket for details
 - [#344](https://github.com/LaxarJS/laxar/issues/344): widget services: added axAssets service
