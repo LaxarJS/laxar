@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-alpha.5
+
 - [#355](https://github.com/LaxarJS/laxar/issues/355): json validator: moved to utilities
 - [#354](https://github.com/LaxarJS/laxar/issues/354): event bus: removed unsubscribe methods
     + **BREAKING CHANGE:** see ticket for details
