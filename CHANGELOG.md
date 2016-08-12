@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#356](https://github.com/LaxarJS/laxar/issues/356): event bus: can be created with a custom error handler
+    + **BREAKING CHANGE:** see ticket for details
+
 
 ## v2.0.0-alpha.5
 
