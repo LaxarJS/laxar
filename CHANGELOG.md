@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-alpha.8
+
 - [#351](https://github.com/LaxarJS/laxar/issues/351): testing: provided full set of widget service mocks
     + NEW FEATURE: see ticket for details
 
