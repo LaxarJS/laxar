@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.3.0-alpha.0
+
 - [#330](https://github.com/LaxarJS/laxar/issues/330): tooling: added developer tools API
 - [#322](https://github.com/LaxarJS/laxar/issues/322): logging: fixed source location reporting
 - [#296](https://github.com/LaxarJS/laxar/issues/296): documentation: fixed string API doc module name
