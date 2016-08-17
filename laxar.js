@@ -112,29 +112,33 @@ function whenDocumentReady( callback ) {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function bootstrapWidgetAdapters( anchorElement, services, adapterModules, { widgets, controls } ) {
+function bootstrapWidgetAdapters( anchorElement, services, adapterModules, artifacts ) {
    const { log } = services;
    const adapterModulesByTechnology = {};
-   const modulesByTechnology = {};
+   const artifactsByTechnology = {};
+
    adapterModules.forEach( module => {
       adapterModulesByTechnology[ module.technology ] = module;
-      modulesByTechnology[ module.technology ] = [];
+      artifactsByTechnology[ module.technology ] = { widgets: [], controls: [] };
    } );
 
-   [ ...widgets, ...controls ].forEach( ({ descriptor, module }) => {
-      const { technology } = descriptor.integration;
-      if( !adapterModulesByTechnology[ technology ] ) {
-         log.fatal( 'Unknown widget technology: [0]', technology );
-         return;
-      }
-      modulesByTechnology[ technology ].push( module );
+   [ 'widgets', 'controls' ].forEach( type => {
+      artifacts[ type ].forEach( artifact => {
+         const { technology } = artifact.descriptor.integration;
+         if( !adapterModulesByTechnology[ technology ] ) {
+            const { name } = artifact.descriptor;
+            log.fatal( 'Unknown widget technology: [0], required by [1] "[2]"', technology, type, name );
+            return;
+         }
+         artifactsByTechnology[ technology ][ type ].push( artifact );
+      } );
    } );
 
    const adapters = [];
    Object.keys( adapterModulesByTechnology ).forEach( technology => {
       const adapterModule = adapterModulesByTechnology[ technology ];
-      const widgetModules = modulesByTechnology[ technology ];
-      adapters.push( adapterModule.bootstrap( widgetModules, services, anchorElement ) );
+      const artifacts = artifactsByTechnology[ technology ];
+      adapters.push( adapterModule.bootstrap( artifacts, services, anchorElement ) );
    } );
    return adapters;
 }

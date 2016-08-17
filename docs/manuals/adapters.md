@@ -2,8 +2,8 @@
 
 [« return to the manuals](index.md)
 
-LaxarJS widgets do not have to be written using AngularJS.
-While [our own widgets](http://laxarjs.github.io/widget-browser) are usually written in AngularJS, this should not prevent you from using an (MVC) framework of your choice, such as [Backbone.js](http://backbonejs.org), [Knockout](http://knockoutjs.com/) or [React](https://facebook.github.io/react/).
+LaxarJS widgets can be created in various integration technologies:
+While [our own widgets](http://laxarjs.github.io/widget-browser) are often written in [AngularJS](https://angularjs.org), this should not prevent you from using an (MVC) framework of your choice, such as [Backbone.js](http://backbonejs.org), [Knockout](http://knockoutjs.com) or [React](https://facebook.github.io/react/).
 
 Preliminary readings:
 
@@ -30,15 +30,12 @@ Since that is a somewhat simplified explanation, let us look into it in more det
 At this point, the composition parameter names have been substituted by their values and unique widget IDs have been generated, but default values for the widget features have not been applied yet.
 
 * For each configured widget instance, the page controller asks the _widget loader_ to provide it with a widget adapter for that instance, to control widget lifecycle.
-The widget controller written in JavaScript has already been loaded as a module (AMD, CommonJS or ES6) when entering the application.
-The loader fetches the _widget.json_, and knows how to get the widget template and CSS style sheet, if applicable.
-Of course, all assets are loaded only once, even if a widget is instantiated several times during the lifetime of an application or even on the same page.
-All widgets are loaded asynchronously and in parallel, so there is no unnecessary delay.
-In production mode, all assets are served from the configured file listings, so that this process may happen very quickly.
+The widget's descriptor (the _widget.json_), its assets (HTML/CSS) and the JavaScript controller module (AMD, CommonJS or ES6) have already been loaded when entering the application.
 
-* As soon as the widget loader has loaded the _widget.json_ for a widget instance, it validates the feature configuration and fills in missing default values.
-Next, it sets up an event bus wrapper for the widget, that always fills in the _sender_ (on publish) and _subscriber_ (on subscribe) with the widget id.
-This wrapper also ensures that the widget is unsubscribed from all events when the page is teared down later on.
+* The widget loader uses the descriptor to validate the feature configuration for a widget instance, filling in missing default values.
+The widget loader also sets up the *widget services* for injection into the widget controller.
+This includes the widget-specific event bus which automatically sets the _sender_ (on publish) and _subscriber_ (on subscribe).
+Widget services are instantiated lazily using ES5 properties, so that they will only be created when they are actually injected.
 
 * Now all that is left to do is kicking off the widget controller with the augmented feature configuration, and loading and instantiating the widget template.
 Both of these steps are specific to the implementation technology of the widget.
@@ -58,8 +55,12 @@ Each widget integration technology is implemented as a module with these propert
   It is compared to the `integration.technology` field of each _widget.json_ to determine which adapter must be used for each widget in the application.
 
 * The module method `bootstrap` prepares the adapter for a LaxarJS bootstrap instance.
-  The method receives an array of modules, which contain the widgets and controls matching the adapter's technology.
-  It returns an *adapter factory* object which is used to create individual adapter instances for the live widgets. The adapter factory is an object with these properties:
+  The method receives an object with an array property for `widgets` and one for `controls`.
+  Each entry of these arrays has a `descriptor` (the contents of `widget.json` and `control.json` respectively), and a `module` containing the technology-dependent implementation code.
+  As a second argument, `bootstrap` receives selected *services* from the LaxarJS runtime:
+  Particularly useful is the `widgetLoader` whose `adapterErrors` can be used to signal problems commonly encountered by adapters.
+
+  The `bootstrap` method returns an *adapter factory* object which is used to create individual adapter instances for the live widgets. The adapter factory is an object with these properties:
 
    - `technology`: the same string as provided by the module
 
@@ -68,10 +69,7 @@ Each widget integration technology is implemented as a module with these propert
 
    - `serviceDecorators` (optional): Usually, services passed to `create` can be used *as-is*, without technology-specific changes. However, some technologies may need to modify individual services. For these cases, adapter factories may specify so-called *service decorators* by returning a map of service names to decorator functions from this method. Each decorator will be called with the original injection (such as `axContext`, `axId` etc.) when that is requested. Decorators may then decide to return a modified injection or a completely new    version.
 
-   - `applyViewChanges` (optionally): Whenever the _LaxarJS_ runtime may have caused a change to the internal state of one or more widgets, for example by asynchronous delivery of event bus events, this method gets called.
-   It should then do whatever necessary to update the view of all its adapter instances. In case of _angular_ this is a call to `$rootScope.$apply()`, while the *plain* adapter simply does nothing.
-
-  The API of the widget modules themselves depends on the integration technology, but usually there is at least a `name` to associate the modules to their _widget.json,_ a method to instantiate a controller for a given widget instance, and possibly a method to set up a view.
+  The API of the widget modules themselves depends on the integration technology, but usually there is a method to instantiate a controller for a given widget instance, and possibly a list of injections and/or a method to set up a view.
 
    - For the _plain_ integration, the widget module must have a method `create` to instantiate the controller, and optionally an array  `injections` to specify services required by the widget, such as the event bus.
    These injections are used as arguments to `create` in the order that they are listed in `injections`.
@@ -88,56 +86,62 @@ Before going into details on the widget adapter API, let us have a look at the e
 Before creating an adapter for an individual widget instance, the widget loader collects all required information and bundles it into an _environment_ object.
 The environment has the following properties:
 
-* The `anchorElement` is a standard HTMLElement meant to contain all widget view UI.
+* The `widgetName` is the name of the widget to instantiate, exactly as it is written in the `descriptor.name` property.
+  The widget adapter needs this to look up the widget's descriptor and module.
+
+* The `anchorElement` is a standard `HTMLElement` meant to contain all of the widget's user interface.
   If the adapter uses a templating system, the instantiated template should be appended to this anchor.
-  It automatically gets assigned an ID matching the widget ID, which is useful to identify a widget within the DOM, and a CSS class which should be used to restrict styles to the widget.
-  If necessary, Widgets may manipulate DOM outside of their anchor, for example to show an overlay.
-  But if they do, they are responsible for cleanup, and they should never modify the DOM of other widgets.
+  Before passing the element to the adapter, the widget loader sets the ID-attribute to the widget ID, which is useful to identify a widget instance within the DOM.
+  It also adds a CSS class which should be used by the widget's stylesheet to restrict style definitions to the widget.
+  If necessary, widgets or adapters may manipulate DOM outside of their anchor, for example to show an overlay.
+  If they do, they are responsible for cleanup, and they should never modify the DOM of other widgets.
 
 * The `services` object contains all services that may be injected into a widget.
   It offers access to global APIs, but also services specifically adapted for individual widget instances.
   Since the list is rather long and mostly relevant for widget authors, the services are described in their own [document](./widget_services.md).
 
-* The `specification` contains the widget meta information from the _widget.json._
-  This information is not intended to be passed through to the widget controller.
-  Instead, it may help the widget adapter to determine the widget name, and if the current widget is a regular widget or an activity.
-  Depending on the integration technology, different fields from the specification may be useful.
+* The `onBeforeControllerCreation` is a callback function that the widget adapter must invoke immediately *before* instantiating the widget controller.
+  It is needed by tests to get access to the final set of widget services, which is dependent on the widget instance as well as on the technology.
+  The services should be passed as an object: its keys are the injection names requested by the widget, and the values are the corresponding service properties.
 
-Having been created from an environment, all widget adapter instances expose the same set of methods which are called by their widget loader to control widget setup and teardown.
+  The object is allowed to contain additional services that were not actually requested by the widget, but the adapter should take care not to evaluate their properties.
+  For example, if a widget does not actually use `axI18n`, it probably does not have the `i18n` feature configuration which is required for this injection to work.
+  If the adapter would instantiate the service (e.g. by simply accessing `axI18n`), an exception would be thrown.
+  An adapter that does not need to add custom injections can simply pass the `services` object from the environment.
+  For hints on the correct implementation, have a look at the existing adapter implementations, e.g. the [laxar-angular-adapter](https://github.com/LaxarJS/laxar-angular-adapter) or the [laxar-react-adapter](https://github.com/LaxarJS/laxar-react-adapter).
+  Because the view has not been setup at this point in time, the adapter should not yet manipulate the anchor element, nor make it available to the widget controller.
+
+Created from this environment, the new widget adapter instance prepares additional technology-specific injections as needed, calls the `onBeforeControllerCreation` hook, and instantiates the widget controller.
+Then it returns an API to further interaction from the widget loader.
 
 
 ### The Widget Adapter API
 
-All widget adapter instances produced by `create` must implement the following four methods, to support creation and destruction of controller and view:
-
-* `createController`: called to instantiate the widget controller.
-  The argument is a config map, currently only having an `onBeforeControllerCreation` function as single property.
-  This function acts as integration point for widget tests and should be called by the adapter just before the controller is instantiated.
-  It expects the `environment` as first and all readily prepared injections for the widget as second argument.
-
-  When instantiating the widget controller, the adapter must provide it with the `context` from the widget loader environment.
-  Because the view has not been setup at this point in time, the adapter should not yet manipulate the anchor element, nor make it available to the widget controller.
+All widget adapter instances produced by `create` must implement the following three methods, to support creation and destruction of controller and view:
 
 * `domAttachTo`: called with a widget area as the first argument, and an optional (template) HTML string as the second argument.
   The adapter is supposed to instantiate the template based on its implementation technology, and to associate it to the widget controller.
-  Depending on the technology, this may happen through binding, for example through the shared _scope_ created by the _angular_ adapter.
-  Alternatively, the adapter may call some technology-specific API of the controller and hand over the template.
+  Depending on the technology, this may happen through binding, for example through the _$scope_ injection created by the adapter for _angular_.
+  Alternatively, the adapter may call some technology-specific API of the controller and pass the template.
   The instantiated template should be appended to the anchor element, which in turn should be appended to the widget area element.
   If there is no template, as is usually the case with activities or sometimes with very simple widgets that only need CSS, the value `null` is passed as the second parameter.
   In this case, it is up to the widget adapter to decide if the anchor should be added to the DOM anyway, usually based on whether the type is _widget_ or _activity_.
 
 * `domDetach`: the counterpart to `domAttachTo`, this method is used to remove the view from the containing widget area, temporarily or permanently.
   The widget adapter may teardown the template completely, or keep it "warm" for reattachment.
-  LaxarJS may ask widget adapters to detach their DOM and later to attach it again, for example to suspend the widget views within a popup window.
+  LaxarJS may ask widget adapters to detach their DOM and later to attach it again, for example to suspend the widget views within a "popup" layer while that layer is closed.
+  If an adapter cannot reliably destroy and rebuild its view, it should do nothing, and simply ignore repeated calls to `domAttachTo`.
 
 * `destroy`: called only once when a widget instance is removed, usually because the user is navigating away from a page.
-  It is not guaranteed that _any_ of the other methods has been called at this point in time, but _destroy_ is supposed to tidy up everything that has been done at this point in time.
+  It is not guaranteed that _any_ of the other methods has been called at this point in time, but _destroy_ is supposed to tidy up everything that has been done so far.
+  The adapter can assume that the other methods will not be called after this.
+  Adapters that do not need to perform cleanup work may omit this property.
 
-For a simple example of a user-defined widget adapter, have a look at this [Backbone.js adapter](https://github.com/alex3683/laxar-backbone-adapter).
+For practical examples of user-defined widget adapters, have a look at the [React adapter](https://github.com/LaxarJS/laxar-react-adapter) and the [AngularJS v1 adapter](https://github.com/LaxarJS/laxar-angular-adapter).
 
 
 ## Using a Custom Adapter in a Project
 
-To use a custom integration technology, the corresponding AMD-module must be passed to the LaxarJS `bootstrap` method.
-This means that when working on a project that was created by the [LaxarJS Yeoman generator](//github.com/LaxarJS/generator-laxarjs), the `init.js` must `require` the corresponding module, wrap it in an array and pass that array to `ax.bootstrap`.
-Of course, the widgets written for this integration technology must state so in their _widget.json._
+To use any integration technology other than "plain", the corresponding adapter module must be passed to the LaxarJS `bootstrap` method.
+This means that when working on a project that was created by the [LaxarJS Yeoman generator](//github.com/LaxarJS/generator-laxarjs), the `init.js` must load the corresponding module, wrap it in an array and pass that array to `ax.bootstrap`.
+Finally, the widgets written for this integration technology must state so in their _widget.json._
