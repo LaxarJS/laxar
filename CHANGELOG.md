@@ -5,6 +5,8 @@
 
 ## v2.0.0-alpha.8
 
+- [#360](https://github.com/LaxarJS/laxar/issues/360): routing: use `flow.router.base` instead of `baseHref` config
+    + **BREAKING CHANGE:** see ticket for details
 - [#351](https://github.com/LaxarJS/laxar/issues/351): testing: provided full set of widget service mocks
     + NEW FEATURE: see ticket for details
 
