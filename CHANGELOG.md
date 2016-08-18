@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#288](https://github.com/LaxarJS/laxar/issues/288): documentation: added a link to the laxar-react-adapter to the manual about providing controls
+
 - [#287](https://github.com/LaxarJS/laxar/issues/287): documentation: added a link to the laxar-react-adapter to the manual about writing widget controllers
 
 
