@@ -33,7 +33,7 @@ For example:
 }
 ```
 
-For now this is limited to `angular` and `plain`.
+For now this is limited to `angular`, `react` and `plain`.
 In case you developed [your own widget adapter](adapters.md), this is of course available as well under the name the adapter exports as `technology` property.
 
 ## Available Integration Technologies
@@ -41,6 +41,8 @@ In case you developed [your own widget adapter](adapters.md), this is of course 
 Out of the box LaxarJS currently supports two different integration technologies:
 Plain Javascript widgets and widgets defining an *AngularJS* module and controller.
 In the following both technologies are described.
+
+If you want to develop a widget with *React* you can use our [laxar-react-adapter](https://github.com/LaxarJS/laxar-react-adapter).
 
 Note that for the time being all widgets have to be defined as [AMD module](https://github.com/amdjs/amdjs-api/wiki/AMD), since this is the way LaxarJS bootstraps them.
 
@@ -176,9 +178,10 @@ The template then looks like this:
 <span class="output">{{ myString }}</span>
 ```
 
+
 ## Available Injections
 
-For both integration types the same basic set of injectable services or objects is available.
+For all integration types the same basic set of injectable services or objects is available.
 In case of AngularJS widgets it is of course possible to add more services to the list via standard dependency injection mechanisms.
 On the other hand the `$scope` is not available for plain widgets, but `axContext` should provide all the useful parts.
 But out of the box these are the injections provided by LaxarJS:

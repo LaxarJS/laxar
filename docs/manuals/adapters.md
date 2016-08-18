@@ -5,6 +5,9 @@
 LaxarJS widgets do not have to be written using AngularJS.
 While [our own widgets](http://laxarjs.github.io/widget-browser) are usually written in AngularJS, this should not prevent you from using an (MVC) framework of your choice, such as [Backbone.js](http://backbonejs.org), [Knockout](http://knockoutjs.com/) or [React](https://facebook.github.io/react/).
 
+For developing a widget with React we provide the [laxar-react-adapter](https://github.com/LaxarJS/laxar-react-adapter).
+Two examples for widgets with React we use in a demo or developer tools are the [article-teaser-widget](https://github.com/LaxarJS/shop-demo/tree/master/includes/widgets/shop-demo/article-teaser-widget) and the [page-inspector-widget](https://github.com/LaxarJS/ax-developer-tools-widget/tree/master/content/includes/widgets/page-inspector-widget).
+
 Preliminary readings:
 
 * [Widgets and Activities](widgets_and_activities.md)
