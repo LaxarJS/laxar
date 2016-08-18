@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-alpha.9
+
 - [#358](https://github.com/LaxarJS/laxar/issues/358): adapter API: simplified further
     + **BREAKING CHANGE:** see ticket for details
 
