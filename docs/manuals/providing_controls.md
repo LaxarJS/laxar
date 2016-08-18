@@ -29,12 +29,13 @@ This allows you to create and distribute large libraries of controls without fea
 ## Creating or Integrating a Control
 
 While HTML5 Web Components are very interesting, the current browser support is limited.
-For this reason, LaxarJS currently only covers the creation of a control as an AngularJS directive.
+For this reason, LaxarJS currently encourages the creation of a control as an AngularJS directive.
 
 Of course you can still use Web Components, jQuery UI or any other way of creating controls in your widgets, but LaxarJS currently will not manage assets for them.
 The recommended way for now is therefore to wrap such controls in an AngularJS directive.
 This can be done either for a single widget by simply adding a directive to its module, or by providing a standalone control as described in the following.
 
+If you want to develop a control with *React* you can use our [laxar-react-adapter](https://github.com/LaxarJS/laxar-react-adapter).
 
 ### Creating a Control using an AngularJS directive
 
