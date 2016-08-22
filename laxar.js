@@ -16,7 +16,7 @@ import * as object from './lib/utilities/object';
 import * as string from './lib/utilities/string';
 
 import { create as createServices } from './lib/runtime/services';
-import * as plainAdapter from './lib/widget_adapters/plain_adapter';
+import * as plainAdapter from './lib/runtime/plain_adapter';
 
 
 // Get a reference to the global object of the JS environment.

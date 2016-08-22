@@ -15,7 +15,7 @@
 import { assert, bootstrap as laxarBootstrap, instances, object, string } from './laxar';
 import { create as createBrowser } from './lib/runtime/browser';
 import { create as createConfiguration } from './lib/runtime/configuration';
-import { create as createLog, BLACKBOX, level } from './lib/logging/log';
+import { create as createLog, BLACKBOX, level } from './lib/runtime/log';
 import { create as createStorage } from './lib/runtime/storage';
 
 const preBootstrapServices = createPreBootstrapServices();
