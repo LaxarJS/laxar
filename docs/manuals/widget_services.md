@@ -65,6 +65,18 @@ The *context* object contains information that may be of use to the widget contr
 While some of these properties are available as standalone injections, they are bundled on the context to simplify the creation of powerful libraries such as *LaxarJS Patterns.*
 
 
+### `axControls`
+
+Widgets can use this service to get access to their controls' implementation modules.
+It has a single method:
+
+* `provide( name )` returns the implementation module (AMD, CommonJS, ES2015) for the given named control.
+The name must be the same as the one used in the `widget.json` descriptor to declare the control dependency.
+If the control was not declared, or if it does not have an implementation module (e.g. a pure CSS styling control), an exception is raised.
+
+Depending on the implementation technology, using this service may not be needed. For example, "angular" controls are automatically loaded as AngularJS modules.
+
+
 ### `axEventBus`
 
 The event bus instance for this widget.

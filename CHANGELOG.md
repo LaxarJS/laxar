@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#361](https://github.com/LaxarJS/laxar/issues/361): widget services: re-added `axControls` injection
+
 
 ## v2.0.0-alpha.9
 
