@@ -15,7 +15,7 @@
     "apidoc": "grunt apidoc",
     "optimize": "webpack",
     "test": "npm run karma && npm run eslint",
-    "browser-spec": "webpack --config webpack.browser-spec.config.js && webpack-dev-server --port 8081 --inline --config webpack.browser-spec.config.js",
+    "browser-spec": "webpack --config webpack.browser-spec.config.js && webpack-dev-server --host 0.0.0.0 --port 8081 --inline --config webpack.browser-spec.config.js",
     "karma": "karma start karma.config.js",
     "eslint": "eslint laxar.js *.config.js lib"
   },
@@ -25,7 +25,6 @@
     "page": "~1.7.1"
   },
   "devDependencies": {
-    "array-includes": "^3.0.2",
     "array.from": "^1.0.2",
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",

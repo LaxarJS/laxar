@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#317](https://github.com/LaxarJS/laxar/issues/317): utilities: removed `path`, added `browser.resolve`
 - [#357](https://github.com/LaxarJS/laxar/issues/357): runtime: consolidated modules into `lib/runtime`
 - [#361](https://github.com/LaxarJS/laxar/issues/361): widget services: re-added `axControls` injection
 
