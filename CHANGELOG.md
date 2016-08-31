@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#364](https://github.com/LaxarJS/laxar/issues/364): axFlowService: widgets can now longer access the flow controller
+    + **BREAKING CHANGE:** see ticket for details
 - [#362](https://github.com/LaxarJS/laxar/issues/362): loaders: support new `styleSource` and `templateSource` in artifact descriptors
     + NEW FEATURE: see ticket for details
 - [#317](https://github.com/LaxarJS/laxar/issues/317): utilities: removed `path`, added `browser.resolve`
