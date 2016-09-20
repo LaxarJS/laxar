@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.3.0-beta.0
+
 - [#323](https://github.com/LaxarJS/laxar/issues/323): documentation: fixed link
 - [#367](https://github.com/LaxarJS/laxar/issues/367): runtime: allow to configure hash-free (HTML5) routing
     + NEW FEATURE: see ticket for details
