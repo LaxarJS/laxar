@@ -73,7 +73,7 @@ But for best interoperability between widgets and activities, not only should th
 
 It is recommended wherever possible for widgets to use one or more of the established _event patterns_:
 These patterns consist of event vocabularies and minimal associated semantics that have been identified during the development of LaxarJS.
-A few [core patterns](core-patterns) are baked right into the LaxarJS runtime, and these are listed below.
+A few [core patterns](#core-patterns) are baked right into the LaxarJS runtime, and these are listed below.
 Other useful patterns are described in the separate project _[LaxarJS Patterns](//github.com/LaxarJS/laxar-patterns)_.
 Even without using the LaxarJS Patterns _library_, widget authors are very much encouraged to use the [event vocabularies](//github.com/LaxarJS/laxar-patterns/docs/index.md) whenever meaningful.
 

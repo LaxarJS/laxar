@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#323](https://github.com/LaxarJS/laxar/issues/323): documentation: fixed link
 - [#367](https://github.com/LaxarJS/laxar/issues/367): runtime: allow to configure hash-free (HTML5) routing
     + NEW FEATURE: see ticket for details
 - [#288](https://github.com/LaxarJS/laxar/issues/288): documentation: added a link to the laxar-react-adapter to the manual about providing controls
