@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#370](https://github.com/LaxarJS/laxar/issues/370): runtime: improved absolute link construction (HTML5 routing)
+
 
 ## v1.3.0-beta.0
 
