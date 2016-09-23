@@ -12,6 +12,7 @@ When requiring `laxar`, an instance of the `Logger` type is available as `laxar.
 
 **Types**
 - [level](#level)
+- [BLACKBOX](#BLACKBOX)
 - [Logger](#Logger)
   - [Logger#create](#Logger#create)
   - [Logger#log](#Logger#log)
@@ -39,6 +40,10 @@ By default available log levels, sorted by increasing log level:
 - ERROR (level 500)
 - FATAL (level 600)
 
+### <a name="BLACKBOX"></a>BLACKBOX
+Pass this as an additional replacement parameter to a log-method to blackbox your logging call.
+Blackboxed callers are ignored when logging the source information (file, line). (#322)
+
 ### <a name="Logger"></a>Logger
 
 #### <a name="Logger#create"></a>Logger#create()
@@ -49,7 +54,7 @@ Creates and returns a new logger instance. Intended for testing purposes only.
 | ---- | ----------- |
 | `Logger` |  a new logger instance |
 
-#### <a name="Logger#log"></a>Logger#log( level, message, replacements )
+#### <a name="Logger#log"></a>Logger#log( level, message, replacementArguments )
 Logs a message. A message may contain placeholders in the form `[#]` where `#` resembles the index
 within the list of `replacements`. `replacements` are incrementally counted starting at `0`. If the
 log level is below the configured log threshold, the message is simply discarded.
@@ -62,7 +67,7 @@ according log level.
 | -------- | ---- | ----------- |
 | level | `Number` |  the level for this message |
 | message | `String` |  the message to log |
-| replacements... | `*` |  objects that should replace placeholders within the message |
+| replacementArguments... | `*` |  objects that should replace placeholders within the message |
 
 #### <a name="Logger#trace"></a>Logger#trace( message, replacements )
 Logs a message in log level `TRACE`. See [Logger#log](#Logger#log) for further information.
