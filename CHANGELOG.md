@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#369](https://github.com/LaxarJS/laxar/issues/369): documentation: improved docs and specs for object.path/setPath
+
 
 ## v1.3.0-beta.1
 
