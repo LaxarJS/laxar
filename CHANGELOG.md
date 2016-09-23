@@ -2,7 +2,7 @@
 
 ## Last Changes
 
-- [#369](https://github.com/LaxarJS/laxar/issues/369): utilities: fixed `object.path` for empty path segments
+- [#369](https://github.com/LaxarJS/laxar/issues/369): documentation: improved docs and specs for object.path/setPath
 - [#323](https://github.com/LaxarJS/laxar/issues/323): documentation: fixed link
 - [#365](https://github.com/LaxarJS/laxar/issues/365): jasmine: set fixed minor version
 - [#364](https://github.com/LaxarJS/laxar/issues/364): axFlowService: widgets can now longer access the flow controller
