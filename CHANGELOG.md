@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.2.10
+
 - [#371](https://github.com/LaxarJS/laxar/issues/371): flow: fixed URL encoding of place parameter values
 
 
