@@ -22,12 +22,20 @@
                   },
                   "targets": {
                      "type": "object",
+                     "default": {},
                      "patternProperties": {
                         "[a-z][a-zA-Z0-9_]*": {
                            "type": "string"
                         }
                      },
                      "description": "A map of symbolic targets to places reachable from this place."
+                  },
+                  "queryParameters": {
+                     "type": "object",
+                     "default": {},
+                     "additionalProperties": {
+                        "type": [ "string", "boolean", "null" ]
+                     }
                   },
                   "entryPoints": {
                      "type": "object",

@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#372](https://github.com/LaxarJS/laxar/issues/372): flow: allow to encode place parameters in query string
 - [#371](https://github.com/LaxarJS/laxar/issues/371): flow: fixed URL encoding of place parameter values
 - [#369](https://github.com/LaxarJS/laxar/issues/369): documentation: improved docs and specs for object.path/setPath
 

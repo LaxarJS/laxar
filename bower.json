@@ -18,7 +18,7 @@
       "angular-mocks": "~1.3.16 || ~1.4.1",
       "angular-sanitize": "~1.3.16 || ~1.4.1",
       "angular-route": "~1.3.16 || ~1.4.1",
-      "jjv": "1.0.x",
+      "jjv": "525475c9abd36ec1e939b65a3ba112367928c056",
       "jjve": "silas/jjve#0.5.x",
       "jquery": "1.11.x",
       "q_mock": "LaxarJS/q_mock#0.1.x",
