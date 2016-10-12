@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.3.0-beta.2
+
 - [#376](https://github.com/LaxarJS/laxar/issues/376): flow: fixed `constructAbsoluteUrl` in html5Mode (was not absolute)
 - [#372](https://github.com/LaxarJS/laxar/issues/372): flow: allow to encode place parameters in query string
 - [#371](https://github.com/LaxarJS/laxar/issues/371): flow: fixed URL encoding of place parameter values
