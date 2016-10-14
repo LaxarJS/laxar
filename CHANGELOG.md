@@ -6,6 +6,7 @@
 ## v1.3.0-beta.3
 
 - [#378](https://github.com/LaxarJS/laxar/issues/378): tooling: allow to explicitly disable tooling hooks
+    + NEW FEATURE: see ticket for details
 
 
 ## v1.3.0-beta.2
