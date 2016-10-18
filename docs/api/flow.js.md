@@ -24,6 +24,9 @@ Constructs a path, that is compatible to the expected arguments of `$location.pa
 AngularJS. If a target is given as first argument, this is resolved using the currently active
 place.
 
+Deprecation Notice: this will probably create invalid links if using query parameters. Use
+constructAbsoluteUrl instead.
+
 ##### Parameters
 | Property | Type | Description |
 | -------- | ---- | ----------- |
@@ -39,6 +42,9 @@ place.
 Constructs a path and prepends a `#` to make it directly usable as relative link within an
 application. If a target is given as first argument, this is resolved using the currently active
 place.
+
+Deprecation Notice: this will probably create invalid links if using html5 routing. Use
+constructAbsoluteUrl instead, which also works for hash-based URLs.
 
 ##### Parameters
 | Property | Type | Description |
