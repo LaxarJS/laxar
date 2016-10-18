@@ -34,48 +34,87 @@ Let us start with an example for a simple `flow.json` file:
 
 A flow definition is always a JSON object having the root property `places`, which in turn is a map.
 Each entry of that map consists of the place's URL template as key and a definition of what should happen when reaching that place as value.
-For LaxarJS an URL template always starts with a constant prefix, possibly consisting of multiple segments separated by slashes, containing optional *parameters*.
-The syntax is taken from AngularJS, where variable parts of a URL are always prefixed by a colon.
+For LaxarJS, a URL template always starts with a constant prefix, possibly consisting of multiple segments separated by slashes, containing optional *parameters*.
+The syntax is taken from AngularJS, with placeholder segments of a URL template prefixed by a colon.
 Within the flow, the constant prefix of a place is interpreted as its *identifier*.
 Thus the second place in the example has the identifier *pageOne* and one parameter, called *userId*.
 
 The identifier *entry* of the first place is always interpreted as the default place to navigate to if either no place was provided or if the requested place was not found within the flow.
 Most commonly it will just redirect to another existing place, that for example handles user login or application startup.
 Just as in plain AngularJS, routing a redirect is configured using the `redirectTo` keyword and naming the place identifier to navigate to.
-In this example we simply navigate without providing a value for the *userId* parameter to the place *pageOne*.
-Any place that simply redirects to another place cannot do any meaningful in addition to that.
+In this example we simply navigate to the place *pageOne*, without providing a value for the *userId* parameter.
+If a place redirects to another place, it cannot do anything else.
 Control is directly passed on to the redirection target.
 
 In contrast to that, the place *pageOne* specifies a page that should be loaded by using the key `page` in its definition.
-By default all pages are searched in the `application/pages/` directory with the `.json` suffix automatically appended when omitted.
-Just like the path to the flow file, this can also be reconfigured in the *require configuration* of your application as `laxar-path-pages`.
-So whenever this place is visited, the according page with all of its configured widgets is loaded and displayed.
+By default, pages are found in the `application/pages/` directory, with the `.json` suffix automatically appended to their path if omitted.
+Just like the path to the flow file itself, this path can be modified in the *RequireJS configuration* of your application as `laxar-path-pages`.
+So whenever this place is visited, the corresponding page with all of its configured widgets is loaded and displayed.
+
 
 ## Places
 
-As said before the syntax for places is based on the URL template syntax from AngularJS and in fact AngularJS' routing is used internally.
-Within the flow, those URL templates have some additional meaning as they are being used as an identifier for places.
-Thus a few strict rules are added to the basic AngularJS URL template rules:
+As mentioned above, the syntax for places is based on the URL template syntax from AngularJS and in fact AngularJS' routing is used internally.
+Within the flow, URL templates have some additional meaning as they are being used as an identifier for places.
 
-* A URL always consists of one or more segments separated by slashes `/`.
+
+### URL Patterns
+
+A few additional rules apply, when comparing LaxarJS place URL patterns to the basic AngularJS URL template rules:
+
+* A URL template always consists of one or more segments separated by slashes `/`.
 * Each segment can either be a constant alphanumeric character string or a parameter, which is an alphanumeric character string prefixed by colon.
-* A URL always starts with a unique non empty list of constant segments, which can optionally be followed by a list of parameters.
+* A URL template always starts with a unique, non-empty list of constant segments, which can optionally be followed by a list of parameters.
 Parameters and constant segments may not appear interleaved.
-* Wildcards are not supported
+* Wildcards are not supported.
 
-Examples of valid places thus are the following:
+Examples of *valid places* thus are the following:
+
 * `userListing`
 * `user/:userId`
 * `cars/vans/:manufacturer/:model`
 
-In contrast these places would all be considered invalid:
+In contrast these places would all be considered *invalid:*
+
 * `:userId`: A place *must* start with a non-empty constant segment
 * `user/:userId/car`: As soon as there is a parameter, no more constant segments may appear
 * `user/:names*` or `user/:names?`: Wildcards are *not* supported
 
-These rules may seem very restrictive but they enable LaxarJS to make some assumptions and optimizations based on the URL template.
-Additionally a URL should not encode too much sensitive information directly, as this might lead to security issues and bulky URLs.
-Instead only some domain information should be passed on between pages, that enables the widgets of the next place to fulfill their specific tasks.
+While somewhat restrictive, these rules allow LaxarJS to make some assumptions and optimizations based on the URL template.
+Additionally, a URL should not encode too much sensitive information directly, as this might lead to security issues and bulky URLs.
+Instead, only some domain information should be passed on between pages, that enables the widgets of the next place to fulfill their specific tasks.
+
+Note that LaxarJS represents missing path segments (those where the value is `null`) as `'_'` (underscore) when generating URLs.
+This is necessary to disambiguate the missing parameters in URLs that have multiple parameter segments.
+When resolving a URL however, trailing underscores may be omitted.
+
+To allow for additional flexibility with encoding application state into URLs, LaxarJS supports *query parameters*.
+
+
+### Query Parameters
+
+LaxarJS allows to application authors to opt-in to using named query parameters in addition to the positional path segment arguments explained above, using the [configuration](./configuration.md).
+This allows working with places that use multiple optional place parameters, without producing URLs that contain visible placeholders (e.g. instead of `/some/place/v1/_/v3/_` you can now have `/some/place/v1?param3=v3`).
+While path segments usually form a logical hierarchy, query parameters may occur in any combination.
+While query parameters are not used to select places in routing, widgets can use them to encode information into user-friendly, bookmarkable and shareable links.
+
+
+To use query-parameters in URLs, the LaxarJS configuration option *flow.query.enabled* must be set to `true`. The following is true if query parameters are enabled:
+
+ - when navigating to a URL handled by LaxarJS, query-parameters are made available to the application through navigation events, just like regular place parameters.
+
+ - if query parameters use the same name as regular path-segment parameters of the same place, the parameter segments always "win".
+
+ - if query parameters are specified in the URL without a value, they are set to `true`. This allows to encode *flags* in a compact manner.
+
+ - in the flow definition, *defaults* may be specified for query parameters of each place, using the place property `queryParameters`. Strings, `false` and `null` are allowed as values. Here, `false` is intended for flag-style query parameters that do not support a value. A default of `true` is allowed syntactically, but makes no sense because such a flag would be meaningless. The default `null` is mainly intended to allow documenting known query parameters.
+
+ - when calculating a URL using `axFlowService.constructAbsoluteUrl`, query parameters are generated for any of the optional and/or active place parameters that
+
+    - do not correspond to a regular path-segment-style place parameter, and that
+    - are different from their default.
+
+   If a place parameter has the value `true`, a value-less query parameter is generated.
 
 
 ## Targets
@@ -84,7 +123,7 @@ Navigation is triggered from within a widget by issuing a *navigateRequest* even
 How that works in practice can be read in the separate manual covering [events](events.md).
 Using these events it is possible to always navigate directly from place to place.
 Nevertheless this would instantly lead to a tight coupling between the widget triggering navigation events and the definition of places within the flow.
-Instead a widget or a page (by means of the feature configuration for a widget) should only know about semantic navigation targets reachable from their current location (roughly comparable to *relations* in [REST](http://en.wikipedia.org/wiki/Representational_state_transfer)).
+Instead, widgets should only know about semantic navigation targets reachable from their current location (roughly comparable to *relations* in [REST](http://en.wikipedia.org/wiki/Representational_state_transfer)).
 
 In LaxarJS this is achieved by the concept of *targets*:
 Each place can define a mapping from semantic target identifier valid only for this place to the identifier of another place within the flow.
@@ -137,25 +176,27 @@ An example (for brevity the `entry` place is omitted):
 
 This flow is typical for a wizard-like application, as it allows a forward and backward navigation, but only sparsely jumping in between pages.
 The first place in the example is called *introduction*, which simply displays a page and just lets the user navigate to the *next* target, which would be resolved to the place *interests*.
-Here a page is displayed where the user can input his interests, e.g. his hobbies or music taste.
+Here a page is displayed where the user can input interests such as hobbies or music taste.
 As we are in the middle of a wizard, there is a *previous* target reachable now in addition to the *next* and *help* targets.
 Unsurprisingly the *previous* target references the place *introduction* again.
 The *next* target instead leads us to another new place with identifier *profession*.
 The *profession* place may only lead us back to the *interests* place via the *previous* target.
 
-May be some pages have some tricky input components or there are some advices for which things to share.
+Let us assume that some pages have tricky input components or that there is some advice on which things to share.
 This is where the *help* targets come into play.
-Both, the *interests* and the *profession* page, have such a target.
-Nevertheless the places behind these targets are different depending on the source page.
-This makes understanding of navigation concepts simple and provides contextual semantics.
-Returning from the help pages works in a similar way via the *back* targets leading to the respective places.
+Both the *interests* and the *profession* page, have such a target.
+
+Nevertheless the places behind these targets are different depending on the source page, but the same help-indicating widget might be used to present navigation controls.
+This allows to understand the navigational structure of an application without having to access the application logic.
+Returning from the help pages works in a similar way, with *back* targets leading to the respective places.
 
 
 ## Entry Points
 
-The previous sections covered the concepts of navigation within the scope of one LaxarJS application.
-Additionally it is also often necessary to integrate a use case implemented as a LaxarJS application within the context of another external application.
-For example the process of collecting data on interests and profession could be part of a larger application creating a personal profile of a person.
+The previous sections covered the concepts of navigation within the scope of one LaxarJS application, and entering an application through a URL.
+Additionally it may be necessary to integrate a use case implemented as a LaxarJS application within the context of another external application that does not support a transfer of control through a URL change.
+
+For example, the process of collecting data on interests and profession could be part of a larger application creating a personal profile of a person.
 The host application might have been be implemented in a totally different technology, like [Ruby on Rails](http://rubyonrails.org/) or [JSP](http://en.wikipedia.org/wiki/JavaServer_Pages).
 There should be some way for this application to give control to the LaxarJS application and pass in some parameters.
 
