@@ -9,4 +9,4 @@ notifications:
       template: "%{repository_slug} (%{commit}) [%{branch}]: %{message}"
 branches:
    except:
-      - /^feature\/.*$/
+      - /^feature[^\/]*\/.*$/
