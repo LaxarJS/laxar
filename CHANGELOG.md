@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.3.0
+
 - [#377](https://github.com/LaxarJS/laxar/issues/377): flow: added documentation on query parameters and new configuration options
 
 
