@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.3.1
+
 - [#379](https://github.com/LaxarJS/laxar/issues/379): flow: double-encode slashes in URL segments
 
 
