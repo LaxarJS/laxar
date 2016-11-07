@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#384](https://github.com/LaxarJS/laxar/issues/384): flow: simplified handling of invalid empty places
 - [#375](https://github.com/LaxarJS/laxar/issues/375): flow: added support for query parameters
     + NEW FEATURE: see ticket for details
 - [#376](https://github.com/LaxarJS/laxar/issues/376): flow: fixed `constructAbsoluteUrl` (was not absolute)

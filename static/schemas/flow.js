@@ -18,10 +18,6 @@ export default {
             "unknownPlace": {
                "type": "string",
                "description": "This place is loaded whenever the requested place doesn't exist."
-            },
-            "error": {
-               "type": "string",
-               "description": "This place is loaded whenever an unrecoverable error during routing is detected."
             }
          },
          "default": {},
