@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#386](https://github.com/LaxarJS/laxar/issues/386): flow: double-encode slashes in path segments
 - [#387](https://github.com/LaxarJS/laxar/issues/387): flow: reverted name-change (keep `constructAbsoluteUrl`)
     + NEW FEATURE: see ticket for details
 - [#384](https://github.com/LaxarJS/laxar/issues/384): flow: simplified handling of invalid empty places
