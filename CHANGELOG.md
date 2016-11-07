@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#375](https://github.com/LaxarJS/laxar/issues/375): flow: added support for query parameters
+    + NEW FEATURE: see ticket for details
 - [#376](https://github.com/LaxarJS/laxar/issues/376): flow: fixed `constructAbsoluteUrl` (was not absolute)
 - [#371](https://github.com/LaxarJS/laxar/issues/371): flow: fixed URL encoding of place parameter values
 - [#366](https://github.com/LaxarJS/laxar/issues/366): axFlowService: removed `constructAnchor` and `constructPath`

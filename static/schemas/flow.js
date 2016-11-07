@@ -44,6 +44,14 @@ export default {
                      "type": "string",
                      "description": "The page to render for this place."
                   },
+                  "queryParameters": {
+                     "type": "object",
+                     "default": {},
+                     "additionalProperties": {
+                        "type": [ "string", "boolean", "null" ]
+                     },
+                     "description": "Default values for optional query parameters."
+                  },
                   "targets": {
                      "type": "object",
                      "patternProperties": {
