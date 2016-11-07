@@ -184,6 +184,8 @@ function announceInstance( publicServices ) {
  *
  * @return {Object}
  *   The tooling services for a specified instance, or for all instances that have tooling enabled.
+ *
+ * @memberof laxar
  */
 function instances( optionalName ) {
    const instances = global.laxarInstances = ( global.laxarInstances || {} );
