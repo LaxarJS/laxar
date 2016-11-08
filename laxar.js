@@ -62,7 +62,8 @@ export function bootstrap(
    const { globalEventBus, log, storage, themeLoader, widgetLoader } = services;
    themeLoader.load();
 
-   const publicServices = {
+   const adapterServices = {
+      artifactProvider: services.artifactProvider,
       configuration: services.configuration,
       globalEventBus,
       heartbeat: services.heartbeat,
@@ -74,7 +75,7 @@ export function bootstrap(
    };
 
    const adapterModules = [ plainAdapter, ...widgetAdapters ];
-   const adapters = bootstrapWidgetAdapters( anchorElement, publicServices, adapterModules, artifacts );
+   const adapters = bootstrapWidgetAdapters( anchorElement, adapterServices, adapterModules, artifacts );
    widgetLoader.registerWidgetAdapters( adapters );
 
    announceInstance( services );
@@ -145,11 +146,11 @@ function bootstrapWidgetAdapters( anchorElement, services, adapterModules, artif
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function announceInstance( publicServices ) {
-   const { configuration, log, storage } = publicServices;
+function announceInstance( services ) {
+   const { configuration, log, storage } = services;
 
    if( configuration.get( 'tooling.enabled' ) ) {
-      instances()[ configuration.get( 'name', 'unnamed' ) ] = publicServices;
+      instances()[ configuration.get( 'name', 'unnamed' ) ] = services;
    }
 
    const idGenerator = configuration.get( 'logging.instanceId', simpleId );

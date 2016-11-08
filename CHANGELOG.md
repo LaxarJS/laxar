@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#390](https://github.com/LaxarJS/laxar/issues/390): adapter API: make `artifactProvider` available to adapters and allow `create()` to be async
+    + NEW FEATURE: see ticket for details
 - [#388](https://github.com/LaxarJS/laxar/issues/388): flow: fixed handling of parameter-only places
 - [#386](https://github.com/LaxarJS/laxar/issues/386): flow: double-encode slashes in path segments
 - [#387](https://github.com/LaxarJS/laxar/issues/387): flow: reverted name-change (keep `constructAbsoluteUrl`)
