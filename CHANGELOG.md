@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-alpha.10
+
 - [#389](https://github.com/LaxarJS/laxar/issues/389): flow: normalize generated URLs (no trailing `/_`)
     + **BREAKING CHANGE:** see ticket for details
 - [#388](https://github.com/LaxarJS/laxar/issues/388): flow: fixed handling of parameter-only places
