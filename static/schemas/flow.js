@@ -27,42 +27,39 @@ export default {
       "places": {
          "type": "object",
          "description": "The places for this flow.",
-         "patternProperties": {
-            "^([a-z][a-zA-Z0-9_]*)?": {
-               "type": "object",
-               "properties": {
+         "additionalProperties": {
+            "type": "object",
+            "properties": {
 
-                  "redirectTo": {
-                     "type": "string",
-                     "description": "The place to redirect to when hitting this place."
-                  },
-                  "page": {
-                     "type": "string",
-                     "description": "The page to render for this place."
-                  },
-                  "queryParameters": {
-                     "type": "object",
-                     "default": {},
-                     "additionalProperties": {
-                        "type": [ "string", "boolean", "null" ]
-                     },
-                     "description": "Default values for optional query parameters."
-                  },
-                  "targets": {
-                     "type": "object",
-                     "patternProperties": {
-                        "[a-z][a-zA-Z0-9_]*": {
-                           "type": "string"
-                        }
-                     },
-                     "description": "A map of symbolic targets to places reachable from this place."
-                  }
-
+               "redirectTo": {
+                  "type": "string",
+                  "description": "The place to redirect to when hitting this place."
                },
-               "additionalProperties": false
-            }
-         },
-         "additionalProperties": false
+               "page": {
+                  "type": "string",
+                  "description": "The page to render for this place."
+               },
+               "defaultParameters": {
+                  "type": "object",
+                  "default": {},
+                  "additionalProperties": {
+                     "type": [ "string", "boolean", "null" ]
+                  },
+                  "description": "Default values for optional (query) parameters."
+               },
+               "targets": {
+                  "type": "object",
+                  "patternProperties": {
+                     "[a-z][a-zA-Z0-9_]*": {
+                        "type": "string"
+                     }
+                  },
+                  "description": "A map of symbolic targets to places reachable from this place."
+               }
+
+            },
+            "additionalProperties": false
+         }
       }
 
    },
