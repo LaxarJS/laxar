@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#381](https://github.com/LaxarJS/laxar/issues/381): flow: clearly distinguish between `place` and `target`
+    + **BREAKING CHANGE:** see ticket for details
 - [#392](https://github.com/LaxarJS/laxar/issues/392): flow: removed `entryPoint` / `exitPoint` feature
     + **BREAKING CHANGE:** see ticket for details
 - [#390](https://github.com/LaxarJS/laxar/issues/390): adapter API: make `artifactProvider` available to adapters and allow `create()` to be async
