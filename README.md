@@ -5,8 +5,8 @@
 
 ## Why LaxarJS?
 
-Find out [why](docs/why_laxar.md) you would use LaxarJS and if it's the right tool for you.
-Then, explore the [core concepts](docs/concepts.md) and browse the [manuals](docs/manuals/index.md) in the [documentation](docs).
+Find out [why](//laxarjs.org/docs/laxar-latest/why_laxar/) you would use LaxarJS and if it's the right tool for you.
+Then, explore the [core concepts](http://laxarjs.org/docs/laxar-latest/concepts/) and browse the [manuals](//laxarjs.org/docs/laxar-latest/manuals/) in the [documentation](//laxarjs.org/docs/laxar-latest/).
 
 Have a look at the [LaxarJS homepage](http://laxarjs.org) for demos and more information.
 
