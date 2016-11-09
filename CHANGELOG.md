@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#381](https://github.com/LaxarJS/laxar/issues/381): flow: clearly distinguish places from their targets and patterns
+    + **BREAKING CHANGE:** see ticket for details
 - [#349](https://github.com/LaxarJS/laxar/issues/349): removed support for MSIE 9
     + **BREAKING CHANGE:** see ticket for details
 - [#392](https://github.com/LaxarJS/laxar/issues/392): flow: removed `entryPoint` / `exitPoint` feature
