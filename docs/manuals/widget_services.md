@@ -92,8 +92,9 @@ The complete feature configuration for this instance, with defaults filled in fr
 ### `axFlowService`
 
 Offers the API of the flow service to widgets.
-For widgets this API provides methods to e.g. create bookmarkable URLs to flow targets for use as `href` in an `a` tag.
-So whenever real links are required instead of programmatical navigation in a LaxarJS application, this is the way to create the URLs.
+This API provides a method *constructAbsoluteUrl* to create bookmarkable URLs to flow targets, also encoding place parameters as needed.
+The generated URLs can then be used as `href` attribute in `a` tags.
+So whenever real links are desired instead of programmatic, event-initiated navigation in a LaxarJS application, this is the way to create the URLs.
 
 
 ### `axGlobalEventBus`

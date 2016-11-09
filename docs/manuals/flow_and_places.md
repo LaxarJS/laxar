@@ -2,8 +2,8 @@
 
 [« return to the manuals](index.md)
 
-Every application consisting of more than one page needs a concept for navigating between these pages.
-In LaxarJS this is achieved by a *flow* defining a set of *places* in a declarative fashion.
+Every application that has more than one page needs a concept for navigating between these pages.
+In LaxarJS this is achieved by a *flow* that determines which page is rendered based on a given URL, and how other pages are *related* to the current location.
 
 Preliminary readings:
 
@@ -11,97 +11,112 @@ Preliminary readings:
 * [Configuration](configuration.md)
 * [Writing Pages](writing_pages.md)
 
-Each place corresponds to a single page that should be rendered, or some other content displayed to the user.
-Currently the definition of one single flow file is possible, which can by default be found within the application at the path `application/flow/flow.json`.
-This can be adjusted as `laxar-path-flow` in the *require configuration* of your application.
+## The Flow
+
+The flow ties together the parts of a LaxarJS application: it defines what pages are reachable, which also determines the set of widgets and controls to load as part of an application.
+Each LaxarJS application has only a single flow, but when bootstrapping your application you can decide which flow to use, so that you can easily break it up into several segments, and only load one of these at a time.
+
+A flow is specified using a definition in JSON format, and it primarily consists of a set of named *places*.
 
 
-Let us start with an example for a simple `flow.json` file:
+## Places
+
+Each place is either associated with a specific *[page](./writing_pages.md)* to be rendered when entering that place, or it is a redirect to another place.
+A flow is also a natural entry point to your application
+
+To determine which place is active when navigating to an application, the browser URL is matched against each place's *patterns* until a match is found.
+These patterns are also used to *generate URLs* to link between pages, and to update the browser URL when performing event-based navigation.
+
+For the actual pattern matching and routing, LaxarJS uses with the micro-library [page.js](http://visionmedia.github.io/page.js/) and its routing pattern syntax, which should be familiar to users of AngularJS or React and their routing solutions.
+
+Let us start with an example for a simple flow definition file that we call `main.json`:
 
 ```JSON
 {
    "places": {
       "entry": {
-         "redirectTo": "pageOne"
+         "patterns": [ "/" ],
+         "redirectTo": "details"
       },
 
-      "pageOne/:userId": {
+      "details": {
+         "patterns": [ "/details/:item", "/details" ],
          "page": "first_page"
       }
    }
 }
 ```
 
-A flow definition is always a JSON object having the root property `places`, which in turn is a map.
-Each entry of that map consists of the place's URL template as key and a definition of what should happen when reaching that place as value.
-For LaxarJS an URL template always starts with a constant prefix, possibly consisting of multiple segments separated by slashes, containing optional *parameters*.
-The syntax is taken from AngularJS, where variable parts of a URL are always prefixed by a colon.
-Within the flow, the constant prefix of a place is interpreted as its *identifier*.
-Thus the second place in the example has the identifier *pageOne* and one parameter, called *userId*.
+A flow definition is always a JSON object with the top-level property `places`, which in turn is a map.
+Each entry of that map consists of the place's *ID* as key and a *place definition* as value.
 
-The identifier *entry* of the first place is always interpreted as the default place to navigate to if either no place was provided or if the requested place was not found within the flow.
-Most commonly it will just redirect to another existing place, that for example handles user login or application startup.
-Just as in plain AngularJS, routing a redirect is configured using the `redirectTo` keyword and naming the place identifier to navigate to.
-In this example we simply navigate without providing a value for the *userId* parameter to the place *pageOne*.
-Any place that simply redirects to another place cannot do any meaningful in addition to that.
-Control is directly passed on to the redirection target.
+The ID is a non-empty alphanumeric string that identifies a place within an application.
+It is used to reference places when creating links or to perform event-based navigation.
 
-In contrast to that, the place *pageOne* specifies a page that should be loaded by using the key `page` in its definition.
-By default all pages are searched in the `application/pages/` directory with the `.json` suffix automatically appended when omitted.
-Just like the path to the flow file, this can also be reconfigured in the *require configuration* of your application as `laxar-path-pages`.
-So whenever this place is visited, the according page with all of its configured widgets is loaded and displayed.
 
-## Places
+### Place Patterns
 
-As said before the syntax for places is based on the URL template syntax from AngularJS and in fact AngularJS' routing is used internally.
-Within the flow, those URL templates have some additional meaning as they are being used as an identifier for places.
-Thus a few strict rules are added to the basic AngularJS URL template rules:
+Each place definition has a non-empty list of URL-patterns, specified under the key `patterns`.
+In the example, the place *entry* has a single pattern (`/`), while the place *details* has two patterns: `/details/:item` with the named parameter *item* filled in by the router, and `/details` which will not set the *item* parameter when navigated to.
+If no patterns are specified, a place with ID `$some-id` will automatically be assigned the patterns list `[ "/$some-id" ]`, which will only match a slash followed by the exact place ID.
 
-* A URL always consists of one or more segments separated by slashes `/`.
-* Each segment can either be a constant alphanumeric character string or a parameter, which is an alphanumeric character string prefixed by colon.
-* A URL always starts with a unique non empty list of constant segments, which can optionally be followed by a list of parameters.
-Parameters and constant segments may not appear interleaved.
-* Wildcards are not supported
+The syntax for URL patterns ultimately depends on what the router (page.js) deems valid.
+Note that regular-expression patterns, while in principle supported by page.js, are currently not available for use in a LaxarJS flow definition.
+It is *strongly recommended* to always start patterns with a leading slash, as relative paths will break down quickly in most setups.
+Also note that each list of pattern should begin with a *reversible* pattern, which contains only constant parts and named parameters.
+The pattern `*` that matches any path is not reversible, for example.
 
-Examples of valid places thus are the following:
-* `userListing`
-* `user/:userId`
-* `cars/vans/:manufacturer/:model`
+Apart from its patterns, a place has either a `page` entry, or a `redirectTo` entry.
+The former determines that the corresponding page will be looked up relative to the pages directory of your application and instantiated when entering the place, while the latter makes it a redirect to another place specified by ID.
+In the example, the place *entry* specifies a redirect to the place *details*.
+You can use redirects to support legacy URLs in your application and to forward them to actual pages.
 
-In contrast these places would all be considered invalid:
-* `:userId`: A place *must* start with a non-empty constant segment
-* `user/:userId/car`: As soon as there is a parameter, no more constant segments may appear
-* `user/:names*` or `user/:names?`: Wildcards are *not* supported
 
-These rules may seem very restrictive but they enable LaxarJS to make some assumptions and optimizations based on the URL template.
-Additionally a URL should not encode too much sensitive information directly, as this might lead to security issues and bulky URLs.
-Instead only some domain information should be passed on between pages, that enables the widgets of the next place to fulfill their specific tasks.
+### Reverse Routing
+
+The declarative routing configuration is more restrictive than free-form programmatic routing.
+On the other hand, this notation allows LaxarJS to automatically generate URLs to any place, from just its ID and possibly a set of named parameters.
+The widgets and activities in your application do not need to know about the URL patterns associated with their respective place, which makes them portable across pages and even application.
+
+
+### Initiating navigation
+
+To initiate navigation, widgets have two options:
+
+Widgets may render regular HTML links and use the method *constructAbsoluteUrl* of the [axFlowService](./widget_services.md#axFlowService) to calculate the URLs of each link based on place ID and parameters.
+Alternatively, widgets may initiate navigation by issuing a *navigateRequest* event expressing the desired new location within the application and providing values for place parameters.
+How event-based navigation works in detail can be read in the separate manual covering [events](events.md).
+
+In [HTTP/REST](http://en.wikipedia.org/wiki/Representational_state_transfer)) terms, event-based navigation is used to express POST-like semantics, where an URL change is associated with an effectful user action (save, signup, purchase, etc.), while links should always follow GET semantics so that the user can safely switch back and forth between URLs.
+
+Even better, neither widgets nor pages need to deal with specific place-IDs, and can instead use logical *targets* to initiate navigation or to construct links, as explained in the next section.
 
 
 ## Targets
 
-Navigation is triggered from within a widget by issuing a *navigateRequest* event expressing the desired next location within the application and providing values for place parameters.
-How that works in practice can be read in the separate manual covering [events](events.md).
-Using these events it is possible to always navigate directly from place to place.
-Nevertheless this would instantly lead to a tight coupling between the widget triggering navigation events and the definition of places within the flow.
-Instead a widget or a page (by means of the feature configuration for a widget) should only know about semantic navigation targets reachable from their current location (roughly comparable to *relations* in [REST](http://en.wikipedia.org/wiki/Representational_state_transfer)).
+Using both events and links, it is possible to always navigate directly from place to place, simply by specifying the ID of the target place.
+However, this approach causes a tight coupling between the widget triggering navigation on one hand and the flow definition on the other hand, hurting reuse.
+Even more, this would smear knowledge about the navigational structure throughout the application,  making it more difficult to later change this structure.
 
-In LaxarJS this is achieved by the concept of *targets*:
-Each place can define a mapping from semantic target identifier valid only for this place to the identifier of another place within the flow.
+Instead, a widget or a page (via the feature configuration of its widgets) should specify semantic navigation *targets* such as *"next", "previous", "details"*, which are then resolved based on the current place and its definition in the application flow.
+The idea is roughly comparable to *relations* in REST style architectures.
+In LaxarJS, each place can define its own mapping from semantic target identifiers to the IDs of other places within the application flow.
 
-An example (for brevity the `entry` place is omitted):
+An example:
 
 ```JSON
 {
    "places": {
-      "introduction/:userId": {
+      "introduction": {
+         "patterns": [ "/introduction/:userId" ],
          "page": "introduction",
          "targets": {
             "next": "interests"
          }
       },
 
-      "interests/:userId": {
+      "interests": {
+         "patterns": [ "/interests/:userId" ],
          "page": "interests",
          "targets": {
             "previous": "introduction",
@@ -110,7 +125,8 @@ An example (for brevity the `entry` place is omitted):
          }
       },
 
-      "profession/:userId": {
+      "profession": {
+         "patterns": [ "/profession/:userId" ],
          "page": "profession",
          "targets": {
             "previous": "interests",
@@ -118,14 +134,16 @@ An example (for brevity the `entry` place is omitted):
          }
       },
 
-      "interestsHelp/:userId": {
+      "interestsHelp": {
+         "patterns": [ "/interests-help/:userId" ],
          "page": "interests_help",
          "targets": {
             "back": "interests"
          }
       },
 
-      "professionHelp/:userId": {
+      "professionHelp": {
+         "patterns": [ "/profession-help/:userId" ],
          "page": "profession_help",
          "targets": {
             "back": "profession"
@@ -135,20 +153,20 @@ An example (for brevity the `entry` place is omitted):
 }
 ```
 
-This flow is typical for a wizard-like application, as it allows a forward and backward navigation, but only sparsely jumping in between pages.
+This flow is typical for a wizard-like application, as it allows forward and backward navigation, but only sparsely jumping in between pages.
 The first place in the example is called *introduction*, which simply displays a page and just lets the user navigate to the *next* target, which would be resolved to the place *interests*.
-Here a page is displayed where the user can input his interests, e.g. his hobbies or music taste.
-As we are in the middle of a wizard, there is a *previous* target reachable now in addition to the *next* and *help* targets.
-Unsurprisingly the *previous* target references the place *introduction* again.
+Here a page is displayed where the user can input his interests, such as hobbies or taste in music.
+As we are in the middle of the wizard now, a *previous* target is reachable in addition to the *next* and *help* targets.
+Unsurprisingly the *previous* target references the first place, *introduction*.
 The *next* target instead leads us to another new place with identifier *profession*.
 The *profession* place may only lead us back to the *interests* place via the *previous* target.
 
-May be some pages have some tricky input components or there are some advices for which things to share.
-This is where the *help* targets come into play.
-Both, the *interests* and the *profession* page, have such a target.
-Nevertheless the places behind these targets are different depending on the source page.
-This makes understanding of navigation concepts simple and provides contextual semantics.
-Returning from the help pages works in a similar way via the *back* targets leading to the respective places.
+Let us assume that our pages contain tricky input components, on which we would like to assist the user.
+This is where the *help* target comes into play.
+Both the *interests* and the *profession* page use this target, but the places behind these targets are different depending on the source page.
+This allows you to provide contextual semantics to standard navigation controls, such as a row of back/forward/help buttons.
+Returning from the help pages is familiar, via the *back* target leading to the respective places.
 
-Using the simple mechanisms introduced here, most integration scenarios into external applications should be possible.
-To learn how to trigger navigation from within widgets and activities, you should go on reading the [events documentation](events.md) and learn about the *navigateRequest* and *didNavigate* events.
+Using the mechanisms introduced here, most navigation scenarios as well as integrations into external applications should be possible.
+To find out how to construct links between pages, refer to the [axFlowService API](../api/services.md).
+To learn how to trigger event-based navigation from within widgets and activities, you should go on reading the [events documentation](events.md) and learn about the *navigateRequest* and *didNavigate* events.

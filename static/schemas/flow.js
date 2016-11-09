@@ -26,43 +26,49 @@ export default {
 
       "places": {
          "type": "object",
-         "description": "The places for this flow.",
-         "patternProperties": {
-            "^([a-z][a-zA-Z0-9_]*)?": {
-               "type": "object",
-               "properties": {
+         "format": "topic-map",
+         "description": "The places for this flow. Keys (that is, place names) must be valid event topics.",
+         "additionalProperties": {
+            "type": "object",
+            "properties": {
 
-                  "redirectTo": {
-                     "type": "string",
-                     "description": "The place to redirect to when hitting this place."
-                  },
-                  "page": {
-                     "type": "string",
-                     "description": "The page to render for this place."
-                  },
-                  "queryParameters": {
-                     "type": "object",
-                     "default": {},
-                     "additionalProperties": {
-                        "type": [ "string", "boolean", "null" ]
-                     },
-                     "description": "Default values for optional query parameters."
-                  },
-                  "targets": {
-                     "type": "object",
-                     "patternProperties": {
-                        "[a-z][a-zA-Z0-9_]*": {
-                           "type": "string"
-                        }
-                     },
-                     "description": "A map of symbolic targets to places reachable from this place."
+               "patterns": {
+                  "type": "array",
+                  "description": "Non-empty list of URL patterns to route to this place. If omitted, the place name (prefixed with a slash) is used as the sole pattern.",
+                  "minItems": 1,
+                  "items": {
+                     "type": "string"
                   }
-
                },
-               "additionalProperties": false
-            }
-         },
-         "additionalProperties": false
+               "page": {
+                  "type": "string",
+                  "description": "The page to render for this place."
+               },
+               "redirectTo": {
+                  "type": "string",
+                  "description": "The place to redirect to when hitting this place."
+               },
+               "defaultParameters": {
+                  "type": "object",
+                  "default": {},
+                  "additionalProperties": {
+                     "type": [ "string", "boolean", "null" ]
+                  },
+                  "description": "Default values for optional (query) parameters."
+               },
+               "targets": {
+                  "type": "object",
+                  "format": "topic-map",
+                  "additionalProperties": {
+                     "type": "string",
+                     "format": "topic"
+                  },
+                  "description": "A map of symbolic targets to place-names reachable from this place."
+               }
+
+            },
+            "additionalProperties": false
+         }
       }
 
    },

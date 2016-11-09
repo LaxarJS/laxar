@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#381](https://github.com/LaxarJS/laxar/issues/381): flow: clearly distinguish places from their targets and patterns
+    + **BREAKING CHANGE:** see ticket for details
 - [#402](https://github.com/LaxarJS/laxar/issues/402): project: polyfill `Object.assign`
 - [#395](https://github.com/LaxarJS/laxar/issues/395): cleanup: removed `object.extend` and `object.deepFreeze`
     + **BREAKING CHANGE:** see ticket for details
