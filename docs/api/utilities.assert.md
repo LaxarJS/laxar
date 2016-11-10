@@ -1,5 +1,5 @@
 
-# <a name="assert"></a>assert
+# <a id="assert"></a>assert
 
 The *assert* module provides some simple assertion methods for type checks, truthyness tests and guards
 invalid code paths.
@@ -24,7 +24,7 @@ When requiring `laxar`, it is available as `laxar.assert`.
 
 ## Module Members
 
-#### <a name="assert"></a>assert( subject, optionalDetails )
+#### <a id="assert"></a>assert( subject, optionalDetails )
 
 Creates and returns a new `Assertion` instance for the given `subject`.
 
@@ -53,7 +53,7 @@ define( [ 'laxar' ], function( ax ) {
 | ---- | ----------- |
 | [`Assertion`](#Assertion) |  the assertion instance |
 
-#### <a name="codeIsUnreachable"></a>codeIsUnreachable( optionalDetails )
+#### <a id="codeIsUnreachable"></a>codeIsUnreachable( optionalDetails )
 
 Marks a code path as erroneous by throwing an error when reached.
 
@@ -63,7 +63,7 @@ Marks a code path as erroneous by throwing an error when reached.
 | -------- | ---- | ----------- |
 | _optionalDetails_ | `String` |  details to append to the error message |
 
-#### <a name="state"></a>state( expression, optionalDetails )
+#### <a id="state"></a>state( expression, optionalDetails )
 
 Throws an error if the given expression is falsy.
 
@@ -76,9 +76,9 @@ Throws an error if the given expression is falsy.
 
 ## Types
 
-### <a name="Assertion"></a>Assertion
+### <a id="Assertion"></a>Assertion
 
-#### <a name="Assertion.isNotNull"></a>Assertion.isNotNull( optionalDetails )
+#### <a id="Assertion.isNotNull"></a>Assertion.isNotNull( optionalDetails )
 
 Throws an error if the subject is `null` or `undefined`.
 
@@ -94,7 +94,7 @@ Throws an error if the subject is `null` or `undefined`.
 | ---- | ----------- |
 | [`Assertion`](#Assertion) |  this instance |
 
-#### <a name="Assertion.hasType"></a>Assertion.hasType( type, optionalDetails )
+#### <a id="Assertion.hasType"></a>Assertion.hasType( type, optionalDetails )
 
 Throws an error if the subject is not of the given type. No error is thrown for `null` or `undefined`.
 
@@ -111,7 +111,7 @@ Throws an error if the subject is not of the given type. No error is thrown for 
 | ---- | ----------- |
 | [`Assertion`](#Assertion) |  this instance |
 
-#### <a name="Assertion.hasProperty"></a>Assertion.hasProperty( property, optionalDetails )
+#### <a id="Assertion.hasProperty"></a>Assertion.hasProperty( property, optionalDetails )
 
 Throws an error if the subject is no object or the given property is not defined on it.
 

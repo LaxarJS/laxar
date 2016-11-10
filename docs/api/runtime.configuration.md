@@ -1,5 +1,5 @@
 
-# <a name="configuration"></a>configuration
+# <a id="configuration"></a>configuration
 
 The *configuration* module provides convenient readonly access to the LaxarJS application bootstrapping
 configuration.
@@ -22,11 +22,11 @@ For compatibility, it is (for now) also available under `laxar.configuration`.
 
 ## Types
 
-### <a name="Configuration"></a>Configuration
+### <a id="Configuration"></a>Configuration
 
 Provides access to the configuration given on application startup.
 
-#### <a name="Configuration.get"></a>Configuration.get( key, optionalDefault )
+#### <a id="Configuration.get"></a>Configuration.get( key, optionalDefault )
 
 Returns the configured value for the specified attribute path or `undefined` in case it wasn't
 configured. If a default value was passed as second argument this is returned instead of `undefined`.
@@ -54,7 +54,7 @@ configuration.get( 'iDontExist', 42 ); // -> 42
 | ---- | ----------- |
 | `*` |  either the configured value, `undefined` or `optionalDefault` |
 
-#### <a name="Configuration.ensure"></a>Configuration.ensure( key )
+#### <a id="Configuration.ensure"></a>Configuration.ensure( key )
 
 Retrieves a configuration value by key, failing if it is `undefined` or `null`.
 

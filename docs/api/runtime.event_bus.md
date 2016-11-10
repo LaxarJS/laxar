@@ -1,10 +1,10 @@
 
-# <a name="event_bus"></a>event_bus
+# <a id="event_bus"></a>event_bus
 
 The *event_bus* module contains the implementation of the *LaxarJS EventBus*.
 In an application you'll never use this module or instantiate an event bus instance directly.
-Instead within a widget the event bus can be injected as `axEventBus` or accessed as property on the
-`axContext` injection.
+Instead within a widget the event bus can be injected as [`axEventBus`](runtime.widget_services.md#axEventBus) or
+accessed as property on the [`axContext`](runtime.widget_services.md#axContext) injection.
 
 ## Contents
 
@@ -22,7 +22,7 @@ Instead within a widget the event bus can be injected as `axEventBus` or accesse
 
 ## Module Members
 
-#### <a name="create"></a>create( configuration, log, nextTick, timeoutFunction, errorHandler )
+#### <a id="create"></a>create( configuration, log, nextTick, timeoutFunction, errorHandler )
 
 Creates and returns a new event bus instance using the given configuration.
 
@@ -44,9 +44,9 @@ Creates and returns a new event bus instance using the given configuration.
 
 ## Types
 
-### <a name="EventBus"></a>EventBus
+### <a id="EventBus"></a>EventBus
 
-#### <a name="EventBus.addInspector"></a>EventBus.addInspector( inspector )
+#### <a id="EventBus.addInspector"></a>EventBus.addInspector( inspector )
 
 Adds an inspector, that gets notified when certain actions within the event bus take place. Currently
 these actions may occur:
@@ -80,7 +80,7 @@ being called for future event bus actions.
 | ---- | ----------- |
 | `Function` |  a function to remove the inspector |
 
-#### <a name="EventBus.subscribe"></a>EventBus.subscribe( eventName, subscriber, optionalOptions )
+#### <a id="EventBus.subscribe"></a>EventBus.subscribe( eventName, subscriber, optionalOptions )
 
 Subscribes to an event by name. An event name consists of so called *topics*, where each topic is
 separated from another by dots (`.`). If a topic is omitted, this is treated as a wildcard. Note that
@@ -128,7 +128,7 @@ The second one is a meta object with these properties:
 | ---- | ----------- |
 | `Function` |  a function that when called unsubscribes from this subscription again |
 
-#### <a name="EventBus.publish"></a>EventBus.publish( eventName, optionalEvent, optionalOptions )
+#### <a id="EventBus.publish"></a>EventBus.publish( eventName, optionalEvent, optionalOptions )
 
 Asynchronously publishes an event on the event bus. The returned promise will be enqueued as soon as this
 event is delivered and, if during delivery a new event was enqueued, resolved after that new event was
@@ -168,7 +168,7 @@ mentioned above. Practically this is used internally for the implementation of
 | ---- | ----------- |
 | `Promise` |  the delivery promise |
 
-#### <a name="EventBus.publishAndGatherReplies"></a>EventBus.publishAndGatherReplies( eventName, optionalEvent, optionalOptions )
+#### <a id="EventBus.publishAndGatherReplies"></a>EventBus.publishAndGatherReplies( eventName, optionalEvent, optionalOptions )
 
 Publishes an event that follows the *request-will-did pattern* and awaits all replies. This pattern has
 evolved over time and is of great use when handling the asynchronous nature of event bus events.

@@ -1,18 +1,21 @@
 
-# <a name="controls_loader"></a>controls_loader
+# <a id="control_loader"></a>control_loader
 
-The controls loader helps to load control assets and implementations.
+The control loader helps to load control assets and implementations.
 
 ## Contents
 
-**Module Members**
+**Types**
 
-- [provide()](#provide)
-- [load()](#load)
+- [ControlLoader](#ControlLoader)
+  - [ControlLoader.provide()](#ControlLoader.provide)
+  - [ControlLoader.load()](#ControlLoader.load)
 
-## Module Members
+## Types
 
-#### <a name="provide"></a>provide( controlRef )
+### <a id="ControlLoader"></a>ControlLoader
+
+#### <a id="ControlLoader.provide"></a>ControlLoader.provide( controlRef )
 
 Provides the implementation module of the given control, for manual instantiation by a widget.
 
@@ -33,7 +36,7 @@ by the widget loader.
 | ---- | ----------- |
 | `*` |  the module for the requested control reference |
 
-#### <a name="load"></a>load( controlRef )
+#### <a id="ControlLoader.load"></a>ControlLoader.load( controlRef )
 
 Fetches the descriptor for a given control reference, and saves it as a side-effect.
 This is part of the internal API used by the widget loader.

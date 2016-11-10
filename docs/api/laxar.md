@@ -1,5 +1,5 @@
 
-# <a name="laxar"></a>laxar
+# <a id="laxar"></a>laxar
 
 The API entry point for boostrapping LaxarJS applications.
 Also, provides a couple of utilities to deal with assertions, objects and strings.
@@ -14,9 +14,9 @@ Also, provides a couple of utilities to deal with assertions, objects and string
 
 ## Types
 
-### <a name="laxar"></a>laxar
+### <a id="laxar"></a>laxar
 
-#### <a name="laxar.bootstrap"></a>laxar.bootstrap( anchorElement, optionalOptions )
+#### <a id="laxar.bootstrap"></a>laxar.bootstrap( anchorElement, optionalOptions )
 
 Bootstraps AngularJS on the provided `anchorElement` and sets up the LaxarJS runtime.
 
@@ -30,7 +30,7 @@ Bootstraps AngularJS on the provided `anchorElement` and sets up the LaxarJS run
 | _optionalOptions.configuration_ | `Object` |  configuration for the laxar application. See http://laxarjs.org/docs/laxar-latest/manuals/configuration/ for further information on available properties |
 | _optionalOptions.artifacts_ | `Object` |  an artifact listing for the application, generated build tools (webpack / grunt-laxar) |
 
-#### <a name="laxar.instances"></a>laxar.instances( optionalName )
+#### <a id="laxar.instances"></a>laxar.instances( optionalName )
 
 Provide tooling access to LaxarJS services.
 

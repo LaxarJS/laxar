@@ -1,5 +1,5 @@
 
-# <a name="log"></a>log
+# <a id="log"></a>log
 
 An interface for logging purposes. At least for permanent logging this should always be used in favor of
 `console.log` and friends, as it is cross browser secure and allows attaching multiple channels where
@@ -33,7 +33,7 @@ will be logged to the browser's console using a builtin console channel.
 
 ## Module Members
 
-#### <a name="levels"></a>levels `Object`
+#### <a id="levels"></a>levels `Object`
 
 By default available log levels, sorted by increasing log level:
 - TRACE (level 100)
@@ -43,16 +43,16 @@ By default available log levels, sorted by increasing log level:
 - ERROR (level 500)
 - FATAL (level 600)
 
-#### <a name="BLACKBOX"></a>BLACKBOX `Object`
+#### <a id="BLACKBOX"></a>BLACKBOX `Object`
 
 Pass this as an additional replacement parameter to a log-method to blackbox your logging call.
 Blackboxed callers are ignored when logging the source information (file, line).
 
 ## Types
 
-### <a name="Logger"></a>Logger
+### <a id="Logger"></a>Logger
 
-#### <a name="Logger.log"></a>Logger.log( level, message, replacements )
+#### <a id="Logger.log"></a>Logger.log( level, message, replacements )
 
 Logs a message. A message may contain placeholders in the form `[#]` where `#` resembles the index
 within the list of `replacements`. `replacements` are incrementally counted starting at `0`. If the
@@ -69,7 +69,7 @@ according log level.
 | message | `String` |  the message to log |
 | replacements... | `*` |  objects that should replace placeholders within the message |
 
-#### <a name="Logger.trace"></a>Logger.trace( message, replacements )
+#### <a id="Logger.trace"></a>Logger.trace( message, replacements )
 
 Logs a message in log level `TRACE`. See [`Logger#log`](runtime.log.md#log) for further information.
 
@@ -83,7 +83,7 @@ configuration or custom log levels include this method as well.
 | message | `String` |  the message to log |
 | replacements... | `*` |  objects that should replace placeholders within the message |
 
-#### <a name="Logger.debug"></a>Logger.debug( message, replacements )
+#### <a id="Logger.debug"></a>Logger.debug( message, replacements )
 
 Logs a message in log level `DEBUG`. See [`Logger#log`](runtime.log.md#log) for further information.
 
@@ -97,7 +97,7 @@ configuration or custom log levels include this method as well.
 | message | `String` |  the message to log |
 | replacements... | `*` |  objects that should replace placeholders within the message |
 
-#### <a name="Logger.info"></a>Logger.info( message, replacements )
+#### <a id="Logger.info"></a>Logger.info( message, replacements )
 
 Logs a message in log level `INFO`. See [`Logger#log`](runtime.log.md#log) for further information.
 
@@ -111,7 +111,7 @@ configuration or custom log levels include this method as well.
 | message | `String` |  the message to log |
 | replacements... | `*` |  objects that should replace placeholders within the message |
 
-#### <a name="Logger.warn"></a>Logger.warn( message, replacements )
+#### <a id="Logger.warn"></a>Logger.warn( message, replacements )
 
 Logs a message in log level `WARN`. See [`Logger#log`](runtime.log.md#log) for further information.
 
@@ -125,7 +125,7 @@ configuration or custom log levels include this method as well.
 | message | `String` |  the message to log |
 | replacements... | `*` |  objects that should replace placeholders within the message |
 
-#### <a name="Logger.error"></a>Logger.error( message, replacements )
+#### <a id="Logger.error"></a>Logger.error( message, replacements )
 
 Logs a message in log level `ERROR`. See [`Logger#log`](runtime.log.md#log) for further information.
 
@@ -139,7 +139,7 @@ configuration or custom log levels include this method as well.
 | message | `String` |  the message to log |
 | replacements... | `*` |  objects that should replace placeholders within the message |
 
-#### <a name="Logger.fatal"></a>Logger.fatal( message, replacements )
+#### <a id="Logger.fatal"></a>Logger.fatal( message, replacements )
 
 Logs a message in log level `FATAL`. See [`Logger#log`](runtime.log.md#log) for further information.
 
@@ -153,7 +153,7 @@ configuration or custom log levels include this method as well.
 | message | `String` |  the message to log |
 | replacements... | `*` |  objects that should replace placeholders within the message |
 
-#### <a name="Logger.addLogChannel"></a>Logger.addLogChannel( channel )
+#### <a id="Logger.addLogChannel"></a>Logger.addLogChannel( channel )
 
 Adds a new channel to forward log messages to. A channel is called synchronously for every log message
 and can do whatever necessary to handle the message according to its task. Note that blocking or
@@ -175,7 +175,7 @@ Each message is an object having the following properties:
 | -------- | ---- | ----------- |
 | channel | `Function` |  the log channel to add |
 
-#### <a name="Logger.removeLogChannel"></a>Logger.removeLogChannel( channel )
+#### <a id="Logger.removeLogChannel"></a>Logger.removeLogChannel( channel )
 
 Removes a log channel and thus stops sending further messages to it.
 
@@ -185,7 +185,7 @@ Removes a log channel and thus stops sending further messages to it.
 | -------- | ---- | ----------- |
 | channel | `Function` |  the log channel to remove |
 
-#### <a name="Logger.addTag"></a>Logger.addTag( tag, value )
+#### <a id="Logger.addTag"></a>Logger.addTag( tag, value )
 
 Adds a value for a log tag. If a tag is already known, the value is appended to the existing one using a
 `;` as separator. Note that no formatting of the value takes place and a non-string value will just have
@@ -203,7 +203,7 @@ to the same client can be accumulated.
 | tag | `String` |  the id of the tag to add a value for |
 | value | `String` |  the value to add |
 
-#### <a name="Logger.setTag"></a>Logger.setTag( tag, value )
+#### <a id="Logger.setTag"></a>Logger.setTag( tag, value )
 
 Sets a value for a log tag. If a tag is already known, the value is overwritten by the given one. Note
 that no formatting of the value takes place and a non-string value will just have its appropriate
@@ -216,7 +216,7 @@ that no formatting of the value takes place and a non-string value will just hav
 | tag | `String` |  the id of the tag to set a value for |
 | value | `String` |  the value to set |
 
-#### <a name="Logger.removeTag"></a>Logger.removeTag( tag )
+#### <a id="Logger.removeTag"></a>Logger.removeTag( tag )
 
 Removes a log tag. For further information on log tags, see [`Logger#addTag`](runtime.log.md#addTag).
 
@@ -226,7 +226,7 @@ Removes a log tag. For further information on log tags, see [`Logger#addTag`](ru
 | -------- | ---- | ----------- |
 | tag | `String` |  the id of the tag to set a value for |
 
-#### <a name="Logger.gatherTags"></a>Logger.gatherTags()
+#### <a id="Logger.gatherTags"></a>Logger.gatherTags()
 
 Returns a map of all tags. If there are multiple values for the same tag, their values are concatenated
 using a `;` as separator. For further information on log tags, see [`Logger#addTag`](runtime.log.md#addTag).
@@ -237,7 +237,7 @@ using a `;` as separator. For further information on log tags, see [`Logger#addT
 | ---- | ----------- |
 | `Object` |  a mapping from tag to its value(s) |
 
-#### <a name="Logger.setLogThreshold"></a>Logger.setLogThreshold( threshold )
+#### <a id="Logger.setLogThreshold"></a>Logger.setLogThreshold( threshold )
 
 Sets the threshold for log messages. Log messages with a lower level will be discarded upon logging.
 
