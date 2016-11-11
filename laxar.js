@@ -89,12 +89,12 @@ export function bootstrap(
    whenDocumentReady( () => {
       log.trace( `LaxarJS loading Flow: ${flowName}` );
       services.pageService.createControllerFor( anchorElement );
-      services.flowService.controller()
+      services.flowController
          .loadFlow()
          .then( () => {
             log.trace( 'Flow loaded' );
          }, err => {
-            log.fatal( 'Failed to load' );
+            log.fatal( 'LaxarJS failed to load flow.' );
             log.fatal( 'Error [0].\nStack: [1]', err, err && err.stack );
          } );
    } );
