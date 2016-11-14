@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#349](https://github.com/LaxarJS/laxar/issues/349): removed support for MSIE 9
+    + **BREAKING CHANGE:** see ticket for details
 - [#392](https://github.com/LaxarJS/laxar/issues/392): flow: removed `entryPoint` / `exitPoint` feature
     + **BREAKING CHANGE:** see ticket for details
 - [#390](https://github.com/LaxarJS/laxar/issues/390): adapter API: make `artifactProvider` available to adapters and allow `create()` to be async
