@@ -13,7 +13,12 @@ The documentation solely exists as a blueprint for custom widget adapters and to
 **Module Members**
 
 - [bootstrap()](#bootstrap)
-- [create()](#create)
+- [- unknown -](#- unknown -)
+
+**Types**
+
+- [PlainAdapterFactory](#PlainAdapterFactory)
+  - [PlainAdapterFactory.create()](#PlainAdapterFactory.create)
 
 ## Module Members
 
@@ -27,27 +32,37 @@ documentation purposes.
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| artifacts | `Object` |   |
-| artifacts.widgets | `Object` |  asfsf |
-| artifacts.controls | `Object` |  asfsf |
-| services | `Object` |   |
-| services.adapterUtilities | `AdapterUtilities` |   |
-| services.configuration | [`Configuration`](runtime.configuration.md#Configuration) |   |
-| services.globalEventBus | [`EventBus`](runtime.event_bus.md#EventBus) |   |
-| services.heartbeat | [`heartbeat`](runtime.heartbeat.md#heartbeat) |   |
-| services.log | `Log` |   |
-| services.pageService | `PageService` |   |
-| services.storage | [`StorageFactory`](runtime.storage.md#StorageFactory) |   |
-| services.tooling | `ToolingProviders` |   |
-| anchorElement | `Object` |  the DOM node the laxar application is bootstrapped on |
+| artifacts | `Object` |  the artifacts available to this adapter factory |
+| artifacts.widgets | `Object` |  all widgets, that are implemented in the adapter's technology |
+| artifacts.controls | `Object` |  all controls, that are implemented in the adapter's technology |
+| services | `Object` |  a selection of services adapter implementations may need to fulfill their task |
+| services.adapterUtilities | `AdapterUtilities` |  common utilities, that may be useful to a widget adapter |
+| services.artifactProvider | `ArtifactProvider` |  the artifact provider instance |
+| services.configuration | [`Configuration`](runtime.configuration.md#Configuration) |  access to the application configuration |
+| services.globalEventBus | [`EventBus`](runtime.event_bus.md#EventBus) |  the global event bus. Note that an adapter should not sent any events by itself. It may instead be necessary that the adapter makes the event bus globally available to its widgets (for example like the AngularJS 1.x adapter), or that it registers an inspector |
+| services.heartbeat | [`Heartbeat`](runtime.heartbeat.md#Heartbeat) |  the heartbeat instance. Depending on the underlying view technology (like AngularJS 1.x) it may be important to get notified when to re-render the user interface. For that reason an adapter can register a callback at the heartbeat, that gets called after all events of the current cycle were processed |
+| services.log | `Log` |  the global log instance |
+| services.storage | [`StorageFactory`](runtime.storage.md#StorageFactory) |  the global storage factory api |
+| services.tooling | `Tooling` |  access to the tooling api |
+| anchorElement | `HTMLElement` |  the DOM node the laxar application is bootstrapped on. An adapter should never try to access DOM nodes that are not the `anchorElement` or any of its children, since they are not under control of this LaxarJS application. |
 
 ##### Returns
 
 | Type | Description |
 | ---- | ----------- |
-| `PlainAdapterFactory` |  the factory for plain widget adapters |
+| [`PlainAdapterFactory`](#PlainAdapterFactory) |  the factory for plain widget adapters |
 
-#### <a id="create"></a>create( environment )
+#### <a id="- unknown -"></a>- unknown - `undefined`
+
+TODO remove: https://github.com/LaxarJS/laxar/issues/396
+
+## Types
+
+### <a id="PlainAdapterFactory"></a>PlainAdapterFactory
+
+A factory for plain widget adapters.
+
+#### <a id="PlainAdapterFactory.create"></a>PlainAdapterFactory.create( environment )
 
 Creates a new adapter instance for the given widget environment.
 
@@ -56,11 +71,10 @@ Creates a new adapter instance for the given widget environment.
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | environment | `Object` |  the environment for the widget to create and manage |
-| environment.name | `String` |  the name of the widget to load, exactly as specified by the widget descriptor |
 | environment.anchorElement | `HTMLElement` |  the DOM node that the widget's DOM fragment should be inserted into |
-| environment.services | `Object` |  injectable widget services provided directly by the laxar runtime |
+| environment.name | `String` |  the name of the widget to load, exactly as specified by the widget descriptor |
+| environment.services | [`widget_services`](runtime.widget_services.md#widget_services) |  the services for this widget instance |
 | environment.onBeforeControllerCreation | `Function` |  a function that the adapter must call with a map of all to-be-injected services, just before creating the controller |
-| environment.errors | `AdapterErrors` |  contains factory methods to create specific errors that are often needed by adapters |
 
 ##### Returns
 

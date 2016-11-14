@@ -80,7 +80,7 @@ The features the widget was configured with.
 Its structure depends solely on the schema defined in the widget's descriptor file
 (`widget.json`)
 
-#### <a id="axFlowService"></a>axFlowService [`FlowService`](runtime.flow_service.md#FlowService)
+#### <a id="axFlowService"></a>axFlowService `FlowService`
 
 Injection for the flow service.
 

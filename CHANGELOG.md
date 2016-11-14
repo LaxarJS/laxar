@@ -2,6 +2,20 @@
 
 ## Last Changes
 
+- [#392](https://github.com/LaxarJS/laxar/issues/392): flow: removed `entryPoint` / `exitPoint` feature
+    + **BREAKING CHANGE:** see ticket for details
+- [#390](https://github.com/LaxarJS/laxar/issues/390): adapter API: make `artifactProvider` available to adapters and allow `create()` to be async
+    + NEW FEATURE: see ticket for details
+
+
+## v2.0.0-alpha.10
+
+- [#389](https://github.com/LaxarJS/laxar/issues/389): flow: normalize generated URLs (no trailing `/_`)
+    + **BREAKING CHANGE:** see ticket for details
+- [#388](https://github.com/LaxarJS/laxar/issues/388): flow: fixed handling of parameter-only places
+- [#386](https://github.com/LaxarJS/laxar/issues/386): flow: double-encode slashes in path segments
+- [#387](https://github.com/LaxarJS/laxar/issues/387): flow: reverted name-change (keep `constructAbsoluteUrl`)
+    + NEW FEATURE: see ticket for details
 - [#384](https://github.com/LaxarJS/laxar/issues/384): flow: simplified handling of invalid empty places
 - [#375](https://github.com/LaxarJS/laxar/issues/375): flow: added support for query parameters
     + NEW FEATURE: see ticket for details

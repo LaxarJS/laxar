@@ -1,29 +1,14 @@
 
-# <a id="flow_service"></a>flow_service
-
-This module encapsulates all logic regarding the flow and navigation between different pages.
-Its the place where `navigateRequest` events are handled and the source of `will-` and `didNavigate`
-events.
 
 ## Contents
 
-**Types**
+**Module Members**
 
-- [FlowService](#FlowService)
-  - [FlowService.constructAbsoluteUrl()](#FlowService.constructAbsoluteUrl)
-  - [FlowService.absoluteUrl()](#FlowService.absoluteUrl)
+- [constructAbsoluteUrl()](#constructAbsoluteUrl)
 
-## Types
+## Module Members
 
-### <a id="FlowService"></a>FlowService
-
-Service granting access to certain flow specific tasks.
-
-#### <a id="FlowService.constructAbsoluteUrl"></a>FlowService.constructAbsoluteUrl()
-
-Alias for [`#absoluteUrl`](#absoluteUrl), for backward-compatibility.
-
-#### <a id="FlowService.absoluteUrl"></a>FlowService.absoluteUrl( targetOrPlace, optionalParameters )
+#### <a id="constructAbsoluteUrl"></a>constructAbsoluteUrl( targetOrPlace, optionalParameters )
 
 Constructs an absolute URL to the given target or place using the given parameters. If a target is
 given as first argument, it is resolved using the currently active place.
@@ -39,4 +24,4 @@ given as first argument, it is resolved using the currently active place.
 
 | Type | Description |
 | ---- | ----------- |
-| `String` |  the generated absolute url |
+| [`string`](utilities.string.md#string) |  the generated absolute URL |
