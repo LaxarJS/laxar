@@ -13,6 +13,7 @@
   "scripts": {
     "prepublish": "npm run apidoc && npm run optimize",
     "apidoc": "grunt apidoc",
+    "apidoc2": "laxardox -d docs/api/ --naming-style-package laxar.js lib/loaders/control_loader.js lib/runtime/configuration.js lib/runtime/event_bus.js lib/runtime/flow_service.js lib/runtime/heartbeat.js lib/runtime/log.js lib/runtime/plain_adapter.js lib/runtime/storage.js lib/runtime/widget_services.js lib/runtime/widget_services_i18n.js lib/runtime/widget_services_visibility.js lib/utilities/assert.js lib/utilities/object.js lib/utilities/string.js",
     "optimize": "webpack",
     "test": "npm run karma && npm run eslint",
     "browser-spec": "webpack --config webpack.browser-spec.config.js && webpack-dev-server --host 0.0.0.0 --port 8081 --inline --config webpack.browser-spec.config.js",
@@ -46,6 +47,7 @@
     "karma-phantomjs-launcher": "^1.0.1",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
+    "laxar-dox": "~2.0.0-alpha.3",
     "promise-polyfill": "^5.2.1",
     "script-loader": "^0.7.0",
     "webpack": "^1.13.1",

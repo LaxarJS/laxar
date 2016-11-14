@@ -4,8 +4,8 @@
  * http://laxarjs.org/license
  */
 /* eslint-env node */
-/* eslint no-var:0 */
-module.exports = function (grunt) {
+/* eslint-disable no-var, object-shorthand */
+module.exports = function( grunt ) {
    'use strict';
 
    var pkg = grunt.file.readJSON( 'package.json' );
