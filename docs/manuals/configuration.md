@@ -1,4 +1,4 @@
-# LaxarJS Configuration in an Application
+# Configuration
 
 [« return to the manuals](index.md)
 
@@ -120,5 +120,6 @@ For options available in _LaxarJS UiKit_, have a look at the [respective documen
 | `flow.entryPoint`                    | `null`                | If the browser URL cannot be controlled by the LaxarJS application (for example, when integrating with a legacy system), the target and place-parameters can be set here in the form `{ target: 'my_flow_target', parameters: { myParam: 'xyz' } }`.
 | `flow.exitPoints`                    | `{}`                  | Allows to delegate handling of a navigation target to a different (legacy) system by specifying callbacks for individual navigation targets. Has the form `{ exitFnName: function( parameters ) { /* ... */ } }` where `exitFnName` matches the value specified as an `'exitPoint'` within the `flow.json`.
 | `storagePrefix`                      | `null`                | Allows to set a prefix for local- and session-storage keys when using `laxar.storage`. If `null` a prefix is generated from the configured `name`.
+| `tooling.enabled`                    | `false`               | Determines if the LaxarJS developer tools extension can be used on the application. It is recommended to keep this `false` in production.
 | `useEmbeddedFileListings`            | `false`               | Whole files may be embedded into the file listings by `grunt-laxar` to save even more HTTP-requests. During development, these embeddings may be stale and should not be used (use `false`) while in production, they are beneficial (use `true`).
 | `useMergedCss`                       | `false`               | Similar to `useEmbeddedFileListings`, this option controls an optimization: If `true`, the runtime loads a concatenated CSS style sheet produced by `grunt-laxar` instead of per-artifact style sheets to improve performance. If `false`, CSS-files are requested individually, which is mostly useful during development. The value is automatically `true` if a `link` element with the `data-ax-merged-css` attribute exists on the page.
