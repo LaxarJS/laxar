@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#399](https://github.com/LaxarJS/laxar/issues/399): tooling: fixed API exposure default
 - [#379](https://github.com/LaxarJS/laxar/issues/379): flow: double-encode slashes in URL segments
 
 
