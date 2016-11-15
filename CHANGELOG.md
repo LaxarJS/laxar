@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#400](https://github.com/LaxarJS/laxar/issues/400): rebuild after broken build v1.3.2
+
 
 ## v1.3.2
 
