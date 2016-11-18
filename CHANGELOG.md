@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#401](https://github.com/LaxarJS/laxar/issues/401): tooling: clear the buffer with events after the developer tools have read it
+
 
 ## v1.3.3
 
