@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#395](https://github.com/LaxarJS/laxar/issues/395): cleanup: removed `object.extend` and `object.deepFreeze`
+    + **BREAKING CHANGE:** see ticket for details
 - [#349](https://github.com/LaxarJS/laxar/issues/349): removed support for MSIE 9
     + **BREAKING CHANGE:** see ticket for details
 - [#392](https://github.com/LaxarJS/laxar/issues/392): flow: removed `entryPoint` / `exitPoint` feature
