@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#402](https://github.com/LaxarJS/laxar/issues/402): project: polyfill `Object.assign`
 - [#395](https://github.com/LaxarJS/laxar/issues/395): cleanup: removed `object.extend` and `object.deepFreeze`
     + **BREAKING CHANGE:** see ticket for details
 - [#349](https://github.com/LaxarJS/laxar/issues/349): removed support for MSIE 9
