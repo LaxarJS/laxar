@@ -11,12 +11,16 @@ Preliminary readings:
 * [Configuration](configuration.md)
 * [Writing Pages](writing_pages.md)
 
+
 ## The Flow
 
 The flow ties together the parts of a LaxarJS application: it defines what pages are reachable, which also determines the set of widgets and controls to load as part of an application.
-Each LaxarJS application has only a single flow, but when bootstrapping your application you can decide which flow to use, so that you can easily break it up into several segments, and only load one of these at a time.
+Once bootstrapped, a LaxarJS application uses only a single flow.
+But at bootstrapping time, you can decide which flow to use.
+This way, you can easily create several "perspectives" onto your application that share pages and widgets as needed.
+For example, you could have a flow to present to new visitors, a second flow for registered users, and a third flow to implement a back-office tool.
 
-A flow is specified using a definition in JSON format, and it primarily consists of a set of named *places*.
+Each flow is specified using a *flow definition file* in JSON format, and it primarily consists of a set of named *places*.
 
 
 ## Places
@@ -61,22 +65,38 @@ In the example, the place *entry* has a single pattern (`/`), while the place *d
 If no patterns are specified, a place with ID `$some-id` will automatically be assigned the patterns list `[ "/$some-id" ]`, which will only match a slash followed by the exact place ID.
 
 The syntax for URL patterns ultimately depends on what the router (page.js) deems valid.
-Note that regular-expression patterns, while in principle supported by page.js, are currently not available for use in a LaxarJS flow definition.
-It is *strongly recommended* to always start patterns with a leading slash, as relative paths will break down quickly in most setups.
-Also note that each list of pattern should begin with a *reversible* pattern, which contains only constant parts and named parameters.
-The pattern `*` that matches any path is not reversible, for example.
+It is *strongly recommended* to always start patterns with a *leading slash*, as relative paths will quickly break down in most setups.
+Also note that each list of patterns should start with a *reversible* pattern, as explained in the next section.
+Note that regular-expression patterns, while in principle supported by page.js, are currently not available for use in a LaxarJS flow definition, both because they are not reversible, and because there is no JSON notation for them.
 
 Apart from its patterns, a place has either a `page` entry, or a `redirectTo` entry.
 The former determines that the corresponding page will be looked up relative to the pages directory of your application and instantiated when entering the place, while the latter makes it a redirect to another place specified by ID.
 In the example, the place *entry* specifies a redirect to the place *details*.
 You can use redirects to support legacy URLs in your application and to forward them to actual pages.
 
+Application may also enable *query-strings* using the configuration key `router.query.enabled`.
+Query parameters are never used for routing, but carry *optional parameter values* that may be useful to widgets on a page.
+Because query parameters are optional, each place may specify an object containing `defaultParameters`, that are published with navigation events if no matching query parameter was passed.
+Note that regular place parameters always override query parameters of the same name.
+
 
 ### Reverse Routing
 
-The declarative routing configuration is more restrictive than free-form programmatic routing.
-On the other hand, this notation allows LaxarJS to automatically generate URLs to any place, from just its ID and possibly a set of named parameters.
-The widgets and activities in your application do not need to know about the URL patterns associated with their respective place, which makes them portable across pages and even application.
+The declarative routing configuration used by LaxarJS is a bit more restrictive than free-form programmatic routing.
+On the other hand, this notation allows applications to automatically generate URLs to any place, just from an ID and possibly a set of named parameters.
+The widgets and activities within your application do not need to know about the URL patterns associated with their respective place, which makes them portable across pages and even application.
+
+To make use of reverse routing, it is important that the first pattern for each place is *reversible*.
+Specifically, any wildcard parts of the URL pattern must be *named*, so that they can be substituted for the actual parameter names by the router.
+The pattern `*` that matches any path is not reversible, for example.
+Also, page.js regular expression patterns are not reversible, because JavaScript does not support named capturing groups in regular expressions.
+However, their syntax is not supported by the JSON flow definition anyway, so applications cannot use them by mistake.
+The following pattern styles are known to work with reverse routing:
+
+  * verbatim: `/some/path`
+  * named parameter segments `/some/:param/:other-param`
+
+If query parameters are enabled, any additional parameters that are not part of the pattern to reverse will be encoded into query parameters, except if the parameter value to be encoded equals the default value of the target place.
 
 
 ### Initiating navigation
