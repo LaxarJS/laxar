@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#276](https://github.com/LaxarJS/laxar/issues/276): added and fixed API docs
 - [#381](https://github.com/LaxarJS/laxar/issues/381): flow: clearly distinguish places from their targets and patterns
     + **BREAKING CHANGE:** see ticket for details
 - [#402](https://github.com/LaxarJS/laxar/issues/402): project: polyfill `Object.assign`

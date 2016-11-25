@@ -1,39 +1,41 @@
 
-# log
+# <a id="log"></a>log
 
-An interface for logging purposes. At least for permanent logging this should always be used in favor of
-`console.log` and friends, as it is cross browser secure and allows attaching multiple channels where
-messages can be routed to (i.e. to send them to a server process for persistence). If available, messages
-will be logged to the browser's console using a builtin console channel.
+Module providing the Logger factory.
 
-When requiring `laxar`, an instance of the `Logger` type is available as `laxar.log`.
+To use the Log service in a widget, request the [`axLog`](runtime.widget_services.md#axLog) injection.
 
 ## Contents
 
 **Module Members**
-- [level](#level)
+
+- [levels](#levels)
 - [BLACKBOX](#BLACKBOX)
 
 **Types**
+
 - [Logger](#Logger)
-  - [Logger#log](#Logger#log)
-  - [Logger#trace](#Logger#trace)
-  - [Logger#debug](#Logger#debug)
-  - [Logger#info](#Logger#info)
-  - [Logger#warn](#Logger#warn)
-  - [Logger#error](#Logger#error)
-  - [Logger#fatal](#Logger#fatal)
-  - [Logger#addLogChannel](#Logger#addLogChannel)
-  - [Logger#removeLogChannel](#Logger#removeLogChannel)
-  - [Logger#addTag](#Logger#addTag)
-  - [Logger#setTag](#Logger#setTag)
-  - [Logger#removeTag](#Logger#removeTag)
-  - [Logger#gatherTags](#Logger#gatherTags)
-  - [Logger#setLogThreshold](#Logger#setLogThreshold)
+  - [Logger.log()](#Logger.log)
+  - [Logger.trace()](#Logger.trace)
+  - [Logger.debug()](#Logger.debug)
+  - [Logger.info()](#Logger.info)
+  - [Logger.warn()](#Logger.warn)
+  - [Logger.error()](#Logger.error)
+  - [Logger.fatal()](#Logger.fatal)
+  - [Logger.addLogChannel()](#Logger.addLogChannel)
+  - [Logger.removeLogChannel()](#Logger.removeLogChannel)
+  - [Logger.addTag()](#Logger.addTag)
+  - [Logger.setTag()](#Logger.setTag)
+  - [Logger.removeTag()](#Logger.removeTag)
+  - [Logger.gatherTags()](#Logger.gatherTags)
+  - [Logger.setLogThreshold()](#Logger.setLogThreshold)
 
 ## Module Members
-#### <a name="level"></a>level()
-By default available log levels, sorted by increasing log level:
+
+#### <a id="levels"></a>levels `Object`
+
+Log levels that are available by default, sorted by increasing severity:
+
 - TRACE (level 100)
 - DEBUG (level 200)
 - INFO (level 300)
@@ -41,14 +43,17 @@ By default available log levels, sorted by increasing log level:
 - ERROR (level 500)
 - FATAL (level 600)
 
-#### <a name="BLACKBOX"></a>BLACKBOX()
-Pass this as an additional replacement parameter to a log-method to blackbox your logging call.
+#### <a id="BLACKBOX"></a>BLACKBOX `Object`
+
+Pass this as an additional replacement parameter to a log-method, in order to blackbox your logging call.
 Blackboxed callers are ignored when logging the source information (file, line).
 
 ## Types
-### <a name="Logger"></a>Logger
 
-#### <a name="Logger#log"></a>Logger#log( level, message, replacements )
+### <a id="Logger"></a>Logger
+
+#### <a id="Logger.log"></a>Logger.log( level, message, replacements )
+
 Logs a message. A message may contain placeholders in the form `[#]` where `#` resembles the index
 within the list of `replacements`. `replacements` are incrementally counted starting at `0`. If the
 log level is below the configured log threshold, the message is simply discarded.
@@ -57,85 +62,99 @@ It is recommended not to use this method directly, but instead one of the short 
 according log level.
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | level | `Number` |  the level for this message |
 | message | `String` |  the message to log |
 | replacements... | `*` |  objects that should replace placeholders within the message |
 
-#### <a name="Logger#trace"></a>Logger#trace( message, replacements )
-Logs a message in log level `TRACE`. See [Logger#log](#Logger#log) for further information.
+#### <a id="Logger.trace"></a>Logger.trace( message, replacements )
+
+Logs a message in log level `TRACE`. See [`Logger#log`](runtime.log.md#log) for further information.
 
 *Important note*: This method is only available, if no custom log levels were defined via
 configuration or custom log levels include this method as well.
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | message | `String` |  the message to log |
 | replacements... | `*` |  objects that should replace placeholders within the message |
 
-#### <a name="Logger#debug"></a>Logger#debug( message, replacements )
-Logs a message in log level `DEBUG`. See [Logger#log](#Logger#log) for further information.
+#### <a id="Logger.debug"></a>Logger.debug( message, replacements )
+
+Logs a message in log level `DEBUG`. See [`Logger#log`](runtime.log.md#log) for further information.
 
 *Important note*: This method is only available, if no custom log levels were defined via
 configuration or custom log levels include this method as well.
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | message | `String` |  the message to log |
 | replacements... | `*` |  objects that should replace placeholders within the message |
 
-#### <a name="Logger#info"></a>Logger#info( message, replacements )
-Logs a message in log level `INFO`. See [Logger#log](#Logger#log) for further information.
+#### <a id="Logger.info"></a>Logger.info( message, replacements )
+
+Logs a message in log level `INFO`. See [`Logger#log`](runtime.log.md#log) for further information.
 
 *Important note*: This method is only available, if no custom log levels were defined via
 configuration or custom log levels include this method as well.
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | message | `String` |  the message to log |
 | replacements... | `*` |  objects that should replace placeholders within the message |
 
-#### <a name="Logger#warn"></a>Logger#warn( message, replacements )
-Logs a message in log level `WARN`. See [Logger#log](#Logger#log) for further information.
+#### <a id="Logger.warn"></a>Logger.warn( message, replacements )
+
+Logs a message in log level `WARN`. See [`Logger#log`](runtime.log.md#log) for further information.
 
 *Important note*: This method is only available, if no custom log levels were defined via
 configuration or custom log levels include this method as well.
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | message | `String` |  the message to log |
 | replacements... | `*` |  objects that should replace placeholders within the message |
 
-#### <a name="Logger#error"></a>Logger#error( message, replacements )
-Logs a message in log level `ERROR`. See [Logger#log](#Logger#log) for further information.
+#### <a id="Logger.error"></a>Logger.error( message, replacements )
+
+Logs a message in log level `ERROR`. See [`Logger#log`](runtime.log.md#log) for further information.
 
 *Important note*: This method is only available, if no custom log levels were defined via
 configuration or custom log levels include this method as well.
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | message | `String` |  the message to log |
 | replacements... | `*` |  objects that should replace placeholders within the message |
 
-#### <a name="Logger#fatal"></a>Logger#fatal( message, replacements )
-Logs a message in log level `FATAL`. See [Logger#log](#Logger#log) for further information.
+#### <a id="Logger.fatal"></a>Logger.fatal( message, replacements )
+
+Logs a message in log level `FATAL`. See [`Logger#log`](runtime.log.md#log) for further information.
 
 *Important note*: This method is only available, if no custom log levels were defined via
 configuration or custom log levels include this method as well.
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | message | `String` |  the message to log |
 | replacements... | `*` |  objects that should replace placeholders within the message |
 
-#### <a name="Logger#addLogChannel"></a>Logger#addLogChannel( channel )
+#### <a id="Logger.addLogChannel"></a>Logger.addLogChannel( channel )
+
 Adds a new channel to forward log messages to. A channel is called synchronously for every log message
 and can do whatever necessary to handle the message according to its task. Note that blocking or
 performance critical actions within a channel should always take place asynchronously to prevent from
@@ -151,19 +170,23 @@ Each message is an object having the following properties:
 - `sourceInfo`: if supported, a map containing `file`, `line` and `char` where the logging took place
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | channel | `Function` |  the log channel to add |
 
-#### <a name="Logger#removeLogChannel"></a>Logger#removeLogChannel( channel )
+#### <a id="Logger.removeLogChannel"></a>Logger.removeLogChannel( channel )
+
 Removes a log channel and thus stops sending further messages to it.
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | channel | `Function` |  the log channel to remove |
 
-#### <a name="Logger#addTag"></a>Logger#addTag( tag, value )
+#### <a id="Logger.addTag"></a>Logger.addTag( tag, value )
+
 Adds a value for a log tag. If a tag is already known, the value is appended to the existing one using a
 `;` as separator. Note that no formatting of the value takes place and a non-string value will just have
 its appropriate `toString` method called.
@@ -174,43 +197,52 @@ current browser client. If then for example log messages are persisted on a serv
 to the same client can be accumulated.
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | tag | `String` |  the id of the tag to add a value for |
 | value | `String` |  the value to add |
 
-#### <a name="Logger#setTag"></a>Logger#setTag( tag, value )
+#### <a id="Logger.setTag"></a>Logger.setTag( tag, value )
+
 Sets a value for a log tag. If a tag is already known, the value is overwritten by the given one. Note
 that no formatting of the value takes place and a non-string value will just have its appropriate
-`toString` method called. For further information on log tags, see [Logger#addTag](#Logger#addTag).
+`toString` method called. For further information on log tags, see [`Logger#addTag`](runtime.log.md#addTag).
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | tag | `String` |  the id of the tag to set a value for |
 | value | `String` |  the value to set |
 
-#### <a name="Logger#removeTag"></a>Logger#removeTag( tag )
-Removes a log tag. For further information on log tags, see [Logger#addTag](#Logger#addTag).
+#### <a id="Logger.removeTag"></a>Logger.removeTag( tag )
+
+Removes a log tag. For further information on log tags, see [`Logger#addTag`](runtime.log.md#addTag).
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | tag | `String` |  the id of the tag to set a value for |
 
-#### <a name="Logger#gatherTags"></a>Logger#gatherTags()
+#### <a id="Logger.gatherTags"></a>Logger.gatherTags()
+
 Returns a map of all tags. If there are multiple values for the same tag, their values are concatenated
-using a `;` as separator. For further information on log tags, see [Logger#addTag](#Logger#addTag).
+using a `;` as separator. For further information on log tags, see [`Logger#addTag`](runtime.log.md#addTag).
 
 ##### Returns
+
 | Type | Description |
 | ---- | ----------- |
 | `Object` |  a mapping from tag to its value(s) |
 
-#### <a name="Logger#setLogThreshold"></a>Logger#setLogThreshold( threshold )
+#### <a id="Logger.setLogThreshold"></a>Logger.setLogThreshold( threshold )
+
 Sets the threshold for log messages. Log messages with a lower level will be discarded upon logging.
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | threshold | `String`, `Number` |  the numeric or the string value of the log level to use as threshold |

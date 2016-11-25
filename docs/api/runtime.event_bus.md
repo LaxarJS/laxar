@@ -1,44 +1,30 @@
 
-# event_bus
+# <a id="event_bus"></a>event_bus
 
-The *event_bus* module contains the implementation of the *LaxarJS EventBus*.
-In an application you'll never use this module or instantiate an event bus instance directly.
-Instead within a widget the event bus can be injected as `axEventBus` or accessed as property on the
-`axContext` injection.
+Module providing the EventBus factory.
+
+To use the EventBus in a widget, request the [`axEventBus`](runtime.widget_services.md#axEventBus) injection, or
+use the `eventBus` property on the [`axContext`](runtime.widget_services.md#axContext) injection.
+In some cases, it may be useful to inject the global EventBus instance backing all widget instances of the
+same bootstrapping context, by requesting the [`axGlobalEventBus`](runtime.widget_services.md#axGlobalEventBus)
+injection.
 
 ## Contents
 
-**Module Members**
-- [create](#create)
-
 **Types**
+
 - [EventBus](#EventBus)
-  - [EventBus#addInspector](#EventBus#addInspector)
-  - [EventBus#subscribe](#EventBus#subscribe)
-  - [EventBus#publish](#EventBus#publish)
-  - [EventBus#publishAndGatherReplies](#EventBus#publishAndGatherReplies)
-
-## Module Members
-#### <a name="create"></a>create( configuration, log, nextTick, timeoutFunction )
-Creates and returns a new event bus instance using the given configuration.
-
-##### Parameters
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| _configuration_ | `Object` |  configuration for the event bus instance. The key `eventBusTimeoutMs` is used to determine the will/did timeout. |
-| _log_ | `Object` |  a logger to use for error reporting |
-| _nextTick_ | `Function` |  a next tick function like `process.nextTick` or AngularJS' `$timeout` |
-| _timeoutFunction_ | `Function` |  a timeout function like `window.setTimeout` or AngularJS' `$timeout` |
-
-##### Returns
-| Type | Description |
-| ---- | ----------- |
-| `EventBus` |  an event bus instance |
+  - [EventBus.addInspector()](#EventBus.addInspector)
+  - [EventBus.subscribe()](#EventBus.subscribe)
+  - [EventBus.publish()](#EventBus.publish)
+  - [EventBus.publishAndGatherReplies()](#EventBus.publishAndGatherReplies)
 
 ## Types
-### <a name="EventBus"></a>EventBus
 
-#### <a name="EventBus#addInspector"></a>EventBus#addInspector( inspector )
+### <a id="EventBus"></a>EventBus
+
+#### <a id="EventBus.addInspector"></a>EventBus.addInspector( inspector )
+
 Adds an inspector, that gets notified when certain actions within the event bus take place. Currently
 these actions may occur:
 
@@ -60,16 +46,19 @@ The function returned by this method can be called to remove the inspector again
 being called for future event bus actions.
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| _inspector_ | `Function` |  the inspector function to add |
+| inspector | `Function` |  the inspector function to add |
 
 ##### Returns
+
 | Type | Description |
 | ---- | ----------- |
 | `Function` |  a function to remove the inspector |
 
-#### <a name="EventBus#subscribe"></a>EventBus#subscribe( eventName, subscriber, optionalOptions )
+#### <a id="EventBus.subscribe"></a>EventBus.subscribe( eventName, subscriber, optionalOptions )
+
 Subscribes to an event by name. An event name consists of so called *topics*, where each topic is
 separated from another by dots (`.`). If a topic is omitted, this is treated as a wildcard. Note that
 two dots in the middle or one dot at the beginning of an event name must remain, whereas a dot at the
@@ -101,20 +90,23 @@ The second one is a meta object with these properties:
 - `options`: The options that were passed to `publish` or `publishAndGatherReplies` respectively.
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| _eventName_ | `String` |  the name of the event to subscribe to |
-| _subscriber_ | `Function` |  a function to call whenever an event matching `eventName` is published |
+| eventName | `String` |  the name of the event to subscribe to |
+| subscriber | `Function` |  a function to call whenever an event matching `eventName` is published |
 | _optionalOptions_ | `Object` |  additional options for the subscribe action |
-| _optionalOptions.subscriber_ | `String` |  the id of the subscriber. Default is `null` |
-| _optionalOptions.clone_ | `Boolean` |  if `false` the event will be send frozen to the subscriber, otherwise it will receive a deep copy. Default is `true` |
+| _optionalOptions.subscriber=null_ | `String` |  the id of the subscriber. Default is `null` |
+| _optionalOptions.clone=true_ | `Boolean` |  if `false` the event will be send frozen to the subscriber, otherwise it will receive a deep copy. Default is `true` |
 
 ##### Returns
+
 | Type | Description |
 | ---- | ----------- |
 | `Function` |  a function that when called unsubscribes from this subscription again |
 
-#### <a name="EventBus#publish"></a>EventBus#publish( eventName, optionalEvent, optionalOptions )
+#### <a id="EventBus.publish"></a>EventBus.publish( eventName, optionalEvent, optionalOptions )
+
 Asynchronously publishes an event on the event bus. The returned promise will be enqueued as soon as this
 event is delivered and, if during delivery a new event was enqueued, resolved after that new event was
 delivered. If no new event is published during delivery of this event, the promise is instantly resolved.
@@ -135,23 +127,26 @@ where its subscriber function was called) *responds* by publishing b, b arrives 
 function of A, before the promise of A's publish action is resolved.
 It is hence possible to observe possible effects of an event sent by oneself, under the conditions
 mentioned above. Practically this is used internally for the implementation of
-[EventBus#publishAndGatherReplies](#EventBus#publishAndGatherReplies).
+[`#EventBus.publishAndGatherReplies()`](#EventBus.publishAndGatherReplies).
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| _eventName_ | `String` |  the name of the event to publish |
+| eventName | `String` |  the name of the event to publish |
 | _optionalEvent_ | `Object` |  the event to publish |
 | _optionalOptions_ | `Object` |  additional options for the publish action |
-| _optionalOptions.sender_ | `String` |  the id of the event sender. Default is `null` |
-| _optionalOptions.deliverToSender_ | `Boolean` |  if `false` the event will not be send to subscribers whose subscriber name matches `optionalOptions.sender`, else all subscribers will receive the event. Default is `true` |
+| _optionalOptions.sender=null_ | `String` |  the id of the event sender. Default is `null` |
+| _optionalOptions.deliverToSender=true_ | `Boolean` |  if `false` the event will not be send to subscribers whose subscriber name matches `optionalOptions.sender`, else all subscribers will receive the event. Default is `true` |
 
 ##### Returns
+
 | Type | Description |
 | ---- | ----------- |
 | `Promise` |  the delivery promise |
 
-#### <a name="EventBus#publishAndGatherReplies"></a>EventBus#publishAndGatherReplies( eventName, optionalEvent, optionalOptions )
+#### <a id="EventBus.publishAndGatherReplies"></a>EventBus.publishAndGatherReplies( eventName, optionalEvent, optionalOptions )
+
 Publishes an event that follows the *request-will-did pattern* and awaits all replies. This pattern has
 evolved over time and is of great use when handling the asynchronous nature of event bus events.
 
@@ -169,15 +164,17 @@ value provided as option to this method. If that timer expires before all `did*`
 rejected with all responses received up to now.
 
 ##### Parameters
+
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| _eventName_ | `String` |  the name of the event to publish |
+| eventName | `String` |  the name of the event to publish |
 | _optionalEvent_ | `Object` |  the event to publish |
 | _optionalOptions_ | `Object` |  additional options for the publish action |
-| _optionalOptions.sender_ | `String` |  the id of the event sender. Default is `null` |
-| _optionalOptions.pendingDidTimeout_ | `Number` |  the timeout in milliseconds for pending did* events |
+| _optionalOptions.sender=null_ | `String` |  the id of the event sender. Default is `null` |
+| _optionalOptions.pendingDidTimeout_ | `Number` |  the timeout in milliseconds for pending did* events. Default is the timeout option used when the event bus instance was created |
 
 ##### Returns
+
 | Type | Description |
 | ---- | ----------- |
 | `Promise` |  the delivery promise. It receives a list of all collected `did*` events and according meta information |
