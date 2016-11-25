@@ -9,36 +9,14 @@ When requiring `laxar`, it is available as `laxar.object`.
 
 **Module Members**
 
-- [extend()](#extend)
 - [options()](#options)
 - [forEach()](#forEach)
 - [path()](#path)
 - [setPath()](#setPath)
 - [deepClone()](#deepClone)
-- [deepFreeze()](#deepFreeze)
 - [tabulate()](#tabulate)
 
 ## Module Members
-
-#### <a id="extend"></a>extend( target, sources )
-
-Copies the properties from a set of source objects over to the target object. Properties of sources
-later in the arguments list overwrite existing properties in the target and earlier source objects.
-
-TODO: remove this function: https://github.com/LaxarJS/laxar/issues/395
-
-##### Parameters
-
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| target | `Object` |  the target object to modify |
-| sources... | `Object` |  the source objects to copy over |
-
-##### Returns
-
-| Type | Description |
-| ---- | ----------- |
-| `Object` |  the modified target object |
 
 #### <a id="options"></a>options( obj, defaults )
 
@@ -189,26 +167,6 @@ constructor function works and cyclic references will lead to endless recursion.
 | Type | Description |
 | ---- | ----------- |
 | `*` |  the clone |
-
-#### <a id="deepFreeze"></a>deepFreeze( obj, optionalRecursive )
-
-Freezes an object, optionally recursively, in any browser capable of freezing objects. In any other
-browser this method simply returns its first value, i.e. is an identity operation.
-
-TODO: remove this function: https://github.com/LaxarJS/laxar/issues/395
-
-##### Parameters
-
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| obj | `Object` |  the object to freeze |
-| _optionalRecursive_ | `Boolean` |  freezes recursively if `true`. Default is `false` |
-
-##### Returns
-
-| Type | Description |
-| ---- | ----------- |
-| `Object` |  the input (possibly) frozen |
 
 #### <a id="tabulate"></a>tabulate( fn, keys )
 

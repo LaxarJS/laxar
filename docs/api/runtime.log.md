@@ -1,10 +1,9 @@
 
 # <a id="log"></a>log
 
-An interface for logging purposes. At least for permanent logging this should always be used in favor of
-`console.log` and friends, as it is cross browser secure and allows attaching multiple channels where
-messages can be routed to (i.e. to send them to a server process for persistence). If available, messages
-will be logged to the browser's console using a builtin console channel.
+Module providing the Logger factory.
+
+To use the Log service in a widget, request the [`axLog`](runtime.widget_services.md#axLog) injection.
 
 ## Contents
 
@@ -35,7 +34,8 @@ will be logged to the browser's console using a builtin console channel.
 
 #### <a id="levels"></a>levels `Object`
 
-By default available log levels, sorted by increasing log level:
+Log levels that are available by default, sorted by increasing severity:
+
 - TRACE (level 100)
 - DEBUG (level 200)
 - INFO (level 300)
@@ -45,7 +45,7 @@ By default available log levels, sorted by increasing log level:
 
 #### <a id="BLACKBOX"></a>BLACKBOX `Object`
 
-Pass this as an additional replacement parameter to a log-method to blackbox your logging call.
+Pass this as an additional replacement parameter to a log-method, in order to blackbox your logging call.
 Blackboxed callers are ignored when logging the source information (file, line).
 
 ## Types

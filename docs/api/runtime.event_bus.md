@@ -1,16 +1,15 @@
 
 # <a id="event_bus"></a>event_bus
 
-The *event_bus* module contains the implementation of the *LaxarJS EventBus*.
-In an application you'll never use this module or instantiate an event bus instance directly.
-Instead within a widget the event bus can be injected as [`axEventBus`](runtime.widget_services.md#axEventBus) or
-accessed as property on the [`axContext`](runtime.widget_services.md#axContext) injection.
+Module providing the EventBus factory.
+
+To use the EventBus in a widget, request the [`axEventBus`](runtime.widget_services.md#axEventBus) injection, or
+use the `eventBus` property on the [`axContext`](runtime.widget_services.md#axContext) injection.
+In some cases, it may be useful to inject the global EventBus instance backing all widget instances of the
+same bootstrapping context, by requesting the [`axGlobalEventBus`](runtime.widget_services.md#axGlobalEventBus)
+injection.
 
 ## Contents
-
-**Module Members**
-
-- [create()](#create)
 
 **Types**
 
@@ -19,28 +18,6 @@ accessed as property on the [`axContext`](runtime.widget_services.md#axContext) 
   - [EventBus.subscribe()](#EventBus.subscribe)
   - [EventBus.publish()](#EventBus.publish)
   - [EventBus.publishAndGatherReplies()](#EventBus.publishAndGatherReplies)
-
-## Module Members
-
-#### <a id="create"></a>create( configuration, log, nextTick, timeoutFunction, errorHandler )
-
-Creates and returns a new event bus instance using the given configuration.
-
-##### Parameters
-
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| configuration | `Object` |  configuration for the event bus instance. The key `eventBusTimeoutMs` is used to determine the will/did timeout. |
-| log | `Object` |  a logger to use for error reporting |
-| nextTick | `Function` |  a next tick function like `process.nextTick` or AngularJS' `$timeout` |
-| timeoutFunction | `Function` |  a timeout function like `window.setTimeout` or AngularJS' `$timeout` |
-| _errorHandler_ | `Function` |  a custom handler for thrown exceptions. By default exceptions are logged using the global logger. |
-
-##### Returns
-
-| Type | Description |
-| ---- | ----------- |
-| [`EventBus`](#EventBus) |  an event bus instance |
 
 ## Types
 

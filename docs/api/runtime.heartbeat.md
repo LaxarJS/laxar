@@ -1,8 +1,10 @@
 
 # <a id="heartbeat"></a>heartbeat
 
-Scheduler for tasks that possibly synchronously trigger creation of new tasks, that need some common work
-to be done before or after all of these tasks (and all tasks scheduled in the meantime) are finished.
+Module providing the Heartbeat factory.
+
+To use the Heartbeat service in a widget, request the [`axHeartbeat`](runtime.widget_services.md#axHeartbeat)
+injection.
 
 ## Contents
 
@@ -17,6 +19,13 @@ to be done before or after all of these tasks (and all tasks scheduled in the me
 ## Types
 
 ### <a id="Heartbeat"></a>Heartbeat
+
+Scheduler for tasks that possibly synchronously trigger creation of new tasks, that need some common
+work to be done before or after all of these tasks (and all tasks scheduled in the meantime) are
+finished.
+
+An example would be model-manipulating operations in an application using AngularJS, that need to run
+`$rootScope.$apply` after all operations are done, but only *once*.
 
 #### <a id="Heartbeat.registerHeartbeatListener"></a>Heartbeat.registerHeartbeatListener( listener )
 
