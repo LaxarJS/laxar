@@ -135,13 +135,13 @@ function bootstrapWidgetAdapters( anchorElement, services, adapterModules, artif
       } );
    } );
 
-   const adapters = [];
+   const adaptersByTechnology = {};
    Object.keys( adapterModulesByTechnology ).forEach( technology => {
       const adapterModule = adapterModulesByTechnology[ technology ];
       const artifacts = artifactsByTechnology[ technology ];
-      adapters.push( adapterModule.bootstrap( artifacts, services, anchorElement ) );
+      adaptersByTechnology[ technology ] = adapterModule.bootstrap( artifacts, services, anchorElement );
    } );
-   return adapters;
+   return adaptersByTechnology;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
