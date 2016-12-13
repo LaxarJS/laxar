@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#405](https://github.com/LaxarJS/laxar/issues/405): JSON schemas have been converted back to JSON and updated to include all artifacts
+    + **BREAKING CHANGE:** see ticket for details
 - [#410](https://github.com/LaxarJS/laxar/issues/410): adapters: adapters now get access to the flow-service during bootstrapping
 - [#407](https://github.com/LaxarJS/laxar/issues/407): polyfills: converted to ES2015 and fixed fetch-polyfill path
 - [#406](https://github.com/LaxarJS/laxar/issues/406): fixed typo in comments
