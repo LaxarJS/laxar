@@ -1,23 +1,16 @@
-/**
- * Copyright 2016 aixigo AG
- * Released under the MIT license.
- * http://laxarjs.org/license
- */
-
-/* eslint-disable quotes,max-len */
-export default {
+{
    "$schema": "http://json-schema.org/draft-04/schema#",
    "type": "object",
    "required": [ "name", "description" ],
    "properties": {
 
       "name": {
-         "type": "String",
-         "description": "The name of the widget or activity in camel case syntax."
+         "type": "string",
+         "description": "The name of the widget or activity."
       },
 
       "description": {
-         "type": "String",
+         "type": "string",
          "description": "A short description of the purpose of this widget."
       },
 
@@ -45,7 +38,7 @@ export default {
 
       "controls": {
          "type": "array",
-         "description": "Each control as a path that can be resolved using requirejs",
+         "description": "Each control as a path that can be resolved using the module system",
          "default": [],
          "items": {
             "type": "string"
@@ -66,8 +59,38 @@ export default {
             "type": "string",
             "enum": [ "json-patch" ]
          }
+      },
+
+      "templateSource": {
+         "type": "string",
+         "description": "The location of the widget's HTML template."
+      },
+      "styleSource": {
+         "type": "string",
+         "description": "The location of the widget's stylesheet."
+      },
+
+      "assets": {
+         "type": "array",
+         "description": "A list of files to make available as raw content via the artifact provider API.",
+         "items": { "type": "string" }
+      },
+      "assetUrls": {
+         "type": "array",
+         "description": "A list of files to make available as URLs via the artifact provider API.",
+         "items": { "type": "string" }
+      },
+      "assetsForTheme": {
+         "type": "array",
+         "description": "A list of themed files to make available as raw content via the artifact provider API.",
+         "items": { "type": "string" }
+      },
+      "assetUrlsForTheme": {
+         "type": "array",
+         "description": "A list of themed files to make available as URLs via the artifact provider API.",
+         "items": { "type": "string" }
       }
 
    },
    "additionalProperties": false
-};
+}

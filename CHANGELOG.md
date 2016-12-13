@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#405](https://github.com/LaxarJS/laxar/issues/405): JSON schemas have been converted back to JSON and updated to include all artifacts
+    + **BREAKING CHANGE:** see ticket for details
 - [#406](https://github.com/LaxarJS/laxar/issues/406): fixed typo in comments
 - [#396](https://github.com/LaxarJS/laxar/issues/396): adapters: adapter instances no longer need to have a `technology` property
 - [#276](https://github.com/LaxarJS/laxar/issues/276): added and fixed API docs
