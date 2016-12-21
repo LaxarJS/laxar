@@ -65,6 +65,7 @@ export function bootstrap(
    const adapterServices = {
       artifactProvider: services.artifactProvider,
       configuration: services.configuration,
+      flowService: services.flowService,
       globalEventBus,
       heartbeat: services.heartbeat,
       log,

@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#410](https://github.com/LaxarJS/laxar/issues/410): adapters: adapters now get access to the flow-service during bootstrapping
 - [#407](https://github.com/LaxarJS/laxar/issues/407): polyfills: converted to ES2015 and fixed fetch-polyfill path
 - [#406](https://github.com/LaxarJS/laxar/issues/406): fixed typo in comments
 - [#396](https://github.com/LaxarJS/laxar/issues/396): adapters: adapter instances no longer need to have a `technology` property
