@@ -13,11 +13,17 @@
          "description": "The name of the page to extend."
       },
 
+      "features": {
+         "type": "object",
+         "description": "For compositions: JSON schema describing the available configuration features.",
+         "additionalProperties": true
+      },
+
       "areas": {
          "type": "object",
          "description": "A map from area name to a list of widgets to display within that area.",
          "patternProperties": {
-            "^[a-z][\\.a-zA-Z0-9_]*$": {
+            "^\\.|[a-z][\\.a-zA-Z0-9_]*$": {
                "type": "array",
                "items": {
                   "type": "object",
