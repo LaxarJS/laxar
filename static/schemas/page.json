@@ -43,7 +43,7 @@
                      },
                      "id": {
                         "type": "string",
-                        "pattern": "^[a-z][a-zA-Z0-9_]*$",
+                        "pattern": "^[a-z][a-zA-Z0-9_:-]*$",
                         "description": "ID of the widget or composition. Will be generated if missing."
                      },
                      "insertBeforeId": {
@@ -58,6 +58,10 @@
                         "type": "boolean",
                         "default": true,
                         "description": "Set to false to omit widgets e.g. for debugging purposes."
+                     },
+                     "comment": {
+                        "type": "string",
+                        "description": "Allows page author to comment on this widget instance."
                      }
 
                   },
