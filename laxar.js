@@ -70,7 +70,6 @@ export function bootstrap(
       globalEventBus: services.globalEventBus,
       heartbeat: services.heartbeat,
       log,
-      pageService: services.pageService,
       storage: services.storage,
       tooling: services.toolingProviders
    };
