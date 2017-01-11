@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-alpha.12
+
 - [#398](https://github.com/LaxarJS/laxar/issues/398): removed page service from widget adapter services
     + **BREAKING CHANGE:** see ticket for details
 - [#397](https://github.com/LaxarJS/laxar/issues/397): moved adapter errors from widgetLoader to new `adapterUtilities` service
