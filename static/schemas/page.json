@@ -1,11 +1,4 @@
-/**
- * Copyright 2016 aixigo AG
- * Released under the MIT license.
- * http://laxarjs.org/license
- */
-
-/* eslint-disable quotes,max-len */
-export default {
+{
    "$schema": "http://json-schema.org/draft-04/schema#",
    "type": "object",
    "properties": {
@@ -20,11 +13,17 @@ export default {
          "description": "The name of the page to extend."
       },
 
+      "features": {
+         "type": "object",
+         "description": "For compositions: JSON schema describing the available configuration features.",
+         "additionalProperties": true
+      },
+
       "areas": {
          "type": "object",
          "description": "A map from area name to a list of widgets to display within that area.",
          "patternProperties": {
-            "^[a-z][\\.a-zA-Z0-9_]*$": {
+            "^\\.|[a-z][\\.a-zA-Z0-9_]*$": {
                "type": "array",
                "items": {
                   "type": "object",
@@ -44,7 +43,7 @@ export default {
                      },
                      "id": {
                         "type": "string",
-                        "pattern": "^[a-z][a-zA-Z0-9_]*$",
+                        "pattern": "^[a-z][a-zA-Z0-9_-]*$",
                         "description": "ID of the widget or composition. Will be generated if missing."
                      },
                      "insertBeforeId": {
@@ -59,6 +58,10 @@ export default {
                         "type": "boolean",
                         "default": true,
                         "description": "Set to false to omit widgets e.g. for debugging purposes."
+                     },
+                     "comment": {
+                        "type": "string",
+                        "description": "Allows page author to comment on this widget instance."
                      }
 
                   },
@@ -71,4 +74,4 @@ export default {
 
    },
    "additionalProperties": false
-};
+}
