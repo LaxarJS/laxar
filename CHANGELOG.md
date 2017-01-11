@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#394](https://github.com/LaxarJS/laxar/issues/394): fixed broken `axI18n.track()`, improved docs and spec coverage
+
 
 ## v2.0.0-alpha.11
 

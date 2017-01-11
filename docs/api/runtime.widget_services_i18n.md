@@ -27,11 +27,22 @@ Factory for i18n widget service instances.
 
 Creates a widget-specific helper for `didChangeLocale` events.
 
+The helper automatically observes the any changes to the locale that was configured under the `i18n`
+feature, and can be asked for localization based on that locale. It also allows to `track` the current
+language tag for all observed locale topics under the object `i18n.tags`. This object can be used to set
+up value bindings and/or watchers so that other components may react to locale-changes in a data-driven
+way.
+
+The i18n helper is an [`AxI18nHandler`](runtime.widget_services_i18n.md) for the feauture "i18n" by default, but allows to create
+handlers for other feature-paths using the `forFeature` method.
+Using `release`, it is possible to free the eventBus subscription held by an i18n helper instance and by
+all feature-handlers created by it.
+
 ##### Parameters
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| context | [`AxContext`](runtime.widget_services.md#AxContext) |  the widget context/scope that the handler should work with. It uses the `eventBus` property there with which it can do the event handling. The i18n service may be asked to `track` more context properties `i18n`, an object that maps each locale to its current language tag. |
+| context | [`AxContext`](runtime.widget_services.md#AxContext) |  the widget context/scope that the handler should work with. It uses the `eventBus` property there with which it can do the event handling |
 | _optionalOptions_ | `Object` |  the fallback language tag to use when no localization is available for a locale's current language tag |
 | _optionalOptions.fallback_ | `String` |  the fallback language tag to use when no localization is available for a locale's current language tag |
 | _optionalOptions.strict_ | `Boolean` |  if `true`, localizations are only used if the language tags exactly match the current locale's tag (after normalizing case and dash/underscore). If `false` (default), specific requests can be satisfied by general localizations (e.g. a translation for 'en' may be used when missing 'en_GB' was requested). |
@@ -48,15 +59,15 @@ Creates a widget-specific helper for `didChangeLocale` events.
 
 An i18n instance allows to create [`#AxI18nHandler`](#AxI18nHandler) instances for any feature, but is itself also
 an i18n handler for the feature `i18n`.
-So if the widget using the [`axI18n`](runtime.widget_services.md#axI18n) injection does use the recommended
+So if the widget using the [`axI18n`](runtime.widget_services.md#axI18n) injection uses the recommended
 name `i18n` for the localization feature, use this directly with the i18n handler API.
 
 #### <a id="AxI18n.forFeature"></a>AxI18n.forFeature( featurePath )
 
 Creates and returns an i18n handler for the loclization configuration under the given
 [feature path](../glossary#feature-path).
-The value is expected to be an object with the key `locale` that is configured with the locale to use
-in the widget instance.
+The configuration value is expected to be an object with the key `locale` that is configured with the
+locale to use in the widget instance.
 
 ##### Parameters
 
@@ -131,17 +142,30 @@ If no tag is available, `undefined` is returned.
 | ---- | ----------- |
 | `String` |  the active language tag or `undefined` |
 
-#### <a id="AxI18nHandler.track"></a>AxI18nHandler.track( enabled=true, property=featurePath )
+#### <a id="AxI18nHandler.track"></a>AxI18nHandler.track( property=featurePath )
 
-Tracks the current i18n state under the given property.
-This includes the current locale and the currently valid tag for this locale.
+References the current i18n state as an object under the given property of the context.
+
+If this method is not used, changes to the locale are still observed by the handler, but not
+tracked on the context object. Use this to react to locale-changes in a data-driven fashion, for
+example by using an AngularJS watcher.
+
+By default, the i18n state is stored under the feature path used to create this i18n handler ("i18n"
+for the default handler provided by the "axI18n" widget service injection).
+
+The tracking structure stored under the property is an object that has two properties:
+
+  - `locale` is the constant locale topic that was configured for the tracked feature
+  - `tags` is an object mapping all locale names to their normalized current language tag
+
+Note that tracked language tags are *normalized*, i.e. converted to lowercase with underscores (`_`)
+replaced by dashes (`-`).
 
 ##### Parameters
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| _enabled=true_ | `Boolean` |  if `true`, tracking is enabled |
-| _property=featurePath_ | `*` |  name of the context property to store the state at |
+| _property=featurePath_ | `*` |  name of the context property to store the state under, defaults to the feature path |
 
 #### <a id="AxI18nHandler.format"></a>AxI18nHandler.format( i18nValue, optionalIndexedReplacements, optionalNamedReplacements )
 

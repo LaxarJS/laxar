@@ -13,7 +13,6 @@ The documentation solely exists as a blueprint for custom widget adapters and to
 **Module Members**
 
 - [bootstrap()](#bootstrap)
-- [- unknown -](#- unknown -)
 
 **Types**
 
@@ -51,10 +50,6 @@ documentation purposes.
 | Type | Description |
 | ---- | ----------- |
 | [`PlainAdapterFactory`](#PlainAdapterFactory) |  the factory for plain widget adapters |
-
-#### <a id="- unknown -"></a>- unknown - `undefined`
-
-TODO remove: https://github.com/LaxarJS/laxar/issues/396
 
 ## Types
 
