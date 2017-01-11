@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-alpha.11
+
 - [#380](https://github.com/LaxarJS/laxar/issues/380): removed JSON schema processing from runtime
     + **BREAKING CHANGE:** see ticket for details
 - [#405](https://github.com/LaxarJS/laxar/issues/405): JSON schemas have been converted back to JSON and updated to include all artifacts
