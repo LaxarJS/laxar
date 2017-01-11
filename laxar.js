@@ -59,22 +59,21 @@ export function bootstrap(
 
    const services = createServices( configuration, artifacts );
 
-   const { globalEventBus, log, storage, themeLoader, widgetLoader } = services;
+   const { log, themeLoader, widgetLoader } = services;
    themeLoader.load();
 
    const adapterServices = {
+      adapterUtilities: services.adapterUtilities,
       artifactProvider: services.artifactProvider,
       configuration: services.configuration,
       flowService: services.flowService,
-      globalEventBus,
+      globalEventBus: services.globalEventBus,
       heartbeat: services.heartbeat,
       log,
       pageService: services.pageService,
-      storage,
-      tooling: services.toolingProviders,
-      widgetLoader: services.widgetLoader
+      storage: services.storage,
+      tooling: services.toolingProviders
    };
-
    const adapterModules = [ plainAdapter, ...widgetAdapters ];
    const adapters = bootstrapWidgetAdapters( anchorElement, adapterServices, adapterModules, artifacts );
    widgetLoader.registerWidgetAdapters( adapters );

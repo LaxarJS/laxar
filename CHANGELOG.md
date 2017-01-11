@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#397](https://github.com/LaxarJS/laxar/issues/397): moved adapter errors from widgetLoader to new `adapterUtilities` service
+    + **BREAKING CHANGE:** see ticket for details
 - [#394](https://github.com/LaxarJS/laxar/issues/394): fixed broken `axI18n.track()`, improved docs and spec coverage
 
 
