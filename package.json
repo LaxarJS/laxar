@@ -20,8 +20,6 @@
     "eslint": "eslint laxar.js *.config.js lib"
   },
   "dependencies": {
-    "jjv": "~1.0.0",
-    "jjve": "~0.5.0",
     "page": "~1.7.1"
   },
   "devDependencies": {
