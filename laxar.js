@@ -71,7 +71,13 @@ export function bootstrap(
       heartbeat: services.heartbeat,
       log,
       storage: services.storage,
-      tooling: services.toolingProviders
+      tooling: services.toolingProviders,
+      // TODO (https://github.com/LaxarJS/laxar/issues/363 and https://github.com/LaxarJS/laxar/issues/397)
+      // Fixing the latter issue broke laxar-mocks, since it could no longer access the widget loader.
+      // To temporarily fix this, we re-add the widget loader to the exposed services.
+      // Nevertheless on the medium /short term we want to be able to load single widgets into the page
+      // (the first issue above) and use the api that will be created for this in laxar-mocks.
+      widgetLoader
    };
    const adapterModules = [ plainAdapter, ...widgetAdapters ];
    const adapters = bootstrapWidgetAdapters( anchorElement, adapterServices, adapterModules, artifacts );

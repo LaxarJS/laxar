@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#412](https://github.com/LaxarJS/laxar/issues/412): temporarily re-added widget loader to services
+
 
 ## v2.0.0-alpha.12
 
