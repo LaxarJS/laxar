@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+- [#411](https://github.com/LaxarJS/laxar/issues/411): simplified visibility checking
+    + **BREAKING CHANGE:** see ticket for details
+
 
 ## v2.0.0-alpha.12
 
