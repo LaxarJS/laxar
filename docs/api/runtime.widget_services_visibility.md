@@ -12,6 +12,7 @@ Factory for i18n widget service instances.
 **Types**
 
 - [AxVisibility](#AxVisibility)
+  - [AxVisibility.isVisible()](#AxVisibility.isVisible)
   - [AxVisibility.onHide()](#AxVisibility.onHide)
   - [AxVisibility.onShow()](#AxVisibility.onShow)
   - [AxVisibility.onChange()](#AxVisibility.onChange)
@@ -42,6 +43,16 @@ Creates a widget-specific helper for `didChangeAreaVisibility` events.
 ## Types
 
 ### <a id="AxVisibility"></a>AxVisibility
+
+#### <a id="AxVisibility.isVisible"></a>AxVisibility.isVisible()
+
+Query the current visibility state.
+
+##### Returns
+
+| Type | Description |
+| ---- | ----------- |
+| `Boolean` |  this current visibility status as determined through eventBus events |
 
 #### <a id="AxVisibility.onHide"></a>AxVisibility.onHide( callback )
 
@@ -91,16 +102,18 @@ Registers a callback for changes to this widget's visibility.
 | ---- | ----------- |
 | [`AxVisibility`](#AxVisibility) |  this instance for chaining |
 
-#### <a id="AxVisibility.track"></a>AxVisibility.track( enabled, property )
+#### <a id="AxVisibility.track"></a>AxVisibility.track( property )
 
 Starts tracking visibility as a property on the context.
+
+Calling this repeatedly with different property names will stop previous properties from receiving
+further updates, but will not remove previously set tracking properties from the context object.
 
 ##### Parameters
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| enabled | `Boolean` |  If `true` (default) an event bus subscription will be maintained to track visibility changes of the current widget by updating a managed property on the context. If `false`, any existing subscription will be cancelled. If set, the context property will *not* be removed. |
-| property | `String` |  The name of the context property to maintain. Changing the property name after tracking has started once will not remove previously created properties. |
+| property | `String` |  the name of the context property to maintain |
 
 ##### Returns
 

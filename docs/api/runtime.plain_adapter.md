@@ -35,7 +35,7 @@ documentation purposes.
 | artifacts.widgets | `Object` |  all widgets, that are implemented in the adapter's technology |
 | artifacts.controls | `Object` |  all controls, that are implemented in the adapter's technology |
 | services | `Object` |  a selection of services adapter implementations may need to fulfill their task |
-| services.adapterUtilities | `AdapterUtilities` |  common utilities, that may be useful to a widget adapter |
+| services.adapterUtilities | [`AdapterUtilities`](runtime.adapter_utilities.md#AdapterUtilities) |  common utilities, that may be useful to a widget adapter |
 | services.artifactProvider | `ArtifactProvider` |  the artifact provider instance |
 | services.configuration | [`Configuration`](runtime.configuration.md#Configuration) |  access to the application configuration |
 | services.globalEventBus | [`EventBus`](runtime.event_bus.md#EventBus) |  the global event bus. Note that an adapter should not sent any events by itself. It may instead be necessary that the adapter makes the event bus globally available to its widgets (for example like the AngularJS 1.x adapter), or that it registers an inspector |

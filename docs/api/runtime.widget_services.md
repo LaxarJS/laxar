@@ -26,6 +26,7 @@ view framework.
 - [axStorage](#axStorage)
 - [axTooling](#axTooling)
 - [axVisibility](#axVisibility)
+- [isVisible()](#isVisible)
 
 **Types**
 
@@ -155,6 +156,24 @@ TODO Fix the type (and document toolingProviders)
 #### <a id="axVisibility"></a>axVisibility [`AxVisibility`](runtime.widget_services_visibility.md#AxVisibility)
 
 Visibility services for a widget instance.
+
+#### <a id="isVisible"></a>isVisible( fullAreaName )
+
+Query if a given widget area is currently visible by accessing the underlying area status through
+the page controller. Can be used to determine the current visibility state of an area without
+having to constantly observe visibility events.
+
+##### Parameters
+
+| Property | Type | Description |
+| -------- | ---- | ----------- |
+| fullAreaName | `String` |  the global name of the area |
+
+##### Returns
+
+| Type | Description |
+| ---- | ----------- |
+| `Boolean` |  the current visibility state of the given area |
 
 ## Types
 

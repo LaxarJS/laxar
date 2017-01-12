@@ -2,7 +2,7 @@
 # <a id="widget_services_visibility_mock"></a>widget_services_visibility_mock
 
 Allows to instantiate a mock implementations of [`AxVisibility`](runtime.widget_services_visibility.md), compatible to the "axVisibility"
-injection.
+widet service injection.
 
 ## Contents
 

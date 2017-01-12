@@ -24,9 +24,20 @@
 export { create as createAxAssetsMock } from './lib/testing/widget_services_assets_mock';
 
 /**
+ * Returns a mock of the `axAreaHelper` injection for tests.
+ *
+ * For details, see {@link widget_services_area_helper_mock#create}.
+ *
+ * @memberof laxar-widget-service-mocks
+ * @name createAxAreaHelperMock
+ * @type {Function}
+ */
+export { create as createAxAreaHelperMock } from './lib/testing/widget_services_area_helper_mock';
+
+/**
  * Returns a mock of the `axConfiguration` injection for tests.
  *
- * For details, see {@link widget_services_assets_mock#create}.
+ * For details, see {@link configuration_mock#create}.
  *
  * @name createAxConfigurationMock
  * @memberof laxar-widget-service-mocks
