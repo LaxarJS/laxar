@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-alpha.13
+
 - [#411](https://github.com/LaxarJS/laxar/issues/411): simplified visibility checking
     + **BREAKING CHANGE:** see ticket for details
 - [#412](https://github.com/LaxarJS/laxar/issues/412): temporarily re-added widget loader to services
