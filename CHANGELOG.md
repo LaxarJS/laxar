@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#414](https://github.com/LaxarJS/laxar/issues/414): areaHelperMock: added missing spies to localName and fullName methods
+
 
 ## v2.0.0-alpha.13
 
