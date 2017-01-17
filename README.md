@@ -44,7 +44,7 @@ cd laxar
 npm install
 ```
 
-To see changes in your application, either configure your project to work with the sources (e.g. by using webpack), or rebuild the webpack bundles by running `npm run optimize`.
+To see changes in your application, either configure your project to work with the sources (e.g. by using webpack), or rebuild the webpack bundles by running `npm run dist`.
 
 To run the automated karma tests:
 
@@ -58,4 +58,4 @@ To generate HTML spec runners for opening in your web browser, so that you can e
 npm run browser-spec
 ```
 
-Now you can select a spec-runner by surfing to http://localhost:8081/spec-output/.
+Now you can select a spec-runner by browsing to http://localhost:8081/spec-output/.

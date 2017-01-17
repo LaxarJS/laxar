@@ -20,7 +20,7 @@ Creates a mock for the widget-specific "axAreaHelper" injection.
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| context | [`AxContext`](runtime.widget_services.md#AxContext) |  an object with a `widget.id`. |
+| context | [`AxContext`](runtime.widget_services.md#AxContext) |  an object with a `widget.id` property |
 
 ##### Returns
 
