@@ -1,8 +1,8 @@
 // Karma configuration for LaxarJS core
 /* eslint-env node */
 
-const webpackConfig = Object.assign( {}, require('./webpack.base.config' ) );
-delete webpackConfig.entry.laxar;
+const webpackConfig = Object.assign( {}, require('./webpack.config' ) );
+delete webpackConfig.entry;
 delete webpackConfig.plugins;
 webpackConfig.devtool = 'inline-source-map';
 
@@ -22,6 +22,10 @@ module.exports = function(config) {
          'lib/*/spec/spec-runner.js': [ 'webpack', 'sourcemap' ]
       },
       webpack: webpackConfig,
+      webpackMiddleware: {
+         noInfo: true,
+         quiet: true
+      },
 
       reporters: [ 'progress', 'junit' ],
       junitReporter: {
