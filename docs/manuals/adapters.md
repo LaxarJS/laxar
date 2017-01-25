@@ -100,7 +100,7 @@ The environment has the following properties:
   It offers access to global APIs, but also services specifically adapted for individual widget instances.
   Since the list is rather long and mostly relevant for widget authors, the services are described in their own [document](./widget_services.md).
 
-* The `onBeforeControllerCreation` is a callback function that the widget adapter must invoke immediately *before* instantiating the widget controller.
+* Finally, `whenServicesAvailable` is a callback function that the widget adapter must invoke immediately *before* instantiating the widget controller.
   It is needed by tests to get access to the final set of widget services, which is dependent on the widget instance as well as on the technology.
   The services should be passed as an object: its keys are the injection names requested by the widget, and the values are the corresponding service properties.
 
@@ -111,7 +111,7 @@ The environment has the following properties:
   For hints on the correct implementation, have a look at the existing adapter implementations, e.g. the [laxar-angular-adapter](https://github.com/LaxarJS/laxar-angular-adapter) or the [laxar-react-adapter](https://github.com/LaxarJS/laxar-react-adapter).
   Because the view has not been setup at this point in time, the adapter should not yet manipulate the anchor element, nor make it available to the widget controller.
 
-Created from this environment, the new widget adapter instance prepares additional technology-specific injections as needed, calls the `onBeforeControllerCreation` hook, and instantiates the widget controller.
+Created from this environment, the new widget adapter instance prepares additional technology-specific injections as needed, calls the `whenServicesAvailable` hook, and instantiates the widget controller.
 Then it returns an API to further interaction from the widget loader.
 
 
