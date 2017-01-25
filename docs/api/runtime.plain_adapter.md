@@ -69,7 +69,7 @@ Creates a new adapter instance for the given widget environment.
 | environment.anchorElement | `HTMLElement` |  the DOM node that the widget's DOM fragment should be inserted into |
 | environment.name | `String` |  the name of the widget to load, exactly as specified by the widget descriptor |
 | environment.services | [`widget_services`](runtime.widget_services.md#widget_services) |  the services for this widget instance |
-| environment.onBeforeControllerCreation | `Function` |  a function that the adapter must call with a map of all to-be-injected services, just before creating the controller |
+| environment.provideServices | `Function` |  a function that the adapter must call with a map of all to-be-injected services, just before creating the controller |
 
 ##### Returns
 
