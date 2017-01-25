@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-alpha.14
+
 - [#413](https://github.com/LaxarJS/laxar/issues/413): adapters: renamed `onBeforeControllerCreation` hook
     + **BREAKING CHANGE:** see ticket for details
 - [#415](https://github.com/LaxarJS/laxar/issues/415): project: updated dev-dependencies, upgraded to webpack 2
