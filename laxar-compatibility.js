@@ -15,7 +15,7 @@
 import { assert, bootstrap as laxarBootstrap, instances, object, string } from './laxar';
 import { create as createBrowser } from './lib/runtime/browser';
 import { create as createConfiguration } from './lib/runtime/configuration';
-import { create as createLog, BLACKBOX, level } from './lib/runtime/log';
+import { create as createLog, BLACKBOX, levels } from './lib/runtime/log';
 import { create as createStorage } from './lib/runtime/storage';
 
 const preBootstrapServices = createPreBootstrapServices();
@@ -30,7 +30,7 @@ export { assert, object, string, instances };
 export const configuration = createFallback( 'configuration', 'axConfiguration' );
 export const i18n = createFallback( 'i18n', 'axI18n' );
 export const log = createFallback( 'log', 'axLog', BLACKBOX );
-log.level = level;
+log.level = levels;
 export const storage = createFallback( 'storage', 'axStorage' );
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

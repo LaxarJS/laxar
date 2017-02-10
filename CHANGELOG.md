@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#416](https://github.com/LaxarJS/laxar/issues/416): fixed log levels reference in compatibility main file
+
 
 ## v2.0.0-alpha.14
 
