@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#422](https://github.com/LaxarJS/laxar/issues/422): runtime: improved widget services testability
+    + NEW FEATURE: see ticket for details
 - [#416](https://github.com/LaxarJS/laxar/issues/416): fixed log levels reference in compatibility main file
 
 
