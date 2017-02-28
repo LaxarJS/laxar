@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#427](https://github.com/LaxarJS/laxar/issues/427): project: revert #425
+
 
 ## v2.0.0-alpha.16
 

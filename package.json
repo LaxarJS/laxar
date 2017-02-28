@@ -4,12 +4,7 @@
   "description": "Building large applications is hard, so don't do that!",
   "homepage": "http://laxarjs.org",
   "main": "laxar.js",
-  "browser": {
-    "./laxar.js": "./dist/laxar.js",
-    "./polyfills.js": "./dist/polyfills.js",
-    "./laxar-compatibility.js": "./dist/laxar-compatibility.with-deps.js",
-    "./laxar-widget-service-mocks.js": "./dist/laxar-widget-service-mocks.js"
-  },
+  "browser": "dist/laxar.js",
   "authors": [],
   "license": "MIT",
   "repository": {
@@ -50,8 +45,8 @@
     "laxar-dox": "~2.0.0-alpha.4",
     "promise-polyfill": "^6.0.2",
     "script-loader": "^0.7.0",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.2.1",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0",
     "webpack-jasmine-html-runner-plugin": "^0.5.0",
     "whatwg-fetch": "^1.0.0"
   },
