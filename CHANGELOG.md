@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-alpha.16
+
 - [#423](https://github.com/LaxarJS/laxar/issues/423): project: fix building LaxarJS when somewhere inside a `node_modules` directory
 - [#425](https://github.com/LaxarJS/laxar/issues/425): project: add browser mappings for other entry points to `package.json`
 - [#426](https://github.com/LaxarJS/laxar/issues/426): project: don't use library name `laxar` for polyfills and widget service mocks entry points
