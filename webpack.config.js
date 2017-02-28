@@ -66,15 +66,19 @@ function distConfig() {
       distConfigItem(
          './laxar-widget-service-mocks.js',
          'laxar-widget-service-mocks.js',
-         { externals: { laxar: 'laxar' } }
+         { externals: { laxar: 'laxar' }, library: 'laxar-widget-service-mocks' }
       ),
-      distConfigItem( './polyfills.js', 'polyfills.js', { externals: {} } )
+      distConfigItem(
+         './polyfills.js',
+         'polyfills.js', { externals: {}, library: false }
+      )
    ];
 
    function distConfigItem( entry, output, optionalOptions ) {
       const options = Object.assign( {
          minify: false,
-         externals: { 'page': 'page' }
+         externals: { 'page': 'page' },
+         library: 'laxar'
       }, optionalOptions || {} );
 
       const config = Object.assign( {}, baseConfig );
@@ -84,10 +88,13 @@ function distConfig() {
       config.output = {
          path: path.resolve( __dirname ),
          filename: `dist/${output}`,
-         library: 'laxar',
-         libraryTarget: 'umd',
          umdNamedDefine: true
       };
+
+      if( options.library !== false ) {
+         config.output.library = options.library;
+         config.output.libraryTarget = 'umd';
+      }
 
       config.externals = options.externals;
 

@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#426](https://github.com/LaxarJS/laxar/issues/426): webpack: don't use library name `'laxar'` for polyfills and widget service mocks entry points
+
 
 ## v2.0.0-alpha.15
 
