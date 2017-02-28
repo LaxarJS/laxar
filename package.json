@@ -4,7 +4,12 @@
   "description": "Building large applications is hard, so don't do that!",
   "homepage": "http://laxarjs.org",
   "main": "laxar.js",
-  "browser": "dist/laxar.js",
+  "browser": {
+    "./laxar.js": "./dist/laxar.js",
+    "./polyfills.js": "./dist/polyfills.js",
+    "./laxar-compatibility.js": "./dist/laxar-compatibility.with-deps.js",
+    "./laxar-widget-service-mocks.js": "./dist/laxar-widget-service-mocks.js"
+  },
   "authors": [],
   "license": "MIT",
   "repository": {
