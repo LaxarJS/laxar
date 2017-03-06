@@ -3058,7 +3058,7 @@ read-pkg@^1.0.0:
     normalize-package-data "^2.3.2"
     path-type "^1.0.0"
 
-"readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.5, readable-stream@^2.1.0, readable-stream@~2.1.4:
+"readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.1.0, readable-stream@~2.1.4:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.1.5.tgz#66fa8b720e1438b364681f2ad1a63c618448c9d0"
   dependencies:
@@ -3070,7 +3070,7 @@ read-pkg@^1.0.0:
     string_decoder "~0.10.x"
     util-deprecate "~1.0.1"
 
-readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@~2.0.0:
+readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.5, readable-stream@~2.0.0:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.0.6.tgz#8f90341e68a53ccc928788dacfcd11b36eb9b78e"
   dependencies:
@@ -3884,9 +3884,9 @@ webpack-dev-server@^2.2.0:
     webpack-dev-middleware "^1.9.0"
     yargs "^6.0.0"
 
-webpack-jasmine-html-runner-plugin@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/webpack-jasmine-html-runner-plugin/-/webpack-jasmine-html-runner-plugin-0.5.0.tgz#0b50b4dd4fad1424a8ebc867c95199ee39a5f091"
+webpack-jasmine-html-runner-plugin@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/webpack-jasmine-html-runner-plugin/-/webpack-jasmine-html-runner-plugin-0.7.0.tgz#dc9389917b15aa84c4266c48cea8b0aeb9267e22"
   dependencies:
     glob "^7.0.5"
     jsondiffpatch "^0.1.43"
