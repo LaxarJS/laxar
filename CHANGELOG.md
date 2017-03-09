@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#408](https://github.com/LaxarJS/laxar/issues/408): area helper: improved error logging when calling domAttachTo
 - [#417](https://github.com/LaxarJS/laxar/issues/417): flow: added redirects to paths with parameter values included
     + NEW FEATURE: see ticket for details
 - [#430](https://github.com/LaxarJS/laxar/issues/430): page.js: fixed hashbang navigation for bases being prefix of a path
