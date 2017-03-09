@@ -46,6 +46,11 @@ Let us start with an example for a simple flow definition file that we call `mai
       "details": {
          "patterns": [ "/details/:item", "/details" ],
          "page": "first_page"
+      },
+
+      "team": {
+         "patterns": [ "/team" ],
+         "redirectToPath": "/details/team"
       }
    }
 }
@@ -69,10 +74,10 @@ It is *strongly recommended* to always start patterns with a *leading slash*, as
 Also note that each list of patterns should start with a *reversible* pattern, as explained in the next section.
 Note that regular-expression patterns, while in principle supported by page.js, are currently not available for use in a LaxarJS flow definition, both because they are not reversible, and because there is no JSON notation for them.
 
-Apart from its patterns, a place has either a `page` entry, or a `redirectTo` entry.
-The former determines that the corresponding page will be looked up relative to the pages directory of your application and instantiated when entering the place, while the latter makes it a redirect to another place specified by ID.
-In the example, the place *entry* specifies a redirect to the place *details*.
-You can use redirects to support legacy URLs in your application and to forward them to actual pages.
+Apart from its patterns, a place has either a `page` entry, a `redirectTo` or a `redirectToPath` entry.
+The first determines that the corresponding page will be looked up relative to the pages directory of your application and instantiated when entering the place, while the latter makes it a redirect to another place specified by ID or full path, respectively.
+In the example, the place *entry* specifies a redirect to the place *details*, while the place *team* specifies a direct redirec to the path `/details/team`.
+You can use redirects to support legacy URLs in your application and to forward them to actual pages, or provide shortcuts for otherwise complex paths.
 
 Application may also enable *query-strings* using the configuration key `router.query.enabled`.
 Query parameters are never used for routing, but carry *optional parameter values* that may be useful to widgets on a page.

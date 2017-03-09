@@ -41,6 +41,10 @@
                   "type": "string",
                   "description": "The place to redirect to when hitting this place."
                },
+               "redirectToPath": {
+                  "type": "string",
+                  "description": "The path to redirect to when hitting this place, including the values for relevant place parameters."
+               },
                "defaultParameters": {
                   "type": "object",
                   "default": {},
