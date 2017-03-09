@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#430](https://github.com/LaxarJS/laxar/issues/430): page.js: fixed hashbang navigation for bases being prefix of a path
 - [#428](https://github.com/LaxarJS/laxar/issues/428): widget service mocks: provide context to area helper in axVisibilityMock
 - [#427](https://github.com/LaxarJS/laxar/issues/427): project: revert #425
 
