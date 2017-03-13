@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-alpha.18
+
 - [#419](https://github.com/LaxarJS/laxar/issues/419): updated contributor information
 - [#431](https://github.com/LaxarJS/laxar/issues/431): testing: added `eventBusMock.drainAsync()`
     + NEW FEATURE: see ticket for details
