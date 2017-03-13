@@ -15,6 +15,7 @@ Allows to create mock implementations of [`EventBus`](runtime.event_bus.md), com
 - [EventBusMock](#EventBusMock)
 - [{EventBusMock}](#{EventBusMock})
   - [{EventBusMock}.flush](#{EventBusMock}.flush)
+  - [{EventBusMock}.drainAsync()](#{EventBusMock}.drainAsync)
 
 ## Module Members
 
@@ -23,7 +24,9 @@ Allows to create mock implementations of [`EventBus`](runtime.event_bus.md), com
 Creates a mock [`EventBus`](runtime.event_bus.md), compatible to the "axEventBus" injection of a widget.
 
 If no custom tick-scheduler function is passed through the options, the returned event bus has a method
-`flush`, to synchronously deliver all pending events, until no events are left.
+`flush`, to synchronously deliver all pending as well as synchronously added events. It also has a method
+drainAsync` to asynchronously run event handlers to completion, including additional asynchronously
+published events.
 
 ##### Parameters
 
@@ -47,9 +50,30 @@ If no custom tick-scheduler function is passed through the options, the returned
 
 A mock version of [`EventBus`](runtime.event_bus.md).
 
-Offers spied-upon version of the usual axHeartbeat methods, as well as a `flush` method for synchronous
-scheduling of heartbeat events, and a `reset` methods to clear all listeners.
+Offers spied-upon version of the usual axEventBus methods, as well as a `flush` method for synchronous
+scheduling of events, and a `drainAsync` to asynchronously run event handlers to completion.
 
 ### <a id="{EventBusMock}"></a>{EventBusMock}
 
 #### <a id="{EventBusMock}.flush"></a>{EventBusMock}.flush `undefined`
+
+Flushes all pending events and runs their subscriber callbacks.
+If new events are published synchronously from subscriber callbacks, these will also be processed.
+
+This operation happens synchronously, so asynchronously triggered events (e.g. those published from a
+then handler) may not be processed.
+#### <a id="{EventBusMock}.drainAsync"></a>{EventBusMock}.drainAsync()
+
+Asynchronously flushes pending events and runs their subscriber callbacks.
+If new events are published synchronously from subscriber callbacks, these will also be processed.
+Additionally, if new events are published asynchronously but immediately (i.e. right after a call to
+Promise.resolve), they will be processed as well.
+
+This operation happens *asynchronously*, so callers need to wait on the returned promise in order to
+observe the effects.
+
+##### Returns
+
+| Type | Description |
+| ---- | ----------- |
+| `Promise` |  a promise that is resolved when all events have been processed, and no more have been scheduled |

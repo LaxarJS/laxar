@@ -59,8 +59,7 @@ export function bootstrap(
 
    const services = createServices( configuration, artifacts );
 
-   const { log, themeLoader, widgetLoader } = services;
-   themeLoader.load();
+   const { log, widgetLoader } = services;
 
    const adapterServices = {
       adapterUtilities: services.adapterUtilities,
