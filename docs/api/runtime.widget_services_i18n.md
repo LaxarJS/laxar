@@ -23,7 +23,7 @@ Factory for i18n widget service instances.
 
 ## Module Members
 
-#### <a id="create"></a>create( context, optionalOptions )
+#### <a id="create"></a>create( context, configuration, optionalOptions )
 
 Creates a widget-specific helper for `didChangeLocale` events.
 
@@ -43,6 +43,7 @@ all feature-handlers created by it.
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | context | [`AxContext`](runtime.widget_services.md#AxContext) |  the widget context/scope that the handler should work with. It uses the `eventBus` property there with which it can do the event handling |
+| configuration | `AxConfiguration` |  the (global) configuration to use for supplying a default locale if the widget does not have an 'i18n' feature |
 | _optionalOptions_ | `Object` |  the fallback language tag to use when no localization is available for a locale's current language tag |
 | _optionalOptions.fallback_ | `String` |  the fallback language tag to use when no localization is available for a locale's current language tag |
 | _optionalOptions.strict_ | `Boolean` |  if `true`, localizations are only used if the language tags exactly match the current locale's tag (after normalizing case and dash/underscore). If `false` (default), specific requests can be satisfied by general localizations (e.g. a translation for 'en' may be used when missing 'en_GB' was requested). |
@@ -142,7 +143,7 @@ If no tag is available, `undefined` is returned.
 | ---- | ----------- |
 | `String` |  the active language tag or `undefined` |
 
-#### <a id="AxI18nHandler.track"></a>AxI18nHandler.track( property=featurePath )
+#### <a id="AxI18nHandler.track"></a>AxI18nHandler.track( property=trackingProperty )
 
 References the current i18n state as an object under the given property of the context.
 
@@ -165,7 +166,7 @@ replaced by dashes (`-`).
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| _property=featurePath_ | `*` |  name of the context property to store the state under, defaults to the feature path |
+| _property=trackingProperty_ | `String` |  name of the context property to store the state under, defaults to the feature path |
 
 #### <a id="AxI18nHandler.format"></a>AxI18nHandler.format( i18nValue, optionalIndexedReplacements, optionalNamedReplacements )
 

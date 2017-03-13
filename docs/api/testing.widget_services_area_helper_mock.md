@@ -26,4 +26,4 @@ Creates a mock for the widget-specific "axAreaHelper" injection.
 
 | Type | Description |
 | ---- | ----------- |
-| [`AxVisibilityMock`](testing.widget_services_visibility_mock.md#AxVisibilityMock) |  an `axVisibility`-compatible mock object |
+| [`AxAreaHelper`](runtime.widget_services.md#AxAreaHelper) |  an `axAreaHelper`-compatible mock object |

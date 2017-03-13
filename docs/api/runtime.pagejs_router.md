@@ -8,6 +8,7 @@
 - [PagejsRouter](#PagejsRouter)
   - [PagejsRouter.registerRoutes()](#PagejsRouter.registerRoutes)
   - [PagejsRouter.navigateTo()](#PagejsRouter.navigateTo)
+  - [PagejsRouter.navigateToPath()](#PagejsRouter.navigateToPath)
   - [PagejsRouter.constructAbsoluteUrl()](#PagejsRouter.constructAbsoluteUrl)
 
 ## Types
@@ -64,6 +65,18 @@ called reverse-routing.
 | -------- | ---- | ----------- |
 | patterns | `Array.<String>` |  a list of patterns to choose from. This allows the router to pick the "best" pattern, such as the pattern containing the largest number of given parameters. This router always picks the first pattern for now. |
 | parameters | `Object` |  parameter values to substitute into the pattern to generate a URL |
+| _replaceHistory=true_ | `Boolean` |  if `true`, the current history entry is replaced with the new one, otherwise a new entry is pushed. Useful to express redirects |
+
+#### <a id="PagejsRouter.navigateToPath"></a>PagejsRouter.navigateToPath( path, replaceHistory=true )
+
+Change the browser location to a different routable URL, from a complete path. This is also
+called reverse-routing.
+
+##### Parameters
+
+| Property | Type | Description |
+| -------- | ---- | ----------- |
+| path | `String` |  the complete path to navigate to. This includes values for all relevant parameters |
 | _replaceHistory=true_ | `Boolean` |  if `true`, the current history entry is replaced with the new one, otherwise a new entry is pushed. Useful to express redirects |
 
 #### <a id="PagejsRouter.constructAbsoluteUrl"></a>PagejsRouter.constructAbsoluteUrl( patterns, parameters, parameterDefaults )
