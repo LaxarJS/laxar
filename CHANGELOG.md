@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-alpha.17
+
 - [#429](https://github.com/LaxarJS/laxar/issues/428): i18n: allow instantiating widget service without i18n feature config
     + NEW FEATURE: see ticket for details
 - [#408](https://github.com/LaxarJS/laxar/issues/408): area helper: improved error logging when calling domAttachTo
