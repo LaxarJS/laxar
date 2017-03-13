@@ -25,14 +25,14 @@ Try to give the issue a **title** that communicates well what it is about:
 
 Use the **description** to tell us exactly how to reproduce the problem, and (especially for enhancements) what you would expect instead.
 Most importantly, we would ask you to tell us the exact **version** (tag or commit-hash) of LaxarJS you were using that contains the bug / is missing the feature you are refering to.
-You can find out the version by looking at the `bower.json`.
+You can find out the version by looking at the `package.json`.
 If you have an issue with a different artifact (e.g. with _laxar-patterns_ or with a widget), please make sure to use the corresponding GitHub issue tracker and artifact version.
 
-You _can_ use an **issue label** to mark the issue as one of:
+We will assign an **issue label** to mark the issue as one of:
 
   * _bug_: something that is broken and should be fixed in an upcoming patch version
 
-  * _enhancement_: a new feature that should be included in an upcoming minor version
+  * _enhancement_: a new feature that could be included in an upcoming minor version
 
   * _breaking_ change: something that may break compatibility and must be released in a new major version
 
