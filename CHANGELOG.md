@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#429](https://github.com/LaxarJS/laxar/issues/428): i18n: allow instantiating widget service without i18n feature config
+    + NEW FEATURE: see ticket for details
 - [#408](https://github.com/LaxarJS/laxar/issues/408): area helper: improved error logging when calling domAttachTo
 - [#417](https://github.com/LaxarJS/laxar/issues/417): flow: added redirects to paths with parameter values included
     + NEW FEATURE: see ticket for details
