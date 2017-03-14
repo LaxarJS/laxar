@@ -53,73 +53,76 @@ view framework.
 
 #### <a id="axAreaHelper"></a>axAreaHelper [`AxAreaHelper`](#AxAreaHelper)
 
-Area helper service instance.
+Allows to manage the widget's areas.
 
 #### <a id="axAssets"></a>axAssets [`AxAssets`](#AxAssets)
 
-widget asset accessor instance.
+Provides access to the widget's assets.
 
 #### <a id="axConfiguration"></a>axConfiguration [`Configuration`](runtime.configuration.md#Configuration)
 
-Interface to the configuration the application was bootstrapped with.
+Interface to the full configuration the application was bootstrapped with.
 
 #### <a id="axContext"></a>axContext [`AxContext`](#AxContext)
 
-Context information and tiny service collection.
+Combines essential widget services with some instance information to be passed around en bloc.
 
 #### <a id="axControls"></a>axControls [`ControlLoader`](loaders.control_loader.md#ControlLoader)
 
-The control loader api to provide access to control modules used by a widget.
+Provides access to implementation modules of the controls used by the widget.
 
 #### <a id="axEventBus"></a>axEventBus [`AxEventBus`](#AxEventBus)
 
-Event bus instance specifically enriched for a widget instance.
+Event bus instance specifically enriched for the widget instance.
 
 #### <a id="axFeatures"></a>axFeatures `Object`
 
 The features the widget was configured with.
-Its structure depends solely on the schema defined in the widget's descriptor file
-(`widget.json`)
+Its structure depends on the schema defined in the widget descriptor (`widget.json`).
 
 #### <a id="axFlowService"></a>axFlowService [`FlowService`](runtime.flow_service.md#FlowService)
 
-Injection for the flow service.
+Allows to generate URLs based on navigation targets or place IDs, in order to create links.
 
 #### <a id="axGlobalEventBus"></a>axGlobalEventBus [`EventBus`](runtime.event_bus.md#EventBus)
 
 The global event bus instance of the application.
-[`axEventBus`](runtime.widget_services.md) should always be prefered over this, since for example unsubscribing from
-event subscriptions on widget destruction needs be done manually and can lead to severe memory
-leaks if omitted.
-One valid use case could be an activity, that has permanent knowledge about the application's
-state and lifetime, and for example adds an inspector to the event bus.
+
+The widget-specific [`axEventBus`](runtime.widget_services.md) should always be prefered over this, since subscriptions
+to the global event bus will not be cleaned up automatically as clients are destroyed, which
+can lead to severe memory leaks.
+A valid use case could be an activity that needs to add an inspector to the event bus in order
+to provide debuggig information about application events, or to log specific events without
+stopping on page navigation.
 
 #### <a id="axGlobalLog"></a>axGlobalLog [`Logger`](runtime.log.md#Logger)
 
-The global logger instance.
+Allows to log messages, taking into account the configured log level.
 
 #### <a id="axGlobalStorage"></a>axGlobalStorage [`StorageFactory`](runtime.storage.md#StorageFactory)
 
-The global storage factory.
+The global storage factory allows to share storage items across widgets.
 
 #### <a id="axHeartbeat"></a>axHeartbeat [`Heartbeat`](runtime.heartbeat.md#Heartbeat)
 
-The heartbeat instance.
+The heartbeat instance allows to perform actions such as dirty checking after each event
+bus cycle.
 
 #### <a id="axI18n"></a>axI18n [`AxI18n`](runtime.widget_services_i18n.md#AxI18n)
 
-I18n api specifically for the widget instance.
+I18n API that allows to localize values depending on the locale configured for the widget.
 
 #### <a id="axId"></a>axId( localUniqueId )
 
-A function that generates page wide unique ids based on ids that are unique within the scope
+A function that generates page-wide unique IDs based on IDs that are unique within the scope
 of a widget.
 
 A common use case is the connection of a `label` HTML element and an `input` element via `for`
 and `id` attributes.
-For such cases ids should **always** be generated using this service.
+To avoid collisions, IDs should **always** be generated using this service.
 
 Example:
+
 ```js
 widgetDom.querySelector( 'label' ).setAttribute( 'for', axId( 'myField' ) );
 widgetDom.querySelector( 'input' ).setAttribute( 'id', axId( 'myField' ) );
@@ -140,18 +143,18 @@ widgetDom.querySelector( 'input' ).setAttribute( 'id', axId( 'myField' ) );
 #### <a id="axLog"></a>axLog [`Logger`](runtime.log.md#Logger)
 
 The widget logger instance.
-This is basically the same as the [`#axGlobalLog`](#axGlobalLog), but adds the name of the widget as
-prefix and its id as suffix to every log message.
+Similar to [`#axGlobalLog`](#axGlobalLog), but adds the name of the widget as prefix and the widget ID
+as suffix to every log message.
 
 #### <a id="axStorage"></a>axStorage [`AxStorage`](#AxStorage)
 
-Ready to use storage apis for a widget.
-All keys are namespaced by the widget id to limit visibility to this specific instance.
+Preconfigured storage API for a widget: all keys are namespaced using the widget ID,
+in order to limit item visibility to this specific instance.
 
 #### <a id="axTooling"></a>axTooling `undefined`
 
 Access to the tooling provider API.
-TODO Fix the type (and document toolingProviders)
+TODO (#404) Fix the type (and document toolingProviders)
 
 #### <a id="axVisibility"></a>axVisibility [`AxVisibility`](runtime.widget_services_visibility.md#AxVisibility)
 

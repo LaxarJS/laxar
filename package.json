@@ -15,7 +15,7 @@
     "prepublish": "npm run apidoc && npm run dist",
     "test": "npm run karma && npm run eslint",
     "browser-spec": "npm run browser-spec-build && npm run browser-spec-start",
-    "apidoc": "laxar-dox -d docs/api/ --naming-style-package --modules-from-directory lib/ && laxar-dox -d docs/api/ --naming-style-package laxar.js",
+    "apidoc": "laxar-dox -d docs/api/ --naming-style-package --modules-from-directory lib/ && laxar-dox -d docs/api/ --naming-style-package laxar.js && laxar-dox -d docs/api/ --naming-style-package laxar-widget-service-mocks.js",
     "dist": "cross-env NODE_ENV=production webpack",
     "browser-spec-build": "cross-env NODE_ENV=browser-spec webpack",
     "browser-spec-start": "cross-env NODE_ENV=browser-spec webpack-dev-server --port 8081 --inline",

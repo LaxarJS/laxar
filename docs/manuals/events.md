@@ -2,20 +2,23 @@
 
 [« return to the manuals](index.md)
 
-The key concept that distinguishes LaxarJS applications from other AngularJS applications is the _publish-subscribe_ (or _pub/sub)_ architecture.
-It helps to isolate building blocks such as widgets and activities by moving the coupling from implementation (no module imports, no service contracts) to configuration (of event topics).
+The key concept that distinguishes LaxarJS applications from other web applications is the _publish-subscribe_ (or _pub/sub)_ architecture.
+This approach allows to isolate building blocks such as widgets and activities by moving the coupling from implementation (no module imports, no service contracts) to configuration (of event topics).
 
 Preliminary readings:
 
 * [LaxarJS Core Concepts](../concepts.md)
 
-LaxarJS consistently uses the term _events_ rather than _messages_, to point out two key aspects of its pub/sub-architecture:
- * events convey information about _what happened_ (rather than _who is receiver_)
- * delivery is always _asynchronous_ (using an _event loop_)
+LaxarJS consistently uses the term _events_ rather than _messages_, to point out two key aspects of its pub/sub-approach:
 
-For these reasons, you may also think of this pattern as a variation on the _hollywood principle_ ("Don't call us, we'll call you").
+ * events convey information about _what happened_ (rather than _who is receiver_),
 
-For efficient processing, LaxarJS ties into the AngularJS `$digest`-cycle.
+ * delivery is always _asynchronous_ (using an _event loop_).
+
+For these reasons, you may also think of this pattern as a variation on the _Hollywood principle_ ("Don't call us, we'll call you").
+
+For efficient processing, LaxarJS technology adapters tie into the change detection of their respective frameworks.
+For example, the `"angular"` adapter triggers an AngularJS `$digest`-cycle after events were delivered.
 This allows the web browser to batch event-handling with other operations that modify screen contents.
 
 
@@ -142,7 +145,7 @@ Validation and other patterns are described in the following section.
 <a name="pattern-reference"></a>
 ## Pattern Reference
 
-A few event patterns are supported directly by LaxarJS, while others are described in the _[LaxarJS Patterns](https://github.com/LaxarJS/laxar-patterns#laxarjs-patterns)_ library.
+A few event patterns are supported directly by LaxarJS, while others are described in the _[LaxarJS Patterns](https://laxarjs.org/docs/laxar-patterns-v2-latest/)_ library.
 Have a good look at all of them before coming up with your own patterns, in order to maximize the synergy of your widgets, especially when aiming for reuse.
 
 
@@ -163,20 +166,20 @@ Before [navigating](#navigation) away from a page, the runtime publishes the `en
 Widgets that need to save state to a service should respond with a `willEndLifecycle` event, perform their housekeeping and publish an `didEndLifecycle` when done.
 
 
-Event name                            | Payload Attribute | Description
---------------------------------------|-------------------| ------------------------------------------------------------
-`beginLifecycleRequest.{lifecycleId}` |                   | _published by the runtime to tell widgets that publishing of events is safe now_
-                                      | `lifecycleId`     | the lifecycle ID (currently, this is always `"default"`)
-`willBeginLifecycle.{lifecycleId}`    |                   | _published by widgets and activities to defer page rendering (not recommended)_
-                                      | `lifecycleId`     | _see above_
-`didBeginLifecycle.{lifecycleId}`     |                   | _published by widgets and activities when page rendering may commence (not recommended)_
-                                      | `lifecycleId`     | _see above_
-`endLifecycleRequest.{lifecycleId}`   |                   | _published by the runtime to tell widgets that the page is about to be destroyed_
-                                      | `lifecycleId`     | _see above_
-`willEndLifecycle.{lifecycleId}`      |                   | _published by widgets and activities to defer tear down of the page (if necessary)_
-                                      | `lifecycleId`     | _see above_
-`didEndLifecycle.{lifecycleId}`       |                   | _published by widgets and activities when page tear down may commence (after deferring it)_
-                                      | `lifecycleId`     | _see above_
+| Event name                            | Payload Attribute | Description
+|---------------------------------------|-------------------| ------------------------------------------------------------
+| `beginLifecycleRequest.{lifecycleId}` |                   | _published by the runtime to tell widgets that publishing of events is safe now_
+|                                       | `lifecycleId`     | the lifecycle ID (currently, this is always `"default"`)
+| `willBeginLifecycle.{lifecycleId}`    |                   | _published by widgets and activities to defer page rendering (not recommended)_
+|                                       | `lifecycleId`     | _see above_
+| `didBeginLifecycle.{lifecycleId}`     |                   | _published by widgets and activities when page rendering may commence (not recommended)_
+|                                       | `lifecycleId`     | _see above_
+| `endLifecycleRequest.{lifecycleId}`   |                   | _published by the runtime to tell widgets that the page is about to be destroyed_
+|                                       | `lifecycleId`     | _see above_
+| `willEndLifecycle.{lifecycleId}`      |                   | _published by widgets and activities to defer tear down of the page (if necessary)_
+|                                       | `lifecycleId`     | _see above_
+| `didEndLifecycle.{lifecycleId}`       |                   | _published by widgets and activities when page tear down may commence (after deferring it)_
+|                                       | `lifecycleId`     | _see above_
 
 
 <a name="navigation"></a>
@@ -201,16 +204,16 @@ When _initiating navigation_, the LaxarJS runtime will:
 
 Here is the summary of navigation events:
 
-Event name                 | Payload Attribute | Description
----------------------------|-------------------| ------------------------------------------------------------
-`navigateRequest.{target}` |                   | _published by widgets and activities to indicate that a navigation has been requested_
-                           | `target`          | the navigation target (used in the payload _as well as_ in the event name)
-                           | `data`            | a map from place parameter names to parameter values
-`willNavigate.{target}`    |                   | _published by the runtime to indicate that navigation has started_
-                           | `target`, `data`  | _see above_
-`didNavigate.{target}`     |                   | _published by the runtime to indicate that navigation has finished_
-                           | `target`, `data`  | _see above_
-                           | `place`           | the actual place that was navigated to, now the current place
+| Event name                 | Payload Attribute | Description
+|----------------------------|-------------------|-------------------------------------------------------------
+| `navigateRequest.{target}` |                   | _published by widgets and activities to indicate that a navigation has been requested_
+|                            | `target`          | the navigation target (used in the payload _as well as_ in the event name)
+|                            | `data`            | a map from place parameter names to parameter values
+| `willNavigate.{target}`    |                   | _published by the runtime to indicate that navigation has started_
+|                            | `target`, `data`  | _see above_
+| `didNavigate.{target}`     |                   | _published by the runtime to indicate that navigation has finished_
+|                            | `target`, `data`  | _see above_
+|                            | `place`           | the actual place that was navigated to, now the current place
 
 More information on navigation is available in the ["Flow and Places" manual](./flow_and_places.md).
 
@@ -228,13 +231,14 @@ For application patterns that help widgets to interact with each other, refer to
 
 ## Event Reference
 
-The single relevant API provided by LaxarJS is the event bus.
-This section lists the exact details of using it, and on how event names may be constructed.
+Possibly the most important API provided by LaxarJS to widgets is the event bus.
+This section lists the exact details of using the event bus, and explains how events should be named.
 
 ### The Event Bus API
 
-The event bus is available to widgets and activities through `$scope.eventBus`.
-It has only a few essential methods that allow to implement all patterns mentioned above.
+The event bus is injected into widget as `axEventBus`.
+It is also available as the `eventBus` property of the `axContext` injection (or `$scope` in AngularJS).
+It has essential methods that allow to implement all patterns mentioned above.
 
 * `subscribe( eventPattern, callback [, options] )`
 
@@ -252,14 +256,14 @@ It has only a few essential methods that allow to implement all patterns mention
 
    - The `options` are usually not required for widgets:
      Using `options.subscriberId`, the subscriber can identify itself to the event bus.
-     However, the LaxarJS runtime decorates each widget's event bus such that this option is always set correctly.
+     The LaxarJS runtime decorates each widget's event bus so that this option is already set correctly.
 
   The method `subscribe` does not return a value.
 
 * `publish( eventName, payload [, options ] )`
 
   Publishes an event to all interested subscribers.
-  Delivery is asynchronous: control is returned to the caller immediately, and delivery will be performed afterwards, together with an AngularJS digest cycle.
+  Delivery is *asynchronous*: control is returned to the caller immediately, and delivery of all scheduled events will be performed afterwards in batch.
   The event payload is cloned immediately so that the caller is free to modify it right after publishing.
   Returns a promise that is resolved after the event has been delivered to all subscribers.
 
@@ -281,7 +285,7 @@ It has only a few essential methods that allow to implement all patterns mention
   Returns a promise that is resolved when all _did_-responses have been received.
 
 This information should help to get started with the event bus and intentionally omits a lot of details.
-For full information, refer to the [EventBus module](https://github.com/LaxarJS/laxar/blob/master/lib/event_bus/event_bus.js).
+For full information, refer to the [EventBus API documentation](../api/runtime.event_bus.md).
 
 <a name="grammar"></a>
 ### Event Name Grammar

@@ -13,40 +13,45 @@ Preliminary readings:
 * [Widgets and Activities](./widgets_and_activities.md)
 * [Writing Pages](./writing_pages.md)
 
+
 ## Why Themes?
 
-LaxarJS ships with a so-called _default theme_, which is actually just [Bootstrap CSS](http://getbootstrap.com/css/) together with [Font Awesome](http://fortawesome.github.io/Font-Awesome/) and a few additional classes.
+LaxarJS ships with a so-called _default.theme_, which is actually just [Bootstrap CSS](http://getbootstrap.com/css/) together with [Font Awesome](http://fortawesome.github.io/Font-Awesome/) and a few additional classes.
 There are several ways to add your own styles.
 
 
 ### From Ad-Hoc Styles to Theme Folders…
 
 Usually, you will need to add some CSS classes of your own.
-For example, the vast majority of web application needs some styling for the page background and positioning or custom header- and footer-areas.
+For example, the vast majority of web application needs some styling for the page background and positioning, or some custom header- and footer-areas.
 To include such _ad-hoc styles_, you _could_ simply add a CSS file of your own to the project, and load it from the `debug.html` and `index.html` files using the `<link>` tag.
-However, it is _recommended_ to add these styles to your main application layout instead, into a sub-folder called `default.theme/css`.
+However, it is better to add these styles to your main application layout instead, into a sub-folder called `default.theme/css`.
 
 The _benefit_ of using such a _theme folder_ is that
 
-  * your CSS will be _bundled and compressed_ together with Bootstrap (no `<link>` tag needed) and that
+  * your CSS will be _bundled and compressed_ together with Bootstrap (no additional `<link>` tag needed) and that
+
   * you can support different _themes_ simply by adding more `.theme` folders.
 
-Due to the first point, using the theme folders is useful and recommended _even_ if you only use (and maybe customize) the default theme.
+Due to the first point, using theme folders is useful and recommended _even_ if you only use (and maybe customize) the default theme.
 
 
 ### …and to Custom Themes
 
-As soon as you use multiple page layouts, the previous approach does not really scale anymore: you would have to duplicate your global styles to all of them.
-In these cases, creating your own theme is definitely recommended.
+As soon as you use multiple page layouts, the previous approach does not really scale anymore:
+you would have to duplicate your global styles to all of them.
+In these cases, _creating your own theme_ is definitely recommended.
 A detailed explanation of [creating a theme](#creating-a-theme) is given below.
 
 
-### A Note on Compass/SCSS
+### A Note on SCSS
 
-When using theme folders or entire themes, the runtime will only ever look at `.css` files in `css` sub-folders.
-This means that it is entirely _up to you_ which (if any) CSS authoring tools you would like to use.
+When using theme folders or entire themes, the LaxarJS loader (used by webpack) will only ever look at `.css` files in `css` sub-folders by default.
+However, it is entirely _up to you_ which (if any) CSS authoring tools you would like to use.
+You simply need to configure your widget to load you stylesheet from a different file that has the appropriate extension.
+Do this by adding a `styleSource` attribute to the widget descriptor, and by setting its value to a path that is relative to the theme folder.
 
-That being said, we use Compass/SCSS to create themes, and the default-theme is based on the SCSS version of Bootstrap.
+The LaxarJS team uses SCSS to create themes, and the default-theme is based on the SCSS version of Bootstrap.
 Using this approach makes it very easy to create a custom theme just by changing some Bootstrap SCSS variables.
 Also, by using SCSS variables defined in the theme, widgets and controls can provide a consistent appearance.
 After explaining themes in general, further down we give instructions on [creating an SCSS theme](#creating-an-scss-theme).
@@ -55,7 +60,7 @@ After explaining themes in general, further down we give instructions on [creati
 <a name="creating-a-theme"></a>
 ## Creating Your Own Theme
 
-Let us create our own theme for an existing application, the [LaxarJS ShopDemo](http://laxarjs.org/demos/shopdemo/).
+Let us create our own theme for an existing application, the [LaxarJS ShopDemo](https://laxarjs.org/demos/shopdemo/).
 The ShopDemo brings it's own _"cube.theme"_, which is implemented by augmenting Bootstrap with some changes and custom additions, such as the circle icons used with the headlines.
 
 ![LaxarJS ShopDemo using cube theme](creating_themes/shop_demo_cube_50.png)
@@ -68,16 +73,37 @@ However, the demo also works with just the default theme, provided by LaxarJS Ui
 
 **_Above:_ The LaxarJS ShopDemo using the _default_ theme**
 
+
 ### A Custom Theme Using Plain CSS
 
-Since all applications seem to offer a "dark" look these days, let us try to achieve this for our shop demo app.
+Since all applications seem to offer a "dark" look these days, let us try to achieve this for our shop application.
 Fortunately, there are several collections of nice bootstrap themes available for free.
 On the site [Bootswatch](http://bootswatch.com) for example, you will find the theme _[darkly](http://bootswatch.com/darkly/)_, which looks like it might work for us.
 
 The only thing that is actually _required_ for a theme to work are a configuration entry and a CSS file in the right place.
-Put the pre-built [darkly css](http://bootswatch.com/darkly/bootstrap.css) into the right place, which is `includes/themes/darkly.theme/css/theme.css`.
-The path prefix `includes/themes/` may be changed using the RequireJS configuration path `laxar-path-themes`.
-In the LaxarJS configuration (usually `application/application.js`), change the property `laxar.theme` from _"default"_ to _"darkly"_.
+Put the pre-built [darkly CSS](http://bootswatch.com/darkly/bootstrap.css) into the right place, which is `application/themes/darkly.theme/css/theme.css`.
+The _theme-root_ (`application/themes/` by default) can be changed in LaxarJS projects by setting the export `paths.themes` of the file `laxar.config.js`.
+
+To use the new theme, make sure to load it along with the application artifacts, by updating the artifacts-import, usually found in the `init.js` of the project:
+
+```js
+import artifacts from 'laxar-loader/artifacts?flow=main&theme=darkly';
+```
+
+In the LaxarJS bootstrapping configuration (usually `init.js`), set the property `theme` to _"darkly"_:
+
+```js
+import { bootstrap } from 'laxar';
+bootstrap( document.querySelector( '[data-ax-page]' ), {
+   artifacts,
+   configuration: {
+      // ...
+      theme: 'darkly'
+   },
+   widgetAdapters: [ /* ... */ ]
+} );
+```
+
 This causes the LaxarJS runtime to use the new theme.
 
 Because the ShopDemo uses [Font Awesome](http://fortawesome.github.io/Font-Awesome), we need to add an import to the top of our CSS file for that as well:
@@ -96,10 +122,10 @@ And _voilà_, we have a dark web shop:
 Of course, there are still some rough spots that need additional work:
 For example, the widget headers look much better using the original LaxarJS demo theme.
 
-Let's fix that using _widget-specific styles:_
-The widget styles use a _category/name_ directory structure, similar to that of the actual widgets.
-Here are some suggestions for a nicer look, to be put under `widgets/shop-demo`:
-
+Let's fix that by _overriding widget styles_ from the theme:
+Within the theme directory, create a directory `widgets`.
+For each widget, add a directory named after the widget (specifically, the `name` property of the `widget.json`), and within it a `css` sub-folder.
+Here are some suggestions for a nicer look, to be put under `application/themes/darkly.theme/widgets/`:
 
 * _article-browser-widget_: `article-browser-widget/css/article-browser-widget.css`
 
@@ -173,7 +199,7 @@ Here are some suggestions for a nicer look, to be put under `widgets/shop-demo`:
 
 Now we have four different CSS files.
 Of course, we do not want users to download an additional CSS file for each widget that we use.
-Instead, we use `grunt laxar-dist` to create a merged version, which we may load through the `index.html`.
+Instead, we use `webpack -P` to create an optimized bundle, which we may load from the `index.html`.
 
 ![LaxarJS ShopDemo using complete darkly theme](creating_themes/shop_demo_darkly_complete_50.png)
 
@@ -183,28 +209,19 @@ Have a look at the [dark theme in action](//laxarjs.github.io/shop-demo/darkly.h
 
 Of course, there are still some areas of improvements to this way of styling widgets.
 For example, if we would like to change the shade of blue that is used in our theme, we would have to update multiple source code locations.
-It would be better to have some way to define these values in our theme and reuse them from individual widgets.  
+It would be better to have some way to define these values in our theme and reuse them from individual widgets.
 
 
 <a name="creating-an-scss-theme"></a>
-### Adding a Theme using Compass/SCSS
+### Adding a Theme using SCSS
 
 To support centralized variables, you can use a _compiles-to-CSS_ language such as _[SCSS/SASS](http://sass-lang.com/)_ or _[less](http://lesscss.org/)_.
-At the LaxarJS team we like [Compass](http://compass-style.org/), which is built on top of SCSS.
 Fortunately, an SCSS-version of the darkly theme is available, and can be installed using [Bower](http://bower.io/).
 
-Our SCSS theme uses a single central `compass/config.rb` for the theme itself, and for individual widgets.
-The `config.rb` has a similar role for SCSS as the `require_config.js` has for the project's javascript modules: it tells Compass where to find SCSS libraries.
-When compiling widget CSS, the path to the config should be passed on the command line:
+The [SCSS for our theme](https://github.com/LaxarJS/shop-demo/tree/master/includes/themes/darkly_scss.theme/scss) is little more than a couple of imports.
 
-```SH
-compass compile -c /path/to/shop-demo/includes/themes/darkly_scss.theme/compass/config.rb
-```
-
-With the [right config](https://github.com/LaxarJS/shop-demo/blob/master/includes/themes/darkly_scss.theme/compass/config.rb) in place, the [SCSS for our theme](https://github.com/LaxarJS/shop-demo/tree/master/includes/themes/darkly_scss.theme/scss) is little more than a couple of imports.
-Execute `compass` from any parent folder containing the `scss`, `css` and possibly also `fonts` and `images` directories.
-Note that you can probably configure your editor or IDE to always pass the `-c` option correctly, otherwise you can create a shell alias.
-You can also automatically generate the correct arguments by using [grunt-laxar-compass](https://github.com/laxarjs/grunt-laxar-compass), which also supports live recompilation as SCSS files change.
+Just make sure to adjust the webpack configuration of the project (`webpack.config.js`) to add all the import paths needed by your theme's SCSS.
+The default theme configuration provided by the LaxarJS contains example configuration of the `includePaths` option for the webpack `sass-loader` that you can use as a starting point.
 
 The advantage of using an SCSS theme is that we can now write concise widget styles using central variables.
 As an example, here is the SCSS file for the _article-browser-widget_:
@@ -228,18 +245,17 @@ As an example, here is the SCSS file for the _article-browser-widget_:
     background: $brand-info;
   }
 }
-
 ```
 
 Which CSS framework and tool chain to use (if any) is ultimately up to you.
-The [shop demo on github](https://github.com/LaxarJS/shop-demo) contains the _darkly_ theme both as a [plain CSS version](//github.com/LaxarJS/shop-demo/tree/master/includes/themes/darkly.theme), and as an [SCSS version](//github.com/LaxarJS/shop-demo/tree/master/includes/themes/darkly_scss.theme).
+The [shop demo on GitHub](https://github.com/LaxarJS/shop-demo) contains the _darkly_ theme both as a [plain CSS version](//github.com/LaxarJS/shop-demo/tree/master/includes/themes/darkly.theme), and as an [SCSS version](//github.com/LaxarJS/shop-demo/tree/master/includes/themes/darkly_scss.theme).
 
 The Bootstrap framework incurs some degree of boilerplate, but makes it relatively easy to reuse widgets across applications, and to find controls that work with your theme out of the box.
 
 
 ## How the Runtime Finds CSS
 
-As mentioned above, the LaxarJS runtime and grunt tasks do not care _how_ you create your CSS.
+As mentioned above, the LaxarJS runtime and loaders do not care _how_ you create your CSS.
 However, these tools need to find it, so it is important _where_ the CSS files are.
 For details on how CSS and other assets are loaded, have a look at the [asset lookup manual](asset_lookup.md).
 
@@ -250,5 +266,4 @@ In general, the lookup order goes like this:
   3. else if there are _default styles_ for an artifact then use those
   4. else load _nothing_
 
-Of course, _load nothing_ means that it is completely fine for a widget not to have its any CSS styles.
-If it was missing an HTML template on the other hand, that would simply be an error.
+Of course, _load nothing_ means that it is completely fine for a widget not to have any CSS styles.
