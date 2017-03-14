@@ -5,38 +5,40 @@
 
 ## Why LaxarJS?
 
-Find out [why](//laxarjs.org/docs/laxar-latest/why_laxar/) you would use LaxarJS and if it's the right tool for you.
-Then, explore the [core concepts](http://laxarjs.org/docs/laxar-latest/concepts/) and browse the [manuals](//laxarjs.org/docs/laxar-latest/manuals/) in the [documentation](//laxarjs.org/docs/laxar-latest/).
+Find out [why](docs/why_laxar.md) you would use LaxarJS and if it's the right tool for you.
+Then, explore the [core concepts](docs/concepts.md) and browse the [manuals](docs/manuals/index.md) in the [documentation](docs).
+Also, there is a [glossary](docs/glossary.md) where you can lookup individual concepts, and a [troubleshooting guide](docs/troubleshooting.md) there for you if you need it.
 
-Have a look at the [LaxarJS homepage](http://laxarjs.org) for demos and more information.
+Have a look at the [LaxarJS website](http://laxarjs.org) for demos and more information.
+<span class="laxar-developer-view">
+   Take a look at the <a href="http://www.laxarjs.org/docs/laxar-latest">documentation site</a> to browse documentation for all releases of this artifact.
+</span>
 
 
 ## Getting Started
 
-*Warning:* This is the LaxarJS *development branch.*
-You may want to browse the [LaxarJS release documentation](http://laxarjs.org/docs/laxar-latest/).
-
+Here are the basic instructions to get started:
 
 ### Requirements
 
 LaxarJS v2 can be loaded without installing additional dependencies:
 
-The release bundle `laxar/dist/laxar.with-deps.js` contains LaxarJS itself as well as its dependencies ([jjv](https://github.com/acornejo/jjv), [jjve](https://github.com/silas/jjve) and [page.js](https://visionmedia.github.io/page.js/)).
+The release bundle `dist/laxar.with-deps.js` contains LaxarJS itself as well as its only dependency, the [Navigo](https://github.com/krasimir/navigo) micro-library for routing.
 
 However, the following browser capabilities are required:
 
  - native ES5 support (MSIE < 9 is *not* supported)
- - Support for the following ES6 features (native or polyfilled):
+ - Support for the following ES6 features (native or poly-filled):
    + Promise
    + Fetch
    + Array.from
 
-These polyfills can simply be obtained by loading `dist/polyfills.js` through a script tag.
+Polyfills for these features can be obtained by simply loading `dist/polyfills.js` through a script tag.
 
 
 ### Hacking LaxarJS itself
 
-Instead of using a compiled library within a project, you can also clone this repository:
+Instead of using the compiled library within a project, you can also clone this repository:
 
 ```sh
 git clone https://github.com/LaxarJS/laxar.git
@@ -44,7 +46,7 @@ cd laxar
 npm install
 ```
 
-To see changes in your application, either configure your project to work with the sources (e.g. by using webpack), or rebuild the webpack bundles by running `npm run dist`.
+To see changes in your application, either configure your project to work with the sources (e.g. by using Webpack), or rebuild the Webpack bundles by running `npm run dist`.
 
 To run the automated karma tests:
 

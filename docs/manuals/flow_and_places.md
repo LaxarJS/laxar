@@ -14,10 +14,11 @@ Preliminary readings:
 
 ## The Flow
 
-The flow ties together the parts of a LaxarJS application: it defines what pages are reachable, which also determines the set of widgets and controls to load as part of an application.
-Once bootstrapped, a LaxarJS application uses only a single flow.
-But at bootstrapping time, you can decide which flow to use.
-This way, you can easily create several "perspectives" onto your application that share pages and widgets as needed.
+The flow is the top-level artifact that ties together all parts of a LaxarJS application:
+it defines what pages are reachable, which in turn determines the set of widgets and controls that are loaded as part of an application.
+At bootstrapping time, you must specify _which_ flow to use in your application.
+The default flow configured by the Yeoman generator is called `"main"`.
+Adding more flows allows you to create several "perspectives" onto your application, automatically picking pages and widgets from your project as needed.
 For example, you could have a flow to present to new visitors, a second flow for registered users, and a third flow to implement a back-office tool.
 
 Each flow is specified using a *flow definition file* in JSON format, and it primarily consists of a set of named *places*.
@@ -25,20 +26,20 @@ Each flow is specified using a *flow definition file* in JSON format, and it pri
 
 ## Places
 
-Each place is either associated with a specific *[page](./writing_pages.md)* to be rendered when entering that place, or it is a redirect to another place.
-A flow is also a natural entry point to your application
+Each _place_ is either associated with a specific *[page](./writing_pages.md)* to be rendered when entering that place, or it is a redirect to another place.
 
 To determine which place is active when navigating to an application, the browser URL is matched against each place's *patterns* until a match is found.
-These patterns are also used to *generate URLs* to link between pages, and to update the browser URL when performing event-based navigation.
+This process is called _routing_.
+These patterns are also used to *generate URLs* to create link between pages, and to update the browser URL when performing event-based navigation.
 
-For the actual pattern matching and routing, LaxarJS uses with the micro-library [page.js](http://visionmedia.github.io/page.js/) and its routing pattern syntax, which should be familiar to users of AngularJS or React and their routing solutions.
+For the actual pattern matching and routing, LaxarJS uses with the micro-library [Navigo](https://github.com/krasimir/navigo) and its routing pattern syntax, which should be familiar to users of frameworks such as AngularJS or React and their routing solutions.
 
 Let us start with an example for a simple flow definition file that we call `main.json`:
 
 ```JSON
 {
    "places": {
-      "entry": {
+      "index": {
          "patterns": [ "/" ],
          "redirectTo": "details"
       },
@@ -66,17 +67,17 @@ It is used to reference places when creating links or to perform event-based nav
 ### Place Patterns
 
 Each place definition has a non-empty list of URL-patterns, specified under the key `patterns`.
-In the example, the place *entry* has a single pattern (`/`), while the place *details* has two patterns: `/details/:item` with the named parameter *item* filled in by the router, and `/details` which will not set the *item* parameter when navigated to.
+In the example, the place *index* has a single pattern (`/`), while the place *details* has two patterns: `/details/:item` with the named parameter *item* filled in by the router, and `/details` which will not set the *item* parameter when navigated to.
 If no patterns are specified, a place with ID `$some-id` will automatically be assigned the patterns list `[ "/$some-id" ]`, which will only match a slash followed by the exact place ID.
 
-The syntax for URL patterns ultimately depends on what the router (page.js) deems valid.
+The syntax for URL patterns ultimately depends on what the router (Navigo) deems valid.
 It is *strongly recommended* to always start patterns with a *leading slash*, as relative paths will quickly break down in most setups.
 Also note that each list of patterns should start with a *reversible* pattern, as explained in the next section.
-Note that regular-expression patterns, while in principle supported by page.js, are currently not available for use in a LaxarJS flow definition, both because they are not reversible, and because there is no JSON notation for them.
+Note that regular-expression patterns, while in principle supported by Navigo, are currently not available for use in a LaxarJS flow definition, both because they are not reversible, and because there is no JSON notation for them.
 
 Apart from its patterns, a place has either a `page` entry, a `redirectTo` or a `redirectToPath` entry.
 The first determines that the corresponding page will be looked up relative to the pages directory of your application and instantiated when entering the place, while the latter makes it a redirect to another place specified by ID or full path, respectively.
-In the example, the place *entry* specifies a redirect to the place *details*, while the place *team* specifies a direct redirec to the path `/details/team`.
+In the example, the place *index* specifies a redirect to the place *details*, while the place *team* specifies a direct redirect to the path `/details/team`.
 You can use redirects to support legacy URLs in your application and to forward them to actual pages, or provide shortcuts for otherwise complex paths.
 
 Application may also enable *query-strings* using the configuration key `router.query.enabled`.
@@ -94,9 +95,9 @@ The widgets and activities within your application do not need to know about the
 To make use of reverse routing, it is important that the first pattern for each place is *reversible*.
 Specifically, any wildcard parts of the URL pattern must be *named*, so that they can be substituted for the actual parameter names by the router.
 The pattern `*` that matches any path is not reversible, for example.
-Also, page.js regular expression patterns are not reversible, because JavaScript does not support named capturing groups in regular expressions.
+Also, Navigo regular expression patterns are not reversible, because JavaScript does not support named capturing groups in regular expressions.
 However, their syntax is not supported by the JSON flow definition anyway, so applications cannot use them by mistake.
-The following pattern styles are known to work with reverse routing:
+The following pattern styles are known to work well with reverse routing:
 
   * verbatim: `/some/path`
   * named parameter segments `/some/:param/:other-param`
@@ -109,12 +110,13 @@ If query parameters are enabled, any additional parameters that are not part of 
 To initiate navigation, widgets have two options:
 
 Widgets may render regular HTML links and use the method *constructAbsoluteUrl* of the [axFlowService](./widget_services.md#axFlowService) to calculate the URLs of each link based on place ID and parameters.
+
 Alternatively, widgets may initiate navigation by issuing a *navigateRequest* event expressing the desired new location within the application and providing values for place parameters.
 How event-based navigation works in detail can be read in the separate manual covering [events](events.md).
 
-In [HTTP/REST](http://en.wikipedia.org/wiki/Representational_state_transfer)) terms, event-based navigation is used to express POST-like semantics, where an URL change is associated with an effectful user action (save, signup, purchase, etc.), while links should always follow GET semantics so that the user can safely switch back and forth between URLs.
+In [HTTP/REST](http://en.wikipedia.org/wiki/Representational_state_transfer)) terms, event-based navigation is used to express POST-like semantics, where an URL change is associated with an effectful user action (save, sign up, purchase, etc.), while links should always follow GET semantics so that the user can safely switch back and forth between URLs.
 
-Even better, neither widgets nor pages need to deal with specific place-IDs, and can instead use logical *targets* to initiate navigation or to construct links, as explained in the next section.
+Even better, neither widgets nor pages need to deal with specific place IDs, and can instead use semantic *targets* to initiate navigation or to construct links, as explained in the next section.
 
 
 ## Targets
@@ -146,7 +148,7 @@ An example:
          "targets": {
             "previous": "introduction",
             "next": "profession",
-            "help": "professionHelp"
+            "help": "interestsHelp"
          }
       },
 
@@ -192,6 +194,6 @@ Both the *interests* and the *profession* page use this target, but the places b
 This allows you to provide contextual semantics to standard navigation controls, such as a row of back/forward/help buttons.
 Returning from the help pages is familiar, via the *back* target leading to the respective places.
 
-Using the mechanisms introduced here, most navigation scenarios as well as integrations into external applications should be possible.
+Using the mechanisms introduced here, most navigation scenarios as well as integration into external applications should be possible.
 To find out how to construct links between pages, refer to the [axFlowService API](../api/services.md).
 To learn how to trigger event-based navigation from within widgets and activities, you should go on reading the [events documentation](events.md) and learn about the *navigateRequest* and *didNavigate* events.

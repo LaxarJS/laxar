@@ -8,7 +8,7 @@ If you're already developing your first widgets and want to know which programma
 
 * [Widgets and Activities](widgets_and_activities.md)
 
-   Learn about the building blocks of a LaxarJS application.
+   Learn about the central building blocks of a LaxarJS application, and the basics on _integration technologies_.
 
 * [Writing Pages](writing_pages.md)
 
@@ -22,11 +22,7 @@ If you're already developing your first widgets and want to know which programma
 
    Creating a flow through the pages and make the addressable as places.
 
-* [Writing Widget Controllers](writing_widget_controllers.md)
-
-   How to create a basic widget controller for a specific integration technology.
-
-* [Widget Services](widget_service.md)
+* [Widget Services](widget_services.md)
 
    Services that are offered as injections to all widgets regardless of their technology.
 
@@ -34,9 +30,9 @@ If you're already developing your first widgets and want to know which programma
 
    How to communicate between widgets using topics on the event bus.
 
-* [Creating Themes](creating_themes.md)
+* [Configuration](configuration.md)
 
-   How to create a custom, pluggable style for your widgets and applications.
+   Documents the LaxarJS configuration API which can be used to configure widgets, and the built-in configuration options.
 
 * [Providing Controls](providing_controls.md)
 
@@ -49,21 +45,17 @@ If you're already developing your first widgets and want to know which programma
 
 ## Advanced Manuals
 
-* [Asset Lookup and the FileResourceProvider](asset_lookup.md)
+* [Asset Lookup and the Artifacts Bundle](asset_lookup.md)
 
    How CSS, HTML and other static assets are resolved and loaded.
+
+* [Creating Themes](creating_themes.md)
+
+   How to create a custom, pluggable style for your widgets and applications.
 
 * [Writing Compositions](writing_compositions.md)
 
    When simple pages are not enough.
-
-* [Configuring RequireJS for widgets and controls](configuring_requirejs.md)
-
-   How to configure RequireJS for widgets and controls with extraordinary needs.
-
-* [Configuration](configuration.md)
-
-   Documents the LaxarJS configuration API which can be used to configure widgets, and the built-in configuration options.
 
 * [Internationalization (i18n)](i18n.md)
 
@@ -75,4 +67,4 @@ If you're already developing your first widgets and want to know which programma
 
 * [Creating an Adapter for a new Widget Technology](adapters.md)
 
-   Tired of writing widgets in AngularJS? Learn how to adapt any MVC technology for creating LaxarJS widgets.
+   Learn how to adapt any MVC technology for creating LaxarJS widgets.

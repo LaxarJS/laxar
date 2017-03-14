@@ -24,7 +24,7 @@ A *Configuration* instance provides convenient readonly access to the underlying
 application bootstrapping configuration. The configuration values are passed to
 [`laxar#bootstrap()`](-unknown-#bootstrap) on startup (before LaxarJS v2.x, these configuration values were read from
 `window.laxar`). When using the LaxarJS application template, the configuration values are set in the
-file `application/application.js` under your project's root directory.
+file `init.js` under your project's root directory.
 
 #### <a id="Configuration.get"></a>Configuration.get( key, optionalDefault )
 
@@ -45,7 +45,7 @@ config.get( 'iDontExist', 42 ); // -> 42
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| key | `String` |  a  path (using `.` as separator) to the property in the configuration object |
+| key | `String` |  a path (using `.` as separator) to the property in the configuration object |
 | _optionalDefault_ | `*` |  the value to return if no value was set for `key` |
 
 ##### Returns
@@ -71,7 +71,7 @@ config.ensure( 'iDontExist' ); // -> throws
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| key | `String` |  a  path (using `.` as separator) to the property in the configuration object |
+| key | `String` |  a path (using `.` as separator) to the property in the configuration object |
 
 ##### Returns
 
