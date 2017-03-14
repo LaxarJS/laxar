@@ -179,7 +179,7 @@ In the past, LaxarJS was integrated with AngularJS v1, making it the framework o
 
 Starting with LaxarJS v2, several *adapters* allow to integrate with various UI technologies.
 Besides AngularJS v1, there are adapters for Angular v2, React and Vue.
-Which we particularly like Vue for its simplicity.
+Currently, we particularly like Vue for its simplicity (like React) combined with the ability to use plain old HTML templates (like AngularJS).
 
 
 ## Next Steps
