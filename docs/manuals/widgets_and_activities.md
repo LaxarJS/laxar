@@ -14,9 +14,9 @@ Preliminary readings:
 Before starting to implement your widget, take a moment to think and delineate its responsibilities.
 You can do this by phrasing the question: _What goal does this widget help the user to accomplish?_
 Are you thinking about a very broadly applicable, technical task such as _"allow the user to enter a date"_ or _"allow the user to delete a data row"_?
-In this case you might want to implement this functionality as a _control_ (an AngularJS directive or an HTML5 web component) and use it _within_ one or more of your widgets.
+In this case you might want to implement this functionality as a _control_ and use it _within_ one or more of your widgets.
 
-Usually, widgets correspond to significant areas of the screen and are composed from multiple controls.
+Usually, widgets correspond to significant areas of the screen and are composed of multiple controls.
 They are built with a _specific user-goal_ in mind, such as _"allow the user to book a flight"_ or _"allow the user to review shopping cart contents"_.
 If widgets are made too small and too generic, page definitions will be confusing and the widget configuration options become unwieldy.
 As a rule of the thumb, only very complex pages should contain more than a about a dozen widgets.
@@ -27,13 +27,17 @@ And who wants to have very complex pages anyway?
 
 Activities are _"invisible widgets"_ that are used to _fetch and manage application resources_.
 Within the page, they may represent a REST API or a data store, fetching resources and performing relevant service calls (such as a form submission) upon action request.
-This makes activities perform a role similar to AngularJS services.
+If you are familiar with AngularJS, you might recognize that activities perform a role similar to AngularJS *services*.
 The advantage over services is that using activities puts the _page author_ in control over instantiation and configuration:
 Individual widget instances may each be connected to their own activity instance, or share an event bus topic with a single instance.
-Although these configurations are not impossible to achieve using AngularJS dependency injection and -services, using LaxarJS activities makes the connections declarative and visible.
 
 Activities may also serve as a _mediator_ between widgets that use mutually incompatible event vocabularies (such as different resource formats).
 This may happen when integrating a widget from a third party into an application.
+
+
+### Integration Technologies
+
+- TODO: explain the basics on integration technologies
 
 
 ## How to Create a Widget
@@ -42,18 +46,18 @@ The easiest way to create a widget is to use the [LaxarJS Yeoman generator](http
 Check out the [README](../../README.md) on how to obtain it, and how to use it for creating an application.
 
 Start by creating a sub-directory for your new widget within the LaxarJS application.
-Each widget in an application lives within a sub-folder of the _widget root_ (`includes/widgets` by default).
-To change the widget root you can modify the RequireJS-path `'laxar-path-widgets'` in the require configuration.
-The widget path `includes/widgets/shopping-cart-widget` is used as an example path throughout this manual.
+Each widget in an application lives within a sub-folder of the _widget root_ (`widgets/` by default).
+To change the widget root you can create a file `laxar.config.js` in your application directory, and use the export `path.widgets` to override the widget root.
+The widget path `widgets/shopping-cart-widget` is used as an example path throughout this manual.
 
-The last component of the widget path is the _widget name_:
-It has to be unique throughout an application and should be written in lower case letters with components separated by dashes.
-Regular widget names always end in `-widget` whereas activities always end in `-activity`.
+The last component of the widget path is the _widget directory_, which uses the name of the widget itself.
+The widget name must be unique throughout an application and should be written in lower case letters with components separated by dashes.
+Widget names always end in `-widget` whereas activities always end in `-activity`.
 
 To create the actual widget, run:
 
 ```sh
-cd includes/widgets/shopping-cart-widget
+cd widgets/shopping-cart-widget
 yo laxarjs:widget
 ```
 
@@ -67,35 +71,40 @@ A newly created widget contains the following files:
 
 * `widget.json`
 
-  This _widget specification_ contains meta-data about your widget that is used by the LaxarJS framework.
-  It allows you to describe the configuration options of your widget features as a JSON schema.
-
-* `bower.json`
-
-  This specifies the _dependencies_ of your widget for use with [Bower](http://bower.io/).
-  While not used directly by LaxarJS, it is the key to automated and isolated widget tests.
+  This _widget descriptor_ contains meta-data about your widget that is used by the LaxarJS framework.
+  It allows you to describe the configuration options of your widget features using a JSON schema.
 
 * `shopping-cart-widget.js`
 
-  The _business logic_ of your shopping cart (like calculating a total or changing item quantities) as an _AngularJS controller_.
-  When your controller is instantiated by the LaxarJS runtime, it will receive an AngularJS scope (the model) and a reference to the event bus, which allows for communication with the world.
-  When built for release, all controllers and their RequireJS-dependencies are bundled into a single, compressed JavaScript file.
+  The _business logic_ of your shopping cart (like calculating a total or changing item quantities) as a JavaScript module.
+  The precise contents of the widget module depend on the *integration technology* (`angular`, `angular2`, `react`, `vue` or a custom technology) used by your widget.
+  Usually, it exports either a class constructor, or a plain factory function to create the widget instance.
+  When a widget is instantiated by the LaxarJS runtime, it receives a reference to the event bus, which allows for communication with the world.
 
 * `default.theme/shopping-cart-widget.html`
 
-  The _AngularJS HTML template_ defining the _appearance_ of your widget.
+  The _HTML template_ defining the _appearance_ of your widget.
+  Again, what syntax is
   When your widget is used on a page, LaxarJS will load this automatically and bind it to your widget controller's scope.
   The [Bootstrap CSS](http://getbootstrap.com/css/) classes are available by convention to facilitate uniform styling across widgets.
   If Bootstrap does not suit you, feel free to use a different framework (or none at all), but keep in mind that this limits opportunities for widget reuse.
   Similarly to controllers, all widget templates will be preloaded within a single JSON file when your application is packaged for release.
 
-* `default.theme/(s)css/shopping-cart-widget.(s)css`
+* `default.theme/css/shopping-cart-widget.css`
 
   Widget-specific _style definitions_.
   Most of the time, your widget is fine just using CSS style definitions from the global application theme.
-  In this case, it can do completely without CSS (or [SCSS](http://sass-lang.com/) folders.
+  In this case, it can do completely without CSS folders.
   Sometimes though, you have style definitions which are widget-specific (such as CSS animations) and should not be part of the global theme.
-  If your widget has its own CSS file, the framework will load it when the widget is used in an application, and bundle it for release.
+  If your widget has its own CSS file, LaxarJS will load it when the widget is used in an application, and bundle it for release.
+
+  Instead of CSS you can also use [SCSS](http://sass-lang.com/) or LESS, but make sure to provide a `styleSource` entry in the `widget.json`, which must be a path within the theme-folder (for example "scss/shopping-cart-widget.scss").
+
+* `package.json`
+
+  This optional file specifies the _dependencies_ of your widget for use with [NPM](http://npmjs.org/).
+  If you want to version and package you widget as a standalone component for use in multiple applications, this is the recommended way to describe the widget and its dependencies.
+
 
 LaxarJS supports to change the appearance of an existing widget by overriding its template or its CSS styles from within a custom _theme_.
 It is also possible to put shared style definitions (CSS classes and SCSS variables) as well as shared assets like fonts and images into that theme.
