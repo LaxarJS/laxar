@@ -295,8 +295,8 @@ Also called topic ID in this context.
 
 ## Page
 
-Configuration for a set of LaxarJS widgets, activities and possibly nested compositions.
-Also references a layout in order to visually arrange the widgets.
+Configuration for a set of LaxarJS widgets, activities and possibly nested compositions that are run at the same time.
+Also contains a reference to a main layout, and possibly to additional nested layouts, in order to visually arrange the widgets.
 
 
 ## Place
@@ -342,6 +342,12 @@ More Information:
    - [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
 
 
+## Widget Adapter
+
+See [Integration Technology Adapter](#integration-technology-adapter).
+
+
+
 ## Widget Area
 
 An anchor for nested widgets that is provided by layouts and sometimes by widgets.
@@ -356,9 +362,9 @@ More Information:
 
 ## Widget Descriptor
 
-A JSON file containing meta information about a widget.
+The contents of a JSON file (called `widget.json`) containing meta information about a widget.
 The descriptor defines the *name*, *integration type and technology*, and the *widget features* that may be configured.
-It may also specify a *styleSource* and/or *templateSource* if the widget deviates from the defaults.
+It may also specify a *styleSource* and/or *templateSource* if the widget deviates from the defaults, e.g. when using SCSS.
 
 More Information:
 
@@ -367,8 +373,8 @@ More Information:
 
 ## Widget Features
 
-When a widget is instantiated within a page, runtime configuration is passed to the widget controller through the *axFeatures* injection.
-The widget descriptor may specify and document what feature configuration is allowed by providing a JSON schema under its `features` property.
+When a widget is [instantiated](#widget-instance) within a page, runtime configuration is passed to the widget controller through the *axFeatures* injection.
+The [widget descriptor](#) may specify and document what feature configuration is allowed by providing a JSON schema under its `features` property.
 
 More Information:
 
@@ -377,18 +383,26 @@ More Information:
    - [API: `axFeatures`](./api/runtime.widget_services.md#axFeatures)
 
 
-
-
 ## Widget Instance
 
-TODO
+Each widget is a *blueprint* that can be instantiated on any number of pages, or even multiple times within a single page.
+Each of those instances has its own configuration, its own ID, and its own container node in the browser DOM.
 
 
 ## Widget Services, Widget Injections
 
-TODO
+To use service APIs provided by LaxarJS, most importantly the event bus, widgets and activities request them to be injected into their controller.
+The specific syntax for this depends on the integration technology.
+LaxarJS does not use a fancy dependency injection (DI) framework for this, just a simple registry of known services.
+However, technology adapters may hook into the DI of their respective framework to enrich it with the LaxarJS services.
+
+More Information:
+
+   - [Manual: Widget Services](./manuals/widgets_services.md)
+   - [API: Widget Services](./api/runtime.widget_services.md)
 
 
-## Yeoman
+## Yeoman, Yeoman Generator
 
-TODO
+[Yeoman](http://yeoman.io/) is a general purpose _scaffolding tool_ that allows to create new software artifacts based on a template, and interactive dialogues to fill in the blanks.
+The [Yeoman Generator for LaxarJS](http://laxarjs.org/docs/generator-laxarjs-v2-latest/) is a plugin for Yeoman that helps to create LaxarJS applications, widgets, activities and controls.
