@@ -371,6 +371,15 @@ More Information:
    - [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
 
 
+## Widget Directory
+
+File system directory containing a widget with its descriptor, implementation module, and assets.
+
+More Information:
+
+   - [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
+
+
 ## Widget Features
 
 When a widget is [instantiated](#widget-instance) within a page, runtime configuration is passed to the widget controller through the *axFeatures* injection.

@@ -9,6 +9,7 @@ Preliminary readings:
 
 * [LaxarJS Core Concepts](../concepts.md)
 
+
 ## Widget Responsibilities
 
 Before starting to implement your widget, take a moment to think and delineate its responsibilities.
@@ -37,7 +38,26 @@ This may happen when integrating a widget from a third party into an application
 
 ### Integration Technologies
 
-- TODO: explain the basics on integration technologies
+LaxarJS serves as a _middleware layer_ that allows you to organize and connect isolated frontend components to form an application.
+However, it has no say in how the individual widgets and their UI are implemented.
+Instead it tries to support you in using readily available frameworks such as React, Vue.JS and Angular.
+To integrate widgets that were created in different UI technologies, a piece of glue code is needed, the so-called *integration technology adapter*.
+
+The only adapter included with LaxarJS Core is the adapter for the integration technology `"plain"`, which does not rely on any specific framework, but leaves it up to the widget author to choose what (if any) supporting libraries should be loaded by the widget.
+
+Another adapter offered by the LaxarJS project is the [laxar-angular-adapter](http://laxarjs.org/docs/laxar-angular-adapter-v2-latest/) supporting the integration technology `"angular"`, meaning AngularJS v1.
+Because `"angular"` was the built-in technology for LaxarJS v1, it is still used throughout this documentation.
+
+
+#### Combining Integration Technologies
+
+You are encouraged to evaluate different integration technologies for use in your project, especially if you are starting from scratch
+For now, the LaxarJS project provides adapters for the technologies [`react`](http://laxarjs.org/docs/laxar-react-adapter-v2-latest/),  [`angular2`](http://laxarjs.org/docs/laxar-angular2-adapter-v2-latest/) and [`vue`](http://laxarjs.org/docs/laxar-vue-adapter-v2-latest/).
+Once familiar with the basics, feel free to [create your adapter](./adapters.md).
+
+However, keep in mind that each integration technology adds to your overall application bundle size, impacting application load time and memory consumption.
+While mixing three view frameworks may be fine for an intranet application, online applications should generally aim for using a single integration technology, or maybe two technologies during a framework transition -- mobile users will thank you for it!
+Of course, `"plain"` is always free and does not weigh in here.
 
 
 ## How to Create a Widget
@@ -46,11 +66,11 @@ The easiest way to create a widget is to use the [LaxarJS Yeoman generator](http
 Check out the [README](../../README.md) on how to obtain it, and how to use it for creating an application.
 
 Start by creating a sub-directory for your new widget within the LaxarJS application.
-Each widget in an application lives within a sub-folder of the _widget root_ (`widgets/` by default).
-To change the widget root you can create a file `laxar.config.js` in your application directory, and use the export `path.widgets` to override the widget root.
-The widget path `widgets/shopping-cart-widget` is used as an example path throughout this manual.
+Each widget in an application lives within a sub-folder of the _widget root_ (`application/widgets/` by default).
+To change the widget root, you can create a file `laxar.config.js` in your application directory, and use the export `path.widgets` to override the widget root.
+The widget path `application/widgets/shopping-cart-widget` is used as an example path throughout this manual.
 
-The last component of the widget path is the _widget directory_, which uses the name of the widget itself.
+The last component of the widget path is the so-called _widget directory_, which uses the name of the widget itself.
 The widget name must be unique throughout an application and should be written in lower case letters with components separated by dashes.
 Widget names always end in `-widget` whereas activities always end in `-activity`.
 
@@ -72,23 +92,27 @@ A newly created widget contains the following files:
 * `widget.json`
 
   This _widget descriptor_ contains meta-data about your widget that is used by the LaxarJS framework.
-  It allows you to describe the configuration options of your widget features using a JSON schema.
+  The descriptor contains the name of the widget and specifies both integration type (`"widget"` or `"activity"`) and integration technology (such as `"angular"` or `"react"`).
+  Finally, the descriptor allows to describe *configuration options* of your widget features using a JSON schema, so that configuration will be validated automatically.
 
 * `shopping-cart-widget.js`
 
   The _business logic_ of your shopping cart (like calculating a total or changing item quantities) as a JavaScript module.
-  The precise contents of the widget module depend on the *integration technology* (`angular`, `angular2`, `react`, `vue` or a custom technology) used by your widget.
+  The precise contents of the widget module depend on the integration technology used by your widget.
   Usually, it exports either a class constructor, or a plain factory function to create the widget instance.
-  When a widget is instantiated by the LaxarJS runtime, it receives a reference to the event bus, which allows for communication with the world.
+  When a widget is instantiated by the LaxarJS runtime, it is passed a set of *widget services* including the *event bus*, which allows for communication with other widget instances.
 
 * `default.theme/shopping-cart-widget.html`
 
   The _HTML template_ defining the _appearance_ of your widget.
-  Again, what syntax is
+  Again, the integration technology determines the syntax that is supported in the template.
   When your widget is used on a page, LaxarJS will load this automatically and bind it to your widget controller's scope.
-  The [Bootstrap CSS](http://getbootstrap.com/css/) classes are available by convention to facilitate uniform styling across widgets.
-  If Bootstrap does not suit you, feel free to use a different framework (or none at all), but keep in mind that this limits opportunities for widget reuse.
+  The [Bootstrap CSS](http://getbootstrap.com/css/) classes are made available by the LaxarJS *default.theme* to facilitate uniform styling across widgets.
+  If Bootstrap does not suit you, feel free to use a different framework (or none at all) in [your own theme](./creating_themes.md), but keep in mind that this limits opportunities for widget reuse.
   Similarly to controllers, all widget templates will be preloaded within a single JSON file when your application is packaged for release.
+
+  You can load the template from a different source in order to support a preprocessing syntax such as [Mustache](https://mustache.github.io/) or [pug](https://pugjs.org/).
+  Simply set the `templateSource` to the respective path relative to the theme folder, such as `shopping-cart-widget.pug` and make sure that an appropriate (webpack) loader is installed.
 
 * `default.theme/css/shopping-cart-widget.css`
 
@@ -98,7 +122,7 @@ A newly created widget contains the following files:
   Sometimes though, you have style definitions which are widget-specific (such as CSS animations) and should not be part of the global theme.
   If your widget has its own CSS file, LaxarJS will load it when the widget is used in an application, and bundle it for release.
 
-  Instead of CSS you can also use [SCSS](http://sass-lang.com/) or LESS, but make sure to provide a `styleSource` entry in the `widget.json`, which must be a path within the theme-folder (for example "scss/shopping-cart-widget.scss").
+  Instead of CSS you can also use [SCSS](http://sass-lang.com/) or [LESS](http://lesscss.org/), but make sure to provide a `styleSource` entry in the `widget.json`, which must be a path within the theme-folder (for example `scss/shopping-cart-widget.scss`).
 
 * `package.json`
 
@@ -115,23 +139,16 @@ Read [more about themes](./creating_themes.md) once you are familiar with creati
 
 ### Widget Files for Testing
 
-The sub folder `spec` contains the widget spec test and associated resources.
-None of these files are loaded during regular application runtime:
-
-* `spec/spec_runner.html`
-
-  For convenience, LaxarJS provides a spec runner for each new widget, to run jasmine spec tests in the browser.
-  This file does not need to be touched at all.
-
-* `spec/spec_runner.js`
-
-  Configuration for the spec test.
-  This file needs to be modified only if widget-specific external dependencies are required during testing.
+The sub folder `spec` contains the widget spec test and, possibly associated resources.
+While we recommend writing tests for your widget, note that the spec folder is not required.
+None of these files are loaded during regular application runtime.
 
 * `spec/shopping-cart-widget.spec.js`
 
-  This is the actual [jasmine](http://jasmine.github.io/2.3/introduction.html) spec test.
-  The test harness (providing a simulated LaxarJS event bus) has already been prepared for you.
+  This should be a [Jasmine 2](https://jasmine.github.io/2.5/introduction.html) spec test.
+  If you used the LaxarJS generator to setup your application including configuration for karma and webpack, this spec can be run on the command-line using [karma](http://karma-runner.github.io/1.0/index.html), or as an interactive HTML test in the browser, by using the [webpack-jasmine-html-runner-plugin](https://github.com/LaxarJS/webpack-jasmine-html-runner-plugin).
+
+  TODO: (link to) instructions on running tests
 
 
 ### Implementing a Controller
@@ -143,11 +160,14 @@ For a very simple shopping cart this means
 
 * increasing or decreasing the quantity of individual positions within the cart.
 
-The Yeoman generator has already created an empty controller along with some AngularJS infrastructure (module and injections).
-For a shopping cart, this might be an appropriate starting implementation based on some dummy data:
+Throughout this example, we will be using the `angular` integration technology (AngularJS v1), as it is familiar to developers coming from LaxarJS v1.
+Different integration technologies should work in a similar fashion.
 
-```JS
-// ...
+The Yeoman generator has already created an empty controller along with some AngularJS infrastructure (module and injections).
+For a shopping cart, this might be an appropriate starting implementation with some dummy data:
+
+```js
+import * as ng from 'angular';
 
 function Controller( $scope ) {
    $scope.model = [
@@ -156,26 +176,26 @@ function Controller( $scope ) {
       { label: 'Freezing Frappé', price: 18.25, amount: 1 }
    ];
 
-   $scope.increment = function( item ) {
+   $scope.increment = item => {
       ++item.amount;
    };
 
-   $scope.decrement = function( item ) {
+   $scope.decrement = item => {
       item.amount = Math.max( 0, item.amount - 1 );
    };
 
-   $scope.total = function( rows ) {
-      return rows.reduce( function( acc, next ) {
-         return acc + next.price*next.amount;
-      }, 0 );
-   };
+   $scope.total = rows => rows.reduce(
+      (sum, item) => sum + item.price * item.amount,
+      0
+   );
 }
 
-// ...
+export const name = ng.module( 'shoppingCartWidget' )
+   .controller( 'ShoppingCartWidgetController' ).name;
 ```
 
-We can see that a widget controller in LaxarJS works just like any other AngularJS controller.
-Of course things will get more interesting once you use the event bus to receive shopping cart contents from somewhere else, or to signal that an order should be placed.
+The adapter for the integration technology `"angular"` makes it possible for a widget controller in LaxarJS to work just like any other AngularJS controller.
+Of course, things will get more interesting once you use the event bus to receive shopping cart contents from somewhere else, or to signal that an order should be placed.
 
 
 ### Creating a Template
@@ -205,8 +225,10 @@ For anyone familiar with Bootstrap and AngularJS, most of this should not be a s
       <td class="cart-amount">{{ item.amount }}</td>
       <td class="cart-price">{{ item.price }}</td>
       <td>
-         <button data-ng-click="decrement( item )" class="btn btn-xs"><i class="fa fa-minus" /></button>
-         <button data-ng-click="increment( item )" class="btn btn-xs"><i class="fa fa-plus" /></button>
+         <button ng-click="decrement( item )" class="btn btn-xs">
+            <i class="fa fa-minus" /></button>
+         <button ng-click="increment( item )" class="btn btn-xs">
+            <i class="fa fa-plus" /></button>
       </td>
    </tr>
 </table>
@@ -219,12 +241,11 @@ The `features` property used within the headline comes from the _widget configur
 
 ### Adding Some Style
 
-A widget may be styled using CSS.
-LaxarJS supports generating the CSS from SCSS source files, allowing to place common definitions for font size, color and much more within a shared "theme" folder.
+A widget may be styled using CSS, or its more fancy variants such as LESS or SCSS.
 To keep things simple, you can ignore SCSS and themes for now and simply write a CSS file for your widget, in our case under `default.theme/css/shopping-cart-widget.css`.
 Once you are familiar with the basics, read the article on [creating themes](./creating_themes.md) for more information.
 
-Thanks to Bootstrap this widget does not require a lot of fancy styling:
+Thanks to Bootstrap CSS, this widget does not require a lot of fancy styling:
 
 ```CSS
 .shopping-cart-widget .cart-amount,
@@ -233,9 +254,9 @@ Thanks to Bootstrap this widget does not require a lot of fancy styling:
 }
 ```
 
-For best encapsulation, selectors should be prefixed with the widget class (`shopping-cart-widget`) as shown here.
+For best encapsulation, selectors should be prefixed with the widget class (`.shopping-cart-widget`) as shown here.
 LaxarJS automatically adds this class to the widget container, so there is no need to specify it in the widget template.
-It is also recommended to prefix custom CSS classes as shown here (`cart-amount`, `cart-price`), just as you would prefix custom AngularJS elements or attributes when creating a directive.
+It is also recommended to prefix custom CSS classes as shown here (`cart-amount`, `cart-price`), just as you would prefix custom HTML elements or attributes.
 This makes widget styles more robust against changes in Bootstrap or other third party CSS.
 
 
@@ -260,7 +281,7 @@ For this reason, we make it configurable by adding a feature entry to the `widge
             "properties": {
                "htmlText": {
                   "type": "string",
-                  "description": "The HTML headline content."
+                  "description": "the HTML headline content"
                }
             }
          }
@@ -305,7 +326,7 @@ There is another manual to learn more about [writing pages](./writing_pages.md).
 
 Now we can start the development web server provided by LaxarJS, from the application root:
 
-```SH
+```sh
 npm install # if you have not already
 npm start
 ```
