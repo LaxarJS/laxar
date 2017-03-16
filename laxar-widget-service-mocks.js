@@ -1,5 +1,5 @@
 /**
- * Copyright 2016 aixigo AG
+ * Copyright 2016-2017 aixigo AG
  * Released under the MIT license.
  * http://laxarjs.org/license
  */
@@ -15,7 +15,7 @@
 /**
  * Returns a mock of the `axAssets` injection for tests, to avoid making actual `fetch` calls.
  *
- * For details, see {@link widget_services_assets_mock#create}.
+ * For details, see [widget_services_assets_mock](testing.widget_services_assets_mock.md#create).
  *
  * @memberof laxar-widget-service-mocks
  * @name createAxAssetsMocks
@@ -26,7 +26,7 @@ export { create as createAxAssetsMock } from './lib/testing/widget_services_asse
 /**
  * Returns a mock of the `axAreaHelper` injection for tests.
  *
- * For details, see {@link widget_services_area_helper_mock#create}.
+ * For details, see [widget_services_area_helper_mock](testing.widget_services_area_helper_mock.md#create).
  *
  * @memberof laxar-widget-service-mocks
  * @name createAxAreaHelperMock
@@ -37,7 +37,7 @@ export { create as createAxAreaHelperMock } from './lib/testing/widget_services_
 /**
  * Returns a mock of the `axConfiguration` injection for tests.
  *
- * For details, see {@link configuration_mock#create}.
+ * For details, see [configuration_mock](testing.configuration_mock.md#create).
  *
  * @name createAxConfigurationMock
  * @memberof laxar-widget-service-mocks
@@ -48,7 +48,7 @@ export { create as createAxConfigurationMock } from './lib/testing/configuration
 /**
  * Returns a mock of the `axEventBus` injection for tests.
  *
- * For details, see {@link event_bus_mock#create}.
+ * For details, see [event_bus_mock](testing.event_bus_mock.md#create).
  *
  * @name createAxEventBusMock
  * @memberof laxar-widget-service-mocks
@@ -59,7 +59,7 @@ export { create as createAxEventBusMock } from './lib/testing/event_bus_mock';
 /**
  * Returns a mock of the `axFlowService` injection for tests.
  *
- * For details, see {@link flow_service_mock#create}.
+ * For details, see [flow_service_mock](testing.flow_service_mock.md#create).
  *
  * @name createAxFlowServiceMock
  * @memberof laxar-widget-service-mocks
@@ -70,7 +70,7 @@ export { create as createAxFlowServiceMock } from './lib/testing/flow_service_mo
 /**
  * Returns a mock of the `axGlobalStorage` injection for tests.
  *
- * For details, see {@link storage_mock#create}.
+ * For details, see [storage_mock](testing.storage_mock.md#create).
  *
  * @name createAxGlobalStorageMock
  * @memberof laxar-widget-service-mocks
@@ -81,7 +81,7 @@ export { create as createAxGlobalStorageMock } from './lib/testing/storage_mock'
 /**
  * Returns a mock of the `axHeartbeat` injection for tests.
  *
- * For details, see {@link heartbeat_mock#create}.
+ * For details, see [heartbeat_mock](testing.heartbeat_mock.md#create).
  *
  * @name createAxHeartbeatMock
  * @memberof laxar-widget-service-mocks
@@ -92,7 +92,7 @@ export { create as createAxHeartbeatMock } from './lib/testing/heartbeat_mock';
 /**
  * Returns a mock of the `axI18n` injection for tests.
  *
- * For details, see {@link i18n_mock#create}.
+ * For details, see [i18n_mock](testing.i18n_mock.md#create).
  *
  * @name createAxI18nMock
  * @memberof laxar-widget-service-mocks
@@ -103,7 +103,7 @@ export { create as createAxI18nMock } from './lib/testing/widget_services_i18n_m
 /**
  * Returns a mock of the `axLog` injection for tests.
  *
- * For details, see {@link log_mock#create}.
+ * For details, see [log_mock](testing.log_mock.md#create).
  *
  * @name createAxLogMock
  * @memberof laxar-widget-service-mocks
@@ -114,7 +114,7 @@ export { create as createAxLogMock } from './lib/testing/log_mock';
 /**
  * Returns a mock of the `axStorage` injection for tests.
  *
- * For details, see {@link widget_services_storage_mock#create}.
+ * For details, see [widget_services_storage_mock](testing.widget_services_storage_mock.md#create).
  *
  * @name createAxStorageMock
  * @memberof laxar-widget-service-mocks
@@ -125,7 +125,7 @@ export { create as createAxStorageMock } from './lib/testing/widget_services_sto
 /**
  * Returns a mock of the `axVisibility` injection for tests.
  *
- * For details, see {@link widget_services_visibility_mock#create}.
+ * For details, see [widget_services_visibility_mock](testing.widget_services_visibility_mock.md#create).
  *
  * @name createAxVisibilityMock
  * @memberof laxar-widget-service-mocks

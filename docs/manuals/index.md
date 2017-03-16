@@ -22,10 +22,6 @@ If you're already developing your first widgets and want to know which programma
 
    Creating a flow through the pages and make the addressable as places.
 
-* [Writing Widget Controllers](writing_widget_controllers.md)
-
-   How to create a basic widget controller for a specific integration technology.
-
 * [Widget Services](widget_service.md)
 
    Services that are offered as injections to all widgets regardless of their technology.

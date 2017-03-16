@@ -2,20 +2,23 @@
 
 [« return to the manuals](index.md)
 
-The key concept that distinguishes LaxarJS applications from other AngularJS applications is the _publish-subscribe_ (or _pub/sub)_ architecture.
-It helps to isolate building blocks such as widgets and activities by moving the coupling from implementation (no module imports, no service contracts) to configuration (of event topics).
+The key concept that distinguishes LaxarJS applications from other web applications is the _publish-subscribe_ (or _pub/sub)_ architecture.
+This approach allows to isolate building blocks such as widgets and activities by moving the coupling from implementation (no module imports, no service contracts) to configuration (of event topics).
 
 Preliminary readings:
 
 * [LaxarJS Core Concepts](../concepts.md)
 
-LaxarJS consistently uses the term _events_ rather than _messages_, to point out two key aspects of its pub/sub-architecture:
- * events convey information about _what happened_ (rather than _who is receiver_)
- * delivery is always _asynchronous_ (using an _event loop_)
+LaxarJS consistently uses the term _events_ rather than _messages_, to point out two key aspects of its pub/sub-approach:
+
+ * events convey information about _what happened_ (rather than _who is receiver_),
+
+ * delivery is always _asynchronous_ (using an _event loop_).
 
 For these reasons, you may also think of this pattern as a variation on the _hollywood principle_ ("Don't call us, we'll call you").
 
-For efficient processing, LaxarJS ties into the AngularJS `$digest`-cycle.
+For efficient processing, LaxarJS technology adapters tie into the change detection of their respective frameworks.
+For example, the `"angular"` adapter triggers an AngularJS `$digest`-cycle after events were delivered.
 This allows the web browser to batch event-handling with other operations that modify screen contents.
 
 
@@ -228,13 +231,14 @@ For application patterns that help widgets to interact with each other, refer to
 
 ## Event Reference
 
-The single relevant API provided by LaxarJS is the event bus.
-This section lists the exact details of using it, and on how event names may be constructed.
+Possibly the most important API provided by LaxarJS to widgets is the event bus.
+This section lists the exact details of using the event bus, and explains how events should be named.
 
 ### The Event Bus API
 
-The event bus is available to widgets and activities through `$scope.eventBus`.
-It has only a few essential methods that allow to implement all patterns mentioned above.
+The event bus is injected into widget as `axEventBus`.
+It is also available as the `eventBus` property of the `axContext` injection (or `$scope` in AngularJS).
+It has essential methods that allow to implement all patterns mentioned above.
 
 * `subscribe( eventPattern, callback [, options] )`
 
@@ -252,14 +256,14 @@ It has only a few essential methods that allow to implement all patterns mention
 
    - The `options` are usually not required for widgets:
      Using `options.subscriberId`, the subscriber can identify itself to the event bus.
-     However, the LaxarJS runtime decorates each widget's event bus such that this option is always set correctly.
+     The LaxarJS runtime decorates each widget's event bus so that this option is already set correctly.
 
   The method `subscribe` does not return a value.
 
 * `publish( eventName, payload [, options ] )`
 
   Publishes an event to all interested subscribers.
-  Delivery is asynchronous: control is returned to the caller immediately, and delivery will be performed afterwards, together with an AngularJS digest cycle.
+  Delivery is *asynchronous*: control is returned to the caller immediately, and delivery of all scheduled events will be performed afterwards in batch.
   The event payload is cloned immediately so that the caller is free to modify it right after publishing.
   Returns a promise that is resolved after the event has been delivered to all subscribers.
 
@@ -281,7 +285,7 @@ It has only a few essential methods that allow to implement all patterns mention
   Returns a promise that is resolved when all _did_-responses have been received.
 
 This information should help to get started with the event bus and intentionally omits a lot of details.
-For full information, refer to the [EventBus module](https://github.com/LaxarJS/laxar/blob/master/lib/event_bus/event_bus.js).
+For full information, refer to the [EventBus API documentation](../api/runtime.event_bus.md).
 
 <a name="grammar"></a>
 ### Event Name Grammar

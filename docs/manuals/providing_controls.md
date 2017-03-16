@@ -10,17 +10,20 @@ Preliminary readings:
 * [LaxarJS Core Concepts](../concepts.md)
 * [Widgets and Activities](./widgets_and_activities.md)
 
-To provide their business logic, widgets and activities often depend on libraries, which might be created by third parties or simply be used to share common functionality.
-In the latter case, be sure not to couple your controllers to tightly, e.g. a shared libraries should not allow to share state.
+To provide their business logic, widgets and activities often depend on _libraries,_ which might be created by third parties or simply be used to share common functionality. Examples of libraries commonly used by LaxarJS widgets include:
 
-Here are some examples of controls:
+  * [moment.js](https://momentjs.com/)
+  * [LaxarJS Patterns](http://laxarjs.org/docs/laxar-patterns-latest/)
+  * [jQuery](https://jquery.com/)
+
+On the other hand, here are some examples of controls:
 
   * a select box
-  * a date picker
-  * an accordion control
   * a tab control
+  * a [date picker](https://www.npmjs.com/package/laxar-date-picker-control)
+  * an [accordion control](https://www.npmjs.com/package/laxar-accordion-control)
 
-LaxarJS helps when developing a custom control by managing and loading its AngularJS module, as well as its theme-dependent CSS style sheet for you.
+LaxarJS helps when developing a custom control by managing and loading its JavaScript implementation module, as well as its theme-dependent CSS stylesheet for you.
 If (and only if) you _use_ a control in one or more widgets, LaxarJS will load its CSS according to the current [theme](./creating_themes.md), just like with widgets and layouts.
 When you remove the control from your widget, or the widget from your page, its code and assets will no longer increase your application footprint.
 This allows you to create and distribute large libraries of controls without fear of application bloat.
@@ -28,24 +31,22 @@ This allows you to create and distribute large libraries of controls without fea
 
 ## Creating or Integrating a Control
 
-While HTML5 Web Components are very interesting, the current browser support is limited.
-For this reason, LaxarJS currently only covers the creation of a control as an AngularJS directive.
-
-Of course you can still use Web Components, jQuery UI or any other way of creating controls in your widgets, but LaxarJS currently will not manage assets for them.
-The recommended way for now is therefore to wrap such controls in an AngularJS directive.
-This can be done either for a single widget by simply adding a directive to its module, or by providing a standalone control as described in the following.
+The exact structure of a control depends on the integration technology that is used to create the control and to integrate it into the application.
+Throughout this manual, we use the `"angular"` integration technology for our examples.
+Note that controls can only be used by widgets that use the same integration technology.
+The only exception is the built-in integration technology `"plain"`, which can be used by any widget, but may be difficult to use correctly from some widget integration technologies.
 
 
 ### Creating a Control using an AngularJS directive
 
-LaxarJS does not care whether your control is installed through bower or if it is located somewhere else within your project, as long as its directory can be found by [RequireJS](http://requirejs.org/).
+LaxarJS does not care whether your control is installed through NPM or Bower, or if it is located somewhere else within your project, as long as its `control.json` descriptor can be found by the laxar loader (for webpack).
 Let us try to create a control _my-clock-control_ that displays a digital clock to the user.
 
 
 #### RequireJS Path
 
-First, choose a location for your control within your application, such as `includes/controls/my-clock`.
-In the require configuration, you will need configure the path to your new control:
+First, choose a location for your control within your application, such as `application/controls/my-clock`.
+The path `application/controls/` is the _controls-root_, and   
 
 ```JS
 paths: {
