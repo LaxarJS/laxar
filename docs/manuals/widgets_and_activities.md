@@ -9,6 +9,8 @@ Preliminary readings:
 
 * [LaxarJS Core Concepts](../concepts.md)
 
+If you are already familiar with widgets, and just need a refresher on the `widget.json` descriptor, skip to the [reference section](#widget-descriptor-format) below.
+
 
 ## Widget Responsibilities
 
@@ -46,7 +48,7 @@ To integrate widgets that were created in different UI technologies, a piece of 
 The only adapter included with LaxarJS Core is the adapter for the integration technology `"plain"`, which does not rely on any specific framework, but leaves it up to the widget author to choose what (if any) supporting libraries should be loaded by the widget.
 
 Another adapter offered by the LaxarJS project is the [laxar-angular-adapter](http://laxarjs.org/docs/laxar-angular-adapter-v2-latest/) supporting the integration technology `"angular"`, meaning AngularJS v1.
-Because `"angular"` was the built-in technology for LaxarJS v1, it is still used throughout this documentation.
+Because `"angular"` was the built-in technology for LaxarJS v1 and many developers are familiar with its basics, it is still used frequently throughout the examples in this documentation.
 
 
 #### Combining Integration Technologies
@@ -111,9 +113,6 @@ A newly created widget contains the following files:
   If Bootstrap does not suit you, feel free to use a different framework (or none at all) in [your own theme](./creating_themes.md), but keep in mind that this limits opportunities for widget reuse.
   Similarly to controllers, all widget templates will be preloaded within a single JSON file when your application is packaged for release.
 
-  You can load the template from a different source in order to support a preprocessing syntax such as [Mustache](https://mustache.github.io/) or [pug](https://pugjs.org/).
-  Simply set the `templateSource` to the respective path relative to the theme folder, such as `shopping-cart-widget.pug` and make sure that an appropriate (webpack) loader is installed.
-
 * `default.theme/css/shopping-cart-widget.css`
 
   Widget-specific _style definitions_.
@@ -121,8 +120,6 @@ A newly created widget contains the following files:
   In this case, it can do completely without CSS folders.
   Sometimes though, you have style definitions which are widget-specific (such as CSS animations) and should not be part of the global theme.
   If your widget has its own CSS file, LaxarJS will load it when the widget is used in an application, and bundle it for release.
-
-  Instead of CSS you can also use [SCSS](http://sass-lang.com/) or [LESS](http://lesscss.org/), but make sure to provide a `styleSource` entry in the `widget.json`, which must be a path within the theme-folder (for example `scss/shopping-cart-widget.scss`).
 
 * `package.json`
 
@@ -185,7 +182,7 @@ function Controller( $scope ) {
    };
 
    $scope.total = rows => rows.reduce(
-      (sum, item) => sum + item.price * item.amount,
+      (total, item) => total + item.price * item.amount,
       0
    );
 }
@@ -265,7 +262,7 @@ This makes widget styles more robust against changes in Bootstrap or other third
 When looking at the template, you might have wondered where the `features.headline.htmlText` came from.
 This is a _feature configuration_ option of our widget:
 We want to be able to control the headline text for each instance of our widget.
-For this reason, we make it configurable by adding a feature entry to the `widget.json`:
+For this reason, we specify a configuration option by adding a feature entry to the `widget.json`:
 
 ```JSON
 {
@@ -294,6 +291,9 @@ The _widget features_ are a [JSON schema](http://json-schema.org) document that 
 It contains a property for each configurable feature, and it also allows to specify default values as needed.
 This makes it easy to provide self-documenting customization options for your widget.
 See the [reference section](#reference) for details on the widget specification.
+Note that this schema is _optional_.
+If a widget descriptor does not specify a schema, any configuration will be considered valid and passed to the widget controller, which can be useful for prototyping.
+However, it is strongly recommended to add a schema before releasing a widget or putting it into production, if only to _document_ the available configuration.
 
 
 ### Checking out the Result
@@ -322,7 +322,7 @@ Before we can take a look at the widget, we will need to integrate it into the p
 }
 ```
 
-There is another manual to learn more about [writing pages](./writing_pages.md).
+I you would like to know more, there is dedicated manual to learn more about [writing pages](./writing_pages.md).
 
 Now we can start the development web server provided by LaxarJS, from the application root:
 
@@ -331,67 +331,32 @@ npm install # if you have not already
 npm start
 ```
 
-Navigate to `http://localhost:8000/debug.html` to admire the fruits of your labor:
+Navigate to `http://localhost:8080/debug.html` to admire the fruits of your labor:
 
 ![CartWidget](widgets_and_activities/cart_widget.png)
 
-Now that you have learned the basics in creating widgets, take a closer look at widget testing.
+Now that you have learned the basics in _creating_ widgets, take a closer look at widget _testing._
 
 
 ## Testing a Widget
 
 One of the major goals of LaxarJS is to simplify the development _and testing_ of isolated components.
-For this reason, the testing infrastructure for your widget has already been added when using `generator laxarjs:widget`.
+For this reason, a basic widget test has already been prepared when using `yo laxarjs:widget`.
 
 
 ### Writing Spec-Tests
 
-LaxarJS still contains a testing framework, which is deprecated starting from version 1.1.0 onwards.
-For backwards compatibility it won't be removed until the next major release 2.0.0 of LaxarJS, but when starting a new application, usage is discouraged.
-Instead the new, self-contained [LaxarJS Mocks](https://github.com/LaxarJS/laxar-mocks) framework should be used.
-There you'll also find manuals and [an introduction](https://github.com/LaxarJS/laxar-mocks/blob/master/docs/manuals/introduction.md) on how to test widgets in isolation
-
-
-
-*Introduction valid up to LaxarJS 1.1.0:*
-
-LaxarJS contains a testing infrastructure to mock out the LaxarJS runtime, effectively running your widget in a sandbox or _test bed_ as it is called in LaxarJS.
-A skeleton spec is already provided for you:
-It contains code to prepare the test bed with sample configuration and to instantiate your controller.
-
-To mock out AngularJS services such as `$http` you can work with [ngMocks](https://docs.angularjs.org/api/ngMock) just like you would do without LaxarJS.
-To add a simple test for our widget, replace the existing dummy test
-
-```JS
-it( 'still needs some tests.' );
-```
-
-with a more useful spec:
-
-```JS
-it( 'allows to calculate a total of its contents', function() {
-    expect( testBed_.scope.total( testBed_.scope.model ) ).toEqual( 61.75 );
-} );
-```
-
-Tests get more interesting when you instrument the testbed to publish mock events to be handled by the widget controller, and in turn to inspect events published by the widget.
-For more details on testing event bus communication, refer to the [article on events](./events.md).
+For testing widgets and activities in isolation, we recommend to use the library [LaxarJS Mocks](//laxarjs.org/docs/laxar-mocks-v2-latest/), which allows to setup a test bed for widgets that were created in any integration technology.
+There you'll also find manuals and [an introduction](//laxarjs.org/docs/laxar-mocks-v2-latest/manuals/introduction/) on how to test widgets in isolation.
 
 
 ### Running the Test
 
-Now make sure that the development web server is still running and check out the test results using the [provided spec runner](http://localhost:8000/includes/widgets/shopping-cart-widget/spec/spec_runner.html):
+TODO: link to laxar-mocks docs on running in the browser
 
-![CartWidget](widgets_and_activities/cart_widget_spec.png)
+TODO: link to laxar-mocks docs on running with karma
 
-Alternatively, you can run the tests for all your widgets from the command line:
-
-```JS
-npm test
-```
-
-LaxarJS provides [grunt tasks](https://github.com/LaxarJS/grunt-laxar) for testing that automatically set up and run [PhantomJS](http://phantomjs.org/) for you, so you should not run into problems accessing the DOM.
-Hopefully this makes it simple to set up continuous integration for your application.
+Hopefully this makes it simple to set up continuous testing for your application.
 
 
 <a name="reference"></a>
@@ -401,9 +366,9 @@ Building on top of the basics covered so far, sometimes it is helpful to know ab
 This section covers the details of the widget specification format and the properties available on the `$scope` in case of an AngularJS widget.
 
 
-### The Widget Specification Format
+### Widget Descriptor Format
 
-Each widget has a `widget.json` file which is also called _widget specification_.
+Each widget has a `widget.json` file which is also called _widget descriptor_.
 LaxarJS contains a [widget schema definition](../../static/schemas/widget.json) that defines the exact format of this file.
 These are the most important widget properties:
 
@@ -428,26 +393,43 @@ These are the most important widget properties:
   An optional list of new LaxarJS features that this widget is compatible with.
   It allows individual widgets to _opt in_ to breaking LaxarJS changes (similarly to the Python _import from future_ construct), without harming widgets that do not yet support these changes.
 
+  In the past, this was used to opt-in to a new event vocabulary.
+  Right now, there are no upcoming features to be activated here.
+
 * `controls`
 
   An optional list of LaxarJS controls used by this widget.
-  Each control is represented by its RequireJS path.
-  This allows the LaxarJS runtime to automatically load the AngularJS modules and CSS styles associated with these controls whenever your widget is used.
-  Refer to [Providing Controls](./providing_controls.md) for on loading user interface components and their resources in this manner.
+  Each control is represented by its path, which may either be relative to the controls-root (usually `application/controls`) or resolvable by the module loader (webpack).
+  This allows the LaxarJS runtime to automatically load the modules and CSS styles associated with these controls whenever your widget is used.
+  Refer to [Providing Controls](./providing_controls.md) on loading user interface components and their resources in this manner.
+
+* `templateSource`
+
+  You can load the template from a different source in order to support a preprocessing syntax such as [Mustache](https://mustache.github.io/) or [pug](https://pugjs.org/).
+  Simply set the `templateSource` to the respective path relative to the theme folder, such as `shopping-cart-widget.pug` and make sure that an appropriate (webpack) loader is installed.
+
+* `styleSource`
+
+  Instead of CSS you can also use [SCSS](http://sass-lang.com/) or [LESS](http://lesscss.org/), by providing this entry in the `widget.json`, which must be a path within the theme-folder (for example `scss/shopping-cart-widget.scss`).
+  Make sure that you have a (webpack) loader installed to handle the file type of your choice.
 
 
-### The Widget Scope
+### Widget Services
 
-The widget controller and the template have access to the widget scope.
-The scope may be used by widget controllers to communicate with directives such as `ngForm`.
-To avoid entanglement, multiple widgets (even if nested) do *not* communicate through the scope but *always use the event bus* for this.
+The widget controller has access to a set of injectable widget services, which are described in detail in the [manual on widget services](./widget_services.md).
+
+When using the integration technology `"angular"`, these are passed as AngularJS controller injections, along with the AngularJS `$scope`.
+The LaxarJS angular adapter puts some additional properties on the scope that simplify writing templates and controller logic:
+
+* `$scope.features`
+
+  An alias to the `axFeatures` widget service injection, useful for (one-time) template bindings.
 
 * `$scope.eventBus`
 
-  Most of the time, this is the only LaxarJS scope property used by widget controllers.
-  Of course, controllers will almost always add their own properties.
+  An alias to the `axEventBus` widget service injection, for publish/subscribe interaction.
 
 * `$scope.widget.id`
 
-  A unique identifier for this widget within the page.
-  You can use it to generate unique DOM IDs, for example to connect `label` and `input` elements in an HTML form.
+ A unique identifier for this widget within the page.
+ You can use it to generate unique DOM IDs, for example to connect `label` and `input` elements in an HTML form.

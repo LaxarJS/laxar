@@ -8,7 +8,7 @@ If you're already developing your first widgets and want to know which programma
 
 * [Widgets and Activities](widgets_and_activities.md)
 
-   Learn about the building blocks of a LaxarJS application.
+   Learn about the central building blocks of a LaxarJS application, and the basics on _integration technologies_.
 
 * [Writing Pages](writing_pages.md)
 
