@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#432](https://github.com/LaxarJS/laxar/issues/432): router: replaced page.js with Navigo
+    + **BREAKING CHANGE:** see ticket for details
 - [#385](https://github.com/LaxarJS/laxar/issues/385): removed CSS loader
     + **BREAKING CHANGE:** see ticket for details
 

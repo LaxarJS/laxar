@@ -15,6 +15,7 @@ const isBrowserSpec = nodeEnv === 'browser-spec';
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const baseConfig = {
+   devtool: '#source-map',
    entry: {
       laxar: './laxar.js',
       polyfills: './polyfills.js'
@@ -77,7 +78,7 @@ function distConfig() {
    function distConfigItem( entry, output, optionalOptions ) {
       const options = Object.assign( {
          minify: false,
-         externals: { 'page': 'page' },
+         externals: { 'navigo': 'navigo' },
          library: 'laxar'
       }, optionalOptions || {} );
 
