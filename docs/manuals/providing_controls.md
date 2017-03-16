@@ -43,25 +43,15 @@ LaxarJS does not care whether your control is installed through NPM or Bower, or
 Let us try to create a control _my-clock-control_ that displays a digital clock to the user.
 
 
-#### RequireJS Path
+#### Controls Directory
 
 First, choose a location for your control within your application, such as `application/controls/my-clock`.
-The path `application/controls/` is the _controls-root_, and   
-
-```JS
-paths: {
-   // ...
-   'my-clock-control': '../includes/controls/my-clock-control'
-}
-```
-
-This assumes that `bower_components` is your RequireJS `baseUrl`.
-Note that using this base URL has the advantage that no RequireJS configuration is necessary when using a control that was installed through Bower, as long as widgets use the bower-registered name when referencing the control.
+The path `application/controls/` is the _controls-root_, and can be overwritten by creating a `laxar.config.js` with `paths.controls` export.
 
 
 #### The Control Descriptor
 
-Just like widgets, controls have a small JSON descriptor _(control.json)_ which instructs the runtime on how to load the control.
+Just like widgets, controls have a small JSON descriptor _(control.json)_ which instructs the runtime on how to load the control, and where to look for styles.
 Here is the descriptor for our clock control:
 
 ```json
@@ -74,14 +64,14 @@ Here is the descriptor for our clock control:
 ```
 
 To ensure compatibility between each widget and its controls, both must use the same _integration technology_.
-Since LaxarJS 1.1, "angular" and "plain" are supported for controls out-of-the-box, and other technologies can be added through *adapters*, such as the [laxar-react-adapter](https://github.com/LaxarJS/laxar-react-adapter).
-The _name_ helps the LaxarJS runtime to load the correct AngularJS module and the right CSS styles.
-So, even if the directory or the RequireJS paths were something else, the runtime would still be able to load the control.
+The technology `"plain"` is supported for controls out-of-the-box, and other technologies can be added through *adapters*, such as the [laxar-angular-adapter](https://github.com/LaxarJS/laxar-angular-adapter).
+The _name_ allows the LaxarJS runtime to load the correct implementation module and the right CSS styles.
+So even if using a folder of a different name, or a control installed from NPM, the runtime would still be able to load the control.
 
 
 #### AngularJS Directive
 
-Now let us create the AngularJS module for the control, in `includes/controls/my-clock-control/my-clock-control.js`:
+Now let us create the AngularJS module for the control, in `application/controls/my-clock-control/my-clock-control.js`:
 
 ```JS
 define( [ 'angular', 'text!./my-clock-control.html' ], function( ng, clockTemplate ) {
@@ -114,12 +104,11 @@ define( [ 'angular', 'text!./my-clock-control.html' ], function( ng, clockTempla
 ```
 
 We use a prefix _(my)_ for the control and for the filter- and directive-names to avoid collisions with other controls and directives, as well as future HTML elements.
-Make sure to return the AngularJS module from your AMD module as shown here, so that LaxarJS can use it when bootstrapping your application.
 
 
 #### AngularJS Template
 
-To add an actual Let us create a simple template at `includes/controls/my-clock-control/my-clock-control.html`.
+Let us create a simple template at `application/controls/my-clock-control/my-clock-control.html`.
 
 ```HTML
 <span class="my-clock">
@@ -127,13 +116,14 @@ To add an actual Let us create a simple template at `includes/controls/my-clock-
 </span>
 ```
 
-It is recommended to use the control name as a prefix for any custom CSS classes, to avoid collision with other controls and libraries.
+It is recommended to use the control name as a prefix for any custom CSS classes as shown here, to avoid collision with other controls and libraries.
+
 
 
 #### The CSS Style Sheet
 
 To automatically load your CSS depending on the theme, it has to be placed into a sub-directory `default.theme/css` of your require path and its file name must correspond to the control descriptor.
-In case of the clock control, the correct path would be `includes/controls/my-clock-control/default.theme/my-clock-control.css`.
+In case of the clock control, the correct path would be `application/controls/my-clock-control/default.theme/my-clock-control.css`.
 
 ```CSS
 .my-clock {
@@ -145,6 +135,8 @@ In case of the clock control, the correct path would be `includes/controls/my-cl
 }
 ```
 
+Not that for controls, _theme folders_ are only used for stylesheets, not for templates.
+
 
 ### Using a Control from a Widget
 
@@ -154,7 +146,7 @@ Any widget that uses our clock should declare its AMD dependency using `controls
 "controls": [ "my-clock-control" ],
 ```
 
-This allows the runtime to load the RequireJS module and to register the AngularJS module during bootstrapping.
+This allows the runtime to load control module and to register the AngularJS module during bootstrapping.
 Additionally this causes the control CSS to be loaded from the correct theme, and to be bundled when creating a release-version of your application.
 
 To actually get the control onto the screen, you have to reference it from your widget's HTML template:
@@ -171,7 +163,5 @@ After adding your widget to a page, you may inspect your timepiece in the browse
 
 ## Creating or Integrating a Library
 
-Adding custom libraries is even simpler than adding controls, because usually they do not need to load theme-specific CSS or to have their AngularJS modules managed (if they do, try turning them into controls or activities respectively).
-Just put the library somewhere within your project (preferably using Bower) and make sure that it can be referenced using a RequireJS path.
-If the library is not AMD-compatible, you may need to add RequireJS [shim configuration](http://requirejs.org/docs/api.html#config-shim) in order to load it.
-Usually, a specific artifact (widget, activity or control) will depend on your library, so that it makes sense to add the library to that artifact's `bower.json`.
+Adding custom libraries is even simpler than adding controls, because usually they do not need to load theme-specific CSS or to have their AngularJS modules managed by the laxar-angular-adapter (if they do, try turning them into controls or activities respectively).
+Just put the library somewhere within your project (preferably using NPM) and make sure that it can be resolved and loaded by webpack.
