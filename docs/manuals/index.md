@@ -45,7 +45,7 @@ If you're already developing your first widgets and want to know which programma
 
 ## Advanced Manuals
 
-* [Asset Lookup and the FileResourceProvider](asset_lookup.md)
+* [Asset Lookup and the Artifacts Bundle](asset_lookup.md)
 
    How CSS, HTML and other static assets are resolved and loaded.
 

@@ -97,6 +97,16 @@ Note that CSS and HTML files are treated separately:
 You can choose to override the CSS but not the HTML or vice versa.
 
 
+### Looking up CSS for a Control
+
+Controls take care of their own HTML loading (if required at all), so the choice of theme has no effect here.
+The CSS styling of a control however is theme-specific.
+For a control named _"C"_ in its `control.json` descriptor, it works as follows:
+Before looking for the default theme in `<control-path>/default.theme/css/C.css`, LaxarJS looks for a theme override in `<theme-path>/controls/C/css/C.css`.
+Here, the `<theme-path>` refers to the folder containing your global theme, and the `<control-amd-path>` is the same path that widgets specify in their `widget.json` descriptor to include a control.
+Have a look at the [manual on controls](./providing_controls.md) for details.
+
+
 ### Looking up CSS and HTML for a Layout
 
 Themes are intended to be reusable across applications.
@@ -104,12 +114,3 @@ Because layouts are highly specific to an application, usually their CSS and HTM
 However, like with widgets it is possible to style application layouts externally using the sub-folder `layouts` of the theme in use.
 For lookup, the same process as for widgets is used:
 First, LaxarJS searches the theme itself, then the theme folder within the layout, before finally falling back to the default theme.
-
-
-### Looking up CSS for a Control
-
-Controls take care of their own HTML loading (if required at all), so the choice of theme has no effect here.
-The CSS styling however is theme specific:
-Before looking for the default theme in `<control-amd-path>/default.theme/css/<control-name>.css`, LaxarJS looks for a theme specific override in `<theme-path>/controls/<control-amd-path>/css/<control-name>.css`.
-Here, the `<theme-path>` refers to the folder containing your global theme, and the `<control-amd-path>` is the same path that widgets specify in their `widget.json` descriptor to include a control.
-Have a look at the [manual on controls](./providing_controls.md) for details.
