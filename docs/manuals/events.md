@@ -145,7 +145,7 @@ Validation and other patterns are described in the following section.
 <a name="pattern-reference"></a>
 ## Pattern Reference
 
-A few event patterns are supported directly by LaxarJS, while others are described in the _[LaxarJS Patterns](https://github.com/LaxarJS/laxar-patterns#laxarjs-patterns)_ library.
+A few event patterns are supported directly by LaxarJS, while others are described in the _[LaxarJS Patterns](https://laxarjs.org/docs/laxar-patterns-v2-latest/)_ library.
 Have a good look at all of them before coming up with your own patterns, in order to maximize the synergy of your widgets, especially when aiming for reuse.
 
 

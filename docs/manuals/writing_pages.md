@@ -59,7 +59,7 @@ Having not added any layouts so far, we thus get the following page file:
 When adding widgets to an area, their order determines the order in which the widgets will be rendered in the DOM.
 Each entry in the array is an object that can either reference a widget or a [composition](#compositions).
 It thus needs to specify either `widget` or `composition` as key.
-Additionally an `id` property can be provided, which may be useful for debugging and is actually required for widgets providing embedded widget areas like the  [laxar-details-layer-widget](https://github.com/LaxarJS/ax-details-layer-widget).
+Additionally an `id` property can be provided, which may be useful for debugging and is actually required for widgets providing embedded widget areas such as the  [laxar-details-layer-widget](https://www.npmjs.com/package/laxar-details-layer-widget).
 If specifying an ID, make sure that it is unique page-wide (even taking into account inheritance).
 Finally it is possible to provide the configuration for features of a widget or a composition under the key `features`.
 

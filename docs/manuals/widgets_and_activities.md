@@ -47,14 +47,14 @@ To integrate widgets that were created in different UI technologies, a piece of 
 
 The only adapter included with LaxarJS Core is the adapter for the integration technology `"plain"`, which does not rely on any specific framework, but leaves it up to the widget author to choose what (if any) supporting libraries should be loaded by the widget.
 
-Another adapter offered by the LaxarJS project is the [laxar-angular-adapter](http://laxarjs.org/docs/laxar-angular-adapter-v2-latest/) supporting the integration technology `"angular"`, meaning AngularJS v1.
+Another adapter offered by the LaxarJS project is the [laxar-angular-adapter](https://laxarjs.org/docs/laxar-angular-adapter-v2-latest/) supporting the integration technology `"angular"`, meaning AngularJS v1.
 Because `"angular"` was the built-in technology for LaxarJS v1 and many developers are familiar with its basics, it is still used frequently throughout the examples in this documentation.
 
 
 #### Combining Integration Technologies
 
 You are encouraged to evaluate different integration technologies for use in your project, especially if you are starting from scratch
-For now, the LaxarJS project provides adapters for the technologies [`react`](http://laxarjs.org/docs/laxar-react-adapter-v2-latest/),  [`angular2`](http://laxarjs.org/docs/laxar-angular2-adapter-v2-latest/) and [`vue`](http://laxarjs.org/docs/laxar-vue-adapter-v2-latest/).
+For now, the LaxarJS project provides adapters for the technologies [`react`](https://laxarjs.org/docs/laxar-react-adapter-v2-latest/),  [`angular2`](https://laxarjs.org/docs/laxar-angular2-adapter-v2-latest/) and [`vue`](https://laxarjs.org/docs/laxar-vue-adapter-v2-latest/).
 Once familiar with the basics, feel free to [create your adapter](./adapters.md).
 
 However, keep in mind that each integration technology adds to your overall application bundle size, impacting application load time and memory consumption.
@@ -64,7 +64,7 @@ Of course, `"plain"` is always free and does not weigh in here.
 
 ## How to Create a Widget
 
-The easiest way to create a widget is to use the [LaxarJS Yeoman generator](https://github.com/LaxarJS/generator-laxarjs).
+The easiest way to create a widget is to use the [LaxarJS Yeoman generator](http://laxarjs.org/docs/generator-laxarjs-v2-latest/).
 Check out the [README](../../README.md) on how to obtain it, and how to use it for creating an application.
 
 Start by creating a sub-directory for your new widget within the LaxarJS application.
@@ -145,7 +145,7 @@ None of these files are loaded during regular application runtime.
   This should be a [Jasmine 2](https://jasmine.github.io/2.5/introduction.html) spec test.
   If you used the LaxarJS generator to setup your application including configuration for karma and webpack, this spec can be run on the command-line using [karma](http://karma-runner.github.io/1.0/index.html), or as an interactive HTML test in the browser, by using the [webpack-jasmine-html-runner-plugin](https://github.com/LaxarJS/webpack-jasmine-html-runner-plugin).
 
-  TODO: (link to) instructions on running tests
+For projects that were generated using the Yeoman generator for LaxarJS, you can start the karma test-runner for your widgets using `npm test`.
 
 
 ### Implementing a Controller
@@ -346,16 +346,13 @@ For this reason, a basic widget test has already been prepared when using `yo la
 
 ### Writing Spec-Tests
 
-For testing widgets and activities in isolation, we recommend to use the library [LaxarJS Mocks](//laxarjs.org/docs/laxar-mocks-v2-latest/), which allows to setup a test bed for widgets that were created in any integration technology.
-There you'll also find manuals and [an introduction](//laxarjs.org/docs/laxar-mocks-v2-latest/manuals/introduction/) on how to test widgets in isolation.
+For testing widgets and activities in isolation, we recommend to use the library [LaxarJS Mocks](https://laxarjs.org/docs/laxar-mocks-v2-latest/), which allows to setup a test bed for widgets that were created in any integration technology.
+There you'll also find manuals and [an introduction](https://laxarjs.org/docs/laxar-mocks-v2-latest/manuals/introduction/) on how to test widgets in isolation.
 
 
 ### Running the Test
 
-TODO: link to laxar-mocks docs on running in the browser
-
-TODO: link to laxar-mocks docs on running with karma
-
+The [laxarJS Mocks Setup Instructions](https://laxarjs.org/docs/laxar-mocks-v2-latest/) explain how to run widget tests from the command line using karma, or interactively using a generated HTML test runner.
 Hopefully this makes it simple to set up continuous testing for your application.
 
 

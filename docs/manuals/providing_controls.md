@@ -13,7 +13,7 @@ Preliminary readings:
 To provide their business logic, widgets and activities often depend on _libraries,_ which might be created by third parties or simply be used to share common functionality. Examples of libraries commonly used by LaxarJS widgets include:
 
   * [moment.js](https://momentjs.com/)
-  * [LaxarJS Patterns](http://laxarjs.org/docs/laxar-patterns-latest/)
+  * [LaxarJS Patterns](https://laxarjs.org/docs/laxar-patterns-latest/)
   * [jQuery](https://jquery.com/)
 
 On the other hand, here are some examples of controls:
@@ -64,7 +64,7 @@ Here is the descriptor for our clock control:
 ```
 
 To ensure compatibility between each widget and its controls, both must use the same _integration technology_.
-The technology `"plain"` is supported for controls out-of-the-box, and other technologies can be added through *adapters*, such as the [laxar-angular-adapter](https://github.com/LaxarJS/laxar-angular-adapter).
+The technology `"plain"` is supported for controls out-of-the-box, and other technologies can be added through *adapters*, such as the [laxar-angular-adapter](laxarjs.org/docs/laxar-angular-adapter-v2-latest/).
 The _name_ allows the LaxarJS runtime to load the correct implementation module and the right CSS styles.
 So even if using a folder of a different name, or a control installed from NPM, the runtime would still be able to load the control.
 

@@ -95,7 +95,7 @@ No special magic is attached to the `widgets` sub-key of the configuration, exce
 
 ## Testing a Module that Uses Configuration
 
-To simplify testing, [LaxarJS Mocks](http://laxarjs.org/docs/laxar-mocks-v2-latest/) always uses a mock configuration instance when loading widgets in spec-tests.
+To simplify testing, [LaxarJS Mocks](https://laxarjs.org/docs/laxar-mocks-v2-latest/) always uses a mock configuration instance when loading widgets in spec-tests.
 Refer to the [Configuration Mock API docs](../api/testing.configuration_mock.md#create) or to the [LaxarJS Mocks API docs] for details.
 
 

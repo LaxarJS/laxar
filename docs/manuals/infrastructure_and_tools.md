@@ -13,7 +13,7 @@ Preliminary readings:
 * [LaxarJS Widgets and Activities](../widgets_and_activities.md)
 
 > *Note:* with LaxarJS v2.0, the grunt-based infrastructure was replaced by a webpack-based system.
-> For the previous manual, make sure to browse the [LaxarJS v1 documentation](http://laxarjs.org/docs/laxar-v1-latest/).
+> For the previous manual, make sure to browse the [LaxarJS v1 documentation](https://laxarjs.org/docs/laxar-v1-latest/).
 
 
 ## Application Lifecycle
@@ -94,13 +94,17 @@ This avoids additional HTTP roundtrips in production, as well as during developm
 
 ## Webpack and the laxar-loader
 
-TODO: Intro on webpack
-
 Most modern single page applications are no longer developed using just a text editor, and instead rely on additional development- and build-tools.
-The NPM module [laxar-loader](laxarjs.org/docs/laxar-loader-v2-latest/) helps to load LaxarJS application artifacts using webpack 2.
-Used on a flow definition, this loader will bundle up all required artifacts, by following the flow via its pages and widgets to its controls and layouts.
+The NPM module [laxar-loader](laxarjs.org/docs/laxar-loader-v2-latest/) helps to load LaxarJS application artifacts that using the popular [Webpack application bundler](https://webpack.js.org/).
+Used on a flow definition, this laxar-loader will bundle up all required artifacts, by following the flow via its pages and widgets to its controls and layouts.
+
+LaxarJS does not actually require you to use webpack (for previous version, using RequireJS as loader was mandatory), because it does not perform module loading at runtime.
+However, to use a different toolchain, you will to generate the artifacts bundle yourself.
+If you need to do so, look into the laxar-loader and its dependency [laxar-tooling](laxarjs.org/docs/laxar-tooling-v2-latest/) for inspiration.
 
 
 ### Running the Development Server
 
-TODO: Running webpack-dev-server
+The excellent [DevServer for webpack](https://webpack.js.org/configuration/dev-server/) allows you to quickly prototype and review changes to your widget.
+Depending on the integration technology, you might even be able to "hot-reload" widget templates without reloading the browser window.
+For projects created with the Yeoman generator for LaxarJS, you can run the DevServer using `npm start`.

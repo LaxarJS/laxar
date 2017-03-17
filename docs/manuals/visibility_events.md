@@ -100,11 +100,11 @@ The scope-property `isVisible` is maintained by the visibility handler as well, 
 ## Advanced: Controlling Visibility through Events
 
 Most widgets just need to *react* to visibility changes.
-Other widgets *provide* areas themselves, directly (like the [laxar-accordion-widget](https://github.com/LaxarJS/ax-accordion-widget)) or through embedded layouts (like the [laxar-popup-widget](https://github.com/LaxarJS/ax-popup-widget)).
+Other widgets *provide* areas themselves, directly (like the [laxar-accordion-widget](https://www.npmjs.com/package/laxar-accordion-widget)) or through embedded layouts (like the [laxar-popup-widget](https://www.npmjs.com/package/laxar-popup-widget)).
 
 Controlling visibility of embedded areas from a widget includes two tasks:
 
-  * responding two visibility requests for the provided widget areas
+  * responding to visibility requests for the provided widget areas
 
   * trigger visibility requests to inform the runtime and other widgets after actively changing an area's visibility.
 

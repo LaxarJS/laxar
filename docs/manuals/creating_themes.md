@@ -60,7 +60,7 @@ After explaining themes in general, further down we give instructions on [creati
 <a name="creating-a-theme"></a>
 ## Creating Your Own Theme
 
-Let us create our own theme for an existing application, the [LaxarJS ShopDemo](http://laxarjs.org/demos/shopdemo/).
+Let us create our own theme for an existing application, the [LaxarJS ShopDemo](https://laxarjs.org/demos/shopdemo/).
 The ShopDemo brings it's own _"cube.theme"_, which is implemented by augmenting Bootstrap with some changes and custom additions, such as the circle icons used with the headlines.
 
 ![LaxarJS ShopDemo using cube theme](creating_themes/shop_demo_cube_50.png)
@@ -220,7 +220,8 @@ Fortunately, an SCSS-version of the darkly theme is available, and can be instal
 
 The [SCSS for our theme](https://github.com/LaxarJS/shop-demo/tree/master/includes/themes/darkly_scss.theme/scss) is little more than a couple of imports.
 
-TODO: webpack config
+Just make sure to adjust the webpack configuration of the project (`webpack.config.js`) to add all the import paths needed by your theme's SCSS.
+The default theme configuration provided by the LaxarJS contains example configuration of the `includePaths` option for the webpack `sass-loader` that you can use as a starting point.
 
 The advantage of using an SCSS theme is that we can now write concise widget styles using central variables.
 As an example, here is the SCSS file for the _article-browser-widget_:
