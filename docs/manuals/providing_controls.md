@@ -37,7 +37,7 @@ Note that controls can only be used by widgets that use the same integration tec
 The only exception is the built-in integration technology `"plain"`, which can be used by any widget, but may be difficult to use correctly from some widget integration technologies.
 
 
-### Creating a Control using an AngularJS directive
+### Creating an `angular` Control using a Directive
 
 LaxarJS does not care whether your control is installed through NPM or Bower, or if it is located somewhere else within your project, as long as its `control.json` descriptor can be found by the laxar loader (for webpack).
 Let us try to create a control _my-clock-control_ that displays a digital clock to the user.

@@ -237,7 +237,7 @@ The parts already provided by the base page can then be deleted from the extendi
 Also, an extending page can add widgets to an area that already contains widgets from the base page.
 Widgets added by the extending page will be appended to the corresponding area and thus appear in the DOM after the widgets from the base page.
 If a widget of the extending page needs to appear precisely before a specific widget of the base page, this can be achieved using the keyword `insertBeforeId`.
-For this to work, it is of course necessary to specify an `id` property for the  widget in the base page.
+For this to work, it is of course necessary to specify an `id` property for the widget in the base page.
 
 Let us assume that we would like to add another additional headline in one extending page.
 We therefore change the base page first and add an ID to the existing headline:

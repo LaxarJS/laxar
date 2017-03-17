@@ -165,7 +165,8 @@ More often however, the UI part should be reused as a "dumb" control, with widge
 ### Libraries
 
 Widgets may use _libraries_ such as _jQuery_ or _moment.js_ just like in any JavaScript web application.
-LaxarJS currently provides a development workflow based on [grunt](http://gruntjs.com/), [bower](http://bower.io/), and [RequireJS](http://requirejs.org/) in order to install and load widgets with their assets as well as libraries, but other tool-chains are not out of the question.
+
+Since version 2, LaxarJS, provides a development workflow based on [NPM](http://npmjs.com/) and [webpack](https://webpack.js.org/) in order to install and load widgets with their asset and library dependencies, but as there are no runtime dependencies to these tools, adapting a different toolchain for use with LaxarJS should not be too hard.
 
 To establish a useful common base vocabulary for use with the event bus, the [LaxarJS Patterns](https://github.com/LaxarJS/laxar-patterns) library is provided.
 It contains helpers that make it easy for widgets to talk about user actions, common (REST) resources and boolean flags.
