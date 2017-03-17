@@ -12,7 +12,7 @@ Preliminary readings:
 * [LaxarJS Core Concepts](../concepts.md)
 * [LaxarJS Widgets and Activities](../widgets_and_activities.md)
 
-> *Note:* with LaxarJS v2.0, the grunt-based infrastructure was replaced with a webpack-based system.
+> *Note:* with LaxarJS v2.0, the grunt-based infrastructure was replaced by a webpack-based system.
 > For the previous manual, make sure to browse the [LaxarJS v1 documentation](http://laxarjs.org/docs/laxar-v1-latest/).
 
 

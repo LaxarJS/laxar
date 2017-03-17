@@ -67,4 +67,4 @@ If you're already developing your first widgets and want to know which programma
 
 * [Creating an Adapter for a new Widget Technology](adapters.md)
 
-   Tired of writing widgets in AngularJS? Learn how to adapt any MVC technology for creating LaxarJS widgets.
+   Learn how to adapt any MVC technology for creating LaxarJS widgets.
