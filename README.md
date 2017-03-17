@@ -5,23 +5,25 @@
 
 ## Why LaxarJS?
 
-Find out [why](//laxarjs.org/docs/laxar-latest/why_laxar/) you would use LaxarJS and if it's the right tool for you.
-Then, explore the [core concepts](http://laxarjs.org/docs/laxar-latest/concepts/) and browse the [manuals](//laxarjs.org/docs/laxar-latest/manuals/) in the [documentation](//laxarjs.org/docs/laxar-latest/).
+Find out [why](docs/why_laxar.md) you would use LaxarJS and if it's the right tool for you.
+Then, explore the [core concepts](docs/concepts.md) and browse the [manuals](docs/manuals/index.md) in the [documentation](docs).
 
-Have a look at the [LaxarJS homepage](http://laxarjs.org) for demos and more information.
+Have a look at the [LaxarJS website](http://laxarjs.org) for demos and more information.
 
 
 ## Getting Started
 
-*Warning:* This is the LaxarJS *development branch.*
-You may want to browse the [LaxarJS release documentation](http://laxarjs.org/docs/laxar-latest/).
+<span class="laxar-developer-view">
+   Take a look at the <a href="http://www.laxarjs.org/docs/laxar-latest">documentation site</a> to browse documentation for all releases of this artifact.
+</span>
 
+Here are the basic instructions to get started:
 
 ### Requirements
 
 LaxarJS v2 can be loaded without installing additional dependencies:
 
-The release bundle `laxar/dist/laxar.with-deps.js` contains LaxarJS itself as well as its dependencies ([jjv](https://github.com/acornejo/jjv), [jjve](https://github.com/silas/jjve) and [page.js](https://visionmedia.github.io/page.js/)).
+The release bundle `dist/laxar.with-deps.js` contains LaxarJS itself as well as its only dependency, the [Navigo](https://github.com/krasimir/navigo) micro-library for routing.
 
 However, the following browser capabilities are required:
 
@@ -31,12 +33,12 @@ However, the following browser capabilities are required:
    + Fetch
    + Array.from
 
-These polyfills can simply be obtained by loading `dist/polyfills.js` through a script tag.
+Polyfills for these features can be obtained by simply loading `dist/polyfills.js` through a script tag.
 
 
 ### Hacking LaxarJS itself
 
-Instead of using a compiled library within a project, you can also clone this repository:
+Instead of using the compiled library within a project, you can also clone this repository:
 
 ```sh
 git clone https://github.com/LaxarJS/laxar.git

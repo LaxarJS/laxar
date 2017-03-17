@@ -27,8 +27,6 @@ A third more advanced property, namely `mergedFeatures`, will be explained later
 
 Let us start with a simple `popup_composition`:
 
-TODO: quick explanation on `axRole` and `format`
-
 ```JSON
 {
    "features": {
@@ -90,6 +88,7 @@ TODO: quick explanation on `axRole` and `format`
 ```
 
 The syntax of the example should be familiar to authors of widgets and pages, but also exhibits some composition-specific characteristics.
+If you do not know the `axRole` and `format` metadata keywords, you may ignore them, as they are not related to the compositions feature, but only used by development tools.
 
 
 ### Composition Features

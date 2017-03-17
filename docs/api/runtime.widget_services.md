@@ -154,7 +154,7 @@ in order to limit item visibility to this specific instance.
 #### <a id="axTooling"></a>axTooling `undefined`
 
 Access to the tooling provider API.
-TODO Fix the type (and document toolingProviders)
+TODO (#404) Fix the type (and document toolingProviders)
 
 #### <a id="axVisibility"></a>axVisibility [`AxVisibility`](runtime.widget_services_visibility.md#AxVisibility)
 
