@@ -28,7 +28,7 @@ The release bundle `dist/laxar.with-deps.js` contains LaxarJS itself as well as 
 However, the following browser capabilities are required:
 
  - native ES5 support (MSIE < 9 is *not* supported)
- - Support for the following ES6 features (native or polyfilled):
+ - Support for the following ES6 features (native or poly-filled):
    + Promise
    + Fetch
    + Array.from
@@ -46,7 +46,7 @@ cd laxar
 npm install
 ```
 
-To see changes in your application, either configure your project to work with the sources (e.g. by using webpack), or rebuild the webpack bundles by running `npm run dist`.
+To see changes in your application, either configure your project to work with the sources (e.g. by using Webpack), or rebuild the Webpack bundles by running `npm run dist`.
 
 To run the automated karma tests:
 
