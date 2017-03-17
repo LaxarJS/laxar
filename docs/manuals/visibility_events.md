@@ -68,7 +68,20 @@ Note that widget DOM is *not destroyed* again after the initial attach, until th
 If a widget uses a template with a large number of bindings, it may be beneficial to *cut off* these bindings when invisible, for example by using `ngIf` in an AngularJS widget (next section).
 
 
-### Manual Handling in Controllers & Templates
+### Manual Handling and Controlling using `axVisibility`
+
+Widgets that need to react to changes of their own visibility should use the `axVisibility` service injection.
+The `axVisibility` injection allows to register callbacks using `onShow`, `onHide`, to query the current visibility of a widget using `isVisible()`, and event to `track` the visibility as a property for use in templates (e.g. on the `$scope` of AngularJS widgets).
+
+For widgets that provide their own widget areas and need to change their visibility (accordion widgets, popup widgets, tabbing widgets) the `axVisibility` service provides an `updateAreaVisibility` method.
+
+For full information, refer to the [axVisibility API documentation](.,/api/runtime.widget_services_visibility.md).
+
+
+### Advanced: Visibility Propagation over the Event Bus
+
+Similar to how `axI18n` is an abstraction over locale change events, the `axVisibility` injection encapsulates _area visibility change events_.
+Usually you do not have to worry about these details and just use the `axVisibility` injection, but read on for a full understanding on how widget visibility is negotiated.
 
 Widget controllers can subscribe to `didChangeAreaVisibility.{area}.{visible}` events.
 
@@ -79,63 +92,12 @@ Widget controllers can subscribe to `didChangeAreaVisibility.{area}.{visible}` e
   * The `visible` value (`true` or `false`) confers the new visibility status of the area and is usually not pre-selected when subscribing.
     The event payload contains this status as well , under a boolean attribute `.visible`.
 
-To simplify handling, the [visibility handler](https://github.com/LaxarJS/laxar-patterns/blob/master/docs/api/visibility.js.md) in the utility library [LaxarJS Patterns](https://github.com/LaxarJS/laxar-patterns#laxarjs-patterns-) may be used.
-Here is an example for an AngularJS widget:
-
-```js
-define( [ 'angular', 'laxar-patterns' ], function( ng, patterns ) {
-   Controller.$inject = [ '$scope' ];
-   function Controller( $scope ) {
-      patterns.visibility.handlerFor( $scope, {
-         onShow: startExpensiveStuff,
-         onHide: stopExpensiveStuff
-      } );
-   }
-   // ...
-} );
-```
-
 In the *HTML-template*, `ng-if="isVisible"` may be used to toggle (portions of) the template based on visibility.
 Not that this is not useful to speed up initial rendering, due to the automatic DOM handling described above.
 The scope-property `isVisible` is maintained by the visibility handler as well, so make sure to have the controller instantiate it.
 
 
-### Manual Handling in Directives
-
-AngularJS directives get special support through the `axVisibilityService` injection.
-Usually, controls (such as directives) should not interact with the event bus directly:
-because their lifetime is coupled to the DOM, they might not receive arbitrary events.
-So, usually the widget controller should pass visibility information to controls using some kind of binding.
-
-However, AngularJS directives may also use the visibility service provided by the runtime, to handle visibility themselves.
-For example, imagine a clock directive that renders an animated, analogue clock.
-Naturally, the clock animation should pause while the widget containing the clock is invisible:
-
-```js
-module.directive( 'myClockControl', [
-   'axVisibilityService',
-   function( visibilityService ) {
-      return {
-         link: function( scope ) {
-            var handler = visibilityService.handlerFor( scope )
-               .onShow( startClockAnimation )
-               .onHide( stopClockAnimation );
-            if( handler.isVisible() ) {
-               startClockAnimation();
-            }
-            // ...
-         }
-      };
-   }
-] );
-```
-
-Another example: the [laxar-show-hide-widget](https://github.com/LaxarJS/ax-show-hide-widget/) contains a directive that measures the contents of an embedded area in order to control an animation.
-Only while the widget is visible should measurement and animation be used, simply switching states at other times.
-For this, the visibility service is used as well.
-
-
-## Controlling Visibility through Events
+## Advanced: Controlling Visibility through Events
 
 Most widgets just need to *react* to visibility changes.
 Other widgets *provide* areas themselves, directly (like the [laxar-accordion-widget](https://github.com/LaxarJS/ax-accordion-widget)) or through embedded layouts (like the [laxar-popup-widget](https://github.com/LaxarJS/ax-popup-widget)).
@@ -146,7 +108,7 @@ Controlling visibility of embedded areas from a widget includes two tasks:
 
   * trigger visibility requests to inform the runtime and other widgets after actively changing an area's visibility.
 
-Let us have a detailed look into both tasks.
+Usually, `axVisibility` should be used to manage this, but let us have a detailed look into both tasks.
 
 
 ### Responding to Visibility Requests
@@ -161,51 +123,11 @@ Widgets that want to control their area's visibility may now respond with `didCh
 If there is no reply for a widget area (for example because the providing widget does not know or care about visibility events), the runtime publishes the `didChangeVisibility` event itself, using the default `visible` value from the request.
 Next, all directly nested areas are processed in the same manner, until "bottom" is reached.
 
-This process is also used to implement visibility changes that happen later during the lifetime of the page.
-For example, a *laxar-accordion-widget* embedded within the contents of a *laxar-popup-widget* will be queried for the visibility of its areas when the popup is opened or closed.
-
-The visibility handler of *laxar-patterns* offers help in responding to visibility requests:
-
-```js
-define( [ 'angular', 'laxar-patterns' ], function( ng, patterns ) {
-   Controller.$inject = [ '$scope' ];
-   function Controller( $scope ) {
-      patterns.visibility.handlerFor( $scope )
-         .onAnyAreaRequest( function( name ) {
-            // something like:
-            return $scope.isVisible &&
-                name === model.myCurrentArea;
-         } );
-   }
-   // ...
-} );
-```
-
-The property `$scope.isVisible` maintained by the visibility handler is used to quickly access the current visibility state of the surrounding area.
-The value `model.myCurrentArea` might be use by the widget to e.g. store the name of the area that was selected by the user, such as the current tab content in a tab-navigation widget.
-
 
 ### Changing Visibility of Provided Areas
 
 After a widget has modified the visibility of its provided areas, it must publish corresponding `changeAreaVisibilityRequest`-Events.
 The `visible`-parameter of these events must be set to the new target value, taking into account the visibility of the surrounding area.
-
-Again, an example using laxar-patterns:
-
-```js
-define( [ 'angular', 'laxar-patterns' ], function( ng, patterns ) {
-   Controller.$inject = [ '$scope' ];
-   function Controller( $scope ) {
-      var publisher =
-         patterns.visibility.requestPublisherForArea(
-            $scope, $scope.widget.id + '.myArea' );
-      $scope.onAreaClicked = function() {
-         publisher( true );
-      }
-   }
-   // ...
-} );
-```
 
 Note that the widget may very well respond to its own visibility requests.
 
@@ -214,25 +136,14 @@ Even though the controlling widget knows that it is going to handle the request 
 This informs other widgets and especially the runtime of the visibility change.
 
 
-### Changing Visibility of a Directly Embedded Layout
-
-Some widgets such as the *laxar-popup-widget* directly load *layouts* which in turn provide widget areas.
-For these widgets, requesting a visibility change for individual areas is not possible, because the name of the areas is not known.
-
-To trigger re-evaluation of these areas, containing widgets may trigger `changeWidgetVisibilityRequest.{widget-id}.{visible}` events.
-The ID can be read from the `$scope` (or `axContext` respectively) as `.widget.id`.
-
-The runtime then automatically triggers visibility requests for the embedded areas.
-
-
 ## Summary (TL;DR)
 
   * Visibility events help to improve render times and to reduce CPU- and memory-use.
 
-  * Widgets may *react* to visibility changes by processing `didChangeAreaVisibility` events, directly or through the laxar-patterns visibility handler.
+  * Widgets may *react* to visibility changes by processing `didChangeAreaVisibility` events, directly or using the [`axVisibility`](.,/api/runtime.widget_services_visibility.md) injection.
 
   * The runtime publishes `didChangeAreaVisibility` events before`didNavigate`.
 
-  * AngularJS directives can use the `axVisibilityService` for simplified handling without help from their containing widget.
-
-  * Widgets that provide areas and that influence the visibility of those areas *should control* visibility by responding to `changeAreaVisibilityRequest` events. They should also trigger such requests after initiating a visibility change to any of their provided areas.
+  * Widgets that provide areas and that influence the visibility of those areas *should control* visibility by responding to `changeAreaVisibilityRequest` events.
+  Widgets that manage visibility should trigger such requests after initiating a visibility change to any of their provided areas.
+  The `axVisibility` injection helps to take care of these tasks as well.

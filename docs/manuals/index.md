@@ -53,10 +53,6 @@ If you're already developing your first widgets and want to know which programma
 
    When simple pages are not enough.
 
-* [Configuring RequireJS for widgets and controls](configuring_requirejs.md)
-
-   How to configure RequireJS for widgets and controls with extraordinary needs.
-
 * [Configuration](configuration.md)
 
    Documents the LaxarJS configuration API which can be used to configure widgets, and the built-in configuration options.

@@ -2,22 +2,32 @@
 
 [« return to the manuals](index.md)
 
-Although inheritance brings a bit of organization into pages, for bigger applications with many widgets on a page this may  not be sufficient. *Compositions* are here to help you.
+Although inheritance brings a bit of organization into pages, for bigger applications with many widgets on a page this may not be sufficient. *Compositions* are here to help you.
 
 Preliminary readings:
 
 * [LaxarJS Core Concepts](../concepts.md)
 * [Writing Pages](writing_pages.md)
 
-Very often most of a base page fits for all pages but some small things need to be adjusted for some of the pages that could otherwise be reused throughout the application.
-Another use case is to enable the reuse of a bundle of widgets multiple times within one page, each time only with some different configuration.
+
+## When to Use Compositions
+
+Often, a base page *almost works* for all extending pages but some small things need to be adjusted per page, in order to be reused throughout the application.
+Another scenario is reusing a set of widgets multiple times on a single page, each time with slightly different configuration.
+
+
+## Composition Basics
 
 All of this can be achieved by using compositions.
-The idea behind compositions is, that they provide a widget like interface regarding their addition to a page (or another composition) and the internals of a page fragment, bundling some widgets and other compositions.
-A composition thus has two basic properties: `areas`, like a page and `features` like a widget.
+The idea behind compositions is that they combine a *widget-like interface* on the outside with the internals of a *page definition*.
+The widget-like interface, including a feature configuration schema, allows compositions to be embedded and parameterized by regular pages, or even by other compositions.
+The page-like internal structure allows compositions to bundle and pre-configure several widgets and even other compositions.
+A composition definition thus has two basic properties: `features` (like a widget) and `areas` (like a page).
 A third more advanced property, namely `mergedFeatures`, will be explained later.
 
-Instead we will start with the simple `popup_composition` we referenced above:
+Let us start with a simple `popup_composition`:
+
+TODO: quick explanation on `axRole` and `format`
 
 ```JSON
 {
@@ -43,7 +53,7 @@ Instead we will start with the simple `popup_composition` we referenced above:
    "areas": {
       ".": [
          {
-            "widget": "amd:laxar-popup-widget",
+            "widget": "laxar-popup-widget",
             "id": "popup",
             "features": {
                "open": {
@@ -57,7 +67,7 @@ Instead we will start with the simple `popup_composition` we referenced above:
       ],
       "popup.content": [
          {
-            "widget": "amd:laxar-headline-widget",
+            "widget": "laxar-headline-widget",
             "features": {
                "headline": {
                   "i18nHtmlText": "Say hi to the popup",
@@ -66,7 +76,7 @@ Instead we will start with the simple `popup_composition` we referenced above:
             }
          },
          {
-            "widget": "amd:laxar-command-bar-widget",
+            "widget": "laxar-command-bar-widget",
             "features": {
                "close": {
                   "finish": true,
@@ -79,28 +89,44 @@ Instead we will start with the simple `popup_composition` we referenced above:
 }
 ```
 
-This example already shows some of the additional characteristics that go beyond the two properties `features` and `areas`.
-Let us start from the beginning:
+The syntax of the example should be familiar to authors of widgets and pages, but also exhibits some composition-specific characteristics.
 
-First there is the `features` object, that for simple cases looks just like a feature specification of a widget.
-Here you can define all the features that your composition needs to be configurable from the outside.
+
+### Composition Features
+
+First there is the `features` object that looks just like a features specification from a widget descriptor.
+Here you can define all the features that your composition needs to be configurable by the embedding page.
 In this example we simply let the consumer of our composition define the action that will be used to open the popup.
 
+
+### Composition Expansion
+
 Secondly there is the `areas` map and here there is already something noteworthy: The first area is simply named `.`.
-All widgets and compositions within this special area will replace the reference of the composition within the area of the page including the composition.
-So if we take the [last example](#example_4) of the chapter [Layouts and Areas](#layouts_and_areas), this will be the area named `content`.
+All widgets and compositions within this special area will be _expanded in place of each composition instance_, within all pages embedding the composition.
+So if we apply the composition above to the [example](#example_4) previously used in the [manual on pages](./writing_pages.md), the second item in the area named `content` will be expanded to a configured instance of the laxar-popup-widget.
 
-Furthermore the two strings `"${features.openPopup.onActions}"` and `"${topic:closeAction}"` are worth noticing as they demonstrate another main feature of the composition concept.
-Those strings are expressions that will be evaluated by the page loader when assembling the complete page from its parts and are replaced by actual values as follows:
-The `"${features.openPopup.onActions}"` expression is a reference to a feature defined within the `features` object and will hold the value configured in the page including the composition.
-Thus applied to the [example of the writing pages manual](#example_4), this will result in the array `[ "next" ]`.
-On the other hand the `"${topic:closeAction}"` expression generates a page wide unique event topic compatible string based on the local identifier `closeAction`.
-The result could thus be something like `"popupComposition-id0+closeAction"`, which is in fact the id generated for the composition itself, plus the local identifier.
-These *topic expressions* prevent naming collisions with topics of the page, other compositions or multiple usages of the same composition within the same page.
-They should always be used when there is the need to have an identifier that is only used within the scope of a composition.
+Other non-prefixed areas (say, `"footer"`) are simply added to each embedding page, concatenating widget lists where page and composition define areas of the same name.
 
-Notice that these expressions are only written as a string to be JSON compatible and that no string interpolation takes place.
-Thus something like `"myPrefix${topic:closeAction}"` would *not* be interpreted when assembling the page and simply be used as is.
+
+### Feature References and Topic Expressions
+
+The two strings `"${features.openPopup.onActions}"` and `"${topic:closeAction}"` demonstrate two important features of the composition concept.
+Those strings are expressions, and evaluated by the laxar-loader at build-time, while assembling the complete page from its parts.
+They are replaced with actual values as follows:
+
+The `"${features.openPopup.onActions}"` expression is a _reference to a feature_ defined within the `features` object and will be replaced with the value configured by the embedding page.
+Applied to the [example](#example_4), this reference will be replaced with the array value `[ "next" ]`.
+
+On the other hand the `"${topic:closeAction}"` expression generates a _page-wide unique event topic_, a string based on the local identifier `closeAction`.
+The result could be something like `"popupComposition-id0+closeAction"`, which is in fact the ID generated for the composition itself, plus the local identifier.
+
+These *topic expressions* prevent naming collisions with topics of the embedding page, other compositions or multiple instances of the same composition within the same page.
+They should always be used when there is the need to have a topic identifier that is only used within the scope of a composition.
+In fact, it is considered a best practice for compositions to _only use_ either feature references or topic expressions for event topics, to avoid unintended effects and invisible side-channels on the event-bus, caused by sharing regular string topics with the embedding page, or with other compositions.
+
+Notice that these expressions must be written inside of string literals to be valid JSON.
+Their replacement takes place only _after_ the JSON structure was evaluated by the laxar-loader, and always based on the full string.
+Thus something like `"myPrefix${topic:closeAction}"` would *not* be expanded when assembling the page and simply be used as is, probably violating some widget schema.
 
 The assembled page thus looks similar to this:
 
@@ -110,7 +136,7 @@ The assembled page thus looks similar to this:
    "areas": {
       "header": [
          {
-            "widget": "amd:laxar-headline-widget",
+            "widget": "laxar-headline-widget",
             "features": {
                "headline": {
                   "i18nHtmlText": "Welcome!",
@@ -121,7 +147,7 @@ The assembled page thus looks similar to this:
       ],
       "content": [
          {
-            "widget": "amd:laxar-command-bar-widget",
+            "widget": "laxar-command-bar-widget",
             "features": {
                "next": {
                   "enabled": true
@@ -129,21 +155,21 @@ The assembled page thus looks similar to this:
             }
          },
          {
-            "widget": "amd:laxar-popup-widget",
+            "widget": "laxar-popup-widget",
             "id": "popupComposition-id0-popup",
             "features": {
                "open": {
                   "onActions": [ "next" ]
                },
                "close": {
-                  "onActions": [ "popupComposition-id0+CloseAction" ]
+                  "onActions": [ "popupComposition-id0+closeAction" ]
                }
             }
          }
       ],
       "footer": [
          {
-            "widget": "amd:laxar-html-display-widget",
+            "widget": "laxar-html-display-widget",
             "features": {
                "content": {
                   "resource": "footerTextResource"
@@ -153,7 +179,7 @@ The assembled page thus looks similar to this:
       ],
       "popupComposition-id0-popup.content": [
          {
-            "widget": "amd:laxar-headline-widget",
+            "widget": "laxar-headline-widget",
             "features": {
                "headline": {
                   "i18nHtmlText": "Say hi to the popup",
@@ -162,7 +188,7 @@ The assembled page thus looks similar to this:
             }
          },
          {
-            "widget": "amd:laxar-command-bar-widget",
+            "widget": "laxar-command-bar-widget",
             "features": {
                "close": {
                   "enabled": true,
@@ -176,10 +202,13 @@ The assembled page thus looks similar to this:
 ```
 Note how also the id of the exported area was automatically adjusted to `"popupComposition-id0-popup.content"` to prevent naming clashes.
 
+
+### Merged Features
+
 In our example it is currently only possible to close the *laxar-popup-widget* from within itself via an action event published by the *laxar-command-bar-widget*.
-What if we additionally would like to close the popup on demand from outside based on another action?
+What if we additionally would like to close the popup using another action _from outside_?
 This is where the concept of *merged features* comes into play.
-*Merged features* allow us to merge or better concatenate two arrays, where one array is defined as a feature for the composition and the second array is defined in the `mergedFeatures` object.
+Merged features allow us to concatenate feature values from two arrays, where one array is defined as a feature for the composition and the second array is defined in the `mergedFeatures` object.
 Syntactically this is achieved via a map under the key `mergedFeatures` where the key of each entry is the path to the array in the features and the value is the array to merge this value with.
 
 This should become clear when looking at our adjusted example:
@@ -225,7 +254,7 @@ This should become clear when looking at our adjusted example:
    "areas": {
       ".": [
          {
-            "widget": "amd:laxar-popup-widget",
+            "widget": "laxar-popup-widget",
             "id": "popup",
             "features": {
                "open": {
@@ -239,7 +268,7 @@ This should become clear when looking at our adjusted example:
       ],
       "popup.content": [
          {
-            "widget": "amd:laxar-headline-widget",
+            "widget": "laxar-headline-widget",
             "features": {
                "headline": {
                   "i18nHtmlText": "Say hi to the popup",
@@ -248,7 +277,7 @@ This should become clear when looking at our adjusted example:
             }
          },
          {
-            "widget": "amd:laxar-command-bar-widget",
+            "widget": "laxar-command-bar-widget",
             "features": {
                "close": {
                   "enabled": true,
@@ -268,6 +297,7 @@ Instead of creating the array with the generated topic here, we can simply refer
 For the configuration of the *laxar-command-bar-widget* nothing changed.
 When using the composition it is now possible to provide additional close actions, but since we defined an empty array as default for the feature, this is not mandatory.
 
+
 # Appendix:
 
 ## Exemplary page from [writing pages](writing_pages.md) manual
@@ -279,7 +309,7 @@ When using the composition it is now possible to provide additional close action
    "areas": {
       "header": [
          {
-            "widget": "amd:laxar-headline-widget",
+            "widget": "laxar-headline-widget",
             "features": {
                "headline": {
                   "i18nHtmlText": "Welcome!",
@@ -290,7 +320,7 @@ When using the composition it is now possible to provide additional close action
       ],
       "content": [
          {
-            "widget": "amd:laxar-command-bar-widget",
+            "widget": "laxar-command-bar-widget",
             "features": {
                "next": {
                   "enabled": true
@@ -308,7 +338,7 @@ When using the composition it is now possible to provide additional close action
       ],
       "footer": [
          {
-            "widget": "amd:laxar-html-display-bar-widget",
+            "widget": "laxar-html-display-widget",
             "features": {
                "content": {
                   "resource": "footerTextResource"
