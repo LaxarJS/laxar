@@ -3,9 +3,13 @@
 The LaxarJS packages use [semantic versioning](http://semver.org), so as long as you upgrade _within_ a major version of LaxarJS or one of the associated libraries and widgets, you should not have any problems.
 
 Of course, sometimes minor changes introduce bugs or new, (hopefully) better way to do things within applications.
-To get an impression of what happens between versions, consult the *changelogs*.
+To get the full details of what happens between versions, consult the *changelogs*.
 A `CHANGELOG.md` file is maintained in each of our repositories, and accessible from the [documentation site](https://laxarjs.org/docs/).
 Whenever a change comes with associated upgrade information, the changelog will mention this, and contain a pointer to the relevant GitHub issue.
+Note however, that sometimes individual changelog entries may be reverted or made obsolete by later changes.
+
+Keeping in mind that only the changelogs contain the complete upgrade information with all the gritty details, this guide tries to give you the big picture of what happened between major versions.
+It also tries to give a short rationale for each change, so that you know why we think the upgrade effort is justified.
 
 
 ## Migration Guide: LaxarJS v1.x to LaxarJS v2.x
@@ -36,7 +40,7 @@ The following libraries have their _major version locked_ to that of [LaxarJS Co
    - [NPM: laxar-angular2-adapter](https://www.npmjs.com/package/laxar-angular2-adapter)
    - [NPM: laxar-uikit](https://www.npmjs.com/package/laxar-uikit)
 
-This means, that for these libraries...
+This means, that for these libraries…
 
    - their v2.0 is released (roughly) around the same time as LaxarJS Core v2.0,
    - their v2.0 is compatible with LaxarJS Core v2.0.
@@ -58,7 +62,7 @@ LaxarJS v1 projects used:
 For LaxarJS v2, we wanted to support pre-built artifacts whose sources may be written in ES2015 or other "compile-to-js" languages, as well as artifacts that add dependencies to the development toolchain.
 
 Bower is not really a good fit for pre-built artifacts, as it is always _backed by sources_ on GitHub.
-Rather than adding more "build repositories", we chose switch to NPM for front end artifacts, which was already required for the tooling infrastructure anyway.
+Rather than adding more "build repositories", we chose to switch to NPM for front end artifacts, which was already required for the tooling infrastructure anyway.
 In order to integrate seamlessly with workflows using [ES2015](https://babeljs.io/learn-es2015/) and [SCSS](http://sass-lang.com/libsass), we switched from a collection of custom grunt tasks to a build infrastructure based around _webpack_.
 
 So, the new list of tools looks like this:
@@ -66,7 +70,7 @@ So, the new list of tools looks like this:
    - _NPM_ to obtain front end artifacts as well as build-time dependencies
    - _webpack_ and its loaders (especially the `laxar-loader`) to load and bundle artifacts
 
-This saves us a lot of work maintaining grunt plugins: laxar-tooling and laxar-loader are much smaller then grunt-laxar.
+This saves us a lot of work maintaining grunt plugins: laxar-tooling and laxar-loader are much smaller than grunt-laxar.
 It also makes custom build setups much simpler, as it unlocks the full array of [webpack plugins](https://github.com/webpack/docs/wiki/list-of-plugins) for loading widgets, controls and their assets.
 Where needed, it is of course still possible
 
@@ -88,9 +92,10 @@ Simultaneously we save on bundle size and startup time, as neither the validator
 Note that LaxarJS deviates from standard JSON schema in two respects.
 This was the case with jjv, and we ported the deviations to ajv:
 
-   - `"additionalProperties": false` is default for all schemas of `"type": "object"`
-   - `"format"` allows for the LaxarJS specific value `"topic"`, and checks it
-   - defaults for features (first level of widget/composition schema) are inferred if they are of type `"array"` or `"object"`
+   - `"additionalProperties": false` is default for all schemas of `"type": "object"`,
+   - `"format"` allows for the LaxarJS specific value `"topic"`, and checks it,
+   - defaults for features (first level of widget/composition schema) are inferred if they are of type `"array"` or `"object"`,
+   - support for `${topic:…}` and `${features.…}` syntax in compositions, before applying format checks.
 
 More Information:
 
@@ -143,13 +148,24 @@ More Information:
    - [laxar-loader Manual](https://laxarjs.org/docs/laxar-loader-v2-latest/manuals/)
 
 
-### Styles/Templates for Widgets/Controls lookup _by name only_
+### Styles/Templates for Widgets/Controls Lookup _by Name Only_
 
-Previously, LaxarJS used several heuristics to derive a widget or control name from a file system path segment.
-The name is important to find the JavaScript implementation module, HTML template (widgets only) and CSS stylesheet.
-Now, widgets and controls must always provide a descriptor (widget.json, control.json) with a `name` property.
-This makes artifacts robust against being moved, and for being used in different contexts.
+Previously, LaxarJS used several heuristics to derive the name of activities, widgets or controls from their file system path segment.
+The name is needed to find the JavaScript implementation module, HTML template (widgets only) and CSS stylesheet of an artifact.
+
+Now, widgets and controls must always provide a descriptor (`widget.json`, `control.json`) with a `name` property.
+That name is then used to load the implementation module from the directory of the descriptor, as well as themed assets from the appropriate sub-directories.
+Here, the `resolve` configuration of webpack comes into play, which allows projects using Angular 2 or Vue.js to transparently load implementations from `.ts` or `.vue` files.
+
+Using explicit names instead of incidental file system locations makes artifacts robust against being moved, and for being used in different contexts.
 It also eliminates confusion regarding the name of directories and files when styling artifacts from within a theme.
+
+An exception is made for loading the implementation module of widgets that have a `package.json`:
+To allow these widgets to be pre-compiled from "compile-to-js" languages, they may use the `"browser"` field of their `package.json` to specify the location of their implementation module.
+
+More Information:
+
+   - [Assets and the Artifacts Bundle](asset_lookup.md)
 
 
 ### Several LaxarJS APIs moved to Injectable Services
@@ -288,7 +304,7 @@ More Information:
 ### Replace `require.toUrl()` using `axAssets`
 
 LaxarJS no longer depends on RequireJS, and it is not recommended to mix RequireJS with webpack either.
-Some widgets may use `toUrl`-method provided by RequireJS for generating absolute URLs.
+Some widgets may use the `toUrl`-method provided by RequireJS for generating absolute URLs.
 As this method constructs URLs at runtime, it is not supported by webpack.
 
 You may wish to use webpack to pre-bundle smaller assets within a reusable widget that has its own `package.json` and build-setup.

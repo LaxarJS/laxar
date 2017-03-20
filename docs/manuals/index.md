@@ -1,7 +1,9 @@
 # Manuals
 
 Before starting with the manuals, make sure that you know [what LaxarJS is about](../why_laxar.md), and that you are familiar with the [core concepts](../concepts.md).
-If you're already developing your first widgets and want to know which programmatic APIs are provided by LaxarJS, have a look at the [API docs](../api).
+If you're already in the process of developing your first widgets and want to know which programmatic APIs are provided by LaxarJS, have a look at the [API docs](../api).
+
+For developers coming from previous LaxarJS major versions, there is an [upgrade guide](upgrade_guide.md) to ease the transition.
 
 
 ## Basic Manuals
@@ -41,6 +43,10 @@ If you're already developing your first widgets and want to know which programma
 * [Infrastructure and Tools](infrastructure_and_tools.md)
 
    What happens when a LaxarJS application starts, and how its assets are prepared.
+
+* [Upgrading LaxarJS](upgrade_guide.md)
+
+   A migration guide helping to upgrade applications from earlier versions of LaxarJS.
 
 
 ## Advanced Manuals
