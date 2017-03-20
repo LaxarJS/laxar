@@ -290,10 +290,23 @@ For this reason, we specify a configuration option by adding a feature entry to 
 The _widget features_ are a [JSON schema](http://json-schema.org) document that is used by LaxarJS to verify pages.
 It contains a property for each configurable feature, and it also allows to specify default values as needed.
 This makes it easy to provide self-documenting customization options for your widget.
-See the [reference section](#reference) for details on the widget specification.
-Note that this schema is _optional_.
+
+Note that LaxarJS deviates from standard JSON schema in two respects:
+
+   - `"additionalProperties": false` is default for all schemas of `"type": "object"`
+     This helps to catch typing errors.
+
+   - `"format"` allows for the LaxarJS specific value `"topic"`, and checks it to validate event topics.
+     See the [manual on events](./events.md) for details on event topic syntax.
+
+   - defaults for features (first level of widget/composition schema) are inferred if they are of type `"array"` or `"object"`.
+     This eliminates the need to repeat nested defaults on the feature-level.
+
+Note that using schemas is _optional_:
 If a widget descriptor does not specify a schema, any configuration will be considered valid and passed to the widget controller, which can be useful for prototyping.
 However, it is strongly recommended to add a schema before releasing a widget or putting it into production, if only to _document_ the available configuration.
+
+See the [reference section](#reference) for a reference of the widget descriptor.
 
 
 ### Checking out the Result
