@@ -166,20 +166,20 @@ Before [navigating](#navigation) away from a page, the runtime publishes the `en
 Widgets that need to save state to a service should respond with a `willEndLifecycle` event, perform their housekeeping and publish an `didEndLifecycle` when done.
 
 
-Event name                            | Payload Attribute | Description
---------------------------------------|-------------------| ------------------------------------------------------------
-`beginLifecycleRequest.{lifecycleId}` |                   | _published by the runtime to tell widgets that publishing of events is safe now_
-                                      | `lifecycleId`     | the lifecycle ID (currently, this is always `"default"`)
-`willBeginLifecycle.{lifecycleId}`    |                   | _published by widgets and activities to defer page rendering (not recommended)_
-                                      | `lifecycleId`     | _see above_
-`didBeginLifecycle.{lifecycleId}`     |                   | _published by widgets and activities when page rendering may commence (not recommended)_
-                                      | `lifecycleId`     | _see above_
-`endLifecycleRequest.{lifecycleId}`   |                   | _published by the runtime to tell widgets that the page is about to be destroyed_
-                                      | `lifecycleId`     | _see above_
-`willEndLifecycle.{lifecycleId}`      |                   | _published by widgets and activities to defer tear down of the page (if necessary)_
-                                      | `lifecycleId`     | _see above_
-`didEndLifecycle.{lifecycleId}`       |                   | _published by widgets and activities when page tear down may commence (after deferring it)_
-                                      | `lifecycleId`     | _see above_
+| Event name                            | Payload Attribute | Description
+|---------------------------------------|-------------------| ------------------------------------------------------------
+| `beginLifecycleRequest.{lifecycleId}` |                   | _published by the runtime to tell widgets that publishing of events is safe now_
+|                                       | `lifecycleId`     | the lifecycle ID (currently, this is always `"default"`)
+| `willBeginLifecycle.{lifecycleId}`    |                   | _published by widgets and activities to defer page rendering (not recommended)_
+|                                       | `lifecycleId`     | _see above_
+| `didBeginLifecycle.{lifecycleId}`     |                   | _published by widgets and activities when page rendering may commence (not recommended)_
+|                                       | `lifecycleId`     | _see above_
+| `endLifecycleRequest.{lifecycleId}`   |                   | _published by the runtime to tell widgets that the page is about to be destroyed_
+|                                       | `lifecycleId`     | _see above_
+| `willEndLifecycle.{lifecycleId}`      |                   | _published by widgets and activities to defer tear down of the page (if necessary)_
+|                                       | `lifecycleId`     | _see above_
+| `didEndLifecycle.{lifecycleId}`       |                   | _published by widgets and activities when page tear down may commence (after deferring it)_
+|                                       | `lifecycleId`     | _see above_
 
 
 <a name="navigation"></a>
@@ -204,16 +204,16 @@ When _initiating navigation_, the LaxarJS runtime will:
 
 Here is the summary of navigation events:
 
-Event name                 | Payload Attribute | Description
----------------------------|-------------------| ------------------------------------------------------------
-`navigateRequest.{target}` |                   | _published by widgets and activities to indicate that a navigation has been requested_
-                           | `target`          | the navigation target (used in the payload _as well as_ in the event name)
-                           | `data`            | a map from place parameter names to parameter values
-`willNavigate.{target}`    |                   | _published by the runtime to indicate that navigation has started_
-                           | `target`, `data`  | _see above_
-`didNavigate.{target}`     |                   | _published by the runtime to indicate that navigation has finished_
-                           | `target`, `data`  | _see above_
-                           | `place`           | the actual place that was navigated to, now the current place
+| Event name                 | Payload Attribute | Description
+|----------------------------|-------------------|-------------------------------------------------------------
+| `navigateRequest.{target}` |                   | _published by widgets and activities to indicate that a navigation has been requested_
+|                            | `target`          | the navigation target (used in the payload _as well as_ in the event name)
+|                            | `data`            | a map from place parameter names to parameter values
+| `willNavigate.{target}`    |                   | _published by the runtime to indicate that navigation has started_
+|                            | `target`, `data`  | _see above_
+| `didNavigate.{target}`     |                   | _published by the runtime to indicate that navigation has finished_
+|                            | `target`, `data`  | _see above_
+|                            | `place`           | the actual place that was navigated to, now the current place
 
 More information on navigation is available in the ["Flow and Places" manual](./flow_and_places.md).
 

@@ -104,20 +104,19 @@ Refer to the [Configuration Mock API docs](../api/testing.configuration_mock.md#
 The following configuration options are defined by _LaxarJS Core_.
 
 | Key                                  | Default               | Description
-| :----------------------------------- | :-------------------- | :------------------------------------------------------------------
+|:-------------------------------------|:----------------------|:-------------------------------------------------------------------
 | `name`                               | `'unnamed'`           | The name of the LaxarJS application
 | `description`                        | `''`                  | A short application description
 | `theme`                              | `'default'`           | Which theme to use for the application. The suffix `.theme` is added automatically.
-| :----------------------------------- | :-------------------- | :------------------------------------------------------------------
 | `controls.*`                         | `null`                | Sub-configuration for use by controls (using the artifact name as second-level key is recommended).
 | `eventBusTimeoutMs`                  | `120000`              | The maximum delay (in milliseconds) to wait for a `did...` event to be published, after it was announced by a `will...` event.
 | `i18n.locales`                       | `{ 'default': 'en' }` | Which language tag to use for the default locale, and possibly for other locales.
 | `logging.instanceId`                 | `true`                | If set to a function, that function is used to calculate the value of the INST log tag. If set to `true` (default), the current UNIX time stamp plus a small random offset is used. If set to `false`, no INST log-tag is generated.
 | `logging.levels`                     | `{}`                  | Additional log levels with name and severity, for example `{ NOTICE: 350 }`. The predefined severities reach from _100_ for `TRACE` to _600_ for `FATAL`.
 | `logging.threshold`                  | `'INFO'`              | The log level which is required for messages to be logged (one of `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR` or `FATAL`)
-| `flow.name`                          | null                  | The flow to use for routing. **Note:** if this is not specified, no flow will be loaded!
-| `router.navigo.useHash`              | false                 | Selects if the Navigo router uses hash-based URLs for navigation (`true`), or path-based URLs that rely on the `pushState` browser feature (`false`).
-| `router.base`                        | null                  | Override the document base `href` for routing.
+| `flow.name`                          | `null`                | The flow to use for routing. **Note:** if this is not specified, no flow will be loaded!
+| `router.navigo.useHash`              | `false`               | Selects if the Navigo router uses hash-based URLs for navigation (`true`), or path-based URLs that rely on the `pushState` browser feature (`false`).
+| `router.base`                        | `null`                | Override the document base `href` for routing.
 | `router.query.enabled`               | `false`               | If `true`, query parameters are automatically transformed into additional place parameters and vice versa.
 | `storagePrefix`                      | `null`                | Allows to set a prefix for local- and session-storage keys when using `laxar.storage`. If `null`, a prefix is generated based on the configured `name`.
 | `tooling.enabled`                    | `false`               | If `true` some services are exposed on the global object (i.e. `window`) for tooling purposes.

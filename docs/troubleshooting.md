@@ -5,7 +5,7 @@ The publish/subscribe model ensures loose coupling and prevents failure of indiv
 
 However, precisely because LaxarJS applications are loosely coupled and forgiving, in some cases problems are not noticed right away.
 And in some circumstances, misconfigurations may be hard to detect.
-This guide serves as a quick checklist to avoid known "gitchas".
+This guide serves as a quick checklist to avoid known "gotchas".
 
 
 ## General Development Tips
@@ -17,7 +17,7 @@ First, here are a couple of development tips that hopefully help you avoid havin
 
 Using the [LaxarJS Yeoman Generators](http://laxarjs.org/docs/generator-laxarjs-latest/) is a simple way to get started with a working application.
 Making incremental changes from there will help you to pinpoint any problems to their cause.
-In fact, it is a good practice to create a commit in git (or a VCS of choice) right after finishing the application generator, to establish a working baseline.
+In fact, it is a good practice to create a commit in Git (or a VCS of choice) right after finishing the application generator, to establish a working baseline.
 
 
 ### Log Level
@@ -30,7 +30,7 @@ To enable "TRACE" logging, set `logging: { level: 'TRACE' }` in the configuratio
 
 ### Use the Developer Tools Extension
 
-For Google Chrome, there is a developer tools extension that helps to inspect the setup of your pages and to verify that your widgets are connected correctly.
+For Google Chrome, there is a [developer tools extension](https://chrome.google.com/webstore/detail/laxarjs-developer-tools/leidhppnemgdhcjfagmjdkfjpejibinp) that helps to inspect the setup of your pages and to verify that your widgets are connected correctly.
 It also allows to inspect event bus events with their payload.
 
 

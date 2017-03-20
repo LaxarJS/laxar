@@ -153,13 +153,16 @@ All widget adapter instances produced by `create` must implement the following t
 ### Existing Adapter Implementations
 
 For practical examples of user-defined widget adapters, have a look at the following adapter implementations.
-The adapters are sorted by their implementation complexity.
+The adapters are sorted by their implementation complexity, from simple to complex.
 
   - [React adapter](https://github.com/LaxarJS/laxar-react-adapter) for the `"react"` technology
-  - [Plain adapter](https://github.com/LaxarJS/laxar/blob/master/lib/runtime/plain_adapter.js) for the `"plain"` technology
+  - [Vue.JS adapter](https://github.com/LaxarJS/laxar-vue-adapter) for the `"vue"` technology
   - [AngularJS v1 adapter](https://github.com/LaxarJS/laxar-angular-adapter) for the `"angular"` technology
-  - [Vue.JS adapter](https://github.com/LaxarJS/laxar-angular-adapter) for the `"vue"` technology
-  - [Angular v2 adapter](https://github.com/LaxarJS/laxar-angular-adapter) for the `"angular2"` technology
+  - [Angular v2 adapter](https://github.com/LaxarJS/laxar-angular2-adapter) for the `"angular2"` technology
+
+Also, there is the adapter for `'plain'`, which is part of the LaxarJS Core code base:
+
+  - [Plain adapter](https://github.com/LaxarJS/laxar/blob/master/lib/runtime/plain_adapter.js) for the `"plain"` technology
 
 
 ## Using a Custom Adapter in a Project

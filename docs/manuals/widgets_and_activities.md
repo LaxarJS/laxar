@@ -381,7 +381,7 @@ These are the most important widget properties:
 * `features`
 
   The widget features.
-  This is a JSON schema document that documents all configurable widget features.
+  This is an optional (but highly recommended) JSON schema object that documents the configurable widget features.
   For each widget instance used on a page, LaxarJS will check the feature configuration of that instance against this schema.
   This also allows to provide default values for configuration options.
 

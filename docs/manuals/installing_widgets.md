@@ -115,6 +115,6 @@ _Note:_ This will also install the widget itself as a dependency, which is not a
 
 ### 3. Configure Paths for Webpack
 
-The _Installation_ section of your widget should tell you if any changes need to be made to your webpack configuration.
+The documentation of your widget should tell you if any changes need to be made to your webpack configuration.
 
 Having followed these steps, you can now add the new widget to a page by specifying the path in your page configuration.

@@ -29,19 +29,19 @@ More Information:
 
 LaxarJS distinguishes the following application artifacts:
 
-   - widgets
-   - activities
-   - controls
-   - layouts
-   - flows
-   - pages
-   - themes
+   - [widgets](#widget)
+   - [activities](#actvity)
+   - [controls](#control)
+   - [layouts](#layout)
+   - [flows](#flow)
+   - [pages](#page)
+   - [themes](#theme)
 
 More Information:
 
    - [LaxarJS Core Concepts](./concepts.md)
    - [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
-   - [Manual: Providing Controls](./manuals/providing controls.md)
+   - [Manual: Providing Controls](./manuals/providing_controls.md)
    - [Manual: Writing Pages](./manuals/writing_pages.md)
    - [Manual: Flow and Places](./manuals/flow_and_places.md)
 
@@ -67,15 +67,14 @@ Consider the following object:
 
 ```js
 {
-   "something": [
+   "items": [
       { "user": { "name": "Tom" } },
-      { "user": { "name": "Pete" } },
-      { "user": { "name": "Suzy" } }
+      { "user": { "name": "Pete" } }
    ]
 }
 ```
 
-When evaluated against this object, the attribute path `"something.1.user.name"` would return the string `"Pete"`.
+When evaluated against this object, the attribute path `"items.1.user.name"` would yield the string `"Pete"`.
 
 More Information:
 
@@ -110,7 +109,7 @@ More specifically, a LaxarJS artifact consisting of a JavaScript module (possibl
 More Information:
 
    - [LaxarJS Core Concepts](./concepts.md)
-   - [Manual: Providing Controls](./manuals/providing controls.md)
+   - [Manual: Providing Controls](./manuals/providing_controls.md)
 
 
 ## Composition
@@ -188,7 +187,7 @@ More Information:
 
 ## I18n Object
 
-For internationalization purposes, many LaxarJS libraries, widgets and controls support so-called *i18n objects* instead of plain strings, where a text message should be rendered or delivered.
+For internationalization purposes, many LaxarJS libraries, widgets and controls support so-called *i18n objects* instead of primitive values, in order to support multiple localizations.
 An i18n object is a map from language tag (`en-US`, `de`, etc.) to plain text or HTML markup.
 Depending on the selected locale and resulting language tag, the correct message localization is used.
 

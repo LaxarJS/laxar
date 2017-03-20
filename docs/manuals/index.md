@@ -22,7 +22,7 @@ If you're already developing your first widgets and want to know which programma
 
    Creating a flow through the pages and make the addressable as places.
 
-* [Widget Services](widget_service.md)
+* [Widget Services](widget_services.md)
 
    Services that are offered as injections to all widgets regardless of their technology.
 
@@ -30,9 +30,9 @@ If you're already developing your first widgets and want to know which programma
 
    How to communicate between widgets using topics on the event bus.
 
-* [Creating Themes](creating_themes.md)
+* [Configuration](configuration.md)
 
-   How to create a custom, pluggable style for your widgets and applications.
+   Documents the LaxarJS configuration API which can be used to configure widgets, and the built-in configuration options.
 
 * [Providing Controls](providing_controls.md)
 
@@ -49,13 +49,13 @@ If you're already developing your first widgets and want to know which programma
 
    How CSS, HTML and other static assets are resolved and loaded.
 
+* [Creating Themes](creating_themes.md)
+
+   How to create a custom, pluggable style for your widgets and applications.
+
 * [Writing Compositions](writing_compositions.md)
 
    When simple pages are not enough.
-
-* [Configuration](configuration.md)
-
-   Documents the LaxarJS configuration API which can be used to configure widgets, and the built-in configuration options.
 
 * [Internationalization (i18n)](i18n.md)
 

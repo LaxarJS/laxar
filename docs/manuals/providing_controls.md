@@ -163,5 +163,5 @@ After adding your widget to a page, you may inspect your timepiece in the browse
 
 ## Creating or Integrating a Library
 
-Adding custom libraries is even simpler than adding controls, because usually they do not need to load theme-specific CSS or to have their AngularJS modules managed by the laxar-angular-adapter (if they do, try turning them into controls or activities respectively).
+Adding custom libraries is even simpler than adding controls, because usually they do not need to load theme-specific CSS or to have their AngularJS modules managed by the [laxar-angular-adapter](http://laxarjs.org/docs/laxar-angular-adapter-v2-latest/) -- if they do, try turning them into controls or activities respectively.
 Just put the library somewhere within your project (preferably using NPM) and make sure that it can be resolved and loaded by webpack.
