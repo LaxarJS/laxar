@@ -3,9 +3,12 @@
 The LaxarJS packages use [semantic versioning](http://semver.org), so as long as you upgrade _within_ a major version of LaxarJS or one of the associated libraries and widgets, you should not have any problems.
 
 Of course, sometimes minor changes introduce bugs or new, (hopefully) better way to do things within applications.
-To get an impression of what happens between versions, consult the *changelogs*.
+To get the full details of what happens between versions, consult the *changelogs*.
 A `CHANGELOG.md` file is maintained in each of our repositories, and accessible from the [documentation site](https://laxarjs.org/docs/).
 Whenever a change comes with associated upgrade information, the changelog will mention this, and contain a pointer to the relevant GitHub issue.
+
+Keeping in mind that only the changelogs contain the complete upgrade information with all the gritty details, this guide tries to give you the big picture of what happened between major versions.
+It also tries to give a short rationale for each change, so that you know why we think the upgrade effort is justified.
 
 
 ## Migration Guide: LaxarJS v1.x to LaxarJS v2.x
@@ -36,7 +39,7 @@ The following libraries have their _major version locked_ to that of [LaxarJS Co
    - [NPM: laxar-angular2-adapter](https://www.npmjs.com/package/laxar-angular2-adapter)
    - [NPM: laxar-uikit](https://www.npmjs.com/package/laxar-uikit)
 
-This means, that for these libraries...
+This means, that for these libraries…
 
    - their v2.0 is released (roughly) around the same time as LaxarJS Core v2.0,
    - their v2.0 is compatible with LaxarJS Core v2.0.
@@ -66,7 +69,7 @@ So, the new list of tools looks like this:
    - _NPM_ to obtain front end artifacts as well as build-time dependencies
    - _webpack_ and its loaders (especially the `laxar-loader`) to load and bundle artifacts
 
-This saves us a lot of work maintaining grunt plugins: laxar-tooling and laxar-loader are much smaller then grunt-laxar.
+This saves us a lot of work maintaining grunt plugins: laxar-tooling and laxar-loader are much smaller than grunt-laxar.
 It also makes custom build setups much simpler, as it unlocks the full array of [webpack plugins](https://github.com/webpack/docs/wiki/list-of-plugins) for loading widgets, controls and their assets.
 Where needed, it is of course still possible
 
@@ -88,9 +91,10 @@ Simultaneously we save on bundle size and startup time, as neither the validator
 Note that LaxarJS deviates from standard JSON schema in two respects.
 This was the case with jjv, and we ported the deviations to ajv:
 
-   - `"additionalProperties": false` is default for all schemas of `"type": "object"`
-   - `"format"` allows for the LaxarJS specific value `"topic"`, and checks it
-   - defaults for features (first level of widget/composition schema) are inferred if they are of type `"array"` or `"object"`
+   - `"additionalProperties": false` is default for all schemas of `"type": "object"`,
+   - `"format"` allows for the LaxarJS specific value `"topic"`, and checks it,
+   - defaults for features (first level of widget/composition schema) are inferred if they are of type `"array"` or `"object"`,
+   - support for `${topic:…}` and `${features.…}` syntax in compositions, before applying format checks.
 
 More Information:
 

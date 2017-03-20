@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#420](https://github.com/LaxarJS/laxar/issues/420): documentation: added upgrade guide
 - [#433](https://github.com/LaxarJS/laxar/issues/433): documentation: updated manuals for LaxarJS v2
 - [#432](https://github.com/LaxarJS/laxar/issues/432): router: replaced page.js with Navigo
     + **BREAKING CHANGE:** see ticket for details
