@@ -18,22 +18,62 @@ It also enables multiple LaxarJS applications to run alongside each other within
 Fortunately, for existing widgets, not that much has changed:
 AngularJS widgets now require an adapter (see below), and some APIs that were previously accessed as properties of the LaxarJS object will now need to be injected into the widget controller.
 
+Cleaning up widget spec tests may require a little more work, since [LaxarJS Mocks](laxarjs.org/docs/laxar-mocks-v2-latest/) was cleaned up significantly.
 
-### Tooling is now based around NPM and Webpack
 
-This should not affect widgets and activities directly, but will require to rebuild some project infrastructure and configuration.
+### Major Versions in Lockstep
 
-LaxarJS v1 project used _Bower_ to obtain frontend application artifacts, _RequireJS_ to load modules, and _Grunt_ in combination with _NPM_ to obtain and run the project build pipeline.
+The following libraries have their _major version locked_ to that of [LaxarJS Core](https://www.npmjs.com/package/laxar) itself:
 
-For LaxarJS v2, we wanted to support pre-built artifacts whose sources may be written in ES2015 or other "compile-to-js" languages, as well as artifacts that add dependencies to the development toolchain, such as additional webpack loaders.
-Bower is not really a good fit for pre-built artifacts, as it is always backed by the sources on GitHub.
-Rather than adding more "build" repositories, we chose switch to NPM for frontend artifacts, which was already required for the tooling infrastructure anyway.
-In order to integrate seamlessly with workflows using ES2015 and SCSS, we switched from a collection of custom grunt tasks to a build-infrastructurebased around _Webpack_.
-This saves us a lot of work, and makes custom build setups much simpler, e.g. for use with the
+   - [NPM: laxar-mocks](https://www.npmjs.com/package/laxar-mocks)
+   - [NPM: laxar-patterns](https://www.npmjs.com/package/laxar-patterns)
+   - [NPM: laxar-tooling](https://www.npmjs.com/package/laxar-tooling)
+   - [NPM: laxar-loader](https://www.npmjs.com/package/laxar-loader)
+   - [NPM: laxar-infrastructure](https://www.npmjs.com/package/laxar-infrastructure)
+   - [NPM: laxar-react-adapter](https://www.npmjs.com/package/laxar-react-adapter)
+   - [NPM: laxar-vue-adapter](https://www.npmjs.com/package/laxar-vue-adapter)
+   - [NPM: laxar-angular-adapter](https://www.npmjs.com/package/laxar-angular-adapter)
+   - [NPM: laxar-angular2-adapter](https://www.npmjs.com/package/laxar-angular2-adapter)
+   - [NPM: laxar-uikit](https://www.npmjs.com/package/laxar-uikit)
+
+This means, that for these libraries...
+
+   - their v2.0 is released (roughly) around the same time as LaxarJS Core v2.0,
+   - their v2.0 is compatible with LaxarJS Core v2.0.
+
+For other packages, especially widgets and controls, this is not true.
+When in doubt, always consult the _package.json_ of the respective artifact.
+
+
+### Tooling: NPM and webpack
+
+This should not affect widgets and activities too much directly, but will require to rebuild some project infrastructure and configuration.
+
+LaxarJS v1 projects used:
+
+   - _Bower_ to obtain front end application artifacts,
+   - _RequireJS_ to load modules,
+   - _NPM, Grunt, grunt-laxar_ and various grunt plugins to obtain and run the project build pipeline.
+
+For LaxarJS v2, we wanted to support pre-built artifacts whose sources may be written in ES2015 or other "compile-to-js" languages, as well as artifacts that add dependencies to the development toolchain.
+
+Bower is not really a good fit for pre-built artifacts, as it is always _backed by sources_ on GitHub.
+Rather than adding more "build repositories", we chose switch to NPM for front end artifacts, which was already required for the tooling infrastructure anyway.
+In order to integrate seamlessly with workflows using ES2015 and SCSS, we switched from a collection of custom grunt tasks to a build infrastructure based around _webpack_.
+
+So, the new list of tools looks like this:
+
+   - _NPM_ to obtain front end artifacts as well as build-time dependencies
+   - _webpack_ and its loaders (especially the `laxar-loader`) to load and bundle artifacts
+
+This saves us a lot of work maintaining grunt plugins: laxar-tooling and laxar-loader are much smaller then grunt-laxar.
+It also makes custom build setups much simpler, as it unlocks the full array of [webpack plugins](https://github.com/webpack/docs/wiki/list-of-plugins) for loading widgets, controls and their assets.
+Where needed, it is of course still possible
 
 More Information:
 
    - [Manual: Infrastructure and Tools](./infrastructure_and_tools.md)
+   - [Manual: Installing Widgets](./installing_widgets.md)
    - [webpack website](https://webpack.js.org/)
    - [NPM: laxar-loader](https://www.npmjs.com/package/laxar-loader)
    - [NPM: laxar-tooling](https://www.npmjs.com/package/laxar-tooling)
@@ -41,7 +81,7 @@ More Information:
 
 ### JSON Schema now Processed _at build-time_
 
-LaxarJS feature configuration for widgets, activities and compositions is no longer processed at runtime, but while loading the application artifacts using the `laxar-loader` for Webpack.
+LaxarJS feature configuration for widgets, activities and compositions is no longer processed at runtime, but while loading the application artifacts using the `laxar-loader` for webpack.
 This allows us to replace the [jjv](https://www.npmjs.com/package/jjv) validator with the [ajv](https://www.npmjs.com/package/ajv) validator which is more actively maintained, more feature-rich and apparently more performant.
 Simultaneously we save on bundle size and startup time, as neither the validator nor any widget schema instances need to be loaded or interpreted within the browser.
 
@@ -58,7 +98,7 @@ More Information:
    - [ajv website](https://www.npmjs.com/package/ajv)
 
 
-### AngularJS moved from LaxarJS Core to Standalone Adapter Project
+### AngularJS Support Moved to Standalone Adapter Project
 
 The LaxarJS runtime no longer depends on functionality provided by AngularJS.
 Writing widgets using AngularJS works just like before, you just need to:
@@ -73,6 +113,14 @@ More Information:
    - [API: `laxar.bootstrap`](../api/laxar.md#laxar.bootstrap)
 
 
+### AngularJS: axLayout Control Removed
+
+Because layouts are now first-class items in widget areas, directly embedding them in widgets unnecessarily complicates the implementation of both widgets and runtime.
+Widgets should simply offer _widget areas,_ which can then be configured by the page to contain layouts.
+
+  -[GitHub: LaxarJS/laxar#272](https://github.com/LaxarJS/laxar/issues/272#issuecomment-191699871)
+
+
 ### Application Configuration: `window.laxar` is No More
 
 LaxarJS is no longer using a global object property for configuration.
@@ -84,6 +132,17 @@ More Information:
    - [API: `laxar.bootstrap`](../api/laxar.md#laxar.bootstrap)
 
 
+### Artifact Directory Defaults Changed
+
+With the new tooling infrastructure, _all artifact types_ (themes, flows, pages, layouts, widgets, controls) will be expected to reside within the respective sub-folders of `application/` within your project.
+Previously, widgets, controls and themes were expected to reside in sub-folders of `includes/`.
+This behavior can be customized by creating a `laxar.config.js` in your project and exporting the corresponding `paths.flows`, `paths.pages` and so on from there.
+
+More Information:
+
+   - [laxar-loader Manual](http://laxarjs.org/docs/laxar-loader-v2-latest/manuals/)
+
+
 ### Styles/Templates for Widgets/Controls lookup _by name only_
 
 Previously, LaxarJS used several heuristics to derive a widget or control name from a file system path segment.
@@ -91,12 +150,6 @@ The name is important to find the JavaScript implementation module, HTML templat
 Now, widgets and controls must always provide a descriptor (widget.json, control.json) with a `name` property.
 This makes artifacts robust against being moved, and for being used in different contexts.
 It also eliminates confusion regarding the name of directories and files when styling artifacts from within a theme.
-
-
-### axLayout control removed
-
-Because layouts are now first-class items in widget areas, directly embedding them in widgets unnecessarily complicates the implementation of both widgets and runtime.
-Widgets should simply offer _widget areas,_ which can then be configured by the page to contain layouts.
 
 
 ### Several LaxarJS APIs moved to Injectable Services
@@ -132,8 +185,8 @@ Also, the syntax for routing pattern definition has changed slightly, as LaxarJS
 More Information:
 
    - [Manual: Flow and Places](flow_and_places.md)
-   - [GitHub: LaxarJS#432](https://github.com/LaxarJS/laxar/issues/432#issuecomment-286998002)
-   - [GitHub: LaxarJS#381](https://github.com/LaxarJS/laxar/issues/381#issuecomment-262914879)
+   - [GitHub: LaxarJS/laxar#432](https://github.com/LaxarJS/laxar/issues/432#issuecomment-286998002)
+   - [GitHub: LaxarJS/laxar#381](https://github.com/LaxarJS/laxar/issues/381#issuecomment-262914879)
 
 
 ### Flow Definition: Removed entryPoint / exitPoint features
@@ -145,7 +198,7 @@ Exit points can be replaced by simply adding an activity that invokes the extern
 More Information:
 
    - [Manual: Flow and Places](flow_and_places.md)
-   - [GitHub: LaxarJS#392](https://github.com/LaxarJS/laxar/issues/392#issuecomment-259353773)
+   - [GitHub: LaxarJS/laxar#392](https://github.com/LaxarJS/laxar/issues/392#issuecomment-259353773)
 
 
 ### Flow: Default Router Changed from Angular $route to Navigo
@@ -181,7 +234,7 @@ Make sure to structure your routing patterns to handle these URLs, or avoid them
 
 More Information:
 
-   - [GitHub LaxarJS#389](https://github.com/LaxarJS/laxar/issues/389#issuecomment-259157734)
+   - [GitHub LaxarJS/laxar#389](https://github.com/LaxarJS/laxar/issues/389#issuecomment-259157734)
 
 
 ### Widget Descriptor: new `styleSource` and `templateSource`
@@ -191,14 +244,15 @@ Now, SCSS can be processed by setting the `styleSource` attribute of the widget.
 This allows for arbitrary compile-to-css languages (such as LESS).
 
 Also, the grunt plugin was notoriously unreliable in watching transitive SCSS import dependencies, which is no longer the case when using webpack with the [sass-loader](https://www.npmjs.com/package/sass-loader).
-The Yeoman Generator generates appropriate configuration out-of-the-box.
+The Yeoman Generator generates appropriate webpack dependencies and configuration out-of-the-box.
 
 Additionally, `templateSource` can be used to preprocess widget HTML templates.
-This allows to use HTML generator syntax such as [pug](https://www.npmjs.com/package/pug).
+This allows to use HTML generators such as [pug](https://www.npmjs.com/package/pug) to preprocess widget templates.
 
 More Information:
 
    - [Manual: Flow and Places](flow_and_places.md)
+   - [webpack website](https://webpack.js.org/)
 
 
 ### axVisibility: new widget service injection
@@ -210,9 +264,9 @@ To deal with visibility, the new injection is recommended over LaxarJS Patterns 
 More Information:
 
    - [Manual: Visibility Events](visibility_events.md)
-   - [API: `axVisibility`](../api/runtime.widget_services_visibility.md)
-   - [API: `axVisibilityMock`](../api/testing.widget_services_visibility.md) for testing
-   - [GitHub: LaxarJS#333](https://github.com/LaxarJS/laxar/issues/333#issuecomment-236914414)
+   - [API: `axVisibility` widget service](../api/runtime.widget_services_visibility.md)
+   - [API: `axVisibility` mock](../api/testing.widget_services_visibility.md) for testing
+   - [GitHub: LaxarJS/laxar#333](https://github.com/LaxarJS/laxar/issues/333#issuecomment-236914414)
 
 
 ### axI18n: new widget service injection
@@ -224,27 +278,138 @@ To deal with i18n, the new injection is recommended over LaxarJS Patterns `i18n`
 More Information:
 
    - [Manual: I18n](i18n.md)
-   - [API: `axI18n`](../api/runtime.widget_services_i18n.md)
-   - [API: `axVisibilityMock`](../api/testing.widget_services_i18n.md) for testing
-   - [GitHub: LaxarJS#332](https://github.com/LaxarJS/laxar/issues/332#issuecomment-238213488)
-   - [GitHub: LaxarJS#333](https://github.com/LaxarJS/laxar/issues/333#issuecomment-236914414)
-   - [GitHub: LaxarJS#429](https://github.com/LaxarJS/laxar/issues/429#issuecomment-286042533)
+   - [API: `axI18n` widget service](../api/runtime.widget_services_i18n.md)
+   - [API: `axI18n` mock](../api/testing.widget_services_i18n.md) for testing
+   - [GitHub: LaxarJS/laxar#332](https://github.com/LaxarJS/laxar/issues/332#issuecomment-238213488)
+   - [GitHub: LaxarJS/laxar#333](https://github.com/LaxarJS/laxar/issues/333#issuecomment-236914414)
+   - [GitHub: LaxarJS/laxar#429](https://github.com/LaxarJS/laxar/issues/429#issuecomment-286042533)
 
 
-### axAssets: replace require.toURL() using axAssets
+### Replace `require.toUrl()` using `axAssets`
 
 LaxarJS no longer depends on RequireJS, and it is not recommended to mix RequireJS with webpack either.
-Some widgets use RequireJS for generating absolute URLs, 
+Some widgets may use `toUrl`-method provided by RequireJS for generating absolute URLs.
+As this method constructs URLs at runtime, it is not supported by webpack.
+
+You may wish to use webpack to pre-bundle smaller assets within a reusable widget that has its own `package.json` and build-setup.
+In general, it is recommended to use the `axAssets` injection instead.
+
+More Information:
+
+   - [Manual: Assets and the Artifacts Bundle](assets.md)
+   - [Manual: Infrastructure and Tools](infrastructure_and_tools.md)
+   - [API: `axAssets` widget service](../api/runtime.widget_services.md#axAssets)
+   - [API: `axAssets` Mock](../api/widget_services_assets_mock.md)
+   - [webpack website](https://webpack.js.org/)
 
 
 ### axEventBus: removed methods: `unsubscribe`, `setMediator`, `setErrorHandler`
 
-TODO: details
+The LaxarJS event bus no longer allows to register a mediator, as this feature was never used.
+Configuring a custom error handler was removed from the public API as well, with its use case (testing) supported by a pre-configured event bus mock.
+
+Using `unsubscribe` was usually not required except when using the `axGlobalEventBus` injection.
+To cancel an event bus subscription, you must now use the callback returned by `axEventBus.subscribe`.
+This avoids possible problems with trying to using the old `unsubscribe` on decorated subscriber functions.
+
+More Information:
+
+   - [Manual: Assets and the Artifacts Bundle](assets.md)
+   - [Manual: Infrastructure and Tools](infrastructure_and_tools.md)
+   - [API: `axAssets` widget service](../api/runtime.widget_services.md#axAssets)
+   - [API: `axAssets` Mock](../api/widget_services_assets_mock.md)
 
 
 ### Widget adapter API changed
 
-TODO: details
+The widget adapter API was rewritten to make adapters more powerful.
+The two most important changes:
+
+   - creating an adapter for a widget instance may now be asynchronous
+   - widget adapters may now freely intercept and modify widget service injections
+
+More Information:
+
+   - [Manual: Creating Widget Adapters](adapters.md)
+   - [API: the "plain" Widget Adapter](../api/runtime.plain_adapter.md)
+   - [GitHub: LaxarJS/laxar#413](https://github.com/LaxarJS/laxar/issues/413#issuecomment-275091834)
+   - [GitHub: LaxarJS/laxar#398](https://github.com/LaxarJS/laxar/issues/398#issuecomment-271912600)
+   - [GitHub: LaxarJS/laxar#397](https://github.com/LaxarJS/laxar/issues/397#issuecomment-271912551)
+   - [GitHub: LaxarJS/laxar#396](https://github.com/LaxarJS/laxar/issues/396#issuecomment-287765561)
+   - [GitHub: LaxarJS/laxar#390](https://github.com/LaxarJS/laxar/issues/390#issuecomment-259363193)
+   - [GitHub: LaxarJS/laxar#358](https://github.com/LaxarJS/laxar/issues/358#issuecomment-240727903)
+   - [GitHub: LaxarJS/laxar#337](https://github.com/LaxarJS/laxar/issues/337#issuecomment-235178407)
+   - [GitHub: LaxarJS/laxar#281](https://github.com/LaxarJS/laxar/issues/281#issuecomment-224545226)
+
+
+### LaxarJS Mocks: Static HTML Test Runner is No More
+
+Because widget dependencies are no longer loaded at runtime by RequireJS, the recommended setup for testing widgets using LaxarJS Mocks has changed significantly:
+
+   - no more copy/paste of HTML spec runner files
+   - use the laxar-mocks/spec-loader for webpack to precompile widget dependencies
+   - no more need to declare "missing" CSS assets of controls
+   - run tests on the command-line using karma and karma-webpack
+   - run tests within the browser using the webpack-jasmine-html-runner-plugin
+
+More Information:
+
+   - [LaxarJS Mocks Manual](http://laxarjs.org/docs/laxar-mocks-v2-latest/manuals/)
+   - [LaxarJS Mocks Manual: Setup](http://laxarjs.org/docs/laxar-mocks-v2-latest/manuals/setup)
+   - [LaxarJS Mocks API](http://laxarjs.org/docs/laxar-mocks-v2-latest/api/laxar-mocks/)
+
+
+### LaxarJS Mocks: Use `axMocks.widget.setupForWidget`
+
+To clarify that test fixtures are now provided automatically and in advance (e.g. by the LaxarJS Mocks spec-loader for webpack), the testbed should now be created using `setupForWidget`.
+
+   - [LaxarJS Mocks API: setupForWidget](http://laxarjs.org/docs/laxar-mocks-v2-latest/api/laxar-mocks/#setupForWidget)
+
+
+### LaxarJS Mocks: `axMocks.widget.teardown` is now Asynchronous
+
+To clean up correctly after tests, LaxarJS mocks publishes the `endLifecycleRequest` event after each tests and allows the widget under test to perform cleanup before proceeding.
+
+   - [LaxarJS Mocks API: tearDown](http://laxarjs.org/docs/laxar-mocks-v2-latest/api/laxar-mocks/#tearDown)
+
+
+### LaxarJS Patterns: `patches` API removed
+
+The deprecated `patches` API was removed.
+Use JSON patch instead.
+
+   - [GitHub: LaxarJS/laxar-patterns#84](https://github.com/LaxarJS/laxar-patterns/issues/84#issuecomment-284394008)
+
+
+### LaxarJS Patterns: `resources` API: removed `updateHandler`, `replaceHandler`
+
+Use `handlerFor( context )` instead (or `$scope` instead of context for AngularJS widgets).
+
+   - [GitHub: LaxarJS/laxar-patterns#85](https://github.com/LaxarJS/laxar-patterns/issues/85#issuecomment-284391396)
+
+
+### LaxarJS Patterns: `actions` API: use Promise Rejections Correctly
+
+Actions publisher promises are no longer rejected for actions with an ERROR outcome, caused by e.g. validation failure.
+Instead, promises will only be rejected when subscribers fail with an exception.
+
+   - [GitHub: LaxarJS/laxar-patterns#54](https://github.com/LaxarJS/laxar-patterns/issues/54#issuecomment-280272865)
+
+
+### LaxarJS Patterns: Various Breaking Changes
+
+Most likey, only very few widgets are affected by the remaining breaking changes.
+Consult the Changelog for details:
+
+   - [LaxarJS Patterns: Changelog](http://laxarjs.org/docs/laxar-patterns-v2-latest/CHANGELOG/)
+
+
+### LaxarJS UiKit: I18n Controls Removed
+
+The controls contained in LaxarJS UiKit were locked to the `"angular"` integration technology.
+The `axLocalize` filter for AngularJS is now included in the `laxar-angular-adapter`.
+
+   - [GitHub: LaxarJS/laxar-angular-adapter#38](https://github.com/LaxarJS/laxar-angular-adapter/issues/38#issuecomment-285694190)
 
 
 ### Browser Support
@@ -255,17 +420,21 @@ In principle, MSIE 9 may still be working, but we are not actively supporting it
 
 Other than that, since LaxarJS no longer directly depends on AngularJS, it may actually be possible to support more browsers than in past major versions.
 
+More Information:
+
+ - [GitHub: LaxarJS/laxar#349](https://github.com/LaxarJS/laxar/issues/349#issuecomment-260323895)
+
 
 ## Migration Guide: LaxarJS v0.x to LaxarJS v1.x
 
-According to semantic versioning, minor versions starting with v0.x may introduce breaking changes.
-We tried to avoid that as much as possible during our own v0.x releases, but depending on where you start off, only some of these items will be relevant for you.
-Since LaxarJS v0.x was not used that much, this information is kept short:
+According to semantic versioning, minor versions starting with `v0.` may introduce breaking changes.
+We tried to avoid that as much as possible during our own `v0.x` releases, but depending on where you start off, only some of these items will be relevant for you.
+Since LaxarJS `v0.x` was not used that much, this information is kept short:
 
    - Support for MS Internet Explorer 8 was dropped.
 
    - The format of `didUpdate` events was changed from "update maps" to the standard [JSON patch](http://jsonpatch.com/) format.
-   When upgrading any complex application, this is probably the most work-intensive change.
+     When upgrading any complex application, this is probably the most work-intensive change.
 
    - The JSON schema format for widgets was changed from v3 to v4, with a compatibility fallback.
 
@@ -275,9 +444,9 @@ Since LaxarJS v0.x was not used that much, this information is kept short:
 
    - Some of the name-mangling magic was removed when translating artifact names to file names or AngularJS module names.
 
-   - The testing library built into LaxarJS core was deprecated in favor of [LaxarJS Mocks].
+   - The testing library built into LaxarJS core was deprecated in favor of [LaxarJS Mocks](laxarjs.org/docs/laxar-mocks-v1-latest/).
 
-   - _Controls_ became a themeable artifact type, with the control.json as a descriptor.
+   - _Controls_ became a themable artifact type, with the `control.json` as a descriptor.
 
    - AngularJS was upgraded from 1.2.x to (at least) 1.3.x.
 
