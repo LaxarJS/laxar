@@ -10,13 +10,12 @@ Then, explore the [core concepts](docs/concepts.md) and browse the [manuals](doc
 Also, there is a [glossary](docs/glossary.md) where you can lookup individual concepts, and a [troubleshooting guide](docs/troubleshooting.md) there for you if you need it.
 
 Have a look at the [LaxarJS website](http://laxarjs.org) for demos and more information.
-
-
-## Getting Started
-
 <span class="laxar-developer-view">
    Take a look at the <a href="http://www.laxarjs.org/docs/laxar-latest">documentation site</a> to browse documentation for all releases of this artifact.
 </span>
+
+
+## Getting Started
 
 Here are the basic instructions to get started:
 
