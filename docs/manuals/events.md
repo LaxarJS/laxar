@@ -15,7 +15,7 @@ LaxarJS consistently uses the term _events_ rather than _messages_, to point out
 
  * delivery is always _asynchronous_ (using an _event loop_).
 
-For these reasons, you may also think of this pattern as a variation on the _hollywood principle_ ("Don't call us, we'll call you").
+For these reasons, you may also think of this pattern as a variation on the _Hollywood principle_ ("Don't call us, we'll call you").
 
 For efficient processing, LaxarJS technology adapters tie into the change detection of their respective frameworks.
 For example, the `"angular"` adapter triggers an AngularJS `$digest`-cycle after events were delivered.

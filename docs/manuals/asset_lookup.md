@@ -1,4 +1,4 @@
-# Assets and the FileResourceProvider
+# Assets and the Artifacts Bundle
 
 [« return to the manuals](index.md)
 
@@ -29,7 +29,7 @@ For *widgets*, LaxarJS manages the following assets:
 For *activities*, LaxarJS only manages the `widget.json` descriptor, since activities have no presentation.
 
 For *controls*, LaxarJS manages the `control.json` descriptor, and the theme-dependent CSS stylesheet (if any).
-Controls may sometimes choose to load HTML assets (preferably using webpack), but these are not covered by the themeing mechanism.
+Controls may sometimes choose to load HTML assets (preferably using webpack), but these are not covered by the theming mechanism.
 
 For *layouts*, LaxarJS loads an HTML template, and the CSS stylesheet (if any).
 Both may be overridden by the application theme.
@@ -103,7 +103,7 @@ Controls take care of their own HTML loading (if required at all), so the choice
 The CSS styling of a control however is theme-specific.
 For a control named _"C"_ in its `control.json` descriptor, it works as follows:
 Before looking for the default theme in `<control-path>/default.theme/css/C.css`, LaxarJS looks for a theme override in `<theme-path>/controls/C/css/C.css`.
-Here, the `<theme-path>` refers to the folder containing your global theme, and the `<control-amd-path>` is the same path that widgets specify in their `widget.json` descriptor to include a control.
+Here, the `<theme-path>` refers to the folder containing your global theme, and the `<control-path>` is the same path that widgets specify in their `widget.json` descriptor to include a control.
 Have a look at the [manual on controls](./providing_controls.md) for details.
 
 

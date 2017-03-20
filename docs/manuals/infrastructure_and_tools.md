@@ -89,17 +89,17 @@ If navigating to a new page, the startup process (described above) is repeated, 
 
 Internally, LaxarJS uses a single service to provide HTML, CSS and JSON assets used to instantiate widgets and controls:
 The _artifacts provider_ manages a bundle that was prepared by the `laxar-loader` for webpack at build-time, and contains the JavaScript modules as well as CSS/HTML assets for all application artifacts.
-This avoids additional HTTP roundtrips in production, as well as during development.
+This avoids additional HTTP round trips in production, as well as during development.
 
 
 ## Webpack and the laxar-loader
 
 Most modern single page applications are no longer developed using just a text editor, and instead rely on additional development- and build-tools.
-The NPM module [laxar-loader](laxarjs.org/docs/laxar-loader-v2-latest/) helps to load LaxarJS application artifacts that using the popular [Webpack application bundler](https://webpack.js.org/).
+The NPM module [laxar-loader](laxarjs.org/docs/laxar-loader-v2-latest/) helps to load LaxarJS application artifacts that using the popular [webpack bundler](https://webpack.js.org/).
 Used on a flow definition, this laxar-loader will bundle up all required artifacts, by following the flow via its pages and widgets to its controls and layouts.
 
 LaxarJS does not actually require you to use webpack (for previous version, using RequireJS as loader was mandatory), because it does not perform module loading at runtime.
-However, to use a different toolchain, you will to generate the artifacts bundle yourself.
+However, to use a different tool chain, you will to generate the artifacts bundle yourself.
 If you need to do so, look into the laxar-loader and its dependency [laxar-tooling](laxarjs.org/docs/laxar-tooling-v2-latest/) for inspiration.
 
 

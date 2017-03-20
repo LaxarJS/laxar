@@ -20,7 +20,7 @@ Some widgets perform *expensive* operations such as:
   - loading and/or display of large amounts of data
   - loading and/or rendering large images and/or movies
   - using expensive controls for things like charts, animations etc.
-  - measuring DOM-elements for parameterizing animations
+  - measuring DOM-elements for parameterized animations
   - providing *widget areas* which may in turn host expensive widgets.
 
 If a widget does one or more expensive thing, it should only do so while the widget itself is *visible* to the user.

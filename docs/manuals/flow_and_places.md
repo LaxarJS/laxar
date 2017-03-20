@@ -114,7 +114,7 @@ Widgets may render regular HTML links and use the method *constructAbsoluteUrl* 
 Alternatively, widgets may initiate navigation by issuing a *navigateRequest* event expressing the desired new location within the application and providing values for place parameters.
 How event-based navigation works in detail can be read in the separate manual covering [events](events.md).
 
-In [HTTP/REST](http://en.wikipedia.org/wiki/Representational_state_transfer)) terms, event-based navigation is used to express POST-like semantics, where an URL change is associated with an effect-ful user action (save, signup, purchase, etc.), while links should always follow GET semantics so that the user can safely switch back and forth between URLs.
+In [HTTP/REST](http://en.wikipedia.org/wiki/Representational_state_transfer)) terms, event-based navigation is used to express POST-like semantics, where an URL change is associated with an effectful user action (save, sign up, purchase, etc.), while links should always follow GET semantics so that the user can safely switch back and forth between URLs.
 
 Even better, neither widgets nor pages need to deal with specific place IDs, and can instead use semantic *targets* to initiate navigation or to construct links, as explained in the next section.
 
@@ -148,7 +148,7 @@ An example:
          "targets": {
             "previous": "introduction",
             "next": "profession",
-            "help": "professionHelp"
+            "help": "interestsHelp"
          }
       },
 
@@ -194,6 +194,6 @@ Both the *interests* and the *profession* page use this target, but the places b
 This allows you to provide contextual semantics to standard navigation controls, such as a row of back/forward/help buttons.
 Returning from the help pages is familiar, via the *back* target leading to the respective places.
 
-Using the mechanisms introduced here, most navigation scenarios as well as integrations into external applications should be possible.
+Using the mechanisms introduced here, most navigation scenarios as well as integration into external applications should be possible.
 To find out how to construct links between pages, refer to the [axFlowService API](../api/services.md).
 To learn how to trigger event-based navigation from within widgets and activities, you should go on reading the [events documentation](events.md) and learn about the *navigateRequest* and *didNavigate* events.

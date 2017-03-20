@@ -40,13 +40,13 @@ For LaxarJS v1, we recommended installing widgets using [Bower](https://bower.io
 Besides being a simple and fast way to download a widget, Bower helps you to install and manage widget dependencies such as controls and libraries.
 
 However, it has shortcomings when widgets require additional tooling infrastructure (such babel) to run:
-First, Bower does not directly support prebuilt packages, like NPM does.
+First, Bower does not directly support pre-built packages, like NPM does.
 Then, all Bower dependencies are meant to be run in the Browser, so widgets cannot indicate that they require additional tooling (such as webpack loaders) to work.
 
 
 ### 1. Configure Webpack
 
-First, tell Webpack to use `bower_components` and the `bower.json` when resolving modules.
+First, tell webpack to use `bower_components` and the `bower.json` when resolving modules.
 For this, edit the `resolve` section in your `webpack.config.js`:
 
 ```js
@@ -69,7 +69,7 @@ $ bower install --save laxar-headline-widget
 ```
 
 This will also automatically install the latest version along with its Bower dependencies.
-To reference this widget from a JSON page definition, set the `widget` field to `'axar-headline-widget'`.
+To reference this widget from a JSON page definition, set the `widget` field to `'laxar-headline-widget'`.
 This will cause LaxarJS to use RequireJS in order to find the widget in the `bower_components` folder.
 
 

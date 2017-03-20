@@ -40,7 +40,7 @@ This may happen when integrating a widget from a third party into an application
 
 ### Integration Technologies
 
-LaxarJS serves as a _middleware layer_ that allows you to organize and connect isolated frontend components to form an application.
+LaxarJS serves as a _middleware layer_ that allows you to organize and connect isolated front end components to form an application.
 However, it has no say in how the individual widgets and their UI are implemented.
 Instead it tries to support you in using readily available frameworks such as React, Vue.JS and Angular.
 To integrate widgets that were created in different UI technologies, a piece of glue code is needed, the so-called *integration technology adapter*.
@@ -111,7 +111,7 @@ A newly created widget contains the following files:
   When your widget is used on a page, LaxarJS will load this automatically and bind it to your widget controller's scope.
   The [Bootstrap CSS](http://getbootstrap.com/css/) classes are made available by the LaxarJS *default.theme* to facilitate uniform styling across widgets.
   If Bootstrap does not suit you, feel free to use a different framework (or none at all) in [your own theme](./creating_themes.md), but keep in mind that this limits opportunities for widget reuse.
-  Similarly to controllers, all widget templates will be preloaded within a single JSON file when your application is packaged for release.
+  Similarly to controllers, all widget templates will be bundled within a single JSON file when your application is packaged for release.
 
 * `default.theme/css/shopping-cart-widget.css`
 
@@ -352,7 +352,7 @@ There you'll also find manuals and [an introduction](https://laxarjs.org/docs/la
 
 ### Running the Test
 
-The [laxarJS Mocks Setup Instructions](https://laxarjs.org/docs/laxar-mocks-v2-latest/) explain how to run widget tests from the command line using karma, or interactively using a generated HTML test runner.
+The [LaxarJS Mocks Setup Instructions](https://laxarjs.org/docs/laxar-mocks-v2-latest/) explain how to run widget tests from the command line using karma, or interactively using a generated HTML test runner.
 Hopefully this makes it simple to set up continuous testing for your application.
 
 
@@ -371,7 +371,7 @@ These are the most important widget properties:
 
 * `name`
 
-  This required field contains the _CamelCase_ version of the widget's directory name.
+  This required field contains the name of the widget, used to find its implementation module, template and stylesheet. The name must match the spelling and case of the module name (minus `.js` extension) exactly.
 
 * `description`
 

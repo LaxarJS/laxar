@@ -94,7 +94,7 @@ In the LaxarJS bootstrapping configuration (usually `init.js`), set the property
 
 ```js
 import { bootstrap } from 'laxar';
-boostrap( document.querySelector( '[data-ax-page]' ), {
+bootstrap( document.querySelector( '[data-ax-page]' ), {
    artifacts,
    configuration: {
       // ...
@@ -124,7 +124,7 @@ For example, the widget headers look much better using the original LaxarJS demo
 
 Let's fix that by _overriding widget styles_ from the theme:
 Within the theme directory, create a directory `widgets`.
-For each widget, add a directory named after the widget (specifically, the `name` property of the `widget.json`), and within it a `css` subfolder.
+For each widget, add a directory named after the widget (specifically, the `name` property of the `widget.json`), and within it a `css` sub-folder.
 Here are some suggestions for a nicer look, to be put under `application/themes/darkly.theme/widgets/`:
 
 * _article-browser-widget_: `article-browser-widget/css/article-browser-widget.css`

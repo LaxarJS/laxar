@@ -22,7 +22,7 @@ As you add libraries, page load times will increase and with it user satisfactio
 However, LaxarJS does not want you to be locked into using any specific implementation technology for your widgets.
 If used appropriately, _custom widget adapters_ can make it easier by leaps and bounds to integrate with legacy code or third-party widgets, simply helping you to be more productive.
 
-Even if you are not interested in writing your own widget adapter, reading this manual is a good way to gain an in-depth understanding of the LaxarJS widget lifecycle.
+Even if you are not interested in writing your own widget adapter, reading this manual is a good way to gain an in-depth understanding of the LaxarJS widget life cycle.
 
 
 ## The Role of Widget Adapters
@@ -33,12 +33,12 @@ Since that is a somewhat simplified explanation, let us look into it in more det
 * After entering a page, the _page controller_ has a single static model of all areas on a page, and for each area, a model of its configured widgets.
 The composition parameter names have long been substituted by their values, feature configuration has been expanded, defaults have been applied, and unique widget IDs have been generated.
 
-* For each configured widget instance, the page controller asks the _widget loader_ to provide it with a widget adapter for that instance, in order to manage the widget throughout its lifecycle.
+* For each configured widget instance, the page controller asks the _widget loader_ to provide it with a widget adapter for that instance, in order to manage the widget throughout its life cycle.
 The widget's descriptor (the _widget.json_), its assets (HTML/CSS) and the JavaScript controller module (AMD, CommonJS or ES6) have already been loaded as part of the artifacts bundle, when entering the application.
 
 * Now, the widget loader provides [*widget services*](./widget_services.md) for injection into the widget controller.
 This includes the widget-specific event bus instance, which automatically sets the _sender_ on publish, and which automatically removes subscriptions when the page containing a widget is destroyed.
-Widget services are instantiated lazily using EcmaScript 5 dynamic properties, so that they will only be created when they are actually injected.
+Widget services are instantiated lazily using ECMAScript 5 dynamic properties, so that they will only be created when they are actually injected.
 
 * Now all that is left to do is kicking off the widget controller with the injections, and then loading and instantiating the widget template.
 Both of these steps are performed by the adapter, and specific to the implementation technology of the widget.
@@ -140,7 +140,7 @@ All widget adapter instances produced by `create` must implement the following t
   In this case, it is up to the widget adapter to decide if the anchor should be added to the DOM anyway, usually based on whether the type is _widget_ or _activity_.
 
 * `domDetach`: the counterpart to `domAttachTo`, this method is used to remove the view from the containing widget area, temporarily or permanently.
-  The widget adapter may teardown the template completely, or keep it "warm" for reattachment.
+  The widget adapter may tear down the template completely, or keep it "warm" for reattachment.
   LaxarJS may ask widget adapters to detach their DOM and later to attach it again, for example to suspend the widget views within a "popup" layer while that layer is closed.
   If an adapter cannot reliably destroy and rebuild its view, it should do nothing, and simply ignore subsequent calls to `domAttachTo`.
 

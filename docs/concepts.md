@@ -62,7 +62,7 @@ To simplify the creation of widgets, LaxarJS directly supports several modern UI
 
 A _LaxarJS activity_ is a widget without a visual representation, performing a task for the user _behind the scenes_.
 To build upon the previous example, a _login widget_ might talk to an authentication service itself, but it might also delegate this task to an _authentication activity_ using the event bus.
-When the authentication mechanism changes (e.g. from a plain HTTPS auth to OAuth) only the activity needs to be exchanged, while the widget remains untouched.
+When the authentication mechanism changes (e.g. from a plain HTTPS authentication to OAuth) only the activity needs to be exchanged, while the widget remains untouched.
 In contrast to regular libraries, activities participate in the lifecycle of the page and are attached to the event bus, which allows them to communicate with other widgets using publish/subscribe.
 
 Another possible example would be a _web search widget_ offering a search box with a list of web search results.
@@ -166,10 +166,10 @@ More often however, the UI part should be reused as a "dumb" control, with widge
 
 Widgets may use _libraries_ such as _jQuery_ or _moment.js_ just like in any JavaScript web application.
 
-Since version 2, LaxarJS, provides a development workflow based on [NPM](http://npmjs.com/) and [webpack](https://webpack.js.org/) in order to install and load widgets with their asset and library dependencies, but as there are no runtime dependencies to these tools, adapting a different toolchain for use with LaxarJS should not be too hard.
+Since version 2, LaxarJS, provides a development workflow based on [NPM](http://npmjs.com/) and [webpack](https://webpack.js.org/) in order to install and load widgets with their asset and library dependencies, but as there are no runtime dependencies to these tools, adapting a different tool chain for use with LaxarJS should not be too hard.
 
 To establish a useful common base vocabulary for use with the event bus, the [LaxarJS Patterns](https://github.com/LaxarJS/laxar-patterns) library is provided.
-It contains helpers that make it easy for widgets to talk about user actions, common (REST) resources and boolean flags.
+It contains helpers that make it easy for widgets to talk about user actions, common (REST) resources and Boolean flags.
 
 
 #### LaxarJS and UI Frameworks

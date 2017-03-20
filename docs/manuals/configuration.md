@@ -19,7 +19,7 @@ When writing widgets, it is generally recommended to avoid global configuration 
 Sometimes however, a single setting must be respected across a large number of widgets:
 For example, all widgets should use the same validation trigger (on change vs. on focus-out) to guarantee a consistent user experience.
 
-In other cases, LaxarJS itself needs to be configured, for example to determine the theme, file listing URIs, available locales and so on.
+In other cases, LaxarJS itself needs to be configured, for example to determine the theme, flow, available locales and so on.
 The _LaxarJS Core_ configuration options are listed below.
 
 
@@ -31,10 +31,10 @@ The configuration is passed to LaxarJS bootstrap when launching your application
 
 ```js
 import { bootstrap } from 'laxar';
-bootstrap( /* dom element */, {
+bootstrap( /* DOM element */, {
    // ... artifacts, widget adapters ...
    configuration: {
-      // ... other config options, e.g. logging level ...
+      // ... other configuration options, e.g. logging level ...
       name: 'My App',
       description: 'A well-configured application',
       theme: 'default',
@@ -58,7 +58,7 @@ Keys without the `lib.`-prefix are used by _LaxarJS Core_.
 The LaxarJS configuration is exposed as the widget service injection `axConfiguration` with a single method `get( key, fallback )`.
 The `key`-parameter is the path within the configuration object (passed to `laxar.bootstrap`), and the (optional) `fallback` is returned as a default value if the key was not set in the configuration.
 
-For example, let us assume that the controller of a `"plain"` activity called `my-activity` wants to enable some kind of compatibility behavior for a special _foo_ environment by exposing a boolean configuration `fooMode`.
+For example, let us assume that the controller of a `"plain"` activity called `my-activity` wants to enable some kind of compatibility behavior for a special _foo_ environment by exposing a Boolean configuration `fooMode`.
 By default, the option should be disabled, as compatibility with foo involves jumping through some hoops.
 
 The widget implementation module would then access the option like this:
@@ -77,10 +77,10 @@ The corresponding configuration block to enable foo-compatibility would then loo
 
 ```js
 import { bootstrap } from 'laxar';
-bootstrap( /* dom element */, {
+bootstrap( /* DOM element */, {
    // ... artifacts, widget adapters ...
    configuration: {
-      // ... other config options, e.g. logging level ...
+      // ... other configuration options, e.g. logging level ...
       widgets: {
          'my-activity': {
             fooMode: true
@@ -112,7 +112,7 @@ The following configuration options are defined by _LaxarJS Core_.
 | `controls.*`                         | `null`                | Sub-configuration for use by controls (using the artifact name as second-level key is recommended).
 | `eventBusTimeoutMs`                  | `120000`              | The maximum delay (in milliseconds) to wait for a `did...` event to be published, after it was announced by a `will...` event.
 | `i18n.locales`                       | `{ 'default': 'en' }` | Which language tag to use for the default locale, and possibly for other locales.
-| `logging.instanceId`                 | `true`                | If set to a function, that function is used to calculate the value of the INST log tag. If set to `true` (default), the current UNIX timestamp plus a small random offset is used. If set to `false`, no INST log-tag is generated.
+| `logging.instanceId`                 | `true`                | If set to a function, that function is used to calculate the value of the INST log tag. If set to `true` (default), the current UNIX time stamp plus a small random offset is used. If set to `false`, no INST log-tag is generated.
 | `logging.levels`                     | `{}`                  | Additional log levels with name and severity, for example `{ NOTICE: 350 }`. The predefined severities reach from _100_ for `TRACE` to _600_ for `FATAL`.
 | `logging.threshold`                  | `'INFO'`              | The log level which is required for messages to be logged (one of `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR` or `FATAL`)
 | `flow.name`                          | null                  | The flow to use for routing. **Note:** if this is not specified, no flow will be loaded!

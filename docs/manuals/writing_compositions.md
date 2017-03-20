@@ -88,7 +88,7 @@ Let us start with a simple `popup_composition`:
 ```
 
 The syntax of the example should be familiar to authors of widgets and pages, but also exhibits some composition-specific characteristics.
-If you do not know the `axRole` and `format` metadata keywords, you may ignore them, as they are not related to the compositions feature, but only used by development tools.
+If you do not know the `axRole` and `format` meta data keywords, you may ignore them, as they are not related to the compositions feature, but only used by development tools.
 
 
 ### Composition Features

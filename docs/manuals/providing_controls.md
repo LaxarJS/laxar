@@ -140,7 +140,7 @@ Not that for controls, _theme folders_ are only used for stylesheets, not for te
 
 ### Using a Control from a Widget
 
-Any widget that uses our clock should declare its AMD dependency using `controls` entry in its `widget.json`:
+Any widget that uses our clock should declare its dependency using `controls` entry in its `widget.json`:
 
 ```JSON
 "controls": [ "my-clock-control" ],

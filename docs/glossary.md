@@ -1,6 +1,6 @@
 # LaxarJS Glossary
 
-While reading LaxarJS manuals and APId documentation you will from time to time stumble over terms, that have a certain meaning within the context of LaxarJS.
+While reading LaxarJS manuals and API documentation you will from time to time stumble over terms, that have a certain meaning within the context of LaxarJS.
 To prevent from defining these terms over and over again, this document is a collection of all terms and our definition.
 If you deem something important is missing here, feel free to [contact us](//laxarjs.org/the-team/).
 
@@ -70,7 +70,7 @@ Consider the following object:
    "something": [
       { "user": { "name": "Tom" } },
       { "user": { "name": "Pete" } },
-      { "user": { "name": "Suzi" } }
+      { "user": { "name": "Suzy" } }
    ]
 }
 ```
@@ -158,7 +158,7 @@ You'll find this being used very frequently when working with the [LaxarJS Patte
 
 ## Flag
 
-In the context of [LaxarJS Patterns](https://laxarjs.org/docs/laxar-patterns-v2-latest/), a publish/subscribe event announcing a boolean state to collaborators.
+In the context of [LaxarJS Patterns](https://laxarjs.org/docs/laxar-patterns-v2-latest/), a publish/subscribe event announcing a Boolean state to collaborators.
 Often used to toggle visibility of context-dependent UI items, or to enable/disable form elements.
 
 More Information:
@@ -179,7 +179,7 @@ More Information:
 
 ## I18n
 
-*Internationalization:* LaxarJS allows to broadcast changes to application locales and offers a small set of helpers for selecting the correct localizations from internationalized values.
+*Internationalization:* LaxarJS allows to broadcast changes to application locales and offers a small set of helpers for selecting the correct localization from internationalized values.
 
 More Information:
 
