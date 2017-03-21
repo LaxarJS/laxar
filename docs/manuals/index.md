@@ -30,6 +30,10 @@ If you're already developing your first widgets and want to know which programma
 
    How to communicate between widgets using topics on the event bus.
 
+* [The `"plain"` Integration Technology](widget_services.md)
+
+   Even without any fancy MVC framework, you can create useful widgets and activities.
+
 * [Configuration](configuration.md)
 
    Documents the LaxarJS configuration API which can be used to configure widgets, and the built-in configuration options.
