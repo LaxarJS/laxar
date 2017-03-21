@@ -2585,9 +2585,9 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
 
-navigo@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/navigo/-/navigo-4.1.2.tgz#887951828d847b9e692c5228efa0950985124aef"
+navigo@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/navigo/-/navigo-4.3.0.tgz#707c1246318c19ed1889e8c0dff25122edba4c99"
 
 negotiator@0.6.1:
   version "0.6.1"
@@ -2777,12 +2777,6 @@ os-tmpdir@^1.0.1, os-tmpdir@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
 
-page@~1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/page/-/page-1.7.1.tgz#3886c147b895487783759b37e800a11213bc38ed"
-  dependencies:
-    path-to-regexp "~1.2.1"
-
 pako@~0.2.0:
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/pako/-/pako-0.2.9.tgz#f3f7522f4ef782348da8161bad9ecfd51bf83a75"
@@ -2855,12 +2849,6 @@ path-is-inside@^1.0.1:
 path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
-
-path-to-regexp@~1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-1.2.1.tgz#b33705c140234d873c8721c7b9fd8b541ed3aff9"
-  dependencies:
-    isarray "0.0.1"
 
 path-type@^1.0.0:
   version "1.1.0"

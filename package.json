@@ -23,7 +23,7 @@
     "eslint": "eslint laxar.js *.config.js lib"
   },
   "dependencies": {
-    "navigo": "^4.1.2"
+    "navigo": "^4.3.0"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",

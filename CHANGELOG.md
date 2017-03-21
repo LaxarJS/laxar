@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#435](https://github.com/LaxarJS/laxar/issues/435): navigo: updated to current version with configurable hash string
+    + NEW FEATURE: see ticket for details
 - [#348](https://github.com/LaxarJS/laxar/issues/348): documentation: added manual on the `plain` adapter
 - [#420](https://github.com/LaxarJS/laxar/issues/420): documentation: added upgrade guide
 - [#434](https://github.com/LaxarJS/laxar/issues/434): areaHelper: keep `data-ax-widget-area` attribute
