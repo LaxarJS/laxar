@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#348](https://github.com/LaxarJS/laxar/issues/348): documentation: added manual on the `plain` adapter
 - [#420](https://github.com/LaxarJS/laxar/issues/420): documentation: added upgrade guide
 - [#434](https://github.com/LaxarJS/laxar/issues/434): areaHelper: keep `data-ax-widget-area` attribute
 - [#433](https://github.com/LaxarJS/laxar/issues/433): documentation: updated manuals for LaxarJS v2

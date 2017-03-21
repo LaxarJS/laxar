@@ -162,7 +162,7 @@ The adapters are sorted by their implementation complexity, from simple to compl
 
 Also, there is the adapter for `'plain'`, which is part of the LaxarJS Core code base:
 
-  - [Plain adapter](https://github.com/LaxarJS/laxar/blob/master/lib/runtime/plain_adapter.js) for the `"plain"` technology
+  - [plain adapter](https://github.com/LaxarJS/laxar/blob/master/lib/runtime/plain_adapter.js) for the `"plain"` technology
 
 
 ## Using a Custom Adapter in a Project
