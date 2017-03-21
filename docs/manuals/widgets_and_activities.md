@@ -46,6 +46,7 @@ Instead it tries to support you in using readily available frameworks such as Re
 To integrate widgets that were created in different UI technologies, a piece of glue code is needed, the so-called *integration technology adapter*.
 
 The only adapter included with LaxarJS Core is the adapter for the integration technology `"plain"`, which does not rely on any specific framework, but leaves it up to the widget author to choose what (if any) supporting libraries should be loaded by the widget.
+There is a dedicated [manual on the `"plain"` adapter](plain_adapter.md).
 
 Another adapter offered by the LaxarJS project is the [laxar-angular-adapter](https://laxarjs.org/docs/laxar-angular-adapter-v2-latest/) supporting the integration technology `"angular"`, meaning AngularJS v1.
 Because `"angular"` was the built-in technology for LaxarJS v1 and many developers are familiar with its basics, it is still used frequently throughout the examples in this documentation.

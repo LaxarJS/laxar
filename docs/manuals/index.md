@@ -32,6 +32,10 @@ For developers coming from previous LaxarJS major versions, there is an [upgrade
 
    How to communicate between widgets using topics on the event bus.
 
+* [The `"plain"` Integration Technology](widget_services.md)
+
+   Even without any fancy MVC framework, you can create useful widgets and activities.
+
 * [Configuration](configuration.md)
 
    Documents the LaxarJS configuration API which can be used to configure widgets, and the built-in configuration options.

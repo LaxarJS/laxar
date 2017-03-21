@@ -35,6 +35,7 @@ The exact structure of a control depends on the integration technology that is u
 Throughout this manual, we use the `"angular"` integration technology for our examples.
 Note that controls can only be used by widgets that use the same integration technology.
 The only exception is the built-in integration technology `"plain"`, which can be used by any widget, but may be difficult to use correctly from some widget integration technologies.
+The [plain adapter documentation](plain_adapter.md) explains how these controls are used.
 
 
 ### Creating an `angular` Control using a Directive
