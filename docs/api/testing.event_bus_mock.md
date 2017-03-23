@@ -50,8 +50,9 @@ published events.
 
 A mock version of [`EventBus`](runtime.event_bus.md).
 
-Offers spied-upon version of the usual axEventBus methods, as well as a `flush` method for synchronous
-scheduling of events, and a `drainAsync` to asynchronously run event handlers to completion.
+Offers spied-upon version of the usual axEventBus methods, including a spy on the unsubscribe-callback
+returned by `subscribe`. Also has as a `flush` method for synchronous scheduling of events, and a
+`drainAsync` to asynchronously run event handlers to completion.
 
 ### <a id="{EventBusMock}"></a>{EventBusMock}
 

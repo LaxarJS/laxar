@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#436](https://github.com/LaxarJS/laxar/issues/436): testing: auto-spy unsubscribe-callback of `eventBus.subscribe`
+    + NEW FEATURE: see ticket for details
 - [#435](https://github.com/LaxarJS/laxar/issues/435): navigo: updated to current version with configurable hash string
     + NEW FEATURE: see ticket for details
 - [#348](https://github.com/LaxarJS/laxar/issues/348): documentation: added manual on the `plain` adapter
