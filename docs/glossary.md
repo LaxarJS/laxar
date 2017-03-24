@@ -84,6 +84,7 @@ More Information:
 ## Bootstrap CSS
 
 The CSS framework used by default for LaxarJS applications, widgets and controls.
+Not to be confused with the `.bootstrap()`-method used to initialize a LaxarJS Bootstrapping Instance.
 
 More Information:
 
@@ -94,11 +95,12 @@ More Information:
 
 A runtime context within which LaxarJS instantiates and configures a flow, pages and widgets.
 Multiple bootstrapping instances may run within the same browser window at the same time in complete isolation from each other.
-Each instance displays one page at a time.
+Each instance may use a flow that displays one page at a time.
+Not to be confused Bootstrap CSS.
 
 More Information:
 
-   - [API: `laxar.bootstrap`](./api/laxar.md#laxar.bootstrap)
+   - [API: `laxar.create`](./api/laxar.md#laxar.create)
 
 
 ## Control

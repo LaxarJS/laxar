@@ -56,7 +56,7 @@ Each widget integration technology is implemented as a module with these propert
 * The module field `technology` is a string that identifies the widget adapter technology, such as `"angular"` or `"react"`.
   It is compared to the `integration.technology` field of each widget descriptor to determine which adapter must be used for each widget in the application.
 
-* The module method `bootstrap` prepares the adapter for an entire LaxarJS bootstrap instance.
+* The module method `bootstrap` prepares the adapter for an entire LaxarJS bootstrapping instance.
   The method receives an object with one array property for `widgets` and one for `controls`.
   Each entry of these arrays has a `descriptor` (the contents of `widget.json` and `control.json` respectively), and a `module` containing the technology-dependent implementation code.
   As a second argument, `bootstrap` receives selected *services* from the LaxarJS runtime, only some of which may be required to implement an individual adapter:
@@ -71,7 +71,8 @@ Each widget integration technology is implemented as a module with these propert
 
    - `storage` is the application-wide [`AxStorage`](../api/runtime.storage.md) instance, which is the same as the `axGlobalStorage` widget service injection.
 
-  The `bootstrap` method returns an *adapter factory* object which is used to create individual adapter instances for the live widgets. The adapter factory is an object with two methods:
+  The `bootstrap` method returns an *adapter factory* object which is used to create individual adapter instances for the live widgets.
+  The adapter factory is an object with two methods:
 
    - `create`: the actual factory method to create an adapter for a given widget instance. Each widget instance has its own adapter instance, so that the adapter is free to maintain state information specific to its widget, as may be required by the integration technology.
    For each widget to be instantiated, `create` is called with an _environment_ containing the `widgetName`, the containing DOM `anchorElement`, the widget `services`, and a `provideService` callback.
@@ -167,6 +168,6 @@ Also, there is the adapter for `'plain'`, which is part of the LaxarJS Core code
 
 ## Using a Custom Adapter in a Project
 
-To use any integration technology other than "plain", the corresponding adapter module must be passed to the LaxarJS `bootstrap` method.
-This means that when working on a project that was created by the [LaxarJS Yeoman generator](//github.com/LaxarJS/generator-laxarjs), the `init.js` must load the corresponding module, wrap it in an array and pass that array as the `widgetAdapters` option to `bootstrap`.
-Finally, the widgets written for this integration technology must state so in their _widget.json_ descriptor.
+To use any integration technology other than "plain", the corresponding adapter module must be passed to the LaxarJS `create` method.
+This means that when working on a project that was created by the [LaxarJS Yeoman generator](//github.com/LaxarJS/generator-laxarjs), the `init.js` must load the corresponding module, wrap it in an array and pass that array as the first parameter (`adapters`) to `create`.
+Finally, the widgets written for this integration technology must state so in their _widget.json_ descriptor, by specifying the adapter `technology` as their own `integration.technology` string.

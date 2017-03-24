@@ -111,11 +111,11 @@ Writing widgets using AngularJS works just like before, you just need to:
    - add the [laxar-angular-adapter](https://laxarjs.org/docs/laxar-angular-adapter-v2-latest/) to your project:
     `npm install --save laxar-angular-adapter`,
 
-   - pass it to `bootstrap` using the `widgetAdapters` option.
+   - pass it to `create` using the `adapters` option.
 
 More Information:
 
-   - [API: `laxar.bootstrap`](../api/laxar.md#laxar.bootstrap)
+   - [API: `laxar.create`](../api/laxar.md#laxar.create)
 
 
 ### AngularJS: axLayout Control Removed
@@ -130,11 +130,11 @@ Widgets should simply offer _widget areas,_ which can then be configured by the 
 
 LaxarJS is no longer using a global object property for configuration.
 This improves testability and allows to run multiple LaxarJS instances side-by-side.
-Pass your configuration values to `bootstrap` instead, using the `configuration` option.
+Pass your configuration values to `create` instead, using the last parameter (`configuration`).
 
 More Information:
 
-   - [API: `laxar.bootstrap`](../api/laxar.md#laxar.bootstrap)
+   - [API: `laxar.create`](../api/laxar.md#laxar.create)
 
 
 ### Artifact Directory Defaults Changed

@@ -16,7 +16,7 @@ Preliminary readings:
 
 The flow is the top-level artifact that ties together all parts of a LaxarJS application:
 it defines what pages are reachable, which in turn determines the set of widgets and controls that are loaded as part of an application.
-At bootstrapping time, you must specify _which_ flow to use in your application.
+Before bootstrapping your application, you must specify _which_ flow to use in your application.
 The default flow configured by the Yeoman generator is called `"main"`.
 Adding more flows allows you to create several "perspectives" onto your application, automatically picking pages and widgets from your project as needed.
 For example, you could have a flow to present to new visitors, a second flow for registered users, and a third flow to implement a back-office tool.

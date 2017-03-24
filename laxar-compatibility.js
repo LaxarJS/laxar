@@ -12,7 +12,7 @@
  *
  * @module laxar-compatibility
  */
-import { assert, bootstrap as laxarBootstrap, instances, object, string } from './laxar';
+import { assert, create as laxarCreate, instances, object, string } from './laxar';
 import { create as createBrowser } from './lib/runtime/browser';
 import { create as createConfiguration } from './lib/runtime/configuration';
 import { create as createLog, BLACKBOX, levels } from './lib/runtime/log';
@@ -35,19 +35,33 @@ export const storage = createFallback( 'storage', 'axStorage' );
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export function bootstrap( ...args ) {
-   const result = laxarBootstrap( ...args );
-   if( !firstInstance ) {
-      const first = _ => _[ Object.keys( _ )[ 0 ] ];
-      firstInstance = first( instances() );
-   }
-   else if( !jasmine ) {
-      services().log.warn(
-         'Compatibility: Trying to bootstrap multiple LaxarJS instances in compatibility mode may cause ' +
-         'undefined behavior.'
-      );
-   }
-   return result;
+export function create( ...args ) {
+   return wrapApi( laxarCreate( ...args ) );
+}
+
+function wrapApi( instanceApi ) {
+   // decorate .page, .flow, ...
+   const wrapped = Object.keys( instanceApi ).reduce( (api, name) => {
+      api[ name ] = ( ...args ) => wrapApi( instanceApi[ name ]( ...args ) );
+      return api;
+   }, {} );
+
+   return {
+      ...wrapped,
+      bootstrap( ...args ) {
+         if( !firstInstance ) {
+            const first = _ => _[ Object.keys( _ )[ 0 ] ];
+            firstInstance = first( instances() );
+         }
+         else if( !jasmine ) {
+            services().log.warn(
+               'Compatibility: Trying to bootstrap multiple LaxarJS instances in compatibility mode may ' +
+               'cause undefined behavior.'
+            );
+         }
+         return instanceApi.bootstrap( ...args );
+      }
+   };
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

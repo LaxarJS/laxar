@@ -25,7 +25,7 @@ In fact, it is a good practice to create a commit in Git (or a VCS of choice) ri
 During development of your application, set the LaxarJS logging level to "DEBUG" or "TRACE".
 The default level is "INFO", which is appropriate for production.
 LaxarJS itself logs its lifecycle messages in "TRACE", so make sure to enable it if you have problems with the overall setup of your application.
-To enable "TRACE" logging, set `logging: { level: 'TRACE' }` in the configuration option that you pass to `laxar.bootstrap`, usually in your `init.js`.
+To enable "TRACE" logging, set `logging: { level: 'TRACE' }` in the configuration option that you pass to `laxar.create`, usually in your `init.js`.
 
 
 ### Use the Developer Tools Extension
@@ -49,7 +49,5 @@ Here are a few pointers to follow if things are going wrong:
 ### There are no errors, just a blank Page
 
 This is most commonly a problem with the routing setup.
-First, make sure that you specified the flow to use for your application in the bootstrap configuration options (e.g. by adding `flow: { name: "main" }` if the file `flows/main.json` contains your flow definition).
-
-Next, ensure that the router actually matches against the browser location.
+Ensure that the router actually matches against the browser location.
 For example, if you are using hash-based-URLs for routing, set `router: { navigo: { useHash: true } }`.

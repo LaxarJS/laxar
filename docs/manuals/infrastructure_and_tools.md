@@ -44,7 +44,7 @@ Let us dissect the startup process of a LaxarJS application based on the `debug.
 
 What do the individual elements mean?
 
-  * The `data-ax-page` attribute determines where LaxarJS will place the layout for the current page.
+  * The `data-ax-page` attribute is referenced by the `init.js` to determine where LaxarJS will place the layout for the current page.
 
   * The `script` element loads your application bundle based on the `init.js` entry point, as configured by the `webpack.config.js`.
 
@@ -53,11 +53,11 @@ What do the individual elements mean?
 
 So, let us see what happens once all required JavaScript modules are available:
 
-  1. The `init.js` collects all dependencies for your application and passes them to `laxar.bootstrap()`.
+  1. The `init.js` collects all dependencies for your application and passes them to `laxar.create`.
 
-  2. `laxar.bootstrap()` creates the runtime services based on your configuration, and bootstraps all technology adapters used by your application.
+  2. `laxar.create().….bootstrap()` sets up the runtime services based on your configuration, and bootstraps all technology adapters used by your application.
 
-  3. If a flow was passed as part of the configuration, it is now instantiated, and its patterns are used to set up the [Navigo router](https://www.npmjs.com/package/navigo).
+  3. If a flow was initialized before bootstrapping (using `laxar.create(…).flow( name, domNode )`), it is now instantiated, and its patterns are used to set up the [Navigo router](https://www.npmjs.com/package/navigo).
 
   4. The router matches the flow routing patterns against the current URL, and invokes the LaxarJS _flow controller_ with the matching place, so that the current _page_ is determined (possibly after following redirects).
 

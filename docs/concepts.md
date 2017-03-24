@@ -108,7 +108,7 @@ _LaxarJS layouts_ are skeleton HTML documents, which contain placeholders (calle
 Each page specifies a layout that the LaxarJS runtime should use for it.
 You can use one or several layouts for all of the scaffolding markup of your application (such as copyright footers and navigation), but you may also choose to implement these areas as widgets to allow for re-use and configuration.
 
-By default, LaxarJS applications use _Bootstrap_ to implement a grid layout in CSS, and to ensure that widgets are compatible with respect to their CSS, however you are free to deviate from this in your application.
+By default, LaxarJS applications use _Bootstrap CSS_ to implement a grid layout in CSS, and to ensure that widgets are compatible with respect to their CSS, however you are free to deviate from this in your application.
 For each _widget area_, the layout can define a width in Bootstrap grid columns, and widgets within these areas may not exceed their available number of columns.
 Like widgets, layouts may be accompanied by their own CSS styles, for example to define a background color.
 

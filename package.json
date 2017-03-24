@@ -45,8 +45,8 @@
     "laxar-dox": "~2.0.0-alpha.4",
     "promise-polyfill": "^6.0.2",
     "script-loader": "^0.7.0",
-    "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.2.0",
+    "webpack": "^2.3.0",
+    "webpack-dev-server": "^2.4.0",
     "webpack-jasmine-html-runner-plugin": "^0.7.0",
     "whatwg-fetch": "^1.0.0"
   },

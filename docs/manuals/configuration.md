@@ -26,26 +26,26 @@ The _LaxarJS Core_ configuration options are listed below.
 ## Configuration Structure
 
 Configuration keys are simple attribute paths, reflecting the hierarchical configuration structure.
-The configuration is passed to LaxarJS bootstrap when launching your application instance, usually in the `init.js`:
+The configuration is passed to LaxarJS `create` when launching your application instance, usually in the `init.js`:
 
 
 ```js
-import { bootstrap } from 'laxar';
-bootstrap( /* DOM element */, {
-   // ... artifacts, widget adapters ...
-   configuration: {
-      // ... other configuration options, e.g. logging level ...
-      name: 'My App',
-      description: 'A well-configured application',
-      theme: 'default',
-      flow: {
-         name: 'main'
-      },
-      logging: {
-         level: 'WARN'
-      }
+const laxar = require( 'laxar' );
+const adapters = [ /*...*/ ];
+const artifacts = require( 'laxar-loadert/artifacts?flow=main' );
+const configuration = {
+   // ... other configuration options, e.g. logging level ...
+   name: 'My App',
+   description: 'A well-configured application',
+   theme: 'default',
+   logging: {
+      level: 'WARN'
    }
-} );
+};
+
+laxar.create( adapters, artifacts, configuration )
+   .flow( 'main', document.querySelector( /*...*/ ) )
+   .bootstrap();
 ```
 
 Libraries, widgets and activities may define their own configuration keys, but must always use the `lib.` prefix, followed by a suitable module identifier (e.g. the name of the library vendor) to avoid name collisions.
@@ -56,7 +56,7 @@ Keys without the `lib.`-prefix are used by _LaxarJS Core_.
 ## The Configuration Service
 
 The LaxarJS configuration is exposed as the widget service injection `axConfiguration` with a single method `get( key, fallback )`.
-The `key`-parameter is the path within the configuration object (passed to `laxar.bootstrap`), and the (optional) `fallback` is returned as a default value if the key was not set in the configuration.
+The `key`-parameter is the path within the configuration object (passed to `laxar.create`), and the (optional) `fallback` is returned as a default value if the key was not set in the configuration.
 
 For example, let us assume that the controller of a `"plain"` activity called `my-activity` wants to enable some kind of compatibility behavior for a special _foo_ environment by exposing a Boolean configuration `fooMode`.
 By default, the option should be disabled, as compatibility with foo involves jumping through some hoops.
@@ -76,18 +76,15 @@ export function create( configuration ) {
 The corresponding configuration block to enable foo-compatibility would then look like this:
 
 ```js
-import { bootstrap } from 'laxar';
-bootstrap( /* DOM element */, {
-   // ... artifacts, widget adapters ...
-   configuration: {
-      // ... other configuration options, e.g. logging level ...
-      widgets: {
-         'my-activity': {
-            fooMode: true
-         }
+const configuration = {
+   // ... other configuration options, e.g. logging level ...
+   widgets: {
+      'my-activity': {
+         fooMode: true
       }
    }
-} );
+};
+// ... laxar.create ...
 ```
 
 No special magic is attached to the `widgets` sub-key of the configuration, except that it is never used by LaxarJS core or libraries.
@@ -114,7 +111,6 @@ The following configuration options are defined by _LaxarJS Core_.
 | `logging.instanceId`                 | `true`                | If set to a function, that function is used to calculate the value of the INST log tag. If set to `true` (default), the current UNIX time stamp plus a small random offset is used. If set to `false`, no INST log-tag is generated.
 | `logging.levels`                     | `{}`                  | Additional log levels with name and severity, for example `{ NOTICE: 350 }`. The predefined severities reach from _100_ for `TRACE` to _600_ for `FATAL`.
 | `logging.threshold`                  | `'INFO'`              | The log level which is required for messages to be logged (one of `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR` or `FATAL`)
-| `flow.name`                          | `null`                | The flow to use for routing. **Note:** if this is not specified, no flow will be loaded!
 | `router.navigo.useHash`              | `false`               | Selects if the Navigo router uses hash-based URLs for navigation (`true`), or path-based URLs that rely on the `pushState` browser feature (`false`).
 | `router.base`                        | `null`                | Override the document base `href` for routing.
 | `router.query.enabled`               | `false`               | If `true`, query parameters are automatically transformed into additional place parameters and vice versa.

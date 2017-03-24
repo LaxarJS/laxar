@@ -60,6 +60,6 @@ Provides access to the configuration that was passed during application bootstra
 
 A *Configuration* instance provides convenient readonly access to the underlying LaxarJS
 application bootstrapping configuration. The configuration values are passed to
-[`laxar#bootstrap()`](-unknown-#bootstrap) on startup (before LaxarJS v2.x, these configuration values were read from
+[`laxar#create()`](-unknown-#create) on startup (before LaxarJS v2.x, these configuration values were read from
 `window.laxar`). When using the LaxarJS application template, the configuration values are set in the
-file `application/application.js` under your project's root directory.
+file `init.js` under your project's root directory.

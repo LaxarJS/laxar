@@ -67,7 +67,8 @@ However, this may considerably slow down loading the application, and will lead 
 Ideally, the runtime would *just know* what assets are available so it could simply load the best matching variant, or skip loading completely for assets that are missing.
 
 Fortunately, using the laxar-loader allows to do precisely this:
-It has the knowledge that is needed to determine which artifacts and assets are actually used, and produces an `artifacts` bundle which can be passed to LaxarJS `bootstrap`, and is then used both internally by the runtime and made available as the `axAssets` injection to widgets.
+It has the knowledge that is needed to determine which artifacts and assets are actually used, and produces an `artifacts` bundle which can be passed to LaxarJS `create`.
+The bundle is then used both internally by the runtime and made available as the `axAssets` injection to widgets.
 
 
 ## Assets by Artifact Type

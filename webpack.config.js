@@ -25,7 +25,7 @@ const baseConfig = {
       rules: [
          {
             test: /\.js$/,
-            exclude: path.join( __dirname, 'node_modules' ),
+            exclude: path.resolve( __dirname, 'node_modules' ),
             loader: 'babel-loader'
          }
       ]

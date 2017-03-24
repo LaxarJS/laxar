@@ -29,7 +29,7 @@ However, it is better to add these styles to your main application layout instea
 
 The _benefit_ of using such a _theme folder_ is that
 
-  * your CSS will be _bundled and compressed_ together with Bootstrap (no additional `<link>` tag needed) and that
+  * your CSS will be _bundled and compressed_ together with Bootstrap CSS (no additional `<link>` tag needed) and that
 
   * you can support different _themes_ simply by adding more `.theme` folders.
 
@@ -93,14 +93,11 @@ import artifacts from 'laxar-loader/artifacts?flow=main&theme=darkly';
 In the LaxarJS bootstrapping configuration (usually `init.js`), set the property `theme` to _"darkly"_:
 
 ```js
-import { bootstrap } from 'laxar';
-bootstrap( document.querySelector( '[data-ax-page]' ), {
-   artifacts,
-   configuration: {
-      // ...
-      theme: 'darkly'
-   },
-   widgetAdapters: [ /* ... */ ]
+import { create } from 'laxar';
+const adapters = [ /* ... */ ];
+create( adapters, artifacts, {
+   // ... more configuration ...
+   theme: 'darkly'
 } );
 ```
 
