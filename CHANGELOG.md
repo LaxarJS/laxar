@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-alpha.19
+
 - [#437](https://github.com/LaxarJS/laxar/issues/437): bootstrapping: new `create().flow().bootstrap()` workflow
     + **BREAKING CHANGE:** see ticket for details
 - [#436](https://github.com/LaxarJS/laxar/issues/436): testing: auto-spy unsubscribe-callback of `eventBus.subscribe`
