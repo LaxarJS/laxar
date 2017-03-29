@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#440](https://github.com/LaxarJS/laxar/issues/440): navigo router: fixed creation of absolute URLs with hash
+
 
 ## v2.0.0-alpha.19
 

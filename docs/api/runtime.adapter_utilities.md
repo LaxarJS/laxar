@@ -16,7 +16,7 @@ Several factory methods for creating error objects that are useful for almost an
 
 ## Module Members
 
-#### <a id="activityAccessingDom"></a>activityAccessingDom()
+#### <a id="activityAccessingDom"></a>activityAccessingDom( details )
 
 Creates (but does not throw) an error indicating that an activity tried accessing the DOM.
 
@@ -24,6 +24,7 @@ Creates (but does not throw) an error indicating that an activity tried accessin
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
+| details | `Object` |  details for the error |
 | details.technology | `String` |  the complaining adapter's technology |
 | details.widgetName | `String` |  the canonical name of the activity causing the problem |
 
@@ -33,7 +34,7 @@ Creates (but does not throw) an error indicating that an activity tried accessin
 | ---- | ----------- |
 | `Error` |  the error, ready to throw |
 
-#### <a id="unknownInjection"></a>unknownInjection()
+#### <a id="unknownInjection"></a>unknownInjection( details )
 
 Creates (but does not throw) an error indicating that a widget requested an injection that cannot be
 provided by the adapter.
@@ -42,6 +43,7 @@ provided by the adapter.
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
+| details | `Object` |  details for the error |
 | details.technology | `String` |  the complaining adapter's technology |
 | details.injection | `String` |  the failing injection |
 | details.widgetName | `String` |  the canonical name of the widget causing the problem |
