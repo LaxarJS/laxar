@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#441](https://github.com/LaxarJS/laxar/issues/441): loaders: log a warning if layout has no HTML
+
 
 ## v1.3.4
 
