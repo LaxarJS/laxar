@@ -17,6 +17,7 @@ Also, provides a couple of utilities to deal with assertions, objects and string
   - [laxar.instances()](#laxar.instances)
 - [BootstrappingInstance](#BootstrappingInstance)
   - [BootstrappingInstance.flow()](#BootstrappingInstance.flow)
+  - [BootstrappingInstance.page()](#BootstrappingInstance.page)
   - [BootstrappingInstance.testing()](#BootstrappingInstance.testing)
   - [BootstrappingInstance.bootstrap()](#BootstrappingInstance.bootstrap)
 - [Bootstrappinginstance](#Bootstrappinginstance)
@@ -92,8 +93,26 @@ Registers a flow to control routing for this application.
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| name | `String` |  widget adapters to use in this bootstrapping instance |
+| name | `String` |  the name of the flow to load |
 | anchorElement | `HTMLElement` |  container element to determine where to put the flow |
+
+##### Returns
+
+| Type | Description |
+| ---- | ----------- |
+| [`BootstrappingInstance`](#BootstrappingInstance) |  the current bootstrapping instance (self), for chaining |
+
+#### <a id="BootstrappingInstance.page"></a>BootstrappingInstance.page( name, anchorElement, parameters )
+
+Registers a page to display without navigation control.
+
+##### Parameters
+
+| Property | Type | Description |
+| -------- | ---- | ----------- |
+| name | `String` |  the name of the page to load |
+| anchorElement | `HTMLElement` |  container element to determine where to put the page |
+| _parameters_ | `Object` |  page parameters to publish with didNavigate |
 
 ##### Returns
 

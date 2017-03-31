@@ -180,7 +180,7 @@ export function create( adapters, artifacts, configuration ) {
       const instance = makeTopic( configuration.name );
 
       const { log } = services;
-      items.forEach( item => {
+      const promises = items.map( item => {
          const { type, name, id = generateId( name ) } = item;
          const instanceContext = {
             instance,
@@ -193,7 +193,7 @@ export function create( adapters, artifacts, configuration ) {
          if( type === 'flow' ) {
             const { anchorElement } = item;
 
-            whenDocumentReady( () => {
+            return whenDocumentReady( () => {
                log.trace( `laxar.bootstrap: loading flow: ${name}` );
                services.pageService.createControllerFor( anchorElement, instanceContext );
                services.flowController
@@ -206,10 +206,11 @@ export function create( adapters, artifacts, configuration ) {
                   } );
             } );
          }
-         else if( type === 'page' ) {
+
+         if( type === 'page' ) {
             const { anchorElement, parameters } = item;
 
-            whenDocumentReady( () => {
+            return whenDocumentReady( () => {
                const controller = services.pageService.createControllerFor( anchorElement, instanceContext );
                const eventBus = services.globalEventBus;
                const event = {
@@ -230,23 +231,28 @@ export function create( adapters, artifacts, configuration ) {
                   } );
             } );
          }
-         else if( type === 'tooling' ) {
+
+         if( type === 'tooling' ) {
             const { debugInfo } = item;
 
             services.tooling.setupForInstance( debugInfo, instanceContext );
             instances()[ name ] = services;
+            return;
          }
-         else {
-            // other item types will be added in future commits, but for now:
-            assert.state( false );
-         }
+
+         // other item types will be added in future commits, but for now:
+         assert.state( false );
       } );
+
+      return Promise.all( promises ).then( () => services );
    }
 
    function generateId( name ) {
       return `${makeTopic( name )}-id${idCounter++}`;
    }
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function makeTopic( string ) {
    const safeString = string
@@ -256,20 +262,26 @@ function makeTopic( string ) {
    return safeString.charAt( 0 ).toLowerCase() + safeString.substr( 1 );
 }
 
-makeTopic( 'Shop demo' );
-makeTopic( '   a test   ' );
-makeTopic( '!"§$%&§%/(/%§ZGRWGDFSVSDF3dfg' );
-makeTopic( 'an-other-test' );
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function whenDocumentReady( callback ) {
-   if( document.readyState === 'complete' ) {
-      callback();
-   }
-   else {
-      document.addEventListener( 'DOMContentLoaded', callback );
-   }
+   return new Promise( ( resolve, reject ) => {
+      function ready() {
+         try {
+            resolve( callback() );
+         }
+         catch (err) {
+            reject( err );
+         }
+      };
+
+      if( document.readyState === 'complete' ) {
+         ready();
+      }
+      else {
+         document.addEventListener( 'DOMContentLoaded', ready );
+      }
+   } );
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
