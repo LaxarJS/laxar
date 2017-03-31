@@ -35,6 +35,10 @@ const MESSAGE_ADAPTERS = 'laxar.create: `adapters` must be an array';
 const MESSAGE_ARTIFACTS = 'laxar.create: `artifacts` object must have at least: aliases, themes, widgets';
 const MESSAGE_CONFIGURATION = 'laxar.create: `configuration` must be an object';
 
+const TOPIC_WHITESPACE_MATCHER = /\s+([A-Z]?)/g;
+const TOPIC_WHITESPACE_REPLACER = (_, c) => `+${c.toUpperCase()}`;
+const TOPIC_SEGMENTS_MATCHER = /[^+a-zA-Z0-9]+([a-z]?)/g;
+const TOPIC_SEGMENTS_REPLACER = (_, c) => c.toUpperCase();
 
 /**
  * Prepares a LaxarJS application instance from a list of adapters, a bundle of artifacts, and application
@@ -68,6 +72,7 @@ export function create( adapters, artifacts, configuration ) {
       testing: false
    };
 
+   let idCounter = 0;
 
    /**
     * Handle on a LaxarJS bootstrapping instance.
@@ -75,14 +80,14 @@ export function create( adapters, artifacts, configuration ) {
     * @name BootstrappingInstance
     * @constructor
     */
-   const api = { flow, tooling, testing, bootstrap };
+   const api = { flow, page, tooling, testing, bootstrap };
    return api;
 
    /**
     * Registers a flow to control routing for this application.
     *
     * @param {String} name
-    *    widget adapters to use in this bootstrapping instance
+    *    the name of the flow to load
     * @param {HTMLElement} anchorElement
     *    container element to determine where to put the flow
     *
@@ -96,6 +101,29 @@ export function create( adapters, artifacts, configuration ) {
       assert( anchorElement ).isNotNull();
       assert.state( anchorElement.nodeType === Node.ELEMENT_NODE );
       bootstrappingSchedule.items.push( { type: 'flow', name, anchorElement } );
+      return api;
+   }
+
+   /**
+    * Registers a page to display without navigation control.
+    *
+    * @param {String} name
+    *    the name of the page to load
+    * @param {HTMLElement} anchorElement
+    *    container element to determine where to put the page
+    * @param {Object} [parameters]
+    *    page parameters to publish with didNavigate
+    *
+    * @return {BootstrappingInstance}
+    *    the current bootstrapping instance (self), for chaining
+    *
+    * @memberof BootstrappingInstance
+    */
+   function page( name, anchorElement, parameters = {} ) {
+      assert( name ).hasType( String ).isNotNull();
+      assert( anchorElement ).isNotNull();
+      assert.state( anchorElement.nodeType === Node.ELEMENT_NODE );
+      bootstrappingSchedule.items.push( { type: 'page', name, anchorElement, parameters } );
       return api;
    }
 
@@ -149,14 +177,25 @@ export function create( adapters, artifacts, configuration ) {
       services.widgetLoader.registerWidgetAdapters( adapterInstances );
       announceInstance( services );
 
+      const instance = makeTopic( configuration.name );
+
       const { log } = services;
       items.forEach( item => {
-         if( item.type === 'flow' ) {
-            const { name, anchorElement } = item;
+         const { type, name, id = generateId( name ) } = item;
+         const instanceContext = {
+            instance,
+            [ type ]: name,
+            id
+         };
+
+         log.trace( `laxar.bootstrap: bootstrapping ${type} '${name}' (${id})` );
+
+         if( type === 'flow' ) {
+            const { anchorElement } = item;
 
             whenDocumentReady( () => {
-               log.trace( `laxar.bootstrap: loading fow: ${name}` );
-               services.pageService.createControllerFor( anchorElement );
+               log.trace( `laxar.bootstrap: loading flow: ${name}` );
+               services.pageService.createControllerFor( anchorElement, instanceContext );
                services.flowController
                   .loadFlow( name )
                   .then( () => {
@@ -167,10 +206,34 @@ export function create( adapters, artifacts, configuration ) {
                   } );
             } );
          }
-         else if( item.type === 'tooling' ) {
-            const { name, debugInfo } = item;
+         else if( type === 'page' ) {
+            const { anchorElement, parameters } = item;
 
-            services.tooling.registerDebugInfo( debugInfo );
+            whenDocumentReady( () => {
+               const controller = services.pageService.createControllerFor( anchorElement, instanceContext );
+               const eventBus = services.globalEventBus;
+               const event = {
+                  target: name,
+                  place: null,
+                  data: parameters
+               };
+
+               controller.setupPage( name )
+                  .then( () => {
+                     return eventBus.publish( `didNavigate.${event.target}`, event, { sender: 'bootstrap' } );
+                  } )
+                  .then( () => {
+                     log.trace( 'laxar.bootstrap: page loaded' );
+                  }, err => {
+                     log.fatal( 'laxar.bootstrap: failed to load page.' );
+                     log.fatal( 'Error [0].\nStack: [1]', err, err && err.stack );
+                  } );
+            } );
+         }
+         else if( type === 'tooling' ) {
+            const { debugInfo } = item;
+
+            services.tooling.setupForInstance( debugInfo, instanceContext );
             instances()[ name ] = services;
          }
          else {
@@ -180,7 +243,23 @@ export function create( adapters, artifacts, configuration ) {
       } );
    }
 
+   function generateId( name ) {
+      return `${makeTopic( name )}-id${idCounter++}`;
+   }
 }
+
+function makeTopic( string ) {
+   const safeString = string
+      .trim()
+      .replace( TOPIC_WHITESPACE_MATCHER, TOPIC_WHITESPACE_REPLACER )
+      .replace( TOPIC_SEGMENTS_MATCHER, TOPIC_SEGMENTS_REPLACER );
+   return safeString.charAt( 0 ).toLowerCase() + safeString.substr( 1 );
+}
+
+makeTopic( 'Shop demo' );
+makeTopic( '   a test   ' );
+makeTopic( '!"§$%&§%/(/%§ZGRWGDFSVSDF3dfg' );
+makeTopic( 'an-other-test' );
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
