@@ -185,7 +185,7 @@ export function create( adapters, artifacts, configuration ) {
          const instanceContext = {
             instance,
             [ type ]: name,
-            id
+            item: id
          };
 
          log.trace( `laxar.bootstrap: bootstrapping ${type} '${name}' (${id})` );
