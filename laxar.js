@@ -193,6 +193,8 @@ export function create( adapters, artifacts, configuration ) {
          if( type === 'flow' ) {
             const { anchorElement } = item;
 
+            services.tooling.registerItem( instanceContext );
+
             return whenDocumentReady( () => {
                log.trace( `laxar.bootstrap: loading flow: ${name}` );
                services.pageService.createControllerFor( anchorElement, instanceContext );
@@ -209,6 +211,8 @@ export function create( adapters, artifacts, configuration ) {
 
          if( type === 'page' ) {
             const { anchorElement, parameters } = item;
+
+            services.tooling.registerItem( instanceContext );
 
             return whenDocumentReady( () => {
                const controller = services.pageService.createControllerFor( anchorElement, instanceContext );
@@ -235,13 +239,14 @@ export function create( adapters, artifacts, configuration ) {
          if( type === 'tooling' ) {
             const { debugInfo } = item;
 
-            services.tooling.setupForInstance( debugInfo, instanceContext );
+            services.tooling.registerDebugInfo( debugInfo );
             instances()[ name ] = services;
-            return;
+            return null;
          }
 
          // other item types will be added in future commits, but for now:
          assert.state( false );
+         return null;
       } );
 
       return Promise.all( promises ).then( () => services );
@@ -273,7 +278,7 @@ function whenDocumentReady( callback ) {
          catch (err) {
             reject( err );
          }
-      };
+      }
 
       if( document.readyState === 'complete' ) {
          ready();
