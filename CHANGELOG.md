@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#444](https://github.com/LaxarJS/laxar/issues/444): navigo router: fixed use of fallbackHandler (404)
+
 
 ## v2.0.0-alpha.20
 
