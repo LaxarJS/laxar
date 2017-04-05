@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#438](https://github.com/LaxarJS/laxar/issues/438): log: improved visibility of `log.fatal`
 - [#444](https://github.com/LaxarJS/laxar/issues/444): navigo router: fixed use of fallbackHandler (404)
 
 

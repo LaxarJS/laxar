@@ -197,7 +197,7 @@ function bootstrapAdapters( services, adapterModules, artifacts ) {
          const { technology } = artifact.descriptor.integration;
          if( !adapterModulesByTechnology[ technology ] ) {
             const { name } = artifact.descriptor;
-            log.fatal( 'Unknown widget technology: [0], required by [1] "[2]"', technology, type, name );
+            log.fatal( 'Unknown integration technology: [0], required by "[1]"', technology, name );
             return;
          }
          artifactsByTechnology[ technology ][ type ].push( artifact );
