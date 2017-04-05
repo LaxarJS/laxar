@@ -7,86 +7,83 @@ laxar-mocks for widget testing.
 
 ## Contents
 
-**Types**
+**Module Members**
 
-- [laxar-widget-service-mocks](#laxar-widget-service-mocks)
-  - [laxar-widget-service-mocks.createAxAssetsMocks()](#laxar-widget-service-mocks.createAxAssetsMocks)
-  - [laxar-widget-service-mocks.createAxAreaHelperMock()](#laxar-widget-service-mocks.createAxAreaHelperMock)
-  - [laxar-widget-service-mocks.createAxConfigurationMock()](#laxar-widget-service-mocks.createAxConfigurationMock)
-  - [laxar-widget-service-mocks.createAxEventBusMock()](#laxar-widget-service-mocks.createAxEventBusMock)
-  - [laxar-widget-service-mocks.createAxFlowServiceMock()](#laxar-widget-service-mocks.createAxFlowServiceMock)
-  - [laxar-widget-service-mocks.createAxGlobalStorageMock()](#laxar-widget-service-mocks.createAxGlobalStorageMock)
-  - [laxar-widget-service-mocks.createAxHeartbeatMock()](#laxar-widget-service-mocks.createAxHeartbeatMock)
-  - [laxar-widget-service-mocks.createAxI18nMock()](#laxar-widget-service-mocks.createAxI18nMock)
-  - [laxar-widget-service-mocks.createAxLogMock()](#laxar-widget-service-mocks.createAxLogMock)
-  - [laxar-widget-service-mocks.createAxStorageMock()](#laxar-widget-service-mocks.createAxStorageMock)
-  - [laxar-widget-service-mocks.createAxVisibilityMock()](#laxar-widget-service-mocks.createAxVisibilityMock)
+- [createAxAssetsMocks()](#createAxAssetsMocks)
+- [createAxAreaHelperMock()](#createAxAreaHelperMock)
+- [createAxConfigurationMock()](#createAxConfigurationMock)
+- [createAxEventBusMock()](#createAxEventBusMock)
+- [createAxFlowServiceMock()](#createAxFlowServiceMock)
+- [createAxGlobalStorageMock()](#createAxGlobalStorageMock)
+- [createAxHeartbeatMock()](#createAxHeartbeatMock)
+- [createAxI18nMock()](#createAxI18nMock)
+- [createAxLogMock()](#createAxLogMock)
+- [createAxStorageMock()](#createAxStorageMock)
+- [createAxVisibilityMock()](#createAxVisibilityMock)
 
-## Types
+## Module Members
 
-### <a id="laxar-widget-service-mocks"></a>laxar-widget-service-mocks
-
-#### <a id="laxar-widget-service-mocks.createAxAssetsMocks"></a>laxar-widget-service-mocks.createAxAssetsMocks()
+#### <a id="createAxAssetsMocks"></a>createAxAssetsMocks()
 
 Returns a mock of the `axAssets` injection for tests, to avoid making actual `fetch` calls.
 
 For details, see [widget_services_assets_mock](testing.widget_services_assets_mock.md#create).
 
-#### <a id="laxar-widget-service-mocks.createAxAreaHelperMock"></a>laxar-widget-service-mocks.createAxAreaHelperMock()
+#### <a id="createAxAreaHelperMock"></a>createAxAreaHelperMock()
 
 Returns a mock of the `axAreaHelper` injection for tests.
 
 For details, see [widget_services_area_helper_mock](testing.widget_services_area_helper_mock.md#create).
 
-#### <a id="laxar-widget-service-mocks.createAxConfigurationMock"></a>laxar-widget-service-mocks.createAxConfigurationMock()
+#### <a id="createAxConfigurationMock"></a>createAxConfigurationMock()
 
 Returns a mock of the `axConfiguration` injection for tests.
 
 For details, see [configuration_mock](testing.configuration_mock.md#create).
 
-#### <a id="laxar-widget-service-mocks.createAxEventBusMock"></a>laxar-widget-service-mocks.createAxEventBusMock()
+#### <a id="createAxEventBusMock"></a>createAxEventBusMock()
 
 Returns a mock of the `axEventBus` injection for tests.
 
 For details, see [event_bus_mock](testing.event_bus_mock.md#create).
 
-#### <a id="laxar-widget-service-mocks.createAxFlowServiceMock"></a>laxar-widget-service-mocks.createAxFlowServiceMock()
+#### <a id="createAxFlowServiceMock"></a>createAxFlowServiceMock()
 
 Returns a mock of the `axFlowService` injection for tests.
 
 For details, see [flow_service_mock](testing.flow_service_mock.md#create).
 
-#### <a id="laxar-widget-service-mocks.createAxGlobalStorageMock"></a>laxar-widget-service-mocks.createAxGlobalStorageMock()
+#### <a id="createAxGlobalStorageMock"></a>createAxGlobalStorageMock()
 
 Returns a mock of the `axGlobalStorage` injection for tests.
 
 For details, see [storage_mock](testing.storage_mock.md#create).
 
-#### <a id="laxar-widget-service-mocks.createAxHeartbeatMock"></a>laxar-widget-service-mocks.createAxHeartbeatMock()
+#### <a id="createAxHeartbeatMock"></a>createAxHeartbeatMock()
 
 Returns a mock of the `axHeartbeat` injection for tests.
 
 For details, see [heartbeat_mock](testing.heartbeat_mock.md#create).
 
-#### <a id="laxar-widget-service-mocks.createAxI18nMock"></a>laxar-widget-service-mocks.createAxI18nMock()
+#### <a id="createAxI18nMock"></a>createAxI18nMock()
 
 Returns a mock of the `axI18n` injection for tests.
 
 For details, see [i18n_mock](testing.i18n_mock.md#create).
 
-#### <a id="laxar-widget-service-mocks.createAxLogMock"></a>laxar-widget-service-mocks.createAxLogMock()
+#### <a id="createAxLogMock"></a>createAxLogMock()
 
 Returns a mock of the `axLog` injection for tests.
 
 For details, see [log_mock](testing.log_mock.md#create).
 
-#### <a id="laxar-widget-service-mocks.createAxStorageMock"></a>laxar-widget-service-mocks.createAxStorageMock()
+#### <a id="createAxStorageMock"></a>createAxStorageMock()
 
 Returns a mock of the `axStorage` injection for tests.
 
 For details, see [widget_services_storage_mock](testing.widget_services_storage_mock.md#create).
 
-#### <a id="laxar-widget-service-mocks.createAxVisibilityMock"></a>laxar-widget-service-mocks.createAxVisibilityMock()
+#### <a id="createAxVisibilityMock"></a>createAxVisibilityMock()
 
 Returns a mock of the `axVisibility` injection for tests.
 

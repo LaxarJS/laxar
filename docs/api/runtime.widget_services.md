@@ -26,7 +26,6 @@ view framework.
 - [axStorage](#axStorage)
 - [axTooling](#axTooling)
 - [axVisibility](#axVisibility)
-- [isVisible()](#isVisible)
 
 **Types**
 
@@ -37,6 +36,7 @@ view framework.
   - [AxContext.log](#AxContext.log)
   - [AxContext.widget](#AxContext.widget)
 - [AxAreaHelper](#AxAreaHelper)
+  - [AxAreaHelper.isVisible()](#AxAreaHelper.isVisible)
   - [AxAreaHelper.fullName()](#AxAreaHelper.fullName)
   - [AxAreaHelper.localName()](#AxAreaHelper.localName)
   - [AxAreaHelper.register()](#AxAreaHelper.register)
@@ -160,24 +160,6 @@ TODO (#404) Fix the type (and document toolingProviders)
 
 Visibility services for a widget instance.
 
-#### <a id="isVisible"></a>isVisible( fullAreaName )
-
-Query if a given widget area is currently visible by accessing the underlying area status through
-the page controller. Can be used to determine the current visibility state of an area without
-having to constantly observe visibility events.
-
-##### Parameters
-
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| fullAreaName | `String` |  the global name of the area |
-
-##### Returns
-
-| Type | Description |
-| ---- | ----------- |
-| `Boolean` |  the current visibility state of the given area |
-
 ## Types
 
 ### <a id="AxContext"></a>AxContext
@@ -212,6 +194,24 @@ The following fields are available:
    module loader.
 
 ### <a id="AxAreaHelper"></a>AxAreaHelper
+
+#### <a id="AxAreaHelper.isVisible"></a>AxAreaHelper.isVisible( fullAreaName )
+
+Query if a given widget area is currently visible by accessing the underlying area status through
+the page controller. Can be used to determine the current visibility state of an area without
+having to constantly observe visibility events.
+
+##### Parameters
+
+| Property | Type | Description |
+| -------- | ---- | ----------- |
+| fullAreaName | `String` |  the global name of the area |
+
+##### Returns
+
+| Type | Description |
+| ---- | ----------- |
+| `Boolean` |  the current visibility state of the given area |
 
 #### <a id="AxAreaHelper.fullName"></a>AxAreaHelper.fullName( localAreaName )
 

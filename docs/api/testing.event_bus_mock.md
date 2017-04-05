@@ -13,9 +13,8 @@ Allows to create mock implementations of [`EventBus`](runtime.event_bus.md), com
 **Types**
 
 - [EventBusMock](#EventBusMock)
-- [{EventBusMock}](#{EventBusMock})
-  - [{EventBusMock}.flush](#{EventBusMock}.flush)
-  - [{EventBusMock}.drainAsync()](#{EventBusMock}.drainAsync)
+  - [EventBusMock.flush](#EventBusMock.flush)
+  - [EventBusMock.drainAsync()](#EventBusMock.drainAsync)
 
 ## Module Members
 
@@ -54,16 +53,14 @@ Offers spied-upon version of the usual axEventBus methods, including a spy on th
 returned by `subscribe`. Also has as a `flush` method for synchronous scheduling of events, and a
 `drainAsync` to asynchronously run event handlers to completion.
 
-### <a id="{EventBusMock}"></a>{EventBusMock}
-
-#### <a id="{EventBusMock}.flush"></a>{EventBusMock}.flush `undefined`
+#### <a id="EventBusMock.flush"></a>EventBusMock.flush `undefined`
 
 Flushes all pending events and runs their subscriber callbacks.
 If new events are published synchronously from subscriber callbacks, these will also be processed.
 
 This operation happens synchronously, so asynchronously triggered events (e.g. those published from a
 then handler) may not be processed.
-#### <a id="{EventBusMock}.drainAsync"></a>{EventBusMock}.drainAsync()
+#### <a id="EventBusMock.drainAsync"></a>EventBusMock.drainAsync()
 
 Asynchronously flushes pending events and runs their subscriber callbacks.
 If new events are published synchronously from subscriber callbacks, these will also be processed.

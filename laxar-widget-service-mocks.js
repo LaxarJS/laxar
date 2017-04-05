@@ -17,7 +17,6 @@
  *
  * For details, see [widget_services_assets_mock](testing.widget_services_assets_mock.md#create).
  *
- * @memberof laxar-widget-service-mocks
  * @name createAxAssetsMocks
  * @type {Function}
  */
@@ -28,7 +27,6 @@ export { create as createAxAssetsMock } from './lib/testing/widget_services_asse
  *
  * For details, see [widget_services_area_helper_mock](testing.widget_services_area_helper_mock.md#create).
  *
- * @memberof laxar-widget-service-mocks
  * @name createAxAreaHelperMock
  * @type {Function}
  */
@@ -40,7 +38,6 @@ export { create as createAxAreaHelperMock } from './lib/testing/widget_services_
  * For details, see [configuration_mock](testing.configuration_mock.md#create).
  *
  * @name createAxConfigurationMock
- * @memberof laxar-widget-service-mocks
  * @type {Function}
  */
 export { create as createAxConfigurationMock } from './lib/testing/configuration_mock';
@@ -51,7 +48,6 @@ export { create as createAxConfigurationMock } from './lib/testing/configuration
  * For details, see [event_bus_mock](testing.event_bus_mock.md#create).
  *
  * @name createAxEventBusMock
- * @memberof laxar-widget-service-mocks
  * @type {Function}
  */
 export { create as createAxEventBusMock } from './lib/testing/event_bus_mock';
@@ -62,7 +58,6 @@ export { create as createAxEventBusMock } from './lib/testing/event_bus_mock';
  * For details, see [flow_service_mock](testing.flow_service_mock.md#create).
  *
  * @name createAxFlowServiceMock
- * @memberof laxar-widget-service-mocks
  * @type {Function}
  */
 export { create as createAxFlowServiceMock } from './lib/testing/flow_service_mock';
@@ -73,7 +68,6 @@ export { create as createAxFlowServiceMock } from './lib/testing/flow_service_mo
  * For details, see [storage_mock](testing.storage_mock.md#create).
  *
  * @name createAxGlobalStorageMock
- * @memberof laxar-widget-service-mocks
  * @type {Function}
  */
 export { create as createAxGlobalStorageMock } from './lib/testing/storage_mock';
@@ -84,7 +78,6 @@ export { create as createAxGlobalStorageMock } from './lib/testing/storage_mock'
  * For details, see [heartbeat_mock](testing.heartbeat_mock.md#create).
  *
  * @name createAxHeartbeatMock
- * @memberof laxar-widget-service-mocks
  * @type {Function}
  */
 export { create as createAxHeartbeatMock } from './lib/testing/heartbeat_mock';
@@ -95,7 +88,6 @@ export { create as createAxHeartbeatMock } from './lib/testing/heartbeat_mock';
  * For details, see [i18n_mock](testing.i18n_mock.md#create).
  *
  * @name createAxI18nMock
- * @memberof laxar-widget-service-mocks
  * @type {Function}
  */
 export { create as createAxI18nMock } from './lib/testing/widget_services_i18n_mock';
@@ -106,7 +98,6 @@ export { create as createAxI18nMock } from './lib/testing/widget_services_i18n_m
  * For details, see [log_mock](testing.log_mock.md#create).
  *
  * @name createAxLogMock
- * @memberof laxar-widget-service-mocks
  * @type {Function}
  */
 export { create as createAxLogMock } from './lib/testing/log_mock';
@@ -117,7 +108,6 @@ export { create as createAxLogMock } from './lib/testing/log_mock';
  * For details, see [widget_services_storage_mock](testing.widget_services_storage_mock.md#create).
  *
  * @name createAxStorageMock
- * @memberof laxar-widget-service-mocks
  * @type {Function}
  */
 export { create as createAxStorageMock } from './lib/testing/widget_services_storage_mock';
@@ -128,7 +118,6 @@ export { create as createAxStorageMock } from './lib/testing/widget_services_sto
  * For details, see [widget_services_visibility_mock](testing.widget_services_visibility_mock.md#create).
  *
  * @name createAxVisibilityMock
- * @memberof laxar-widget-service-mocks
  * @type {Function}
  */
 export { create as createAxVisibilityMock } from './lib/testing/widget_services_visibility_mock';
