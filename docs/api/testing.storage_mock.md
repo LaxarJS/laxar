@@ -41,7 +41,7 @@ Instances of this mock are compatible to the "axGlobalStorage" injection.
 Do not confuse this with the {@AxStorageMock}, which is compatible to the "axStorage" injection offered
 by the widget services.
 
-Note that the mock does erform JSON transformations of the value objects, just like the actual Storage.
+Note that the mock does perform JSON transformations of the value objects, just like the actual Storage.
 
 ### <a id="{StorageMock}"></a>{StorageMock}
 
@@ -54,7 +54,8 @@ The `local` and `session` properties also provide direct access to their respect
 objects, accessible in this manner:
 
 ```js
-   const storageMock = create();
-   storageMock.getLocalStorage( 'myNs' ).setItem( 'k', 'v' );
-   expect( storageMock.mockBackends.local.myNs.k ).toEqual( '"v"' );  // note the JSON transform
+import { createAxGlobalStorageMock } from 'laxar/laxar-widget-service-mocks';
+const storageMock = createAxGlobalStorageMock();
+storageMock.getLocalStorage( 'myNs' ).setItem( 'k', 'v' );
+expect( storageMock.mockBackends.local.myNs.k ).toEqual( '"v"' );  // note the JSON transform
 ```

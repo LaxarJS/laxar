@@ -124,6 +124,7 @@ To avoid collisions, IDs should **always** be generated using this service.
 Example:
 
 ```js
+// ... inject `axId`, get reference to `widgetDom` (depends on integration technology) ...
 widgetDom.querySelector( 'label' ).setAttribute( 'for', axId( 'myField' ) );
 widgetDom.querySelector( 'input' ).setAttribute( 'id', axId( 'myField' ) );
 ```
@@ -268,10 +269,9 @@ Valid assets are all non-binary files like JSON or text files.
 For binary files there exists the [`#AxAssets.url`](#AxAssets.url) function.
 
 Example:
-```
-function Controller( axAssets ) {
-   axAssets( 'data.json' ).then( fileContent => { ... } );
-}
+```js
+// ... inject `axAssets` ...
+axAssets( 'data.json' ).then( fileContent => { ... } );
 ```
 
 ##### Parameters
@@ -287,10 +287,9 @@ it.
 This can then be safely used in e.g. `video` or `img` tags.
 
 Example:
-```
-function Controller( axAssets ) {
-   axAssets.url( 'tux.jpg' ).then( url => { img.src = url; } );
-}
+```js
+// ... inject `axAssets`, find `img` in DOM ...
+axAssets.url( 'tux.jpg' ).then( url => { img.src = url; } );
 ```
 
 ##### Parameters
@@ -316,10 +315,9 @@ Valid assets are all non-binary files like JSON or text files.
 For binary files there exists the [`#AxAssets.urlForTheme`](#AxAssets.urlForTheme) function.
 
 Example:
-```
-function Controller( axAssets ) {
-   axAssets.forTheme( 'some-template.html' ).then( template => { ... } );
-}
+```js
+// ... inject `axAssets` ...
+axAssets.forTheme( 'some-template.html' ).then( template => { ... } );
 ```
 
 ##### Parameters
@@ -344,10 +342,9 @@ file within that theme (See
 further information on theme asset lookup).
 
 Example:
-```
-function Controller( axAssets ) {
-   axAssets.urlForTheme( 'icon.jpg' ).then( url => { img.src = url; } );
-}
+```js
+// ... inject `axAssets`, find `img` in DOM ...
+axAssets.urlForTheme( 'icon.jpg' ).then( url => { img.src = url; } );
 ```
 
 ##### Parameters

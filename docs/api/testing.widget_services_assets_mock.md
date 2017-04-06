@@ -26,31 +26,33 @@ Creates a mock for the "axAssets" injection of a widget.
 Usually the mock is created from a complete, generated assets entry, as described for the [`AxAssets`](runtime.widget_services.md)
 service.
 
-```javascript
-   const artifactAssets = {
-      'myMessages.json': { content: '{"yo":42}' },
-      'default.theme': {
-          'some.png': { url: '/path/to/some.png' }
-      }
-   };
+```js
+const artifactAssets = {
+   'myMessages.json': { content: '{"yo":42}' },
+   'default.theme': {
+       'some.png': { url: '/path/to/some.png' }
+   }
+};
 ```
 
 Assets are usually retrieved by the widget under test through the `axAssets` injection, or
 programmatically like this:
 
-```javascript
-   const axAssetsMock = create( artifactAssets, 'other.theme' );
-   console.log( JSON.parse( axAssetsMock( 'myMessages.json' ) ) );  // output: { yo: 42 }
-   console.log( assetsMock.urlForTheme( 'some.png' ) );  // output: "/path/to/some.png"
+```js
+import { createAxAssetsMock } from 'laxar/laxar-widget-service-mocks';
+const axAssetsMock = createAxAssetsMock( artifactAssets, 'other.theme' );
+console.log( JSON.parse( axAssetsMock( 'myMessages.json' ) ) );  // output: { yo: 42 }
+console.log( assetsMock.urlForTheme( 'some.png' ) );  // output: "/path/to/some.png"
 ```
 
 From the test, the mock may be inspected using jasmine:
 
-```javascript
-   const axAssetsMock = create( artifactAssets );
-   ...
-   expect( axAssetsMock ).toHaveBeenCalledWith( 'myMessages.json' );
-   expect( axAssetsMock.url ).toHaveBeenCalledWith( '/some/url' );
+```js
+import { createAxAssetsMock } from 'laxar/laxar-widget-service-mocks';
+const axAssetsMock = createAxAssetsMock( artifactAssets );
+// ...
+expect( axAssetsMock ).toHaveBeenCalledWith( 'myMessages.json' );
+expect( axAssetsMock.url ).toHaveBeenCalledWith( '/some/url' );
 ```
 
 The specified assets/themedAssets may be replaced afterwards using the `.mock...` methods.
@@ -58,13 +60,14 @@ Instead of a complete entry, a user-defined entry containing just `assets` and/o
 used instead. Also, instead of the "default.theme", a custom theme may be passed. In this case, make sure
 that the mock entry passed to `create` reflects this. Or use the mock
 
-```javascript
-   const axAssetsMock = create( artifactAssets, 'other.theme' );
-   console.log( assetsMock.urlForTheme( 'some.png' ) );  // output: null
-   axAssetsMock.mock( 'myMessages.json', '{"yo": 7}' );
-   axAssetsMock.mockUrlForTheme( 'some.png', "/path/to/some/other.png" );
-   console.log( JSON.parse( axAssetsMock( 'myMessages.json' ) ) );  // output: { yo: 7 }
-   console.log( assetsMock.urlForTheme( 'some.png' ) );  // output: "/path/to/some/other.png"
+```js
+import { createAxAssetsMock } from 'laxar/laxar-widget-service-mocks';
+const axAssetsMock = createAxAssetsMock( artifactAssets, 'other.theme' );
+console.log( assetsMock.urlForTheme( 'some.png' ) );  // output: null
+axAssetsMock.mock( 'myMessages.json', '{"yo": 7}' );
+axAssetsMock.mockUrlForTheme( 'some.png', "/path/to/some/other.png" );
+console.log( JSON.parse( axAssetsMock( 'myMessages.json' ) ) );  // output: { yo: 7 }
+console.log( assetsMock.urlForTheme( 'some.png' ) );  // output: "/path/to/some/other.png"
 ```
 
 ##### Parameters

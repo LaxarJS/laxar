@@ -3,7 +3,7 @@
 
 Utilities for dealing with strings.
 
-When requiring `laxar`, it is available as `laxar.string`.
+It can be imported as `string` from 'laxar';
 
 ## Contents
 
@@ -34,57 +34,62 @@ indexed placeholder is `[0]` and a named placeholder would look like this `[repl
 replacement for a key exists, the placeholder will simply not be substituted.
 
 Some examples:
-```javascript
+```js
+import { string } from 'laxar';
 string.format( 'Hello [0], how do you like [1]?', [ 'Peter', 'Cheeseburgers' ] );
 // => 'Hello Peter, how do you like Cheeseburgers?'
-```
-```javascript
+
 string.format( 'Hello [name] and [partner], how do you like [0]?', [ 'Pizza' ], {
    name: 'Hans',
    partner: 'Roswita'
 } );
 // => 'Hello Hans and Roswita, how do you like Pizza?'
 ```
-If a pair of brackets should not be treated as a placeholder, the opening bracket can simply be escaped
-by backslashes (thus to get an actual backslash in a JavaScript string literal, which is then treated as
-an escape symbol, it needs to be written as double backslash):
-```javascript
+
+If a pair of brackets should not be treated as a placeholder, the opening bracket must be escaped by
+backslashes. To get an actual backslash in a JavaScript string literal, which is then treated as
+an escape symbol, it needs to be written as double backslash:
+
+```js
+import { string } from 'laxar';
 string.format( 'A [something] should eventually only have \\[x].', {
    something: 'checklist'
 } );
 // => 'A checklist should eventually only have [x].'
 ```
+
 A placeholder key can be any character string besides `[`, `]` and `:` to keep parsing simple and fast.
-By using `:` as separator it is possible to provide a type specifier for string serialization or other
-additional mapping functions for the value to insert. Type specifiers always begin with an `%` and end
-with the specifier type. Builtin specifiers and their according formatter functions are defined
-as [`DEFAULT_FORMATTERS`](utilities.string.md).
+By using `:` as separator it is possible to provide a type specifier for string serialization or to add
+a custom mapping function. Type specifiers always begin with `%` and end with the specifier type.
+Builtin specifiers and their corresponding formatter functions are defined as [`DEFAULT_FORMATTERS`](utilities.string.md).
 
 When no specifier is provided, by default `%s` is assumed.
 
 Example:
-```javascript
+```js
+import { string } from 'laxar';
 string.format( 'Hello [0:%s], you owe me [1:%.2f] euros.', [ 'Peter', 12.1243 ] );
 // => 'Hello Peter, you owe me 12.12 euros.'
 ```
 
-Mapping functions should instead consist of simple strings and may not begin with a `%` character. It is
-advised to use the same naming rules as for simple JavaScript functions. Type specifiers and mapping
-functions are applied in the order they appear within the placeholder.
-
-An example, where we assume that the mapping functions `flip` and `double` where defined by the user
-when creating the `formatString` function using [`#createFormatter()`](#createFormatter):
-```javascript
-formatString( 'Hello [0:%s:flip], you owe me [1:double:%.2f] euros.', [ 'Peter', 12 ] );
+Mapping function names should be composed from alphanumeric characters, like regular JavaScript
+identifiers. They can be registered using [`#createFormatter()`](#createFormatter):
+```js
+import { string } from 'laxar';
+const format = string.createFormatter( null, {
+   double: x => 2*x,
+   flip: s => s.split( '' ).reverse().join( '' )
+} );
+format( 'Hello [0:%s:flip], you owe me [1:double:%.2f] euros.', [ 'Peter', 12 ] );
 // => 'Hello reteP, you owe me 24.00 euros.'
 ```
 
-Note that there currently exist no builtin mapping functions.
+Currently there are no builtin mapping functions.
 
-If a type specifier is used that doesn't exist, an exception is thrown. In contrast to that the use of
-an unknown mapping function results in a no-op. This is on purpose to be able to use filter-like
-functions that, in case they are defined for a formatter, transform a value as needed and in all other
-cases simply are ignored and don't alter the value.
+If a type specifier is used that does not exist, an exception is thrown. In contrast to that the use of
+an unknown mapping function results in a no-op. This allows to use filter-like functions that transform
+marked values within a specific context (for example, performing anonymization during analytics logging),
+without modifying the value in other contexts (local debug loggign).
 
 ##### Parameters
 
@@ -134,7 +139,7 @@ current value and its return value is either passed to the next mapping function
 instead of the placeholder if there are no more mapping function ids or type specifiers within the
 placeholder string.
 
-```javascript
+```js
 const format = string.createFormatter( null, {
    flip: function( value ) {
       return ( '' + s ).split( '' ).reverse().join( '' );

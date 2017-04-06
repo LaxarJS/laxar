@@ -5,7 +5,7 @@ The *assert* module provides some simple assertion methods for type checks, trut
 invalid code paths.
 When importing the module as `default` module, it is the [`assert`]() function itself.
 
-When requiring `laxar`, it is available as `laxar.assert`.
+It can be imported as `assert` from 'laxar';
 
 ## Contents
 
@@ -34,10 +34,9 @@ properties.
 
 Example:
 ```js
-define( [ 'laxar' ], function( ax ) {
-   ax.assert( ax.assert ).hasType( Function );
-   ax.assert.state( typeof ax.assert.codeIsUnreachable === 'function' );
-} );
+import { assert } from 'laxar';
+assert( assert ).hasType( Function );
+assert.state( typeof assert.codeIsUnreachable === 'function' );
 ```
 
 ##### Parameters

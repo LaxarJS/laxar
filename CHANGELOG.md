@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#446](https://github.com/LaxarJS/laxar/issues/446): documentation: transformed code examples to ES2015
 - [#418](https://github.com/LaxarJS/laxar/issues/418): documentation: various API doc fixes, added index.md
 - [#438](https://github.com/LaxarJS/laxar/issues/438): log: improved visibility of `log.fatal`
 - [#444](https://github.com/LaxarJS/laxar/issues/444): navigo router: fixed use of fallbackHandler (404)

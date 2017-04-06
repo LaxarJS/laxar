@@ -3,7 +3,7 @@
 
 Utilities for dealing with objects.
 
-When requiring `laxar`, it is available as `laxar.object`.
+It can be imported as `object` from 'laxar';
 
 ## Contents
 
@@ -26,6 +26,7 @@ function. This is very useful for optional map arguments, resembling some kind o
 
 Example:
 ```js
+import { object } from 'laxar';
 object.options( { validate: true }, {
    validate: false,
    highlight: true
@@ -60,9 +61,10 @@ In this case the keys are the indices of the array.
 
 Example:
 ```
+import { object } from 'laxar';
 object.forEach( { name: Peter, age: 12 }, ( value, key ) => {
    console.log( `${key} = ${value}\n` );
-});
+} );
 // =>
 // name = Peter
 // age = 12
@@ -92,6 +94,7 @@ JavaScript identifiers, and should never be used with user-specified paths:
 Example:
 
 ```js
+import { object } from 'laxar';
 object.path( { one: { two: 3 } }, 'one.two' ); // => 3
 object.path( { one: { two: 3 } }, 'one.three' ); // => undefined
 object.path( { one: { two: 3 } }, 'one.three', 42 ); // => 42
@@ -130,6 +133,7 @@ JavaScript identifiers, and should never be used with user-specified paths:
 Example:
 
 ```js
+import { object } from 'laxar';
 object.setPath( {}, 'name.first', 'Peter' ); // => { name: { first: 'Peter' } }
 object.setPath( {}, 'pets.1', 'Hamster' ); // => { pets: [ null, 'Hamster' ] }
 object.setPath( {}, '', 'Hamster' ); // => { '': 'Hamster' } }

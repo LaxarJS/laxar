@@ -35,7 +35,7 @@ Services should use this to get configuration values for which there are univers
 
 Examples:
 ```js
-// ... inject `axConfiguration` as parameter `config` ...
+// ... inject `axConfiguration` as `config` ...
 config.get( 'logging.threshold' ); // -> 'INFO'
 config.get( 'iDontExist' ); // -> undefined
 config.get( 'iDontExist', 42 ); // -> 42
@@ -62,7 +62,7 @@ Services should use this to get configuration values for which no universal defa
 
 Examples:
 ```js
-// ... inject `axConfiguration` as parameter `config` ...
+// ... inject `axConfiguration` as `config` ...
 config.ensure( 'logging.threshold' ); // -> 'INFO'
 config.ensure( 'iDontExist' ); // -> throws
 ```
