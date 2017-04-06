@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-alpha.21
+
 - [#446](https://github.com/LaxarJS/laxar/issues/446): documentation: transformed code examples to ES2015
 - [#418](https://github.com/LaxarJS/laxar/issues/418): documentation: various API doc fixes, added index.md
 - [#438](https://github.com/LaxarJS/laxar/issues/438): log: improved visibility of `log.fatal`
