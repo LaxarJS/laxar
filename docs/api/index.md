@@ -5,16 +5,16 @@ If you are new to LaxarJS, you might wish to check out the [manuals](../manuals/
 
 Here are the most important starting points for LaxarJS API documentation:
 
-  - [The `laxar` module API](laxar.md)
+- [The `laxar` module API](laxar.md)
 
-    The small portion of LaxarJS that is actually exposed through module exports, including `create()`.
+  The small portion of LaxarJS that is actually exposed through module exports, including `create()`.
 
-  - [The _Widget Services_](runtime.widget_services.md)
+- [The _Widget Services_](runtime.widget_services.md)
 
-    Named injections available to widgets: `axEventBus`, `axFeatures`, …
+  Named injections available to widgets: `axEventBus`, `axFeatures`, …
 
-  - [The _Widget Service Mocks_](laxar-widget-service-mocks.md)
+- [The _Widget Service Mocks_](laxar-widget-service-mocks.md)
 
-    Factory functions to create configurable mocks for widget services.
-    In tests, use these rather than the actual widget services.
-    Automatically used when testing widgets with [LaxarJS Mocks](laxarjs.org/docs/laxar-mocks-v2-latest/).
+  Factory functions to create configurable mocks for widget services.
+  In tests, use these rather than the actual widget services.
+  Automatically used when testing widgets with [LaxarJS Mocks](laxarjs.org/docs/laxar-mocks-v2-latest/).

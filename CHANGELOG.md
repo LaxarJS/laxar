@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#448](https://github.com/LaxarJS/laxar/issues/448): documentation: fixed markdown indent in API index
+
 
 ## v2.0.0-alpha.21
 
