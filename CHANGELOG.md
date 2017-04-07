@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#443](https://github.com/LaxarJS/laxar/issues/443): testing: initialize eventBusMock with noisy error log
 - [#448](https://github.com/LaxarJS/laxar/issues/448): documentation: fixed markdown indent in API index
 
 

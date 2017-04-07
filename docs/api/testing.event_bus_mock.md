@@ -33,7 +33,7 @@ published events.
 | -------- | ---- | ----------- |
 | _options_ | `Object` |  additional options |
 | _options.nextTick_ | `Object` |  an alternative callback for scheduling the next event bus cycle (such as window.setTimeout) |
-| _options.errorHandler_ | `Object` |  an alternative error handler, e.g. to inspect error conditions during test |
+| _options.errorHandler_ | `Object` |  an alternative error handler, e.g. to inspect error conditions during test. By default, exceptions thrown by subscribers to the mock will be reported using `window.console.error` |
 
 ##### Returns
 
