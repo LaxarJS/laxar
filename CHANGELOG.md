@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-alpha.22
+
 - [#447](https://github.com/LaxarJS/laxar/issues/447): testing: made createAxI18nMock friendly to standalone usage
     + **BREAKING CHANGE:** see ticket for details
 - [#443](https://github.com/LaxarJS/laxar/issues/443): testing: initialize eventBusMock with noisy error log
