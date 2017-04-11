@@ -9,8 +9,15 @@ development tools.
 **Module Members**
 
 - [create()](#create)
-- [registerDebugInfo()](#registerDebugInfo)
-- [registerItem()](#registerItem)
+
+**Types**
+
+- [AxTooling](#AxTooling)
+  - [AxTooling.forItem()](#AxTooling.forItem)
+  - [AxTooling.registerDebugInfo()](#AxTooling.registerDebugInfo)
+  - [AxTooling.registerItem()](#AxTooling.registerItem)
+  - [AxTooling.onChange()](#AxTooling.onChange)
+  - [AxTooling.unsubscribe()](#AxTooling.unsubscribe)
 
 ## Module Members
 
@@ -18,17 +25,39 @@ development tools.
 
 Exposes inspection data from laxarjs services to development tools
 
-#### <a id="registerDebugInfo"></a>registerDebugInfo( debugInfo )
+## Types
 
-Register a debug info object or callback with the tooling instance.
+### <a id="AxTooling"></a>AxTooling
+
+#### <a id="AxTooling.forItem"></a>AxTooling.forItem( itemMeta )
+
+Get an [`#AxTooling`](#AxTooling) interface for the given bootstrapping item.
 
 ##### Parameters
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| debugInfo | `Object`, `Function` |  Debug information as created by `laxar-loader/debug-info`. May be a function accepting a callback. If debug information is needed, the function will be called to load it asynchronously. |
+| itemMeta | `ItemMeta` |  an object identifying the bootstrapping item |
 
-#### <a id="registerItem"></a>registerItem( object )
+##### Returns
+
+| Type | Description |
+| ---- | ----------- |
+| [`AxTooling`](#AxTooling) |  a tooling API for the given bootstrapping item |
+
+#### <a id="AxTooling.registerDebugInfo"></a>AxTooling.registerDebugInfo( debugInfo )
+
+Register a debug info object or callback with the tooling instance. Debug information can be generated
+with `laxar-loader/debug-info` and may be in the form a function accepting a callback.
+If debug information is needed, the function will be called to load it asynchronously.
+
+##### Parameters
+
+| Property | Type | Description |
+| -------- | ---- | ----------- |
+| debugInfo | `Object`, `Function` |  a debug information callback or object |
+
+#### <a id="AxTooling.registerItem"></a>AxTooling.registerItem( itemMeta )
 
 Register a bootstrapping item with the tooling instance.
 
@@ -36,4 +65,36 @@ Register a bootstrapping item with the tooling instance.
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| object | `ItemMeta` |   |
+| itemMeta | `ItemMeta` |  an object identifying the bootstrapping item |
+
+#### <a id="AxTooling.onChange"></a>AxTooling.onChange( callback )
+
+Register a function to be called when the composition of active observed itemschanges.
+
+##### Parameters
+
+| Property | Type | Description |
+| -------- | ---- | ----------- |
+| callback | `Function` |  a function to call with updated debug information |
+
+##### Returns
+
+| Type | Description |
+| ---- | ----------- |
+| [`AxTooling`](#AxTooling) |  the tooling instance |
+
+#### <a id="AxTooling.unsubscribe"></a>AxTooling.unsubscribe( callback )
+
+Unsubscribe a registered [`#AxTooling.onChange`](#AxTooling.onChange) callback
+
+##### Parameters
+
+| Property | Type | Description |
+| -------- | ---- | ----------- |
+| callback | `Function` |  a function that was previously passed to [`#AxTooling.onChange`](#AxTooling.onChange) |
+
+##### Returns
+
+| Type | Description |
+| ---- | ----------- |
+| [`AxTooling`](#AxTooling) |  the tooling instance |

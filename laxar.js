@@ -240,7 +240,9 @@ export function create( adapters, artifacts, configuration ) {
             [ type ]: name
          };
 
-         services.tooling.registerItem( itemMeta );
+         if( tooling ) {
+            services.tooling.registerItem( itemMeta );
+         }
 
          log.trace( `laxar.bootstrap: bootstrapping ${type} '${name}' (${id})` );
 
@@ -286,9 +288,7 @@ export function create( adapters, artifacts, configuration ) {
             } );
          }
 
-         // other item types will be added in future commits, but for now:
-         assert.state( false );
-         return null;
+         return assert.state( false );
       } );
 
       return Promise.all( promises ).then( () => {} );
@@ -499,7 +499,7 @@ function createDebugEventBus( configuration ) {
    const setTimeout = window.setTimeout;
    const errorHandler = createLogErrorHandler( {
       error( message, optionalErrorInformation ) {
-         console.error( `DebugEventBus: ${message}`, optionalErrorInformation );
+         window.console.error( `DebugEventBus: ${message}`, optionalErrorInformation );
       }
    } );
 
