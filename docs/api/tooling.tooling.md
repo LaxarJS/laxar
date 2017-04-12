@@ -18,6 +18,7 @@ development tools.
   - [AxTooling.registerItem()](#AxTooling.registerItem)
   - [AxTooling.onChange()](#AxTooling.onChange)
   - [AxTooling.unsubscribe()](#AxTooling.unsubscribe)
+  - [AxTooling.pages](#AxTooling.pages)
 
 ## Module Members
 
@@ -98,3 +99,7 @@ Unsubscribe a registered [`#AxTooling.onChange`](#AxTooling.onChange) callback
 | Type | Description |
 | ---- | ----------- |
 | [`AxTooling`](#AxTooling) |  the tooling instance |
+
+#### <a id="AxTooling.pages"></a>AxTooling.pages [`PagesTooling`](tooling.pages.md#PagesTooling)
+
+A [`PagesTooling`](tooling.pages.md) interface to the [`AxTooling`](tooling.tooling.md) instance.
