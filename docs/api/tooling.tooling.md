@@ -1,8 +1,8 @@
 
 # <a id="tooling"></a>tooling
 
-Accepts and keeps laxarjs application data from various laxarjs services, and makes it available to
-development tools.
+Accepts static debug information from `laxar-loader/debug-info` and listens on the debug event bus to
+supply development tools with the current state of the LaxarJS instance and bootstrapping items:
 
 ## Contents
 

@@ -59,13 +59,13 @@ or for all instances.
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| _optionalName_ | `String` |  The configuration name of a LaxarJS instance to inspect. May be omitted to access all application instances by name. |
+| _optionalName_ | `String` |  the configuration name of a LaxarJS instance to inspect (may be omitted to access all application instances by name) |
 
 ##### Returns
 
 | Type | Description |
 | ---- | ----------- |
-| `Object` |  The tooling services for a specified instance, or for all instances that have tooling enabled. |
+| `Object` |  the tooling services for a specified instance, or for all instances that have tooling enabled |
 
 ### <a id="BootstrappingInstance"></a>BootstrappingInstance
 

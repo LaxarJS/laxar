@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#404](https://github.com/LaxarJS/laxar/issues/404): documentation: the `axTooling` API is now documented
+
 
 ## v2.0.0-alpha.22
 

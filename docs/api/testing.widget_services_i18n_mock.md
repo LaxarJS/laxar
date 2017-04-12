@@ -11,23 +11,25 @@ Allows to instantiate a mock implementation of [`AxI18n`](runtime.widget_service
 
 ## Module Members
 
-#### <a id="create"></a>create( i18n )
+#### <a id="create"></a>create( tagsByLocale, context, configuration )
 
 Creates a mock for the "axI18n" injection of a widget.
 
-The mock needs to be backed by an actual i18n implementation. In widget tests, the provided implementation
-should usually use the same context as the rest of the widget test. Feature-specific locales constructed
-multiple times using the `forFeature` method will retain their spies over time, as long as the same mock
-object is used.
+Custom language tags for locales may be passed on creation, or changed using `mockUpdateLocale`.
+Alternatively, pass an AxContext instance to control the feature configuration and/or control the
+locale state using events. This is for use by widget test-beds (e.g. LaxarJS Mocks) to connect the i18n
+mock to the same event bus and feature configuration as the rest of the test.
 
 ##### Parameters
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| i18n | [`AxI18n`](runtime.widget_services_i18n.md#AxI18n) |  a specific backing [`AxI18n`](runtime.widget_services_i18n.md) instance to return localizations from |
+| _tagsByLocale_ | `Object` |  starting locales with language tag(s) for which to simulate `didChangeLocale`. Use this to test controls (where using the event bus is out-of-scope) |
+| _context_ | [`AxContext`](runtime.widget_services.md#AxContext) |  a context with features and/or eventBus to use. By default (or when set to an empty object), a mock eventBus will be used, and a widget with ID "test-widget" will be assumed, with its feature configuration `"i18n.locale"` set to `"default"` |
+| _configuration_ | `AxConfiguration` |  pass a (mock) configuration to control the fallback language tag ("en" by default), using the configuration key `i18n.locales.default` |
 
 ##### Returns
 
 | Type | Description |
 | ---- | ----------- |
-| [`AxI18n`](runtime.widget_services_i18n.md#AxI18n) |  a mock of `axI18n` that can be spied upon and/or mocked with additional items |
+| [`AxI18n`](runtime.widget_services_i18n.md#AxI18n) |  a mock of `axI18n` with preconfigured jasmine spies, plus the `mockUpdateLocale` method |
