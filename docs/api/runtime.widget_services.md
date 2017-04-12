@@ -13,6 +13,7 @@ view framework.
 - [axConfiguration](#axConfiguration)
 - [axContext](#axContext)
 - [axControls](#axControls)
+- [axDebugEventBus](#axDebugEventBus)
 - [axEventBus](#axEventBus)
 - [axFeatures](#axFeatures)
 - [axFlowService](#axFlowService)
@@ -70,6 +71,10 @@ Combines essential widget services with some instance information to be passed a
 #### <a id="axControls"></a>axControls [`ControlLoader`](loaders.control_loader.md#ControlLoader)
 
 Provides access to implementation modules of the controls used by the widget.
+
+#### <a id="axDebugEventBus"></a>axDebugEventBus [`AxEventBus`](#AxEventBus)
+
+Provides access to a super-global EventBus shared by Laxar instances.
 
 #### <a id="axEventBus"></a>axEventBus [`AxEventBus`](#AxEventBus)
 
