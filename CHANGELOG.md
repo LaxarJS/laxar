@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#445](https://github.com/LaxarJS/laxar/issues/445): log: the `console` log channel now uses standard console formatting specifiers
 - [#403](https://github.com/LaxarJS/laxar/issues/403): tooling: added external API originally added in LaxarJS 1.3 (#303)
     + **BREAKING CHANGE:** see ticket for details
 - [#404](https://github.com/LaxarJS/laxar/issues/404): documentation: the `axTooling` API is now documented
