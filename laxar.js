@@ -16,6 +16,7 @@ import * as object from './lib/utilities/object';
 import * as string from './lib/utilities/string';
 
 import { create as createEventBus, createLogErrorHandler } from './lib/runtime/event_bus';
+import { create as createExternalApi } from './lib/tooling/external_api';
 import { create as createServices } from './lib/runtime/services';
 import * as plainAdapter from './lib/runtime/plain_adapter';
 
@@ -194,6 +195,7 @@ export function create( adapters, artifacts, configuration ) {
       if( tooling ) {
          services.tooling.registerDebugInfo( tooling.debugInfo );
          exportInstance( configuration.name, services );
+         createExternalApi( services );
       }
 
       services.widgetLoader.registerWidgetAdapters( adapterInstances );
