@@ -415,11 +415,11 @@ function announceInstance( services ) {
  * or for all instances.
  *
  * @param {String} [optionalName]
- *   The configuration name of a LaxarJS instance to inspect.
- *   May be omitted to access all application instances by name.
+ *   the configuration name of a LaxarJS instance to inspect (may be omitted to access all application
+ *   instances by name)
  *
  * @return {Object}
- *   The tooling services for a specified instance, or for all instances that have tooling enabled.
+ *   the tooling services for a specified instance, or for all instances that have tooling enabled
  *
  * @memberof laxar
  */
@@ -434,9 +434,9 @@ function instances( optionalName ) {
  * Export a LaxarJS instance to be accessed via the laxar#instances function.
  *
  * @param {String} name
- *    The name under which the instance should be accessible.
+ *    the name under which the instance should be accessible
  * @param {Object} instance
- *    The object representing the LaxarJS instance that should be exported.
+ *    the object representing the LaxarJS instance that should be exported
  *
  * @private
  */
@@ -461,7 +461,7 @@ function exportInstance( name, instance ) {
  * If there is no other active LaxarJS instance, a new event bus is created.
  *
  * @return {EventBus}
- *   The `debugEventBus` service of any other active LaxarJS instance or a new event bus instance.
+ *   the `debugEventBus` service of any other active LaxarJS instance or a new event bus instance
  *
  * @private
  */
@@ -483,10 +483,10 @@ function provideSharedDebugEventBus() {
  * Create a new debug event bus with the given configuration.
  *
  * @param {Object} configuration
- *    A plain object with at least a `eventBusTimeoutMs` property.
+ *    a plain object with at least a `eventBusTimeoutMs` property
  *
  * @return {EventBus}
- *    A new event bus instance.
+ *    a new event bus instance
  *
  * @private
  */
