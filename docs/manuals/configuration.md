@@ -115,5 +115,4 @@ The following configuration options are defined by _LaxarJS Core_.
 | `router.base`                        | `null`                | Override the document base `href` for routing.
 | `router.query.enabled`               | `false`               | If `true`, query parameters are automatically transformed into additional place parameters and vice versa.
 | `storagePrefix`                      | `null`                | Allows to set a prefix for local- and session-storage keys when using `laxar.storage`. If `null`, a prefix is generated based on the configured `name`.
-| `tooling.enabled`                    | `false`               | If `true` some services are exposed on the global object (i.e. `window`) for tooling purposes.
 | `widgets.*`                          | `null`                | Sub-configuration for use by widgets and activities (using the artifact name as second-level key is recommended).

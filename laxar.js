@@ -146,11 +146,9 @@ export function create( adapters, artifacts, configuration ) {
     */
    function tooling( debugInfo ) {
       assert( debugInfo ).isNotNull();
-      if( configuration.tooling.enabled ) {
-         bootstrappingSchedule.tooling = {
-            debugInfo
-         };
-      }
+      bootstrappingSchedule.tooling = {
+         debugInfo
+      };
       return api;
    }
 
