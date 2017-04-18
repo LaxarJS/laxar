@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-beta.0
+
 - [#454](https://github.com/LaxarJS/laxar/issues/454): documentation: fixed markdown list problems
 - [#453](https://github.com/LaxarJS/laxar/issues/453): documentation: explain that descriptors are mandatory for all themable artifacts
 - [#451](https://github.com/LaxarJS/laxar/issues/451): documentation: fixed broken link
