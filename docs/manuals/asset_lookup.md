@@ -20,11 +20,11 @@ In order to avoid excessive configuration, assets are automatically resolved bas
 
 For *widgets*, LaxarJS manages the following assets:
 
-  * the `widget.json` *descriptor*, which describes the widget features
+* the `widget.json` *descriptor*, which describes the widget features
 
-  * the *HTML template* which defines the widget markup, and may be overwritten by the theme
+* the *HTML template* which defines the widget markup, and may be overwritten by the theme
 
-  * the *CSS stylesheet* refining the presentation of the widget, which is often overwritten by the theme, but which may also be missing completely
+* the *CSS stylesheet* refining the presentation of the widget, which is often overwritten by the theme, but which may also be missing completely
 
 For *activities*, LaxarJS only manages the `widget.json` descriptor, since activities have no presentation.
 

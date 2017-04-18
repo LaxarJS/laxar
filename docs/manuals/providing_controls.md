@@ -12,16 +12,16 @@ Preliminary readings:
 
 To provide their business logic, widgets and activities often depend on _libraries,_ which might be created by third parties or simply be used to share common functionality. Examples of libraries commonly used by LaxarJS widgets include:
 
-  * [moment.js](https://momentjs.com/)
-  * [LaxarJS Patterns](https://laxarjs.org/docs/laxar-patterns-latest/)
-  * [jQuery](https://jquery.com/)
+* [moment.js](https://momentjs.com/)
+* [LaxarJS Patterns](https://laxarjs.org/docs/laxar-patterns-latest/)
+* [jQuery](https://jquery.com/)
 
 On the other hand, here are some examples of controls:
 
-  * a select box
-  * a tab control
-  * a [date picker](https://www.npmjs.com/package/laxar-date-picker-control)
-  * an [accordion control](https://www.npmjs.com/package/laxar-accordion-control)
+* a select box
+* a tab control
+* a [date picker](https://www.npmjs.com/package/laxar-date-picker-control)
+* an [accordion control](https://www.npmjs.com/package/laxar-accordion-control)
 
 LaxarJS helps when developing a custom control by managing and loading its JavaScript implementation module, as well as its theme-dependent CSS stylesheet for you.
 If (and only if) you _use_ a control in one or more widgets, LaxarJS will load its CSS according to the current [theme](./creating_themes.md), just like with widgets and layouts.

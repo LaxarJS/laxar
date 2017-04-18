@@ -10,16 +10,16 @@ An application may access web services or connect to database programs, which ar
 
 From a developer point of view, an application primarily consists of:
 
-  * a set of LaxarJS _widgets_ and _activities_ providing the functionality
-  * the _pages_ and _layouts_ assembling these widgets and activities
-  * a _flow_ that connects the individual pages
-  * one or more _themes_ to define the look and feel of the application.
+* a set of LaxarJS _widgets_ and _activities_ providing the functionality
+* the _pages_ and _layouts_ assembling these widgets and activities
+* a _flow_ that connects the individual pages
+* one or more _themes_ to define the look and feel of the application.
 
 In order to run the application, there are additional secondary resources:
 
-  * the _LaxarJS runtime_ loads flow and pages, sets up the widgets and connects them through an _event bus_
-  * _controls_ which are used by the widgets to provide advanced user interface functionality, such as those provided by _LaxarJS UiKit_
-  * _libraries_ used by widgets and activities, such as _moment.js_, _jQuery_, and _LaxarJS Patterns_.
+* the _LaxarJS runtime_ loads flow and pages, sets up the widgets and connects them through an _event bus_
+* _controls_ which are used by the widgets to provide advanced user interface functionality, such as those provided by _LaxarJS UiKit_
+* _libraries_ used by widgets and activities, such as _moment.js_, _jQuery_, and _LaxarJS Patterns_.
 
 The following two sections first explain the primary application components, and then the underlying secondary components.
 
@@ -37,19 +37,19 @@ So, both widgets and controls are parts of the user interface, but on different 
 
 To illustrate this with further examples, possible widgets _with their specific goals_ include:
 
-  * a to-do list, _to check and plan what is to do_
-  * a shopping cart, _to review and edit purchase items_
-  * a route planner displayed as a map, _to plan a journey_
-  * a calendar displaying various events, _to schedule and check appointments_
-  * the details editor for a specific event, _to reschedule or cancel an appointment_
-  * a social buttons bar, _to share content_.
+* a to-do list, _to check and plan what is to do_
+* a shopping cart, _to review and edit purchase items_
+* a route planner displayed as a map, _to plan a journey_
+* a calendar displaying various events, _to schedule and check appointments_
+* the details editor for a specific event, _to reschedule or cancel an appointment_
+* a social buttons bar, _to share content_.
 
 In contrast, these are controls:
 
-  * an input field, _to display/edit any text_
-  * a date picker, _to display/edit any date_
-  * a select box, _to choose from any list of options_
-  * an accordion control or a tab control, _to navigate any set of contents_.
+* an input field, _to display/edit any text_
+* a date picker, _to display/edit any date_
+* a select box, _to choose from any list of options_
+* an accordion control or a tab control, _to navigate any set of contents_.
 
 Another way to think of it is that _widgets are made of controls_, and  _controls are HTML elements_ — which *may* be user-defined, for example by using HTML web components or AngularJS directives.
 The program logic of an individual widget is implemented in JavaScript, while the presentation is defined by using an HTML template, optionally accompanied by CSS styling information.

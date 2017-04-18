@@ -99,8 +99,8 @@ Also, Navigo regular expression patterns are not reversible, because JavaScript 
 However, their syntax is not supported by the JSON flow definition anyway, so applications cannot use them by mistake.
 The following pattern styles are known to work well with reverse routing:
 
-  * verbatim: `/some/path`
-  * named parameter segments `/some/:param/:other-param`
+* verbatim: `/some/path`
+* named parameter segments `/some/:param/:other-param`
 
 If query parameters are enabled, any additional parameters that are not part of the pattern to reverse will be encoded into query parameters, except if the parameter value to be encoded equals the default value of the target place.
 

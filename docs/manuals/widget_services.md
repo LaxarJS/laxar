@@ -18,17 +18,17 @@ For a list of all widget services, consult the [widget services API documentatio
 
 To help you get started, the most important widget services are:
 
-  * [`axContext`](../api/runtime.widget_services.md#axContext) for passing essential instance information to libraries such as [LaxarJS Patterns](https://laxarjs.org/docs/laxar-patterns-v2-latest/), also available as `$scope` to AngularJS widgets,
+* [`axContext`](../api/runtime.widget_services.md#axContext) for passing essential instance information to libraries such as [LaxarJS Patterns](https://laxarjs.org/docs/laxar-patterns-v2-latest/), also available as `$scope` to AngularJS widgets,
 
-  * [`axConfiguration`](../api/runtime.widget_services.md#axConfiguration) for application configuration,
+* [`axConfiguration`](../api/runtime.widget_services.md#axConfiguration) for application configuration,
 
-  * [`axEventBus`](../api/runtime.widget_services.md#axEventBus) to communicate using publish/subscribe,
+* [`axEventBus`](../api/runtime.widget_services.md#axEventBus) to communicate using publish/subscribe,
 
-  * [`axFeatures`](../api/runtime.widget_services.md) to access instance feature configuration,
+* [`axFeatures`](../api/runtime.widget_services.md) to access instance feature configuration,
 
-  * [`axFlowService`](../api/runtime.widget_services.md) to generate link URLs,
+* [`axFlowService`](../api/runtime.widget_services.md) to generate link URLs,
 
-  * [`axLog`](../api/runtime.widget_services.md) for logging.
+* [`axLog`](../api/runtime.widget_services.md) for logging.
 
 
 ## Mocking Widget Services from Tests

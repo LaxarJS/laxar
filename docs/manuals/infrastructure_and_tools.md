@@ -44,34 +44,34 @@ Let us dissect the startup process of a LaxarJS application based on the `debug.
 
 What do the individual elements mean?
 
-  * The `data-ax-page` attribute is referenced by the `init.js` to determine where LaxarJS will place the layout for the current page.
+* The `data-ax-page` attribute is referenced by the `init.js` to determine where LaxarJS will place the layout for the current page.
 
-  * The `script` element loads your application bundle based on the `init.js` entry point, as configured by the `webpack.config.js`.
+* The `script` element loads your application bundle based on the `init.js` entry point, as configured by the `webpack.config.js`.
 
 
 ### Startup
 
 So, let us see what happens once all required JavaScript modules are available:
 
-  1. The `init.js` collects all dependencies for your application and passes them to `laxar.create`.
+1. The `init.js` collects all dependencies for your application and passes them to `laxar.create`.
 
-  2. `laxar.create().….bootstrap()` sets up the runtime services based on your configuration, and bootstraps all technology adapters used by your application.
+2. `laxar.create().….bootstrap()` sets up the runtime services based on your configuration, and bootstraps all technology adapters used by your application.
 
-  3. If a flow was initialized before bootstrapping (using `laxar.create(…).flow( name, domNode )`), it is now instantiated, and its patterns are used to set up the [Navigo router](https://www.npmjs.com/package/navigo).
+3. If a flow was initialized before bootstrapping (using `laxar.create(…).flow( name, domNode )`), it is now instantiated, and its patterns are used to set up the [Navigo router](https://www.npmjs.com/package/navigo).
 
-  4. The router matches the flow routing patterns against the current URL, and invokes the LaxarJS _flow controller_ with the matching place, so that the current _page_ is determined (possibly after following redirects).
+4. The router matches the flow routing patterns against the current URL, and invokes the LaxarJS _flow controller_ with the matching place, so that the current _page_ is determined (possibly after following redirects).
 
-  5. The flow controller instantiates a _page controller_ for the current page.
+5. The flow controller instantiates a _page controller_ for the current page.
 
-  6. The page controller loads and inserts the page layout and instantiates the controllers for widgets and activities.
-  Also, it loads the widget HTML templates and their CSS (during development).
-  Widget and activity controllers may already start to make HTTP requests if they need to, while their view is being setup.
+6. The page controller loads and inserts the page layout and instantiates the controllers for widgets and activities.
+Also, it loads the widget HTML templates and their CSS (during development).
+Widget and activity controllers may already start to make HTTP requests if they need to, while their view is being setup.
 
-  7. After all controllers have been instantiated, the page controller publishes the `beginLifecycleRequest` event to signal that widgets may start publishing events themselves.
-  Then, all widget templates are instantiated, inserted into the layout DOM and linked to their controllers' scopes.
+7. After all controllers have been instantiated, the page controller publishes the `beginLifecycleRequest` event to signal that widgets may start publishing events themselves.
+Then, all widget templates are instantiated, inserted into the layout DOM and linked to their controllers' scopes.
 
-  8. Finally, the page controller signals to the flow controller that navigation is complete, upon which the flow controller publishes the `didNavigate` event.
-  This allows widgets to handle their URL place parameters, and from now on they may publish navigate requests for further navigation.
+8. Finally, the page controller signals to the flow controller that navigation is complete, upon which the flow controller publishes the `didNavigate` event.
+This allows widgets to handle their URL place parameters, and from now on they may publish navigate requests for further navigation.
 
 From this point on, the LaxarJS runtime interacts only through the event bus with widgets and activities.
 The only exception to this rule is the _page teardown_ caused by _navigation_, either _indirectly_ through a widget, or _directly_ by changing the URL in the browser.

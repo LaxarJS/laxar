@@ -42,24 +42,24 @@ An event name is a string, formed by a sequence of one or more _topics_ that are
 Each topic is a string, made up from a sequence of one or more _sub-topics_ separated by `-` (the hyphen-minus, U+00AF).
 Sub-Topics are strings, formed by
 
-  * _either_ an upper case letter followed by a sequence of upper case letters and numbers
-  * _or_ a lower case letter followed by a sequence of mixed case letters and numbers
+* _either_ an upper case letter followed by a sequence of upper case letters and numbers
+* _or_ a lower case letter followed by a sequence of mixed case letters and numbers
 
 These rules also exist as a formal [grammar](#grammar) for thorough people.
 
 These are examples for _valid_ event names:
 
-  * `didReplace.myShoppingCart`
-  * `takeActionRequest.searchArticles`
-  * `didTakeAction.searchArticles.SUCCESS`
-  * `willEndLifecycle`
-  * `didValidate.popup-user2`
+* `didReplace.myShoppingCart`
+* `takeActionRequest.searchArticles`
+* `didTakeAction.searchArticles.SUCCESS`
+* `willEndLifecycle`
+* `didValidate.popup-user2`
 
 _Invalid_ event names include:
 
-  * `DidReplace.myShoppingCart`: _invalid,_ first topic starts upper case but contains lower case letters
-  * `.searchArticles.SUCCESS`: _invalid,_ empty topic is not allowed
-  * `didUpdate.1up`: _invalid_, topic must not start with a number
+* `DidReplace.myShoppingCart`: _invalid,_ first topic starts upper case but contains lower case letters
+* `.searchArticles.SUCCESS`: _invalid,_ empty topic is not allowed
+* `didUpdate.1up`: _invalid_, topic must not start with a number
 
 
 #### Naming Best Practices and Event Patterns
@@ -188,19 +188,19 @@ Widgets that need to save state to a service should respond with a `willEndLifec
 Widgets and activities may initiate navigation using a `navigateRequest.{target}` event, substituting an actual navigation target instead of the placeholder `{target}`.
 The event is interpreted by the LaxarJS runtime as follows:
 
-  * if _target_ is `"_self"`, the runtime will simply propagate its place-parameters by publishing a `didNavigate` event right away
-  * if _target_ is one of the targets configured for the current place (in the flow definition), the runtime will initiate navigation to the corresponding place
-  * otherwise, if _target_ is a place within the flow definition, the runtime will initiate navigation to that place
-  * otherwise, nothing will happen.
+* if _target_ is `"_self"`, the runtime will simply propagate its place-parameters by publishing a `didNavigate` event right away
+* if _target_ is one of the targets configured for the current place (in the flow definition), the runtime will initiate navigation to the corresponding place
+* otherwise, if _target_ is a place within the flow definition, the runtime will initiate navigation to that place
+* otherwise, nothing will happen.
 
 When _initiating navigation_, the LaxarJS runtime will:
 
-  1. extract any place parameters from the event payload of the request event
-  2. publish a `willNavigate.{target}` event with the corresponding target and parameters
-  3. publish an `endLifecycle` event and wait for any respondents
-  4. perform navigation by destroying the current page and loading the page associated with the new place
-  3. publish a `beginLifecycle` event and wait for any respondents
-  5. publish a `didNavigate.{target}` event, with the corresponding target and parameters as well as the resolved place
+1. extract any place parameters from the event payload of the request event
+2. publish a `willNavigate.{target}` event with the corresponding target and parameters
+3. publish an `endLifecycle` event and wait for any respondents
+4. perform navigation by destroying the current page and loading the page associated with the new place
+3. publish a `beginLifecycle` event and wait for any respondents
+5. publish a `didNavigate.{target}` event, with the corresponding target and parameters as well as the resolved place
 
 Here is the summary of navigation events:
 
@@ -242,17 +242,18 @@ It has essential methods that allow to implement all patterns mentioned above.
 
 * `subscribe( eventPattern, callback [, options] )`
 
-   Creates a subscription on the event bus.
+  Creates a subscription on the event bus.
 
-   - The `eventPattern` is a prefix for events to subscribe to:
-     Events that start with the given sequence of (sub-)topics will be handled by this subscription.
-     For example, a subscription to the pattern `didSave` will be triggered for the event `didSave.myDocument` as well as for the event `didSave.preferences-main`.
-     Most of the time, widgets are only interested in very specific events related to resources they work with or actions they handle, so they use patterns such as `didReplace.someResource` where `someResource` is given by the page configuration.
+  - The `eventPattern` is a prefix for events to subscribe to:
+    Events that start with the given sequence of (sub-)topics will be handled by this subscription.
+    For example, a subscription to the pattern `didSave` will be triggered for the event `didSave.myDocument` as well as for the event `didSave.preferences-main`.
+    Most of the time, widgets are only interested in very specific events related to resources they work with or actions they handle, so they use patterns such as `didReplace.someResource` where `someResource` is given by the page configuration.
 
-   - The `callback` is the function which will be called to process any matching events.
-     Event subscription callbacks receive two arguments:
-       + The `event` is this subscriber's copy of the payload, as published by the sender of the event.
-       + The `meta` object contains additional information about the event, in particular the `sender` (identified by a string) and the `name` (under which the event was published).
+  - The `callback` is the function which will be called to process any matching events.
+    Event subscription callbacks receive two arguments:
+
+    + The `event` is this subscriber's copy of the payload, as published by the sender of the event.
+    + The `meta` object contains additional information about the event, in particular the `sender` (identified by a string) and the `name` (under which the event was published).
 
    - The `options` are usually not required for widgets:
      Using `options.subscriberId`, the subscriber can identify itself to the event bus.

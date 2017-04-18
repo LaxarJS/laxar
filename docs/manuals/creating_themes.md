@@ -29,9 +29,9 @@ However, it is better to add these styles to your main application layout instea
 
 The _benefit_ of using such a _theme folder_ is that
 
-  * your CSS will be _bundled and compressed_ together with Bootstrap CSS (no additional `<link>` tag needed) and that
+* your CSS will be _bundled and compressed_ together with Bootstrap CSS (no additional `<link>` tag needed) and that
 
-  * you can support different _themes_ simply by adding more `.theme` folders.
+* you can support different _themes_ simply by adding more `.theme` folders.
 
 Due to the first point, using theme folders is useful and recommended _even_ if you only use (and maybe customize) the default theme.
 
