@@ -188,11 +188,12 @@ export function create( adapters, artifacts, configuration ) {
       const services = createServices( configuration, artifacts, debugEventBus );
       const adapterInstances = bootstrapAdapters( services, [ plainAdapter, ...adapters ], artifacts );
 
-      const instance = makeTopic( configuration.name );
+      const instanceName = services.configuration.ensure( 'name' );
+      const instance = makeTopic( instanceName );
 
       if( tooling ) {
          services.tooling.registerDebugInfo( tooling.debugInfo );
-         exportInstance( configuration.name, services );
+         exportInstance( instanceName, services );
          createExternalApi( services );
       }
 

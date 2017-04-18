@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#452](https://github.com/LaxarJS/laxar/issues/452): fix configuration `name` not being treated as optional
 - [#449](https://github.com/LaxarJS/laxar/issues/449): documentation fixes
 
 
