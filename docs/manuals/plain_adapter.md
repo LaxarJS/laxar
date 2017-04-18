@@ -10,7 +10,7 @@ Preliminary readings:
 
 * [LaxarJS Core Concepts](../concepts.md)
 * [Widgets and Activities](widgets_and_activities.md)
-* [Widgets Services](widgets_services.md)
+* [Widgets Services](widget_services.md)
 
 
 ## When to Use the `"plain"` Technology?
