@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#449](https://github.com/LaxarJS/laxar/issues/449): documentation fixes
+
 
 ## v2.0.0-alpha.23
 

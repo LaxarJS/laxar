@@ -22,7 +22,7 @@ In this case you might want to implement this functionality as a _control_ and u
 Usually, widgets correspond to significant areas of the screen and are composed of multiple controls.
 They are built with a _specific user-goal_ in mind, such as _"allow the user to book a flight"_ or _"allow the user to review shopping cart contents"_.
 If widgets are made too small and too generic, page definitions will be confusing and the widget configuration options become unwieldy.
-As a rule of the thumb, only very complex pages should contain more than a about a dozen widgets.
+As a rule of thumb, only very complex pages should contain more than a about a dozen widgets.
 And who wants to have very complex pages anyway?
 
 
@@ -162,11 +162,12 @@ Throughout this example, we will be using the `angular` integration technology (
 Different integration technologies should work in a similar fashion.
 
 The Yeoman generator has already created an empty controller along with some AngularJS infrastructure (module and injections).
-For a shopping cart, this might be an appropriate starting implementation with some dummy data:
+For a shopping cart, *this* might be an appropriate starting implementation with some dummy data:
 
 ```js
 import * as ng from 'angular';
 
+Controller.$inject = [ '$scope' ];
 function Controller( $scope ) {
    $scope.model = [
       { label: 'Dairy Dreams', price: 5.25, amount: 1 },
@@ -188,7 +189,7 @@ function Controller( $scope ) {
    );
 }
 
-export const name = ng.module( 'shoppingCartWidget' )
+export const name = ng.module( 'shoppingCartWidget', [] )
    .controller( 'ShoppingCartWidgetController' ).name;
 ```
 
