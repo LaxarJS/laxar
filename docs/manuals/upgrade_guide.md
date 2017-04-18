@@ -150,8 +150,8 @@ More Information:
 
 ### Styles/Templates for Widgets/Controls Lookup _by Name Only_
 
-Previously, LaxarJS used several heuristics to derive the name of activities, widgets or controls from their file system path segment.
-The name is needed to find the JavaScript implementation module, HTML template (widgets only) and CSS stylesheet of an artifact.
+Previously, LaxarJS used several heuristics to derive the _name_ of activities/widgets, layouts, controls or themes from their file system path segment.
+The name is needed to find the JavaScript implementation module, CSS stylesheet and HTML template (for widgets and layouts) of an artifact.
 
 Now, widgets and controls must always provide a descriptor (`widget.json`, `control.json`) with a `name` property.
 That name is then used to load the implementation module from the directory of the descriptor, as well as themed assets from the appropriate sub-directories.

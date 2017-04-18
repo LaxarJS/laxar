@@ -31,8 +31,10 @@ For *activities*, LaxarJS only manages the `widget.json` descriptor, since activ
 For *controls*, LaxarJS manages the `control.json` descriptor, and the theme-dependent CSS stylesheet (if any).
 Controls may sometimes choose to load HTML assets (preferably using webpack), but these are not covered by the theming mechanism.
 
-For *layouts*, LaxarJS loads an HTML template, and the CSS stylesheet (if any).
+For *layouts*, LaxarJS manages the `layout.json` descriptor along with HTML template and CSS stylesheet (if any).
 Both may be overridden by the application theme.
+
+For *themes*, LaxarJS processes the `theme.json` and the global CSS stylesheet.
 
 
 ## Why Centralized Asset Handling?

@@ -11,7 +11,7 @@ In the context of [LaxarJS Patterns](https://laxarjs.org/docs/laxar-patterns-v2-
 
 More Information:
 
-   - [LaxarJS Patterns: Actions](http://laxarjs.org/docs/laxar-patterns-v2-latest/patterns/actions/)
+- [LaxarJS Patterns: Actions](http://laxarjs.org/docs/laxar-patterns-v2-latest/patterns/actions/)
 
 
 ## Activity
@@ -21,29 +21,29 @@ Similar to a widget, but without any user interface.
 
 More Information:
 
-   - [LaxarJS Core Concepts](./concepts.md)
-   - [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
+- [LaxarJS Core Concepts](./concepts.md)
+- [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
 
 
 ## Artifact
 
 LaxarJS distinguishes the following application artifacts:
 
-   - [widgets](#widget)
-   - [activities](#actvity)
-   - [controls](#control)
-   - [layouts](#layout)
-   - [flows](#flow)
-   - [pages](#page)
-   - [themes](#theme)
+- [widgets](#widget)
+- [activities](#actvity)
+- [controls](#control)
+- [layouts](#layout)
+- [flows](#flow)
+- [pages](#page)
+- [themes](#theme)
 
 More Information:
 
-   - [LaxarJS Core Concepts](./concepts.md)
-   - [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
-   - [Manual: Providing Controls](./manuals/providing_controls.md)
-   - [Manual: Writing Pages](./manuals/writing_pages.md)
-   - [Manual: Flow and Places](./manuals/flow_and_places.md)
+- [LaxarJS Core Concepts](./concepts.md)
+- [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
+- [Manual: Providing Controls](./manuals/providing_controls.md)
+- [Manual: Writing Pages](./manuals/writing_pages.md)
+- [Manual: Flow and Places](./manuals/flow_and_places.md)
 
 
 ## Assets
@@ -52,7 +52,7 @@ Secondary resources (HTML, CSS, images) that may belong to certain application a
 
 More Information:
 
-   - [Manual: Asset Lookup](./asset_lookup.md)
+- [Manual: Asset Lookup](./asset_lookup.md)
 
 
 ## Attribute Path
@@ -78,7 +78,7 @@ When evaluated against this object, the attribute path `"items.1.user.name"` wou
 
 More Information:
 
-   - [API: `laxar.object.path`](./api/utilities.object.md#path)
+- [API: `laxar.object.path`](./api/utilities.object.md#path)
 
 
 ## Bootstrap CSS
@@ -88,7 +88,7 @@ Not to be confused with the `.bootstrap()`-method used to initialize a LaxarJS B
 
 More Information:
 
-   - [getbootstrap.com](http://getbootstrap.com/)
+- [getbootstrap.com](http://getbootstrap.com/)
 
 
 ## Bootstrapping Instance
@@ -100,7 +100,7 @@ Not to be confused Bootstrap CSS.
 
 More Information:
 
-   - [API: `laxar.create`](./api/laxar.md#laxar.create)
+- [API: `laxar.create`](./api/laxar.md#laxar.create)
 
 
 ## Control
@@ -110,8 +110,8 @@ More specifically, a LaxarJS artifact consisting of a JavaScript module (possibl
 
 More Information:
 
-   - [LaxarJS Core Concepts](./concepts.md)
-   - [Manual: Providing Controls](./manuals/providing_controls.md)
+- [LaxarJS Core Concepts](./concepts.md)
+- [Manual: Providing Controls](./manuals/providing_controls.md)
 
 
 ## Composition
@@ -122,7 +122,7 @@ Supports feature configuration, similar to widgets.
 
 More Information:
 
-   - [Manual: Writing Compositions](./manuals/writing_compositions.md)
+- [Manual: Writing Compositions](./manuals/writing_compositions.md)
 
 
 ## Configuration
@@ -132,9 +132,23 @@ Use this for deployment-dependent configuration, such as service URLs.
 
 More Information:
 
-   - [Manual: Configuration](./manuals/configuration.md)
-   - [API: `axConfiguration`](./api/runtime.configuration.md)
-   - [API: `laxar.bootstrap`](./api/laxar.md#laxar.bootstrap)
+- [Manual: Configuration](./manuals/configuration.md)
+- [API: `axConfiguration`](./api/runtime.configuration.md)
+- [API: `laxar.bootstrap`](./api/laxar.md#laxar.bootstrap)
+
+
+## Descriptor
+
+JSON file containing meta information about a LaxarJS artifact, most importantly its canonical _name_.
+A descriptor is _required_ for the following artifact types:
+
+- Widgets/Activities: `widget.json`, see also: [Widget Descriptor](#widget-descriptor)
+- Layouts: `layout.json`
+- Themes: `theme.json`
+- Controls: `control.json`
+
+The `name` field is used to resolve the implementation module (only for widgets and controls), and to determine the default location for CSS and HTML assets.
+The `styleSource` and `templateSource` attributes of the descriptor can be used to specify non-default stylesheet (such as SCSS) or template (e.g. pug) assets.
 
 
 ## Event Bus
@@ -144,8 +158,8 @@ Connects widgets and activities through publish/subscribe events.
 
 More Information:
 
-   - [Manual: Events](./manuals/events.md)
-   - [API: `axEventBus`](./api/runtime.event_bus.md)
+- [Manual: Events](./manuals/events.md)
+- [API: `axEventBus`](./api/runtime.event_bus.md)
 
 
 ## Feature Path
@@ -164,7 +178,7 @@ Often used to toggle visibility of context-dependent UI items, or to enable/disa
 
 More Information:
 
-   - [LaxarJS Patterns: Flags](http://laxarjs.org/docs/laxar-patterns-v2-latest/patterns/flags/)
+- [LaxarJS Patterns: Flags](http://laxarjs.org/docs/laxar-patterns-v2-latest/patterns/flags/)
 
 
 ## Flow
@@ -174,8 +188,8 @@ Associates URL patterns with pages, and defines their parameters.
 
 More Information:
 
-   - [Manual: Flow and Places](./manuals/flow_and_places.md)
-   - [API: `axFlowService`](./api/runtime.flow_service.md)
+- [Manual: Flow and Places](./manuals/flow_and_places.md)
+- [API: `axFlowService`](./api/runtime.flow_service.md)
 
 
 ## I18n
@@ -184,7 +198,7 @@ More Information:
 
 More Information:
 
-   - [Manual: i18n](./manuals/i18n.md)
+- [Manual: i18n](./manuals/i18n.md)
 
 
 ## I18n Object
@@ -195,7 +209,7 @@ Depending on the selected locale and resulting language tag, the correct message
 
 More Information:
 
-   - [Manual: i18n](./manuals/i18n.md)
+- [Manual: i18n](./manuals/i18n.md)
 
 
 ## Integration Technology
@@ -207,8 +221,8 @@ The LaxarJS project provides adapters for the following integration technologies
 
 More Information:
 
-   - [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
-   - [Manual: Creating an Adapter for a new Widget Technology](./manuals/adapters.md)
+- [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
+- [Manual: Creating an Adapter for a new Widget Technology](./manuals/adapters.md)
 
 
 ## Integration Technology Adapter
@@ -218,11 +232,11 @@ Must be passed to LaxarJS when bootstrapping an application.
 
 More Information:
 
-   - [Manual: Creating an Adapter for a new Widget Technology](./manuals/adapters.md)
-   - [laxar-angular-adapter](http://laxarjs.org/docs/laxar-angular-adapter-v2-latest/patterns/flags/)
-   - [laxar-angular2-adapter](http://laxarjs.org/docs/laxar-angular2-adapter-v2-latest/patterns/flags/)
-   - [laxar-react-adapter](http://laxarjs.org/docs/laxar-react-adapter-v2-latest/patterns/flags/)
-   - [laxar-vue-adapter](http://laxarjs.org/docs/laxar-vue-adapter-v2-latest/patterns/flags/)
+- [Manual: Creating an Adapter for a new Widget Technology](./manuals/adapters.md)
+- [laxar-angular-adapter](http://laxarjs.org/docs/laxar-angular-adapter-v2-latest/patterns/flags/)
+- [laxar-angular2-adapter](http://laxarjs.org/docs/laxar-angular2-adapter-v2-latest/patterns/flags/)
+- [laxar-react-adapter](http://laxarjs.org/docs/laxar-react-adapter-v2-latest/patterns/flags/)
+- [laxar-vue-adapter](http://laxarjs.org/docs/laxar-vue-adapter-v2-latest/patterns/flags/)
 
 
 ## Integration Type
@@ -231,7 +245,7 @@ A string used in the widget descriptor to distinguish widgets (integration type 
 
 More Information:
 
-   - [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
+- [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
 
 
 ## Layout
@@ -240,7 +254,7 @@ A piece of plain old HTML used to render scaffolding HTML, or to arrange widgets
 
 More Information:
 
-   - [Manual: Writing Pages](./manuals/writing_pages.md)
+- [Manual: Writing Pages](./manuals/writing_pages.md)
 
 
 ## LaxarJS Patterns
@@ -249,7 +263,7 @@ A library helping to support several standard event patterns for widget collabor
 
 More Information:
 
-   - [LaxarJS Patterns](http://laxarjs.org/docs/laxar-patterns-v2-latest/)
+- [LaxarJS Patterns](http://laxarjs.org/docs/laxar-patterns-v2-latest/)
 
 
 ## LaxarJS Mocks
@@ -258,7 +272,7 @@ A library that helps to write specification tests *(spec tests)* for widgets and
 
 More Information:
 
-   - [LaxarJS Mocks](http://laxarjs.org/docs/laxar-mocks-v2-latest/)
+- [LaxarJS Mocks](http://laxarjs.org/docs/laxar-mocks-v2-latest/)
 
 
 ## LaxarJS UiKit
@@ -267,24 +281,24 @@ A library containing the LaxarJS default theme (a slightly extended Bootstrap 3,
 
 More Information:
 
-   - [LaxarJS UiKit](http://laxarjs.org/docs/laxar-uikit-v2-latest/)
+- [LaxarJS UiKit](http://laxarjs.org/docs/laxar-uikit-v2-latest/)
 
 
 ## Lifecycle
 
 Standard event sequence that is published by the LaxarJS runtime from the instant a page is entered...
 
-   - `beginLifecycleRequest`
-   - `didNavigate`
+- `beginLifecycleRequest`
+- `didNavigate`
 
 ...until it is replaced by the next page:
 
-   - `navigateRequest`
-   - `endLifecycleRequest`.
+- `navigateRequest`
+- `endLifecycleRequest`.
 
 More Information:
 
-   - [Manual: Events](./manuals/events.md)
+- [Manual: Events](./manuals/events.md)
 
 
 ## Topic
@@ -317,7 +331,7 @@ In the context of [LaxarJS Patterns](https://laxarjs.org/docs/laxar-patterns-v2-
 
 More Information:
 
-   - [LaxarJS Patterns: Resources](http://laxarjs.org/docs/laxar-patterns-v2-latest/patterns/resources/)
+- [LaxarJS Patterns: Resources](http://laxarjs.org/docs/laxar-patterns-v2-latest/patterns/resources/)
 
 
 ## Theme
@@ -329,7 +343,7 @@ Widgets should always define styles for the *default.theme*.
 
 More Information:
 
-   - [Creating Themes](./manuals/creating_themes.md)
+- [Creating Themes](./manuals/creating_themes.md)
 
 
 ## Widget
@@ -339,8 +353,8 @@ Provides and-user functionality within its area of the screen.
 
 More Information:
 
-   - [LaxarJS Core Concepts](./concepts.md)
-   - [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
+- [LaxarJS Core Concepts](./concepts.md)
+- [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
 
 
 ## Widget Adapter
@@ -357,8 +371,8 @@ Widget areas even allow nesting widgets that were created in different [integrat
 
 More Information:
 
-   - [Manual: Writing Pages](./manuals/writing_pages.md)
-   - [API: `axAreaHelper`](./api/runtime.widget_services.md#axAreaHelper)
+- [Manual: Writing Pages](./manuals/writing_pages.md)
+- [API: `axAreaHelper`](./api/runtime.widget_services.md#axAreaHelper)
 
 
 ## Widget Descriptor
@@ -369,7 +383,7 @@ It may also specify a *styleSource* and/or *templateSource* if the widget deviat
 
 More Information:
 
-   - [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
+- [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
 
 
 ## Widget Directory
@@ -378,7 +392,7 @@ File system directory containing a widget with its descriptor, implementation mo
 
 More Information:
 
-   - [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
+- [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
 
 
 ## Widget Features
@@ -388,9 +402,9 @@ The [widget descriptor](#) may specify and document what feature configuration i
 
 More Information:
 
-   - [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
-   - [Manual: Writing Pages](./manuals/writing_pages.md)
-   - [API: `axFeatures`](./api/runtime.widget_services.md#axFeatures)
+- [Manual: Widgets and Activities](./manuals/widgets_and_activities.md)
+- [Manual: Writing Pages](./manuals/writing_pages.md)
+- [API: `axFeatures`](./api/runtime.widget_services.md#axFeatures)
 
 
 ## Widget Instance
@@ -408,8 +422,8 @@ However, technology adapters may hook into the DI of their respective framework 
 
 More Information:
 
-   - [Manual: Widget Services](./manuals/widgets_services.md)
-   - [API: Widget Services](./api/runtime.widget_services.md)
+- [Manual: Widget Services](./manuals/widgets_services.md)
+- [API: Widget Services](./api/runtime.widget_services.md)
 
 
 ## Yeoman, Yeoman Generator

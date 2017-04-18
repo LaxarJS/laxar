@@ -2,7 +2,9 @@
 
 ## Last Changes
 
+- [#453](https://github.com/LaxarJS/laxar/issues/453): documentation: explain that descriptors are mandatory for all themable artifacts
 - [#451](https://github.com/LaxarJS/laxar/issues/451): documentation: fixed broken link
+
 
 ## v2.0.0-alpha.24
 

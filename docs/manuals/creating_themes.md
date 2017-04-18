@@ -61,7 +61,7 @@ After explaining themes in general, further down we give instructions on [creati
 ## Creating Your Own Theme
 
 Let us create our own theme for an existing application, the [LaxarJS ShopDemo](https://laxarjs.org/demos/shopdemo/).
-The ShopDemo brings it's own _"cube.theme"_, which is implemented by augmenting Bootstrap with some changes and custom additions, such as the circle icons used with the headlines.
+The ShopDemo uses the LaxarJS-branded _"cube.theme"_, which is implemented by augmenting Bootstrap with some changes and custom additions, such as the circle icons used with the headlines.
 
 ![LaxarJS ShopDemo using cube theme](creating_themes/shop_demo_cube_50.png)
 
@@ -83,6 +83,14 @@ On the site [Bootswatch](http://bootswatch.com) for example, you will find the t
 The only thing that is actually _required_ for a theme to work are a configuration entry and a CSS file in the right place.
 Put the pre-built [darkly CSS](http://bootswatch.com/darkly/bootstrap.css) into the right place, which is `application/themes/darkly.theme/css/theme.css`.
 The _theme-root_ (`application/themes/` by default) can be changed in LaxarJS projects by setting the export `paths.themes` of the file `laxar.config.js`.
+Add a _descriptor_ containing the canonical name of the theme:
+
+```js
+// application/themes/darkly.theme/theme.json
+{
+   "name": "darkly.theme"
+}
+```
 
 To use the new theme, make sure to load it along with the application artifacts, by updating the artifacts-import, usually found in the `init.js` of the project:
 
@@ -90,7 +98,7 @@ To use the new theme, make sure to load it along with the application artifacts,
 import artifacts from 'laxar-loader/artifacts?flow=main&theme=darkly';
 ```
 
-In the LaxarJS bootstrapping configuration (usually `init.js`), set the property `theme` to _"darkly"_:
+In the LaxarJS bootstrapping configuration (usually also part of the `init.js`), set the configuration property `theme` to _"darkly"_:
 
 ```js
 import { create } from 'laxar';
@@ -120,89 +128,90 @@ Of course, there are still some rough spots that need additional work:
 For example, the widget headers look much better using the original LaxarJS demo theme.
 
 Let's fix that by _overriding widget styles_ from the theme:
-Within the theme directory, create a directory `widgets`.
-For each widget, add a directory named after the widget (specifically, the `name` property of the `widget.json`), and within it a `css` sub-folder.
+For each widget whose styles you want to override, create a stylesheet.
+The path relative to your `darkly.theme` directory is as follows: `./widgets/<name>/<styleSource>`, where `name` and `styleSource` are determined by the corresponding fields of the `widget.json` descriptor of each widget.
+If a descriptor does not specify a `styleSource`, it defaults to `css/<name>.css`.
+
 Here are some suggestions for a nicer look, to be put under `application/themes/darkly.theme/widgets/`:
 
-* _article-browser-widget_: `article-browser-widget/css/article-browser-widget.css`
+* _article-browser-widget_: `article-browser-widget/scss/article-browser-widget.scss`
 
+  As you can see by the path, this widget uses [SCSS](http://sass-lang.com/guide) to generate its stylesheet.
   Here we color the icon, the headline to match the logo, and the currently selected article to match the details widget.
 
-```CSS
-/** Customize header and icon color: */
-.article-browser-widget h3 i {
-  color: #F90;
-}
+```scss
+.article-browser-widget {
+   // Customize header and icon color:
+   h3 i {
+      color: #F90;
+   }
+   th {
+     background-color: #F90;
+     color: #222222;
+   }
 
-.article-browser-widget th {
-  background-color: #F90;
-  color: #222222;
-}
-
-/** Highlight the selected article. */
-.article-browser-widget tr.selected td {
-  font-weight: bold;
-  background: #3498DB;
+   // highlight the selected article:
+   tr.selected td {
+     font-weight: bold;
+     background: #3498DB;
+   }
 }
 ```
 
 
-* _article-teaser-widget_: `article-teaser-widget/css/article-teaser-widget.css`
+* _article-teaser-widget_: `article-teaser-widget/scss/article-teaser-widget.scss`
 
   Here we color the icon and the headline to match the button.
 
-```CSS
-/** Customize header and icon color: */
-.article-teaser-widget h3 i {
-   color: #3498DB;
-}
+```scss
+.article-teaser-widget {
+   h3 i {
+      color: #3498DB;
+   }
 
-.article-teaser-widget h4 {
-   background-color: #3498DB;
-   padding: 8px;
+   h4 {
+      background-color: #3498DB;
+      padding: 8px;
+   }
 }
 ```
 
 
-* _shopping-cart-widget_: `shopping-cart-widget/css/shopping-cart-widget.css`
+* _shopping-cart-widget_: `shopping-cart-widget/scss/shopping-cart-widget.scss`
 
   Again, we color the icon and the headline to match the button.
 
-```CSS
-/** Customize header and icon color: */
-.shopping-cart-widget h3 i {
-   color: #00bc8c;
+```scss
+.shopping-cart-widget {
+   h3 i {
+      color: #00bc8c;
+   }
+
+   th {
+      background-color: #00bc8c;
+   }
+
+   .app-increase-quantity {
+      text-align: right !important;
+   }
+
+   .app-increase-buttons {
+      padding: 0;
+      padding-top: 6px;
+      width: 40px;
+
+      button {
+         padding: 0;
+      }
+   }
 }
 
-.shopping-cart-widget th {
-   background-color: #00bc8c;
-}
-
-/** plus/minus buttons */
-.shopping-cart-widget .app-increase-quantity {
-   text-align: right !important;
-}
-
-.shopping-cart-widget .app-increase-buttons {
-   padding: 0;
-   padding-top: 6px;
-   width: 40px;
-}
-
-.shopping-cart-widget .app-increase-buttons button {
-   padding: 0;
-}
 ```
 
-Now we have four different CSS files.
 Of course, we do not want users to download an additional CSS file for each widget that we use.
 Instead, we use `webpack -P` to create an optimized bundle, which we may load from the `index.html`.
 
 ![LaxarJS ShopDemo using complete darkly theme](creating_themes/shop_demo_darkly_complete_50.png)
-
-**_Above:_ The all-new ShopDemo using the _darkly_ theme with widget styles. Not too shabby, eh?**
-
-Have a look at the [dark theme in action](//laxarjs.github.io/shop-demo/darkly.html#/shopDemo).
 
 Of course, there are still some areas of improvements to this way of styling widgets.
 For example, if we would like to change the shade of blue that is used in our theme, we would have to update multiple source code locations.
@@ -213,15 +222,16 @@ It would be better to have some way to define these values in our theme and reus
 ### Adding a Theme using SCSS
 
 To support centralized variables, you can use a _compiles-to-CSS_ language such as _[SCSS/SASS](http://sass-lang.com/)_ or _[less](http://lesscss.org/)_.
-Fortunately, an SCSS-version of the darkly theme is available, and can be installed using [Bower](http://bower.io/).
+Just like widgets, themes can specify an alternate stylesheet location using their `theme.json` descriptor.
+Fortunately, an SCSS-version of the darkly theme is [already available](https://www.npmjs.com/package/bootswatch-scss), and can be installed using [npm](http://npmjs.com/).
 
 The [SCSS for our theme](https://github.com/LaxarJS/shop-demo/tree/master/includes/themes/darkly_scss.theme/scss) is little more than a couple of imports.
 
 Just make sure to adjust the webpack configuration of the project (`webpack.config.js`) to add all the import paths needed by your theme's SCSS.
-The default theme configuration provided by the LaxarJS contains example configuration of the `includePaths` option for the webpack `sass-loader` that you can use as a starting point.
+The *default.theme* and the *cube.theme* each have [sass-options.js](https://github.com/LaxarJS/cube.theme/blob/95a941/sass-options.js) that you can use as an example.
 
-The advantage of using an SCSS theme is that we can now write concise widget styles using central variables.
-As an example, here is the SCSS file for the _article-browser-widget_:
+The advantage of using an SCSS-based theme is that we can now write concise widget styles using central variables.
+As an example, the SCSS file for the _article-browser-widget_ now becomes:
 
 ```SCSS
 @import "variables_all";
@@ -244,15 +254,15 @@ As an example, here is the SCSS file for the _article-browser-widget_:
 }
 ```
 
-Which CSS framework and tool chain to use (if any) is ultimately up to you.
-The [shop demo on GitHub](https://github.com/LaxarJS/shop-demo) contains the _darkly_ theme both as a [plain CSS version](//github.com/LaxarJS/shop-demo/tree/master/includes/themes/darkly.theme), and as an [SCSS version](//github.com/LaxarJS/shop-demo/tree/master/includes/themes/darkly_scss.theme).
+Which CSS framework and tool chain to use (and if any) is ultimately up to you.
+The [shop demo on GitHub](https://github.com/LaxarJS/shop-demo) contains the _cube.theme_ styles as well as _default.theme_ styles.
 
 The Bootstrap framework incurs some degree of boilerplate, but makes it relatively easy to reuse widgets across applications, and to find controls that work with your theme out of the box.
 
 
 ## How the Runtime Finds CSS
 
-As mentioned above, the LaxarJS runtime and loaders do not care _how_ you create your CSS.
+As mentioned above, the LaxarJS runtime and loaders do not care _how_ you create your stylesheet.
 However, these tools need to find it, so it is important _where_ the CSS files are.
 For details on how CSS and other assets are loaded, have a look at the [asset lookup manual](asset_lookup.md).
 

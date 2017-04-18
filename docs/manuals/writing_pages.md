@@ -3,7 +3,7 @@
 [« return to the manuals](index.md)
 
 Pages are written in a declarative fashion using the JSON format.
-They are defined as simple objects whose properties will be explained in this document.
+They are defined using JSON objects whose properties will be explained in this document.
 
 Preliminary readings:
 
@@ -13,25 +13,24 @@ Preliminary readings:
 
 ## <a name="layouts_and_areas"></a>Layouts and Areas
 
-First of all a page should specify the _layout_ which defines the available _widget areas_ and how they are arranged visually when rendered by the web browser.
+First of all, a page should specify the _layout_ which defines the available _widget areas_ and how they are arranged visually when rendered by the web browser.
 If a page is intended to be used as a base page for [inheritance](#inheritance), the layout property should be omitted, as it is specified by the inheriting pages.
-This is because only one page in an extension chain may define a layout and this most probably will be one at the bottom of the hierarchy.
+Only one page in an extension chain may define a layout, and deferring this choice to the bottom of the hierarchy increases flexibility.
 
-Configuring the layout is done via the `layout` property of the page object.
-Its value is a relative path within the layouts root (usually `application/layouts`).
-If for example the desired layout is located at `application/layouts/popups/layout_one`, the corresponding page (without any widgets so far) would look like this:
+For each layout, a _descriptor_ containing its canonical name is required:
 
-<a name="example_1"></a>
-```JSON
+```js
+// application/layouts/popups/layout-one/layout.json
 {
-   "layout": "popups/layout_one"
+   "name": "layout-one"
 }
 ```
 
-Now let us assume the HTML file of `popups/layout_one` looks like this:
+Now let us use the following layout HTML:
 
-<a name="example_2"></a>
-```HTML
+<a name="example_layout_html"></a>
+```html
+<!-- application/layouts/popups/layout-one/default.theme/layout-one.html -->
 <div>
    <div ax-widget-area="header"></div>
    <div ax-widget-area="content"></div>
@@ -39,15 +38,18 @@ Now let us assume the HTML file of `popups/layout_one` looks like this:
 </div>
 ```
 
-Obviously there are three areas available, that can be occupied by widgets on the page.
-To do so, we add another top-level key `areas` parallel to `layout`.
+This layout defines three _widget areas_ that can be occupied by widgets on the page.
+
+Configuring the layout is done via the `layout` property of the page definition.
+Its value is a relative path within the layouts root (usually `application/layouts`).
+To fill the available areas, we add another top-level key `areas` parallel to `layout`.
 Its value is a map, where each key is the name of a widget area defined in the layout and the values are arrays, that will later contain the widgets to render.
 Having not added any layouts so far, we thus get the following page file:
 
-<a name="example_3"></a>
-```JSON
+<a name="example_empty_page"></a>
+```json
 {
-   "layout": "popups/layout_one",
+   "layout": "popups/layout-one",
    "areas": {
       "header": [],
       "content": [],
@@ -63,12 +65,13 @@ Additionally an `id` property can be provided, which may be useful for debugging
 If specifying an ID, make sure that it is unique page-wide (even taking into account inheritance).
 Finally it is possible to provide the configuration for features of a widget or a composition under the key `features`.
 
-Here is the example with some simple, exemplary content:
+Here is the example with a few basic widgets
 
-<a name="example_4"></a>
-```JSON
+<a name="example_basic_page"></a>
+```js
+// application/pages/my-page.json
 {
-   "layout": "popups/layout_one",
+   "layout": "popups/layout-one",
    "areas": {
       "header": [
          {
@@ -91,7 +94,7 @@ Here is the example with some simple, exemplary content:
             }
          },
          {
-            "composition": "popup_composition",
+            "composition": "popup-composition",
             "features": {
                "openPopup": {
                   "onActions": [ "next" ]
@@ -126,9 +129,9 @@ For example, when trying to reuse existing layouts, it may be necessary to embed
 
 To support this in a hassle-free manner, layouts are first-class citizens within areas, just like widgets or [compositions](#compositions).
 
-```JSON
+```json
 {
-   "layout": "popups/layout_one",
+   "layout": "popups/layout-one",
    "areas": {
       "content": [
          {
@@ -158,7 +161,7 @@ To support this in a hassle-free manner, layouts are first-class citizens within
 }
 ```
 
-As seen in the example above, simply use the key `layout` should be used instead of `widget`.
+As seen in the example above, the key `layout` should be used instead of `widget`.
 Its value is - just like with the main `layout` property of a page - the path of a specific layout directory relative to the layouts-root of the application.
 Providing an `id` is obligatory for layouts, as it is needed to reference the widget areas defined by the layout.
 Under the assumption that the layout `other_layouts/small_columns` exports a widget area named `left`, we can now insert widgets into it using the area name `embedded.left` for it.
@@ -169,14 +172,15 @@ Note that providing `features` to a layout entry does not lead to an error, but 
 ## <a name="inheritance"></a>Inheritance
 
 In every user interface there are some elements that never change across pages.
-The most simple way to reuse these parts of a page definition is by _inheritance._
+The easiest way to reuse these parts of a page definition is by _inheritance._
 Common widgets can be extracted into one or more base pages that have no layout.
 The base pages can then be _extended_ by concrete pages, defining the layout necessary to display their contents.
 
 Valid candidate widgets to put into base pages are application headlines, informational notes in a footer area or activities that provide common tasks for all pages.
-Let us apply this to our example from above and extract the *laxar-headline-widget* into a base page called `base_page.json`.
+Let us apply this to our example from above and extract the *laxar-headline-widget* into a base page called `base-page.json`.
 
-```JSON
+```json
+// // application/pages/base-page.json
 {
    "areas": {
       "header": [
@@ -199,8 +203,8 @@ The parts already provided by the base page can then be deleted from the extendi
 
 ```JSON
 {
-   "layout": "popups/layout_one",
-   "extends": "base_page",
+   "layout": "popups/layout-one",
+   "extends": "base-page",
    "areas": {
       "content": [
          {
@@ -212,7 +216,7 @@ The parts already provided by the base page can then be deleted from the extendi
             }
          },
          {
-            "composition": "popup_composition",
+            "composition": "popup-composition",
             "features": {
                "openPopup": {
                   "onActions": [ "next" ]
@@ -265,8 +269,8 @@ Hence the page that has the need to add content can reference the given ID using
 
 ```JSON
 {
-   "layout": "popups/layout_one",
-   "extends": "base_page",
+   "layout": "popups/layout-one",
+   "extends": "base-page",
    "areas": {
       "header": [
          {

@@ -2,7 +2,8 @@
 
 [« return to the manuals](index.md)
 
-Although inheritance brings a bit of organization into pages, for bigger applications with many widgets on a page this may not be sufficient. *Compositions* are here to help you.
+Although inheritance brings a bit of organization into pages, for bigger applications with many widgets on a page this may not be sufficient.
+*Compositions* are here to help you.
 
 Preliminary readings:
 
@@ -25,9 +26,9 @@ The page-like internal structure allows compositions to bundle and pre-configure
 A composition definition thus has two basic properties: `features` (like a widget) and `areas` (like a page).
 A third more advanced property, namely `mergedFeatures`, will be explained later.
 
-Let us start with a simple `popup_composition`:
+Let us start with a simple `popup-composition`:
 
-```JSON
+```json
 {
    "features": {
       "$schema": "http://json-schema.org/draft-04/schema#",
@@ -102,7 +103,7 @@ In this example we simply let the consumer of our composition define the action 
 
 Secondly there is the `areas` map and here there is already something noteworthy: The first area is simply named `.`.
 All widgets and compositions within this special area will be _expanded in place of each composition instance_, within all pages embedding the composition.
-So if we apply the composition above to the [example](#example_4) previously used in the [manual on pages](./writing_pages.md), the second item in the area named `content` will be expanded to a configured instance of the laxar-popup-widget.
+So if we apply the composition above to the [example](#example_basic_page) previously used in the [manual on pages](./writing_pages.md), the second item in the area named `content` will be expanded to a configured instance of the laxar-popup-widget.
 
 Other non-prefixed areas (say, `"footer"`) are simply added to each embedding page, concatenating widget lists where page and composition define areas of the same name.
 
@@ -114,7 +115,7 @@ Those strings are expressions, and evaluated by the laxar-loader at build-time, 
 They are replaced with actual values as follows:
 
 The `"${features.openPopup.onActions}"` expression is a _reference to a feature_ defined within the `features` object and will be replaced with the value configured by the embedding page.
-Applied to the [example](#example_4), this reference will be replaced with the array value `[ "next" ]`.
+Applied to the [example](#example_basic_page), this reference will be replaced with the array value `[ "next" ]`.
 
 On the other hand the `"${topic:closeAction}"` expression generates a _page-wide unique event topic_, a string based on the local identifier `closeAction`.
 The result could be something like `"popupComposition-id0+closeAction"`, which is in fact the ID generated for the composition itself, plus the local identifier.
@@ -129,9 +130,9 @@ Thus something like `"myPrefix${topic:closeAction}"` would *not* be expanded whe
 
 The assembled page thus looks similar to this:
 
-```JSON
+```json
 {
-   "layout": "popups/layout_one",
+   "layout": "popups/layout-one",
    "areas": {
       "header": [
          {
@@ -212,7 +213,7 @@ Syntactically this is achieved via a map under the key `mergedFeatures` where th
 
 This should become clear when looking at our adjusted example:
 
-```JSON
+```json
 {
    "features": {
       "$schema": "http://json-schema.org/draft-04/schema#",
@@ -301,10 +302,10 @@ When using the composition it is now possible to provide additional close action
 
 ## Exemplary page from [writing pages](writing_pages.md) manual
 
-<a name="example_4"></a>
+<a name="example_basic_page"></a>
 ```JSON
 {
-   "layout": "popups/layout_one",
+   "layout": "popups/layout-one",
    "areas": {
       "header": [
          {
@@ -327,7 +328,7 @@ When using the composition it is now possible to provide additional close action
             }
          },
          {
-            "composition": "popup_composition",
+            "composition": "popup-composition",
             "features": {
                "openPopup": {
                   "onActions": [ "next" ]
