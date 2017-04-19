@@ -53,8 +53,8 @@ There is a [step-by-step tutorial](https://github.com/LaxarJS/shop-demo/blob/mas
 
 ## Manual Setup
 
-Using the generator is recommended instead of creating a LaxarJS application.
-However, knowledge about the _manual_ setup process is useful for a better understanding of LaxarJS and may help in some advanced use cases, e.g. when [migrating](./) a project from a previous major version.
+Using the generator is the recommended way of creating a LaxarJS application.
+However, knowledge about the _manual_ setup process is useful for a better understanding of LaxarJS and may help in some advanced use cases, such as [migrating](./docs/manuals/upgrade_guide.md) a project from a previous major version.
 
 There are detailed [instructions to create a project from scratch](./docs/manuals/project_from_scratch.md).
 

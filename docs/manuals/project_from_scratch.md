@@ -1,4 +1,4 @@
-# Controls and Libraries
+# Creating a Project from Scratch
 
 [« return to the manuals](index.md)
 
@@ -22,6 +22,8 @@ You will need to create a Node.js project with webpack and basic webpack loaders
 Also needed are `laxar`, `laxar-uikit` (for the _default.theme_) and the `laxar-loader` to load LaxarJS artifacts using webpack.
 
 ```console
+mkdir my-app
+cd my-app
 npm init
 npm install --save-dev \
    webpack style-loader css-loader file-loader \
@@ -91,13 +93,13 @@ Here is the minimal routing setup:
 ```
 
 
-## Scaffolding
+## Project Scaffolding
 
 Having created a minimal application, we still need to take care of some mundane plumbing that is required to actually get it running in your web browser.
 
 ### The init.js Entry Point
 
-In an empty folder (say, "my-app"), create an `init.js` containing the application _bootstrapping code:_
+Create an `init.js` containing the application _bootstrapping code:_
 
 ```js
 // my-app/init.js
