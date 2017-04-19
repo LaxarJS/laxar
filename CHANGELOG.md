@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#455](https://github.com/LaxarJS/laxar/issues/455): documentation: improved getting-started docs, added project-from-scratch instructions
 
 ## v2.0.0-beta.0
 

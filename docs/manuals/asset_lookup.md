@@ -93,7 +93,7 @@ This means that you cannot only customize the CSS for a widget _W_ installed und
 
 When nothing was found among the assets bundled with the theme, the assets bundled with the widget are checked:
 For a widget installed under `node_modules/W/`, the paths `node_modules/W/T.theme/css/W.css` and `node_modules/W/T.theme/W.html` respectively will be checked when using a theme _T_.
-Note that both locations (theme-bundled and artifact-bundled) are respected, no matter if a widget was installed using NPM or locally under `application/widgets/`.
+Note that both locations (theme-bundled and artifact-bundled) are respected, no matter if a widget was installed using npm or locally under `application/widgets/`.
 
 If nothing was found for the application theme for a given widget, the `default.theme` folder within the widget itself is used.
 Note that CSS and HTML files are treated separately:

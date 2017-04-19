@@ -124,7 +124,7 @@ A newly created widget contains the following files:
 
 * `package.json`
 
-  This optional file specifies the _dependencies_ of your widget for use with [NPM](http://npmjs.org/).
+  This optional file specifies the _dependencies_ of your widget for use with [npm](http://npmjs.org/).
   If you want to version and package you widget as a standalone component for use in multiple applications, this is the recommended way to describe the widget and its dependencies.
 
 

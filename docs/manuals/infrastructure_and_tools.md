@@ -95,7 +95,7 @@ This avoids additional HTTP round trips in production, as well as during develop
 ## Webpack and the laxar-loader
 
 Most modern single page applications are no longer developed using just a text editor, and instead rely on additional development- and build-tools.
-The NPM module [laxar-loader](laxarjs.org/docs/laxar-loader-v2-latest/) helps to load LaxarJS application artifacts that using the popular [webpack bundler](https://webpack.js.org/).
+The npm module [laxar-loader](laxarjs.org/docs/laxar-loader-v2-latest/) helps to load LaxarJS application artifacts that using the popular [webpack bundler](https://webpack.js.org/).
 Used on a flow definition, this laxar-loader will bundle up all required artifacts, by following the flow via its pages and widgets to its controls and layouts.
 
 LaxarJS does not actually require you to use webpack (for previous version, using RequireJS as loader was mandatory), because it does not perform module loading at runtime.

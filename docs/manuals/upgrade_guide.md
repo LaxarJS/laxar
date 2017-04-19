@@ -29,16 +29,16 @@ Cleaning up widget spec tests may require a little more work, since [LaxarJS Moc
 
 The following libraries have their _major version locked_ to that of [LaxarJS Core](https://www.npmjs.com/package/laxar) itself:
 
-   - [NPM: laxar-mocks](https://www.npmjs.com/package/laxar-mocks)
-   - [NPM: laxar-patterns](https://www.npmjs.com/package/laxar-patterns)
-   - [NPM: laxar-tooling](https://www.npmjs.com/package/laxar-tooling)
-   - [NPM: laxar-loader](https://www.npmjs.com/package/laxar-loader)
-   - [NPM: laxar-infrastructure](https://www.npmjs.com/package/laxar-infrastructure)
-   - [NPM: laxar-react-adapter](https://www.npmjs.com/package/laxar-react-adapter)
-   - [NPM: laxar-vue-adapter](https://www.npmjs.com/package/laxar-vue-adapter)
-   - [NPM: laxar-angular-adapter](https://www.npmjs.com/package/laxar-angular-adapter)
-   - [NPM: laxar-angular2-adapter](https://www.npmjs.com/package/laxar-angular2-adapter)
-   - [NPM: laxar-uikit](https://www.npmjs.com/package/laxar-uikit)
+   - [npm: laxar-mocks](https://www.npmjs.com/package/laxar-mocks)
+   - [npm: laxar-patterns](https://www.npmjs.com/package/laxar-patterns)
+   - [npm: laxar-tooling](https://www.npmjs.com/package/laxar-tooling)
+   - [npm: laxar-loader](https://www.npmjs.com/package/laxar-loader)
+   - [npm: laxar-infrastructure](https://www.npmjs.com/package/laxar-infrastructure)
+   - [npm: laxar-react-adapter](https://www.npmjs.com/package/laxar-react-adapter)
+   - [npm: laxar-vue-adapter](https://www.npmjs.com/package/laxar-vue-adapter)
+   - [npm: laxar-angular-adapter](https://www.npmjs.com/package/laxar-angular-adapter)
+   - [npm: laxar-angular2-adapter](https://www.npmjs.com/package/laxar-angular2-adapter)
+   - [npm: laxar-uikit](https://www.npmjs.com/package/laxar-uikit)
 
 This means, that for these libraries…
 
@@ -49,7 +49,7 @@ For other packages, especially widgets and controls, this is not true.
 When in doubt, always consult the _package.json_ of the respective artifact.
 
 
-### Tooling: NPM and webpack
+### Tooling: npm and webpack
 
 This should not affect widgets and activities too much directly, but will require to rebuild some project infrastructure and configuration.
 
@@ -57,17 +57,17 @@ LaxarJS v1 projects used:
 
    - _Bower_ to obtain front end application artifacts,
    - _RequireJS_ to load modules,
-   - _NPM, Grunt, grunt-laxar_ and various grunt plugins to obtain and run the project build pipeline.
+   - _npm, Grunt, grunt-laxar_ and various grunt plugins to obtain and run the project build pipeline.
 
 For LaxarJS v2, we wanted to support pre-built artifacts whose sources may be written in ES2015 or other "compile-to-js" languages, as well as artifacts that add dependencies to the development toolchain.
 
 Bower is not really a good fit for pre-built artifacts, as it is always _backed by sources_ on GitHub.
-Rather than adding more "build repositories", we chose to switch to NPM for front end artifacts, which was already required for the tooling infrastructure anyway.
+Rather than adding more "build repositories", we chose to switch to npm for front end artifacts, which was already required for the tooling infrastructure anyway.
 In order to integrate seamlessly with workflows using [ES2015](https://babeljs.io/learn-es2015/) and [SCSS](http://sass-lang.com/libsass), we switched from a collection of custom grunt tasks to a build infrastructure based around _webpack_.
 
 So, the new list of tools looks like this:
 
-   - _NPM_ to obtain front end artifacts as well as build-time dependencies
+   - _npm_ to obtain front end artifacts as well as build-time dependencies
    - _webpack_ and its loaders (especially the `laxar-loader`) to load and bundle artifacts
 
 This saves us a lot of work maintaining grunt plugins: laxar-tooling and laxar-loader are much smaller than grunt-laxar.
@@ -79,8 +79,8 @@ More Information:
    - [Manual: Infrastructure and Tools](./infrastructure_and_tools.md)
    - [Manual: Installing Widgets](./installing_widgets.md)
    - [webpack website](https://webpack.js.org/)
-   - [NPM: laxar-loader](https://www.npmjs.com/package/laxar-loader)
-   - [NPM: laxar-tooling](https://www.npmjs.com/package/laxar-tooling)
+   - [npm: laxar-loader](https://www.npmjs.com/package/laxar-loader)
+   - [npm: laxar-tooling](https://www.npmjs.com/package/laxar-tooling)
 
 
 ### JSON Schema now Processed _at build-time_

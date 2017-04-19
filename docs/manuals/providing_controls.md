@@ -40,7 +40,7 @@ The [plain adapter documentation](plain_adapter.md) explains how these controls 
 
 ### Creating an `angular` Control using a Directive
 
-LaxarJS does not care whether your control is installed through NPM or Bower, or if it is located somewhere else within your project, as long as its `control.json` descriptor can be found by the laxar loader (for webpack).
+LaxarJS does not care whether your control is installed through npm or Bower, or if it is located somewhere else within your project, as long as its `control.json` descriptor can be found by the laxar loader (for webpack).
 Let us try to create a control _my-clock-control_ that displays a digital clock to the user.
 
 
@@ -67,7 +67,7 @@ Here is the descriptor for our clock control:
 To ensure compatibility between each widget and its controls, both must use the same _integration technology_.
 The technology `"plain"` is supported for controls out-of-the-box, and other technologies can be added through *adapters*, such as the [laxar-angular-adapter](laxarjs.org/docs/laxar-angular-adapter-v2-latest/).
 The _name_ allows the LaxarJS runtime to load the correct implementation module and the right CSS styles.
-So even if using a folder of a different name, or a control installed from NPM, the runtime would still be able to load the control.
+So even if using a folder of a different name, or a control installed from npm, the runtime would still be able to load the control.
 
 
 #### AngularJS Directive
@@ -165,4 +165,4 @@ After adding your widget to a page, you may inspect your timepiece in the browse
 ## Creating or Integrating a Library
 
 Adding custom libraries is even simpler than adding controls, because usually they do not need to load theme-specific CSS or to have their AngularJS modules managed by the [laxar-angular-adapter](http://laxarjs.org/docs/laxar-angular-adapter-v2-latest/) -- if they do, try turning them into controls or activities respectively.
-Just put the library somewhere within your project (preferably using NPM) and make sure that it can be resolved and loaded by webpack.
+Just put the library somewhere within your project (preferably using npm) and make sure that it can be resolved and loaded by webpack.

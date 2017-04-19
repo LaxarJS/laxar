@@ -12,9 +12,9 @@ Preliminary readings:
 * [Writing Pages](writing_pages.md)
 
 
-## Installing Widgets from NPM
+## Installing Widgets from npm
 
-Starting with LaxarJS v2, the recommended way for installing third-party widgets is by using [NPM](https://www.npmjs.com/) or its compatible alternative, [Yarn](http://yarnpkg.com/).
+Starting with LaxarJS v2, the recommended way for installing third-party widgets is by using [npm](https://www.npmjs.com/) or its compatible alternative, [Yarn](http://yarnpkg.com/).
 
 Installing a widget usually becomes as simple as running:
 
@@ -40,7 +40,7 @@ For LaxarJS v1, we recommended installing widgets using [Bower](https://bower.io
 Besides being a simple and fast way to download a widget, Bower helps you to install and manage widget dependencies such as controls and libraries.
 
 However, it has shortcomings when widgets require additional tooling infrastructure (such babel) to run:
-First, Bower does not directly support pre-built packages, like NPM does.
+First, Bower does not directly support pre-built packages, like npm does.
 Then, all Bower dependencies are meant to be run in the Browser, so widgets cannot indicate that they require additional tooling (such as webpack loaders) to work.
 
 
@@ -102,7 +102,7 @@ In the example, the path is `laxar-headline-widget`.
 
 Some widgets have extra dependencies that should be listed in the `dependencies` section of their `package.json` (or sometimes `bower.json`) file.
 You should compare your widget's dependencies to those of your application, adding missing dependencies.
-If your widget declares its dependencies, you can automate that process using `NPM` (or bower):
+If your widget declares its dependencies, you can automate that process using `npm` (or bower):
 
 ```sh
 > npm install --save ./application/widgets/my-widget
