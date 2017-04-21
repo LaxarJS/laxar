@@ -2,6 +2,10 @@
 
 > _Middleware for your web client:_ Create maintainable applications from small, isolated parts.
 
+<span class="laxar-external-documentation-hint">
+   Take a look at the <a href="https://www.laxarjs.org/docs/laxar-latest/">documentation site</a> to browse documentation for all releases of this artifact.
+</span>
+
 
 ## Why LaxarJS?
 
