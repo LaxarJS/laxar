@@ -157,10 +157,9 @@ as suffix to every log message.
 Preconfigured storage API for a widget: all keys are namespaced using the widget ID,
 in order to limit item visibility to this specific instance.
 
-#### <a id="axTooling"></a>axTooling `undefined`
+#### <a id="axTooling"></a>axTooling [`AxTooling`](tooling.tooling.md#AxTooling)
 
 Access to the tooling provider API.
-TODO (#404) Fix the type (and document toolingProviders)
 
 #### <a id="axVisibility"></a>axVisibility [`AxVisibility`](runtime.widget_services_visibility.md#AxVisibility)
 

@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#456](https://github.com/LaxarJS/laxar/issues/456): tooling: gracefully handle missing debugInfo when providing `axTooling` injection
+
 
 ## v2.0.0-rc.0
 

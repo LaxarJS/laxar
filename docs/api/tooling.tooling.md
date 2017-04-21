@@ -70,7 +70,7 @@ Register a bootstrapping item with the tooling instance.
 
 #### <a id="AxTooling.onChange"></a>AxTooling.onChange( callback )
 
-Register a function to be called when the composition of active observed itemschanges.
+Register a function to be called when the composition of active observed items changes.
 
 ##### Parameters
 
