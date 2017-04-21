@@ -284,6 +284,12 @@ axAssets( 'data.json' ).then( fileContent => { ... } );
 | -------- | ---- | ----------- |
 | name | `String` |  name of the asset to resolve |
 
+##### Returns
+
+| Type | Description |
+| ---- | ----------- |
+| `Promise` |  promise for the asset |
+
 #### <a id="AxAssets.url"></a>AxAssets.url( name )
 
 Resolves the absolute url to the given asset located directly in the widget folder or a subfolder of

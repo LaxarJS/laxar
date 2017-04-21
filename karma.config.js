@@ -1,47 +1,23 @@
 // Karma configuration for LaxarJS core
 /* eslint-env node */
+const laxarInfrastructure = require( 'laxar-infrastructure' );
 
-const webpackConfig = Object.assign( {}, require('./webpack.config' ) );
-delete webpackConfig.entry;
-delete webpackConfig.plugins;
-webpackConfig.devtool = 'inline-source-map';
-
-module.exports = function(config) {
-   const browsers = [ 'PhantomJS', 'Firefox' ].concat( [
-      process.env.TRAVIS ? 'ChromeTravisCi' : 'Chrome'
-   ] );
-
-   config.set( {
-      frameworks: [ 'jasmine' ],
-      files: [
-         'polyfills.js',
-         'lib/*/spec/spec-runner.js'
-      ],
-      preprocessors: {
-         'polyfills.js': [ 'webpack', 'sourcemap' ],
-         'lib/*/spec/spec-runner.js': [ 'webpack', 'sourcemap' ]
-      },
-      webpack: webpackConfig,
-      webpackMiddleware: {
-         noInfo: true,
-         quiet: true
-      },
-
-      reporters: [ 'progress', 'junit' ],
-      junitReporter: {
-         outputDir: 'karma-output/'
-      },
-      port: 9876,
-      browsers,
-      customLaunchers: {
-         ChromeTravisCi: {
-            base: 'Chrome',
-            flags: [ '--no-sandbox' ]
-         }
-      },
-      browserNoActivityTimeout: 100000,
-      singleRun: true,
-      autoWatch: false,
-      concurrency: Infinity
-   } );
+module.exports = function( config ) {
+   config.set( karmaConfig() );
 };
+
+function karmaConfig() {
+   const tests = [ 'loaders', 'runtime', 'testing', 'tooling', 'utilities' ]
+      .map( module => `./lib/${module}/spec/spec-runner.js` );
+   const files = [ './polyfills.js' ].concat( tests );
+   const preprocessors = files.reduce( (acc, t) => {
+      acc[ t ] = [ 'webpack', 'sourcemap' ];
+      return acc;
+   }, {} );
+
+   const webpackBaseConfig = require( './webpack.config' )[ 0 ];
+   return Object.assign( {}, laxarInfrastructure.karma( files, {
+      context: __dirname,
+      module: webpackBaseConfig.module
+   } ), { files, preprocessors } );
+}

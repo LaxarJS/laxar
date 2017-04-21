@@ -12,8 +12,6 @@ It can be imported as `assert` from 'laxar';
 **Module Members**
 
 - [assert()](#assert)
-- [codeIsUnreachable()](#codeIsUnreachable)
-- [state()](#state)
 
 **Types**
 
@@ -21,6 +19,9 @@ It can be imported as `assert` from 'laxar';
   - [Assertion.isNotNull()](#Assertion.isNotNull)
   - [Assertion.hasType()](#Assertion.hasType)
   - [Assertion.hasProperty()](#Assertion.hasProperty)
+- [assert](#assert)
+  - [assert.codeIsUnreachable()](#assert.codeIsUnreachable)
+  - [assert.state()](#assert.state)
 
 ## Module Members
 
@@ -51,27 +52,6 @@ assert.state( typeof assert.codeIsUnreachable === 'function' );
 | Type | Description |
 | ---- | ----------- |
 | [`Assertion`](#Assertion) |  the assertion instance |
-
-#### <a id="codeIsUnreachable"></a>codeIsUnreachable( optionalDetails )
-
-Marks a code path as erroneous by throwing an error when reached.
-
-##### Parameters
-
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| _optionalDetails_ | `String` |  details to append to the error message |
-
-#### <a id="state"></a>state( expression, optionalDetails )
-
-Throws an error if the given expression is falsy.
-
-##### Parameters
-
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| expression | `*` |  the expression to test for truthyness |
-| _optionalDetails_ | `String` |  details to append to the error message |
 
 ## Types
 
@@ -126,3 +106,26 @@ Throws an error if the subject is no object or the given property is not defined
 | Type | Description |
 | ---- | ----------- |
 | [`Assertion`](#Assertion) |  this instance |
+
+### <a id="assert"></a>assert
+
+#### <a id="assert.codeIsUnreachable"></a>assert.codeIsUnreachable( optionalDetails )
+
+Marks a code path as erroneous by throwing an error when reached.
+
+##### Parameters
+
+| Property | Type | Description |
+| -------- | ---- | ----------- |
+| _optionalDetails_ | `String` |  details to append to the error message |
+
+#### <a id="assert.state"></a>assert.state( expression, optionalDetails )
+
+Throws an error if the given expression is falsy.
+
+##### Parameters
+
+| Property | Type | Description |
+| -------- | ---- | ----------- |
+| expression | `*` |  the expression to test for truthyness |
+| _optionalDetails_ | `String` |  details to append to the error message |

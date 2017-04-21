@@ -84,7 +84,7 @@ npm test
 To generate HTML test runners for opening in your web browser, so that you can e.g. use the browser's developer tools for diagnostics:
 
 ```console
-npm run browser-spec
+npm start
 ```
 
-Now you can select a spec-runner by browsing to http://localhost:8080/spec-output/.
+Now you can select a spec-runner by browsing to http://localhost:8080/dist/lib/.

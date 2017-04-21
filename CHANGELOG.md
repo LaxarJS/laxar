@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#457](https://github.com/LaxarJS/laxar/issues/457): dropped minified targets, using laxar-infrastructure
+    + **BREAKING CHANGE:** see ticket for details
 - [#456](https://github.com/LaxarJS/laxar/issues/456): tooling: gracefully handle missing debugInfo when providing `axTooling` injection
 
 

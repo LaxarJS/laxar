@@ -9,6 +9,7 @@ Several factory methods for creating error objects that are useful for almost an
 
 - [activityAccessingDom()](#activityAccessingDom)
 - [unknownInjection()](#unknownInjection)
+- [unknownWidget()](#unknownWidget)
 
 **Types**
 
@@ -47,6 +48,25 @@ provided by the adapter.
 | details.technology | `String` |  the complaining adapter's technology |
 | details.injection | `String` |  the failing injection |
 | details.widgetName | `String` |  the canonical name of the widget causing the problem |
+
+##### Returns
+
+| Type | Description |
+| ---- | ----------- |
+| `Error` |  the error, ready to throw |
+
+#### <a id="unknownWidget"></a>unknownWidget( details )
+
+Creates (but does not throw) an error indicating that a widget was not registered with the current
+adapter.
+
+##### Parameters
+
+| Property | Type | Description |
+| -------- | ---- | ----------- |
+| details | `Object` |  details for the error |
+| details.technology | `String` |  the complaining adapter's technology |
+| details.widgetName | `String` |  the canonical name of the missing widget |
 
 ##### Returns
 
