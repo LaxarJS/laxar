@@ -42,7 +42,7 @@ When using the generator (next step), your project will be setup for use with po
 
 ### Using the Generator
 
-Use the  [generator-laxarjs2](https://laxarjs.org/docs/generator-laxarjs2-latest/ for the [Yeoman](http://yeoman.io/) scaffolding tool to get started:
+Use the  [generator-laxarjs2](https://laxarjs.org/docs/generator-laxarjs2-latest/) for the [Yeoman](http://yeoman.io/) scaffolding tool to get started:
 
 ```console
 npm install -g yo generator-laxarjs2
