@@ -75,7 +75,7 @@ The `axVisibility` injection allows to register callbacks using `onShow`, `onHid
 
 For widgets that provide their own widget areas and need to change their visibility (accordion widgets, popup widgets, tabbing widgets) the `axVisibility` service provides an `updateAreaVisibility` method.
 
-For full information, refer to the [axVisibility API documentation](.,/api/runtime.widget_services_visibility.md).
+For full information, refer to the [axVisibility API documentation](../api/runtime.widget_services_visibility.md).
 
 
 ### Advanced: Visibility Propagation over the Event Bus
@@ -140,7 +140,7 @@ This informs other widgets and especially the runtime of the visibility change.
 
 * Visibility events help to improve render times and to reduce CPU- and memory-use.
 
-* Widgets may *react* to visibility changes by processing `didChangeAreaVisibility` events, directly or using the [`axVisibility`](.,/api/runtime.widget_services_visibility.md) injection.
+* Widgets may *react* to visibility changes by processing `didChangeAreaVisibility` events, directly or using the [`axVisibility`](../api/runtime.widget_services_visibility.md) injection.
 
 * The runtime publishes `didChangeAreaVisibility` events before`didNavigate`.
 

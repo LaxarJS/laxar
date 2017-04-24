@@ -69,7 +69,7 @@ For details, see [heartbeat_mock](testing.heartbeat_mock.md#create).
 
 Returns a mock of the `axI18n` injection for tests.
 
-For details, see [i18n_mock](testing.i18n_mock.md#create).
+For details, see [i18n_mock](testing.widget_services_i18n_mock.md#create).
 
 #### <a id="createAxLogMock"></a>createAxLogMock()
 

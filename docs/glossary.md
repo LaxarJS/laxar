@@ -52,7 +52,7 @@ Secondary resources (HTML, CSS, images) that may belong to certain application a
 
 More Information:
 
-- [Manual: Asset Lookup](./asset_lookup.md)
+- [Manual: Asset Lookup](./manuals/asset_lookup.md)
 
 
 ## Attribute Path
@@ -422,7 +422,7 @@ However, technology adapters may hook into the DI of their respective framework 
 
 More Information:
 
-- [Manual: Widget Services](./manuals/widgets_services.md)
+- [Manual: Widget Services](./manuals/widget_services.md)
 - [API: Widget Services](./api/runtime.widget_services.md)
 
 

@@ -11,9 +11,9 @@ It does not explain how to setup [Babel](http://babeljs.io/) for ES2015 or how t
 Preliminary readings:
 
 * [LaxarJS Core Concepts](../concepts.md)
-* [Widgets and Activities](../widgets_and_activities.md)
-* [Writing Pages](../writing_pages.md)
-* [Flow and Places](../flow_and_places.md)
+* [Widgets and Activities](./widgets_and_activities.md)
+* [Writing Pages](./writing_pages.md)
+* [Flow and Places](./flow_and_places.md)
 
 
 ## The npm Project
