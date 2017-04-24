@@ -195,5 +195,5 @@ This allows you to provide contextual semantics to standard navigation controls,
 Returning from the help pages is familiar, via the *back* target leading to the respective places.
 
 Using the mechanisms introduced here, most navigation scenarios as well as integration into external applications should be possible.
-To find out how to construct links between pages, refer to the [axFlowService API](../api/runtime.flow_services.md).
+To find out how to construct links between pages, refer to the [axFlowService API](../api/runtime.flow_service.md).
 To learn how to trigger event-based navigation from within widgets and activities, you should go on reading the [events documentation](events.md) and learn about the *navigateRequest* and *didNavigate* events.

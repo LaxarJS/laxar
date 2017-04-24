@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#460](https://github.com/LaxarJS/laxar/issues/460): documentation: fixed broken link
+
 
 ## v2.0.0-rc.2
 
