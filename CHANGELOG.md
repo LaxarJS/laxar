@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#465](https://github.com/LaxarJS/laxar/issues/465): fixed dependencies in package.json
 - [#460](https://github.com/LaxarJS/laxar/issues/460): documentation: fixed broken link
 
 

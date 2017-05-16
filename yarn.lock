@@ -1515,13 +1515,13 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-laxarjs@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-laxarjs/-/eslint-config-laxarjs-0.3.0.tgz#322dc060ade649f740062b6d5e69c523bb3b6e55"
-
 eslint-config-laxarjs@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/eslint-config-laxarjs/-/eslint-config-laxarjs-0.4.0.tgz#d15d4a44378dc18b6293107178e14dbf15e08d74"
+
+eslint-config-laxarjs@^2.0.0-rc.0:
+  version "2.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-laxarjs/-/eslint-config-laxarjs-2.0.0-rc.0.tgz#bef8972f85dac0ead520fe4bded7993dfe654a06"
 
 eslint@^3.0.1, eslint@^3.19.0:
   version "3.19.0"
@@ -2569,7 +2569,7 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
-laxar-dox@^2.0.0:
+laxar-dox@^2.0.0-rc.0:
   version v2.0.0-rc.0
   resolved "https://registry.yarnpkg.com/laxar-dox/-/laxar-dox-2.0.0-rc.0.tgz#9f61c0cc85137bd7b88c52d86ebd4112830723a7"
   dependencies:
@@ -2578,12 +2578,12 @@ laxar-dox@^2.0.0:
     source-map-support "^0.4.2"
     swig "~1.4.2"
 
-laxar-infrastructure@^2.0.0:
-  version "2.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/laxar-infrastructure/-/laxar-infrastructure-2.0.0-rc.0.tgz#7987f341b0bdd4fdd6f6bf09eedea0b5b1dfde54"
+laxar-infrastructure@^2.0.0-rc.1:
+  version "2.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/laxar-infrastructure/-/laxar-infrastructure-2.0.0-rc.1.tgz#b5e80857fd1cd7e3a4b05f63493573de53c4b073"
   dependencies:
     eslint "^3.0.1"
-    eslint-config-laxarjs "^0.3.0"
+    eslint-config-laxarjs "^2.0.0-rc.0"
     jasmine-core "^2.5.2"
     karma "^1.5.0"
     karma-chrome-launcher "^2.0.0"
