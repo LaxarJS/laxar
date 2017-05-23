@@ -1,6 +1,6 @@
 {
    "name": "laxar",
-   "version": "1.4.0-pre",
+   "version": "1.4.0-alpha.0",
    "description": "Building large applications is hard, so don't do that!",
    "homepage": "http://laxarjs.org",
    "main": "laxar.js",

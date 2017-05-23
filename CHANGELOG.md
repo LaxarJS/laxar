@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v1.4.0-alpha.0
+
 - [#463](https://github.com/LaxarJS/laxar/issues/463): flow: support fragments for routing and for navigation events
 - [#441](https://github.com/LaxarJS/laxar/issues/441): loaders: log a warning if layout has no HTML
 - [#401](https://github.com/LaxarJS/laxar/issues/401): tooling: clear the buffer with events after the developer tools have read it
