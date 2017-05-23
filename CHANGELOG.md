@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#464](https://github.com/LaxarJS/laxar/issues/464): flow: support fragments for routing and for navigation events
+
 
 ## v2.0.0-rc.3
 
