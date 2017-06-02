@@ -121,6 +121,17 @@ Before loading a page and its widgets, LaxarJS will validate the configuration p
 LaxarJS will also fill in defaults specified by the schema.
 
 
+### <a name="special_purpose_areas"></a>Special Purpose Widget Areas
+
+Even when using the most basic layout, LaxarJS always provides three special widget areas:
+
+- `axActivities` is meant as a container for any activities on the page. You can put activities into any widget area, but since they cannot actually be rendered, there is no natural place for them. So, by convention they should be added to this area
+
+- `axPopups` is intended as a container for widgets that appear as _modal popup windows._ When such widgets become visible (e.g. upon a relevant action request), they should set the Bootstrap CSS class `modal-open` on the document body. This "greys out" the rest of the page, with the popup widget still visible in front.
+
+- `axPopovers` is meant to take up popover-style widgets that adjust their position depending on the currently active element to provide contextual functionality. These widgets appear in front of the page, but behind the `modal-open` layer (if that is visible at the same time).
+
+
 ## <a name="embeddedLayouts"></a>Embedded Layouts
 
 There are use cases where it is not sufficient to reference one single-page layout and place all widgets of a page within that layout.

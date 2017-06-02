@@ -117,7 +117,7 @@ Initially the LaxarJS runtime publishes `changeAreaVisibility.{area}.{visible}` 
 
 * again, `area` is the name of the widget area of interest
 
-* `visible` is the visibility state of the surrounding area, (`true` for all regular top-level areas, but `false` for the generated `popups` and `popovers` areas).
+* `visible` is the visibility state of the surrounding area, (`true` for all regular top-level areas, but `false` for the generated `axPopups` and `axPopovers` areas).
 
 Widgets that want to control their area's visibility may now respond with `didChangeAreaVisibility.{area}.{visible}` events containing the actual new visibility state.
 If there is no reply for a widget area (for example because the providing widget does not know or care about visibility events), the runtime publishes the `didChangeVisibility` event itself, using the default `visible` value from the request.

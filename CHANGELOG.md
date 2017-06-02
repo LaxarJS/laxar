@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#461](https://github.com/LaxarJS/laxar/issues/461): runtime: added `ax` prefix to auto-generated areas: `axActivities`, `axPopovers`, `axPopups`
+    + **BREAKING CHANGE:** see ticket for details
 - [#464](https://github.com/LaxarJS/laxar/issues/464): flow: support fragments for routing and for navigation events
 
 

@@ -253,6 +253,18 @@ More Information:
    - [GitHub LaxarJS/laxar#389](https://github.com/LaxarJS/laxar/issues/389#issuecomment-259157734)
 
 
+### Page Definition: builtin areas now use `ax` prefix
+
+The builtin/auto-generated widget areas (`activities`, `popups`, `popovers`) were renamed (to `axActivities`, `axPopups`, `axPopovers`) to draw attention to the fact that they are automatically provided by LaxarJS.
+Hopefully, this saves new developers from wasting time looking for the responsible layout.
+
+
+More Information:
+
+   - [Manual: Writing Pages](writing_pages.md)
+   - [GitHub LaxarJS/laxar#461](https://github.com/LaxarJS/laxar/issues/461#issuecomment-305817623)
+
+
 ### Widget Descriptor: new `styleSource` and `templateSource`
 
 Previously, SCSS had to be integrated by using the [grunt-laxar-compass](https://www.npmjs.com/package/grunt-laxar-compass) package, which required generated CSS to be committed to version control.
