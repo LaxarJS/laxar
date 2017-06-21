@@ -51,7 +51,7 @@ when none of the other routes match. Also causes the initial route to be trigger
 | routeMap | `Object.<String, Function>` |  a map of routing patterns in Navigo syntax to the corresponding handler functions. When invoked, the handler functions will receive the decoded parameter values for their pattern and (if configured) from the query string, as a map from string parameter name to string value |
 | fallbackHandler | `Function` |  a handler that is invoked when none of the configured routes match. It receives the failed location href as a string argument |
 
-#### <a id="NavigoRouter.navigateTo"></a>NavigoRouter.navigateTo( patterns, parameters, replaceHistory=true )
+#### <a id="NavigoRouter.navigateTo"></a>NavigoRouter.navigateTo( patterns, parameters, options )
 
 Change the browser location to a different routable URL, from pattern and parameters. This is also
 called reverse-routing.
@@ -62,9 +62,11 @@ called reverse-routing.
 | -------- | ---- | ----------- |
 | patterns | `Array.<String>` |  a list of patterns to choose from. This allows the router to pick the "best" pattern, such as the pattern containing the largest number of given parameters. This router always picks the first pattern for now |
 | parameters | `Object` |  parameter values to substitute into the pattern to generate a URL |
-| _replaceHistory=true_ | `Boolean` |  if `true`, the current history entry is replaced with the new one, otherwise a new entry is pushed. Useful to express redirects |
+| _options_ | `Object` |  additional options to influence navigation |
+| _options.replaceHistory=false_ | `Boolean` |  if `true`, the current history entry is replaced with the new one, otherwise a new entry is pushed. Useful to express redirects |
+| _options.fragment=null_ | `String` |  if set, the given fragment is appended to the URL (after a `#`). Useful with pushState based routing |
 
-#### <a id="NavigoRouter.navigateToPath"></a>NavigoRouter.navigateToPath( path, replaceHistory=true )
+#### <a id="NavigoRouter.navigateToPath"></a>NavigoRouter.navigateToPath( path, options )
 
 Change the browser location to a different routable URL, from a complete path. This is also
 called reverse-routing.
@@ -74,9 +76,10 @@ called reverse-routing.
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | path | `String` |  the complete path to navigate to. This includes values for all relevant parameters |
-| _replaceHistory=true_ | `Boolean` |  if `true`, the current history entry is replaced with the new one, otherwise a new entry is pushed. Useful to express redirects |
+| _options_ | `Object` |  additional options to influence navigation |
+| _options.replaceHistory=false_ | `Boolean` |  if `true`, the current history entry is replaced with the new one, otherwise a new entry is pushed. Useful to express redirects |
 
-#### <a id="NavigoRouter.constructAbsoluteUrl"></a>NavigoRouter.constructAbsoluteUrl( patterns, parameters )
+#### <a id="NavigoRouter.constructAbsoluteUrl"></a>NavigoRouter.constructAbsoluteUrl( patterns, parameters, fragment )
 
 Create a routable URL, from pattern and parameters. This allows to create link-hrefs without repeating
 URL patterns throughout the code base.
@@ -87,6 +90,7 @@ URL patterns throughout the code base.
 | -------- | ---- | ----------- |
 | patterns | `Array.<String>` |  a list of patterns to choose from. This allows the router to pick the "best" pattern, such as the pattern containing the largest number of given parameters. This router always picks the first pattern for now |
 | parameters | `Object` |  parameter values to substitute into the pattern to generate a URL |
+| _fragment_ | `String` |  optional String fragment to append to the generated URL |
 
 ##### Returns
 
