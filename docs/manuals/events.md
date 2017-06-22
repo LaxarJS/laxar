@@ -7,13 +7,13 @@ This approach allows to isolate building blocks such as widgets and activities b
 
 Preliminary readings:
 
-* [LaxarJS Core Concepts](../concepts.md)
+- [LaxarJS Core Concepts](../concepts.md)
 
 LaxarJS consistently uses the term _events_ rather than _messages_, to point out two key aspects of its pub/sub-approach:
 
- * events convey information about _what happened_ (rather than _who is receiver_),
+- events convey information about _what happened_ (rather than _who is receiver_),
 
- * delivery is always _asynchronous_ (using an _event loop_).
+- delivery is always _asynchronous_ (using an _event loop_).
 
 For these reasons, you may also think of this pattern as a variation on the _Hollywood principle_ ("Don't call us, we'll call you").
 
@@ -25,7 +25,7 @@ This allows the web browser to batch event-handling with other operations that m
 ## The Event Bus
 
 All events are published to and delivered by the _event bus_:
-The event bus manages _name-based_ (or _topic-based)_ _event subscriptions_ for all interested widgets and activities (the _subscribers)_:
+The event bus manages _name-based_ (aka _topic-based)_ _event subscriptions_ for all interested widgets and activities (the _subscribers)_:
 Subscribers specify an event name pattern that tells the event bus which kinds of "thing that happened" they are interested in.
 When an event is published to the event bus, it is kept in an event queue, to be delivered asynchronously.
 During event delivery, each event name is matched against each subscription, and each matching event is delivered by running the associated callback.
@@ -42,24 +42,24 @@ An event name is a string, formed by a sequence of one or more _topics_ that are
 Each topic is a string, made up from a sequence of one or more _sub-topics_ separated by `-` (the hyphen-minus, U+00AF).
 Sub-Topics are strings, formed by
 
-* _either_ an upper case letter followed by a sequence of upper case letters and numbers
-* _or_ a lower case letter followed by a sequence of mixed case letters and numbers
+- _either_ an upper case letter followed by a sequence of upper case letters and numbers
+- _or_ a lower case letter followed by a sequence of mixed case letters and numbers
 
 These rules also exist as a formal [grammar](#grammar) for thorough people.
 
 These are examples for _valid_ event names:
 
-* `didReplace.myShoppingCart`
-* `takeActionRequest.searchArticles`
-* `didTakeAction.searchArticles.SUCCESS`
-* `willEndLifecycle`
-* `didValidate.popup-user2`
+- `didReplace.myShoppingCart`
+- `takeActionRequest.searchArticles`
+- `didTakeAction.searchArticles.SUCCESS`
+- `willEndLifecycle`
+- `didValidate.popup-user2`
 
 _Invalid_ event names include:
 
-* `DidReplace.myShoppingCart`: _invalid,_ first topic starts upper case but contains lower case letters
-* `.searchArticles.SUCCESS`: _invalid,_ empty topic is not allowed
-* `didUpdate.1up`: _invalid_, topic must not start with a number
+- `DidReplace.myShoppingCart`: _invalid,_ first topic starts upper case but contains lower case letters
+- `.searchArticles.SUCCESS`: _invalid,_ empty topic is not allowed
+- `didUpdate.1up`: _invalid_, topic must not start with a number
 
 
 #### Naming Best Practices and Event Patterns
@@ -78,7 +78,7 @@ It is recommended wherever possible for widgets to use one or more of the establ
 These patterns consist of event vocabularies and minimal associated semantics that have been identified during the development of LaxarJS.
 A few [core patterns](#core-patterns) are baked right into the LaxarJS runtime, and these are listed below.
 Other useful patterns are described in the separate project _[LaxarJS Patterns](//github.com/LaxarJS/laxar-patterns)_.
-Even without using the LaxarJS Patterns _library_, widget authors are very much encouraged to use the [event vocabularies](//github.com/LaxarJS/laxar-patterns/docs/index.md) whenever meaningful.
+Even if not using the LaxarJS Patterns _library_, widget authors are very much encouraged to use its [event vocabularies](//github.com/LaxarJS/laxar-patterns/docs/index.md) whenever meaningful.
 
 
 ### Event Payload
@@ -93,18 +93,18 @@ This improves decoupling and robustness, because events are "fire and forget":
 A widget may publish some resource through an event and afterwards immediately modify its contents, but all subscribers are guaranteed to receive the original event.
 
 However, this also means that you should only publish resources that are at most ~100 kilobyte in size.
-For larger resources, it is recommended to only transfer a URL so that interested widgets may receive the content from a server (or the browser cache).
+For larger resources, it is recommended to only transfer a URL so that interested widgets may receive the content from a server (or the browser cache), if required.
 
 
 <a name="request-events"></a>
 ### Two-Way Communication or the Request/Will/Did Mechanism
 
-Sometimes a widget has to request for some other widget or activity on the page to perform some action.
+Sometimes a widget wants some other widget or activity on the page to perform some action.
 This might be a longer running action such as a search or some server side validation.
 The requesting widget does not care about _who_ actually performs the request, but it is interested in _when_ the request has been fully processed by all respondents, and what is the outcome.
 
 As an example, consider a multi-part user sign-up process, where each of several widgets allows the user to enter and validate some of the information such as email address, payment information or a *CAPTCHA*.
-Another widget offering a _Complete Sign-Up_ button would be responsible for the overall process of submitting the registration resource to a REST service and navigating to a different page.
+Another widget offering a _"Complete Sign-Up"_ button would be responsible for the overall process of submitting the registration resource to a REST service and navigating to a different page.
 Before hitting the registration service, this widget would ask all input widgets to validate their respective sign-up details in order to provide immediate feedback to the user.
 Some of the widgets might have to query their own validation services though, such as the aforementioned CAPTCHA-using widget.
 
@@ -115,22 +115,22 @@ Using the _Request/Will/Did_ mechanism, such functionality can be achieved witho
 
 2. When the user activates the _Complete Sign-Up_ button, the registration widget issues a `validateRequest.registrationForm` event, indicating that
 
-  * a validation has been requested _(what happened)_ and
-  * it concerns the resource `registrationForm` _(where_ it happened).
+  - a validation has been requested _(what happened)_ and
+  - it concerns the resource `registrationForm` _(where_ it happened).
 
   The registration widget may now disable its button and start showing an activity indicator to help the user recognize that an action is in progress.
 
 3. During delivery, the input widgets supporting validation receive the request and publish a `willValidate.registrationForm` event to indicate that
 
-  * a validation has been initiated _(what)_ and
-  * that it concerns the `registrationForm` resource _(where)_.
+  - a validation has been initiated _(what)_ and
+  - that it concerns the `registrationForm` resource _(where)_.
 
 4. Each widget will either call its registration service to respond asynchronously, or publish a response directly if it can validate locally.
    The response is either `didValidate.registrationForm.SUCCESS` or `didValidate.registrationForm.ERROR` conveying that
 
-  * a validation has been performed _(what)_ and
-  * that it concerns the `registrationForm` resource _(where)_ and
-  * the way the validation turned out _(how)_.
+  - a validation has been performed _(what)_ and
+  - that it concerns the `registrationForm` resource _(where)_ and
+  - the way the validation turned out _(how)_.
 
 4. Once all responses have been collected and there were no validation errors, the registration form will be notified (through a promise) and the _sign-up_ REST request may be performed.
 
@@ -188,10 +188,10 @@ Widgets that need to save state to a service should respond with a `willEndLifec
 Widgets and activities may initiate navigation using a `navigateRequest.{target}` event, substituting an actual navigation target instead of the placeholder `{target}`.
 The event is interpreted by the LaxarJS runtime as follows:
 
-* if _target_ is `"_self"`, the runtime will simply propagate its place-parameters by publishing a `didNavigate` event right away
-* if _target_ is one of the targets configured for the current place (in the flow definition), the runtime will initiate navigation to the corresponding place
-* otherwise, if _target_ is a place within the flow definition, the runtime will initiate navigation to that place
-* otherwise, nothing will happen.
+- if _target_ is `"_self"`, the runtime will simply propagate its place-parameters by publishing a `didNavigate` event right away
+- if _target_ is one of the targets configured for the current place (in the flow definition), the runtime will initiate navigation to the corresponding place
+- otherwise, if _target_ is a place within the flow definition, the runtime will initiate navigation to that place
+- otherwise, nothing will happen.
 
 When _initiating navigation_, the LaxarJS runtime will:
 
@@ -240,7 +240,7 @@ The event bus is injected into widget as `axEventBus`.
 It is also available as the `eventBus` property of the `axContext` injection (or `$scope` in AngularJS).
 It has essential methods that allow to implement all patterns mentioned above.
 
-* `subscribe( eventPattern, callback [, options] )`
+- `subscribe( eventPattern, callback [, options] )`
 
   Creates a subscription on the event bus.
 
@@ -261,7 +261,7 @@ It has essential methods that allow to implement all patterns mentioned above.
 
   The method `subscribe` does not return a value.
 
-* `publish( eventName, payload [, options ] )`
+- `publish( eventName, payload [, options ] )`
 
   Publishes an event to all interested subscribers.
   Delivery is *asynchronous*: control is returned to the caller immediately, and delivery of all scheduled events will be performed afterwards in batch.
@@ -279,7 +279,7 @@ It has essential methods that allow to implement all patterns mentioned above.
 
   The method `publish` returns a promise that is resolved after the event has been processed by all matching subscribers.
 
-* `publishAndGatherReplies( requestEventName, payload [, options ] )`
+- `publishAndGatherReplies( requestEventName, payload [, options ] )`
 
   Publishes a [request event](#request-events), gathers all _will_-responses during delivery and then waits for all outstanding _did_-responses.
   The parameters `payload` and `options` are equivalent to the regular `publish`-method.

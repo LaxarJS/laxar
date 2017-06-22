@@ -7,7 +7,7 @@ They make up the bulk of the user interface and provide all client-side applicat
 
 Preliminary readings:
 
-* [LaxarJS Core Concepts](../concepts.md)
+- [LaxarJS Core Concepts](../concepts.md)
 
 If you are already familiar with widgets, and just need a refresher on the `widget.json` descriptor, skip to the [reference section](#widget-descriptor-format) below.
 
@@ -55,7 +55,7 @@ Because `"angular"` was the built-in technology for LaxarJS v1 and many develope
 #### Combining Integration Technologies
 
 You are encouraged to evaluate different integration technologies for use in your project, especially if you are starting from scratch
-For now, the LaxarJS project provides adapters for the technologies [`react`](https://laxarjs.org/docs/laxar-react-adapter-v2-latest/),  [`angular2`](https://laxarjs.org/docs/laxar-angular2-adapter-v2-latest/) and [`vue`](https://laxarjs.org/docs/laxar-vue-adapter-v2-latest/).
+For now, the LaxarJS project provides adapters for the technologies [`vue`](https://laxarjs.org/docs/laxar-vue-adapter-v2-latest/), [`angular` (1)](https://laxarjs.org/docs/laxar-angular-adapter-v2-latest/), [`react`](https://laxarjs.org/docs/laxar-react-adapter-v2-latest/),  and [`angular2`](https://laxarjs.org/docs/laxar-angular2-adapter-v2-latest/).
 Once familiar with the basics, feel free to [create your adapter](./adapters.md).
 
 However, keep in mind that each integration technology adds to your overall application bundle size, impacting application load time and memory consumption.
@@ -92,20 +92,20 @@ In the following steps, it is assumed that you used the widget name _shopping-ca
 
 A newly created widget contains the following files:
 
-* `widget.json`
+- `widget.json`
 
   This _widget descriptor_ contains meta-data about your widget that is used by the LaxarJS framework.
   The descriptor contains the name of the widget and specifies both integration type (`"widget"` or `"activity"`) and integration technology (such as `"angular"` or `"react"`).
   Finally, the descriptor allows to describe *configuration options* of your widget features using a JSON schema, so that configuration will be validated automatically.
 
-* `shopping-cart-widget.js`
+- `shopping-cart-widget.js`
 
   The _business logic_ of your shopping cart (like calculating a total or changing item quantities) as a JavaScript module.
   The precise contents of the widget module depend on the integration technology used by your widget.
   Usually, it exports either a class constructor, or a plain factory function to create the widget instance.
   When a widget is instantiated by the LaxarJS runtime, it is passed a set of *widget services* including the *event bus*, which allows for communication with other widget instances.
 
-* `default.theme/shopping-cart-widget.html`
+- `default.theme/shopping-cart-widget.html`
 
   The _HTML template_ defining the _appearance_ of your widget.
   Again, the integration technology determines the syntax that is supported in the template.
@@ -114,7 +114,7 @@ A newly created widget contains the following files:
   If Bootstrap does not suit you, feel free to use a different framework (or none at all) in [your own theme](./creating_themes.md), but keep in mind that this limits opportunities for widget reuse.
   Similarly to controllers, all widget templates will be bundled within a single JSON file when your application is packaged for release.
 
-* `default.theme/css/shopping-cart-widget.css`
+- `default.theme/css/shopping-cart-widget.css`
 
   Widget-specific _style definitions_.
   Most of the time, your widget is fine just using CSS style definitions from the global application theme.
@@ -122,7 +122,7 @@ A newly created widget contains the following files:
   Sometimes though, you have style definitions which are widget-specific (such as CSS animations) and should not be part of the global theme.
   If your widget has its own CSS file, LaxarJS will load it when the widget is used in an application, and bundle it for release.
 
-* `package.json`
+- `package.json`
 
   This optional file specifies the _dependencies_ of your widget for use with [npm](http://npmjs.org/).
   If you want to version and package you widget as a standalone component for use in multiple applications, this is the recommended way to describe the widget and its dependencies.
@@ -141,7 +141,7 @@ The sub folder `spec` contains the widget spec test and, possibly associated res
 While we recommend writing tests for your widget, note that the spec folder is not required.
 None of these files are loaded during regular application runtime.
 
-* `spec/shopping-cart-widget.spec.js`
+- `spec/shopping-cart-widget.spec.js`
 
   This should be a [Jasmine 2](https://jasmine.github.io/2.5/introduction.html) spec test.
   If you used the LaxarJS generator to setup your application including configuration for karma and webpack, this spec can be run on the command-line using [karma](http://karma-runner.github.io/1.0/index.html), or as an interactive HTML test in the browser, by using the [webpack-jasmine-html-runner-plugin](https://github.com/LaxarJS/webpack-jasmine-html-runner-plugin).
@@ -154,12 +154,13 @@ For projects that were generated using the Yeoman generator for LaxarJS, you can
 To write the controller for your widget, you will need to implement some business logic.
 For a very simple shopping cart this means
 
-* summing the contents of the cart
+- summing the contents of the cart
 
-* increasing or decreasing the quantity of individual positions within the cart.
+- increasing or decreasing the quantity of individual positions within the cart.
 
 Throughout this example, we will be using the `angular` integration technology (AngularJS v1), as it is familiar to developers coming from LaxarJS v1.
 Different integration technologies should work in a similar fashion.
+For more information on the AngularJS integration, consult the [angular adapter documentation](https://laxarjs.org/docs/laxar-angular-adapter-v2-latest/).
 
 The Yeoman generator has already created an empty controller along with some AngularJS infrastructure (module and injections).
 For a shopping cart, *this* might be an appropriate starting implementation with some dummy data:
@@ -295,14 +296,14 @@ This makes it easy to provide self-documenting customization options for your wi
 
 Note that LaxarJS deviates from standard JSON schema in two respects:
 
-   - `"additionalProperties": false` is default for all schemas of `"type": "object"`
-     This helps to catch typing errors.
+- `"additionalProperties": false` is default for all schemas of `"type": "object"`
+  This helps to catch typing errors.
 
-   - `"format"` allows for the LaxarJS specific value `"topic"`, and checks it to validate event topics.
-     See the [manual on events](./events.md) for details on event topic syntax.
+- `"format"` allows for the LaxarJS specific value `"topic"`, and checks it to validate event topics.
+  See the [manual on events](./events.md) for details on event topic syntax.
 
-   - defaults for features (first level of widget/composition schema) are inferred if they are of type `"array"` or `"object"`.
-     This eliminates the need to repeat nested defaults on the feature-level.
+- defaults for features (first level of widget/composition schema) are inferred if they are of type `"array"` or `"object"`.
+  This eliminates the need to repeat nested defaults on the feature-level.
 
 Note that using schemas is _optional_:
 If a widget descriptor does not specify a schema, any configuration will be considered valid and passed to the widget controller, which can be useful for prototyping.
@@ -384,23 +385,23 @@ Each widget has a `widget.json` file which is also called _widget descriptor_.
 LaxarJS contains a [widget schema definition](../../static/schemas/widget.json) that defines the exact format of this file.
 These are the most important widget properties:
 
-* `name`
+- `name`
 
   This required field contains the name of the widget, used to find its implementation module, template and stylesheet. The name must match the spelling and case of the module name (minus `.js` extension) exactly.
 
-* `description`
+- `description`
 
   What this widget is about.
   Ideally, this contains the main _user-goal_ mentioned in the first section.
 
-* `features`
+- `features`
 
   The widget features.
   This is an optional (but highly recommended) JSON schema object that documents the configurable widget features.
   For each widget instance used on a page, LaxarJS will check the feature configuration of that instance against this schema.
   This also allows to provide default values for configuration options.
 
-* `compatibility`
+- `compatibility`
 
   An optional list of new LaxarJS features that this widget is compatible with.
   It allows individual widgets to _opt in_ to breaking LaxarJS changes (similarly to the Python _import from future_ construct), without harming widgets that do not yet support these changes.
@@ -408,19 +409,19 @@ These are the most important widget properties:
   In the past, this was used to opt-in to a new event vocabulary.
   Right now, there are no upcoming features to be activated here.
 
-* `controls`
+- `controls`
 
   An optional list of LaxarJS controls used by this widget.
   Each control is represented by its path, which may either be relative to the controls-root (usually `application/controls`) or resolvable by the module loader (webpack).
   This allows the LaxarJS runtime to automatically load the modules and CSS styles associated with these controls whenever your widget is used.
   Refer to [Providing Controls](./providing_controls.md) on loading user interface components and their resources in this manner.
 
-* `templateSource`
+- `templateSource`
 
   You can load the template from a different source in order to support a preprocessing syntax such as [Mustache](https://mustache.github.io/) or [pug](https://pugjs.org/).
   Simply set the `templateSource` to the respective path relative to the theme folder, such as `shopping-cart-widget.pug` and make sure that an appropriate (webpack) loader is installed.
 
-* `styleSource`
+- `styleSource`
 
   Instead of CSS you can also use [SCSS](http://sass-lang.com/) or [LESS](http://lesscss.org/), by providing this entry in the `widget.json`, which must be a path within the theme-folder (for example `scss/shopping-cart-widget.scss`).
   Make sure that you have a (webpack) loader installed to handle the file type of your choice.
@@ -431,17 +432,18 @@ These are the most important widget properties:
 The widget controller has access to a set of injectable widget services, which are described in detail in the [manual on widget services](./widget_services.md).
 
 When using the integration technology `"angular"`, these are passed as AngularJS controller injections, along with the AngularJS `$scope`.
-The LaxarJS angular adapter puts some additional properties on the scope that simplify writing templates and controller logic:
+The LaxarJS [angular adapter](https://laxarjs.org/docs/laxar-angular-adapter-v2-latest/) puts some additional properties on the scope that simplify writing templates and controller logic:
 
-* `$scope.features`
+- `$scope.features`
 
   An alias to the `axFeatures` widget service injection, useful for (one-time) template bindings.
 
-* `$scope.eventBus`
+- `$scope.eventBus`
 
   An alias to the `axEventBus` widget service injection, for publish/subscribe interaction.
 
-* `$scope.widget.id`
+- `$scope.widget.id`
+  A unique identifier for this widget within the page.
+  You can use it to generate unique DOM IDs, for example to connect `label` and `input` elements in an HTML form.
 
- A unique identifier for this widget within the page.
- You can use it to generate unique DOM IDs, for example to connect `label` and `input` elements in an HTML form.
+In other integration technologies, an object with these helpers is made available through the `axContext` injection.

@@ -7,9 +7,9 @@ These resources are also called *assets*.
 
 Preliminary readings:
 
-* [Widgets and Activities](widgets_and_activities.md)
-* [Creating Themes](creating_themes.md)
-* [Infrastructure and Tools](infrastructure_and_tools.md)
+- [Widgets and Activities](widgets_and_activities.md)
+- [Creating Themes](creating_themes.md)
+- [Infrastructure and Tools](infrastructure_and_tools.md)
 
 Because of the LaxarJS themes feature, the specific set of HTML/CSS assets used by any widget or control always depend on the application where it is used.
 
@@ -20,11 +20,11 @@ In order to avoid excessive configuration, assets are automatically resolved bas
 
 For *widgets*, LaxarJS manages the following assets:
 
-* the `widget.json` *descriptor*, which describes the widget features
+- the `widget.json` *descriptor*, which describes the widget features
 
-* the *HTML template* which defines the widget markup, and may be overwritten by the theme
+- the *HTML template* which defines the widget markup, and may be overwritten by the theme
 
-* the *CSS stylesheet* refining the presentation of the widget, which is often overwritten by the theme, but which may also be missing completely
+- the *CSS stylesheet* refining the presentation of the widget, which is often overwritten by the theme, but which may also be missing completely
 
 For *activities*, LaxarJS only manages the `widget.json` descriptor, since activities have no presentation.
 
@@ -43,18 +43,18 @@ Since LaxarJS widgets and controls may use JavaScript import- or require-calls, 
 This would also allow for simple automatic minification using `webpack -P`.
 However, we chose a different approach for the following reasons:
 
-* The runtime needs access to the `widget.json` to resolve the controller module, while only the actual configuration values for a specific widget instance are relevant to the corresponding controller instance.
+- The runtime needs access to the `widget.json` to resolve the controller module, while only the actual configuration values for a specific widget instance are relevant to the corresponding controller instance.
   For this reason, the runtime should take care of reading the widget descriptor and pass the preprocessed configuration to each widget instance.
   Also, we want to validate the feature configuration of widgets and compositions at build-time, which is only only possible if LaxarJS handles loading of widget descriptors and page definitions.
 
-* The LaxarJS runtime knows when a widget is actually being displayed, and will only then instantiate the corresponding HTML template.
+- The LaxarJS runtime knows when a widget is actually being displayed, and will only then instantiate the corresponding HTML template.
   This reduces memory consumption and improves render performance.
 
-* The CSS should be loaded *en bloc* using a single, optimized stylesheet right on application entry.
+- The CSS should be loaded *en bloc* using a single, optimized stylesheet right on application entry.
   Deferring load of styles to the time where individual widgets are instantiated produces jitter and visual noise.
   Often, the page will look broken until the various CSS fragments have been loaded.
 
-* The LaxarJS bundle needs to select assets based on the application *theme*, and based on which assets of a given artifact are available in which theme.
+- The LaxarJS bundle needs to select assets based on the application *theme*, and based on which assets of a given artifact are available in which theme.
 
 For these reasons, LaxarJS takes care of selecting and loading assets.
 By using the [laxar-loader](laxarjs.org/docs/laxar-loader-v2-latest/) for webpack, fast development iterations as well as comprehensive optimization during production are still available.

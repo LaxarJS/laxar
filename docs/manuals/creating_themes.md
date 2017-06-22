@@ -9,9 +9,9 @@ LaxarJS has the concept of _themes_ to help you achieve these things.
 
 Preliminary readings:
 
-* [LaxarJS Core Concepts](../concepts.md)
-* [Widgets and Activities](./widgets_and_activities.md)
-* [Writing Pages](./writing_pages.md)
+- [LaxarJS Core Concepts](../concepts.md)
+- [Widgets and Activities](./widgets_and_activities.md)
+- [Writing Pages](./writing_pages.md)
 
 
 ## Why Themes?
@@ -29,9 +29,9 @@ However, it is better to add these styles to your main application layout instea
 
 The _benefit_ of using such a _theme folder_ is that
 
-* your CSS will be _bundled and compressed_ together with Bootstrap CSS (no additional `<link>` tag needed) and that
+- your CSS will be _bundled and compressed_ together with Bootstrap CSS (no additional `<link>` tag needed) and that
 
-* you can support different _themes_ simply by adding more `.theme` folders.
+- you can support different _themes_ simply by adding more `.theme` folders.
 
 Due to the first point, using theme folders is useful and recommended _even_ if you only use (and maybe customize) the default theme.
 
@@ -134,7 +134,7 @@ If a descriptor does not specify a `styleSource`, it defaults to `css/<name>.css
 
 Here are some suggestions for a nicer look, to be put under `application/themes/darkly.theme/widgets/`:
 
-* _article-browser-widget_: `article-browser-widget/scss/article-browser-widget.scss`
+- _article-browser-widget_: `article-browser-widget/scss/article-browser-widget.scss`
 
   As you can see by the path, this widget uses [SCSS](http://sass-lang.com/guide) to generate its stylesheet.
   Here we color the icon, the headline to match the logo, and the currently selected article to match the details widget.
@@ -159,7 +159,7 @@ Here are some suggestions for a nicer look, to be put under `application/themes/
 ```
 
 
-* _article-teaser-widget_: `article-teaser-widget/scss/article-teaser-widget.scss`
+- _article-teaser-widget_: `article-teaser-widget/scss/article-teaser-widget.scss`
 
   Here we color the icon and the headline to match the button.
 
@@ -177,7 +177,7 @@ Here are some suggestions for a nicer look, to be put under `application/themes/
 ```
 
 
-* _shopping-cart-widget_: `shopping-cart-widget/scss/shopping-cart-widget.scss`
+- _shopping-cart-widget_: `shopping-cart-widget/scss/shopping-cart-widget.scss`
 
   Again, we color the icon and the headline to match the button.
 
@@ -268,9 +268,9 @@ For details on how CSS and other assets are loaded, have a look at the [asset lo
 
 In general, the lookup order goes like this:
 
-  1. if there are _theme-specified styles_ for an artifact (bundled with the application theme in use), then use those
-  2. if there are _theme-specified styles_ for an artifact (bundled with the artifact itself), then use those
-  3. else if there are _default styles_ for an artifact then use those
-  4. else load _nothing_
+1. If there are _theme-specified styles_ for an artifact (bundled with the application theme in use), then use those,
+2. if there are _theme-specified styles_ for an artifact (bundled with the artifact itself), then use those,
+3. else if there are _default styles_ for an artifact then use those,
+4. else load _nothing_.
 
 Of course, _load nothing_ means that it is completely fine for a widget not to have any CSS styles.

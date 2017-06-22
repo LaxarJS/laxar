@@ -8,9 +8,9 @@ The `"plain`" technology is for widgets that simply rely on what the browser has
 
 Preliminary readings:
 
-* [LaxarJS Core Concepts](../concepts.md)
-* [Widgets and Activities](widgets_and_activities.md)
-* [Widgets Services](widget_services.md)
+- [LaxarJS Core Concepts](../concepts.md)
+- [Widgets and Activities](widgets_and_activities.md)
+- [Widgets Services](widget_services.md)
 
 
 ## When to Use the `"plain"` Technology?
@@ -25,8 +25,8 @@ These do not benefit as much from MVC frameworks, except maybe from their utilit
 
 Finally, using `"plain"` may be the best option if you are interfacing with the DOM directly, for example when
 
-   - you would like to mainly use `canvas`, `video` or even _WebGL_ for your UI,
-   - you would like to programmatically manipulate the DOM, using custom animations or maybe `D3` charts.
+- you would like to mainly use `canvas`, `video` or even _WebGL_ for your UI,
+- you would like to programmatically manipulate the DOM, using custom animations or maybe `D3` charts.
 
 In these use cases, even well-designed view frameworks sometimes just get in the way.
 
@@ -47,8 +47,8 @@ To keep things simple, let us create an activity that simply logs a message as s
 
 For an activity, you just need two files:
 
-   - the `widget.json` descriptor,
-   - the controller implementation module.
+- the `widget.json` descriptor,
+- the controller implementation module.
 
 In the widget descriptor, make sure to set `integration.technology` to `"plain"` and `integration.type` to `"widget"`.
 Also, pick a `name`; we will use `"my-activity"` for this example of a `widget.json`:
@@ -170,11 +170,11 @@ export function create( withDom, features, eventBus ) {
 
 The controller looks similar to that of an activity, except for the additional return statement and for the injection `axWithDom` that the `"plain"` technology adapter makes available for widgets only.
 
-   - the `onDomAvailable` method returned by the widget's `create` function will be called as soon as the widget DOM was inserted into the page for the first time.
-     If your widget is part of an initially hidden widget area such as a popup window, `onDomAvailable` may be called much later than `create`, or never.
+- the `onDomAvailable` method returned by the widget's `create` function will be called as soon as the widget DOM was inserted into the page for the first time.
+  If your widget is part of an initially hidden widget area such as a popup window, `onDomAvailable` may be called much later than `create`, or never.
 
-   - the `axWithDom` hook guards its callback against the DOM being unavailable while a widget's container area is hidden.
-     The callback will only be executed if the widget DOM is actually attached to the page.
+- the `axWithDom` hook guards its callback against the DOM being unavailable while a widget's container area is hidden.
+  The callback will only be executed if the widget DOM is actually attached to the page.
 
 If `render` was run only during `onDomAvailable`, the `axWithDom` injection would not be needed.
 However, `render` may be run anytime the user clicks anywhere within the document body.
@@ -187,8 +187,8 @@ While controls for other technologies directly integrate with their respective c
 
 Still, wrapping libraries in `"plain"` controls has two benefits:
 
-   - LaxarJS will _automatically load their CSS stylesheet_ taking into account the application theme,
-   - controls for `"plain"` can be used by widgets written in _any integration technologies_.
+- LaxarJS will _automatically load their CSS stylesheet_ taking into account the application theme,
+- controls for `"plain"` can be used by widgets written in _any integration technologies_.
 
 This also makes it worthwhile to create controls _just for styling_, effectively giving you _CSS components_ that are loaded as needed by the widgets within your application, and can be overwritten per theme.
 
@@ -222,5 +222,5 @@ Using `axControls.provide( name )`, they can obtain the modules by `name` like i
 
 More Information
 
-   - [API: `axControls` widget service](../api/runtime.widget_services.md#axControls)
-   - [Manual: Providing Controls](providing_controls.md)
+- [API: `axControls` widget service](../api/runtime.widget_services.md#axControls)
+- [Manual: Providing Controls](providing_controls.md)

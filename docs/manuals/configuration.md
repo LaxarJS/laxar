@@ -7,7 +7,7 @@ Not to be confused with the `laxar.config.js` which is only used at build-time b
 
 Preliminary readings:
 
-* [Widgets and Activities](widgets_and_activities.md)
+- [Widgets and Activities](widgets_and_activities.md)
 
 
 ## What is LaxarJS Configuration Used for?

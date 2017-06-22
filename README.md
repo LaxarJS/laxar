@@ -30,11 +30,12 @@ On your _development machine_, make sure that you have Node.js v6 or above (v4 m
 
 Users of your application will need to have the following _browser capabilities:_
 
- - native ES5 support (no polyfills: MSIE < 9 is *not* supported)
- - Support for the following ES6 features (native or polyfilled):
-   + Promise, Fetch
-   + Array.from, Array.prototype.includes
-   + Object.assign
+- native ES5 support (no polyfills: MSIE < 9 is *not* supported)
+- Support for the following ES6 features (native or polyfilled):
+
+  - Promise, Fetch
+  - Array.from, Array.prototype.includes
+  - Object.assign
 
 Modern browsers have support for all of these, but polyfills for the listed ES6 features can be obtained by simply loading the LaxarJS polyfills bundle (`dist/polyfills.js`) using a script tag, before loading anything else.
 When using the generator (next step), your project will be setup for use with polyfills automatically.
@@ -52,13 +53,13 @@ yo laxarjs2
 ```
 
 This will guide you through a couple of prompts in order to create your first application.
-There is a [step-by-step tutorial](https://github.com/LaxarJS/shop-demo/blob/master-2.x/docs/tutorials/01_getting_started.md#getting-started) containing more detailed instructions.
+There is a [step-by-step tutorial](https://github.com/LaxarJS/shop-demo/blob/master-2.x/docs/tutorials/01_getting_started.md#getting-started) containing a more detailed example.
 
 
 ## Manual Setup
 
 Using the generator is the recommended way of creating a LaxarJS application.
-However, knowledge about the _manual_ setup process is useful for a better understanding of LaxarJS and may help in some advanced use cases, such as [migrating](./docs/manuals/upgrade_guide.md) a project from a previous major version.
+However, knowledge about the _manual_ project setup process is useful for a better understanding of LaxarJS and may help in some advanced use cases, such as [migrating](./docs/manuals/upgrade_guide.md) a project from a previous major version.
 
 There are detailed [instructions to create a project from scratch](./docs/manuals/project_from_scratch.md).
 

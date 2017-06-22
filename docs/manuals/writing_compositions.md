@@ -7,8 +7,8 @@ Although inheritance brings a bit of organization into pages, for bigger applica
 
 Preliminary readings:
 
-* [LaxarJS Core Concepts](../concepts.md)
-* [Writing Pages](writing_pages.md)
+- [LaxarJS Core Concepts](../concepts.md)
+- [Writing Pages](writing_pages.md)
 
 
 ## When to Use Compositions

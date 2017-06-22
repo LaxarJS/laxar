@@ -6,10 +6,10 @@ Visibility events help to improve performance by allowing widgets to determine i
 
 Preliminary readings:
 
-* [LaxarJS Core Concepts](../concepts.md)
-* [Widgets and Activities](widgets_and_activities.md)
-* [Events and Publish/Subscribe](events.md)
-* [Writing Pages](writing_pages.md)
+- [LaxarJS Core Concepts](../concepts.md)
+- [Widgets and Activities](widgets_and_activities.md)
+- [Events and Publish/Subscribe](events.md)
+- [Writing Pages](writing_pages.md)
 
 Note that while this manual is rather longish, there is a [TL;DR](#summary-tldr) at the bottom.
 
@@ -17,19 +17,19 @@ Note that while this manual is rather longish, there is a [TL;DR](#summary-tldr)
 
 Some widgets perform *expensive* operations such as:
 
-  - loading and/or display of large amounts of data
-  - loading and/or rendering large images and/or movies
-  - using expensive controls for things like charts, animations etc.
-  - measuring DOM-elements for parameterized animations
-  - providing *widget areas* which may in turn host expensive widgets.
+- loading and/or display of large amounts of data
+- loading and/or rendering large images and/or movies
+- using expensive controls for things like charts, animations etc.
+- measuring DOM-elements for parameterized animations
+- providing *widget areas* which may in turn host expensive widgets.
 
 If a widget does one or more expensive thing, it should only do so while the widget itself is *visible* to the user.
 Frequently, widgets are *hidden* from the user, on page entry or afterwards, due to being nested:
 
-  - within an invisible (closed) popup/popover
-  - within an invisible accordion area
-  - within an invisible tab area
-  - within an invisible show/hide-area.
+- within an invisible (closed) popup/popover
+- within an invisible accordion area
+- within an invisible tab area
+- within an invisible show/hide-area.
 
 The so-called *visibility events* help widgets to determine whether their contents may be seen by the user.
 
@@ -85,11 +85,11 @@ Usually you do not have to worry about these details and just use the `axVisibil
 
 Widget controllers can subscribe to `didChangeAreaVisibility.{area}.{visible}` events.
 
-* Instead of `area`, the name of the surrounding widget area should be used.
+- Instead of `area`, the name of the surrounding widget area should be used.
   The event payload contains the area name as well, under an attribute `.area`.
   For subscribing, this name available from the `axContext` injection (AngularJS: `$scope`) as attribute `.widget.area`.
 
-* The `visible` value (`true` or `false`) confers the new visibility status of the area and is usually not pre-selected when subscribing.
+- The `visible` value (`true` or `false`) confers the new visibility status of the area and is usually not pre-selected when subscribing.
   The event payload contains this status as well , under a boolean attribute `.visible`.
 
 In the *HTML-template*, `ng-if="isVisible"` may be used to toggle (portions of) the template based on visibility.
@@ -104,9 +104,9 @@ Other widgets *provide* areas themselves, directly (like the [laxar-accordion-wi
 
 Controlling visibility of embedded areas from a widget includes two tasks:
 
-* responding to visibility requests for the provided widget areas
+- responding to visibility requests for the provided widget areas
 
-* trigger visibility requests to inform the runtime and other widgets after actively changing an area's visibility.
+- trigger visibility requests to inform the runtime and other widgets after actively changing an area's visibility.
 
 Usually, `axVisibility` should be used to manage this, but let us have a detailed look into both tasks.
 
@@ -115,9 +115,9 @@ Usually, `axVisibility` should be used to manage this, but let us have a detaile
 
 Initially the LaxarJS runtime publishes `changeAreaVisibility.{area}.{visible}` events for all areas directly within top-level areas, asking them to publish a visibility status for any areas provided by them.
 
-* again, `area` is the name of the widget area of interest
+- again, `area` is the name of the widget area of interest
 
-* `visible` is the visibility state of the surrounding area, (`true` for all regular top-level areas, but `false` for the generated `axPopups` and `axPopovers` areas).
+- `visible` is the visibility state of the surrounding area, (`true` for all regular top-level areas, but `false` for the generated `axPopups` and `axPopovers` areas).
 
 Widgets that want to control their area's visibility may now respond with `didChangeAreaVisibility.{area}.{visible}` events containing the actual new visibility state.
 If there is no reply for a widget area (for example because the providing widget does not know or care about visibility events), the runtime publishes the `didChangeVisibility` event itself, using the default `visible` value from the request.
@@ -138,12 +138,12 @@ This informs other widgets and especially the runtime of the visibility change.
 
 ## Summary (TL;DR)
 
-* Visibility events help to improve render times and to reduce CPU- and memory-use.
+- Visibility events help to improve render times and to reduce CPU- and memory-use.
 
-* Widgets may *react* to visibility changes by processing `didChangeAreaVisibility` events, directly or using the [`axVisibility`](../api/runtime.widget_services_visibility.md) injection.
+- Widgets may *react* to visibility changes by processing `didChangeAreaVisibility` events, directly or using the [`axVisibility`](../api/runtime.widget_services_visibility.md) injection.
 
-* The runtime publishes `didChangeAreaVisibility` events before`didNavigate`.
+- The runtime publishes `didChangeAreaVisibility` events before`didNavigate`.
 
-* Widgets that provide areas and that influence the visibility of those areas *should control* visibility by responding to `changeAreaVisibilityRequest` events.
+- Widgets that provide areas and that influence the visibility of those areas *should control* visibility by responding to `changeAreaVisibilityRequest` events.
   Widgets that manage visibility should trigger such requests after initiating a visibility change to any of their provided areas.
   The `axVisibility` injection helps to take care of these tasks as well.
