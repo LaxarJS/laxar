@@ -9,8 +9,8 @@ Read on to understand the inner workings of a LaxarJS application.
 
 Preliminary readings:
 
-* [LaxarJS Core Concepts](../concepts.md)
-* [Widgets and Activities](./widgets_and_activities.md)
+- [LaxarJS Core Concepts](../concepts.md)
+- [Widgets and Activities](./widgets_and_activities.md)
 
 > *Note:* with LaxarJS v2.0, the grunt-based infrastructure was replaced by a webpack-based system.
 > For the previous manual, make sure to browse the [LaxarJS v1 documentation](https://laxarjs.org/docs/laxar-v1-latest/).
@@ -44,9 +44,9 @@ Let us dissect the startup process of a LaxarJS application based on the `debug.
 
 What do the individual elements mean?
 
-* The `data-ax-page` attribute is referenced by the `init.js` to determine where LaxarJS will place the layout for the current page.
+- The `data-ax-page` attribute is referenced by the `init.js` to determine where LaxarJS will place the layout for the current page.
 
-* The `script` element loads your application bundle based on the `init.js` entry point, as configured by the `webpack.config.js`.
+- The `script` element loads your application bundle based on the `init.js` entry point, as configured by the `webpack.config.js`.
 
 
 ### Startup

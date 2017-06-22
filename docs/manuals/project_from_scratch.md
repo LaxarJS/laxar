@@ -3,17 +3,17 @@
 [« return to the manuals](index.md)
 
 This manual is intended for experts that desire _full control_ over their application setup.
-In general, using [the generator]() is recommended instead of performing a manual application setup.
+In general, using [the generator](https://laxarjs.org/docs/generator-laxarjs2-v2-latest/) is recommended instead of performing a manual application setup.
 
 This guide will cover only the absolute basics for creating a LaxarJS project from scratch.
 It does not explain how to setup [Babel](http://babeljs.io/) for ES2015 or how to add [integration technology adapters](../glossary.md#integration-technology) for using MVC frameworks.
 
 Preliminary readings:
 
-* [LaxarJS Core Concepts](../concepts.md)
-* [Widgets and Activities](./widgets_and_activities.md)
-* [Writing Pages](./writing_pages.md)
-* [Flow and Places](./flow_and_places.md)
+- [LaxarJS Core Concepts](../concepts.md)
+- [Widgets and Activities](./widgets_and_activities.md)
+- [Writing Pages](./writing_pages.md)
+- [Flow and Places](./flow_and_places.md)
 
 
 ## The npm Project
@@ -97,6 +97,7 @@ Here is the minimal routing setup:
 
 Having created a minimal application, we still need to take care of some mundane plumbing that is required to actually get it running in your web browser.
 
+
 ### The init.js Entry Point
 
 Create an `init.js` containing the application _bootstrapping code:_
@@ -107,7 +108,8 @@ require( 'laxar/dist/polyfills' ); // optional
 const adapters = [];
 const artifacts = require( 'laxar-loader/artifacts?flow=main&theme=default' );
 const configuration = {
-   logging: { threshold: 'TRACE' }, // more diagnostics than the default "INFO"
+   // more diagnostics than the default ("INFO"):
+   logging: { threshold: 'TRACE' },
    router: { navigo: { useHash: true } }
 };
 
@@ -135,7 +137,7 @@ Some HTML code is required for actually loading the application in your browser,
 ```
 
 Note that `data-ax-page` is an arbitrary attribute used by `init.js` to identify the anchor for the LaxarJS flow.
-Instead, you could also use an ID or some other unambiguous way of selecting a DIV element.
+Instead, you could also use an ID or some other unambiguous way of selecting the desired container element.
 
 
 ### Webpack Configuration
@@ -209,3 +211,10 @@ require( 'laxar' ).create( adapters, artifacts, configuration )
 ```
 
 This feature is _opt-in_ to avoid involuntary exposure of your application's inner workings, and to minimize performance and load-time overhead when tools are not actually needed.
+
+
+## Next Steps
+
+Of course, you are going to add widgets, usually using one or several technology adapters, which can also be installed using npm.
+Then, you may want to setup transpilation using _Babel_, and possibly separate CSS bundling using the webpack _ExtractCssPlugin_.
+Again, have a look at existing projects, such as the [LaxarJS ShopDemo](https://github.com/LaxarJS/shop-demo) for guidance, and/or consult the docs for the respective tools.

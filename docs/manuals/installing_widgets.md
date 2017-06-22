@@ -7,9 +7,9 @@ This begs the question as to how an existing LaxarJS widget can be added to your
 
 Preliminary readings:
 
-* [LaxarJS Core Concepts](../concepts.md)
-* [Widgets and Activities](widgets_and_activities.md)
-* [Writing Pages](writing_pages.md)
+- [LaxarJS Core Concepts](../concepts.md)
+- [Widgets and Activities](widgets_and_activities.md)
+- [Writing Pages](writing_pages.md)
 
 
 ## Installing Widgets from npm

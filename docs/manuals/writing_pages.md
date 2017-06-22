@@ -7,8 +7,8 @@ They are defined using JSON objects whose properties will be explained in this d
 
 Preliminary readings:
 
-* [LaxarJS Core Concepts](../concepts.md)
-* [Widgets and Activities](widgets_and_activities.md)
+- [LaxarJS Core Concepts](../concepts.md)
+- [Widgets and Activities](widgets_and_activities.md)
 
 
 ## <a name="layouts_and_areas"></a>Layouts and Areas

@@ -55,7 +55,7 @@ function createMyService() {
 This format ensures that anyone looking at the code can see the structure of the return value without having to go through the implementation.
 
 In some simple cases, you do not need any imperative initialization logic for your object and just want to provide access to a bunch of methods.
-To do this, you can omit the intermediate variable _exports_ and return the API exports right away.
+To do this, you can omit the intermediate variable _api_ and return the API exports right away.
 
 ```js
 /** ...JSDoc... */
@@ -79,3 +79,10 @@ function createMyService() {
 
 Because JSON is a subset of JavaScript, the same formatting rules apply.
 But since string literals cannot span multiple lines and cannot be broken up in JSON, the maximum line length may be violated to encode a JSON string that has to be long.
+
+
+## Markdown
+
+To keep Git diffs readable, in Markdown you should use one line per sentence.
+The maximum line length may be ignored here.
+Each headline (except for the document title) should be preceded by two blank lines.
