@@ -126,7 +126,19 @@ More Information:
 Because layouts are now first-class items in widget areas, directly embedding them in widgets unnecessarily complicates the implementation of both widgets and runtime.
 Widgets should simply offer _widget areas,_ which can then be configured by the page to contain layouts.
 
+More Information:
+
 - [GitHub: LaxarJS/laxar#272](https://github.com/LaxarJS/laxar/issues/272#issuecomment-191699871)
+
+
+### AngularJS: ngSanitize no longer loaded by default
+
+Not every application needs `angular-sanitize` to secure dynamically loaded HTML.
+If you are using a widget that relies on ngSanitize, you need to manually install `angular-sanitize` and load it from the corresponding widget or control.
+
+More Information:
+
+- [GitHub: LaxarJS/laxar-angular-adapter#41](https://github.com/LaxarJS/laxar-angular-adapter/issues/41)
 
 
 ### Application Configuration: `window.laxar` is No More

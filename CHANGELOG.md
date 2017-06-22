@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#467](https://github.com/LaxarJS/laxar/issues/467): documentation: mention ngSanitize removal in upgrade guide
 - [#466](https://github.com/LaxarJS/laxar/issues/466): documentation: fixed list formatting, added more links to angular adapter manual
 - [#468](https://github.com/LaxarJS/laxar/issues/468): flow: fixed querystring in empty hash based url not working
 - [#461](https://github.com/LaxarJS/laxar/issues/461): runtime: added `ax` prefix to auto-generated areas: `axActivities`, `axPopovers`, `axPopups`
