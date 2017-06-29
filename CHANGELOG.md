@@ -3,6 +3,7 @@
 ## Last Changes
 
 
+## v2.0.0
 ## v2.0.0-rc.4
 
 - [#467](https://github.com/LaxarJS/laxar/issues/467): documentation: mention ngSanitize removal in upgrade guide
