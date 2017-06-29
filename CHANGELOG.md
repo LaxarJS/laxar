@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.0-rc.4
+
 - [#467](https://github.com/LaxarJS/laxar/issues/467): documentation: mention ngSanitize removal in upgrade guide
 - [#466](https://github.com/LaxarJS/laxar/issues/466): documentation: fixed list formatting, added more links to angular adapter manual
 - [#468](https://github.com/LaxarJS/laxar/issues/468): flow: fixed querystring in empty hash based url not working
