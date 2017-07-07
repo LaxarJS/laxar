@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#470](https://github.com/LaxarJS/laxar/issues/470): project: upgrade to webpack 3
 - [#471](https://github.com/LaxarJS/laxar/issues/471): documentation: fixed outdated things in widgets and activities manual
 
 

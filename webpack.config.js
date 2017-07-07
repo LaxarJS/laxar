@@ -6,12 +6,14 @@
 /* eslint-env node */
 
 const path = require( 'path' );
+const webpack = require( 'webpack' );
 
 const entries = [ 'polyfills', 'laxar', 'laxar-compatibility', 'laxar-widget-service-mocks' ];
 const libs = [ 'loaders', 'runtime', 'testing', 'tooling', 'utilities' ];
 
 const webpackInfrastructure = require( 'laxar-infrastructure' ).webpack( {
    context: __dirname,
+   plugins: [ new webpack.optimize.ModuleConcatenationPlugin() ],
    module: {
       rules: [
          {
