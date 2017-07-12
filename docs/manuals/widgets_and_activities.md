@@ -17,7 +17,7 @@ If you are already familiar with widgets, and just need a refresher on the `widg
 Before starting to implement your widget, take a moment to think and delineate its responsibilities.
 You can do this by phrasing the question: _What goal does this widget help the user to accomplish?_
 Are you thinking about a very broadly applicable, technical task such as _"allow the user to enter a date"_ or _"allow the user to delete a data row"_?
-In this case you might want to implement this functionality as a _control_ and use it _within_ one or more of your widgets.
+In this case you might want to implement this functionality as a [_control_](./providing_controls.md) and use it _within_ one or more of your widgets.
 
 Usually, widgets correspond to significant areas of the screen and are composed of multiple controls.
 They are built with a _specific user-goal_ in mind, such as _"allow the user to book a flight"_ or _"allow the user to review shopping cart contents"_.
@@ -56,23 +56,35 @@ Because `"angular"` was the built-in technology for LaxarJS v1 and many develope
 
 You are encouraged to evaluate different integration technologies for use in your project, especially if you are starting from scratch
 For now, the LaxarJS project provides adapters for the technologies [`vue`](https://laxarjs.org/docs/laxar-vue-adapter-v2-latest/), [`angular` (1)](https://laxarjs.org/docs/laxar-angular-adapter-v2-latest/), [`react`](https://laxarjs.org/docs/laxar-react-adapter-v2-latest/),  and [`angular2`](https://laxarjs.org/docs/laxar-angular2-adapter-v2-latest/).
-Once familiar with the basics, feel free to [create your adapter](./adapters.md).
+Once familiar with the basics, feel free to [create your own adapter](./adapters.md).
 
 However, keep in mind that each integration technology adds to your overall application bundle size, impacting application load time and memory consumption.
 While mixing three view frameworks may be fine for an intranet application, online applications should generally aim for using a single integration technology, or maybe two technologies during a framework transition -- mobile users will thank you for it!
 Of course, `"plain"` is always free and does not weigh in here.
+Obviously, this should always be your first choice when implementing an activity.
 
 
 ## How to Create a Widget
 
-The easiest way to create a widget is to use the [LaxarJS Yeoman generator](http://laxarjs.org/docs/generator-laxarjs-v2-latest/).
+The easiest way to create a widget is to use the [LaxarJS 2 Yeoman generator](http://laxarjs.org/docs/generator-laxarjs2-v2-latest/).
 Check out the [README](../../README.md) on how to obtain it, and how to use it for creating an application.
 
-Start by creating a sub-directory for your new widget within the LaxarJS application.
-Each widget in an application lives within a sub-folder of the _widget root_ (`application/widgets/` by default).
-To change the widget root, you can create a file `laxar.config.js` in your application directory, and use the export `path.widgets` to override the widget root.
-The widget path `application/widgets/shopping-cart-widget` is used as an example path throughout this manual.
+To create a widget with the generator simply run the following in the root directory of your application:
 
+```sh
+yo laxarjs2:widget
+```
+
+After answering all questions asked by the generator, the widget will be create in a sub-directory having its name, within the default directory for widgets (which is `application/widgets/`).
+For example, the sources for a widget named `shopping-cart-widget`, which is used as an example throughout this manual, can be found in the sub-directory `application/widgets/shopping-cart-widget`.
+
+Alternatively, it's possible to choose a different directory for the widget sources by creating that directory yourself and navigating there before calling the widget generator.
+Keep in mind however, that this directory has to be a sub-directory of the application directory, and that webpack needs to be configured to search for widgets there as well.
+To change the default widget root, you can create a file `laxar.config.js` in your application directory, and use the export `path.widgets` to override the widget root.
+Webpack will then try to load widgets from there instead of `application/widgets/`.
+Having multiple directories for widgets is possible by [adding the relevant directories to the module resolution directories](https://webpack.js.org/configuration/resolve/#resolve-modules), but this is out of scope of this manual.
+
+To create a widget in a custom directory, start by creating a sub-directory for your new widget within the LaxarJS application.
 The last component of the widget path is the so-called _widget directory_, which uses the name of the widget itself.
 The widget name must be unique throughout an application and should be written in lower case letters with components separated by dashes.
 Widget names always end in `-widget` whereas activities always end in `-activity`.
@@ -80,11 +92,10 @@ Widget names always end in `-widget` whereas activities always end in `-activity
 To create the actual widget, run:
 
 ```sh
-cd widgets/shopping-cart-widget
-yo laxarjs:widget
+cd my-custom-widget-directory/shopping-cart-widget
+yo laxarjs2:widget
 ```
 
-The generator will ask for some details on the widget such as license and author, but you can always edit this information in the widget sources afterwards.
 In the following steps, it is assumed that you used the widget name _shopping-cart-widget_ as above.
 
 
@@ -95,7 +106,7 @@ A newly created widget contains the following files:
 - `widget.json`
 
   This _widget descriptor_ contains meta-data about your widget that is used by the LaxarJS framework.
-  The descriptor contains the name of the widget and specifies both integration type (`"widget"` or `"activity"`) and integration technology (such as `"angular"` or `"react"`).
+  The descriptor contains the name of the widget and specifies both integration type (`"widget"` or `"activity"`) and integration technology (such as `"angular"`, `"react"` or [something else](#combining-integration-technologies)).
   Finally, the descriptor allows to describe *configuration options* of your widget features using a JSON schema, so that configuration will be validated automatically.
 
 - `shopping-cart-widget.js`
@@ -105,10 +116,13 @@ A newly created widget contains the following files:
   Usually, it exports either a class constructor, or a plain factory function to create the widget instance.
   When a widget is instantiated by the LaxarJS runtime, it is passed a set of *widget services* including the *event bus*, which allows for communication with other widget instances.
 
+  Note that the file extension can also vary depending on the integration technology.
+  For example widgets written using the `"vue"` integration technology will have `.vue` as extension while `"react"` widgets will use `.jsx`.
+
 - `default.theme/shopping-cart-widget.html`
 
   The _HTML template_ defining the _appearance_ of your widget.
-  Again, the integration technology determines the syntax that is supported in the template.
+  Again, the integration technology determines the syntax that is supported in the template, or if the template is even integrated into the controller source file and hence not present at all.
   When your widget is used on a page, LaxarJS will load this automatically and bind it to your widget controller's scope.
   The [Bootstrap CSS](http://getbootstrap.com/css/) classes are made available by the LaxarJS *default.theme* to facilitate uniform styling across widgets.
   If Bootstrap does not suit you, feel free to use a different framework (or none at all) in [your own theme](./creating_themes.md), but keep in mind that this limits opportunities for widget reuse.
@@ -120,12 +134,18 @@ A newly created widget contains the following files:
   Most of the time, your widget is fine just using CSS style definitions from the global application theme.
   In this case, it can do completely without CSS folders.
   Sometimes though, you have style definitions which are widget-specific (such as CSS animations) and should not be part of the global theme.
-  If your widget has its own CSS file, LaxarJS will load it when the widget is used in an application, and bundle it for release.
+  If your widget has its own CSS file, LaxarJS will include it within the CSS bundle when the widget is used in an application.
 
-- `package.json`
+- `package.json` _(optional)_
 
-  This optional file specifies the _dependencies_ of your widget for use with [npm](http://npmjs.org/).
+  This file specifies the _dependencies_ of your widget for use with [npm](http://npmjs.org/).
   If you want to version and package you widget as a standalone component for use in multiple applications, this is the recommended way to describe the widget and its dependencies.
+
+- `webpack.config.js` _(optional)_
+
+  Webpack configuration for this widget.
+  The main purpose of webpack in a widget context is to help when [writing widget specs](#widget-files-for-testing), but it can also create a bundle of your widget and its own dependencies.
+
 
 
 LaxarJS supports to change the appearance of an existing widget by overriding its template or its CSS styles from within a custom _theme_.
@@ -267,10 +287,15 @@ This is a _feature configuration_ option of our widget:
 We want to be able to control the headline text for each instance of our widget.
 For this reason, we specify a configuration option by adding a feature entry to the `widget.json`:
 
-```JSON
+```json
 {
    "name": "shopping-cart-widget",
    "description": "Allows Users to Review and Modify Purchase Items",
+
+   "integration:" {
+      "technology": "angular",
+      "type": "widget"
+   },
 
    "features": {
       "$schema": "http://json-schema.org/draft-04/schema#",
@@ -316,9 +341,9 @@ See the [reference section](#reference) for a reference of the widget descriptor
 
 Before we can take a look at the widget, we will need to integrate it into the page provided by the application template (`application/pages/page1.json`).
 
-```JSON
+```json
 {
-   "layout": "one_column",
+   "layout": "one-column",
 
    "areas": {
       "activities": [],
@@ -338,9 +363,9 @@ Before we can take a look at the widget, we will need to integrate it into the p
 }
 ```
 
-I you would like to know more, there is dedicated manual to learn more about [writing pages](./writing_pages.md).
+I you would like to know more, there is a dedicated manual to learn more about [writing pages](./writing_pages.md).
 
-Now we can start the development web server provided by LaxarJS, from the application root:
+Now we can start the _webpack-dev-server_ from the application root:
 
 ```sh
 npm install # if you have not already
@@ -357,7 +382,7 @@ Now that you have learned the basics in _creating_ widgets, take a closer look a
 ## Testing a Widget
 
 One of the major goals of LaxarJS is to simplify the development _and testing_ of isolated components.
-For this reason, a basic widget test has already been prepared when using `yo laxarjs:widget`.
+For this reason, a basic widget test has already been prepared when using `yo laxarjs2:widget`.
 
 
 ### Writing Spec-Tests
@@ -394,6 +419,11 @@ These are the most important widget properties:
   What this widget is about.
   Ideally, this contains the main _user-goal_ mentioned in the first section.
 
+- `integration`
+
+  An object with keys `type` and `technology` specifying whether this is an `activity` or a `widget`, and the technology the widget's controller is implemented in.
+  This was already explained [above](#integration-technologies).
+
 - `features`
 
   The widget features.
@@ -412,7 +442,7 @@ These are the most important widget properties:
 - `controls`
 
   An optional list of LaxarJS controls used by this widget.
-  Each control is represented by its path, which may either be relative to the controls-root (usually `application/controls`) or resolvable by the module loader (webpack).
+  Each control is represented by its path, which may either be relative to the controls-root (usually `application/controls` or resolvable by the module loader (webpack).
   This allows the LaxarJS runtime to automatically load the modules and CSS styles associated with these controls whenever your widget is used.
   Refer to [Providing Controls](./providing_controls.md) on loading user interface components and their resources in this manner.
 
