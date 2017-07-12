@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#471](https://github.com/LaxarJS/laxar/issues/471): documentation: fixed outdated things in widgets and activities manual
+
 
 ## v2.0.0
 ## v2.0.0-rc.4
