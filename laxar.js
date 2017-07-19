@@ -322,7 +322,7 @@ function whenDocumentReady( callback ) {
          }
       }
 
-      if( document.readyState === 'complete' ) {
+      if( document.readyState === 'complete' || document.readyState === 'interactive' ) {
          ready();
       }
       else {
