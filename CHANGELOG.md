@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.1
+
 - [#472](https://github.com/LaxarJS/laxar/issues/472): bootstrapping: fixed a race condition that sometimes caused initialization to get stuck indefinitely
 - [#471](https://github.com/LaxarJS/laxar/issues/471): documentation: fixed outdated things in widgets and activities manual
 
