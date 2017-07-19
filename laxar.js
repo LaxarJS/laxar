@@ -37,9 +37,6 @@ const MESSAGE_ADAPTERS = 'laxar.create: `adapters` must be an array';
 const MESSAGE_ARTIFACTS = 'laxar.create: `artifacts` object must have at least: aliases, themes, widgets';
 const MESSAGE_CONFIGURATION = 'laxar.create: `configuration` must be an object';
 
-const TOPIC_SEGMENTS_MATCHER = /[^+a-z0-9]+/g;
-const TOPIC_SEGMENTS_REPLACER = () => '+';
-
 /**
  * Prepares a LaxarJS application instance from a list of adapters, a bundle of artifacts, and application
  * configuration. The instance then allows to configure which DOM node should receive an application flow.
@@ -71,8 +68,6 @@ export function create( adapters, artifacts, configuration ) {
       testing: false,
       tooling: null
    };
-
-   let idCounter = 0;
 
    /**
     * Handle on a LaxarJS bootstrapping instance.
@@ -189,7 +184,6 @@ export function create( adapters, artifacts, configuration ) {
       const adapterInstances = bootstrapAdapters( services, [ plainAdapter, ...adapters ], artifacts );
 
       const instanceName = services.configuration.ensure( 'name' );
-      const instance = makeTopic( instanceName );
 
       if( tooling ) {
          services.tooling.registerDebugInfo( tooling.debugInfo );
@@ -202,90 +196,21 @@ export function create( adapters, artifacts, configuration ) {
 
       const { log } = services;
       const promises = items.map( item => {
-         const { type, name, id = generateId( name ) } = item;
-
-         /**
-          * An object of strings which together identify a bootstrapping item.
-          *
-          * @name ItemMeta
-          * @constructor
-          */
-         const itemMeta = {
-            /**
-             * The (topic-formatted) name of the LaxarJS instance.
-             * @name instance
-             * @type {String}
-             * @memberof ItemMeta
-             */
-            instance,
-            /**
-             * The (topic-formatted, ID-suffixed) name of the bootstrapping item.
-             * @name item
-             * @type {String}
-             * @memberof ItemMeta
-             */
-            item: id,
-            /**
-             * The type of the bootstrapping item.
-             * @name type
-             * @type {String}
-             * @memberof ItemMeta
-             */
-            type,
-            /**
-             * The artifact reference used for creating the bootstrapping item.
-             * @name ${type}
-             * @type {String}
-             * @memberof ItemMeta
-             */
-            [ type ]: name
-         };
-
-         if( tooling ) {
-            services.tooling.registerItem( itemMeta );
-         }
+         const { type, name, id } = item;
 
          log.trace( `laxar.bootstrap: bootstrapping ${type} '${name}' (${id})` );
 
          if( type === 'flow' ) {
             const { anchorElement } = item;
-
-            return whenDocumentReady( () => {
-               log.trace( `laxar.bootstrap: loading flow: ${name}` );
-               services.pageService.createControllerFor( anchorElement, itemMeta );
-               services.flowController
-                  .loadFlow( name )
-                  .then( () => {
-                     log.trace( 'laxar.bootstrap: flow loaded' );
-                  }, err => {
-                     log.fatal( 'laxar.bootstrap: failed to load flow.' );
-                     log.fatal( 'Error [0].\nStack: [1]', err, err && err.stack );
-                  } );
+            whenDocumentReady( () => {
+               services.bootstrapService.flow( name, anchorElement, { id } );
             } );
          }
 
          if( type === 'page' ) {
             const { anchorElement, parameters } = item;
-
-            return whenDocumentReady( () => {
-               const controller = services.pageService.createControllerFor( anchorElement, itemMeta );
-               const eventBus = services.globalEventBus;
-               const event = {
-                  target: name,
-                  place: null,
-                  data: parameters
-               };
-
-               controller.setupPage( name )
-                  .then( () => {
-                     return eventBus.publish( `didNavigate.${event.target}`, event, { sender: 'bootstrap' } );
-                  } )
-                  .then( () => {
-                     log.trace( 'laxar.bootstrap: page loaded' );
-                  }, err => {
-                     log.fatal( 'laxar.bootstrap: failed to load page.' );
-                     log.fatal( 'Error [0].\nStack: [1]', err, err && err.stack );
-                  } );
+            whenDocumentReady( () => {
+               services.bootstrapService.page( name, anchorElement, parameters, { id } );
             } );
          }
 
@@ -294,19 +219,6 @@ export function create( adapters, artifacts, configuration ) {
 
       return Promise.all( promises ).then( () => {} );
    }
-
-   function generateId( name ) {
-      return `${makeTopic( name )}-id${idCounter++}`;
-   }
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function makeTopic( string ) {
-   return string
-      .trim()
-      .toLowerCase()
-      .replace( TOPIC_SEGMENTS_MATCHER, TOPIC_SEGMENTS_REPLACER );
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

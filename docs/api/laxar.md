@@ -17,11 +17,6 @@ Also, provides a couple of utilities to deal with assertions, objects and string
   - [BootstrappingInstance.tooling()](#BootstrappingInstance.tooling)
   - [BootstrappingInstance.testing()](#BootstrappingInstance.testing)
   - [BootstrappingInstance.bootstrap()](#BootstrappingInstance.bootstrap)
-- [ItemMeta](#ItemMeta)
-  - [ItemMeta.instance](#ItemMeta.instance)
-  - [ItemMeta.item](#ItemMeta.item)
-  - [ItemMeta.type](#ItemMeta.type)
-  - [ItemMeta.${type}](#ItemMeta.${type})
 
 ## Types
 
@@ -143,20 +138,3 @@ This includes bootstrapping the application adapters and starting the router.
 | Type | Description |
 | ---- | ----------- |
 | `Promise` |  a promise resolving when all items have been bootstrapped |
-
-### <a id="ItemMeta"></a>ItemMeta
-
-An object of strings which together identify a bootstrapping item.
-
-#### <a id="ItemMeta.instance"></a>ItemMeta.instance `String`
-
-The (topic-formatted) name of the LaxarJS instance.
-#### <a id="ItemMeta.item"></a>ItemMeta.item `String`
-
-The (topic-formatted, ID-suffixed) name of the bootstrapping item.
-#### <a id="ItemMeta.type"></a>ItemMeta.type `String`
-
-The type of the bootstrapping item.
-#### <a id="ItemMeta.${type}"></a>ItemMeta.${type} `String`
-
-The artifact reference used for creating the bootstrapping item.

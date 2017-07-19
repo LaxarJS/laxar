@@ -38,7 +38,7 @@ Get an [`#AxTooling`](#AxTooling) interface for the given bootstrapping item.
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| itemMeta | `ItemMeta` |  an object identifying the bootstrapping item |
+| itemMeta | [`ItemMeta`](runtime.bootstrap.md#ItemMeta) |  an object identifying the bootstrapping item |
 
 ##### Returns
 
@@ -66,7 +66,7 @@ Register a bootstrapping item with the tooling instance.
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
-| itemMeta | `ItemMeta` |  an object identifying the bootstrapping item |
+| itemMeta | [`ItemMeta`](runtime.bootstrap.md#ItemMeta) |  an object identifying the bootstrapping item |
 
 #### <a id="AxTooling.onChange"></a>AxTooling.onChange( callback )
 

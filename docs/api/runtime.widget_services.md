@@ -10,6 +10,7 @@ view framework.
 
 - [axAreaHelper](#axAreaHelper)
 - [axAssets](#axAssets)
+- [axBootstrap](#axBootstrap)
 - [axConfiguration](#axConfiguration)
 - [axContext](#axContext)
 - [axControls](#axControls)
@@ -59,6 +60,10 @@ Allows to manage the widget's areas.
 #### <a id="axAssets"></a>axAssets [`AxAssets`](#AxAssets)
 
 Provides access to the widget's assets.
+
+#### <a id="axBootstrap"></a>axBootstrap [`AxBootstrap`](runtime.bootstrap.md#AxBootstrap)
+
+Provides access to the LaxarJS bootstrapping machinery.
 
 #### <a id="axConfiguration"></a>axConfiguration [`Configuration`](runtime.configuration.md#Configuration)
 
