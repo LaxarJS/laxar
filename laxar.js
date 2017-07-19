@@ -202,15 +202,15 @@ export function create( adapters, artifacts, configuration ) {
 
          if( type === 'flow' ) {
             const { anchorElement } = item;
-            whenDocumentReady( () => {
-               services.bootstrapService.flow( name, anchorElement, { id } );
+            return whenDocumentReady( () => {
+               services.bootstrapService.flow( name, anchorElement, id );
             } );
          }
 
          if( type === 'page' ) {
             const { anchorElement, parameters } = item;
-            whenDocumentReady( () => {
-               services.bootstrapService.page( name, anchorElement, parameters, { id } );
+            return whenDocumentReady( () => {
+               services.bootstrapService.page( name, anchorElement, parameters, id );
             } );
          }
 
