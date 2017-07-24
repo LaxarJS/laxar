@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.2
+
 - [#469](https://github.com/LaxarJS/laxar/issues/469): flow: fixed `constructAbsoluteUrl` to not lose active place parameters
 
 
