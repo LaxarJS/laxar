@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#469](https://github.com/LaxarJS/laxar/issues/469): flow: fixed `constructAbsoluteUrl` to not lose active place parameters
 - [#472](https://github.com/LaxarJS/laxar/issues/472): bootstrapping: fixed a race condition that sometimes caused initialization to get stuck indefinitely
 - [#470](https://github.com/LaxarJS/laxar/issues/470): project: upgrade to webpack 3
 - [#471](https://github.com/LaxarJS/laxar/issues/471): documentation: fixed outdated things in widgets and activities manual
