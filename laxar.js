@@ -291,7 +291,7 @@ export function create( adapters, artifacts, configuration ) {
 
          return assert.state( false );
       } );
-
+      global.dom = global.dom + 'laxar';
       return Promise.all( promises ).then( () => {} );
    }
 
@@ -321,13 +321,13 @@ function whenDocumentReady( callback ) {
             reject( err );
          }
       }
-
-      if( document.readyState === 'complete' || document.readyState === 'interactive' ) {
-         ready();
-      }
-      else {
-         document.addEventListener( 'DOMContentLoaded', ready );
-      }
+      ready();
+      // if( document.readyState === 'complete' || document.readyState === 'interactive' ) {
+      //    ready();
+      // }
+      // else {
+      //    document.addEventListener( 'DOMContentLoaded', ready );
+      // }
    } );
 }
 
