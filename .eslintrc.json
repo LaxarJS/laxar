@@ -1,3 +1,6 @@
 {
-   "extends": "laxarjs"
+   "extends": "laxarjs/node",
+   "rules": {
+      "no-restricted-imports": "off"
+   }
 }

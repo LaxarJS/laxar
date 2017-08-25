@@ -101,7 +101,7 @@ export function create( adapters, artifacts, configuration ) {
    function flow( name, anchorElement ) {
       assert( name ).hasType( String ).isNotNull();
       assert( anchorElement ).isNotNull();
-      assert.state( anchorElement.nodeType === Node.ELEMENT_NODE );
+      //assert.state( anchorElement.nodeType === Node.ELEMENT_NODE );
       bootstrappingSchedule.items.push( { type: 'flow', name, anchorElement } );
       return api;
    }
