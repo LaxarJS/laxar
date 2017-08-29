@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#478](https://github.com/LaxarJS/laxar/issues/478): navigo router: fixed reverse routing for certain base URLs
+
 
 ## v2.0.2
 
