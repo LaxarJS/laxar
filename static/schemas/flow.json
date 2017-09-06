@@ -45,14 +45,6 @@
                   "type": "string",
                   "description": "The path to redirect to when hitting this place, including the values for relevant place parameters."
                },
-               "queryParameters": {
-                  "type": [ "array", "null" ],
-                  "default": null,
-                  "items": {
-                     "type": "string"
-                  },
-                  "description": "If set, any query parameters missing from the list are removed on place entry."
-               },
                "defaultParameters": {
                   "type": "object",
                   "default": {},
@@ -60,6 +52,14 @@
                      "type": [ "string", "boolean", "null" ]
                   },
                   "description": "Default values for optional (query) parameters."
+               },
+               "additionalParameters": {
+                  "type": [ "array", "null" ],
+                  "default": null,
+                  "items": {
+                     "type": "string"
+                  },
+                  "description": "If set, any non-routing parameters (usually encoded as a query string) are removed from URLs to this place, except those on the list."
                },
                "targets": {
                   "type": "object",
