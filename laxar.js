@@ -11,6 +11,8 @@
  * @module laxar
  */
 
+
+
 import assert from './lib/utilities/assert';
 import * as object from './lib/utilities/object';
 import * as string from './lib/utilities/string';
@@ -126,7 +128,7 @@ export function create( adapters, artifacts, configuration ) {
    function page( name, anchorElement, parameters = {} ) {
       assert( name ).hasType( String ).isNotNull();
       assert( anchorElement ).isNotNull();
-      assert.state( anchorElement.nodeType === Node.ELEMENT_NODE );
+      //assert.state( anchorElement.nodeType === Node.ELEMENT_NODE );
       bootstrappingSchedule.items.push( { type: 'page', name, anchorElement, parameters } );
       return api;
    }
@@ -276,7 +278,7 @@ export function create( adapters, artifacts, configuration ) {
                   data: parameters
                };
 
-               controller.setupPage( name )
+               return controller.setupPage( name )
                   .then( () => {
                      return eventBus.publish( `didNavigate.${event.target}`, event, { sender: 'bootstrap' } );
                   } )
@@ -288,11 +290,9 @@ export function create( adapters, artifacts, configuration ) {
                   } );
             } );
          }
-
          return assert.state( false );
       } );
-      global.dom = global.dom + 'laxar';
-      return Promise.all( promises ).then( () => {} );
+      return Promise.all( promises )
    }
 
    function generateId( name ) {
