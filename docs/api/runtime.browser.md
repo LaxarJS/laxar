@@ -21,7 +21,7 @@ This service is internal to LaxarJS and not available to widgets and activities.
 
 ### <a id="Browser"></a>Browser
 
-A brower mostly abstracts over the location-related DOM window APIs, and provides a console wrapper.
+A browser mostly abstracts over the location-related DOM window APIs, and provides a console wrapper.
 Since it is internal to LaxarJS, only relevant APIs are included.
 
 #### <a id="Browser.resolve"></a>Browser.resolve( url, baseUrl )
