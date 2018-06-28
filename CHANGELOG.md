@@ -2,6 +2,9 @@
 
 ## Last Changes
 
+
+## v2.0.4
+
 - [#485](https://github.com/LaxarJS/laxar/issues/485): navigo router: fixed reverse routing when entering without routing suffix
 
 
