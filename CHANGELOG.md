@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#486](https://github.com/LaxarJS/laxar/issues/486): widget services: avoid potential publish-after-destroy issues
+
 
 ## v2.0.4
 
