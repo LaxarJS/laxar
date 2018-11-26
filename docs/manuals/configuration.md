@@ -105,6 +105,7 @@ The following configuration options are defined by _LaxarJS Core_.
 | `name`                               | `'unnamed'`           | The name of the LaxarJS application
 | `description`                        | `''`                  | A short application description
 | `theme`                              | `'default'`           | Which theme to use for the application. The suffix `.theme` is added automatically.
+| `applicationServices`                | `{}`                  | Allows to configure application-specific injections. See [Widget Services](./widget_services.md) for details.
 | `controls.*`                         | `null`                | Sub-configuration for use by controls (using the artifact name as second-level key is recommended).
 | `eventBusTimeoutMs`                  | `120000`              | The maximum delay (in milliseconds) to wait for a `did...` event to be published, after it was announced by a `will...` event.
 | `i18n.locales`                       | `{ 'default': 'en' }` | Which language tag to use for the default locale, and possibly for other locales.

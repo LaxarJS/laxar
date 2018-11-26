@@ -2,6 +2,7 @@
 
 ## Last Changes
 
+- [#487](https://github.com/LaxarJS/laxar/issues/487): support application-defined widget services
 - [#486](https://github.com/LaxarJS/laxar/issues/486): widget services: avoid potential publish-after-destroy issues
 - [#485](https://github.com/LaxarJS/laxar/issues/485): navigo router: fixed reverse routing when entering without routing suffix
 - [#478](https://github.com/LaxarJS/laxar/issues/478): navigo router: fixed reverse routing for certain base URLs
