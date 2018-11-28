@@ -2,7 +2,7 @@
 
 ## Last Changes
 
-- [#489](https://github.com/LaxarJS/laxar/issues/489): updated dev-dependencies
+- [#490](https://github.com/LaxarJS/laxar/issues/490): documentation: mocking application-defined services
 
 
 ## v2.1.0-rc.0

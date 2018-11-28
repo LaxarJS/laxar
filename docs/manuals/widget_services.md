@@ -150,9 +150,11 @@ However, application-defined services have the following main advantages:
 
 * when your services need additional injections later on, you can simply add those to their service definition
 
-* you can control the instantiation, sharing and reuse of service objects from your factory.
+* you can control the instantiation, sharing and reuse of service objects from your factory,
 
-This second advantage means that you do not need to modify all widgets/activities that access your services, only to provide them with an additional dependency.
+* you can provide mocks during testing, instead of the actual implementation.
+
+This second advantage means that you do not need to modify widgets/activities that use your service, only to provide your service with an additional dependency.
 
 
 ### Releasing Application-Defined Services
@@ -182,3 +184,25 @@ const configuration = {
 };
 ```
 
+
+### Testing with Application-Defined Services
+
+When testing using [LaxarJS Mocks](laxar-mocks), you'll need to provide implementations for custom injections.
+This should be done by using the configuration argument to the `setupForWidget` function:
+
+Here is an example of returning a mock-implementation for a custom fetch-like injection:
+
+```js
+beforeEach( axMocks.setupForWidget( {
+   configuration: {
+      applicationServices: {
+         customFetch() {
+            return jasmine.createSpy( 'customFetch' );
+         }
+      }
+   }
+} ) );
+```
+
+You can also use the variant with `create` and `injections` as explained above.
+In this case, the requested LaxarJS injections will be mocked.
