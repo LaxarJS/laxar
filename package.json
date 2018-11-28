@@ -1,6 +1,6 @@
 {
   "name": "laxar",
-  "version": "2.1.0-rc.0",
+  "version": "2.1.0-rc.1",
   "description": "Building large applications is hard, so don't do that!",
   "homepage": "http://laxarjs.org",
   "main": "laxar.js",
