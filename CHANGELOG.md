@@ -2,6 +2,8 @@
 
 ## Last Changes
 
+- [#496](https://github.com/LaxarJS/laxar/issues/496): project: updated dependencies, dropped dox (security)
+
 
 ## v2.1.0
 ## v2.1.0-rc.1

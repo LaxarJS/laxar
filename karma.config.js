@@ -19,5 +19,11 @@ function karmaConfig() {
    return Object.assign( {}, laxarInfrastructure.karma( files, {
       context: __dirname,
       module: webpackBaseConfig.module
-   } ), { files, preprocessors } );
+   } ), {
+      files,
+      preprocessors,
+      singleRun: true,
+      watch: false,
+      browsers: [ 'ChromeHeadless' ]
+   } );
 }

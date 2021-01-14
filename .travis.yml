@@ -6,7 +6,7 @@ env:
    global:
      - SAUCE_CONNECT_VERSION=4.4.12
    matrix:
-      - BROWSER="phantomjs"
+      - BROWSER="ChromeHeadless"
       - BROWSER="chrome"
       - BROWSER="firefox"
       - BROWSER="internet explorer"
