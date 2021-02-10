@@ -1,6 +1,7 @@
-# LaxarJS [![Build Status](https://travis-ci.org/LaxarJS/laxar.svg?branch=master)](https://travis-ci.org/LaxarJS/laxar)
+# LaxarJS
 
-> _Middleware for your web client:_ Create maintainable applications from small, isolated parts.
+> _Note:_ This project is no longer being actively maintained.
+> Feel free to create a fork if you would like to continue using and/or developing the software.
 
 <span class="laxar-external-documentation-hint">
    Take a look at the <a href="https://www.laxarjs.org/docs/laxar-latest/">documentation site</a> to browse documentation for all releases of this artifact.
