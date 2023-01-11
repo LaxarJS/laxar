@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../laxar.theme/img/favicon.ico">
+        <title>LaxarJS  v1.2.4</title>
+
+        <link rel="stylesheet" href="../../../laxar.theme/css/pygments.css">
+        <link href="../../../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="../../../laxar-latest">laxar</a></li>
+            
+            <li><a href="../../../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="../../../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="../../../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="../../../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="../../../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="../../../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="../../../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="../../../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="../../../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="../../../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="../../../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="../../../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v1.2.4 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="../../../laxar-v2-latest">v2.0.0</a></li>
+            
+               <li><a href="../../../laxar-v1-latest">v1.3.5</a></li>
+            
+               <li><a href="../../../laxar-v0-latest">v0.26.2</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="../../../laxar-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="../../../laxar-v1.3.5">v1.3.5</a></li>
+         
+            <li><a href="../../../laxar-v1.3.4">v1.3.4</a></li>
+         
+            <li><a href="../../../laxar-v1.3.3">v1.3.3</a></li>
+         
+            <li><a href="../../../laxar-v1.3.2">v1.3.2</a></li>
+         
+            <li><a href="../../../laxar-v1.3.1">v1.3.1</a></li>
+         
+            <li><a href="../../../laxar-v1.3.0">v1.3.0</a></li>
+         
+            <li><a href="../../../laxar-v1.2.10">v1.2.10</a></li>
+         
+            <li><a href="../../../laxar-v1.2.9">v1.2.9</a></li>
+         
+            <li><a href="../../../laxar-v1.2.8">v1.2.8</a></li>
+         
+            <li><a href="../../../laxar-v1.2.7">v1.2.7</a></li>
+         
+            <li><a href="../../../laxar-v1.2.6">v1.2.6</a></li>
+         
+            <li><a href="../../../laxar-v1.2.5">v1.2.5</a></li>
+         
+            <li><a href="../../../laxar-v1.2.4">v1.2.4</a></li>
+         
+            <li><a href="../../../laxar-v1.2.3">v1.2.3</a></li>
+         
+            <li><a href="../../../laxar-v1.2.2">v1.2.2</a></li>
+         
+            <li><a href="../../../laxar-v1.2.1">v1.2.1</a></li>
+         
+            <li><a href="../../../laxar-v1.2.0">v1.2.0</a></li>
+         
+            <li><a href="../../../laxar-v1.1.0">v1.1.0</a></li>
+         
+            <li><a href="../../../laxar-v1.0.5">v1.0.5</a></li>
+         
+            <li><a href="../../../laxar-v1.0.4">v1.0.4</a></li>
+         
+            <li><a href="../../../laxar-v1.0.3">v1.0.3</a></li>
+         
+            <li><a href="../../../laxar-v1.0.2">v1.0.2</a></li>
+         
+            <li><a href="../../../laxar-v1.0.1">v1.0.1</a></li>
+         
+            <li><a href="../../../laxar-v1.0.0">v1.0.0</a></li>
+         
+            <li><a href="../../../laxar-v0.26.2">v0.26.2</a></li>
+         
+            <li><a href="../../../laxar-v0.26.1">v0.26.1</a></li>
+         
+            <li><a href="../../../laxar-v0.26.0">v0.26.0</a></li>
+         
+            <li><a href="../../../laxar-v0.25.1">v0.25.1</a></li>
+         
+            <li><a href="../../../laxar-v0.25.0">v0.25.0</a></li>
+         
+            <li><a href="../../../laxar-v0.24.0">v0.24.0</a></li>
+         
+            <li><a href="../../../laxar-v0.23.3">v0.23.3</a></li>
+         
+            <li><a href="../../../laxar-v0.23.2">v0.23.2</a></li>
+         
+            <li><a href="../../../laxar-v0.23.1">v0.23.1</a></li>
+         
+            <li><a href="../../../laxar-v0.23.0">v0.23.0</a></li>
+         
+            <li><a href="../../../laxar-v0.22.2">v0.22.2</a></li>
+         
+            <li><a href="../../../laxar-v0.22.1">v0.22.1</a></li>
+         
+            <li><a href="../../../laxar-v0.22.0">v0.22.0</a></li>
+         
+            <li><a href="../../../laxar-v0.21.0">v0.21.0</a></li>
+         
+            <li><a href="../../../laxar-v0.20.1">v0.20.1</a></li>
+         
+            <li><a href="../../../laxar-v0.20.0">v0.20.0</a></li>
+         
+            <li><a href="../../../laxar-v0.19.1">v0.19.1</a></li>
+         
+            <li><a href="../../../laxar-v0.19.0">v0.19.0</a></li>
+         
+            <li><a href="../../../laxar-v0.18.2">v0.18.2</a></li>
+         
+            <li><a href="../../../laxar-v0.18.1">v0.18.1</a></li>
+         
+            <li><a href="../../../laxar-v0.18.0">v0.18.0</a></li>
+         
+            <li><a href="../../../laxar-v0.17.1">v0.17.1</a></li>
+         
+            <li><a href="../../../laxar-v0.17.0">v0.17.0</a></li>
+         
+            <li><a href="../../../laxar-v0.16.2">v0.16.2</a></li>
+         
+            <li><a href="../../../laxar-v0.16.1">v0.16.1</a></li>
+         
+            <li><a href="../../../laxar-v0.16.0">v0.16.0</a></li>
+         
+            <li><a href="../../../laxar-v0.15.0">v0.15.0</a></li>
+         
+            <li><a href="../../../laxar-v0.14.0">v0.14.0</a></li>
+         
+            <li><a href="../../../laxar-v0.13.3">v0.13.3</a></li>
+         
+            <li><a href="../../../laxar-v0.13.2">v0.13.2</a></li>
+         
+            <li><a href="../../../laxar-v0.13.1">v0.13.1</a></li>
+         
+            <li><a href="../../../laxar-v0.13.0">v0.13.0</a></li>
+         
+            <li><a href="../../../laxar-v0.12.1">v0.12.1</a></li>
+         
+            <li><a href="../../../laxar-v0.12.0">v0.12.0</a></li>
+         
+            <li><a href="../../../laxar-v0.11.1">v0.11.1</a></li>
+         
+            <li><a href="../../../laxar-v0.11.0">v0.11.0</a></li>
+         
+            <li><a href="../../../laxar-v0.10.1">v0.10.1</a></li>
+         
+            <li><a href="../../../laxar-v0.10.0">v0.10.0</a></li>
+         
+            <li><a href="../../../laxar-v0.9.11">v0.9.11</a></li>
+         
+            <li><a href="../../../laxar-v0.9.10">v0.9.10</a></li>
+         
+            <li><a href="../../../laxar-v0.9.9">v0.9.9</a></li>
+         
+            <li><a href="../../../laxar-v0.9.8">v0.9.8</a></li>
+         
+            <li><a href="../../../laxar-v0.9.7">v0.9.7</a></li>
+         
+            <li><a href="../../../laxar-v0.9.6">v0.9.6</a></li>
+         
+            <li><a href="../../../laxar-v0.9.5">v0.9.5</a></li>
+         
+            <li><a href="../../../laxar-v0.9.4">v0.9.4</a></li>
+         
+            <li><a href="../../../laxar-v0.9.3">v0.9.3</a></li>
+         
+            <li><a href="../../../laxar-v0.9.2">v0.9.2</a></li>
+         
+            <li><a href="../../../laxar-v0.9.1">v0.9.1</a></li>
+         
+            <li><a href="../../../laxar-v0.9.0">v0.9.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="../../CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar/tree/v1.2.4">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main"><a title="README" href="../..#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Concepts" href="../../concepts/#start">LaxarJS Concepts</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="Why LaxarJS?" href="../../why_laxar/#start">Why LaxarJS?</a></li>
+         
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="API"
+               data-toggle="collapse"
+               data-target="#API"
+               aria-expanded="false"
+               aria-controls="collapseExample">API <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="API">
+               
+               <li >
+                  <a title="assert" href="../../api/assert.js/#start">assert</a>
+               </li>
+               
+               <li >
+                  <a title="axId" href="../../api/id.js/#start">axId</a>
+               </li>
+               
+               <li >
+                  <a title="axLayout" href="../../api/layout.js/#start">axLayout</a>
+               </li>
+               
+               <li >
+                  <a title="axRuntimeServices" href="../../api/runtime_services.js/#start">axRuntimeServices</a>
+               </li>
+               
+               <li >
+                  <a title="axWidgetArea" href="../../api/widget_area.js/#start">axWidgetArea</a>
+               </li>
+               
+               <li >
+                  <a title="configuration" href="../../api/configuration.js/#start">configuration</a>
+               </li>
+               
+               <li >
+                  <a title="controls_service" href="../../api/controls_service.js/#start">controls_service</a>
+               </li>
+               
+               <li >
+                  <a title="event_bus" href="../../api/event_bus.js/#start">event_bus</a>
+               </li>
+               
+               <li >
+                  <a title="file_resource_provider" href="../../api/file_resource_provider.js/#start">file_resource_provider</a>
+               </li>
+               
+               <li >
+                  <a title="flow" href="../../api/flow.js/#start">flow</a>
+               </li>
+               
+               <li >
+                  <a title="fn" href="../../api/fn.js/#start">fn</a>
+               </li>
+               
+               <li >
+                  <a title="i18n" href="../../api/i18n.js/#start">i18n</a>
+               </li>
+               
+               <li >
+                  <a title="log" href="../../api/log.js/#start">log</a>
+               </li>
+               
+               <li >
+                  <a title="object" href="../../api/object.js/#start">object</a>
+               </li>
+               
+               <li >
+                  <a title="object" href="../../api/string.js/#start">object</a>
+               </li>
+               
+               <li >
+                  <a title="storage" href="../../api/storage.js/#start">storage</a>
+               </li>
+               
+               <li >
+                  <a title="theme_manager" href="../../api/theme_manager.js/#start">theme_manager</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Contributing"
+               data-toggle="collapse"
+               data-target="#Contributing"
+               aria-expanded="false"
+               aria-controls="collapseExample">Contributing <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="Contributing">
+               
+               <li >
+                  <a title="LaxarJS Coding Styles" href="../../contributing/styleguide/#start">LaxarJS Coding Styles</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse ax-active" >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Manuals"
+               data-toggle="collapse"
+               data-target="#Manuals"
+               aria-expanded="false"
+               aria-controls="collapseExample">Manuals <span class="caret"></span></a>
+
+            <ul class="nav subnav in"
+               id="Manuals">
+               
+               <li >
+                  <a title="Overview" href="../#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="Assets and the FileResourceProvider" href="../asset_lookup/#start">Assets and the FileResourceProvider</a>
+               </li>
+               
+               <li >
+                  <a title="Configuring RequireJS for Widgets and Controls" href="../configuring_requirejs/#start">Configuring RequireJS for Widgets and Controls</a>
+               </li>
+               
+               <li >
+                  <a title="Controls and Libraries" href="../providing_controls/#start">Controls and Libraries</a>
+               </li>
+               
+               <li >
+                  <a title="Creating Themes" href="../creating_themes/#start">Creating Themes</a>
+               </li>
+               
+               <li >
+                  <a title="Creating an Adapter for a new Widget Technology" href="../adapters/#start">Creating an Adapter for a new Widget Technology</a>
+               </li>
+               
+               <li >
+                  <a title="Events and Publish-Subscribe" href="../events/#start">Events and Publish-Subscribe</a>
+               </li>
+               
+               <li >
+                  <a title="Flow and Places" href="../flow_and_places/#start">Flow and Places</a>
+               </li>
+               
+               <li >
+                  <a title="Infrastructure and Tools" href="../infrastructure_and_tools/#start">Infrastructure and Tools</a>
+               </li>
+               
+               <li >
+                  <a title="Installing Controls" href="../installing_controls/#start">Installing Controls</a>
+               </li>
+               
+               <li >
+                  <a title="Installing Third Party Widgets" href="../installing_widgets/#start">Installing Third Party Widgets</a>
+               </li>
+               
+               <li >
+                  <a title="Internationalizing a Widget" href="../i18n/#start">Internationalizing a Widget</a>
+               </li>
+               
+               <li >
+                  <a title="LaxarJS Configuration in an Application" href="../configuration/#start">LaxarJS Configuration in an Application</a>
+               </li>
+               
+               <li >
+                  <a title="Widgets and Activities" href="../widgets_and_activities/#start">Widgets and Activities</a>
+               </li>
+               
+               <li >
+                  <a title="Working with Visibility Events" href="../visibility_events/#start">Working with Visibility Events</a>
+               </li>
+               
+               <li class="ax-active">
+                  <a title="Writing Compositions" href="./#start">Writing Compositions</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Pages" href="../writing_pages/#start">Writing Pages</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Widget Controllers" href="../writing_widget_controllers/#start">Writing Widget Controllers</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<p><a href="../">« return to the manuals</a></p>
+<p>Preliminary readings:</p>
+<ul>
+<li><a href="../../concepts/">LaxarJS Core Concepts</a></li>
+<li><a href="../writing_pages/">Writing Pages</a></li>
+</ul>
+<h1 id="writing-compositions">Writing Compositions</h1>
+<p>Although inheritance brings a bit of organization into pages, for bigger applications with many widgets on a page this may  not be sufficient.
+Very often most of a base page fits for all pages but some small things need to be adjusted for some of the pages that could otherwise be reused throughout the application.
+Another use case is to enable the reuse of a bundle of widgets multiple times within one page, each time only with some different configuration.</p>
+<p>All of this can be achieved by using compositions.
+The idea behind compositions is, that they provide a widget like interface regarding their addition to a page (or another composition) and the internals of a page fragment, bundling some widgets and other compositions.
+A composition thus has two basic properties: <code>areas</code>, like a page and <code>features</code> like a widget.
+A third more advanced property, namely <code>mergedFeatures</code>, will be explained later.</p>
+<p>Instead we will start with the simple <code>popup_composition</code> we referenced above:</p>
+<div class="codehilite"><pre><span class="p">{</span>
+   <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;$schema&quot;</span><span class="p">:</span> <span class="s2">&quot;http://json-schema.org/draft-04/schema#&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;openPopup&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;onActions&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;array&quot;</span><span class="p">,</span>
+                  <span class="nt">&quot;items&quot;</span><span class="p">:</span> <span class="p">{</span>
+                     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;topic&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;axRole&quot;</span><span class="p">:</span> <span class="s2">&quot;inlet&quot;</span>
+                  <span class="p">}</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+   <span class="p">},</span>
+   <span class="nt">&quot;areas&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;.&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;amd:laxar-popup-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;popup&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;open&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;onActions&quot;</span><span class="p">:</span> <span class="s2">&quot;${features.openPopup.onActions}&quot;</span>
+               <span class="p">},</span>
+               <span class="nt">&quot;close&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;onActions&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;${topic:closeAction}&quot;</span> <span class="p">]</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;popup.content&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;amd:laxar-headline-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;headline&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;i18nHtmlText&quot;</span><span class="p">:</span> <span class="s2">&quot;Say hi to the popup&quot;</span><span class="p">,</span>
+                  <span class="nt">&quot;level&quot;</span><span class="p">:</span> <span class="mi">4</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">},</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;amd:laxar-command-bar-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;close&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;finish&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;${topic:closeAction}&quot;</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">]</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>This example already shows some of the additional characteristics that go beyond the two properties <code>features</code> and <code>areas</code>.
+Let us start from the beginning:</p>
+<p>First there is the <code>features</code> object, that for simple cases looks just like a feature specification of a widget.
+Here you can define all the features that your composition needs to be configurable from the outside.
+In this example we simply let the consumer of our composition define the action that will be used to open the popup.</p>
+<p>Secondly there is the <code>areas</code> map and here there is already something noteworthy: The first area is simply named <code>.</code>.
+All widgets and compositions within this special area will replace the reference of the composition within the area of the page including the composition.
+So if we take the <a href="#example_4">last example</a> of the chapter <a href="#layouts_and_areas">Layouts and Areas</a>, this will be the area named <code>content</code>.</p>
+<p>Furthermore the two strings <code>"${features.openPopup.onActions}"</code> and <code>"${topic:closeAction}"</code> are worth noticing as they demonstrate another main feature of the composition concept.
+Those strings are expressions that will be evaluated by the page loader when assembling the complete page from its parts and are replaced by actual values as follows:
+The <code>"${features.openPopup.onActions}"</code> expression is a reference to a feature defined within the <code>features</code> object and will hold the value configured in the page including the composition.
+Thus applied to the <a href="#example_4">example of the writing pages manual</a>, this will result in the array <code>[ "next" ]</code>.
+On the other hand the <code>"${topic:closeAction}"</code> expression generates a page wide unique event topic compatible string based on the local identifier <code>closeAction</code>.
+The result could thus be something like <code>"popupComposition-id0+closeAction"</code>, which is in fact the id generated for the composition itself, plus the local identifier.
+These <em>topic expressions</em> prevent naming collisions with topics of the page, other compositions or multiple usages of the same composition within the same page.
+They should always be used when there is the need to have an identifier that is only used within the scope of a composition.</p>
+<p>Notice that these expressions are only written as a string to be JSON compatible and that no string interpolation takes place.
+Thus something like <code>"myPrefix${topic:closeAction}"</code> would <em>not</em> be interpreted when assembling the page and simply be used as is.</p>
+<p>The assembled page thus looks similar to this:</p>
+<div class="codehilite"><pre><span class="p">{</span>
+   <span class="nt">&quot;layout&quot;</span><span class="p">:</span> <span class="s2">&quot;popups/layout_one&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;areas&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;header&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;amd:laxar-headline-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;headline&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;i18nHtmlText&quot;</span><span class="p">:</span> <span class="s2">&quot;Welcome!&quot;</span><span class="p">,</span>
+                  <span class="nt">&quot;level&quot;</span><span class="p">:</span> <span class="mi">3</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;amd:laxar-command-bar-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;next&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">true</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">},</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;amd:laxar-popup-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;popupComposition-id0-popup&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;open&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;onActions&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;next&quot;</span> <span class="p">]</span>
+               <span class="p">},</span>
+               <span class="nt">&quot;close&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;onActions&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;popupComposition-id0+CloseAction&quot;</span> <span class="p">]</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;footer&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;amd:laxar-html-display-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;footerTextResource&quot;</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;popupComposition-id0-popup.content&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;amd:laxar-headline-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;headline&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;i18nHtmlText&quot;</span><span class="p">:</span> <span class="s2">&quot;Say hi to the popup&quot;</span><span class="p">,</span>
+                  <span class="nt">&quot;level&quot;</span><span class="p">:</span> <span class="mi">4</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">},</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;amd:laxar-command-bar-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;close&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;popupComposition-id0+CloseAction&quot;</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">]</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Note how also the id of the exported area was automatically adjusted to <code>"popupComposition-id0-popup.content"</code> to prevent naming clashes.</p>
+<p>In our example it is currently only possible to close the <em>laxar-popup-widget</em> from within itself via an action event published by the <em>laxar-command-bar-widget</em>.
+What if we additionally would like to close the popup on demand from outside based on another action?
+This is where the concept of <em>merged features</em> comes into play.
+<em>Merged features</em> allow us to merge or better concatenate two arrays, where one array is defined as a feature for the composition and the second array is defined in the <code>mergedFeatures</code> object.
+Syntactically this is achieved via a map under the key <code>mergedFeatures</code> where the key of each entry is the path to the array in the features and the value is the array to merge this value with.</p>
+<p>This should become clear when looking at our adjusted example:</p>
+<div class="codehilite"><pre><span class="p">{</span>
+   <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;$schema&quot;</span><span class="p">:</span> <span class="s2">&quot;http://json-schema.org/draft-04/schema#&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;openPopup&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;onActions&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;array&quot;</span><span class="p">,</span>
+                  <span class="nt">&quot;items&quot;</span><span class="p">:</span> <span class="p">{</span>
+                     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;topic&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;axRole&quot;</span><span class="p">:</span> <span class="s2">&quot;inlet&quot;</span>
+                  <span class="p">}</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">},</span>
+         <span class="nt">&quot;closePopup&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;onActions&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;array&quot;</span><span class="p">,</span>
+                  <span class="nt">&quot;default&quot;</span><span class="p">:</span> <span class="p">[],</span>
+                  <span class="nt">&quot;items&quot;</span><span class="p">:</span> <span class="p">{</span>
+                     <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;topic&quot;</span><span class="p">,</span>
+                     <span class="nt">&quot;axRole&quot;</span><span class="p">:</span> <span class="s2">&quot;inlet&quot;</span>
+                  <span class="p">}</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+   <span class="p">},</span>
+   <span class="nt">&quot;mergedFeatures&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;closePopup.onActions&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;${topic:closeAction}&quot;</span> <span class="p">]</span>
+   <span class="p">},</span>
+   <span class="nt">&quot;areas&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;.&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;amd:laxar-popup-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;popup&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;open&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;onActions&quot;</span><span class="p">:</span> <span class="s2">&quot;${features.openPopup.onActions}&quot;</span>
+               <span class="p">},</span>
+               <span class="nt">&quot;close&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;onActions&quot;</span><span class="p">:</span> <span class="s2">&quot;${features.closePopup.onActions}&quot;</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;popup.content&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;amd:laxar-headline-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;headline&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;i18nHtmlText&quot;</span><span class="p">:</span> <span class="s2">&quot;Say hi to the popup&quot;</span><span class="p">,</span>
+                  <span class="nt">&quot;level&quot;</span><span class="p">:</span> <span class="mi">4</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">},</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;amd:laxar-command-bar-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;close&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                  <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;${topic:closeAction}&quot;</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">]</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Here we added the possibility to configured close actions for the <em>laxar-popup-widget</em> as feature <code>closePopup.onActions</code>.
+For this we then added an entry in the <code>mergedFeatures</code> map whose value is an array that has the internal generated topic as only item.
+This enables us to now reference this feature when configuring the <em>laxar-popup-widget</em>.
+Instead of creating the array with the generated topic here, we can simply reference the feature directly as it is the case for the <code>openPopup.onActions</code> feature.
+For the configuration of the <em>laxar-command-bar-widget</em> nothing changed.
+When using the composition it is now possible to provide additional close actions, but since we defined an empty array as default for the feature, this is not mandatory.</p>
+<h1 id="appendix">Appendix:</h1>
+<h2 id="exemplary-page-from-writing-pages-manual">Exemplary page from <a href="../writing_pages/">writing pages</a> manual</h2>
+<p><a name="example_4"></a></p>
+<div class="codehilite"><pre><span class="p">{</span>
+   <span class="nt">&quot;layout&quot;</span><span class="p">:</span> <span class="s2">&quot;popups/layout_one&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;areas&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;header&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;amd:laxar-headline-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;headline&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;i18nHtmlText&quot;</span><span class="p">:</span> <span class="s2">&quot;Welcome!&quot;</span><span class="p">,</span>
+                  <span class="nt">&quot;level&quot;</span><span class="p">:</span> <span class="mi">3</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;amd:laxar-command-bar-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;next&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">true</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">},</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;composition&quot;</span><span class="p">:</span> <span class="s2">&quot;popup_composition&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;openPopup&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;onActions&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;next&quot;</span> <span class="p">]</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;footer&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;amd:laxar-html-display-bar-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;footerTextResource&quot;</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">]</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="../../../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="../../../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="../../../laxar.theme/js/base.js"></script>
+   </body>
+</html>

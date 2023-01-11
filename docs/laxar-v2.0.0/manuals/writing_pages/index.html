@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../laxar.theme/img/favicon.ico">
+        <title>LaxarJS  v2.0.0</title>
+
+        <link rel="stylesheet" href="../../../laxar.theme/css/pygments.css">
+        <link href="../../../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="../../../laxar-latest">laxar</a></li>
+            
+            <li><a href="../../../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="../../../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="../../../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="../../../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="../../../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="../../../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="../../../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="../../../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="../../../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="../../../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="../../../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="../../../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v2.0.0 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="../../../laxar-v2-latest">v2.0.3</a></li>
+            
+               <li><a href="../../../laxar-v1-latest">v1.3.5</a></li>
+            
+               <li><a href="../../../laxar-v0-latest">v0.26.2</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="../../../laxar-v2.0.3">v2.0.3</a></li>
+         
+            <li><a href="../../../laxar-v2.0.2">v2.0.2</a></li>
+         
+            <li><a href="../../../laxar-v2.0.1">v2.0.1</a></li>
+         
+            <li><a href="../../../laxar-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="../../../laxar-v1.3.5">v1.3.5</a></li>
+         
+            <li><a href="../../../laxar-v1.3.4">v1.3.4</a></li>
+         
+            <li><a href="../../../laxar-v1.3.3">v1.3.3</a></li>
+         
+            <li><a href="../../../laxar-v1.3.2">v1.3.2</a></li>
+         
+            <li><a href="../../../laxar-v1.3.1">v1.3.1</a></li>
+         
+            <li><a href="../../../laxar-v1.3.0">v1.3.0</a></li>
+         
+            <li><a href="../../../laxar-v1.2.10">v1.2.10</a></li>
+         
+            <li><a href="../../../laxar-v1.2.9">v1.2.9</a></li>
+         
+            <li><a href="../../../laxar-v1.2.8">v1.2.8</a></li>
+         
+            <li><a href="../../../laxar-v1.2.7">v1.2.7</a></li>
+         
+            <li><a href="../../../laxar-v1.2.6">v1.2.6</a></li>
+         
+            <li><a href="../../../laxar-v1.2.5">v1.2.5</a></li>
+         
+            <li><a href="../../../laxar-v1.2.4">v1.2.4</a></li>
+         
+            <li><a href="../../../laxar-v1.2.3">v1.2.3</a></li>
+         
+            <li><a href="../../../laxar-v1.2.2">v1.2.2</a></li>
+         
+            <li><a href="../../../laxar-v1.2.1">v1.2.1</a></li>
+         
+            <li><a href="../../../laxar-v1.2.0">v1.2.0</a></li>
+         
+            <li><a href="../../../laxar-v1.1.0">v1.1.0</a></li>
+         
+            <li><a href="../../../laxar-v1.0.5">v1.0.5</a></li>
+         
+            <li><a href="../../../laxar-v1.0.4">v1.0.4</a></li>
+         
+            <li><a href="../../../laxar-v1.0.3">v1.0.3</a></li>
+         
+            <li><a href="../../../laxar-v1.0.2">v1.0.2</a></li>
+         
+            <li><a href="../../../laxar-v1.0.1">v1.0.1</a></li>
+         
+            <li><a href="../../../laxar-v1.0.0">v1.0.0</a></li>
+         
+            <li><a href="../../../laxar-v0.26.2">v0.26.2</a></li>
+         
+            <li><a href="../../../laxar-v0.26.1">v0.26.1</a></li>
+         
+            <li><a href="../../../laxar-v0.26.0">v0.26.0</a></li>
+         
+            <li><a href="../../../laxar-v0.25.1">v0.25.1</a></li>
+         
+            <li><a href="../../../laxar-v0.25.0">v0.25.0</a></li>
+         
+            <li><a href="../../../laxar-v0.24.0">v0.24.0</a></li>
+         
+            <li><a href="../../../laxar-v0.23.3">v0.23.3</a></li>
+         
+            <li><a href="../../../laxar-v0.23.2">v0.23.2</a></li>
+         
+            <li><a href="../../../laxar-v0.23.1">v0.23.1</a></li>
+         
+            <li><a href="../../../laxar-v0.23.0">v0.23.0</a></li>
+         
+            <li><a href="../../../laxar-v0.22.2">v0.22.2</a></li>
+         
+            <li><a href="../../../laxar-v0.22.1">v0.22.1</a></li>
+         
+            <li><a href="../../../laxar-v0.22.0">v0.22.0</a></li>
+         
+            <li><a href="../../../laxar-v0.21.0">v0.21.0</a></li>
+         
+            <li><a href="../../../laxar-v0.20.1">v0.20.1</a></li>
+         
+            <li><a href="../../../laxar-v0.20.0">v0.20.0</a></li>
+         
+            <li><a href="../../../laxar-v0.19.1">v0.19.1</a></li>
+         
+            <li><a href="../../../laxar-v0.19.0">v0.19.0</a></li>
+         
+            <li><a href="../../../laxar-v0.18.2">v0.18.2</a></li>
+         
+            <li><a href="../../../laxar-v0.18.1">v0.18.1</a></li>
+         
+            <li><a href="../../../laxar-v0.18.0">v0.18.0</a></li>
+         
+            <li><a href="../../../laxar-v0.17.1">v0.17.1</a></li>
+         
+            <li><a href="../../../laxar-v0.17.0">v0.17.0</a></li>
+         
+            <li><a href="../../../laxar-v0.16.2">v0.16.2</a></li>
+         
+            <li><a href="../../../laxar-v0.16.1">v0.16.1</a></li>
+         
+            <li><a href="../../../laxar-v0.16.0">v0.16.0</a></li>
+         
+            <li><a href="../../../laxar-v0.15.0">v0.15.0</a></li>
+         
+            <li><a href="../../../laxar-v0.14.0">v0.14.0</a></li>
+         
+            <li><a href="../../../laxar-v0.13.3">v0.13.3</a></li>
+         
+            <li><a href="../../../laxar-v0.13.2">v0.13.2</a></li>
+         
+            <li><a href="../../../laxar-v0.13.1">v0.13.1</a></li>
+         
+            <li><a href="../../../laxar-v0.13.0">v0.13.0</a></li>
+         
+            <li><a href="../../../laxar-v0.12.1">v0.12.1</a></li>
+         
+            <li><a href="../../../laxar-v0.12.0">v0.12.0</a></li>
+         
+            <li><a href="../../../laxar-v0.11.1">v0.11.1</a></li>
+         
+            <li><a href="../../../laxar-v0.11.0">v0.11.0</a></li>
+         
+            <li><a href="../../../laxar-v0.10.1">v0.10.1</a></li>
+         
+            <li><a href="../../../laxar-v0.10.0">v0.10.0</a></li>
+         
+            <li><a href="../../../laxar-v0.9.11">v0.9.11</a></li>
+         
+            <li><a href="../../../laxar-v0.9.10">v0.9.10</a></li>
+         
+            <li><a href="../../../laxar-v0.9.9">v0.9.9</a></li>
+         
+            <li><a href="../../../laxar-v0.9.8">v0.9.8</a></li>
+         
+            <li><a href="../../../laxar-v0.9.7">v0.9.7</a></li>
+         
+            <li><a href="../../../laxar-v0.9.6">v0.9.6</a></li>
+         
+            <li><a href="../../../laxar-v0.9.5">v0.9.5</a></li>
+         
+            <li><a href="../../../laxar-v0.9.4">v0.9.4</a></li>
+         
+            <li><a href="../../../laxar-v0.9.3">v0.9.3</a></li>
+         
+            <li><a href="../../../laxar-v0.9.2">v0.9.2</a></li>
+         
+            <li><a href="../../../laxar-v0.9.1">v0.9.1</a></li>
+         
+            <li><a href="../../../laxar-v0.9.0">v0.9.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="../../CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar/tree/v2.0.0">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main"><a title="README" href="../..#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Concepts" href="../../concepts/#start">LaxarJS Concepts</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Glossary" href="../../glossary/#start">LaxarJS Glossary</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Troubleshooting" href="../../troubleshooting/#start">LaxarJS Troubleshooting</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="Why LaxarJS?" href="../../why_laxar/#start">Why LaxarJS?</a></li>
+         
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="API"
+               data-toggle="collapse"
+               data-target="#API"
+               aria-expanded="false"
+               aria-controls="collapseExample">API <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="API">
+               
+               <li >
+                  <a title="Overview" href="../../api/#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="adapter_utilities" href="../../api/runtime.adapter_utilities/#start">adapter_utilities</a>
+               </li>
+               
+               <li >
+                  <a title="assert" href="../../api/utilities.assert/#start">assert</a>
+               </li>
+               
+               <li >
+                  <a title="browser" href="../../api/runtime.browser/#start">browser</a>
+               </li>
+               
+               <li >
+                  <a title="configuration" href="../../api/runtime.configuration/#start">configuration</a>
+               </li>
+               
+               <li >
+                  <a title="configuration_mock" href="../../api/testing.configuration_mock/#start">configuration_mock</a>
+               </li>
+               
+               <li >
+                  <a title="control_loader" href="../../api/loaders.control_loader/#start">control_loader</a>
+               </li>
+               
+               <li >
+                  <a title="event_bus" href="../../api/runtime.event_bus/#start">event_bus</a>
+               </li>
+               
+               <li >
+                  <a title="event_bus_mock" href="../../api/testing.event_bus_mock/#start">event_bus_mock</a>
+               </li>
+               
+               <li >
+                  <a title="flow_service" href="../../api/runtime.flow_service/#start">flow_service</a>
+               </li>
+               
+               <li >
+                  <a title="flow_service_mock" href="../../api/testing.flow_service_mock/#start">flow_service_mock</a>
+               </li>
+               
+               <li >
+                  <a title="heartbeat" href="../../api/runtime.heartbeat/#start">heartbeat</a>
+               </li>
+               
+               <li >
+                  <a title="heartbeat_mock" href="../../api/testing.heartbeat_mock/#start">heartbeat_mock</a>
+               </li>
+               
+               <li >
+                  <a title="i18n_mock" href="../../api/testing.widget_services_i18n_mock/#start">i18n_mock</a>
+               </li>
+               
+               <li >
+                  <a title="laxar" href="../../api/laxar/#start">laxar</a>
+               </li>
+               
+               <li >
+                  <a title="laxar-widget-service-mocks" href="../../api/laxar-widget-service-mocks/#start">laxar-widget-service-mocks</a>
+               </li>
+               
+               <li >
+                  <a title="log" href="../../api/runtime.log/#start">log</a>
+               </li>
+               
+               <li >
+                  <a title="log_mock" href="../../api/testing.log_mock/#start">log_mock</a>
+               </li>
+               
+               <li >
+                  <a title="navigo_router" href="../../api/runtime.navigo_router/#start">navigo_router</a>
+               </li>
+               
+               <li >
+                  <a title="object" href="../../api/utilities.object/#start">object</a>
+               </li>
+               
+               <li >
+                  <a title="pages" href="../../api/tooling.pages/#start">pages</a>
+               </li>
+               
+               <li >
+                  <a title="plain_adapter" href="../../api/runtime.plain_adapter/#start">plain_adapter</a>
+               </li>
+               
+               <li >
+                  <a title="storage" href="../../api/runtime.storage/#start">storage</a>
+               </li>
+               
+               <li >
+                  <a title="storage_mock" href="../../api/testing.storage_mock/#start">storage_mock</a>
+               </li>
+               
+               <li >
+                  <a title="string" href="../../api/utilities.string/#start">string</a>
+               </li>
+               
+               <li >
+                  <a title="tooling" href="../../api/tooling.tooling/#start">tooling</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services" href="../../api/runtime.widget_services/#start">widget_services</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_area_helper_mock" href="../../api/testing.widget_services_area_helper_mock/#start">widget_services_area_helper_mock</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_assets_mock" href="../../api/testing.widget_services_assets_mock/#start">widget_services_assets_mock</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_i18n" href="../../api/runtime.widget_services_i18n/#start">widget_services_i18n</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_storage_mock" href="../../api/testing.widget_services_storage_mock/#start">widget_services_storage_mock</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_visibility" href="../../api/runtime.widget_services_visibility/#start">widget_services_visibility</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_visibility_mock" href="../../api/testing.widget_services_visibility_mock/#start">widget_services_visibility_mock</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Contributing"
+               data-toggle="collapse"
+               data-target="#Contributing"
+               aria-expanded="false"
+               aria-controls="collapseExample">Contributing <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="Contributing">
+               
+               <li >
+                  <a title="LaxarJS Coding Styles" href="../../contributing/styleguide/#start">LaxarJS Coding Styles</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse ax-active" >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Manuals"
+               data-toggle="collapse"
+               data-target="#Manuals"
+               aria-expanded="false"
+               aria-controls="collapseExample">Manuals <span class="caret"></span></a>
+
+            <ul class="nav subnav in"
+               id="Manuals">
+               
+               <li >
+                  <a title="Overview" href="../#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="Assets and the Artifacts Bundle" href="../asset_lookup/#start">Assets and the Artifacts Bundle</a>
+               </li>
+               
+               <li >
+                  <a title="Controls and Libraries" href="../providing_controls/#start">Controls and Libraries</a>
+               </li>
+               
+               <li >
+                  <a title="Creating Themes" href="../creating_themes/#start">Creating Themes</a>
+               </li>
+               
+               <li >
+                  <a title="Creating a Project from Scratch" href="../project_from_scratch/#start">Creating a Project from Scratch</a>
+               </li>
+               
+               <li >
+                  <a title="Creating an Adapter for a new Widget Technology" href="../adapters/#start">Creating an Adapter for a new Widget Technology</a>
+               </li>
+               
+               <li >
+                  <a title="Events and Publish-Subscribe" href="../events/#start">Events and Publish-Subscribe</a>
+               </li>
+               
+               <li >
+                  <a title="Flow and Places" href="../flow_and_places/#start">Flow and Places</a>
+               </li>
+               
+               <li >
+                  <a title="Infrastructure and Tools" href="../infrastructure_and_tools/#start">Infrastructure and Tools</a>
+               </li>
+               
+               <li >
+                  <a title="Installing Controls" href="../installing_controls/#start">Installing Controls</a>
+               </li>
+               
+               <li >
+                  <a title="Installing Third Party Widgets" href="../installing_widgets/#start">Installing Third Party Widgets</a>
+               </li>
+               
+               <li >
+                  <a title="Internationalizing a Widget" href="../i18n/#start">Internationalizing a Widget</a>
+               </li>
+               
+               <li >
+                  <a title="LaxarJS Configuration in an Application" href="../configuration/#start">LaxarJS Configuration in an Application</a>
+               </li>
+               
+               <li >
+                  <a title="The <code>&quot;plain&quot;</code> Integration Technology" href="../plain_adapter/#start">The <code>&quot;plain&quot;</code> Integration Technology</a>
+               </li>
+               
+               <li >
+                  <a title="Upgrading LaxarJS" href="../upgrade_guide/#start">Upgrading LaxarJS</a>
+               </li>
+               
+               <li >
+                  <a title="Widget Services" href="../widget_services/#start">Widget Services</a>
+               </li>
+               
+               <li >
+                  <a title="Widgets and Activities" href="../widgets_and_activities/#start">Widgets and Activities</a>
+               </li>
+               
+               <li >
+                  <a title="Working with Visibility Events" href="../visibility_events/#start">Working with Visibility Events</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Compositions" href="../writing_compositions/#start">Writing Compositions</a>
+               </li>
+               
+               <li class="ax-active">
+                  <a title="Writing Pages" href="./#start">Writing Pages</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<h1 id="writing-pages">Writing Pages</h1>
+<p><a href="../">« return to the manuals</a></p>
+<p>Pages are written in a declarative fashion using the JSON format.
+They are defined using JSON objects whose properties will be explained in this document.</p>
+<p>Preliminary readings:</p>
+<ul>
+<li><a href="../../concepts/">LaxarJS Core Concepts</a></li>
+<li><a href="../widgets_and_activities/">Widgets and Activities</a></li>
+</ul>
+<h2 id="layouts-and-areas"><a name="layouts_and_areas"></a>Layouts and Areas</h2>
+<p>First of all, a page should specify the <em>layout</em> which defines the available <em>widget areas</em> and how they are arranged visually when rendered by the web browser.
+If a page is intended to be used as a base page for <a href="#inheritance">inheritance</a>, the layout property should be omitted, as it is specified by the inheriting pages.
+Only one page in an extension chain may define a layout, and deferring this choice to the bottom of the hierarchy increases flexibility.</p>
+<p>For each layout, a <em>descriptor</em> containing its canonical name is required:</p>
+<div class="codehilite"><pre><span></span><span class="c1">// application/layouts/popups/layout-one/layout.json</span>
+<span class="p">{</span>
+   <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;layout-one&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Now let us use the following layout HTML:</p>
+<p><a name="example_layout_html"></a></p>
+<div class="codehilite"><pre><span></span><span class="c">&lt;!-- application/layouts/popups/layout-one/default.theme/layout-one.html --&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">ax-widget-area</span><span class="o">=</span><span class="s">&quot;header&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">ax-widget-area</span><span class="o">=</span><span class="s">&quot;content&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">ax-widget-area</span><span class="o">=</span><span class="s">&quot;footer&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>This layout defines three <em>widget areas</em> that can be occupied by widgets on the page.</p>
+<p>Configuring the layout is done via the <code>layout</code> property of the page definition.
+Its value is a relative path within the layouts root (usually <code>application/layouts</code>).
+To fill the available areas, we add another top-level key <code>areas</code> parallel to <code>layout</code>.
+Its value is a map, where each key is the name of a widget area defined in the layout and the values are arrays, that will later contain the widgets to render.
+Having not added any layouts so far, we thus get the following page file:</p>
+<p><a name="example_empty_page"></a></p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;layout&quot;</span><span class="p">:</span> <span class="s2">&quot;popups/layout-one&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;areas&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;header&quot;</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="nt">&quot;footer&quot;</span><span class="p">:</span> <span class="p">[]</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>When adding widgets to an area, their order determines the order in which the widgets will be rendered in the DOM.
+Each entry in the array is an object that can either reference a widget or a <a href="#compositions">composition</a>.
+It thus needs to specify either <code>widget</code> or <code>composition</code> as key.
+Additionally an <code>id</code> property can be provided, which may be useful for debugging and is actually required for widgets providing embedded widget areas such as the  <a href="https://www.npmjs.com/package/laxar-details-layer-widget">laxar-details-layer-widget</a>.
+If specifying an ID, make sure that it is unique page-wide (even taking into account inheritance).
+Finally it is possible to provide the configuration for features of a widget or a composition under the key <code>features</code>.</p>
+<p>Here is the example with a few basic widgets</p>
+<p><a name="example_basic_page"></a></p>
+<div class="codehilite"><pre><span></span><span class="c1">// application/pages/my-page.json</span>
+<span class="p">{</span>
+   <span class="s2">&quot;layout&quot;</span><span class="o">:</span> <span class="s2">&quot;popups/layout-one&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;areas&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;header&quot;</span><span class="o">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="s2">&quot;widget&quot;</span><span class="o">:</span> <span class="s2">&quot;laxar-headline-widget&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;features&quot;</span><span class="o">:</span> <span class="p">{</span>
+               <span class="s2">&quot;headline&quot;</span><span class="o">:</span> <span class="p">{</span>
+                  <span class="s2">&quot;i18nHtmlText&quot;</span><span class="o">:</span> <span class="s2">&quot;Welcome!&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;level&quot;</span><span class="o">:</span> <span class="mi">3</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;content&quot;</span><span class="o">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="s2">&quot;widget&quot;</span><span class="o">:</span> <span class="s2">&quot;laxar-command-bar-widget&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;features&quot;</span><span class="o">:</span> <span class="p">{</span>
+               <span class="s2">&quot;next&quot;</span><span class="o">:</span> <span class="p">{</span>
+                  <span class="s2">&quot;enabled&quot;</span><span class="o">:</span> <span class="kc">true</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">},</span>
+         <span class="p">{</span>
+            <span class="s2">&quot;composition&quot;</span><span class="o">:</span> <span class="s2">&quot;popup-composition&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;features&quot;</span><span class="o">:</span> <span class="p">{</span>
+               <span class="s2">&quot;openPopup&quot;</span><span class="o">:</span> <span class="p">{</span>
+                  <span class="s2">&quot;onActions&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&quot;next&quot;</span> <span class="p">]</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;footer&quot;</span><span class="o">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="s2">&quot;widget&quot;</span><span class="o">:</span> <span class="s2">&quot;laxar-html-display-widget&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;features&quot;</span><span class="o">:</span> <span class="p">{</span>
+               <span class="s2">&quot;content&quot;</span><span class="o">:</span> <span class="p">{</span>
+                  <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;footerTextResource&quot;</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">]</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>The object under <code>features</code> needs to match the schema of the corresponding widget's <code>widget.json</code> descriptor.
+Before loading a page and its widgets, LaxarJS will validate the configuration provided in the page against the widget's schema and throw an error in case one or more constraints are violated.
+LaxarJS will also fill in defaults specified by the schema.</p>
+<h3 id="special-purpose-widget-areas"><a name="special_purpose_areas"></a>Special Purpose Widget Areas</h3>
+<p>Even when using the most basic layout, LaxarJS always provides three special widget areas:</p>
+<ul>
+<li>
+<p><code>axActivities</code> is meant as a container for any activities on the page. You can put activities into any widget area, but since they cannot actually be rendered, there is no natural place for them. So, by convention they should be added to this area</p>
+</li>
+<li>
+<p><code>axPopups</code> is intended as a container for widgets that appear as <em>modal popup windows.</em> When such widgets become visible (e.g. upon a relevant action request), they should set the Bootstrap CSS class <code>modal-open</code> on the document body. This "greys out" the rest of the page, with the popup widget still visible in front.</p>
+</li>
+<li>
+<p><code>axPopovers</code> is meant to take up popover-style widgets that adjust their position depending on the currently active element to provide contextual functionality. These widgets appear in front of the page, but behind the <code>modal-open</code> layer (if that is visible at the same time).</p>
+</li>
+</ul>
+<h2 id="embedded-layouts"><a name="embeddedLayouts"></a>Embedded Layouts</h2>
+<p>There are use cases where it is not sufficient to reference one single-page layout and place all widgets of a page within that layout.
+Sometimes more flexibility is needed.
+For example, when trying to reuse existing layouts, it may be necessary to embedded another layout within the area of the top-level page layout.</p>
+<p>To support this in a hassle-free manner, layouts are first-class citizens within areas, just like widgets or <a href="#compositions">compositions</a>.</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;layout&quot;</span><span class="p">:</span> <span class="s2">&quot;popups/layout-one&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;areas&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;layout&quot;</span><span class="p">:</span> <span class="s2">&quot;other_layouts/small_columns&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;embedded&quot;</span>
+         <span class="p">},</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;laxar-command-bar-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;next&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">true</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;embedded.left&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;laxar-html-display-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;someResource&quot;</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">]</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>As seen in the example above, the key <code>layout</code> should be used instead of <code>widget</code>.
+Its value is - just like with the main <code>layout</code> property of a page - the path of a specific layout directory relative to the layouts-root of the application.
+Providing an <code>id</code> is obligatory for layouts, as it is needed to reference the widget areas defined by the layout.
+Under the assumption that the layout <code>other_layouts/small_columns</code> exports a widget area named <code>left</code>, we can now insert widgets into it using the area name <code>embedded.left</code> for it.</p>
+<p>Note that providing <code>features</code> to a layout entry does not lead to an error, but is simply ignored.</p>
+<h2 id="inheritance"><a name="inheritance"></a>Inheritance</h2>
+<p>In every user interface there are some elements that never change across pages.
+The easiest way to reuse these parts of a page definition is by <em>inheritance.</em>
+Common widgets can be extracted into one or more base pages that have no layout.
+The base pages can then be <em>extended</em> by concrete pages, defining the layout necessary to display their contents.</p>
+<p>Valid candidate widgets to put into base pages are application headlines, informational notes in a footer area or activities that provide common tasks for all pages.
+Let us apply this to our example from above and extract the <em>laxar-headline-widget</em> into a base page called <code>base-page.json</code>.</p>
+<div class="codehilite"><pre><span></span><span class="err">//</span> <span class="err">//</span> <span class="err">application/pages/base-page.json</span>
+<span class="p">{</span>
+   <span class="nt">&quot;areas&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;header&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;laxar-headline-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;headline&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;i18nHtmlText&quot;</span><span class="p">:</span> <span class="s2">&quot;Welcome!&quot;</span><span class="p">,</span>
+                  <span class="nt">&quot;level&quot;</span><span class="p">:</span> <span class="mi">3</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">]</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>We now can modify our original page using the keyword <code>extends</code> that references the base page relatively to the pages-root (usually <code>application/pages</code>).
+The parts already provided by the base page can then be deleted from the extending page:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;layout&quot;</span><span class="p">:</span> <span class="s2">&quot;popups/layout-one&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;extends&quot;</span><span class="p">:</span> <span class="s2">&quot;base-page&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;areas&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;laxar-command-bar-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;next&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">true</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">},</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;composition&quot;</span><span class="p">:</span> <span class="s2">&quot;popup-composition&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;openPopup&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;onActions&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;next&quot;</span> <span class="p">]</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;footer&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;laxar-html-display-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;footerTextResource&quot;</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">]</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Also, an extending page can add widgets to an area that already contains widgets from the base page.
+Widgets added by the extending page will be appended to the corresponding area and thus appear in the DOM after the widgets from the base page.
+If a widget of the extending page needs to appear precisely before a specific widget of the base page, this can be achieved using the keyword <code>insertBeforeId</code>.
+For this to work, it is of course necessary to specify an <code>id</code> property for the widget in the base page.</p>
+<p>Let us assume that we would like to add another additional headline in one extending page.
+We therefore change the base page first and add an ID to the existing headline:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;areas&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;header&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;laxar-headline-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;mainHeadline&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;headline&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;i18nHtmlText&quot;</span><span class="p">:</span> <span class="s2">&quot;Welcome!&quot;</span><span class="p">,</span>
+                  <span class="nt">&quot;level&quot;</span><span class="p">:</span> <span class="mi">3</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">]</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Hence the page that has the need to add content can reference the given ID using <code>insertBeforeId</code> like this:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;layout&quot;</span><span class="p">:</span> <span class="s2">&quot;popups/layout-one&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;extends&quot;</span><span class="p">:</span> <span class="s2">&quot;base-page&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;areas&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;header&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+            <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;laxar-headline-widget&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;insertBeforeId&quot;</span><span class="p">:</span> <span class="s2">&quot;mainHeadline&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;headline&quot;</span><span class="p">:</span> <span class="p">{</span>
+                   <span class="nt">&quot;i18nHtmlText&quot;</span><span class="p">:</span> <span class="s2">&quot;You just won one billion dollar!&quot;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot; ... some widgets ... &quot;</span> <span class="p">],</span>
+      <span class="nt">&quot;footer&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot; ... some widgets ... &quot;</span> <span class="p">]</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>This is all one needs to build basic pages for LaxarJS.</p>
+<p>Due to the intentional simplicity, inheritance is a somewhat limited way to reuse page definitions.
+It might become necessary to split pages into smaller, possibly reusable chunks, which is the task compositions where designed for.
+So if the need arises, read on in the manual for <a href="../writing_compositions/">writing compositions</a>.</p></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="../../../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="../../../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="../../../laxar.theme/js/base.js"></script>
+   </body>
+</html>

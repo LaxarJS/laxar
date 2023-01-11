@@ -1,0 +1,369 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "grunt-laxar\n\n\n\n\nGrunt tasks for LaxarJS\n\n\n\n\ngrunt-laxar\n provides a couple of custom tasks for \nLaxarJS\n applications\nand default configurations for tasks from the Grunt community.\n\n\n$\n grunt directory_tree portal_angular_dependencies connect karma watch\n\n        \u2514\u25001\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u25002\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u25003\u2500\u2500\u2500\u2518 \u2514\u25004\u2500\u2518 \u2514\u25005\u2500\u2518\n\n\n\n  1) create filesystem map in JSON\n\n\n  2) collect dependencies for AngularJS\n\n\n  3) start connect\n\n\n  4) run Karma tests\n\n\n  5) wait for changes\n\n\n\n\n\n\nGetting started\n\n\nThis plugin requires Grunt \n~0.4.4\n. In case you have not used Grunt before, be\nsure to have a look at the \nGetting Started\n\nguide.\n\n\nTo use this plugin, your first need to install it using \nNPM\n:\n\n\n$\n npm install\n\n\n\n\n\nAfter that, load its tasks from your Gruntfile:\n\n\ngrunt\n.\nloadNpmTasks\n(\n \ngrunt-laxar\n \n);\n\n\n\n\n\n\nIncluded tasks\n\n\n\n\ncss_merger\n:\n  Merge multiple CSS files into one file.\n\n\ndirectory_tree\n:\n  Generate a JSON mapping of files inside a specific directory tree.\n\n\nlaxar_dox\n:\n  Create API documentation in Markdown.\n\n\nportal_angular_dependencies\n:\n  Generate a \nRequireJS\n module to bootstrap \nAngularJS\n.\n\n\nwidget_json_merger\n:\n  Merge multiple \nwidget.json\n files into one file.\n\n\n\n\nThird party tasks\n\n\n\n\nconnect\n:\n  Start a static web server.\n\n\njshint\n:\n  Validate files with JSHint.\n\n\nkarma\n:\n  Run \nKarma\n.\n\n\nrequirejs\n:\n  Optimize \nRequireJS\n projects using \nr.js\n.", 
+            "title": "README"
+        }, 
+        {
+            "location": "/#grunt-laxar", 
+            "text": "Grunt tasks for LaxarJS   grunt-laxar  provides a couple of custom tasks for  LaxarJS  applications\nand default configurations for tasks from the Grunt community.  $  grunt directory_tree portal_angular_dependencies connect karma watch         \u2514\u25001\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u25002\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u25003\u2500\u2500\u2500\u2518 \u2514\u25004\u2500\u2518 \u2514\u25005\u2500\u2518    1) create filesystem map in JSON    2) collect dependencies for AngularJS    3) start connect    4) run Karma tests    5) wait for changes", 
+            "title": "grunt-laxar"
+        }, 
+        {
+            "location": "/#getting-started", 
+            "text": "This plugin requires Grunt  ~0.4.4 . In case you have not used Grunt before, be\nsure to have a look at the  Getting Started \nguide.  To use this plugin, your first need to install it using  NPM :  $  npm install  After that, load its tasks from your Gruntfile:  grunt . loadNpmTasks (   grunt-laxar   );", 
+            "title": "Getting started"
+        }, 
+        {
+            "location": "/#included-tasks", 
+            "text": "css_merger :\n  Merge multiple CSS files into one file.  directory_tree :\n  Generate a JSON mapping of files inside a specific directory tree.  laxar_dox :\n  Create API documentation in Markdown.  portal_angular_dependencies :\n  Generate a  RequireJS  module to bootstrap  AngularJS .  widget_json_merger :\n  Merge multiple  widget.json  files into one file.", 
+            "title": "Included tasks"
+        }, 
+        {
+            "location": "/#third-party-tasks", 
+            "text": "connect :\n  Start a static web server.  jshint :\n  Validate files with JSHint.  karma :\n  Run  Karma .  requirejs :\n  Optimize  RequireJS  projects using  r.js .", 
+            "title": "Third party tasks"
+        }, 
+        {
+            "location": "/CHANGELOG/", 
+            "text": "Changelog\n\n\nLast Changes\n\n\nv0.5.0\n\n\n\n\n#19\n: we're now using our own \nKarma\n and \ngrunt-karma\n forks so that we can respond to issues more quickly.\n\n\n#18\n: there is a new script \nbin/fixinstall\n to fix the PhantomJS installation if it's broken.\n\n\n\n\n#17\n: there are two new tasks to merge \ntest-results.xml\n and \nlcov.info\n files.\n\n  NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#16\n: the karma-task is now configured to easily create coverage reports.\n\n\n\n\n#15\n: the \nrequire_config.js\n, that is generated for widgets, now contains static configuration for Marked.\n\n\n#13\n: the \nrequire_config.js\n, that is generated for widgets, now contains the proper configuration for JSON-patch.\n\n\n\n\nv0.4.0\n\n\n\n\n#11\n: Improved readability of directory listing for connect task.\n\n\n#10\n: Fixed processing of multiple non-default themes\n\n\n#3\n: add some documentation\n\n\n#8\n: widget tests: automatically generate a \nRequireJS\n configuration (instead of using a static one)\n\n\n#7\n: css_merger: fixed theme processing for widgets and controls\n\n\n\n\nv0.3.0\n\n\n\n\n\n\n#4\n: directory_tree: allowed to embed files into listings using option embedContents\n\n  NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#5\n: css_merger: fixed default.theme handling (laxar_uikit) and absolute css urls\n\n\n\n\n#2\n: Finally, added a lot of tests\n\n\n#1\n: Made lookup of Grunt tasks more resilient", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#changelog", 
+            "text": "", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#last-changes", 
+            "text": "", 
+            "title": "Last Changes"
+        }, 
+        {
+            "location": "/CHANGELOG/#v050", 
+            "text": "#19 : we're now using our own  Karma  and  grunt-karma  forks so that we can respond to issues more quickly.  #18 : there is a new script  bin/fixinstall  to fix the PhantomJS installation if it's broken.   #17 : there are two new tasks to merge  test-results.xml  and  lcov.info  files. \n  NEW FEATURE: see ticket for details    #16 : the karma-task is now configured to easily create coverage reports.   #15 : the  require_config.js , that is generated for widgets, now contains static configuration for Marked.  #13 : the  require_config.js , that is generated for widgets, now contains the proper configuration for JSON-patch.", 
+            "title": "v0.5.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v040", 
+            "text": "#11 : Improved readability of directory listing for connect task.  #10 : Fixed processing of multiple non-default themes  #3 : add some documentation  #8 : widget tests: automatically generate a  RequireJS  configuration (instead of using a static one)  #7 : css_merger: fixed theme processing for widgets and controls", 
+            "title": "v0.4.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v030", 
+            "text": "#4 : directory_tree: allowed to embed files into listings using option embedContents \n  NEW FEATURE: see ticket for details    #5 : css_merger: fixed default.theme handling (laxar_uikit) and absolute css urls   #2 : Finally, added a lot of tests  #1 : Made lookup of Grunt tasks more resilient", 
+            "title": "v0.3.0"
+        }, 
+        {
+            "location": "/api/", 
+            "text": "Documentation\n\n\nlaxarPaths( config, [options] ) = require( './lib/laxar_paths' )\n\n\nUse laxar and the given require configuration to resolve\nthe paths/constants that laxar uses.\n\n\nParameters\n\n\n\n\n\n\nconfig {Object}\n: the require configuration to use\n\n\n\n\n\n\noptions\n {Object}\n: overrides\n\n\n\n\n\n\nReturns\n\n\n\n\n{Object}\n: an object containig the path laxar constants \nPRODUCT\n,\n\nTHEMES\n, \nLAYOUTS\n, \nWIDGETS\n, \nPAGES\n, \nFLOW_JSON\n,\n\nDEFAULT_THEME\n.\n\n\n\n\n\n\nmktree( base, filelist, callback ) = require( './lib/mktree' )\n\n\nTake a list of files and represent the directory tree\nas a javascript object.\n\n\nParameters\n\n\n\n\n\n\nbase {String}\n: the base directory for files\n\n\n\n\n\n\nfilelist {Array}\n: a list of filenames\n\n\n\n\n\n\ncallback {Function}\n: a nodejs style callback taking an error instance as\nthe first parameter or the directory tree as the second\n\n\n\n\n\n\nReturns\n\n\n\n\n{Object}\n: the promise of the whole operation\n\n\n\n\n\n\nrequireConfig( file, [options] ) = require( './lib/require_config' )\n\n\nLoad a configuration file for RequireJS and return\nthe config object.\nIf the configuration specifies paths for 'underscore' and/or\n'q', those will be replaced by local node modules.\n\n\nParameters\n\n\n\n\n\n\nfile {String}\n: the config file\n\n\n\n\n\n\noptions\n {Objec\u0167}\n: additional options:\n\n\n\n\n\n\nbase\n: interpret the config file's \nbaseUrl\n as\nrelative to this directory\n\n\n\n\n\n\nglobals\n: export the given grobals the the require\nconfiguration script\n\n\n\n\n\n\nReturns\n\n\n\n\n{Object}\n: the configuration object", 
+            "title": "api.md"
+        }, 
+        {
+            "location": "/api/#documentation", 
+            "text": "", 
+            "title": "Documentation"
+        }, 
+        {
+            "location": "/api/#laxarpaths-config-options-require-liblaxar_paths", 
+            "text": "Use laxar and the given require configuration to resolve\nthe paths/constants that laxar uses.", 
+            "title": "laxarPaths( config, [options] ) = require( './lib/laxar_paths' )"
+        }, 
+        {
+            "location": "/api/#parameters", 
+            "text": "config {Object} : the require configuration to use    options  {Object} : overrides", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/#returns", 
+            "text": "{Object} : an object containig the path laxar constants  PRODUCT , THEMES ,  LAYOUTS ,  WIDGETS ,  PAGES ,  FLOW_JSON , DEFAULT_THEME .", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/#mktree-base-filelist-callback-require-libmktree", 
+            "text": "Take a list of files and represent the directory tree\nas a javascript object.", 
+            "title": "mktree( base, filelist, callback ) = require( './lib/mktree' )"
+        }, 
+        {
+            "location": "/api/#parameters_1", 
+            "text": "base {String} : the base directory for files    filelist {Array} : a list of filenames    callback {Function} : a nodejs style callback taking an error instance as\nthe first parameter or the directory tree as the second", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/#returns_1", 
+            "text": "{Object} : the promise of the whole operation", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/#requireconfig-file-options-require-librequire_config", 
+            "text": "Load a configuration file for RequireJS and return\nthe config object.\nIf the configuration specifies paths for 'underscore' and/or\n'q', those will be replaced by local node modules.", 
+            "title": "requireConfig( file, [options] ) = require( './lib/require_config' )"
+        }, 
+        {
+            "location": "/api/#parameters_2", 
+            "text": "file {String} : the config file    options  {Objec\u0167} : additional options:    base : interpret the config file's  baseUrl  as\nrelative to this directory    globals : export the given grobals the the require\nconfiguration script", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/#returns_2", 
+            "text": "{Object} : the configuration object", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/tasks/css_merger/", 
+            "text": "The \"css_merger\" task\n\n\nThe \ncss_merger\n task merges CSS files.\n\n\nOverview\n\n\nRun this task with the \ngrunt css_merger\n command.\n\n\nTask targets, files and options may be specified according to the grunt\n\nConfiguring tasks\n guide.\n\n\nOptions\n\n\noptions.base\n\n\nType: \nString\n\nDefault value: \n.\n\n\nThe path to your project.\n\n\noptions.themes\n\n\nType: \nString\n\nDefault value: \nlaxar-path-themes\n\n\nA path that RequireJS can resolve that points to your themes.\n\n\noptions.layouts\n\n\nType: \nString\n\nDefault value: \nlaxar-path-layouts\n\n\nA path that RequireJS can resolve that points to your layouts.\n\n\noptions.widgets\n\n\nType: \nString\n\nDefault value: \nlaxar-path-widgets\n\n\nA path that RequireJS can resolve that points to your widgets.\n\n\noptions.output\n\n\nType: \nString\n\nDefault value: \nvar/static/css\n\n\nThe directory to write CSS files to.\n\n\noptions.defaulTheme\n\n\nType: \nString\n\nDefault value: \ndefault.theme\n\n\nThe name of the default theme.\n\n\noptions.requireConfig\n\n\nType: \nString\n\nDefault value: \nrequire_config.js\n\n\nThe path to your RequireJS configuration file.\n\n\nUsage examples\n\n\nDefault options\n\n\ngrunt\n.\ninitConfig\n(\n \n{\n\n   \ncss_merger\n:\n \n{\n\n      \ndefault\n:\n \n{}\n\n   \n}\n\n\n}\n \n);", 
+            "title": "The &quot;css_merger&quot; task"
+        }, 
+        {
+            "location": "/tasks/css_merger/#the-css_merger-task", 
+            "text": "The  css_merger  task merges CSS files.", 
+            "title": "The \"css_merger\" task"
+        }, 
+        {
+            "location": "/tasks/css_merger/#overview", 
+            "text": "Run this task with the  grunt css_merger  command.  Task targets, files and options may be specified according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/css_merger/#options", 
+            "text": "", 
+            "title": "Options"
+        }, 
+        {
+            "location": "/tasks/css_merger/#optionsbase", 
+            "text": "Type:  String \nDefault value:  .  The path to your project.", 
+            "title": "options.base"
+        }, 
+        {
+            "location": "/tasks/css_merger/#optionsthemes", 
+            "text": "Type:  String \nDefault value:  laxar-path-themes  A path that RequireJS can resolve that points to your themes.", 
+            "title": "options.themes"
+        }, 
+        {
+            "location": "/tasks/css_merger/#optionslayouts", 
+            "text": "Type:  String \nDefault value:  laxar-path-layouts  A path that RequireJS can resolve that points to your layouts.", 
+            "title": "options.layouts"
+        }, 
+        {
+            "location": "/tasks/css_merger/#optionswidgets", 
+            "text": "Type:  String \nDefault value:  laxar-path-widgets  A path that RequireJS can resolve that points to your widgets.", 
+            "title": "options.widgets"
+        }, 
+        {
+            "location": "/tasks/css_merger/#optionsoutput", 
+            "text": "Type:  String \nDefault value:  var/static/css  The directory to write CSS files to.", 
+            "title": "options.output"
+        }, 
+        {
+            "location": "/tasks/css_merger/#optionsdefaultheme", 
+            "text": "Type:  String \nDefault value:  default.theme  The name of the default theme.", 
+            "title": "options.defaulTheme"
+        }, 
+        {
+            "location": "/tasks/css_merger/#optionsrequireconfig", 
+            "text": "Type:  String \nDefault value:  require_config.js  The path to your RequireJS configuration file.", 
+            "title": "options.requireConfig"
+        }, 
+        {
+            "location": "/tasks/css_merger/#usage-examples", 
+            "text": "", 
+            "title": "Usage examples"
+        }, 
+        {
+            "location": "/tasks/css_merger/#default-options", 
+            "text": "grunt . initConfig (   { \n    css_merger :   { \n       default :   {} \n    }  }   );", 
+            "title": "Default options"
+        }, 
+        {
+            "location": "/tasks/directory_tree/", 
+            "text": "The \"directory_tree\" task\n\n\nThe \ndirectory_tree\n task takes a list of files and generates a JSON file\nthat resembles the directory tree represented by these files.\n\n\nOverview\n\n\nRun this task with the \ngrunt directory_tree\n command.\n\n\nTask targets, files and options may be specified according to the grunt\n\nConfiguring tasks\n guide.\n\n\nOptions\n\n\noptions.base\n\n\nType: \nString\n\nDefault value: \n.\n\n\nThe path to your project.\n\n\nUsage examples\n\n\nOne markdown file\n\n\ngrunt\n.\ninitConfig\n(\n \n{\n\n   \ndirectory_tree\n:\n \n{\n\n      \nlib\n:\n \n{\n\n         \nfiles\n:\n \n{\n\n            \ndocs/api.md\n:\n \n[\n \nlib/**/*.js\n \n]\n\n         \n}\n\n      \n}\n\n   \n}\n\n\n}\n \n);\n\n\n\n\n\n\nMultiple markdown files\n\n\n```js\ngrunt.initConfig( {\n   directory_tree: {\n      lib: {\n         files: {\n            expand: true,\n            cwd: 'lib',\n            src: 'lib/*\n/\n.js',\n            dest: 'docs/api/',\n            ext: '.md'\n         }\n      }\n   }", 
+            "title": "The &quot;directory_tree&quot; task"
+        }, 
+        {
+            "location": "/tasks/directory_tree/#the-directory_tree-task", 
+            "text": "The  directory_tree  task takes a list of files and generates a JSON file\nthat resembles the directory tree represented by these files.", 
+            "title": "The \"directory_tree\" task"
+        }, 
+        {
+            "location": "/tasks/directory_tree/#overview", 
+            "text": "Run this task with the  grunt directory_tree  command.  Task targets, files and options may be specified according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/directory_tree/#options", 
+            "text": "", 
+            "title": "Options"
+        }, 
+        {
+            "location": "/tasks/directory_tree/#optionsbase", 
+            "text": "Type:  String \nDefault value:  .  The path to your project.", 
+            "title": "options.base"
+        }, 
+        {
+            "location": "/tasks/directory_tree/#usage-examples", 
+            "text": "", 
+            "title": "Usage examples"
+        }, 
+        {
+            "location": "/tasks/directory_tree/#one-markdown-file", 
+            "text": "grunt . initConfig (   { \n    directory_tree :   { \n       lib :   { \n          files :   { \n             docs/api.md :   [   lib/**/*.js   ] \n          } \n       } \n    }  }   );", 
+            "title": "One markdown file"
+        }, 
+        {
+            "location": "/tasks/directory_tree/#multiple-markdown-files", 
+            "text": "```js\ngrunt.initConfig( {\n   directory_tree: {\n      lib: {\n         files: {\n            expand: true,\n            cwd: 'lib',\n            src: 'lib/* / .js',\n            dest: 'docs/api/',\n            ext: '.md'\n         }\n      }\n   }", 
+            "title": "Multiple markdown files"
+        }, 
+        {
+            "location": "/tasks/laxar_dox/", 
+            "text": "The \"laxar_dox\" task\n\n\nThe \nlaxar_dox\n task uses \nlaxar_dox\n to output API documentation in markdown\nformat.\n\n\nOverview\n\n\nRun this task with the \ngrunt laxar_dox\n command.\n\n\nTask targets, files and options may be specified according to the grunt\n\nConfiguring tasks\n guide.\n\n\nOptions\n\n\nNone\n\n\nUsage examples\n\n\nOne markdown file\n\n\ngrunt\n.\ninitConfig\n(\n \n{\n\n   \nlaxar_dox\n:\n \n{\n\n      \nlib\n:\n \n{\n\n         \nfiles\n:\n \n{\n\n            \ndocs/api.md\n:\n \n[\n \nlib/**/*.js\n \n]\n\n         \n}\n\n      \n}\n\n   \n}\n\n\n}\n \n);\n\n\n\n\n\n\nMultiple markdown files\n\n\ngrunt\n.\ninitConfig\n(\n \n{\n\n   \nlaxar_dox\n:\n \n{\n\n      \nlib\n:\n \n{\n\n         \nfiles\n:\n \n{\n\n            \nexpand\n:\n \ntrue\n,\n\n            \ncwd\n:\n \nlib\n,\n\n            \nsrc\n:\n \nlib/**/*.js\n,\n\n            \ndest\n:\n \ndocs/api/\n,\n\n            \next\n:\n \n.md\n\n         \n}\n\n      \n}\n\n   \n}\n\n\n}\n \n);", 
+            "title": "The &quot;laxar_dox&quot; task"
+        }, 
+        {
+            "location": "/tasks/laxar_dox/#the-laxar_dox-task", 
+            "text": "The  laxar_dox  task uses  laxar_dox  to output API documentation in markdown\nformat.", 
+            "title": "The \"laxar_dox\" task"
+        }, 
+        {
+            "location": "/tasks/laxar_dox/#overview", 
+            "text": "Run this task with the  grunt laxar_dox  command.  Task targets, files and options may be specified according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/laxar_dox/#options", 
+            "text": "None", 
+            "title": "Options"
+        }, 
+        {
+            "location": "/tasks/laxar_dox/#usage-examples", 
+            "text": "", 
+            "title": "Usage examples"
+        }, 
+        {
+            "location": "/tasks/laxar_dox/#one-markdown-file", 
+            "text": "grunt . initConfig (   { \n    laxar_dox :   { \n       lib :   { \n          files :   { \n             docs/api.md :   [   lib/**/*.js   ] \n          } \n       } \n    }  }   );", 
+            "title": "One markdown file"
+        }, 
+        {
+            "location": "/tasks/laxar_dox/#multiple-markdown-files", 
+            "text": "grunt . initConfig (   { \n    laxar_dox :   { \n       lib :   { \n          files :   { \n             expand :   true , \n             cwd :   lib , \n             src :   lib/**/*.js , \n             dest :   docs/api/ , \n             ext :   .md \n          } \n       } \n    }  }   );", 
+            "title": "Multiple markdown files"
+        }, 
+        {
+            "location": "/tasks/portal_angular_dependencies/", 
+            "text": "The \"portal_angular_dependencies\" task\n\n\nThe \nportal_angular_dependencies\n task parses an application's\nflow, resolves the pages and determines the widgets and controls\nused in those pages.\nFrom the list of widgets and controls it creates a \nRequireJS\n module\nthat consists of a list of all the required modules' names.\n\n\nOverview\n\n\nRun this task with the \ngrunt portal_angular_dependencies\n command.\n\n\nTask targets, files and options may be specified according to the grunt\n\nConfiguring tasks\n guide.\n\n\nOptions\n\n\noptions.base\n\n\nType: \nString\n\nDefault value: \n.\n\n\nThe path to your project.\n\n\noptions.laxar\n\n\nType: \nString\n\nDefault value: \nlaxar\n\n\nThe RequireJS module name that resolves to Laxar.\n\n\noptions.pages\n\n\nType: \nString\n\nDefault value: \nlaxar-path-pages\n\n\nA path that RequireJS can resolve that points to your pages.\n\n\noptions.widgets\n\n\nType: \nString\n\nDefault value: \nlaxar-path-widgets\n\n\nA path that RequireJS can resolve that points to your widgets.\n\n\noptions.requireConfig\n\n\nType: \nString\n\nDefault value: \nrequire_config.js\n\n\nThe path to your RequireJS configuration file.\n\n\nUsage examples\n\n\nSingle flow, single output\n\n\ngrunt\n.\ninitConfig\n(\n \n{\n\n   \nportal_angular_dependencies\n:\n \n{\n\n      \ndefault\n:\n \n{\n\n         \nvar/portal_angular_dependencies.js\n:\n \n[\n \napplication/flow/flow.json\n \n]\n\n      \n}\n\n   \n}\n\n\n}\n \n);\n\n\n\n\n\n\nMultiple flows, single output\n\n\ngrunt\n.\ninitConfig\n(\n \n{\n\n   \nportal_angular_dependencies\n:\n \n{\n\n      \ndefault\n:\n \n{\n\n         \nvar/portal_angular_dependencies.js\n:\n \n[\n \napplication/flow/*.json\n \n]\n\n      \n}\n\n   \n}\n\n\n}\n \n);\n\n\n\n\n\n\nMultiple flows, multiple outputs\n\n\ngrunt\n.\ninitConfig\n(\n \n{\n\n   \nportal_angular_dependencies\n:\n \n{\n\n      \ndefault\n:\n \n{\n\n         \nvar/portal_angular_dependencies_one.js\n:\n \n[\n \napplication/flow/flow_one.json\n \n],\n\n         \nvar/portal_angular_dependencies_two.js\n:\n \n[\n \napplication/flow/flow_two.json\n \n]\n\n      \n}\n\n   \n}\n\n\n}\n \n);", 
+            "title": "The &quot;portal_angular_dependencies&quot; task"
+        }, 
+        {
+            "location": "/tasks/portal_angular_dependencies/#the-portal_angular_dependencies-task", 
+            "text": "The  portal_angular_dependencies  task parses an application's\nflow, resolves the pages and determines the widgets and controls\nused in those pages.\nFrom the list of widgets and controls it creates a  RequireJS  module\nthat consists of a list of all the required modules' names.", 
+            "title": "The \"portal_angular_dependencies\" task"
+        }, 
+        {
+            "location": "/tasks/portal_angular_dependencies/#overview", 
+            "text": "Run this task with the  grunt portal_angular_dependencies  command.  Task targets, files and options may be specified according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/portal_angular_dependencies/#options", 
+            "text": "", 
+            "title": "Options"
+        }, 
+        {
+            "location": "/tasks/portal_angular_dependencies/#optionsbase", 
+            "text": "Type:  String \nDefault value:  .  The path to your project.", 
+            "title": "options.base"
+        }, 
+        {
+            "location": "/tasks/portal_angular_dependencies/#optionslaxar", 
+            "text": "Type:  String \nDefault value:  laxar  The RequireJS module name that resolves to Laxar.", 
+            "title": "options.laxar"
+        }, 
+        {
+            "location": "/tasks/portal_angular_dependencies/#optionspages", 
+            "text": "Type:  String \nDefault value:  laxar-path-pages  A path that RequireJS can resolve that points to your pages.", 
+            "title": "options.pages"
+        }, 
+        {
+            "location": "/tasks/portal_angular_dependencies/#optionswidgets", 
+            "text": "Type:  String \nDefault value:  laxar-path-widgets  A path that RequireJS can resolve that points to your widgets.", 
+            "title": "options.widgets"
+        }, 
+        {
+            "location": "/tasks/portal_angular_dependencies/#optionsrequireconfig", 
+            "text": "Type:  String \nDefault value:  require_config.js  The path to your RequireJS configuration file.", 
+            "title": "options.requireConfig"
+        }, 
+        {
+            "location": "/tasks/portal_angular_dependencies/#usage-examples", 
+            "text": "", 
+            "title": "Usage examples"
+        }, 
+        {
+            "location": "/tasks/portal_angular_dependencies/#single-flow-single-output", 
+            "text": "grunt . initConfig (   { \n    portal_angular_dependencies :   { \n       default :   { \n          var/portal_angular_dependencies.js :   [   application/flow/flow.json   ] \n       } \n    }  }   );", 
+            "title": "Single flow, single output"
+        }, 
+        {
+            "location": "/tasks/portal_angular_dependencies/#multiple-flows-single-output", 
+            "text": "grunt . initConfig (   { \n    portal_angular_dependencies :   { \n       default :   { \n          var/portal_angular_dependencies.js :   [   application/flow/*.json   ] \n       } \n    }  }   );", 
+            "title": "Multiple flows, single output"
+        }, 
+        {
+            "location": "/tasks/portal_angular_dependencies/#multiple-flows-multiple-outputs", 
+            "text": "grunt . initConfig (   { \n    portal_angular_dependencies :   { \n       default :   { \n          var/portal_angular_dependencies_one.js :   [   application/flow/flow_one.json   ], \n          var/portal_angular_dependencies_two.js :   [   application/flow/flow_two.json   ] \n       } \n    }  }   );", 
+            "title": "Multiple flows, multiple outputs"
+        }, 
+        {
+            "location": "/tasks/widget_json_merger/", 
+            "text": "The \"widget_json_merger\" task\n\n\nThe \nwidget_json_merger\n task merges \nwidget.json\n files.\n\n\nOverview\n\n\nRun this task with the \ngrunt widget_json_merger\n command.\n\n\nTask targets, files and options may be specified according to the grunt\n\nConfiguring tasks\n guide.\n\n\nOptions\n\n\noptions.base\n\n\nType: \nString\n\nDefault value: \n.\n\n\nThe path to your project.\n\n\noptions.widgets\n\n\nType: \nString\n\nDefault value: \nlaxar-path-widgets\n\n\nA path that RequireJS can resolve that points to your widgets.\n\n\noptions.output\n\n\nType: \nString\n\nDefault value: \nvar/static\n\n\nThe directory to write the \nwidgets.js\n file to.\n\n\noptions.requireConfig\n\n\nType: \nString\n\nDefault value: \nrequire_config.js\n\n\nThe path to your RequireJS configuration file.\n\n\nUsage examples\n\n\nDefault options\n\n\ngrunt\n.\ninitConfig\n(\n \n{\n\n   \nwidget_json_merger\n:\n \n{\n\n      \ndefault\n:\n \n{}\n\n   \n}\n\n\n}\n \n);", 
+            "title": "The &quot;widget_json_merger&quot; task"
+        }, 
+        {
+            "location": "/tasks/widget_json_merger/#the-widget_json_merger-task", 
+            "text": "The  widget_json_merger  task merges  widget.json  files.", 
+            "title": "The \"widget_json_merger\" task"
+        }, 
+        {
+            "location": "/tasks/widget_json_merger/#overview", 
+            "text": "Run this task with the  grunt widget_json_merger  command.  Task targets, files and options may be specified according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/widget_json_merger/#options", 
+            "text": "", 
+            "title": "Options"
+        }, 
+        {
+            "location": "/tasks/widget_json_merger/#optionsbase", 
+            "text": "Type:  String \nDefault value:  .  The path to your project.", 
+            "title": "options.base"
+        }, 
+        {
+            "location": "/tasks/widget_json_merger/#optionswidgets", 
+            "text": "Type:  String \nDefault value:  laxar-path-widgets  A path that RequireJS can resolve that points to your widgets.", 
+            "title": "options.widgets"
+        }, 
+        {
+            "location": "/tasks/widget_json_merger/#optionsoutput", 
+            "text": "Type:  String \nDefault value:  var/static  The directory to write the  widgets.js  file to.", 
+            "title": "options.output"
+        }, 
+        {
+            "location": "/tasks/widget_json_merger/#optionsrequireconfig", 
+            "text": "Type:  String \nDefault value:  require_config.js  The path to your RequireJS configuration file.", 
+            "title": "options.requireConfig"
+        }, 
+        {
+            "location": "/tasks/widget_json_merger/#usage-examples", 
+            "text": "", 
+            "title": "Usage examples"
+        }, 
+        {
+            "location": "/tasks/widget_json_merger/#default-options", 
+            "text": "grunt . initConfig (   { \n    widget_json_merger :   { \n       default :   {} \n    }  }   );", 
+            "title": "Default options"
+        }
+    ]
+}

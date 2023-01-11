@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../laxar.theme/img/favicon.ico">
+        <title>LaxarJS  v2.0.0</title>
+
+        <link rel="stylesheet" href="../../../laxar.theme/css/pygments.css">
+        <link href="../../../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="../../../laxar-latest">laxar</a></li>
+            
+            <li><a href="../../../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="../../../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="../../../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="../../../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="../../../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="../../../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="../../../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="../../../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="../../../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="../../../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="../../../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="../../../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v2.0.0 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="../../../laxar-v2-latest">v2.0.3</a></li>
+            
+               <li><a href="../../../laxar-v1-latest">v1.3.5</a></li>
+            
+               <li><a href="../../../laxar-v0-latest">v0.26.2</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="../../../laxar-v2.0.3">v2.0.3</a></li>
+         
+            <li><a href="../../../laxar-v2.0.2">v2.0.2</a></li>
+         
+            <li><a href="../../../laxar-v2.0.1">v2.0.1</a></li>
+         
+            <li><a href="../../../laxar-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="../../../laxar-v1.3.5">v1.3.5</a></li>
+         
+            <li><a href="../../../laxar-v1.3.4">v1.3.4</a></li>
+         
+            <li><a href="../../../laxar-v1.3.3">v1.3.3</a></li>
+         
+            <li><a href="../../../laxar-v1.3.2">v1.3.2</a></li>
+         
+            <li><a href="../../../laxar-v1.3.1">v1.3.1</a></li>
+         
+            <li><a href="../../../laxar-v1.3.0">v1.3.0</a></li>
+         
+            <li><a href="../../../laxar-v1.2.10">v1.2.10</a></li>
+         
+            <li><a href="../../../laxar-v1.2.9">v1.2.9</a></li>
+         
+            <li><a href="../../../laxar-v1.2.8">v1.2.8</a></li>
+         
+            <li><a href="../../../laxar-v1.2.7">v1.2.7</a></li>
+         
+            <li><a href="../../../laxar-v1.2.6">v1.2.6</a></li>
+         
+            <li><a href="../../../laxar-v1.2.5">v1.2.5</a></li>
+         
+            <li><a href="../../../laxar-v1.2.4">v1.2.4</a></li>
+         
+            <li><a href="../../../laxar-v1.2.3">v1.2.3</a></li>
+         
+            <li><a href="../../../laxar-v1.2.2">v1.2.2</a></li>
+         
+            <li><a href="../../../laxar-v1.2.1">v1.2.1</a></li>
+         
+            <li><a href="../../../laxar-v1.2.0">v1.2.0</a></li>
+         
+            <li><a href="../../../laxar-v1.1.0">v1.1.0</a></li>
+         
+            <li><a href="../../../laxar-v1.0.5">v1.0.5</a></li>
+         
+            <li><a href="../../../laxar-v1.0.4">v1.0.4</a></li>
+         
+            <li><a href="../../../laxar-v1.0.3">v1.0.3</a></li>
+         
+            <li><a href="../../../laxar-v1.0.2">v1.0.2</a></li>
+         
+            <li><a href="../../../laxar-v1.0.1">v1.0.1</a></li>
+         
+            <li><a href="../../../laxar-v1.0.0">v1.0.0</a></li>
+         
+            <li><a href="../../../laxar-v0.26.2">v0.26.2</a></li>
+         
+            <li><a href="../../../laxar-v0.26.1">v0.26.1</a></li>
+         
+            <li><a href="../../../laxar-v0.26.0">v0.26.0</a></li>
+         
+            <li><a href="../../../laxar-v0.25.1">v0.25.1</a></li>
+         
+            <li><a href="../../../laxar-v0.25.0">v0.25.0</a></li>
+         
+            <li><a href="../../../laxar-v0.24.0">v0.24.0</a></li>
+         
+            <li><a href="../../../laxar-v0.23.3">v0.23.3</a></li>
+         
+            <li><a href="../../../laxar-v0.23.2">v0.23.2</a></li>
+         
+            <li><a href="../../../laxar-v0.23.1">v0.23.1</a></li>
+         
+            <li><a href="../../../laxar-v0.23.0">v0.23.0</a></li>
+         
+            <li><a href="../../../laxar-v0.22.2">v0.22.2</a></li>
+         
+            <li><a href="../../../laxar-v0.22.1">v0.22.1</a></li>
+         
+            <li><a href="../../../laxar-v0.22.0">v0.22.0</a></li>
+         
+            <li><a href="../../../laxar-v0.21.0">v0.21.0</a></li>
+         
+            <li><a href="../../../laxar-v0.20.1">v0.20.1</a></li>
+         
+            <li><a href="../../../laxar-v0.20.0">v0.20.0</a></li>
+         
+            <li><a href="../../../laxar-v0.19.1">v0.19.1</a></li>
+         
+            <li><a href="../../../laxar-v0.19.0">v0.19.0</a></li>
+         
+            <li><a href="../../../laxar-v0.18.2">v0.18.2</a></li>
+         
+            <li><a href="../../../laxar-v0.18.1">v0.18.1</a></li>
+         
+            <li><a href="../../../laxar-v0.18.0">v0.18.0</a></li>
+         
+            <li><a href="../../../laxar-v0.17.1">v0.17.1</a></li>
+         
+            <li><a href="../../../laxar-v0.17.0">v0.17.0</a></li>
+         
+            <li><a href="../../../laxar-v0.16.2">v0.16.2</a></li>
+         
+            <li><a href="../../../laxar-v0.16.1">v0.16.1</a></li>
+         
+            <li><a href="../../../laxar-v0.16.0">v0.16.0</a></li>
+         
+            <li><a href="../../../laxar-v0.15.0">v0.15.0</a></li>
+         
+            <li><a href="../../../laxar-v0.14.0">v0.14.0</a></li>
+         
+            <li><a href="../../../laxar-v0.13.3">v0.13.3</a></li>
+         
+            <li><a href="../../../laxar-v0.13.2">v0.13.2</a></li>
+         
+            <li><a href="../../../laxar-v0.13.1">v0.13.1</a></li>
+         
+            <li><a href="../../../laxar-v0.13.0">v0.13.0</a></li>
+         
+            <li><a href="../../../laxar-v0.12.1">v0.12.1</a></li>
+         
+            <li><a href="../../../laxar-v0.12.0">v0.12.0</a></li>
+         
+            <li><a href="../../../laxar-v0.11.1">v0.11.1</a></li>
+         
+            <li><a href="../../../laxar-v0.11.0">v0.11.0</a></li>
+         
+            <li><a href="../../../laxar-v0.10.1">v0.10.1</a></li>
+         
+            <li><a href="../../../laxar-v0.10.0">v0.10.0</a></li>
+         
+            <li><a href="../../../laxar-v0.9.11">v0.9.11</a></li>
+         
+            <li><a href="../../../laxar-v0.9.10">v0.9.10</a></li>
+         
+            <li><a href="../../../laxar-v0.9.9">v0.9.9</a></li>
+         
+            <li><a href="../../../laxar-v0.9.8">v0.9.8</a></li>
+         
+            <li><a href="../../../laxar-v0.9.7">v0.9.7</a></li>
+         
+            <li><a href="../../../laxar-v0.9.6">v0.9.6</a></li>
+         
+            <li><a href="../../../laxar-v0.9.5">v0.9.5</a></li>
+         
+            <li><a href="../../../laxar-v0.9.4">v0.9.4</a></li>
+         
+            <li><a href="../../../laxar-v0.9.3">v0.9.3</a></li>
+         
+            <li><a href="../../../laxar-v0.9.2">v0.9.2</a></li>
+         
+            <li><a href="../../../laxar-v0.9.1">v0.9.1</a></li>
+         
+            <li><a href="../../../laxar-v0.9.0">v0.9.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="../../CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar/tree/v2.0.0">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main"><a title="README" href="../..#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Concepts" href="../../concepts/#start">LaxarJS Concepts</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Glossary" href="../../glossary/#start">LaxarJS Glossary</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Troubleshooting" href="../../troubleshooting/#start">LaxarJS Troubleshooting</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="Why LaxarJS?" href="../../why_laxar/#start">Why LaxarJS?</a></li>
+         
+      
+   
+      
+         <li class="main ax-collapse ax-active" >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="API"
+               data-toggle="collapse"
+               data-target="#API"
+               aria-expanded="false"
+               aria-controls="collapseExample">API <span class="caret"></span></a>
+
+            <ul class="nav subnav in"
+               id="API">
+               
+               <li >
+                  <a title="Overview" href="../#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="adapter_utilities" href="../runtime.adapter_utilities/#start">adapter_utilities</a>
+               </li>
+               
+               <li >
+                  <a title="assert" href="../utilities.assert/#start">assert</a>
+               </li>
+               
+               <li >
+                  <a title="browser" href="../runtime.browser/#start">browser</a>
+               </li>
+               
+               <li >
+                  <a title="configuration" href="../runtime.configuration/#start">configuration</a>
+               </li>
+               
+               <li >
+                  <a title="configuration_mock" href="../testing.configuration_mock/#start">configuration_mock</a>
+               </li>
+               
+               <li >
+                  <a title="control_loader" href="../loaders.control_loader/#start">control_loader</a>
+               </li>
+               
+               <li >
+                  <a title="event_bus" href="../runtime.event_bus/#start">event_bus</a>
+               </li>
+               
+               <li >
+                  <a title="event_bus_mock" href="../testing.event_bus_mock/#start">event_bus_mock</a>
+               </li>
+               
+               <li >
+                  <a title="flow_service" href="../runtime.flow_service/#start">flow_service</a>
+               </li>
+               
+               <li >
+                  <a title="flow_service_mock" href="../testing.flow_service_mock/#start">flow_service_mock</a>
+               </li>
+               
+               <li >
+                  <a title="heartbeat" href="../runtime.heartbeat/#start">heartbeat</a>
+               </li>
+               
+               <li >
+                  <a title="heartbeat_mock" href="../testing.heartbeat_mock/#start">heartbeat_mock</a>
+               </li>
+               
+               <li >
+                  <a title="i18n_mock" href="../testing.widget_services_i18n_mock/#start">i18n_mock</a>
+               </li>
+               
+               <li >
+                  <a title="laxar" href="../laxar/#start">laxar</a>
+               </li>
+               
+               <li >
+                  <a title="laxar-widget-service-mocks" href="../laxar-widget-service-mocks/#start">laxar-widget-service-mocks</a>
+               </li>
+               
+               <li >
+                  <a title="log" href="../runtime.log/#start">log</a>
+               </li>
+               
+               <li >
+                  <a title="log_mock" href="../testing.log_mock/#start">log_mock</a>
+               </li>
+               
+               <li >
+                  <a title="navigo_router" href="../runtime.navigo_router/#start">navigo_router</a>
+               </li>
+               
+               <li >
+                  <a title="object" href="../utilities.object/#start">object</a>
+               </li>
+               
+               <li >
+                  <a title="pages" href="../tooling.pages/#start">pages</a>
+               </li>
+               
+               <li >
+                  <a title="plain_adapter" href="../runtime.plain_adapter/#start">plain_adapter</a>
+               </li>
+               
+               <li >
+                  <a title="storage" href="../runtime.storage/#start">storage</a>
+               </li>
+               
+               <li >
+                  <a title="storage_mock" href="../testing.storage_mock/#start">storage_mock</a>
+               </li>
+               
+               <li >
+                  <a title="string" href="../utilities.string/#start">string</a>
+               </li>
+               
+               <li >
+                  <a title="tooling" href="../tooling.tooling/#start">tooling</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services" href="../runtime.widget_services/#start">widget_services</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_area_helper_mock" href="../testing.widget_services_area_helper_mock/#start">widget_services_area_helper_mock</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_assets_mock" href="../testing.widget_services_assets_mock/#start">widget_services_assets_mock</a>
+               </li>
+               
+               <li class="ax-active">
+                  <a title="widget_services_i18n" href="./#start">widget_services_i18n</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_storage_mock" href="../testing.widget_services_storage_mock/#start">widget_services_storage_mock</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_visibility" href="../runtime.widget_services_visibility/#start">widget_services_visibility</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_visibility_mock" href="../testing.widget_services_visibility_mock/#start">widget_services_visibility_mock</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Contributing"
+               data-toggle="collapse"
+               data-target="#Contributing"
+               aria-expanded="false"
+               aria-controls="collapseExample">Contributing <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="Contributing">
+               
+               <li >
+                  <a title="LaxarJS Coding Styles" href="../../contributing/styleguide/#start">LaxarJS Coding Styles</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Manuals"
+               data-toggle="collapse"
+               data-target="#Manuals"
+               aria-expanded="false"
+               aria-controls="collapseExample">Manuals <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="Manuals">
+               
+               <li >
+                  <a title="Overview" href="../../manuals/#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="Assets and the Artifacts Bundle" href="../../manuals/asset_lookup/#start">Assets and the Artifacts Bundle</a>
+               </li>
+               
+               <li >
+                  <a title="Controls and Libraries" href="../../manuals/providing_controls/#start">Controls and Libraries</a>
+               </li>
+               
+               <li >
+                  <a title="Creating Themes" href="../../manuals/creating_themes/#start">Creating Themes</a>
+               </li>
+               
+               <li >
+                  <a title="Creating a Project from Scratch" href="../../manuals/project_from_scratch/#start">Creating a Project from Scratch</a>
+               </li>
+               
+               <li >
+                  <a title="Creating an Adapter for a new Widget Technology" href="../../manuals/adapters/#start">Creating an Adapter for a new Widget Technology</a>
+               </li>
+               
+               <li >
+                  <a title="Events and Publish-Subscribe" href="../../manuals/events/#start">Events and Publish-Subscribe</a>
+               </li>
+               
+               <li >
+                  <a title="Flow and Places" href="../../manuals/flow_and_places/#start">Flow and Places</a>
+               </li>
+               
+               <li >
+                  <a title="Infrastructure and Tools" href="../../manuals/infrastructure_and_tools/#start">Infrastructure and Tools</a>
+               </li>
+               
+               <li >
+                  <a title="Installing Controls" href="../../manuals/installing_controls/#start">Installing Controls</a>
+               </li>
+               
+               <li >
+                  <a title="Installing Third Party Widgets" href="../../manuals/installing_widgets/#start">Installing Third Party Widgets</a>
+               </li>
+               
+               <li >
+                  <a title="Internationalizing a Widget" href="../../manuals/i18n/#start">Internationalizing a Widget</a>
+               </li>
+               
+               <li >
+                  <a title="LaxarJS Configuration in an Application" href="../../manuals/configuration/#start">LaxarJS Configuration in an Application</a>
+               </li>
+               
+               <li >
+                  <a title="The <code>&quot;plain&quot;</code> Integration Technology" href="../../manuals/plain_adapter/#start">The <code>&quot;plain&quot;</code> Integration Technology</a>
+               </li>
+               
+               <li >
+                  <a title="Upgrading LaxarJS" href="../../manuals/upgrade_guide/#start">Upgrading LaxarJS</a>
+               </li>
+               
+               <li >
+                  <a title="Widget Services" href="../../manuals/widget_services/#start">Widget Services</a>
+               </li>
+               
+               <li >
+                  <a title="Widgets and Activities" href="../../manuals/widgets_and_activities/#start">Widgets and Activities</a>
+               </li>
+               
+               <li >
+                  <a title="Working with Visibility Events" href="../../manuals/visibility_events/#start">Working with Visibility Events</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Compositions" href="../../manuals/writing_compositions/#start">Writing Compositions</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Pages" href="../../manuals/writing_pages/#start">Writing Pages</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<h1 id="widget_services_i18n"><a id="widget_services_i18n"></a>widget_services_i18n</h1>
+<p>Factory for i18n widget service instances.</p>
+<h2 id="contents">Contents</h2>
+<p><strong>Module Members</strong></p>
+<ul>
+<li><a href="#create">create()</a></li>
+</ul>
+<p><strong>Types</strong></p>
+<ul>
+<li>
+<p><a href="#AxI18n">AxI18n</a></p>
+<ul>
+<li><a href="#AxI18n.forFeature">AxI18n.forFeature()</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#AxI18nHandler">AxI18nHandler</a></p>
+<ul>
+<li><a href="#AxI18nHandler.localize">AxI18nHandler.localize()</a></li>
+<li><a href="#AxI18nHandler.update">AxI18nHandler.update()</a></li>
+<li><a href="#AxI18nHandler.languageTag">AxI18nHandler.languageTag()</a></li>
+<li><a href="#AxI18nHandler.track">AxI18nHandler.track()</a></li>
+<li><a href="#AxI18nHandler.format">AxI18nHandler.format()</a></li>
+<li><a href="#AxI18nHandler.whenLocaleChanged">AxI18nHandler.whenLocaleChanged()</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="module-members">Module Members</h2>
+<h4 id="create-context-configuration-optionaloptions"><a id="create"></a>create( context, configuration, optionalOptions )</h4>
+<p>Creates a widget-specific helper for <code>didChangeLocale</code> events.</p>
+<p>The helper automatically observes the any changes to the locale that was configured under the <code>i18n</code>
+feature, and can be asked for localization based on that locale. It also allows to <code>track</code> the current
+language tag for all observed locale topics under the object <code>i18n.tags</code>. This object can be used to set
+up value bindings and/or watchers so that other components may react to locale-changes in a data-driven
+way.</p>
+<p>The i18n helper is an <a href="./"><code>AxI18nHandler</code></a> for the feauture "i18n" by default, but allows to create
+handlers for other feature-paths using the <code>forFeature</code> method.
+Using <code>release</code>, it is possible to free the eventBus subscription held by an i18n helper instance and by
+all feature-handlers created by it.</p>
+<h5 id="parameters">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>context</td>
+<td><a href="../runtime.widget_services/#AxContext"><code>AxContext</code></a></td>
+<td>the widget context/scope that the handler should work with. It uses the <code>eventBus</code> property there with which it can do the event handling</td>
+</tr>
+<tr>
+<td>configuration</td>
+<td><code>AxConfiguration</code></td>
+<td>the (global) configuration to use for supplying a default locale if the widget does not have an 'i18n' feature</td>
+</tr>
+<tr>
+<td><em>optionalOptions</em></td>
+<td><code>Object</code></td>
+<td>the fallback language tag to use when no localization is available for a locale's current language tag</td>
+</tr>
+<tr>
+<td><em>optionalOptions.fallback</em></td>
+<td><code>String</code></td>
+<td>the fallback language tag to use when no localization is available for a locale's current language tag</td>
+</tr>
+<tr>
+<td><em>optionalOptions.strict</em></td>
+<td><code>Boolean</code></td>
+<td>if <code>true</code>, localizations are only used if the language tags exactly match the current locale's tag (after normalizing case and dash/underscore). If <code>false</code> (default), specific requests can be satisfied by general localizations (e.g. a translation for 'en' may be used when missing 'en_GB' was requested).</td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns">Returns</h5>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#AxI18n"><code>AxI18n</code></a></td>
+<td>an i18n instance</td>
+</tr>
+</tbody>
+</table>
+<h2 id="types">Types</h2>
+<h3 id="axi18n"><a id="AxI18n"></a>AxI18n</h3>
+<p>An i18n instance allows to create <a href="#AxI18nHandler"><code>#AxI18nHandler</code></a> instances for any feature, but is itself also
+an i18n handler for the feature <code>i18n</code>.
+So if the widget using the <a href="../runtime.widget_services/#axI18n"><code>axI18n</code></a> injection uses the recommended
+name <code>i18n</code> for the localization feature, use this directly with the i18n handler API.</p>
+<h4 id="axi18nforfeature-featurepath"><a id="AxI18n.forFeature"></a>AxI18n.forFeature( featurePath )</h4>
+<p>Creates and returns an i18n handler for the loclization configuration under the given
+<a href="../../glossary#feature-path">feature path</a>.
+The configuration value is expected to be an object with the key <code>locale</code> that is configured with the
+locale to use in the widget instance.</p>
+<h5 id="parameters_1">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>featurePath</td>
+<td><code>String</code></td>
+<td>the feature path localization configuration can be found at</td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns_1">Returns</h5>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#AxI18nHandler"><code>AxI18nHandler</code></a></td>
+<td>the i18n handler for the given feature path</td>
+</tr>
+</tbody>
+</table>
+<h3 id="axi18nhandler"><a id="AxI18nHandler"></a>AxI18nHandler</h3>
+<h4 id="axi18nhandlerlocalize-i18nvalue-optionalfallbackvalue-languagetag"><a id="AxI18nHandler.localize"></a>AxI18nHandler.localize( i18nValue, optionalFallbackValue, languageTag )</h4>
+<p>Localize the given internationalized object using the given languageTag.</p>
+<p>If i18n is configured to be <em>strict</em>, the currently active language tag is used to lookup a
+translation.
+If nothing is found, the <code>languageTag</code> argument is tried.
+If still nothing is found, <code>undefined</code> is returned.</p>
+<p>In the case <em>strict</em> is set to <code>false</code>, the behavior is the same as in <em>strict</em> mode if an exact
+localization is available.
+If not, the language tag is successively generalized by stripping off the rightmost sub-tags
+until a localization is found.
+Eventually, a fallback (default: 'en') is used.
+This behavior is especially useful for controls (such as a datepicker), where we cannot
+anticipate all required language tags, as they may be app-specific.</p>
+<h5 id="parameters_2">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i18nValue</td>
+<td><code>*</code></td>
+<td>a possibly internationalized value:<br>- when passing a primitive value, it is returned as-is<br>- when passing an object, the languageTag is used as a key within that object</td>
+</tr>
+<tr>
+<td><em>optionalFallbackValue</em></td>
+<td><code>*</code></td>
+<td>a value to use if no localization is available for the given language tag</td>
+</tr>
+<tr>
+<td><em>languageTag</em></td>
+<td><code>String</code></td>
+<td>a language tag to override the current locale tag. Only available in <em>strict</em> mode</td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns_2">Returns</h5>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*</code></td>
+<td>the localized value if found, the fallback (or <code>undefined</code>) otherwise</td>
+</tr>
+</tbody>
+</table>
+<h4 id="axi18nhandlerupdate-languagetag"><a id="AxI18nHandler.update"></a>AxI18nHandler.update( languageTag )</h4>
+<p>Updates the language tag for the configured locale by emitting the according <code>changeLocaleRequest</code>
+event.</p>
+<h5 id="parameters_3">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>languageTag</td>
+<td><code>String</code></td>
+<td>the language tag to propagate</td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns_3">Returns</h5>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Promise</code></td>
+<td>the promise of the event cycle</td>
+</tr>
+</tbody>
+</table>
+<h4 id="axi18nhandlerlanguagetag"><a id="AxI18nHandler.languageTag"></a>AxI18nHandler.languageTag()</h4>
+<p>Returns the language tag set for the configured locale.
+If no tag is available, <code>undefined</code> is returned.</p>
+<h5 id="returns_4">Returns</h5>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>String</code></td>
+<td>the active language tag or <code>undefined</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="axi18nhandlertrack-propertytrackingproperty"><a id="AxI18nHandler.track"></a>AxI18nHandler.track( property=trackingProperty )</h4>
+<p>References the current i18n state as an object under the given property of the context.</p>
+<p>If this method is not used, changes to the locale are still observed by the handler, but not
+tracked on the context object. Use this to react to locale-changes in a data-driven fashion, for
+example by using an AngularJS watcher.</p>
+<p>By default, the i18n state is stored under the feature path used to create this i18n handler ("i18n"
+for the default handler provided by the "axI18n" widget service injection).</p>
+<p>The tracking structure stored under the property is an object that has two properties:</p>
+<div class="codehilite"><pre><span></span>- `locale` is the constant locale topic that was configured for the tracked feature
+- `tags` is an object mapping all locale names to their normalized current language tag
+</pre></div>
+
+
+<p>Note that tracked language tags are <em>normalized</em>, i.e. converted to lowercase with underscores (<code>_</code>)
+replaced by dashes (<code>-</code>).</p>
+<h5 id="parameters_4">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>property=trackingProperty</em></td>
+<td><code>String</code></td>
+<td>name of the context property to store the state under, defaults to the feature path</td>
+</tr>
+</tbody>
+</table>
+<h4 id="axi18nhandlerformat-i18nvalue-optionalindexedreplacements-optionalnamedreplacements"><a id="AxI18nHandler.format"></a>AxI18nHandler.format( i18nValue, optionalIndexedReplacements, optionalNamedReplacements )</h4>
+<p>Format an i18n value, by first localizing it and then applying substitutions.</p>
+<p>These are equivalent:</p>
+<ul>
+<li><code>string.format( axI18n.localize( i18nValue ), numericArgs, namedArgs )</code></li>
+<li><code>axI18n.format( i18nValue, numericArgs, namedArgs )</code>.</li>
+</ul>
+<h5 id="parameters_5">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i18nValue</td>
+<td><code>String</code></td>
+<td>the value to localize and then format</td>
+</tr>
+<tr>
+<td><em>optionalIndexedReplacements</em></td>
+<td><code>Array</code></td>
+<td>replacements for any numeric placeholders in the localized value</td>
+</tr>
+<tr>
+<td><em>optionalNamedReplacements</em></td>
+<td><code>Object</code></td>
+<td>replacements for any named placeholders in the localized value</td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns_5">Returns</h5>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>String</code></td>
+<td>the formatted string after localization</td>
+</tr>
+</tbody>
+</table>
+<h4 id="axi18nhandlerwhenlocalechanged-callback"><a id="AxI18nHandler.whenLocaleChanged"></a>AxI18nHandler.whenLocaleChanged( callback )</h4>
+<p>Registers a callback that is called whenever the new valid locale was received via event.</p>
+<h5 id="parameters_6">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>callback</td>
+<td><code>Function</code></td>
+<td>the function to call on locale change</td>
+</tr>
+</tbody>
+</table></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="../../../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="../../../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="../../../laxar.theme/js/base.js"></script>
+   </body>
+</html>

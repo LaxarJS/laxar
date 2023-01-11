@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../laxar.theme/img/favicon.ico">
+        <title>LaxarJS UiKit v1.0.0</title>
+
+        <link rel="stylesheet" href="../../laxar.theme/css/pygments.css">
+        <link href="../../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar-uikit <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="../../laxar-latest">laxar</a></li>
+            
+            <li><a href="../../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="../../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="../../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="../../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="../../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="../../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="../../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="../../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="../../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="../../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="../../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="../../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v1.0.0 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="../../laxar-uikit-v2-latest">v2.0.0</a></li>
+            
+               <li><a href="../../laxar-uikit-v1-latest">v1.1.0</a></li>
+            
+               <li><a href="../../laxar-uikit-v0-latest">v0.23.1</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="../../laxar-uikit-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v1.1.0">v1.1.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v1.0.1">v1.0.1</a></li>
+         
+            <li><a href="../../laxar-uikit-v1.0.0">v1.0.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.23.1">v0.23.1</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.23.0">v0.23.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.22.1">v0.22.1</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.22.0">v0.22.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.21.4">v0.21.4</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.21.3">v0.21.3</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.21.2">v0.21.2</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.21.1">v0.21.1</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.21.0">v0.21.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.20.1">v0.20.1</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.20.0">v0.20.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.19.1">v0.19.1</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.19.0">v0.19.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.18.1">v0.18.1</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.18.0">v0.18.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.17.1">v0.17.1</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.17.0">v0.17.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.16.0">v0.16.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.15.0">v0.15.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.14.2">v0.14.2</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.14.1">v0.14.1</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.14.0">v0.14.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.13.0">v0.13.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.12.0">v0.12.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.11.2">v0.11.2</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.11.1">v0.11.1</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.11.0">v0.11.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.10.1">v0.10.1</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.10.0">v0.10.0</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.9.9">v0.9.9</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.9.8">v0.9.8</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.9.7">v0.9.7</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.9.6">v0.9.6</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.9.5">v0.9.5</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.9.4">v0.9.4</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.9.3">v0.9.3</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.9.2">v0.9.2</a></li>
+         
+            <li><a href="../../laxar-uikit-v0.9.0">v0.9.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li class="active">
+                        <a href="./">Changelog</a>
+                     </li>
+                  
+               
+                  
+               
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar-uikit/tree/v1.0.0">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main"><a title="README" href="..#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="API"
+               data-toggle="collapse"
+               data-target="#API"
+               aria-expanded="false"
+               aria-controls="collapseExample">API <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="API">
+               
+               <li >
+                  <a title="dom" href="../api/dom.js/#start">dom</a>
+               </li>
+               
+               <li >
+                  <a title="formatter" href="../api/formatter.js/#start">formatter</a>
+               </li>
+               
+               <li >
+                  <a title="i18n" href="../api/i18n.js/#start">i18n</a>
+               </li>
+               
+               <li >
+                  <a title="parser" href="../api/parser.js/#start">parser</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Manuals"
+               data-toggle="collapse"
+               data-target="#Manuals"
+               aria-expanded="false"
+               aria-controls="collapseExample">Manuals <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="Manuals">
+               
+               <li >
+                  <a title="Overview" href="../manuals/#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="LaxarJS UiKit Configuration Options" href="../manuals/configuration/#start">LaxarJS UiKit Configuration Options</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<h1 id="changelog">Changelog</h1>
+<h2 id="last-changes">Last Changes</h2>
+<h2 id="v100">v1.0.0</h2>
+<ul>
+<li><a href="https://github.com/LaxarJS/laxar_patterns/issues/123">#123</a>: documentation: fixed some minor issues</li>
+</ul>
+<h2 id="v100-beta0">v1.0.0-beta.0</h2>
+<ul>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/116">#116</a>:  documentation: provided updated API doc for relevant modules</li>
+</ul>
+<h2 id="v100-alpha7">v1.0.0-alpha.7</h2>
+<ul>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/105">#105</a>: project: removed now-standalone controls
+        + <strong>BREAKING CHANGE:</strong> see ticket for details</p>
+</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/121">#121</a>: project: renamed to laxar-uikit</p>
+</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/122">#122</a>: require_config, bower: removed deps field and updated grunt-laxar</li>
+</ul>
+<h2 id="v100-alpha6">v1.0.0-alpha.6</h2>
+<ul>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/118">#118</a>: i18n: added as export to module</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/117">#117</a>: project: added missing license</li>
+</ul>
+<h2 id="v100-alpha5">v1.0.0-alpha.5</h2>
+<ul>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/115">#115</a>: axInput: exposed formatter and parser as public api of laxar uikit
+        + NEW FEATURE: see ticket for details</p>
+</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/114">#114</a>: axInput: removed some ie8 specific code</p>
+</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/113">#113</a>: axPageFade: added axPageFade which had been removed from LaxarJS core (LaxarJS/laxar#181)
+        + NEW FEATURE: see ticket for details</p>
+</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/112">#112</a>: axInput, axTooltip: tooltip now reflects position change of anchor element.</p>
+</li>
+</ul>
+<h2 id="v100-alpha4">v1.0.0-alpha.4</h2>
+<ul>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/110">#110</a>: styling: updated <code>FontAwesome (v4.3)</code> and <code>Bootstrap (v3.3)</code></li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/108">#108</a>: footprint: removed <code>dom.getComputedStyle</code>
+        + <strong>BREAKING CHANGE:</strong> see ticket for details</p>
+</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/106">#106</a>: footprint: removed <code>dom.ensureRenderingAndApply</code>
+        + <strong>BREAKING CHANGE:</strong> see ticket for details</p>
+</li>
+</ul>
+<h2 id="v100-alpha3">v1.0.0-alpha.3</h2>
+<ul>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/45">#45</a>: axLocalize: do not require a localization when filtering primitive values
+        + NEW FEATURE: see ticket for details</p>
+</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/97">#97</a>: axInput: implemented ngModelOptions defaults for AngularJS 1.3.x</p>
+</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/70">#70</a>: layer: remove requirement for jQuery UI.</li>
+</ul>
+<h2 id="v100-alpha2">v1.0.0-alpha.2</h2>
+<ul>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/96">#96</a>: axInput: added possibility to configure how a two digit year is interpreted.
+        + <strong>BREAKING CHANGE:</strong> see ticket for details</li>
+</ul>
+<h2 id="v100-alpha1">v1.0.0-alpha.1</h2>
+<ul>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/98">#98</a>: axInput: fixed tests for upcoming usage of Angular 1.3.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/102">#102</a>: refactoring: normalized AngularJS module and injection names</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/80">#80</a>: footprint: removed underscore dependency</p>
+</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/107">#107</a>: cleanup: removed dist-task fragments from grunt- and package configuration</p>
+</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/109">#109</a>: axInput: fixed another moment creation from string</p>
+</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/104">#104</a>: axInput: fixed moment creation from string</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/101">#101</a>: layer: fixed random order of tabbable nodes.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/100">#100</a>: axInput: fixed missing error class on syntax error when using AngularJS 1.3.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/99">#99</a>: require_config: added jquery dependency shims for trunk8 and bootstrap-tooltip</li>
+</ul>
+<h2 id="v0210">v0.21.0</h2>
+<ul>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/94">#94</a>: axAffix: added missing require-configuration</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/93">#93</a>: default.theme: changed external encoding to <code>utf-8</code>
+        + NEW FEATURE: see ticket for details</li>
+</ul>
+<h2 id="v0200">v0.20.0</h2>
+<ul>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/91">#91</a>: axInput: fixed null-pointer in string length validation</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/90">#90</a>: axInput: added minimumLength validator for string values
+        + NEW FEATURE: see ticket for details</p>
+</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/92">#92</a>: axInput: decimalTruncation (variable length format)
+        + NEW FEATURE: see ticket for details</p>
+</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/88">#88</a>: default.theme: Fixed auto-prefixer configuration</p>
+</li>
+</ul>
+<h2 id="v0190">v0.19.0</h2>
+<ul>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/87">#87</a>: axInput: Changed controller implementation to be compatible with AngularJS 1.3.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/86">#86</a>: axInput: Fixed attaching multiple focusout handlers.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/85">#85</a>: axInput: Fixed endless loop if grouping separator was set to empty.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/84">#84</a>: axDatePicker: avoid unnecessary 404 requests for i18n </li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/83">#83</a>: axDatePicker: performance: build calendar lazily </li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/82">#82</a>: fix: removed console.log statement </li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/81">#81</a>: axInput: performance: build tooltip lazily </li>
+</ul>
+<h2 id="v0180">v0.18.0</h2>
+<ul>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/79">#79</a>: refactoring: use <code>laxar.string</code> instead of <code>laxar.text</code> </li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/78">#78</a>: axInput: be more strict when parsing dates</li>
+</ul>
+<h2 id="v0170">v0.17.0</h2>
+<ul>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/77">#77</a>: Added affix control
+        + NEW FEATURE: see ticket for details</p>
+</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/73">#73</a>: Updated jQuery UI to 1.11.1 and removed touch punch.
+        + <strong>BREAKING CHANGE:</strong> see ticket for details</p>
+</li>
+</ul>
+<h2 id="v0160">v0.16.0</h2>
+<ul>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/76">#76</a>: Implemented directives for dynamic text truncation.
+        + NEW FEATURE: see ticket for details</p>
+</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/74">#74</a>: DatePicker: Fixed support for ngReadonly and ngDisabled.</p>
+</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/72">#72</a>: Styling: Updated font awesome (v4.2) and bootstrap (v3.2)</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/71">#71</a>: Styling DatePicker: Fixed color definitions.</li>
+</ul>
+<h2 id="v0150">v0.15.0</h2>
+<ul>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/67">#67</a>: Styling: refactored default.theme</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/69">#69</a>: layer: allowed prevention of scrolling the body when showing.
+        + NEW FEATURE: see ticket for details</p>
+</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/68">#68</a>: fixed wrongly global assert in jshintrc.</p>
+</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/66">#66</a>: fixed ont-size can change depending on disabled- or error-state </li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/65">#65</a>: axAccordion: fixed unchecked call to $apply</li>
+</ul>
+<h2 id="v0140">v0.14.0</h2>
+<ul>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/60">#60</a>: portal, dom: deprecated dom.ensureRenderingAndApplyFunction and removed usage</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/64">#64</a>: tests: make sure PhantomJS is installed properly, before running spec tests.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/63">#63</a>: Styling DatePicker: Highlighted current day</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/62">#62</a>: Styling: extend mixin to equal col height for different widths</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/61">#61</a>: axButtonList: fixed double click handling with debounce function</li>
+</ul>
+<h2 id="v0130">v0.13.0</h2>
+<ul>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/59">#59</a>: Fixed width of a single col in a row</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/58">#58</a>: Styling table: Fixed row selecton is not visible</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/57">#57</a>: Styling table: Added new table style (skeletal)</li>
+</ul>
+<h2 id="v0120">v0.12.0</h2>
+<ul>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/55">#55</a>: don't try to load <code>widget.json</code> in laxar_uikit specs.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/56">#56</a>: axConfirmButton: fixed initialization of html label</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/54">#54</a>: Styling confirm control: fixed unnecessary linebreak</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/53">#53</a>: Styling table: Refactored table cells with form elements</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/52">#52</a>: Styling buttons: refactored animation for busy state</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/51">#51</a>: Remove some obsolete NPM <code>devDependencies</code>.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/50">#50</a>: Removed expensive layout polling from axConfirmButton</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/49">#49</a>: Styling status classes: Refactored</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/48">#48</a>: Styling icons: customized icon size independent from font size</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/47">#47</a>: added missing require path mapping for jjv and jjve.</li>
+</ul>
+<h2 id="v0110">v0.11.0</h2>
+<ul>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/46">#46</a>: axDatePicker: Fixed wrong regional settings in Internet Explorer.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/44">#44</a>: axInput: added support for checkboxes.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/42">#42</a>: Styling global IE10: Fixed layout problems with input clear button</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/43">#43</a>: jshintrc: disabled enforcement of dot notation for object property access.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/41">#41</a>: Styling table: Added border style support for sub rows</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/40">#40</a>: Styling table: Fixed vertical alignment of buttons in a table cell</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/39">#39</a>: Styling table: Fixed some variables can not be overwritten</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/38">#38</a>: axInput: fixed spec test in MSIE8</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/37">#37</a>: Added support for bootstrap table classes</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/36">#36</a>: axInput: documented configuration options under docs/manuals/configuration.md</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/35">#35</a>: Refactored third party dependencies</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/32">#32</a>: axInput: Allow to validate on focusout instead of on keypress
+        + NEW FEATURE: see ticket for details</p>
+</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/34">#34</a>: Fixed <code>axDatepicker</code>, which was breaking MSIE8 by trying to set the type attribute.</p>
+</li>
+</ul>
+<h2 id="v0100">v0.10.0</h2>
+<ul>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/33">#33</a>: Improved styling of an input field with an unit sign</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/31">#31</a>: Added new validation behavior: display of errors to the user can now be deferred.
+        + NEW FEATURE: see ticket for details</p>
+</li>
+<li>
+<p><a href="https://github.com/LaxarJS/laxar-uikit/issues/30">#30</a>: Fix relative json messages imports (workaround for bug in requirejs-json plugin)</p>
+</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/29">#29</a>: Added additional css class to increase space between cols</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/28">#28</a>: Added additional css class for two column layout</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/27">#27</a>: axDatePicker now warns if yearRange is used without minDate and maxDate</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/26">#26</a>: Added new css class to add space between two rows</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/25">#25</a>: Updated font awesome (4.1)</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/24">#24</a>: Fixed incorrect col indent for nested layouts</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/23">#23</a>: Fixed datepicker on axInput with changing locale.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/22">#22</a>: Fixed icons depends on position of class ax-icon- or fa- in attribute.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/21">#21</a>: Reduce complexity to overwrite variables.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/20">#20</a>: Fixed ax-error class should work for labels.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/19">#19</a>: Made axInputRequired work for radio buttons.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/18">#18</a>: Fixed handling of axInputMinimum and axInputMaximum for empty field.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/16">#16</a>: Fixed handling of axInputRequire by triggering re-validation on change.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/17">#17</a>: Fixed boostrap horizontal form is not compatible with laxar uikit grid.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/15">#15</a>: Fixed incomplete refresh of $viewValue after format change.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/14">#14</a>: Fixed selection required error message for select boxes.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/13">#13</a>: Code formatting, added license for font-awesome and removed max-width for popovers.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/12">#12</a>: Moved colors form default.theme to laxar_uikit</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/11">#11</a>: Fixed bootstrap limit of form-inline rules for view-ports.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/9">#9</a>: Update Bower from ~1.2.8 to ~1.3.3.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/8">#8</a>: The axInput control now respects the scope locale for on-focus formatting.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/7">#7</a>: Fixed grid depends on position of class col-lg in attribute.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/6">#6</a>: Now the margin-top for a button variant (sm, xs) will calculate depending on bootstrap variants.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/5">#5</a>: Removed console.log statements from text-ellipsis control.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/4">#4</a>: Fixed table style with form elements.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/3">#3</a>: Fixed spelling in grid classes.</li>
+<li><a href="https://github.com/LaxarJS/laxar-uikit/issues/1">#1</a>: Fixed compass environment for execution from bower components.</li>
+</ul></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="../../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="../../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="../../laxar.theme/js/base.js"></script>
+   </body>
+</html>

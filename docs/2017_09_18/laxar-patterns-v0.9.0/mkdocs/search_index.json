@@ -1,0 +1,14 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "LaxarJS Patterns\n\n\nHave a look at the \ndocs", 
+            "title": "README"
+        }, 
+        {
+            "location": "/#laxarjs-patterns", 
+            "text": "Have a look at the  docs", 
+            "title": "LaxarJS Patterns"
+        }
+    ]
+}

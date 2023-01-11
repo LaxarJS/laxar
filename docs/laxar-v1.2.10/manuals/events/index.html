@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../laxar.theme/img/favicon.ico">
+        <title>LaxarJS  v1.2.10</title>
+
+        <link rel="stylesheet" href="../../../laxar.theme/css/pygments.css">
+        <link href="../../../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="../../../laxar-latest">laxar</a></li>
+            
+            <li><a href="../../../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="../../../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="../../../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="../../../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="../../../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="../../../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="../../../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="../../../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="../../../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="../../../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="../../../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="../../../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v1.2.10 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="../../../laxar-v2-latest">v2.0.3</a></li>
+            
+               <li><a href="../../../laxar-v1-latest">v1.3.5</a></li>
+            
+               <li><a href="../../../laxar-v0-latest">v0.26.2</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="../../../laxar-v2.0.3">v2.0.3</a></li>
+         
+            <li><a href="../../../laxar-v2.0.2">v2.0.2</a></li>
+         
+            <li><a href="../../../laxar-v2.0.1">v2.0.1</a></li>
+         
+            <li><a href="../../../laxar-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="../../../laxar-v1.3.5">v1.3.5</a></li>
+         
+            <li><a href="../../../laxar-v1.3.4">v1.3.4</a></li>
+         
+            <li><a href="../../../laxar-v1.3.3">v1.3.3</a></li>
+         
+            <li><a href="../../../laxar-v1.3.2">v1.3.2</a></li>
+         
+            <li><a href="../../../laxar-v1.3.1">v1.3.1</a></li>
+         
+            <li><a href="../../../laxar-v1.3.0">v1.3.0</a></li>
+         
+            <li><a href="../../../laxar-v1.2.10">v1.2.10</a></li>
+         
+            <li><a href="../../../laxar-v1.2.9">v1.2.9</a></li>
+         
+            <li><a href="../../../laxar-v1.2.8">v1.2.8</a></li>
+         
+            <li><a href="../../../laxar-v1.2.7">v1.2.7</a></li>
+         
+            <li><a href="../../../laxar-v1.2.6">v1.2.6</a></li>
+         
+            <li><a href="../../../laxar-v1.2.5">v1.2.5</a></li>
+         
+            <li><a href="../../../laxar-v1.2.4">v1.2.4</a></li>
+         
+            <li><a href="../../../laxar-v1.2.3">v1.2.3</a></li>
+         
+            <li><a href="../../../laxar-v1.2.2">v1.2.2</a></li>
+         
+            <li><a href="../../../laxar-v1.2.1">v1.2.1</a></li>
+         
+            <li><a href="../../../laxar-v1.2.0">v1.2.0</a></li>
+         
+            <li><a href="../../../laxar-v1.1.0">v1.1.0</a></li>
+         
+            <li><a href="../../../laxar-v1.0.5">v1.0.5</a></li>
+         
+            <li><a href="../../../laxar-v1.0.4">v1.0.4</a></li>
+         
+            <li><a href="../../../laxar-v1.0.3">v1.0.3</a></li>
+         
+            <li><a href="../../../laxar-v1.0.2">v1.0.2</a></li>
+         
+            <li><a href="../../../laxar-v1.0.1">v1.0.1</a></li>
+         
+            <li><a href="../../../laxar-v1.0.0">v1.0.0</a></li>
+         
+            <li><a href="../../../laxar-v0.26.2">v0.26.2</a></li>
+         
+            <li><a href="../../../laxar-v0.26.1">v0.26.1</a></li>
+         
+            <li><a href="../../../laxar-v0.26.0">v0.26.0</a></li>
+         
+            <li><a href="../../../laxar-v0.25.1">v0.25.1</a></li>
+         
+            <li><a href="../../../laxar-v0.25.0">v0.25.0</a></li>
+         
+            <li><a href="../../../laxar-v0.24.0">v0.24.0</a></li>
+         
+            <li><a href="../../../laxar-v0.23.3">v0.23.3</a></li>
+         
+            <li><a href="../../../laxar-v0.23.2">v0.23.2</a></li>
+         
+            <li><a href="../../../laxar-v0.23.1">v0.23.1</a></li>
+         
+            <li><a href="../../../laxar-v0.23.0">v0.23.0</a></li>
+         
+            <li><a href="../../../laxar-v0.22.2">v0.22.2</a></li>
+         
+            <li><a href="../../../laxar-v0.22.1">v0.22.1</a></li>
+         
+            <li><a href="../../../laxar-v0.22.0">v0.22.0</a></li>
+         
+            <li><a href="../../../laxar-v0.21.0">v0.21.0</a></li>
+         
+            <li><a href="../../../laxar-v0.20.1">v0.20.1</a></li>
+         
+            <li><a href="../../../laxar-v0.20.0">v0.20.0</a></li>
+         
+            <li><a href="../../../laxar-v0.19.1">v0.19.1</a></li>
+         
+            <li><a href="../../../laxar-v0.19.0">v0.19.0</a></li>
+         
+            <li><a href="../../../laxar-v0.18.2">v0.18.2</a></li>
+         
+            <li><a href="../../../laxar-v0.18.1">v0.18.1</a></li>
+         
+            <li><a href="../../../laxar-v0.18.0">v0.18.0</a></li>
+         
+            <li><a href="../../../laxar-v0.17.1">v0.17.1</a></li>
+         
+            <li><a href="../../../laxar-v0.17.0">v0.17.0</a></li>
+         
+            <li><a href="../../../laxar-v0.16.2">v0.16.2</a></li>
+         
+            <li><a href="../../../laxar-v0.16.1">v0.16.1</a></li>
+         
+            <li><a href="../../../laxar-v0.16.0">v0.16.0</a></li>
+         
+            <li><a href="../../../laxar-v0.15.0">v0.15.0</a></li>
+         
+            <li><a href="../../../laxar-v0.14.0">v0.14.0</a></li>
+         
+            <li><a href="../../../laxar-v0.13.3">v0.13.3</a></li>
+         
+            <li><a href="../../../laxar-v0.13.2">v0.13.2</a></li>
+         
+            <li><a href="../../../laxar-v0.13.1">v0.13.1</a></li>
+         
+            <li><a href="../../../laxar-v0.13.0">v0.13.0</a></li>
+         
+            <li><a href="../../../laxar-v0.12.1">v0.12.1</a></li>
+         
+            <li><a href="../../../laxar-v0.12.0">v0.12.0</a></li>
+         
+            <li><a href="../../../laxar-v0.11.1">v0.11.1</a></li>
+         
+            <li><a href="../../../laxar-v0.11.0">v0.11.0</a></li>
+         
+            <li><a href="../../../laxar-v0.10.1">v0.10.1</a></li>
+         
+            <li><a href="../../../laxar-v0.10.0">v0.10.0</a></li>
+         
+            <li><a href="../../../laxar-v0.9.11">v0.9.11</a></li>
+         
+            <li><a href="../../../laxar-v0.9.10">v0.9.10</a></li>
+         
+            <li><a href="../../../laxar-v0.9.9">v0.9.9</a></li>
+         
+            <li><a href="../../../laxar-v0.9.8">v0.9.8</a></li>
+         
+            <li><a href="../../../laxar-v0.9.7">v0.9.7</a></li>
+         
+            <li><a href="../../../laxar-v0.9.6">v0.9.6</a></li>
+         
+            <li><a href="../../../laxar-v0.9.5">v0.9.5</a></li>
+         
+            <li><a href="../../../laxar-v0.9.4">v0.9.4</a></li>
+         
+            <li><a href="../../../laxar-v0.9.3">v0.9.3</a></li>
+         
+            <li><a href="../../../laxar-v0.9.2">v0.9.2</a></li>
+         
+            <li><a href="../../../laxar-v0.9.1">v0.9.1</a></li>
+         
+            <li><a href="../../../laxar-v0.9.0">v0.9.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="../../CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar/tree/v1.2.10">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main"><a title="README" href="../..#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Concepts" href="../../concepts/#start">LaxarJS Concepts</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="Why LaxarJS?" href="../../why_laxar/#start">Why LaxarJS?</a></li>
+         
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="API"
+               data-toggle="collapse"
+               data-target="#API"
+               aria-expanded="false"
+               aria-controls="collapseExample">API <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="API">
+               
+               <li >
+                  <a title="assert" href="../../api/assert.js/#start">assert</a>
+               </li>
+               
+               <li >
+                  <a title="axId" href="../../api/id.js/#start">axId</a>
+               </li>
+               
+               <li >
+                  <a title="axLayout" href="../../api/layout.js/#start">axLayout</a>
+               </li>
+               
+               <li >
+                  <a title="axRuntimeServices" href="../../api/runtime_services.js/#start">axRuntimeServices</a>
+               </li>
+               
+               <li >
+                  <a title="axWidgetArea" href="../../api/widget_area.js/#start">axWidgetArea</a>
+               </li>
+               
+               <li >
+                  <a title="configuration" href="../../api/configuration.js/#start">configuration</a>
+               </li>
+               
+               <li >
+                  <a title="controls_service" href="../../api/controls_service.js/#start">controls_service</a>
+               </li>
+               
+               <li >
+                  <a title="event_bus" href="../../api/event_bus.js/#start">event_bus</a>
+               </li>
+               
+               <li >
+                  <a title="file_resource_provider" href="../../api/file_resource_provider.js/#start">file_resource_provider</a>
+               </li>
+               
+               <li >
+                  <a title="flow" href="../../api/flow.js/#start">flow</a>
+               </li>
+               
+               <li >
+                  <a title="fn" href="../../api/fn.js/#start">fn</a>
+               </li>
+               
+               <li >
+                  <a title="i18n" href="../../api/i18n.js/#start">i18n</a>
+               </li>
+               
+               <li >
+                  <a title="log" href="../../api/log.js/#start">log</a>
+               </li>
+               
+               <li >
+                  <a title="object" href="../../api/object.js/#start">object</a>
+               </li>
+               
+               <li >
+                  <a title="storage" href="../../api/storage.js/#start">storage</a>
+               </li>
+               
+               <li >
+                  <a title="string" href="../../api/string.js/#start">string</a>
+               </li>
+               
+               <li >
+                  <a title="theme_manager" href="../../api/theme_manager.js/#start">theme_manager</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Contributing"
+               data-toggle="collapse"
+               data-target="#Contributing"
+               aria-expanded="false"
+               aria-controls="collapseExample">Contributing <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="Contributing">
+               
+               <li >
+                  <a title="LaxarJS Coding Styles" href="../../contributing/styleguide/#start">LaxarJS Coding Styles</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse ax-active" >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Manuals"
+               data-toggle="collapse"
+               data-target="#Manuals"
+               aria-expanded="false"
+               aria-controls="collapseExample">Manuals <span class="caret"></span></a>
+
+            <ul class="nav subnav in"
+               id="Manuals">
+               
+               <li >
+                  <a title="Overview" href="../#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="Assets and the FileResourceProvider" href="../asset_lookup/#start">Assets and the FileResourceProvider</a>
+               </li>
+               
+               <li >
+                  <a title="Configuring RequireJS for Widgets and Controls" href="../configuring_requirejs/#start">Configuring RequireJS for Widgets and Controls</a>
+               </li>
+               
+               <li >
+                  <a title="Controls and Libraries" href="../providing_controls/#start">Controls and Libraries</a>
+               </li>
+               
+               <li >
+                  <a title="Creating Themes" href="../creating_themes/#start">Creating Themes</a>
+               </li>
+               
+               <li >
+                  <a title="Creating an Adapter for a new Widget Technology" href="../adapters/#start">Creating an Adapter for a new Widget Technology</a>
+               </li>
+               
+               <li class="ax-active">
+                  <a title="Events and Publish-Subscribe" href="./#start">Events and Publish-Subscribe</a>
+               </li>
+               
+               <li >
+                  <a title="Flow and Places" href="../flow_and_places/#start">Flow and Places</a>
+               </li>
+               
+               <li >
+                  <a title="Infrastructure and Tools" href="../infrastructure_and_tools/#start">Infrastructure and Tools</a>
+               </li>
+               
+               <li >
+                  <a title="Installing Controls" href="../installing_controls/#start">Installing Controls</a>
+               </li>
+               
+               <li >
+                  <a title="Installing Third Party Widgets" href="../installing_widgets/#start">Installing Third Party Widgets</a>
+               </li>
+               
+               <li >
+                  <a title="Internationalizing a Widget" href="../i18n/#start">Internationalizing a Widget</a>
+               </li>
+               
+               <li >
+                  <a title="LaxarJS Configuration in an Application" href="../configuration/#start">LaxarJS Configuration in an Application</a>
+               </li>
+               
+               <li >
+                  <a title="Widgets and Activities" href="../widgets_and_activities/#start">Widgets and Activities</a>
+               </li>
+               
+               <li >
+                  <a title="Working with Visibility Events" href="../visibility_events/#start">Working with Visibility Events</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Compositions" href="../writing_compositions/#start">Writing Compositions</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Pages" href="../writing_pages/#start">Writing Pages</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Widget Controllers" href="../writing_widget_controllers/#start">Writing Widget Controllers</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<h1 id="events-and-publish-subscribe">Events and Publish-Subscribe</h1>
+<p><a href="../">« return to the manuals</a></p>
+<p>The key concept that distinguishes LaxarJS applications from other AngularJS applications is the <em>publish-subscribe</em> (or <em>pub/sub)</em> architecture.
+It helps to isolate building blocks such as widgets and activities by moving the coupling from implementation (no module imports, no service contracts) to configuration (of event topics).</p>
+<p>Preliminary readings:</p>
+<ul>
+<li><a href="../../concepts/">LaxarJS Core Concepts</a></li>
+</ul>
+<p>LaxarJS consistently uses the term <em>events</em> rather than <em>messages</em>, to point out two key aspects of its pub/sub-architecture:
+ * events convey information about <em>what happened</em> (rather than <em>who is receiver</em>)
+ * delivery is always <em>asynchronous</em> (using an <em>event loop</em>)</p>
+<p>For these reasons, you may also think of this pattern as a variation on the <em>hollywood principle</em> ("Don't call us, we'll call you").</p>
+<p>For efficient processing, LaxarJS ties into the AngularJS <code>$digest</code>-cycle.
+This allows the web browser to batch event-handling with other operations that modify screen contents.</p>
+<h2 id="the-event-bus">The Event Bus</h2>
+<p>All events are published to and delivered by the <em>event bus</em>:
+The event bus manages <em>name-based</em> (or <em>topic-based)</em> <em>event subscriptions</em> for all interested widgets and activities (the <em>subscribers)</em>:
+Subscribers specify an event name pattern that tells the event bus which kinds of "thing that happened" they are interested in.
+When an event is published to the event bus, it is kept in an event queue, to be delivered asynchronously.
+During event delivery, each event name is matched against each subscription, and each matching event is delivered by running the associated callback.</p>
+<p>Each event has a <em>name</em> containing a summary of what happened, and a <em>payload</em> carrying additional information.</p>
+<h3 id="event-names">Event Names</h3>
+<p>Event names summarize <em>what happened</em>, possibly with some additional context.
+They follow a hierarchical structure that is used to pattern-match against subscriptions during delivery.</p>
+<p>An event name is a string, formed by a sequence of one or more <em>topics</em> that are separated by <code>.</code> (the full stop, U+002E).
+Each topic is a string, made up from a sequence of one or more <em>sub-topics</em> separated by <code>-</code> (the hyphen-minus, U+00AF).
+Sub-Topics are strings, formed by</p>
+<div class="codehilite"><pre><span></span>* _either_ an upper case letter followed by a sequence of upper case letters and numbers
+* _or_ a lower case letter followed by a sequence of mixed case letters and numbers
+</pre></div>
+
+
+<p>These rules also exist as a formal <a href="#grammar">grammar</a> for thorough people.</p>
+<p>These are examples for <em>valid</em> event names:</p>
+<div class="codehilite"><pre><span></span>* `didReplace.myShoppingCart`
+* `takeActionRequest.searchArticles`
+* `didTakeAction.searchArticles.SUCCESS`
+* `willEndLifecycle`
+* `didValidate.popup-user2`
+</pre></div>
+
+
+<p><em>Invalid</em> event names include:</p>
+<div class="codehilite"><pre><span></span>* `DidReplace.myShoppingCart`: _invalid,_ first topic starts upper case but contains lower case letters
+* `.searchArticles.SUCCESS`: _invalid,_ empty topic is not allowed
+* `didUpdate.1up`: _invalid_, topic must not start with a number
+</pre></div>
+
+
+<h4 id="naming-best-practices-and-event-patterns">Naming Best Practices and Event Patterns</h4>
+<p>Good event names start with a very general <em>verb-based first topic</em>, broadly describing <em>what</em> happened.
+That topic is often followed by a more specific <em>object-based second topic</em>, describing <em>where</em> (or <em>to what</em>) something happened.
+Sometimes, this second topic is broken down into sub-topics that allow to "zoom in" on the event details.
+For example, the event <em>didValidate.popup-user2</em> informs all interested subscribers, that the second user has been validated by a widget <em>within a popup</em>.
+This information can now be used to show validation messages at the appropriate location.
+Sometimes there is a <em>modal third topic</em>, broadly describing <em>how</em> something happened (e.g. to communicate an outcome such as <code>SUCCESS</code> or <code>ERROR</code>).</p>
+<p>Of course, nothing prevents senders to break these rules and use any structure for their event names as long as they conform to the grammar.
+But for best interoperability between widgets and activities, not only should the general structure of event names be observed.</p>
+<p>It is recommended wherever possible for widgets to use one or more of the established <em>event patterns</em>:
+These patterns consist of event vocabularies and minimal associated semantics that have been identified during the development of LaxarJS.
+A few <a href="../core-patterns">core patterns</a> are baked right into the LaxarJS runtime, and these are listed below.
+Other useful patterns are described in the separate project <em><a href="//github.com/LaxarJS/laxar-patterns">LaxarJS Patterns</a></em>.
+Even without using the LaxarJS Patterns <em>library</em>, widget authors are very much encouraged to use the <a href="//github.com/LaxarJS/laxar-patterns/docs/index.md">event vocabularies</a> whenever meaningful.</p>
+<h3 id="event-payload">Event Payload</h3>
+<p>An event does not only have a name, but also a <em>payload</em>.
+Any JavaScript object that can be directly represented as <a href="http://json.org/">JSON</a> can be used as a payload.
+This allows for the object to contain instances of <em>string</em>, <em>array</em>, <em>number</em>, <em>boolean</em> and <em>object</em>, including <code>null</code>.
+On the other hand, it excludes<code>undefined</code>, <em>Date</em>, <em>RegExp</em> and custom classes.</p>
+<p>The event bus will <em>create a copy</em> of the payload <em>for each subscriber</em> that gets the event delivered.
+This improves decoupling and robustness, because events are "fire and forget":
+A widget may publish some resource through an event and afterwards immediately modify its contents, but all subscribers are guaranteed to receive the original event.</p>
+<p>However, this also means that you should only publish resources that are at most ~100 kilobyte in size.
+For larger resources, it is recommended to only transfer a URL so that interested widgets may receive the content from a server (or the browser cache).</p>
+<p><a name="request-events"></a></p>
+<h3 id="two-way-communication-or-the-requestwilldid-mechanism">Two-Way Communication or the Request/Will/Did Mechanism</h3>
+<p>Sometimes a widget has to request for some other widget or activity on the page to perform some action.
+This might be a longer running action such as a search or some server side validation.
+The requesting widget does not care about <em>who</em> actually performs the request, but it is interested in <em>when</em> the request has been fully processed by all respondents, and what is the outcome.</p>
+<p>As an example, consider a multi-part user sign-up process, where each of several widgets allows the user to enter and validate some of the information such as email address, payment information or a <em>CAPTCHA</em>.
+Another widget offering a <em>Complete Sign-Up</em> button would be responsible for the overall process of submitting the registration resource to a REST service and navigating to a different page.
+Before hitting the registration service, this widget would ask all input widgets to validate their respective sign-up details in order to provide immediate feedback to the user.
+Some of the widgets might have to query their own validation services though, such as the aforementioned CAPTCHA-using widget.</p>
+<p>Using the <em>Request/Will/Did</em> mechanism, such functionality can be achieved without the registration widget having to know any of the participant widgets:</p>
+<ol>
+<li>
+<p>The individual widgets are <em>configured</em> on the page to work with a common <code>registrationForm</code> resource.
+   On instantiation, the input widgets offering validation subscribe to <code>validateRequest</code> events for this resource.</p>
+</li>
+<li>
+<p>When the user activates the <em>Complete Sign-Up</em> button, the registration widget issues a <code>validateRequest.registrationForm</code> event, indicating that</p>
+<ul>
+<li>a validation has been requested <em>(what happened)</em> and</li>
+<li>it concerns the resource <code>registrationForm</code> <em>(where</em> it happened).</li>
+</ul>
+</li>
+</ol>
+<p>The registration widget may now disable its button and start showing an activity indicator to help the user recognize that an action is in progress.</p>
+<ol>
+<li>
+<p>During delivery, the input widgets supporting validation receive the request and publish a <code>willValidate.registrationForm</code> event to indicate that</p>
+<ul>
+<li>a validation has been initiated <em>(what)</em> and</li>
+<li>that it concerns the <code>registrationForm</code> resource <em>(where)</em>.</li>
+</ul>
+</li>
+<li>
+<p>Each widget will either call its registration service to respond asynchronously, or publish a response directly if it can validate locally.
+   The response is either <code>didValidate.registrationForm.SUCCESS</code> or <code>didValidate.registrationForm.ERROR</code> conveying that</p>
+<ul>
+<li>a validation has been performed <em>(what)</em> and</li>
+<li>that it concerns the <code>registrationForm</code> resource <em>(where)</em> and</li>
+<li>the way the validation turned out <em>(how)</em>.</li>
+</ul>
+</li>
+<li>
+<p>Once all responses have been collected and there were no validation errors, the registration form will be notified (through a promise) and the <em>sign-up</em> REST request may be performed.</p>
+</li>
+</ol>
+<p>This mechanism allows any of the widgets on the page may be removed or replaced without any of the other widgets having to know.
+New widgets may be added at any time, and will work as long as they support the validation pattern.
+For example, the message display widget could be added to gather and display validation messages to the user, simply by hooking it up to the same resource and processing its <code>"didValidate"</code> events.
+Even if some widgets do not support the validation pattern, they can still be used, only that their validation would have to be handled by the server upon submission of the registration form.</p>
+<p>Validation and other patterns are described in the following section.</p>
+<p><a name="pattern-reference"></a></p>
+<h2 id="pattern-reference">Pattern Reference</h2>
+<p>A few event patterns are supported directly by LaxarJS, while others are described in the <em><a href="https://github.com/LaxarJS/laxar-patterns#laxarjs-patterns">LaxarJS Patterns</a></em> library.
+Have a good look at all of them before coming up with your own patterns, in order to maximize the synergy of your widgets, especially when aiming for reuse.</p>
+<p><a name="core-pattern"></a></p>
+<h3 id="core-patterns">Core Patterns</h3>
+<p>The core event patterns allow widgets to interact with the LaxarJS runtime.
+They are related to initialization of pages and navigation between them.</p>
+<h4 id="page-lifecycle">Page Lifecycle</h4>
+<p>After all widget controllers have been instantiated, the runtime publishes a <code>beginLifecycleRequest</code> event.
+Widgets that need to publish events on page load should do so <em>after</em> receiving this event, ensuring that all receivers have been set up when their events are delivered.
+A will/did-response may be used by widgets to defer rendering of the page until they have been initialized, which is usually not recommended.</p>
+<p>Before <a href="#navigation">navigating</a> away from a page, the runtime publishes the <code>endLifecycleRequest</code> event.
+Widgets that need to save state to a service should respond with a <code>willEndLifecycle</code> event, perform their housekeeping and publish an <code>didEndLifecycle</code> when done.</p>
+<table>
+<thead>
+<tr>
+<th>Event name</th>
+<th>Payload Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>beginLifecycleRequest.{lifecycleId}</code></td>
+<td></td>
+<td><em>published by the runtime to tell widgets that publishing of events is safe now</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>lifecycleId</code></td>
+<td>the lifecycle ID (currently, this is always <code>"default"</code>)</td>
+</tr>
+<tr>
+<td><code>willBeginLifecycle.{lifecycleId}</code></td>
+<td></td>
+<td><em>published by widgets and activities to defer page rendering (not recommended)</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>lifecycleId</code></td>
+<td><em>see above</em></td>
+</tr>
+<tr>
+<td><code>didBeginLifecycle.{lifecycleId}</code></td>
+<td></td>
+<td><em>published by widgets and activities when page rendering may commence (not recommended)</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>lifecycleId</code></td>
+<td><em>see above</em></td>
+</tr>
+<tr>
+<td><code>endLifecycleRequest.{lifecycleId}</code></td>
+<td></td>
+<td><em>published by the runtime to tell widgets that the page is about to be destroyed</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>lifecycleId</code></td>
+<td><em>see above</em></td>
+</tr>
+<tr>
+<td><code>willEndLifecycle.{lifecycleId}</code></td>
+<td></td>
+<td><em>published by widgets and activities to defer tear down of the page (if necessary)</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>lifecycleId</code></td>
+<td><em>see above</em></td>
+</tr>
+<tr>
+<td><code>didEndLifecycle.{lifecycleId}</code></td>
+<td></td>
+<td><em>published by widgets and activities when page tear down may commence (after deferring it)</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>lifecycleId</code></td>
+<td><em>see above</em></td>
+</tr>
+</tbody>
+</table>
+<p><a name="navigation"></a></p>
+<h4 id="navigation">Navigation</h4>
+<p>Widgets and activities may initiate navigation using a <code>navigateRequest.{target}</code> event, substituting an actual navigation target instead of the placeholder <code>{target}</code>.
+The event is interpreted by the LaxarJS runtime as follows:</p>
+<div class="codehilite"><pre><span></span>* if _target_ is `&quot;_self&quot;`, the runtime will simply propagate its place-parameters by publishing a `didNavigate` event right away
+* if _target_ is one of the targets configured for the current place (in the flow definition), the runtime will initiate navigation to the corresponding place
+* otherwise, if _target_ is a place within the flow definition, the runtime will initiate navigation to that place
+* otherwise, nothing will happen.
+</pre></div>
+
+
+<p>When <em>initiating navigation</em>, the LaxarJS runtime will:</p>
+<div class="codehilite"><pre><span></span>1. extract any place parameters from the event payload of the request event
+2. publish a `willNavigate.{target}` event with the corresponding target and parameters
+3. publish an `endLifecycle` event and wait for any respondents
+4. perform navigation by destroying the current page and loading the page associated with the new place
+3. publish a `beginLifecycle` event and wait for any respondents
+5. publish a `didNavigate.{target}` event, with the corresponding target and parameters as well as the resolved place
+</pre></div>
+
+
+<p>Here is the summary of navigation events:</p>
+<table>
+<thead>
+<tr>
+<th>Event name</th>
+<th>Payload Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>navigateRequest.{target}</code></td>
+<td></td>
+<td><em>published by widgets and activities to indicate that a navigation has been requested</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>target</code></td>
+<td>the navigation target (used in the payload <em>as well as</em> in the event name)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>data</code></td>
+<td>a map from place parameter names to parameter values</td>
+</tr>
+<tr>
+<td><code>willNavigate.{target}</code></td>
+<td></td>
+<td><em>published by the runtime to indicate that navigation has started</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>target</code>, <code>data</code></td>
+<td><em>see above</em></td>
+</tr>
+<tr>
+<td><code>didNavigate.{target}</code></td>
+<td></td>
+<td><em>published by the runtime to indicate that navigation has finished</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>target</code>, <code>data</code></td>
+<td><em>see above</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>place</code></td>
+<td>the actual place that was navigated to, now the current place</td>
+</tr>
+</tbody>
+</table>
+<p>More information on navigation is available in the <a href="../flow_and_places/">"Flow and Places" manual</a>.</p>
+<h4 id="locales-and-i18n">Locales and i18n</h4>
+<p>Events related to locales are described in the <a href="../i18n/">"i18n" manual</a>.</p>
+<h3 id="more-patterns">More Patterns</h3>
+<p>The patterns described so far are used mainly for widgets to interact with the LaxarJS runtime.
+For application patterns that help widgets to interact with each other, refer to the <a href="//github.com/LaxarJS/laxar-patterns/tree/master/docs/index.md">LaxarJS Patterns documentation</a>.</p>
+<h2 id="event-reference">Event Reference</h2>
+<p>The single relevant API provided by LaxarJS is the event bus.
+This section lists the exact details of using it, and on how event names may be constructed.</p>
+<h3 id="the-event-bus-api">The Event Bus API</h3>
+<p>The event bus is available to widgets and activities through <code>$scope.eventBus</code>.
+It has only a few essential methods that allow to implement all patterns mentioned above.</p>
+<ul>
+<li><code>subscribe( eventPattern, callback [, options] )</code></li>
+</ul>
+<p>Creates a subscription on the event bus.</p>
+<div class="codehilite"><pre><span></span>  - The `eventPattern` is a prefix for events to subscribe to:
+ Events that start with the given sequence of (sub-)topics will be handled by this subscription.
+ For example, a subscription to the pattern `didSave` will be triggered for the event `didSave.myDocument` as well as for the event `didSave.preferences-main`.
+ Most of the time, widgets are only interested in very specific events related to resources they work with or actions they handle, so they use patterns such as `didReplace.someResource` where `someResource` is given by the page configuration.
+
+  - The `callback` is the function which will be called to process any matching events.
+ Event subscription callbacks receive two arguments:
+          + The `event` is this subscriber&#39;s copy of the payload, as published by the sender of the event.
+          + The `meta` object contains additional information about the event, in particular the `sender` (identified by a string) and the `name` (under which the event was published).
+
+  - The `options` are usually not required for widgets:
+ Using `options.subscriberId`, the subscriber can identify itself to the event bus.
+ However, the LaxarJS runtime decorates each widget&#39;s event bus such that this option is always set correctly.
+</pre></div>
+
+
+<p>The method <code>subscribe</code> does not return a value.</p>
+<ul>
+<li><code>publish( eventName, payload [, options ] )</code></li>
+</ul>
+<p>Publishes an event to all interested subscribers.
+  Delivery is asynchronous: control is returned to the caller immediately, and delivery will be performed afterwards, together with an AngularJS digest cycle.
+  The event payload is cloned immediately so that the caller is free to modify it right after publishing.
+  Returns a promise that is resolved after the event has been delivered to all subscribers.</p>
+<div class="codehilite"><pre><span></span>- The `eventName` is used to identify matching subscribers.
+It is matched against the `eventPattern` of any subscriptions.
+
+- The `payload` will be delivered as the `event` parameter to any matching subscriber callbacks.
+It is copied right away, making it safe to modify afterwards.
+
+- The `options` are usually not required for widgets:
+By setting `options.deliverToSender` to `false`, widgets can ignore their own events, which can sometimes be necessary to avoid loops.
+</pre></div>
+
+
+<p>The method <code>publish</code> returns a promise that is resolved after the event has been processed by all matching subscribers.</p>
+<ul>
+<li><code>publishAndGatherReplies( requestEventName, payload [, options ] )</code></li>
+</ul>
+<p>Publishes a <a href="#request-events">request event</a>, gathers all <em>will</em>-responses during delivery and then waits for all outstanding <em>did</em>-responses.
+  The parameters <code>payload</code> and <code>options</code> are equivalent to the regular <code>publish</code>-method.
+  Returns a promise that is resolved when all <em>did</em>-responses have been received.</p>
+<p>This information should help to get started with the event bus and intentionally omits a lot of details.
+For full information, refer to the <a href="https://github.com/LaxarJS/laxar/blob/master/lib/event_bus/event_bus.js">EventBus module</a>.</p>
+<p><a name="grammar"></a></p>
+<h3 id="event-name-grammar">Event Name Grammar</h3>
+<p>This is the formal grammar for event names, in <a href="http://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_Form">EBNF</a>:</p>
+<div class="codehilite"><pre><span></span><span class="err">&lt;</span><span class="k">event-name</span><span class="err">&gt;</span> <span class="err">::</span><span class="o">=</span> <span class="err">&lt;</span><span class="k">topic-id</span><span class="err">&gt;</span> <span class="p">[</span> <span class="s1">&#39;.&#39;</span> <span class="err">&lt;</span><span class="k">topic-id</span><span class="err">&gt;</span> <span class="p">]</span><span class="err">*</span>
+<span class="err">&lt;</span><span class="k">topic-id</span><span class="err">&gt;</span> <span class="err">::=</span> <span class="err">&lt;</span><span class="k">sub-topic-id</span><span class="err">&gt;</span> <span class="p">[</span> <span class="s1">&#39;-&#39;</span> <span class="err">&lt;</span><span class="k">sub-topic-id</span><span class="err">&gt;</span> <span class="p">]</span><span class="err">*</span>
+<span class="err">&lt;</span><span class="k">sub-topic-id</span><span class="err">&gt;</span> <span class="err">::=</span> <span class="p">[</span><span class="k">a-z</span><span class="p">][</span><span class="err">+</span><span class="k">a-zA-Z0-9</span><span class="p">]</span><span class="err">*</span> <span class="p">|</span> <span class="p">[</span><span class="k">A-Z</span><span class="p">][</span><span class="err">+</span><span class="k">A-Z0-9</span><span class="p">]</span><span class="err">*</span>
+</pre></div></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="../../../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="../../../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="../../../laxar.theme/js/base.js"></script>
+   </body>
+</html>

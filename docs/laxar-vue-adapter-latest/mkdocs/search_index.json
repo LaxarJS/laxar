@@ -1,0 +1,134 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "laxar-vue-adapter\n\n\n\n\nImplement \nLaxarJS\n widgets and controls with \nVue.js\n.\n\n\n\n\n\n\nInstallation\n\n\n\n\nGetting started\n\n\n\n\nSeparate files\n\n\nSingle file components\n\n\n\n\n\n\n\n\nLaxarJS integration\n\n\n\n\nInjections\n\n\naxContext\n\n\nControls\n\n\nWidget Areas\n\n\nTesting\n\n\nTheming\n\n\n\n\n\n\n\n\nInstallation\n\n\nThe recommended installation is through NPM:\n\n\nnpm install --save laxar-vue-adapter\n\n\n\n\n\n\nIf using the source module instead, you need to ensure that the \n.js\n file is loaded with ES2015 support, plus support for Object spread.\n\n\nGetting started\n\n\nYou can either use the familiar directory structure for LaxarJS widgets, with separate \n.js\n, \n.html\n and \n.css\n files, or you can use the \nvue-loader\n and put the whole widget into a single \n.vue\n file.\n\n\nIn any case, your widget module will have to export an object of \nVue.js\n options\n.\nThese will be passed to \nVue.extend()\n by the adapter (together with some extras to enable widget service \ninjections\n) so make sure you use options that are supported in component definitions.\n\n\nSeparate files\n\n\nWhen using separate files for HTML template and controller logic, the template will be compiled on-the-fly in the user's browser, incurring a slight performance penalty.\nYou will also have to make sure that \nvue\n resolves to the so-called \"\nstandalone build\n\" of \nVue.js\n.\n\n\n!-- default.theme/my-widget.html --\n\n\nb\n{{counter}}\n/\nb\n\n\n\n\n\n\n// my-widget.js\n\n\nexport\n \ndefault\n \n{\n\n   \ndata\n()\n \n{\n\n      \nreturn\n \n{\n \ncounter\n:\n \n0\n \n};\n\n   \n},\n\n   \ncreated\n()\n \n{\n\n      \nthis\n.\ninterval\n \n=\n \nsetInterval\n(\n \n()\n \n=\n \n{\n\n         \nthis\n.\ncounter\n++\n;\n\n      \n},\n \n1000\n \n);\n\n   \n},\n\n   \ndestroyed\n()\n \n{\n\n      \nclearInterval\n(\n \nthis\n.\ninterval\n \n);\n\n   \n}\n\n\n}\n\n\n\n\n\n\nYou have to make sure \nlaxar-vue-adapter\n has access to \nVue.compile\n to compile the template HTML.\nThis method is not part of \nVue.js'\n default \nNPM\n package.\nUsing \nwebpack\n, you can use the standalone build of \nVue.js\n by defining an alias in your resolve configuration:\n\n\n// webpack.config.js\n\n\nmodule\n.\nexports\n \n=\n \n{\n\n   \nresolve\n:\n \n{\n\n      \nalias\n:\n \n{\n\n         \nvue$\n:\n \nvue/dist/vue.js\n\n      \n}\n\n   \n}\n\n\n};\n\n\n\n\n\n\nSingle file components\n\n\nIn this example the \nvue-loader\n will preprocess the \n.vue\n file and compile the template to a JavaScript function.\n\n\n!-- my-widget.vue --\n\n\ntemplate\n\n   \nb class=\ncounter\n{{counter}}\n/b\n\n\n/template\n\n\n\nscript\n\nexport default {\n   data() {\n      return { counter: 0 };\n   },\n   created() {\n      this.interval = setInterval( () =\n {\n         this.counter++;\n      }, 1000 );\n   },\n   destroyed() {\n      clearInterval( this.interval );\n   }\n}\n\n/script\n\n\n\nstyle\n\n.counter {\n   color: red;\n}\n\n/style\n\n\n\n\n\n\nMake sure \nvue-loader\n is installed and set your \nwebpack.config.js\n accordingly.\n\n\n// webpack.config.js\n\n\nmodule\n.\nexports\n \n=\n \n{\n\n   \nresolve\n:\n \n{\n\n      \nextensions\n:\n \n[\n \n,\n \n.js\n,\n \n.vue\n \n]\n\n   \n},\n\n   \nmodule\n:\n \n{\n\n      \nloaders\n:\n \n[\n \n{\n\n         \ntest\n:\n \n/\\.vue$/\n,\n\n         \nloader\n:\n \nvue-loader\n\n      \n}\n \n]\n\n   \n}\n\n\n};\n\n\n\n\n\n\nLaxarJS integration\n\n\nWith the basic setup described above, simple \nVue\n components should \njust work\n.\nIf you are developing anything useful you probably need to interact with the LaxarJS runtime in some way.\nThe following sections will describe how the \nlaxar-vue-adapter\n provides a (mostly) non-invasive integration with \nLaxarJS\n.\n\n\nInjections\n\n\nLaxarJS\n \nwidget services\n can be injected into your \nVue.js\n component by using the \ninjections\n mixin provided by the \nlaxar-vue-adapter\n.\nAn list of corresponding injection values is then available to the component instance as \nthis.$injections\n.\n\n\nimport\n \n{\n \ninjections\n \n}\n \nfrom\n \nlaxar-vue-adapter\n;\n\n\nexport\n \ndefault\n \n{\n\n   \nmixins\n:\n \n[\n \ninjections\n(\n \naxEventBus\n,\n \naxGlobalLog\n \n)\n \n],\n\n   \ncreated\n()\n \n{\n\n      \nconst\n \n[\n \neventBus\n,\n \nlog\n \n]\n \n=\n \nthis\n.\n$injections\n;\n\n      \neventBus\n.\nsubscribe\n(\n \nbeginLifecycleRequest\n,\n \n()\n \n=\n \n{\n\n         \nlog\n.\ndebug\n(\n \nSo it has begun!\n \n);\n\n      \n}\n \n);\n\n   \n}\n\n\n};\n\n\n\n\n\n\naxContext\n\n\nThe \naxContext\n service is automatically injected.\nIt can be accessed via the \n$data\n property.\nThe context does not appear among \nthis.$injections\n unless you explicitly specify it by using the \ninjections\n mixin.\nIts presence in the component's \n$data\n allows you to easily access the \nid()\n generator, the event bus and the features configured for your particular widget instance.\n\n\nexport\n \ndefault\n \n{\n\n   \ntemplate\n:\n \nb :id=\nid(\\\nsome-suffix\\\n)\n{{ features.mytext }}\n/b\n,\n\n   \ncreated\n()\n \n{\n\n      \nthis\n.\neventBus\n.\nsubscribe\n(\n \nsome-event\n,\n \nthis\n.\nmethods\n.\neventHandler\n \n);\n\n   \n},\n\n   \nmethods\n:\n \n{\n\n      \neventHandler\n(\n \npayload\n,\n \nmeta\n \n)\n \n{\n\n         \n// ...\n\n      \n}\n\n   \n}\n\n\n};\n\n\n\n\n\n\nControls\n\n\nYou can specify controls in your \nwidget.json\n.\nJust list a module that can resolved by the module loader.\nThe control will then be \nregistered locally\n as a component with the name specified in its \ncontrol.json\n.\n\n\n{\n\n   \nname\n:\n \nmy-widget\n,\n\n   \nintegration\n:\n \n{\n\n      \ntechnology\n:\n \nvue\n,\n\n      \ntype\n:\n \nwidget\n\n   \n},\n\n   \ncontrols\n:\n \n[\n \nmy-vue-control-module\n \n]\n\n\n}\n\n\n\n\n\n\n{\n\n   \nname\n:\n \nmy-vue-control\n,\n\n   \nintegration\n:\n \n{\n\n      \ntechnology\n:\n \nvue\n,\n\n      \ntype\n:\n \ncontrol\n\n   \n}\n\n\n}\n\n\n\n\n\n\n!-- my-widget.vue --\n\n\ntemplate\n\n\ndiv\nThis is my widget\n/div\n\n\nmy-vue-control\nIt\ns using a control\n/my-vue-control\n\n\n/template\n\n\n\nscript\n\nexport default {\n   components: {\n      // this part is automatically supplied by the runtime:\n      \nmy-vue-control\n: ConstructorCreatedByTheVueAdapter\n   }\n};\n\n/script\n\n\n\n\n\n\nInjections in controls\n\n\nControls can access the following global services via injections:\n\n\n\n\naxConfiguration\n\n\naxGlobalEventBus\n\n\naxGlobalLog\n\n\naxGlobalStorage\n\n\naxHeartbeat\n\n\naxTooling\n\n\n\n\naxWidgetServices\n\n\nThe services of the widget instance that uses the control can be injected as \naxWidgetServices\n.\n\n\nimport\n \n{\n \ninjections\n \n}\n \nfrom\n \nlaxar-vue-adapter\n;\n\n\n// my-vue-control.js\n\n\nexport\n \ndefault\n \n{\n\n   \nmixins\n:\n \n[\n \ninjections\n(\n \naxWidgetServices\n \n)\n \n],\n\n   \ncreated\n()\n \n{\n\n      \nconst\n \n[\n \n{\n \naxLog\n \n}\n \n]\n \n=\n \nthis\n.\n$injections\n;\n\n      \naxLog\n.\ninfo\n(\n \nI\\\nm a control using my widget\\\ns logger!\n \n);\n\n    \n}\n\n  \n};\n\n\n\n\n\n\nWidget Areas\n\n\nAll Vue.js components loaded by this adapter have access to an additional component \nax-widget-area\n.\nThis component can be used to provide containers for nested widgets.\n\n\n!-- my-widget.vue --\n\n\n\ntemplate\n\n   \ndiv\n\n      \nh1\nHere are two areas:\n/h1\n\n      \nax-widget-area name=\nfirst\n /\n\n      \nax-widget-area name=\nsecond\n /\n\n   \n/div\n\n\n/template\n\n\n\nscript\n\n   \n!-- export default { ... }; --\n\n\n/script\n\n\n\n\n\n\nNo modifications to the component JavaScript code are needed.\nBehind the scenes, the widget area component uses the \naxAreaHelper\n widget service injection, to provide additional widget areas:\n\n\n   \n// my-page.json, areas:\n\n   \ncontent\n:\n \n[\n\n      \n{\n\n         \nwidget\n:\n \nmy-widget\n,\n\n         \nid\n:\n \nwidgetX\n\n      \n}\n\n   \n],\n\n   \nwidgetX.first\n:\n \n[\n \n/* ...more widgets... */\n \n],\n\n   \nwidgetX.second\n:\n \n[\n \n/* ... */\n \n]\n\n\n\n\n\n\nNote that once mounted, widget areas should not be destroyed until their containing page is destroyed.\nUse styling (\ndisplay: none\n) to hide and show areas as needed.\nThis is a necessary evil for now, as some integration technologies (such as AngularJS v1) do not support temporary removal of their DOM.\nFor this reason, it is also not recommended to use a mutable expression for the \nname\n prop.\n\n\nTesting\n\n\nLaxarJS widgets and activities can be tested using \nLaxarJS Mocks\n just like when using other LaxarJS integration technologies.\nNote that the \nlaxar-vue-adapter\n makes available the special property \naxMocks.widget.vueComponent\n when \naxMocks.widget.load\n is called, referencing your widget's Vue.js component instance.\nYou can use this property to inspect your widget component data as well as its \neventBus\n, and to simulate method calls.\n\n\nTheming\n\n\nTheme directories are fully supported.\nAdditionally, if you are using the \nvue-loader\n, the default HTML and CSS can be embedded in the main \n.vue\n file.\nHowever, the HTML and CSS corresponding to the default theme will be present in the bundled application regardless of the theme used for bundling.\nIf that is an issue, we recommend using separate files for the HTML template and CSS.\n\n\nPrecompiling themed assets\n\n\nUsing external (S)CSS is supported, just like with other integration technologies.\n\n\nYou can also use the \nvue-loader\n to precompile your \nthemed HTML and CSS.\n\nJust specify a Vue.js component file as your \ntemplateSource\n and make sure it gets processed by the \nvue-loader\n.\n\n\n{\n\n   \nname\n:\n \nmy-widget\n,\n\n   \ntemplateSource\n:\n \nmy-widget.vue\n\n\n}\n\n\n\n\n\n\n!-- any.theme/my-widget.vue --\n\n\ntemplate\n\n   \nb class=\ncounter\n{{counter}}\n/b\n\n\n/template\n\n\n\nstyle\n\n.counter {\n   color: red;\n}\n\n/style\n\n\n\n\n\n\nIn this case, the component scripting logic could be kept in a \nmy-widget.js\n at the widget's top-level.\n\n\nHacking the Adapter\n\n\nFirst, clone the repository and fetch the dependencies:\n\n\ngit clone https://github.com/LaxarJS/laxar-vue-adapter.git\n\n\ncd laxar-vue-adapter\n\n\nnpm install\n\n\n\n\n\n\nTo rebuild the \npre-compiled bundle\n, use:\n\n\nnpm run dist\n\n\n\n\n\n\nOtherwise, you may need to adjust your project to load the adapter with ES2015 support.\nTo pick up clone from within a LaxarJS application, you may need to modify the project's webpack resolve configuration.\n\n\nTo \ntest\n the adapter, run:\n\n\nnpm test\n\n\n\n\n\n\nFor interactive tests that can be inspected in the browser, run:\n\n\nnpm start\n\n\n\n\n\n\nNow you can access the spec-tests at http://localhost:8080/dist/spec/laxar-vue-adapter.spec.html", 
+            "title": "README"
+        }, 
+        {
+            "location": "/#laxar-vue-adapter", 
+            "text": "Implement  LaxarJS  widgets and controls with  Vue.js .    Installation   Getting started   Separate files  Single file components     LaxarJS integration   Injections  axContext  Controls  Widget Areas  Testing  Theming", 
+            "title": "laxar-vue-adapter"
+        }, 
+        {
+            "location": "/#installation", 
+            "text": "The recommended installation is through NPM:  npm install --save laxar-vue-adapter   If using the source module instead, you need to ensure that the  .js  file is loaded with ES2015 support, plus support for Object spread.", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/#getting-started", 
+            "text": "You can either use the familiar directory structure for LaxarJS widgets, with separate  .js ,  .html  and  .css  files, or you can use the  vue-loader  and put the whole widget into a single  .vue  file.  In any case, your widget module will have to export an object of  Vue.js  options .\nThese will be passed to  Vue.extend()  by the adapter (together with some extras to enable widget service  injections ) so make sure you use options that are supported in component definitions.", 
+            "title": "Getting started"
+        }, 
+        {
+            "location": "/#separate-files", 
+            "text": "When using separate files for HTML template and controller logic, the template will be compiled on-the-fly in the user's browser, incurring a slight performance penalty.\nYou will also have to make sure that  vue  resolves to the so-called \" standalone build \" of  Vue.js .  !-- default.theme/my-widget.html --  b {{counter}} / b   // my-widget.js  export   default   { \n    data ()   { \n       return   {   counter :   0   }; \n    }, \n    created ()   { \n       this . interval   =   setInterval (   ()   =   { \n          this . counter ++ ; \n       },   1000   ); \n    }, \n    destroyed ()   { \n       clearInterval (   this . interval   ); \n    }  }   You have to make sure  laxar-vue-adapter  has access to  Vue.compile  to compile the template HTML.\nThis method is not part of  Vue.js'  default  NPM  package.\nUsing  webpack , you can use the standalone build of  Vue.js  by defining an alias in your resolve configuration:  // webpack.config.js  module . exports   =   { \n    resolve :   { \n       alias :   { \n          vue$ :   vue/dist/vue.js \n       } \n    }  };", 
+            "title": "Separate files"
+        }, 
+        {
+            "location": "/#single-file-components", 
+            "text": "In this example the  vue-loader  will preprocess the  .vue  file and compile the template to a JavaScript function.  !-- my-widget.vue --  template \n    b class= counter {{counter}} /b  /template  script \nexport default {\n   data() {\n      return { counter: 0 };\n   },\n   created() {\n      this.interval = setInterval( () =  {\n         this.counter++;\n      }, 1000 );\n   },\n   destroyed() {\n      clearInterval( this.interval );\n   }\n} /script  style \n.counter {\n   color: red;\n} /style   Make sure  vue-loader  is installed and set your  webpack.config.js  accordingly.  // webpack.config.js  module . exports   =   { \n    resolve :   { \n       extensions :   [   ,   .js ,   .vue   ] \n    }, \n    module :   { \n       loaders :   [   { \n          test :   /\\.vue$/ , \n          loader :   vue-loader \n       }   ] \n    }  };", 
+            "title": "Single file components"
+        }, 
+        {
+            "location": "/#laxarjs-integration", 
+            "text": "With the basic setup described above, simple  Vue  components should  just work .\nIf you are developing anything useful you probably need to interact with the LaxarJS runtime in some way.\nThe following sections will describe how the  laxar-vue-adapter  provides a (mostly) non-invasive integration with  LaxarJS .", 
+            "title": "LaxarJS integration"
+        }, 
+        {
+            "location": "/#injections", 
+            "text": "LaxarJS   widget services  can be injected into your  Vue.js  component by using the  injections  mixin provided by the  laxar-vue-adapter .\nAn list of corresponding injection values is then available to the component instance as  this.$injections .  import   {   injections   }   from   laxar-vue-adapter ;  export   default   { \n    mixins :   [   injections (   axEventBus ,   axGlobalLog   )   ], \n    created ()   { \n       const   [   eventBus ,   log   ]   =   this . $injections ; \n       eventBus . subscribe (   beginLifecycleRequest ,   ()   =   { \n          log . debug (   So it has begun!   ); \n       }   ); \n    }  };", 
+            "title": "Injections"
+        }, 
+        {
+            "location": "/#axcontext", 
+            "text": "The  axContext  service is automatically injected.\nIt can be accessed via the  $data  property.\nThe context does not appear among  this.$injections  unless you explicitly specify it by using the  injections  mixin.\nIts presence in the component's  $data  allows you to easily access the  id()  generator, the event bus and the features configured for your particular widget instance.  export   default   { \n    template :   b :id= id(\\ some-suffix\\ ) {{ features.mytext }} /b , \n    created ()   { \n       this . eventBus . subscribe (   some-event ,   this . methods . eventHandler   ); \n    }, \n    methods :   { \n       eventHandler (   payload ,   meta   )   { \n          // ... \n       } \n    }  };", 
+            "title": "axContext"
+        }, 
+        {
+            "location": "/#controls", 
+            "text": "You can specify controls in your  widget.json .\nJust list a module that can resolved by the module loader.\nThe control will then be  registered locally  as a component with the name specified in its  control.json .  { \n    name :   my-widget , \n    integration :   { \n       technology :   vue , \n       type :   widget \n    }, \n    controls :   [   my-vue-control-module   ]  }   { \n    name :   my-vue-control , \n    integration :   { \n       technology :   vue , \n       type :   control \n    }  }   !-- my-widget.vue --  template  div This is my widget /div  my-vue-control It s using a control /my-vue-control  /template  script \nexport default {\n   components: {\n      // this part is automatically supplied by the runtime:\n       my-vue-control : ConstructorCreatedByTheVueAdapter\n   }\n}; /script", 
+            "title": "Controls"
+        }, 
+        {
+            "location": "/#injections-in-controls", 
+            "text": "Controls can access the following global services via injections:   axConfiguration  axGlobalEventBus  axGlobalLog  axGlobalStorage  axHeartbeat  axTooling", 
+            "title": "Injections in controls"
+        }, 
+        {
+            "location": "/#axwidgetservices", 
+            "text": "The services of the widget instance that uses the control can be injected as  axWidgetServices .  import   {   injections   }   from   laxar-vue-adapter ;  // my-vue-control.js  export   default   { \n    mixins :   [   injections (   axWidgetServices   )   ], \n    created ()   { \n       const   [   {   axLog   }   ]   =   this . $injections ; \n       axLog . info (   I\\ m a control using my widget\\ s logger!   ); \n     } \n   };", 
+            "title": "axWidgetServices"
+        }, 
+        {
+            "location": "/#widget-areas", 
+            "text": "All Vue.js components loaded by this adapter have access to an additional component  ax-widget-area .\nThis component can be used to provide containers for nested widgets.  !-- my-widget.vue --  template \n    div \n       h1 Here are two areas: /h1 \n       ax-widget-area name= first  / \n       ax-widget-area name= second  / \n    /div  /template  script \n    !-- export default { ... }; --  /script   No modifications to the component JavaScript code are needed.\nBehind the scenes, the widget area component uses the  axAreaHelper  widget service injection, to provide additional widget areas:      // my-page.json, areas: \n    content :   [ \n       { \n          widget :   my-widget , \n          id :   widgetX \n       } \n    ], \n    widgetX.first :   [   /* ...more widgets... */   ], \n    widgetX.second :   [   /* ... */   ]   Note that once mounted, widget areas should not be destroyed until their containing page is destroyed.\nUse styling ( display: none ) to hide and show areas as needed.\nThis is a necessary evil for now, as some integration technologies (such as AngularJS v1) do not support temporary removal of their DOM.\nFor this reason, it is also not recommended to use a mutable expression for the  name  prop.", 
+            "title": "Widget Areas"
+        }, 
+        {
+            "location": "/#testing", 
+            "text": "LaxarJS widgets and activities can be tested using  LaxarJS Mocks  just like when using other LaxarJS integration technologies.\nNote that the  laxar-vue-adapter  makes available the special property  axMocks.widget.vueComponent  when  axMocks.widget.load  is called, referencing your widget's Vue.js component instance.\nYou can use this property to inspect your widget component data as well as its  eventBus , and to simulate method calls.", 
+            "title": "Testing"
+        }, 
+        {
+            "location": "/#theming", 
+            "text": "Theme directories are fully supported.\nAdditionally, if you are using the  vue-loader , the default HTML and CSS can be embedded in the main  .vue  file.\nHowever, the HTML and CSS corresponding to the default theme will be present in the bundled application regardless of the theme used for bundling.\nIf that is an issue, we recommend using separate files for the HTML template and CSS.", 
+            "title": "Theming"
+        }, 
+        {
+            "location": "/#precompiling-themed-assets", 
+            "text": "Using external (S)CSS is supported, just like with other integration technologies.  You can also use the  vue-loader  to precompile your  themed HTML and CSS. \nJust specify a Vue.js component file as your  templateSource  and make sure it gets processed by the  vue-loader .  { \n    name :   my-widget , \n    templateSource :   my-widget.vue  }   !-- any.theme/my-widget.vue --  template \n    b class= counter {{counter}} /b  /template  style \n.counter {\n   color: red;\n} /style   In this case, the component scripting logic could be kept in a  my-widget.js  at the widget's top-level.", 
+            "title": "Precompiling themed assets"
+        }, 
+        {
+            "location": "/#hacking-the-adapter", 
+            "text": "First, clone the repository and fetch the dependencies:  git clone https://github.com/LaxarJS/laxar-vue-adapter.git  cd laxar-vue-adapter  npm install   To rebuild the  pre-compiled bundle , use:  npm run dist   Otherwise, you may need to adjust your project to load the adapter with ES2015 support.\nTo pick up clone from within a LaxarJS application, you may need to modify the project's webpack resolve configuration.  To  test  the adapter, run:  npm test   For interactive tests that can be inspected in the browser, run:  npm start   Now you can access the spec-tests at http://localhost:8080/dist/spec/laxar-vue-adapter.spec.html", 
+            "title": "Hacking the Adapter"
+        }, 
+        {
+            "location": "/CHANGELOG/", 
+            "text": "Changelog\n\n\nLast Changes\n\n\nv2.0.0\n\n\n\n\n#6\n: documentation: fixed example area names\n\n\n\n\nv2.0.0-rc.1\n\n\n\n\n#5\n: fixed dependencies in package.json\n\n\n\n\nv2.0.0-rc.0\n\n\n\n\n#4\n: additional docs\n\n\n\n\nv2.0.0-beta.0\n\n\n\n\n#2\n: finishing touches, fixed default imports\n\n\n\n\nv2.0.0-alpha.4\n\n\n\n\n#3\n: added support for widget areas\n        + NEW FEATURE: see ticket for details\n\n\n\n\nv2.0.0-alpha.3\n\n\n\n\n#1\n: initial Vue.js technology adapter", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#changelog", 
+            "text": "", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#last-changes", 
+            "text": "", 
+            "title": "Last Changes"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200", 
+            "text": "#6 : documentation: fixed example area names", 
+            "title": "v2.0.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-rc1", 
+            "text": "#5 : fixed dependencies in package.json", 
+            "title": "v2.0.0-rc.1"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-rc0", 
+            "text": "#4 : additional docs", 
+            "title": "v2.0.0-rc.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-beta0", 
+            "text": "#2 : finishing touches, fixed default imports", 
+            "title": "v2.0.0-beta.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-alpha4", 
+            "text": "#3 : added support for widget areas\n        + NEW FEATURE: see ticket for details", 
+            "title": "v2.0.0-alpha.4"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-alpha3", 
+            "text": "#1 : initial Vue.js technology adapter", 
+            "title": "v2.0.0-alpha.3"
+        }
+    ]
+}

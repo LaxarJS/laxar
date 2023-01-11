@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../laxar.theme/img/favicon.ico">
+        <title>LaxarJS Mocks  v0.6.1</title>
+
+        <link rel="stylesheet" href="../../../laxar.theme/css/pygments.css">
+        <link href="../../../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar-mocks <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="../../../laxar-latest">laxar</a></li>
+            
+            <li><a href="../../../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="../../../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="../../../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="../../../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="../../../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="../../../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="../../../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="../../../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="../../../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="../../../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="../../../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="../../../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v0.6.1 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="../../../laxar-mocks-v2-latest">v2.0.0</a></li>
+            
+               <li><a href="../../../laxar-mocks-v1-latest">v1.1.1</a></li>
+            
+               <li><a href="../../../laxar-mocks-v0-latest">v0.6.1</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="../../../laxar-mocks-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v1.1.1">v1.1.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v1.1.0">v1.1.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v1.0.0">v1.0.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.6.1">v0.6.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.6.0">v0.6.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.5.1">v0.5.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.5.0">v0.5.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.4.1">v0.4.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.4.0">v0.4.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.3.1">v0.3.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.3.0">v0.3.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.2.2">v0.2.2</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.2.1">v0.2.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.2.0">v0.2.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.1.0">v0.1.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="../../CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+                  
+               
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar-mocks/tree/v0.6.1">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main"><a title="README" href="../..#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+      
+         <li class="main ax-collapse ax-active" >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="API"
+               data-toggle="collapse"
+               data-target="#API"
+               aria-expanded="false"
+               aria-controls="collapseExample">API <span class="caret"></span></a>
+
+            <ul class="nav subnav in"
+               id="API">
+               
+               <li class="ax-active">
+                  <a title="laxar-mocks" href="./#start">laxar-mocks</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Manuals"
+               data-toggle="collapse"
+               data-target="#Manuals"
+               aria-expanded="false"
+               aria-controls="collapseExample">Manuals <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="Manuals">
+               
+               <li >
+                  <a title="Overview" href="../../manuals/#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="Introduction to LaxarJS Mocks" href="../../manuals/introduction/#start">Introduction to LaxarJS Mocks</a>
+               </li>
+               
+               <li >
+                  <a title="Multiple Jasmine Versions in one Project" href="../../manuals/jasmine-compatibility/#start">Multiple Jasmine Versions in one Project</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<h1 id="laxar-mocks">laxar-mocks</h1>
+<p>A testing framework for LaxarJS widgets.</p>
+<h2 id="contents">Contents</h2>
+<p><strong>Module Members</strong></p>
+<ul>
+<li><a href="#createSetupForWidget">createSetupForWidget</a></li>
+<li><a href="#tearDown">tearDown</a></li>
+<li><a href="#triggerStartupEvents">triggerStartupEvents</a></li>
+</ul>
+<p><strong>Types</strong></p>
+<ul>
+<li><a href="#Widget">Widget</a><ul>
+<li><a href="#Widget#configure">Widget#configure</a></li>
+<li><a href="#Widget#load">Widget#load</a></li>
+<li><a href="#Widget#render">Widget#render</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="module-members">Module Members</h2>
+<h4 id="createsetupforwidget-widgetdescriptor-optionaloptions"><a name="createSetupForWidget"></a>createSetupForWidget( widgetDescriptor, optionalOptions )</h4>
+<p>Creates the setup function for a widget test. The returned function is asynchronous and should simply be
+passed to <code>beforeEach</code>. By doing so, the handling of the Jasmine <code>done</code> callback happens under the hood.
+To receive the widget descriptor (i.e. the contents of the <code>widget.json</code> file) the use of the RequireJS</p>
+<p><em>json</em> plugin is advised.</p>
+<p>Example:</p>
+<div class="codehilite"><pre><span class="nx">define</span><span class="p">(</span> <span class="p">[</span>
+   <span class="s1">&#39;json!../widget.json&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;laxar-mocks&#39;</span>
+<span class="p">],</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">descriptor</span><span class="p">,</span> <span class="nx">axMocks</span> <span class="p">)</span> <span class="p">{</span>
+   <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+   <span class="nx">describe</span><span class="p">(</span> <span class="s1">&#39;An ExampleWidget&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+      <span class="nx">beforeEach</span><span class="p">(</span> <span class="nx">testing</span><span class="p">.</span><span class="nx">createSetupForWidget</span><span class="p">(</span> <span class="nx">descriptor</span> <span class="p">)</span> <span class="p">);</span>
+
+      <span class="c1">// ... widget configuration, loading and your tests</span>
+
+      <span class="nx">afterEach</span><span class="p">(</span> <span class="nx">axMocks</span><span class="p">.</span><span class="nx">tearDown</span> <span class="p">);</span>
+
+   <span class="p">}</span> <span class="p">);</span>
+<span class="p">}</span> <span class="p">);</span>
+</pre></div>
+
+
+<h5 id="parameters">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>widgetDescriptor</td>
+<td><code>Object</code></td>
+<td>the widget descriptor (taken from <code>widget.json</code>)</td>
+</tr>
+<tr>
+<td><em>optionalOptions</em></td>
+<td><code>Object</code></td>
+<td>optional map of options</td>
+</tr>
+<tr>
+<td><em>optionalOptions.adapter</em></td>
+<td><code>Object</code></td>
+<td>a technology adapter to use for this widget. When using a custom integration technology (something other than "plain" or "angular"), pass the adapter module using this option.</td>
+</tr>
+<tr>
+<td><em>optionalOptions.knownMissingResources</em></td>
+<td><code>Array</code></td>
+<td>list of file name parts as strings or regular expressions, that are known to be absent and as such won't be found by the file resource provider and thus result in the logging of a 404 HTTP error. So whenever such an error is logged and the absence of the file is fine, an appropriate entry can be added to this configuration. Mostly CSS files are affected by this</td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns">Returns</h5>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Function</code></td>
+<td>a function to directly pass to <code>beforeEach</code>, accepting a Jasmine <code>done</code> callback</td>
+</tr>
+</tbody>
+</table>
+<h4 id="teardown"><a name="tearDown"></a>tearDown()</h4>
+<p>Removes any DOM fragments of the widget and calls the appropriate destructors. It is advised to call
+this once in an <code>afterEach</code> call. Passing this function directly to <code>afterEach</code> works as well.</p>
+<p>Example.</p>
+<div class="codehilite"><pre><span class="nx">afterEach</span><span class="p">(</span> <span class="nx">axMocks</span><span class="p">.</span><span class="nx">tearDown</span> <span class="p">);</span>
+</pre></div>
+
+
+<h4 id="triggerstartupevents-optionalevents"><a name="triggerStartupEvents"></a>triggerStartupEvents( optionalEvents )</h4>
+<p>Triggers all events normally published by the runtime after instantiation of the controller. This
+includes the following events, listed with their according payloads in the order they are published:</p>
+<p><strong>1. didChangeLocale.default:</strong></p>
+<div class="codehilite"><pre><span class="p">{</span>
+   <span class="nx">locale</span><span class="o">:</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span>
+   <span class="nx">languageTag</span><span class="o">:</span> <span class="s1">&#39;en&#39;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p><strong>2. didChangeTheme.default:</strong></p>
+<div class="codehilite"><pre><span class="p">{</span>
+   <span class="nx">theme</span><span class="o">:</span> <span class="s1">&#39;default&#39;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p><strong>3. beginLifecycleRequest.default:</strong></p>
+<div class="codehilite"><pre><span class="p">{</span>
+   <span class="nx">lifecycleId</span><span class="o">:</span> <span class="s1">&#39;default&#39;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p><strong>4. didChangeAreaVisibility.content.true:</strong></p>
+<div class="codehilite"><pre><span class="p">{</span>
+   <span class="nx">area</span><span class="o">:</span> <span class="s1">&#39;content&#39;</span><span class="p">,</span>
+   <span class="nx">visible</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p><strong>5. didNavigate.testing:</strong></p>
+<div class="codehilite"><pre><span class="p">{</span>
+   <span class="nx">place</span><span class="o">:</span> <span class="s1">&#39;testing&#39;</span><span class="p">,</span>
+   <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;_self&#39;</span><span class="p">,</span>
+   <span class="nx">data</span><span class="o">:</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Via the <code>optionalEvents</code> argument it is possible to add events with different trailing topics, to
+overwrite events defined above, or to completely prevent from triggering one of the events. To do so
+simply pass a map, where the primary topics are the keys and the value is a map from trailing topic to
+payload. If the value is <code>null</code>, the specific event is not published.</p>
+<p>Example:</p>
+<div class="codehilite"><pre><span class="nx">axMocks</span><span class="p">.</span><span class="nx">triggerStartupEvents</span><span class="p">(</span> <span class="p">{</span>
+   <span class="nx">didChangeLocale</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">alternative</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">locale</span><span class="o">:</span> <span class="s1">&#39;alternative&#39;</span><span class="p">,</span>
+         <span class="nx">languageTag</span><span class="o">:</span> <span class="s1">&#39;de&#39;</span>
+      <span class="p">}</span>
+   <span class="p">},</span>
+   <span class="nx">didChangeTheme</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s1">&#39;default&#39;</span><span class="o">:</span> <span class="kc">null</span>
+   <span class="p">},</span>
+   <span class="nx">didNavigate</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">testing</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">place</span><span class="o">:</span> <span class="s1">&#39;testing&#39;</span><span class="p">,</span>
+         <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;_self&#39;</span><span class="p">,</span>
+         <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">user</span><span class="o">:</span> <span class="s1">&#39;Peter&#39;</span><span class="p">,</span>
+            <span class="nx">articleId</span><span class="o">:</span> <span class="s1">&#39;1234&#39;</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span> <span class="p">);</span>
+</pre></div>
+
+
+<p>The effect of this call is the following:</p>
+<ol>
+<li>
+<p>There will be two <em>didChangeLocale</em> events: <em>didChangeLocale.default</em>, carrying the language tag <em>en</em>
+   in its payload, and <em>didChangeLocale.alternative</em>, carrying the language tag <em>de</em> in its payload.</p>
+</li>
+<li>
+<p>There will be no <em>didChangeTheme</em> event, since the only pre-configured one is set to <code>null</code>.</p>
+</li>
+<li>The parameters of the <em>didNavigate.testing</em> event are changed to be
+   <code>{ user: 'Peter', articleId: '1234' }</code>.</li>
+</ol>
+<h5 id="parameters_1">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>optionalEvents</em></td>
+<td><code>Object</code></td>
+<td>optional map of user defined events</td>
+</tr>
+</tbody>
+</table>
+<h2 id="types">Types</h2>
+<h3 id="widget"><a name="Widget"></a>Widget</h3>
+<p>The API to instrument and inspect the widget under test. In addition to the listed methods it has all
+injections for the specific widget technology set as properties. E.g. for every widget technology there
+will be <code>axEventBus</code> and <code>axContext</code> properties, but for AngularJS widgets there will be an additional
+<code>$scope</code> property. Note that these are only available after <code>load()</code> has been called and the widget
+controller is loaded.</p>
+<p>The methods of the event bus instance available as <code>axEventBus</code> are already provided with
+<a href="http://jasmine.github.io/2.3/introduction.html#section-Spies">Jasmine spies</a>.</p>
+<h4 id="widgetconfigure-keyorconfiguration-optionalvalue"><a name="Widget#configure"></a>Widget#configure( keyOrConfiguration, optionalValue )</h4>
+<p>Configures the widget features before loading with the given configuration object or key/value
+entries. In fact this is what you'd normally configure under the <code>features</code> key in a page descriptor.</p>
+<p>Shorthands may be used:</p>
+<p>This</p>
+<div class="codehilite"><pre><span class="nx">beforeEach</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+   <span class="nx">testing</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">configure</span><span class="p">(</span> <span class="p">{</span>
+      <span class="nx">search</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">resource</span><span class="o">:</span> <span class="s1">&#39;search&#39;</span>
+      <span class="p">}</span>
+   <span class="p">}</span> <span class="p">);</span>
+<span class="p">}</span> <span class="p">);</span>
+</pre></div>
+
+
+<p>is equivalent to the following shorter version</p>
+<div class="codehilite"><pre><span class="nx">beforeEach</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+   <span class="nx">testing</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">configure</span><span class="p">(</span> <span class="s1">&#39;search.resource&#39;</span><span class="p">,</span> <span class="s1">&#39;search&#39;</span> <span class="p">);</span>
+<span class="p">}</span> <span class="p">);</span>
+</pre></div>
+
+
+<h5 id="parameters_2">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keyOrConfiguration</td>
+<td><code>String</code>, <code>Object</code></td>
+<td>either an object for the full features configuration or the path to the property to configure</td>
+</tr>
+<tr>
+<td><em>optionalValue</em></td>
+<td><code>*</code></td>
+<td>if <code>keyOrConfiguration</code> is a string, this is the value to set the feature configuration to</td>
+</tr>
+</tbody>
+</table>
+<h4 id="widgetload-done"><a name="Widget#load"></a>Widget#load( done )</h4>
+<p>Loads the given widget and instantiates its controller. As this function is asynchronous, it receives
+a Jasmine <code>done</code> callback, that is called when the widget is ready.</p>
+<p>The simplest way to call this function is by passing it to its own <code>beforeEach</code> call:</p>
+<div class="codehilite"><pre><span class="nx">beforeEach</span><span class="p">(</span> <span class="nx">testing</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">load</span> <span class="p">);</span>
+</pre></div>
+
+
+<h5 id="parameters_3">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>done</td>
+<td><code>Function</code></td>
+<td>callback to notify Jasmine, that the asynchronous widget loading has finished</td>
+</tr>
+</tbody>
+</table>
+<h4 id="widgetrender"><a name="Widget#render"></a>Widget#render()</h4>
+<p>Renders the widget's template by calling the appropriate widget adapter and appends it within a
+container div to the test's DOM. The widget DOM fragement will be returned in order to simulate
+user interaction on it. Calling <code>testing.tearDown()</code> will remove it again.</p>
+<p>Note that calling this method for an activity has no effect and hence is unnessecary.</p>
+<h5 id="returns_1">Returns</h5>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Node</code></td>
+<td>the widget DOM fragment</td>
+</tr>
+</tbody>
+</table></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="../../../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="../../../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="../../../laxar.theme/js/base.js"></script>
+   </body>
+</html>

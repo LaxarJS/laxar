@@ -1,0 +1,634 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "laxar-tooling \n\n\n\n\nA tool support library to inspect \nLaxarJS\n applications\n\n\n\n\nThis library serves as a central point to codify build-time knowledge of LaxarJS applications.\nUse it to add LaxarJS support to your build tool.\n\n\nCurrently \nlaxar-tooling\n serves four main purposes:\n\n\n\n\n\n\nartifactCollector\n: collect a list of artifacts (pages, layouts, themes, widgets,\n  controls) plus meta-information starting from the application's flow(s)\n\n\n\n\n\n\nartifactValidator\n: validate the collected artifacts with JSON schema\n\n\n\n\n\n\nassetResolver\n: for a single artifact from that list and the list of themes, resolve\n  themed assets for that artifact\n\n\n\n\n\n\nartifactListing\n: generate a JavaScript module to be used by LaxarJS'\n  \nartifactProvider\n\n\n\n\n\n\nserialize\n: serialize the generated module into valid JavaScript\n\n\n\n\n\n\nInstallation\n\n\nFirst, make sure you are running NodeJS v4.0 or newer. After that, just install \nlaxar-tooling\n:\n\n\n$\n node -v\n\nv4.4.7\n\n\n$\n npm install --save laxar-tooling\n\n\n\n\n\nUsage\n\n\nRefer to the \nAPI documentation\n and/or real-world usage in \nlaxar-loader", 
+            "title": "README"
+        }, 
+        {
+            "location": "/#laxar-tooling", 
+            "text": "A tool support library to inspect  LaxarJS  applications   This library serves as a central point to codify build-time knowledge of LaxarJS applications.\nUse it to add LaxarJS support to your build tool.  Currently  laxar-tooling  serves four main purposes:    artifactCollector : collect a list of artifacts (pages, layouts, themes, widgets,\n  controls) plus meta-information starting from the application's flow(s)    artifactValidator : validate the collected artifacts with JSON schema    assetResolver : for a single artifact from that list and the list of themes, resolve\n  themed assets for that artifact    artifactListing : generate a JavaScript module to be used by LaxarJS'\n   artifactProvider    serialize : serialize the generated module into valid JavaScript", 
+            "title": "laxar-tooling"
+        }, 
+        {
+            "location": "/#installation", 
+            "text": "First, make sure you are running NodeJS v4.0 or newer. After that, just install  laxar-tooling :  $  node -v v4.4.7  $  npm install --save laxar-tooling", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/#usage", 
+            "text": "Refer to the  API documentation  and/or real-world usage in  laxar-loader", 
+            "title": "Usage"
+        }, 
+        {
+            "location": "/CHANGELOG/", 
+            "text": "Changelog\n\n\nLast Changes\n\n\nv0.6.0\n\n\n\n\n#23\n: page assembler: apply feature defaults even if widget instances do not have feature configuration\n\n\n\n\nv0.6.0-alpha.0\n\n\n\n\n#22\n: extend API to allow requiring module entry points differently\n\n\n\n\nv0.5.0\n\n\n\n\n#20\n: stop including multiple theme assets in artifact listing\n\n\n\n\nv0.5.0-alpha.5\n\n\n\n\n#19\n: page assembler: use names for IDs, not refs\n\n\n\n\nv0.5.0-alpha.4\n\n\n\n\n#17\n: fixed page-assembler integration\n\n\n\n\nv0.5.0-alpha.3\n\n\n\n\n#15\n: assemble pages during build\n\n\n\n\nv0.5.0-alpha.2\n\n\n\n\n#16\n: fix incorrect \ntheme.css\n path\n\n\n#13\n: provide details if an artifact has an invalid schema\n\n\n\n\nv0.5.0-alpha.1\n\n\n\n\n#12\n: fixed validation failures for widgets without features\n\n\n\n\nv0.5.0-alpha.0\n\n\n\n\n#11\n: the \nlog\n option has been removed\n\n\n\n\n#10\n: provide \nartifactValidator\n to apply JSON schemas\n\n\n\n\nNEW FEATURE: see ticket for details\n\n\n\n\n\n\n\n\n#8\n: generate only one theme per artifact listing\n\n\n\n\nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n\n\n#9\n: the \nfileReader\n and \njsonReader\n utilities were removed\n\n\n\n\nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n\n\nv0.4.1\n\n\n\n\n#7\n: the API is now exported as a ES2015 default export as well\n\n\n\n\nv0.4.0\n\n\n\n\n\n\n#6\n: support preprocessed theme-, layout-, widget- and control-artifacts\n\n\n\n\nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n\n\n#5\n: implement new path resolution scheme\n\n\n\n\nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n\n\n#4\n: converted the source code to ES2015, pre-built with babel\n\n\n\n\n\n\nv0.3.0\n\n\n\n\n#3\n: added new \nartifactListing\n and \nserialize\n APIs to generate artifact listing code.\n\n\nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n\n\nv0.2.0\n\n\n\n\n#2\n: added new \nartifactCollector\n and \nassetResolver\n APIs.\n        + \nBREAKING CHANGE:\n The old \nartifactCollector\n, \nresourceCollector\n and \ndependencyCollector\n were removed.\n      See ticket for details.\n\n\n\n\nv0.1.0\n\n\n\n\ninitial version", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#changelog", 
+            "text": "", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#last-changes", 
+            "text": "", 
+            "title": "Last Changes"
+        }, 
+        {
+            "location": "/CHANGELOG/#v060", 
+            "text": "#23 : page assembler: apply feature defaults even if widget instances do not have feature configuration", 
+            "title": "v0.6.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v060-alpha0", 
+            "text": "#22 : extend API to allow requiring module entry points differently", 
+            "title": "v0.6.0-alpha.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v050", 
+            "text": "#20 : stop including multiple theme assets in artifact listing", 
+            "title": "v0.5.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v050-alpha5", 
+            "text": "#19 : page assembler: use names for IDs, not refs", 
+            "title": "v0.5.0-alpha.5"
+        }, 
+        {
+            "location": "/CHANGELOG/#v050-alpha4", 
+            "text": "#17 : fixed page-assembler integration", 
+            "title": "v0.5.0-alpha.4"
+        }, 
+        {
+            "location": "/CHANGELOG/#v050-alpha3", 
+            "text": "#15 : assemble pages during build", 
+            "title": "v0.5.0-alpha.3"
+        }, 
+        {
+            "location": "/CHANGELOG/#v050-alpha2", 
+            "text": "#16 : fix incorrect  theme.css  path  #13 : provide details if an artifact has an invalid schema", 
+            "title": "v0.5.0-alpha.2"
+        }, 
+        {
+            "location": "/CHANGELOG/#v050-alpha1", 
+            "text": "#12 : fixed validation failures for widgets without features", 
+            "title": "v0.5.0-alpha.1"
+        }, 
+        {
+            "location": "/CHANGELOG/#v050-alpha0", 
+            "text": "#11 : the  log  option has been removed   #10 : provide  artifactValidator  to apply JSON schemas   NEW FEATURE: see ticket for details     #8 : generate only one theme per artifact listing   BREAKING CHANGE:  see ticket for details     #9 : the  fileReader  and  jsonReader  utilities were removed   BREAKING CHANGE:  see ticket for details", 
+            "title": "v0.5.0-alpha.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v041", 
+            "text": "#7 : the API is now exported as a ES2015 default export as well", 
+            "title": "v0.4.1"
+        }, 
+        {
+            "location": "/CHANGELOG/#v040", 
+            "text": "#6 : support preprocessed theme-, layout-, widget- and control-artifacts   BREAKING CHANGE:  see ticket for details     #5 : implement new path resolution scheme   BREAKING CHANGE:  see ticket for details     #4 : converted the source code to ES2015, pre-built with babel", 
+            "title": "v0.4.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v030", 
+            "text": "#3 : added new  artifactListing  and  serialize  APIs to generate artifact listing code.  BREAKING CHANGE:  see ticket for details", 
+            "title": "v0.3.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v020", 
+            "text": "#2 : added new  artifactCollector  and  assetResolver  APIs.\n        +  BREAKING CHANGE:  The old  artifactCollector ,  resourceCollector  and  dependencyCollector  were removed.\n      See ticket for details.", 
+            "title": "v0.2.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v010", 
+            "text": "initial version", 
+            "title": "v0.1.0"
+        }, 
+        {
+            "location": "/api/", 
+            "text": "laxar-tooling\n\n\nA tool support library to inspect LaxarJS applications\n\n\nconst laxarTooling = require( \nlaxar-tooling\n );\nconst entries = [ {\n   flows: [ \nflow1\n, \nflow2\n ],\n   themes: [ \ndefault\n ]\n} ];\n\n\n\n\n\nContents", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/api/#contents", 
+            "text": "", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/ajv/", 
+            "text": "ajv\n\n\nInstatiate an Ajv instance with the configuration required by LaxarJS.\n\n\nContents\n\n\nModule Members\n\n\n\n\ncreate()\n\n\n\n\nModule Members\n\n\ncreate()\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nAjv\n\n\nan Ajv instance", 
+            "title": "ajv"
+        }, 
+        {
+            "location": "/api/ajv/#contents", 
+            "text": "Module Members   create()", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/ajv/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/ajv/#returns", 
+            "text": "Type  Description      Ajv  an Ajv instance", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector/", 
+            "text": "artifactCollector\n\n\nDetermine application artifacts by inspecting flow, pages and widgets.\n\n\nContents\n\n\nModule Members\n\n\n\n\n- unknown -\n\n\ncreate()\n\n\ncollectArtifacts()\n\n\ncollectSchemas()\n\n\ncollectFlows()\n\n\ncollectThemes()\n\n\ncollectPages()\n\n\ncollectLayouts()\n\n\ncollectWidgets()\n\n\ncollectControls()\n\n\n\n\nTypes\n\n\n\n\nArtifactCollector\n\n\n\n\nModule Members\n\n\n- unknown - \nundefined\n\n\ncreate( options )\n\n\nCreate an artifact collector instance.\n\n\nExample:\n\n\nconst collector = laxarTooling.artifactCollector.create( {\n   paths: { widgets: \ncustom/widgets/path\n },\n   resolve: ref =\n path.relative( base, path.resolve( ref ) ),\n   readJson: filename =\n new Promise( ( resolve, reject ) =\n {\n      fs.readFile( filename, ( err, contents ) =\n {\n         try {\n            err ? reject( err ) : resolve( JSON.parse( contents ) );\n         }\n         catch( err ) {\n            reject( err );\n         }\n      } );\n   } )\n} );\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\noptions\n\n\nObject\n\n\nadditional options\n\n\n\n\n\n\noptions.paths\n\n\nObject\n\n\nconfiguration where to look for flows, pages, etc.\n\n\n\n\n\n\noptions.resolve\n\n\nFunction\n\n\na function resolving a given file path to something that can be read by the \nreadJson\n function and either returning it as a \nString\n or asynchronously\n\n\n\n\n\n\noptions.readJson\n\n\nFunction\n\n\na function accepting a file path as an argument and returning a promise that resolves to the parsed JSON contents of the file as a \nPromise\n\n\n\n\n\n\noptions.fileContents\n\n\nObject\n\n\nan object mapping file paths (as returned by \noptions.resolve\n) to promises that resolve to the parsed JSON contents of the file (used if \nreadJson\n is omitted)\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nArtifactCollector\n\n\nthe created artifact collector\n\n\n\n\n\n\n\n\ncollectArtifacts( entries )\n\n\nObtain artifact information asynchronously, starting from a set of flow definitions.\n\n\nExample:\n\n\ncollector.collectArtifacts( [ { flows: [ \nflow\n ], themes: [ \nmy\n, \ndefault\n  ] } ] )\n   .then( artifacts =\n {\n      assert( Array.isArray( artifacts.flows ) );\n      assert( Array.isArray( artifacts.themes ) );\n      assert( Array.isArray( artifacts.pages ) );\n      assert( Array.isArray( artifacts.layouts ) );\n      assert( Array.isArray( artifacts.widgets ) );\n      assert( Array.isArray( artifacts.controls ) );\n   } );\n// =\n {\n//       flows: [ ... ],\n//       themes: [ ... ],\n//       pages: [ ... ],\n//       layouts: [ ... ],\n//       widgets: [ ... ],\n//       contros: [ ... ]\n//    }\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nentries\n\n\nArray.\nObject\n\n\na list of entries containing themes and flows to follow to find all the pages reachable from the flow and their required artifacts\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nObject\n\n\nthe artifact listing with the keys \nflows\n, \nthemes\n, \npages\n, \nlayouts\n, \nwidgets\n and \ncontrols\n, of which each is an array of artifact objects\n\n\n\n\n\n\n\n\ncollectSchemas( entries )\n\n\nAsynchronously collect all schemas corresponding to the given paths.\n\n\nExample:\n\n\ncollector.collectSchemas( [ { schemas: [ \nschema\n ] } ] )\n   .then( schemas =\n {\n      assert( Array.isArray( schemas ) );\n   } );\n// =\n [ {\n//       refs: [ \nschema\n ],\n//       name: \nschema\n,\n//       path: \npath/to/schema.json\n,\n//       pages: [ ... ]\n//    } ]\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nentries\n\n\nArray\n\n\na list of entry objects containing a schemas key\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nArray\n\n\na promise for an array of schema-meta objects\n\n\n\n\n\n\n\n\ncollectFlows( entries )\n\n\nAsynchronously collect all flows corresponding to the given refs.\n\n\nExample:\n\n\ncollector.collectFlows( [ { flows: [ \nflow\n ] } ] )\n   .then( flows =\n {\n      assert( Array.isArray( flows ) );\n   } );\n// =\n [ {\n//       refs: [ \nflow\n ],\n//       name: \nflow\n,\n//       path: \npath/to/flow.json\n,\n//       pages: [ ... ]\n//    } ]\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nentries\n\n\nArray\n\n\na list of entry objects containing a flows key\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nArray\n\n\na promise for an array of flow-meta objects\n\n\n\n\n\n\n\n\ncollectThemes( entries )\n\n\nCollect meta information on the given themes.\n\n\nExample:\n\n\ncollector.collectThemes( [ { themes: [ \nmy.theme\n, \ndefault.theme\n ] } ] )\n   .then( themes =\n {\n      assert( Array.isArray( themes ) );\n   } );\n// =\n [ {\n//       refs: [ \nmy.theme\n ],\n//       name: \nmy.theme\n,\n//       path: \npath/to/my.theme\n\n//    }, {\n//       refs: [ \ndefault.theme\n ],\n//       name: \ndefault.theme\n,\n//       path: \npath/to/laxar-uikit/themes/default.theme\n\n//    } ]\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nentries\n\n\nArray.\nObject\n\n\na list of entries with themes to include in the artifacts\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nArray\n\n\na promise for an array of meta-information about all themes\n\n\n\n\n\n\n\n\ncollectPages( flows )\n\n\nAsynchronously collect all pages that are reachable from the given list of flows.\n\n\nExample:\n\n\ncollector.collectPages( flows )\n   .then( pages =\n {\n      assert( Array.isArray( pages ) );\n   } );\n// =\n [ {\n//       refs: [ \npage\n ],\n//       name: \npage\n,\n//       path: \npath/to/page.json\n,\n//       pages: [ ... ],\n//       layouts: [ ... ],\n//       widgets: [ ... ]\n//    }, ... ]\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nflows\n\n\nArray.\nString\n\n\na list of flow artifacts as returned by \nArtifactCollector#collectFlows\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nArray\n\n\na promise for a combined array of page meta information for these flows\n\n\n\n\n\n\n\n\ncollectLayouts( pages )\n\n\nFinds layouts based on them being referenced in page areas.\n\n\nExample:\n\n\ncollector.collectLayouts( pages )\n   .then( layouts =\n {\n      assert( Array.isArray( layouts ) );\n   } );\n// =\n [ {\n//       refs: [ \nlayout\n ],\n//       name: \nlayout\n,\n//       path: \npath/to/layout\n\n//    }, ... ]\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\npages\n\n\nArray\n\n\na list of page artifacts as returned by \nArtifactCollector#collectPages\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nArray\n\n\na promise for an array of meta-information about all layouts\n\n\n\n\n\n\n\n\ncollectWidgets( pages )\n\n\nCollect meta information on all widget that are referenced from the given pages.\n\n\nExample:\n\n\ncollector.collectWidgets( pages )\n   .then( widgets =\n {\n      assert( Array.isArray( widgets ) );\n   } );\n// =\n [ {\n//       refs: [ \nwidget\n ],\n//       name: \nwidget\n,\n//       path: \npath/to/widget\n,\n//       controls: [ ... ]\n//    }, ... ]\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\npages\n\n\nArray\n\n\na list of page artifacts as returned by \nArtifactCollector#collectPages\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nArray\n\n\na promise for an array of meta-information about all reachable widgets\n\n\n\n\n\n\n\n\ncollectControls( widgets )\n\n\nCollect meta information on all controls that are referenced by the given widgets.\n\n\nExample:\n\n\ncollector.collectControls( widgets, themes )\n   .then( controls =\n {\n      assert( Array.isArray( controls ) );\n   } );\n// =\n [ {\n//       refs: [ \ncontrol\n ],\n//       name: \ncontrol\n,\n//       path: \npath/to/control\n,\n//       controls: [ ... ]\n//    }, ... ]\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nwidgets\n\n\nArray\n\n\na list of widget artifacts as returned by \nArtifactCollector#collectWidgets\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nArray\n\n\na promise for an array of meta-information about all reachable controls\n\n\n\n\n\n\n\n\nTypes\n\n\nArtifactCollector", 
+            "title": "artifactCollector"
+        }, 
+        {
+            "location": "/api/artifact_collector/#contents", 
+            "text": "Module Members   - unknown -  create()  collectArtifacts()  collectSchemas()  collectFlows()  collectThemes()  collectPages()  collectLayouts()  collectWidgets()  collectControls()   Types   ArtifactCollector", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/artifact_collector/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/artifact_collector/#parameters", 
+            "text": "Property  Type  Description      options  Object  additional options    options.paths  Object  configuration where to look for flows, pages, etc.    options.resolve  Function  a function resolving a given file path to something that can be read by the  readJson  function and either returning it as a  String  or asynchronously    options.readJson  Function  a function accepting a file path as an argument and returning a promise that resolves to the parsed JSON contents of the file as a  Promise    options.fileContents  Object  an object mapping file paths (as returned by  options.resolve ) to promises that resolve to the parsed JSON contents of the file (used if  readJson  is omitted)", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector/#returns", 
+            "text": "Type  Description      ArtifactCollector  the created artifact collector", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector/#parameters_1", 
+            "text": "Property  Type  Description      entries  Array. Object  a list of entries containing themes and flows to follow to find all the pages reachable from the flow and their required artifacts", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector/#returns_1", 
+            "text": "Type  Description      Promise. Object  the artifact listing with the keys  flows ,  themes ,  pages ,  layouts ,  widgets  and  controls , of which each is an array of artifact objects", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector/#parameters_2", 
+            "text": "Property  Type  Description      entries  Array  a list of entry objects containing a schemas key", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector/#returns_2", 
+            "text": "Type  Description      Promise. Array  a promise for an array of schema-meta objects", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector/#parameters_3", 
+            "text": "Property  Type  Description      entries  Array  a list of entry objects containing a flows key", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector/#returns_3", 
+            "text": "Type  Description      Promise. Array  a promise for an array of flow-meta objects", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector/#parameters_4", 
+            "text": "Property  Type  Description      entries  Array. Object  a list of entries with themes to include in the artifacts", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector/#returns_4", 
+            "text": "Type  Description      Promise. Array  a promise for an array of meta-information about all themes", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector/#parameters_5", 
+            "text": "Property  Type  Description      flows  Array. String  a list of flow artifacts as returned by  ArtifactCollector#collectFlows", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector/#returns_5", 
+            "text": "Type  Description      Promise. Array  a promise for a combined array of page meta information for these flows", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector/#parameters_6", 
+            "text": "Property  Type  Description      pages  Array  a list of page artifacts as returned by  ArtifactCollector#collectPages", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector/#returns_6", 
+            "text": "Type  Description      Promise. Array  a promise for an array of meta-information about all layouts", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector/#parameters_7", 
+            "text": "Property  Type  Description      pages  Array  a list of page artifacts as returned by  ArtifactCollector#collectPages", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector/#returns_7", 
+            "text": "Type  Description      Promise. Array  a promise for an array of meta-information about all reachable widgets", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector/#parameters_8", 
+            "text": "Property  Type  Description      widgets  Array  a list of widget artifacts as returned by  ArtifactCollector#collectWidgets", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector/#returns_8", 
+            "text": "Type  Description      Promise. Array  a promise for an array of meta-information about all reachable controls", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector/#types", 
+            "text": "", 
+            "title": "Types"
+        }, 
+        {
+            "location": "/api/artifact_listing/", 
+            "text": "artifactListing\n\n\nDetermine application artifacts by inspecting flow, pages and widgets.\n\n\nContents\n\n\nModule Members\n\n\n\n\ndefaultAssets()\n\n\ncreate()\n\n\nbuildArtifacts()\n\n\nbuildAliases()\n\n\nbuildAssets()\n\n\n\n\nTypes\n\n\n\n\nArtifactListing\n\n\n\n\nModule Members\n\n\ndefaultAssets( artifact )\n\n\nReturn the default assets for the given artifact, determined by it's type\nand descriptor's \nstyleSource\n and \ntemplateSource\n attributes.\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nartifact\n\n\nObject\n\n\nan artifact created by the \nArtifactCollector\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nObject\n\n\na partial descriptor containing the artifact's default assets\n\n\n\n\n\n\n\n\ncreate( options )\n\n\nCreate an artifact listing instance.\n\n\nExample:\n\n\nconst listing = laxarTooling.artifactListing.create( {\n   resolve: ref =\n path.relative( process.cwd, path.resolve( ref ) ),\n   readJson: filename =\n new Promise( ( resolve, reject ) =\n {\n      fs.readFile( filename, ( err, contents ) =\n {\n         try {\n            err ? reject( err ) : resolve( JSON.parse( contents ) );\n         }\n         catch( err ) {\n            reject( err );\n         }\n      } );\n   } ),\n   requireFile: ( module, loader ) =\n ( () =\n `require( \n${module}\n )` )\n} );\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\noptions\n\n\nObject\n\n\nadditional options\n\n\n\n\n\n\noptions.resolve\n\n\nFunction\n\n\na function resolving a given file path to something that can be read by the \nreadJson\n function and either returning it as a \nString\n or asynchronously\n\n\n\n\n\n\noptions.assetResolver\n\n\nFunction\n\n\noverride the default asset resolver created with the \nresolve\n callback\n\n\n\n\n\n\noptions.requireFile\n\n\nFunction\n\n\na callback that is called for descriptors, definitions, modules and assets, to inject content into the output\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nArtifactListing\n\n\nthe created artifact listing builder\n\n\n\n\n\n\n\n\nbuildArtifacts( artifacts )\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nartifacts\n\n\nObject\n\n\nartifacts collected by the \nArtifactCollector\n, optionally validated by the \nArtifactValidator\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nObject\n\n\nthe generated listing, ready to be serialized.\n\n\n\n\n\n\n\n\nbuildAliases( entries )\n\n\nCreate a map from artifact refs to indices.\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nentries\n\n\nArray\n\n\nany of the artifact sub-lists returned by \nArtifactCollector\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nObject\n\n\nthe map from artifact refs to indices\n\n\n\n\n\n\n\n\nbuildAssets( artifact, themes )\n\n\nBuild the assets object for an artifact and the given themes.\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nartifact\n\n\nObject\n\n\nthe artifact to generate the asset listing for\n\n\n\n\n\n\nthemes\n\n\nArray.\nObject\n\n\nthe themes to use for resolving themed artifacts\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nObject\n\n\nthe asset listing, containing sub-listings for each theme and entries for each (available) asset, pointing either to a URL or including the asset's raw content\n\n\n\n\n\n\n\n\nTypes\n\n\nArtifactListing", 
+            "title": "artifactListing"
+        }, 
+        {
+            "location": "/api/artifact_listing/#contents", 
+            "text": "Module Members   defaultAssets()  create()  buildArtifacts()  buildAliases()  buildAssets()   Types   ArtifactListing", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/artifact_listing/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/artifact_listing/#parameters", 
+            "text": "Property  Type  Description      artifact  Object  an artifact created by the  ArtifactCollector", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_listing/#returns", 
+            "text": "Type  Description      Object  a partial descriptor containing the artifact's default assets", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_listing/#parameters_1", 
+            "text": "Property  Type  Description      options  Object  additional options    options.resolve  Function  a function resolving a given file path to something that can be read by the  readJson  function and either returning it as a  String  or asynchronously    options.assetResolver  Function  override the default asset resolver created with the  resolve  callback    options.requireFile  Function  a callback that is called for descriptors, definitions, modules and assets, to inject content into the output", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_listing/#returns_1", 
+            "text": "Type  Description      ArtifactListing  the created artifact listing builder", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_listing/#parameters_2", 
+            "text": "Property  Type  Description      artifacts  Object  artifacts collected by the  ArtifactCollector , optionally validated by the  ArtifactValidator", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_listing/#returns_2", 
+            "text": "Type  Description      Promise. Object  the generated listing, ready to be serialized.", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_listing/#parameters_3", 
+            "text": "Property  Type  Description      entries  Array  any of the artifact sub-lists returned by  ArtifactCollector", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_listing/#returns_3", 
+            "text": "Type  Description      Promise. Object  the map from artifact refs to indices", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_listing/#parameters_4", 
+            "text": "Property  Type  Description      artifact  Object  the artifact to generate the asset listing for    themes  Array. Object  the themes to use for resolving themed artifacts", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_listing/#returns_4", 
+            "text": "Type  Description      Object  the asset listing, containing sub-listings for each theme and entries for each (available) asset, pointing either to a URL or including the asset's raw content", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_listing/#types", 
+            "text": "", 
+            "title": "Types"
+        }, 
+        {
+            "location": "/api/artifact_validator/", 
+            "text": "artifactValidator\n\n\nAssemble and validate application artifacts using JSON schema\n\n\nContents\n\n\nModule Members\n\n\n\n\ncreate()\n\n\nvalidateArtifacts()\n\n\nvalidateFlows()\n\n\nvalidatePages()\n\n\nvalidateWidgets()\n\n\nbuildValidators()\n\n\n\n\nTypes\n\n\n\n\nArtifactValidator\n\n\n\n\nModule Members\n\n\ncreate()\n\n\nCreate an artifact validator instance.\n\n\nExample:\n\n\nconst validator = laxarTooling.artifactValidator.create();\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nArtifactValidator\n\n\nthe created artifact validator\n\n\n\n\n\n\n\n\nvalidateArtifacts( artifacts )\n\n\nValidate artifacts returned by the \nArtifactCollector\n.\n\n\nExample:\n\n\ncollector.collectArtifacts( { flows: \nmain\n } )\n   .then( validator.validateArtifacts );\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nartifacts\n\n\nObject\n\n\nartifacts returned by \nArtifactCollector#collectArtifacts\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nObject\n\n\nthe validated artifacts\n\n\n\n\n\n\n\n\nvalidateFlows( flows, validators )\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nflows\n\n\nArray.\nObject\n\n\nthe flow artifacts to validate\n\n\n\n\n\n\nvalidators\n\n\nObject\n\n\nvalidators created by \n#buildValidators\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nArray\n\n\nthe validated flows\n\n\n\n\n\n\n\n\nvalidatePages( pages, validators, flows, widgets, layouts )\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\npages\n\n\nArray.\nObject\n\n\nthe page artifacts to validate\n\n\n\n\n\n\nvalidators\n\n\nObject\n\n\nvalidators created by \n#buildValidators\n\n\n\n\n\n\nflows\n\n\nArray.\nObject\n\n\nthe flows telling us which pages are entry-pages\n\n\n\n\n\n\nwidgets\n\n\nArray.\nObject\n\n\nthe widgets, used to perform name lookups\n\n\n\n\n\n\nlayouts\n\n\nArray.\nObject\n\n\nthe layouts, used to perform name lookups\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nArray\n\n\nthe validated pages\n\n\n\n\n\n\n\n\nvalidateWidgets( widgets, validators )\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nwidgets\n\n\nArray.\nObject\n\n\nthe widget artifacts to validate\n\n\n\n\n\n\nvalidators\n\n\nObject\n\n\nvalidators created by \n#buildValidators\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nArray\n\n\nthe validated widgets\n\n\n\n\n\n\n\n\nbuildValidators()\n\n\nCreate validation functions from the given artifacts. Compiles all schemas listed in the artifacts\nobject including schema descriptions in widget descriptors and page composition definitions.\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nObject\n\n\nan object containg validation functions.\n\n\n\n\n\n\n\n\nTypes\n\n\nArtifactValidator", 
+            "title": "artifactValidator"
+        }, 
+        {
+            "location": "/api/artifact_validator/#contents", 
+            "text": "Module Members   create()  validateArtifacts()  validateFlows()  validatePages()  validateWidgets()  buildValidators()   Types   ArtifactValidator", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/artifact_validator/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/artifact_validator/#returns", 
+            "text": "Type  Description      ArtifactValidator  the created artifact validator", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_validator/#parameters", 
+            "text": "Property  Type  Description      artifacts  Object  artifacts returned by  ArtifactCollector#collectArtifacts", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_validator/#returns_1", 
+            "text": "Type  Description      Promise. Object  the validated artifacts", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_validator/#parameters_1", 
+            "text": "Property  Type  Description      flows  Array. Object  the flow artifacts to validate    validators  Object  validators created by  #buildValidators", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_validator/#returns_2", 
+            "text": "Type  Description      Promise. Array  the validated flows", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_validator/#parameters_2", 
+            "text": "Property  Type  Description      pages  Array. Object  the page artifacts to validate    validators  Object  validators created by  #buildValidators    flows  Array. Object  the flows telling us which pages are entry-pages    widgets  Array. Object  the widgets, used to perform name lookups    layouts  Array. Object  the layouts, used to perform name lookups", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_validator/#returns_3", 
+            "text": "Type  Description      Promise. Array  the validated pages", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_validator/#parameters_3", 
+            "text": "Property  Type  Description      widgets  Array. Object  the widget artifacts to validate    validators  Object  validators created by  #buildValidators", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_validator/#returns_4", 
+            "text": "Type  Description      Promise. Array  the validated widgets", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_validator/#returns_5", 
+            "text": "Type  Description      Object  an object containg validation functions.", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_validator/#types", 
+            "text": "", 
+            "title": "Types"
+        }, 
+        {
+            "location": "/api/asset_resolver/", 
+            "text": "assetResolver\n\n\nHelpers for resolving artifact assets\n\n\nContents\n\n\nModule Members\n\n\n\n\ncreate()\n\n\nresolveAssets()\n\n\nresolveThemedAssets()\n\n\n\n\nTypes\n\n\n\n\nAssetResolver\n\n\n\n\nModule Members\n\n\ncreate( options )\n\n\nCreate an asset resolver instance.\n\n\nExample:\n\n\nconst resolver = laxarTooling.assetResolver.create( {\n   resolve: ref =\n path.relative( base, path.resolve( ref ) )\n} );\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\noptions\n\n\nObject\n\n\nadditional options\n\n\n\n\n\n\noptions.resolve\n\n\nFunction\n\n\na function resolving a given file path, returning it as a \nString\n or asynchronously as a \nPromise\n and throwing or rejecting the promise if the file does not exist\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nAssetResolver\n\n\nthe created asset resolver\n\n\n\n\n\n\n\n\nresolveAssets( artifact, assetPaths )\n\n\nResolve assets for an artifact.\n\n\nExample:\n\n\nresolver.resolveAssets( {\n   name: \nmy-artifact\n,\n   path: \npath/to/my-artifact\n\n}, [\n   \nmessages.json\n,\n   \nnon-existing-file.txt\n\n] ).then( assets =\n {\n      asset( typeof assets === \nobject\n )\n   } )\n// =\n {\n//       \nmessages.json\n: \npath/to/my-artifact/messages.json\n\n//    }\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nartifact\n\n\nObject\n\n\nan artifact as returned by \nArtifactCollector\n.\n\n\n\n\n\n\nassetPaths\n\n\nArray.\nString\n\n\nthe artifact assets to resolve\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nObject\n\n\nan object mapping paths (relative to the artifact) to URLs for existing files\n\n\n\n\n\n\n\n\nresolveThemedAssets( artifact, themes, assetPaths )\n\n\nResolve themed assets for an artifact.\n\n\nExample:\n\n\nresolver.resolveThemedAssets( {\n   name: \nmy-artifact\n,\n   path: \npath/to/my-artifact\n\n}, [ {\n   name: \ndefault.theme\n,\n   path: \npath/to/default.theme\n\n} ], [\n   \nmy-artifact.html\n,\n   \ncss/my-artifact.css\n\n] ).then( assets =\n {\n      asset( typeof assets === \nobject\n )\n   } )\n// =\n {\n//       \nmy-artifact.html\n: \npath/to/my-artifact/default.theme/my-artifact.html\n,\n//       \ncss/my-artifact.css\n: \npath/to/my-artifact/default.theme/css/my-artifact.css\n\n//    }\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nartifact\n\n\nObject\n\n\nan artifact as returned by \nArtifactCollector\n.\n\n\n\n\n\n\nthemes\n\n\nArray.\nObject\n\n\na list of theme artifacts as returned by \nArtifactCollector#collectThemes\n.\n\n\n\n\n\n\nassetPaths\n\n\nArray.\nString\n\n\nthe artifact assets to resolve\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nObject\n\n\nan object mapping paths (relative to the artifact) to URLs for existing files\n\n\n\n\n\n\n\n\nTypes\n\n\nAssetResolver", 
+            "title": "assetResolver"
+        }, 
+        {
+            "location": "/api/asset_resolver/#contents", 
+            "text": "Module Members   create()  resolveAssets()  resolveThemedAssets()   Types   AssetResolver", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/asset_resolver/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/asset_resolver/#parameters", 
+            "text": "Property  Type  Description      options  Object  additional options    options.resolve  Function  a function resolving a given file path, returning it as a  String  or asynchronously as a  Promise  and throwing or rejecting the promise if the file does not exist", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/asset_resolver/#returns", 
+            "text": "Type  Description      AssetResolver  the created asset resolver", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/asset_resolver/#parameters_1", 
+            "text": "Property  Type  Description      artifact  Object  an artifact as returned by  ArtifactCollector .    assetPaths  Array. String  the artifact assets to resolve", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/asset_resolver/#returns_1", 
+            "text": "Type  Description      Object  an object mapping paths (relative to the artifact) to URLs for existing files", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/asset_resolver/#parameters_2", 
+            "text": "Property  Type  Description      artifact  Object  an artifact as returned by  ArtifactCollector .    themes  Array. Object  a list of theme artifacts as returned by  ArtifactCollector#collectThemes .    assetPaths  Array. String  the artifact assets to resolve", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/asset_resolver/#returns_2", 
+            "text": "Type  Description      Object  an object mapping paths (relative to the artifact) to URLs for existing files", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/asset_resolver/#types", 
+            "text": "", 
+            "title": "Types"
+        }, 
+        {
+            "location": "/api/defaults/", 
+            "text": "defaultLogger\n\n\nDefault paths and options\n\n\nContents\n\n\nModule Members\n\n\n\n\n- unknown -()\n\n\n\n\nModule Members\n\n\n- unknown -( options )\n\n\nProvide defaults for interdependent options.\nSome \nlaxar-tooling\n options occur in multiple modules and are expected to\nhave consistent defaults. These defaults may depend on the value of other\noptions. To avoid repeating these dynamic defaults throughout many modules\nthey are handled by this function.\n\n\nConstruction of \"expensive\" defaults is delayed until use and cached for\nsubsequent use.\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\noptions\n\n\nObject\n\n\nsome options\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nObject\n\n\noptions with defaults applied", 
+            "title": "defaultLogger"
+        }, 
+        {
+            "location": "/api/defaults/#contents", 
+            "text": "Module Members   - unknown -()", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/defaults/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/defaults/#parameters", 
+            "text": "Property  Type  Description      options  Object  some options", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/defaults/#returns", 
+            "text": "Type  Description      Object  options with defaults applied", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/page_assembler/", 
+            "text": "page_assembler\n\n\nAssemble pages by expanding \"extends\" and \"composition\" entries.\nAlso performs JSON schema validation for pages and for instances of compositions/widgets.\n\n\nContents\n\n\nModule Members\n\n\n\n\nassemble()\n\n\n\n\nModule Members\n\n\nassemble( page )\n\n\nLoads a page specification and resolves all extension and compositions. The result is a page were all\nreferenced page fragments are merged in to one JavaScript object. Returns a promise that is either\nresolved with the constructed page or rejected with a JavaScript \nError\n instance.\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\npage\n\n\nString\n\n\nthe page to load. Usually a path relative to the base url, with the \n.json\n suffix omitted\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise\n\n\nthe result promise", 
+            "title": "page_assembler"
+        }, 
+        {
+            "location": "/api/page_assembler/#contents", 
+            "text": "Module Members   assemble()", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/page_assembler/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/page_assembler/#parameters", 
+            "text": "Property  Type  Description      page  String  the page to load. Usually a path relative to the base url, with the  .json  suffix omitted", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/page_assembler/#returns", 
+            "text": "Type  Description      Promise  the result promise", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/promise/", 
+            "text": "promise\n\n\nHelpers for bridging the gap between nodejs APIs and promises.\n\n\nContents\n\n\nModule Members\n\n\n\n\nwrap()\n\n\nonce()\n\n\n\n\nModule Members\n\n\nwrap( fn )\n\n\nWrap the given synchronous function so that it always returns a promise.\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nfn\n\n\nFunction\n\n\nthe function to wrap\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nFunction\n\n\na function that returns a promise resolving to the value returned by \nfn\n or being rejected in case the wrapped function throws an exception\n\n\n\n\n\n\n\n\nonce( fn, values, map )\n\n\nWrap the given function so that it is only called once for equal parameters.\nSubsequent calls with the same first argument will return either the same promise, or a promise which\nresolves to a value that is modified by the given map function.\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nfn\n\n\nFunction\n\n\nthe function to wrap\n\n\n\n\n\n\nvalues\n\n\nObject\n\n\na pre-filled map, mapping arguments to promises that should be returned\n\n\n\n\n\n\nmap\n\n\nFunction\n\n\na function that is used to determine the return value of subsequent calls\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nFunction\n\n\na function that returns a promise resolving to the value returned by \nfn\n or, for subsequent calls with the same argument, the value returned by \nmap", 
+            "title": "promise"
+        }, 
+        {
+            "location": "/api/promise/#contents", 
+            "text": "Module Members   wrap()  once()", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/promise/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/promise/#parameters", 
+            "text": "Property  Type  Description      fn  Function  the function to wrap", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/promise/#returns", 
+            "text": "Type  Description      Function  a function that returns a promise resolving to the value returned by  fn  or being rejected in case the wrapped function throws an exception", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/promise/#parameters_1", 
+            "text": "Property  Type  Description      fn  Function  the function to wrap    values  Object  a pre-filled map, mapping arguments to promises that should be returned    map  Function  a function that is used to determine the return value of subsequent calls", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/promise/#returns_1", 
+            "text": "Type  Description      Function  a function that returns a promise resolving to the value returned by  fn  or, for subsequent calls with the same argument, the value returned by  map", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/serialize/", 
+            "text": "serialize\n\n\nSerialize JavaScript objects.\n\n\nContents\n\n\nModule Members\n\n\n\n\nserialize()\n\n\n\n\nModule Members\n\n\nserialize( object, indent, pad, space )\n\n\nSerialize the given object to valid, human-readable JavaScript.\nMostly like JSON.stringify, this function drops quotes from object keys if possible,\nand \"serializes\" functions by calling them and writing the result to the output\nstring. To embed user-defined code in the output, embed functions into the object.\nAtomic values are serialized with JSON.stringify. Linebreaks are inserted as deemed\nnecessary.\n\n\nExample:\n\n\nserialize( { a: 1, b: [ 1, 2, 3 ], c: () =\n \nrequire( \ntest\n )\n } )\n// =\n \n{ a: 1, b: [ 1, 2, 3 ], c: require( \ntest\n ) }\n\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nobject\n\n\nObject\n\n\nthe object to serialize\n\n\n\n\n\n\nindent\n\n\nNumber\n\n\nthe number of spaces to use for indent\n\n\n\n\n\n\npad\n\n\nNumber\n\n\nthe initial left padding\n\n\n\n\n\n\nspace\n\n\nString\n\n\nthe character(s) to use for padding\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nString\n\n\nthe serialized JavaScript code", 
+            "title": "serialize"
+        }, 
+        {
+            "location": "/api/serialize/#contents", 
+            "text": "Module Members   serialize()", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/serialize/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/serialize/#parameters", 
+            "text": "Property  Type  Description      object  Object  the object to serialize    indent  Number  the number of spaces to use for indent    pad  Number  the initial left padding    space  String  the character(s) to use for padding", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/serialize/#returns", 
+            "text": "Type  Description      String  the serialized JavaScript code", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/utils/", 
+            "text": "utils\n\n\nCommonly used functions.\n\n\nContents\n\n\nModule Members\n\n\n\n\nmerge()\n\n\nflatten()\n\n\nlookup()\n\n\nvalues()\n\n\npath()\n\n\nsetPath()\n\n\ndeepClone()\n\n\n\n\nModule Members\n\n\nmerge( objects )\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nobjects\n\n\nArray.\nObject\n\n\nan array of objects to merge\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nObject\n\n\nan object containing all the properties of the given objects\n\n\n\n\n\n\n\n\nflatten( arrays )\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\narrays\n\n\nArray.\nArray\n\n\nan array of arrays to flatten\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nArray\n\n\nan array containing all the elements of the given arrays in the order they were given\n\n\n\n\n\n\n\n\nlookup( object )\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nobject\n\n\nObject\n\n\nthe object to perform the lookup on\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nFunction\n\n\na function that accepts a key and returns the corresponding property of \nobject\n\n\n\n\n\n\n\n\nvalues( object )\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nobject\n\n\nObject\n\n\nthe object to get values from\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nArray\n\n\nan array containing the values corresponding to all enumerable keys of \nobject\n\n\n\n\n\n\n\n\npath( obj, thePath, optionalDefault )\n\n\nFinds a property in a nested object structure by a given path. A path is a string of keys, separated\nby a dot from each other, used to traverse that object and find the value of interest. An additional\ndefault is returned, if otherwise the value would yield \nundefined\n.\n\n\nNote that \npath()\n must only be used in situations where all path segments are also valid\nJavaScript identifiers, and should never be used with user-specified paths:\n\n\n\n\nthere is no mechanism to escape '.' in path segments; a dot always separates keys,\n\n\nan empty string as a path segment will abort processing and return the entire sub-object under the\n   respective position. For historical reasons, the path interpretation differs from that performed by\n   \n#setPath()\n.\n\n\n\n\nExample:\n\n\nobject\n.\npath\n(\n \n{\n \none\n:\n \n{\n \ntwo\n:\n \n3\n \n}\n \n},\n \none.two\n \n);\n \n// =\n 3\n\n\nobject\n.\npath\n(\n \n{\n \none\n:\n \n{\n \ntwo\n:\n \n3\n \n}\n \n},\n \none.three\n \n);\n \n// =\n undefined\n\n\nobject\n.\npath\n(\n \n{\n \none\n:\n \n{\n \ntwo\n:\n \n3\n \n}\n \n},\n \none.three\n,\n \n42\n \n);\n \n// =\n 42\n\n\nobject\n.\npath\n(\n \n{\n \none\n:\n \n{\n \ntwo\n:\n \n3\n \n}\n \n},\n \none.\n \n);\n \n// =\n { two: 3 }\n\n\nobject\n.\npath\n(\n \n{\n \none\n:\n \n{\n \ntwo\n:\n \n3\n \n}\n \n},\n \n \n);\n \n// =\n { one: { two: 3 } }\n\n\nobject\n.\npath\n(\n \n{\n \none\n:\n \n{\n \ntwo\n:\n \n3\n \n}\n \n},\n \n.\n \n);\n \n// =\n { one: { two: 3 } }\n\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nobj\n\n\nObject\n\n\nthe object to traverse\n\n\n\n\n\n\nthePath\n\n\nString\n\n\nthe path to search for\n\n\n\n\n\n\noptionalDefault\n\n\n*\n\n\nthe value to return instead of \nundefined\n if nothing is found\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\n*\n\n\nthe value at the given path\n\n\n\n\n\n\n\n\nsetPath( obj, path, value )\n\n\nSets a property in a nested object structure at a given path to a given value. A path is a string of\nkeys, separated by a dot from each other, used to traverse that object and find the place where the\nvalue should be set. Any missing subtrees along the path are created.\n\n\nNote that \nsetPath()\n must only be used in situations where all path segments are also valid\nJavaScript identifiers, and should never be used with user-specified paths:\n\n\n\n\nthere is no mechanism to escape '.' in path segments; a dot will always create separate keys,\n\n\nan empty string as a path segment will create an empty string key in the object graph where missing.\n   For historical reasons, this path interpretation differs from that performed by #path (see there).\n\n\n\n\nExample:\n\n\nobject\n.\nsetPath\n(\n \n{},\n \nname.first\n,\n \nPeter\n \n);\n \n// =\n { name: { first: \nPeter\n } }\n\n\nobject\n.\nsetPath\n(\n \n{},\n \npets.1\n,\n \nHamster\n \n);\n \n// =\n { pets: [ null, \nHamster\n ] }\n\n\nobject\n.\nsetPath\n(\n \n{},\n \n,\n \nHamster\n \n);\n \n// =\n { \n: \nHamster\n } }\n\n\nobject\n.\nsetPath\n(\n \n{},\n \n.\n,\n \nHamster\n \n);\n \n// =\n { \n: { \n: \nHamster\n } } }\n\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nobj\n\n\nObject\n\n\nthe object to modify\n\n\n\n\n\n\npath\n\n\nString\n\n\nthe path to set a value at\n\n\n\n\n\n\nvalue\n\n\n*\n\n\nthe value to set at the given path\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\n*\n\n\nthe full object (for chaining)\n\n\n\n\n\n\n\n\ndeepClone( object )\n\n\nReturns a deep clone of the given object. Note that the current implementation is intended to be used\nfor simple object literals only. There is no guarantee that cloning objects instantiated via\nconstructor function works and cyclic references will lead to endless recursion.\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nobject\n\n\n*\n\n\nthe object to clone\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\n*\n\n\nthe clone", 
+            "title": "utils"
+        }, 
+        {
+            "location": "/api/utils/#contents", 
+            "text": "Module Members   merge()  flatten()  lookup()  values()  path()  setPath()  deepClone()", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/utils/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/utils/#parameters", 
+            "text": "Property  Type  Description      objects  Array. Object  an array of objects to merge", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/utils/#returns", 
+            "text": "Type  Description      Object  an object containing all the properties of the given objects", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/utils/#parameters_1", 
+            "text": "Property  Type  Description      arrays  Array. Array  an array of arrays to flatten", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/utils/#returns_1", 
+            "text": "Type  Description      Array  an array containing all the elements of the given arrays in the order they were given", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/utils/#parameters_2", 
+            "text": "Property  Type  Description      object  Object  the object to perform the lookup on", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/utils/#returns_2", 
+            "text": "Type  Description      Function  a function that accepts a key and returns the corresponding property of  object", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/utils/#parameters_3", 
+            "text": "Property  Type  Description      object  Object  the object to get values from", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/utils/#returns_3", 
+            "text": "Type  Description      Array  an array containing the values corresponding to all enumerable keys of  object", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/utils/#parameters_4", 
+            "text": "Property  Type  Description      obj  Object  the object to traverse    thePath  String  the path to search for    optionalDefault  *  the value to return instead of  undefined  if nothing is found", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/utils/#returns_4", 
+            "text": "Type  Description      *  the value at the given path", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/utils/#parameters_5", 
+            "text": "Property  Type  Description      obj  Object  the object to modify    path  String  the path to set a value at    value  *  the value to set at the given path", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/utils/#returns_5", 
+            "text": "Type  Description      *  the full object (for chaining)", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/utils/#parameters_6", 
+            "text": "Property  Type  Description      object  *  the object to clone", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/utils/#returns_6", 
+            "text": "Type  Description      *  the clone", 
+            "title": "Returns"
+        }
+    ]
+}

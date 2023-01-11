@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../laxar.theme/img/favicon.ico">
+        <title>LaxarJS Patterns  v2.0.0</title>
+
+        <link rel="stylesheet" href="../../../laxar.theme/css/pygments.css">
+        <link href="../../../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar-patterns <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="../../../laxar-latest">laxar</a></li>
+            
+            <li><a href="../../../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="../../../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="../../../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="../../../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="../../../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="../../../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="../../../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="../../../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="../../../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="../../../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="../../../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="../../../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v2.0.0 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="../../../laxar-patterns-v2-latest">v2.0.0</a></li>
+            
+               <li><a href="../../../laxar-patterns-v1-latest">v1.3.0</a></li>
+            
+               <li><a href="../../../laxar-patterns-v0-latest">v0.20.0</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="../../../laxar-patterns-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.3.0">v1.3.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.2.0">v1.2.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.1.2">v1.1.2</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.1.1">v1.1.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.1.0">v1.1.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.0.1">v1.0.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.0.0">v1.0.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.20.0">v0.20.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.19.0">v0.19.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.18.1">v0.18.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.18.0">v0.18.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.17.0">v0.17.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.16.0">v0.16.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.15.0">v0.15.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.14.1">v0.14.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.14.0">v0.14.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.13.0">v0.13.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.12.1">v0.12.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.12.0">v0.12.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.11.1">v0.11.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.11.0">v0.11.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.10.1">v0.10.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.10.0">v0.10.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.9.2">v0.9.2</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.9.1">v0.9.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.9.0">v0.9.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="../../CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+                  
+               
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar-patterns/tree/v2.0.0">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main"><a title="README" href="../..#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+      
+         <li class="main ax-collapse ax-active" >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="API"
+               data-toggle="collapse"
+               data-target="#API"
+               aria-expanded="false"
+               aria-controls="collapseExample">API <span class="caret"></span></a>
+
+            <ul class="nav subnav in"
+               id="API">
+               
+               <li class="ax-active">
+                  <a title="actions" href="./#start">actions</a>
+               </li>
+               
+               <li >
+                  <a title="errors" href="../lib.errors/#start">errors</a>
+               </li>
+               
+               <li >
+                  <a title="flags" href="../lib.flags/#start">flags</a>
+               </li>
+               
+               <li >
+                  <a title="i18n" href="../lib.i18n/#start">i18n</a>
+               </li>
+               
+               <li >
+                  <a title="json" href="../lib.json/#start">json</a>
+               </li>
+               
+               <li >
+                  <a title="laxar-patterns" href="../laxar-patterns/#start">laxar-patterns</a>
+               </li>
+               
+               <li >
+                  <a title="resources" href="../lib.resources/#start">resources</a>
+               </li>
+               
+               <li >
+                  <a title="validation" href="../lib.validation/#start">validation</a>
+               </li>
+               
+               <li >
+                  <a title="visibility" href="../lib.visibility/#start">visibility</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Patterns"
+               data-toggle="collapse"
+               data-target="#Patterns"
+               aria-expanded="false"
+               aria-controls="collapseExample">Patterns <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="Patterns">
+               
+               <li >
+                  <a title="Action Patterns" href="../../patterns/actions/#start">Action Patterns</a>
+               </li>
+               
+               <li >
+                  <a title="Error Handling Patterns" href="../../patterns/errors/#start">Error Handling Patterns</a>
+               </li>
+               
+               <li >
+                  <a title="Flag Patterns" href="../../patterns/flags/#start">Flag Patterns</a>
+               </li>
+               
+               <li >
+                  <a title="Resource Patterns" href="../../patterns/resources/#start">Resource Patterns</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<h1 id="actions"><a id="actions"></a>actions</h1>
+<p>This module provides helpers for patterns regarding <em>takeActionRequest</em>, <em>willTakeAction</em> and</p>
+<p><em>didTakeAction</em> events.</p>
+<h2 id="contents">Contents</h2>
+<p><strong>Module Members</strong></p>
+<ul>
+<li><a href="#OUTCOME_SUCCESS">OUTCOME_SUCCESS</a></li>
+<li><a href="#OUTCOME_ERROR">OUTCOME_ERROR</a></li>
+<li><a href="#publisherForFeature">publisherForFeature()</a></li>
+<li><a href="#publisher">publisher()</a></li>
+<li><a href="#connectPublisherToFeature">connectPublisherToFeature()</a></li>
+<li><a href="#handlerFor">handlerFor()</a></li>
+</ul>
+<p><strong>Types</strong></p>
+<ul>
+<li><a href="#ActionHandler">ActionHandler</a><ul>
+<li><a href="#ActionHandler.registerActionsFromFeature">ActionHandler.registerActionsFromFeature()</a></li>
+<li><a href="#ActionHandler.registerActions">ActionHandler.registerActions()</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="module-members">Module Members</h2>
+<h4 id="outcome_success-string"><a id="OUTCOME_SUCCESS"></a>OUTCOME_SUCCESS <code>String</code></h4>
+<p>Constant for the value <code>"SUCCESS"</code> of a successful action request outcome.</p>
+<h4 id="outcome_error-string"><a id="OUTCOME_ERROR"></a>OUTCOME_ERROR <code>String</code></h4>
+<p>Constant for the value <code>"ERROR"</code> of an erronoues action request outcome.</p>
+<h4 id="publisherforfeature-context-feature-optionaloptions"><a id="publisherForFeature"></a>publisherForFeature( context, feature, optionalOptions )</h4>
+<p>Creates and returns a function to publish <em>takeActionRequest</em> events for an action configured as feature.
+The action to publish is expected to be at the key <code>action</code> under the given feature path.
+So if the given feature path is <code>click</code>, the actual name of the action is expected to be found at
+<code>context.features.click.action</code>.</p>
+<p>Apart from that this function works just like <a href="#publisher"><code>#publisher()</code></a>.</p>
+<h5 id="parameters">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>context</td>
+<td><code>AxContext</code></td>
+<td>the widget context to work on</td>
+</tr>
+<tr>
+<td>feature</td>
+<td><code>String</code></td>
+<td>the feature to take the action name from</td>
+</tr>
+<tr>
+<td><em>optionalOptions</em></td>
+<td><code>Object</code></td>
+<td>options for the publisher</td>
+</tr>
+<tr>
+<td><em>optionalOptions.deliverToSender</em></td>
+<td><code>Boolean</code></td>
+<td>the value is forwarded to <code>eventBus.publishAndGatherReplies</code>: if <code>true</code> the event will also be delivered to the publisher. Default is <code>false</code></td>
+</tr>
+<tr>
+<td><em>optionalOptions.optional</em></td>
+<td><code>Boolean</code></td>
+<td>if <code>true</code>, a missing feature configuration will result in a noop publisher. Else, a missing feature configuration results in a thrown error. Default is <code>false</code></td>
+</tr>
+<tr>
+<td><em>optionalOptions.timeout</em></td>
+<td><code>Boolean</code></td>
+<td>the value is forwarded to <code>eventBus.publishAndGatherReplies</code> as value of <code>pendingDidTimeout</code></td>
+</tr>
+<tr>
+<td><em>optionalOptions.onSuccess</em></td>
+<td><code>Function</code></td>
+<td>a function that is called when the overall outcome yields <a href="#OUTCOME_SUCCESS"><code>#OUTCOME_SUCCESS</code></a></td>
+</tr>
+<tr>
+<td><em>optionalOptions.onError</em></td>
+<td><code>Function</code></td>
+<td>a function that is called when the overall outcome yields <a href="#OUTCOME_ERROR"><code>#OUTCOME_ERROR</code></a></td>
+</tr>
+<tr>
+<td><em>optionalOptions.onComplete</em></td>
+<td><code>Function</code></td>
+<td>a function that is called always, independently of the overall outcome, when all events in response were received</td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns">Returns</h5>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Function</code></td>
+<td>the publisher as described above</td>
+</tr>
+</tbody>
+</table>
+<h4 id="publisher-context-action-optionaloptions"><a id="publisher"></a>publisher( context, action, optionalOptions )</h4>
+<p>Creates and return a function to publish <em>takeActionRequest</em> events for a given action.
+The outcomes of all given <em>didTakeAction</em> events are interpreted and optional callbacks according to the
+overall outcome are called.
+Interpretation is simple: If at least one <em>didTakeAction</em> event yields the outcome <a href="#OUTCOME_ERROR"><code>#OUTCOME_ERROR</code></a>,
+the overall outcome is also erroneous.
+In any other case the overall outcome will be successful.</p>
+<p>The promise returned by the publisher is resolved with an object carrying all responses and the outcome of
+the action.
+All <code>on*</code> handlers will only receive the list of responses to the action.
+A response is an object having the keys <code>meta</code> and <code>event</code>, being the meta and event objects of a
+<code>didTakeAction</code> event (see <code>EventBus#publishAndGatherReplies()</code> for details).</p>
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><span class="nx">publisher</span> <span class="o">=</span> <span class="nx">actions</span><span class="p">.</span><span class="nx">publisher</span><span class="p">(</span> <span class="nx">context</span><span class="p">,</span> <span class="s1">&#39;save&#39;</span><span class="p">,</span> <span class="p">{</span>
+   <span class="nx">onSuccess</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="nx">closeApplication</span><span class="p">();</span> <span class="p">},</span>
+   <span class="nx">onError</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="nx">displayError</span><span class="p">();</span> <span class="p">}</span>
+<span class="p">}</span> <span class="p">);</span>
+
+<span class="nx">$button</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span> <span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+   <span class="nx">publisher</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span> <span class="nx">result</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">result</span> <span class="p">);</span> <span class="c1">// for example { responses: [ ... ], outcome: &#39;SUCCESS&#39; }</span>
+   <span class="p">}</span> <span class="p">);</span>
+<span class="p">}</span> <span class="p">);</span>
+</pre></div>
+
+
+<h5 id="parameters_1">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>context</td>
+<td><code>AxContext</code></td>
+<td>the widget context to work on</td>
+</tr>
+<tr>
+<td>action</td>
+<td><code>String</code></td>
+<td>the action to publish on call of the publisher</td>
+</tr>
+<tr>
+<td><em>optionalOptions</em></td>
+<td><code>Object</code></td>
+<td>options for the publisher</td>
+</tr>
+<tr>
+<td><em>optionalOptions.deliverToSender</em></td>
+<td><code>Boolean</code></td>
+<td>the value is forward to <code>eventBus.publishAndGatherReplies</code>: if <code>true</code> the event will also be delivered to the publisher. Default is <code>false</code></td>
+</tr>
+<tr>
+<td><em>optionalOptions.timeout</em></td>
+<td><code>Boolean</code></td>
+<td>the value is forwarded to <code>eventBus.publishAndGatherReplies</code> as value of <code>pendingDidTimeout</code></td>
+</tr>
+<tr>
+<td><em>optionalOptions.onSuccess</em></td>
+<td><code>Function</code></td>
+<td>a function that is called when the overall outcome yields <a href="#OUTCOME_SUCCESS"><code>#OUTCOME_SUCCESS</code></a></td>
+</tr>
+<tr>
+<td><em>optionalOptions.onError</em></td>
+<td><code>Function</code></td>
+<td>a function that is called when the overall outcome yields <a href="#OUTCOME_ERROR"><code>#OUTCOME_ERROR</code></a></td>
+</tr>
+<tr>
+<td><em>optionalOptions.onComplete</em></td>
+<td><code>Function</code></td>
+<td>a function that is called always, independently of the overall outcome, when all events in response were received</td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns_1">Returns</h5>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Function</code></td>
+<td>the publisher as described above</td>
+</tr>
+</tbody>
+</table>
+<h4 id="connectpublishertofeature-context-feature-optionaloptions"><a id="connectPublisherToFeature"></a>connectPublisherToFeature( context, feature, optionalOptions )</h4>
+<p>Creates an action publisher for a given feature and makes it available as a context property.</p>
+<p>The publisher is created under <code>context[ `actions.${feature}` ]</code>, where <code>context</code> and <code>feature</code>
+are the arguments passed to this function. If an action topic has been configured for the given feature,
+the action publisher is created using <code>publisherForFeature</code>. Otherwise, it is a noop-function.</p>
+<h5 id="parameters_2">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>context</td>
+<td><code>AxContext</code></td>
+<td>the widget context to work on</td>
+</tr>
+<tr>
+<td>feature</td>
+<td><code>String</code></td>
+<td>the feature to take the action name from</td>
+</tr>
+<tr>
+<td><em>optionalOptions</em></td>
+<td><code>Object</code></td>
+<td>options for the publisher, as documented under <code>publisherForFeature</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="handlerfor-context"><a id="handlerFor"></a>handlerFor( context )</h4>
+<p>Creates a new action handler instance for <em>takeActionRequest</em> events. It handles sending of an optional</p>
+<p><em>willTakeAction</em> event and the following <em>didTakeAction</em> event, possibly following asynchronously later.</p>
+<h5 id="parameters_3">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>context</td>
+<td><code>AxContext</code></td>
+<td>the widget context to work on</td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns_2">Returns</h5>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#ActionHandler"><code>ActionHandler</code></a></td>
+<td>an action handler instance</td>
+</tr>
+</tbody>
+</table>
+<h2 id="types">Types</h2>
+<h3 id="actionhandler"><a id="ActionHandler"></a>ActionHandler</h3>
+<h4 id="actionhandlerregisteractionsfromfeature-feature-handler"><a id="ActionHandler.registerActionsFromFeature"></a>ActionHandler.registerActionsFromFeature( feature, handler )</h4>
+<p>Registers a handler for <em>takeActionRequest</em> events with actions from a feature. It is assumed that the
+given feature has an <code>onActions</code> property, which is a set of actions to listen to. The set may be empty,
+<code>null</code> or <code>undefined</code>, in which case the handler simply won't be attached to any event.</p>
+<p>Apart from that, this function works just like <a href="./#registerActions"><code>ActionHandler#registerActions</code></a>.</p>
+<p>Example:
+Consider the following configuration for a widget:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;open&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;onActions&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;openAction1&quot;</span><span class="p">,</span> <span class="s2">&quot;openAction2&quot;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;save&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;onActions&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;save&quot;</span> <span class="p">]</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>An example using that would be:</p>
+<div class="codehilite"><pre><span></span><span class="nx">actions</span><span class="p">.</span><span class="nx">handlerFor</span><span class="p">(</span> <span class="nx">context</span> <span class="p">)</span>
+   <span class="p">.</span><span class="nx">registerActionsFromFeature</span><span class="p">(</span> <span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="p">(</span> <span class="nx">event</span><span class="p">,</span> <span class="nx">meta</span> <span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">somethingSynchronous</span><span class="p">();</span>
+      <span class="k">return</span> <span class="nx">actions</span><span class="p">.</span><span class="nx">OUTCOME_SUCCESS</span><span class="p">;</span>
+   <span class="p">}</span> <span class="p">)</span>
+   <span class="p">.</span><span class="nx">registerActionsFromFeature</span><span class="p">(</span> <span class="s1">&#39;save&#39;</span><span class="p">,</span> <span class="p">(</span> <span class="nx">event</span><span class="p">,</span> <span class="nx">meta</span> <span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="nx">somethingAsynchronous</span><span class="p">()</span> <span class="p">);</span>
+   <span class="p">}</span> <span class="p">);</span>
+</pre></div>
+
+
+<h5 id="parameters_4">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>feature</td>
+<td><code>String</code></td>
+<td>the feature to read the actions to watch from</td>
+</tr>
+<tr>
+<td>handler</td>
+<td><code>Function</code></td>
+<td>the handler to call whenever a <em>takeActionRequest</em> event with matching action is received</td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns_3">Returns</h5>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#ActionHandler"><code>ActionHandler</code></a></td>
+<td>this instance for chaining</td>
+</tr>
+</tbody>
+</table>
+<h4 id="actionhandlerregisteractions-actions-handler"><a id="ActionHandler.registerActions"></a>ActionHandler.registerActions( actions, handler )</h4>
+<p>Registers a handler for <em>takeActionRequest</em> events for a set of actions. The set may be empty, in
+which case the handler simply won't be attached to any event.</p>
+<p>The handler is assumed to be a function that receives the event and meta object of the underlying</p>
+<p><em>takeActionRequest</em> event when called. In order to send the correct <em>didTakeAction</em> event as response,
+the return value of the handler is interpreted according to the following rules:</p>
+<ul>
+<li>
+<p>the handler throws an error</p>
+<ul>
+<li>the <em>didTakeAction</em> event is sent with outcome <a href="#OUTCOME_ERROR"><code>#OUTCOME_ERROR</code></a></li>
+<li>the error is re-thrown</li>
+</ul>
+</li>
+<li>
+<p>the handler returns a simple value or a promise, that is later resolved with a value</p>
+<ul>
+<li>if the value is a plain object, it is used as basis for the event object and<ul>
+<li>if the object has a property <code>outcome</code> with value <a href="#OUTCOME_ERROR"><code>#OUTCOME_ERROR</code></a>, the <em>didTakeAction</em> event
+  is sent with outcome <a href="#OUTCOME_ERROR"><code>#OUTCOME_ERROR</code></a></li>
+</ul>
+</li>
+<li>otherwise, or if the value is no plain object, the <em>didTakeAction</em> event is sent with outcome
+<a href="#OUTCOME_SUCCESS"><code>#OUTCOME_SUCCESS</code></a></li>
+</ul>
+</li>
+<li>
+<p>the handler returns a promise, that is later rejected with a value</p>
+<ul>
+<li>if the value is a plain object, it is used as basis for the event object and<ul>
+<li>if the object has a property <code>outcome</code> with value <a href="#OUTCOME_SUCCESS"><code>#OUTCOME_SUCCESS</code></a>, the <em>didTakeAction</em>
+  event is sent with outcome <a href="#OUTCOME_SUCCESS"><code>#OUTCOME_SUCCESS</code></a></li>
+</ul>
+</li>
+<li>otherwise, or if the value is no plain object, the <em>didTakeAction</em> event is sent with outcome
+<a href="#OUTCOME_ERROR"><code>#OUTCOME_ERROR</code></a></li>
+</ul>
+</li>
+</ul>
+<p>So basically simple return values or resolved promises are assumed to be successful if they don't state
+otherwise, while rejected promises are assumed to be erroneous, if they don't state otherwise.</p>
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><span class="nx">actions</span><span class="p">.</span><span class="nx">handlerFor</span><span class="p">(</span> <span class="nx">context</span> <span class="p">)</span>
+   <span class="p">.</span><span class="nx">registerActions</span><span class="p">(</span> <span class="p">[</span> <span class="s1">&#39;open&#39;</span> <span class="p">],</span> <span class="p">(</span> <span class="nx">event</span><span class="p">,</span> <span class="nx">meta</span> <span class="p">)</span> <span class="p">=&gt;</span> <span class="mi">42</span> <span class="p">)</span>
+   <span class="p">.</span><span class="nx">registerActions</span><span class="p">(</span> <span class="p">[</span> <span class="s1">&#39;save&#39;</span> <span class="p">],</span> <span class="p">(</span> <span class="nx">event</span><span class="p">,</span> <span class="nx">meta</span> <span class="p">)</span> <span class="p">=&gt;</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="p">{</span> <span class="nx">resultValue</span><span class="o">:</span> <span class="mi">42</span> <span class="p">}</span> <span class="p">)</span> <span class="p">);</span>
+</pre></div>
+
+
+<h5 id="parameters_5">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>actions</td>
+<td><code>Array.&lt;String&gt;</code></td>
+<td>a set of actions to watch</td>
+</tr>
+<tr>
+<td>handler</td>
+<td><code>Function</code></td>
+<td>the handler to call whenever a <em>takeActionRequest</em> event with matching action is received</td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns_4">Returns</h5>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#ActionHandler"><code>ActionHandler</code></a></td>
+<td>this instance for chaining</td>
+</tr>
+</tbody>
+</table></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="../../../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="../../../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="../../../laxar.theme/js/base.js"></script>
+   </body>
+</html>

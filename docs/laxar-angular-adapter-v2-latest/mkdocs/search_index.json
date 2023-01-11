@@ -1,0 +1,159 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "laxar-angular-adapter \n\n\n\n\nWrite LaxarJS widgets and controls with AngularJS\n\n\n\n\n\n   Take a look at the \ndocumentation site\n to browse documentation for all releases of this artifact.\n\n\n\nStarting with LaxarJS 2, AngularJS support is no longer included out-of-the-box.\nHowever, this widget-adapter for LaxarJS 2 allows to use widgets written in AngularJS 1.x within LaxarJS 2 applications.\n\n\nTo use the adapter, install it from NPM:\n\n\nnpm install --save laxar-angular-adapter\n\n\n\n\n\nThen pass it to \nlaxar.bootstrap\n:\n\n\nimport\n \n*\n \nas\n \nangularAdapter\n \nfrom\n \nlaxar-angular-adapter\n;\n\n\nimport\n \n{\n \ncreate\n \n}\n \nfrom\n \nlaxar\n;\n\n\ncreate\n(\n \n[\n \nangularAdapter\n \n]\n \n/*, artifacts: ..., configuration: ... */\n \n).\nflow\n().\nbootstrap\n();\n\n\n\n\n\n\nTo make LaxarJS use this adapter for your widget, set the \nintegration.technology\n in the \nwidget.json\n descriptor to \n\"angular\"\n:\n\n\n{\n\n   \nname\n:\n \nmy-angular-v1-widget\n,\n\n   \nintegration\n:\n \n{\n\n      \ntype\n:\n \nwidget\n,\n\n      \ntechnology\n:\n \nangular\n\n   \n}\n\n\n}\n\n\n\n\n\n\nNote that AngularJS 1.x is not well suited to multiple LaxarJS application instances sharing a page.\nIf you need this feature, be sure to pass the AngularJS dependencies of all instances as modules to the first \nbootstrap\n invocation.\n\n\nWidgets and Controls with AngularJS\n\n\nBecause the integration technology \n\"angular\"\n was built into LaxarJS v1, the \nmain LaxarJS manuals\n contain several examples on creating widgets and controls for AngularJS.\n\n\nWidget Integration\n\n\nTo recapitulate the basics for widgets:\n\n\n\n\neach widget implementation module must create an AngularJS module named after the widget, except that \ncamelCase\n should be used for the module, to adhere to the AngularJS naming guidelines,\n\n\nthe module name must be exported using the export \nname\n,\n\n\nthe widget controller function must be registered using \n.controller\n on the widget's AngularJS module, and its name must correspond to the module name: for a module named \nmyWidget\n, the controller must be named \nMyWidgetController\n.\n\n\n\n\nWhen using the LaxarJS generator for Yeoman, a suitable implementation module will be prepared for you automatically.\n\n\nControl Integration\n\n\nA control implementation for the technology \n\"angular\"\n module should return an AngularJS module defining one or more AngularJS directives.\nDependent widgets (or controls) simply need to declare their dependency using the \ncontrols\n array of their descriptor.\nThe directives and CSS styles will then be made available automatically.\n\n\nAdditional Injections for AngularJS\n\n\nThe \nlaxar-angular-adapter\n provides additional services for use with the AngularJS dependency injection.\nFirst and foremost, the \nregular LaxarJS widget services\n (\naxEventBus\n, \naxFeatures\n, and so on) are made available as AngularJS injections to widget controllers.\n\n\nIn addition, the adapter provides or modifies some additional injections, for better interoperability with AngularJS.\n\n\naxWidgetServices\n\n\nAn additional \naxWidgetServices\n injection is provided, which can be used by directives to gain access to services that belong to the context of a specific widget, such as \naxFeatures\n, \naxI18n\n or the decorated widget instance log (\naxLog\n).\nFor \naxWidgetServices\n a function is injected that must be called with the scope of a directive.\nThis function returns the map of services available to the \nparent-widget\n of the directive.\nTo determine the parent-widget, the AngularJS scope-chain is traversed from child to parent, until a widget-scope is found.\nAn error is thrown if this service is used on a scope that is no descendant of a widget scope.\n\n\nIn this example, a directive uses \naxWidgetServices\n to access the logger of its parent-widget.\n\n\nmyModule\n.\ndirective\n(\n \nmyDirective\n,\n \n[\n \naxWidgetServices\n,\n \naxWidgetServices\n \n=\n \n{\n\n   \nreturn\n \n{\n\n      \nlink\n(\n \nscope\n \n)\n \n{\n\n         \nconst\n \nwidgetServices\n \n=\n \naxWidgetServices\n(\n \nscope\n \n);\n\n         \nwidgetServices\n.\naxLog\n.\ninfo\n(\n \nHere we are!\n \n);\n\n      \n}\n\n   \n}\n\n\n}\n \n]\n \n);\n\n\n\n\n\n\nNote that directives will not work outside of LaxarJS applications if they rely on this injection.\nIt is often a good idea to package such directives as LaxarJS controls to indicate this fact.\n\n\n$scope\n\n\nFor \n\"angular\"\n widget controllers, the \n$scope\n connecting template and controller can be injected as well, as expected for AngularJS controllers.\nBecause it is an alias of the \naxContext\n injection, the \n$scope\n of a LaxarJS widget has additional properties compared to a regular AngularJS scope, for example \nfeatures\n and \nlog\n.\n\n\nAll widget scopes are children of the same parent scope, regardless of possible nesting relationships in the page DOM due to LaxarJS widget areas.\nThis ensures isolation between widgets.\n\n\nGlobal LaxarJS Service Injections\n\n\nWidgets service injections are created by the LaxarJS runtime as their widget controllers request them (see http://laxarjs.org/docs/laxar-v2-latest/manuals/widget_services), and are not available as injections to regular AngularJS services or factories.\n\n\nThe AngularJS adapter provides additional globally available service injections that can be used in any AngularJS injection context:\n\n\n\n\naxConfiguration\n to access the application configuration\n\n\naxGlobalEventBus\n to inspect the event bus independent of widget or page lifetimes\n\n\naxGlobalLog\n to use or listen to the log, application-wide\n\n\naxGlobalStorage\n for application-wide local- or session-storage\n\n\naxHeartbeat\n to be notified whenever events were delivered\n\n\n\n\nAdditional Filters Provided by LaxarJS\n\n\nThis adapter provides the filter \naxLocalize\n, previously part of \nLaxarJS UiKit\n.\n\n\nUse it together with the \naxI18n\n widget injection to localize values in widgets:\n\n\nController\n.\ninjections\n \n=\n \n[\n \n$scope\n,\n \naxI18n\n \n];\n\n\nfunction\n \nController\n(\n \n$scope\n,\n \ni18n\n \n)\n \n{\n\n   \n$scope\n.\ni18n\n \n=\n \ni18n\n;\n\n   \n$scope\n.\ni18nGreeting\n \n=\n \n{\n \nen\n:\n \nHello\n,\n \nfr\n:\n \nBonjour\n \n};\n\n\n}\n\n\n\n\n\n\nNow you can do this in your widget template:\n\n\nh1\n{{ i18nGreeting | axLocalize:i18n }}\n/\nh1\n\n\n\n\n\n\nThis causes the headline to stay up-to-date as locales change.\n\n\nAdditional Directives Provided by LaxarJS\n\n\nTo simplify certain common use cases for widget HTML templates, the adapter also provides a couple of directives.\n\n\naxId\n\n\nUse this to generate unique HTML IDs for anchors and input controls.\n\n\nh3\n \nax-id\n=\nsection-b-anchor\nSection B\n/\nh3\n\n\n\n\n\n\nThese IDs are unique, even if a widget is used multiple times on a single page.\n\n\naxFor\n\n\nUse in conjunction with \naxId\n, this associates a form label to its control:\n\n\nlabel\n \nax-for\n=\nuserName\nUser Name:\n/\nlabel\n\n\ninput\n \ntype\n=\ntext\n \nax-id\n=\nuserName\n \nng-model\n=\nmodel.userName\n\n\n\n\n\n\nSometimes, you can simply nest an input within a label, eliminating the need to use \naxFor/axId\n.\nNote that both directives use \none-time bindings\n for performance:\nusing constant expressions is recommended.\nWithin \nngRepeat\n contexts, the \ntrack by\n expression is a good candidate.\n\n\naxWidgetArea\n\n\nUse this to offer a nested widget area for your widget.\nPage authors can then fill the provided area with their own widgets.\n\n\nUse the \nax-widget-area-binding\n attribute to name a widget area within your widget.\nWhile you do not want to change the name of a widget are after it was created, you can use this to make an area name configurable from the page.\n\n\nLet us assume the following template, \nmy-widget.html\n:\n\n\ndiv\n \nax-widget-area\n \nax-widget-area-binding\n=\n::features.content.area\n/\ndiv\n\n\n\n\n\n\nIn your page definition, you would then use:\n\n\ncontent\n:\n \n[\n\n   \n{\n\n      \nwidget\n:\n \nmy-widget\n,\n\n      \nid\n:\n \nmy\n,\n\n      \nfeatures\n:\n \n{\n\n         \ncontent\n:\n \n{\n\n            \narea\n:\n \nnested\n\n         \n}\n\n      \n}\n\n   \n}\n\n\n],\n\n\nmy.nested\n:\n \n[\n\n   \n// ...\n\n\n]\n\n\n\n\n\n\nThis becomes powerful when you combine an array-valued feature configuration with \nngRepeat\n.\nThis way, you can flexibly configure and name any number of widget areas.\n\n\nTesting With LaxarJS Mocks\n\n\nYou can use the integration technology \n\"angular\"\n together with \nlaxar-mocks\n without additional configuration, as long as you are using the \nlaxar-mocks/spec-loader\n to load spec-files when running tests.\n\n\nHere are some AngularJS-specific hints for testing:\n\n\n\n\n\n\nIf your are using \n$http\n, use \naxMocks.widget.whenServicesAvailable\n to inject and configure \n$httpBackend\n.\n  Trying to inject AngularJS services into your test too early can lead to problems when LaxarJS injections are prepared,\n\n\n\n\n\n\nwhen \neventBus.flush()\n is run to trigger event bus delivery, a \n$rootScope.$digest\n is  automatically initiated afterwards.\n\n\n\n\n\n\nHacking the Adapter\n\n\nFirst, clone the repository and fetch the dependencies:\n\n\ngit clone https://github.com/LaxarJS/laxar-angular-adapter.git\n\ncd\n laxar-angular-adapter\nnpm install\n\n\n\n\n\nTo rebuild the \npre-compiled bundle\n, use:\n\n\nnpm run dist\n\n\n\n\n\nOtherwise, you may need to adjust your project to load the adapter with ES2015 support.\nTo pick up clone from within a LaxarJS application, you may need to modify the project's webpack resolve configuration.\n\n\nTo \ntest\n the adapter, run:\n\n\nnpm \ntest\n\n\n\n\n\n\nFor interactive tests that can be inspected in the browser, run:\n\n\nnpm start\n\n\n\n\n\nNow you can access the spec-tests at http://localhost:8080/dist/spec/laxar-angular-adapter.spec.html", 
+            "title": "README"
+        }, 
+        {
+            "location": "/#laxar-angular-adapter", 
+            "text": "Write LaxarJS widgets and controls with AngularJS   \n   Take a look at the  documentation site  to browse documentation for all releases of this artifact.  Starting with LaxarJS 2, AngularJS support is no longer included out-of-the-box.\nHowever, this widget-adapter for LaxarJS 2 allows to use widgets written in AngularJS 1.x within LaxarJS 2 applications.  To use the adapter, install it from NPM:  npm install --save laxar-angular-adapter  Then pass it to  laxar.bootstrap :  import   *   as   angularAdapter   from   laxar-angular-adapter ;  import   {   create   }   from   laxar ;  create (   [   angularAdapter   ]   /*, artifacts: ..., configuration: ... */   ). flow (). bootstrap ();   To make LaxarJS use this adapter for your widget, set the  integration.technology  in the  widget.json  descriptor to  \"angular\" :  { \n    name :   my-angular-v1-widget , \n    integration :   { \n       type :   widget , \n       technology :   angular \n    }  }   Note that AngularJS 1.x is not well suited to multiple LaxarJS application instances sharing a page.\nIf you need this feature, be sure to pass the AngularJS dependencies of all instances as modules to the first  bootstrap  invocation.", 
+            "title": "laxar-angular-adapter"
+        }, 
+        {
+            "location": "/#widgets-and-controls-with-angularjs", 
+            "text": "Because the integration technology  \"angular\"  was built into LaxarJS v1, the  main LaxarJS manuals  contain several examples on creating widgets and controls for AngularJS.", 
+            "title": "Widgets and Controls with AngularJS"
+        }, 
+        {
+            "location": "/#widget-integration", 
+            "text": "To recapitulate the basics for widgets:   each widget implementation module must create an AngularJS module named after the widget, except that  camelCase  should be used for the module, to adhere to the AngularJS naming guidelines,  the module name must be exported using the export  name ,  the widget controller function must be registered using  .controller  on the widget's AngularJS module, and its name must correspond to the module name: for a module named  myWidget , the controller must be named  MyWidgetController .   When using the LaxarJS generator for Yeoman, a suitable implementation module will be prepared for you automatically.", 
+            "title": "Widget Integration"
+        }, 
+        {
+            "location": "/#control-integration", 
+            "text": "A control implementation for the technology  \"angular\"  module should return an AngularJS module defining one or more AngularJS directives.\nDependent widgets (or controls) simply need to declare their dependency using the  controls  array of their descriptor.\nThe directives and CSS styles will then be made available automatically.", 
+            "title": "Control Integration"
+        }, 
+        {
+            "location": "/#additional-injections-for-angularjs", 
+            "text": "The  laxar-angular-adapter  provides additional services for use with the AngularJS dependency injection.\nFirst and foremost, the  regular LaxarJS widget services  ( axEventBus ,  axFeatures , and so on) are made available as AngularJS injections to widget controllers.  In addition, the adapter provides or modifies some additional injections, for better interoperability with AngularJS.", 
+            "title": "Additional Injections for AngularJS"
+        }, 
+        {
+            "location": "/#axwidgetservices", 
+            "text": "An additional  axWidgetServices  injection is provided, which can be used by directives to gain access to services that belong to the context of a specific widget, such as  axFeatures ,  axI18n  or the decorated widget instance log ( axLog ).\nFor  axWidgetServices  a function is injected that must be called with the scope of a directive.\nThis function returns the map of services available to the  parent-widget  of the directive.\nTo determine the parent-widget, the AngularJS scope-chain is traversed from child to parent, until a widget-scope is found.\nAn error is thrown if this service is used on a scope that is no descendant of a widget scope.  In this example, a directive uses  axWidgetServices  to access the logger of its parent-widget.  myModule . directive (   myDirective ,   [   axWidgetServices ,   axWidgetServices   =   { \n    return   { \n       link (   scope   )   { \n          const   widgetServices   =   axWidgetServices (   scope   ); \n          widgetServices . axLog . info (   Here we are!   ); \n       } \n    }  }   ]   );   Note that directives will not work outside of LaxarJS applications if they rely on this injection.\nIt is often a good idea to package such directives as LaxarJS controls to indicate this fact.", 
+            "title": "axWidgetServices"
+        }, 
+        {
+            "location": "/#scope", 
+            "text": "For  \"angular\"  widget controllers, the  $scope  connecting template and controller can be injected as well, as expected for AngularJS controllers.\nBecause it is an alias of the  axContext  injection, the  $scope  of a LaxarJS widget has additional properties compared to a regular AngularJS scope, for example  features  and  log .  All widget scopes are children of the same parent scope, regardless of possible nesting relationships in the page DOM due to LaxarJS widget areas.\nThis ensures isolation between widgets.", 
+            "title": "$scope"
+        }, 
+        {
+            "location": "/#global-laxarjs-service-injections", 
+            "text": "Widgets service injections are created by the LaxarJS runtime as their widget controllers request them (see http://laxarjs.org/docs/laxar-v2-latest/manuals/widget_services), and are not available as injections to regular AngularJS services or factories.  The AngularJS adapter provides additional globally available service injections that can be used in any AngularJS injection context:   axConfiguration  to access the application configuration  axGlobalEventBus  to inspect the event bus independent of widget or page lifetimes  axGlobalLog  to use or listen to the log, application-wide  axGlobalStorage  for application-wide local- or session-storage  axHeartbeat  to be notified whenever events were delivered", 
+            "title": "Global LaxarJS Service Injections"
+        }, 
+        {
+            "location": "/#additional-filters-provided-by-laxarjs", 
+            "text": "This adapter provides the filter  axLocalize , previously part of  LaxarJS UiKit .  Use it together with the  axI18n  widget injection to localize values in widgets:  Controller . injections   =   [   $scope ,   axI18n   ];  function   Controller (   $scope ,   i18n   )   { \n    $scope . i18n   =   i18n ; \n    $scope . i18nGreeting   =   {   en :   Hello ,   fr :   Bonjour   };  }   Now you can do this in your widget template:  h1 {{ i18nGreeting | axLocalize:i18n }} / h1   This causes the headline to stay up-to-date as locales change.", 
+            "title": "Additional Filters Provided by LaxarJS"
+        }, 
+        {
+            "location": "/#additional-directives-provided-by-laxarjs", 
+            "text": "To simplify certain common use cases for widget HTML templates, the adapter also provides a couple of directives.", 
+            "title": "Additional Directives Provided by LaxarJS"
+        }, 
+        {
+            "location": "/#axid", 
+            "text": "Use this to generate unique HTML IDs for anchors and input controls.  h3   ax-id = section-b-anchor Section B / h3   These IDs are unique, even if a widget is used multiple times on a single page.", 
+            "title": "axId"
+        }, 
+        {
+            "location": "/#axfor", 
+            "text": "Use in conjunction with  axId , this associates a form label to its control:  label   ax-for = userName User Name: / label  input   type = text   ax-id = userName   ng-model = model.userName   Sometimes, you can simply nest an input within a label, eliminating the need to use  axFor/axId .\nNote that both directives use  one-time bindings  for performance:\nusing constant expressions is recommended.\nWithin  ngRepeat  contexts, the  track by  expression is a good candidate.", 
+            "title": "axFor"
+        }, 
+        {
+            "location": "/#axwidgetarea", 
+            "text": "Use this to offer a nested widget area for your widget.\nPage authors can then fill the provided area with their own widgets.  Use the  ax-widget-area-binding  attribute to name a widget area within your widget.\nWhile you do not want to change the name of a widget are after it was created, you can use this to make an area name configurable from the page.  Let us assume the following template,  my-widget.html :  div   ax-widget-area   ax-widget-area-binding = ::features.content.area / div   In your page definition, you would then use:  content :   [ \n    { \n       widget :   my-widget , \n       id :   my , \n       features :   { \n          content :   { \n             area :   nested \n          } \n       } \n    }  ],  my.nested :   [ \n    // ...  ]   This becomes powerful when you combine an array-valued feature configuration with  ngRepeat .\nThis way, you can flexibly configure and name any number of widget areas.", 
+            "title": "axWidgetArea"
+        }, 
+        {
+            "location": "/#testing-with-laxarjs-mocks", 
+            "text": "You can use the integration technology  \"angular\"  together with  laxar-mocks  without additional configuration, as long as you are using the  laxar-mocks/spec-loader  to load spec-files when running tests.  Here are some AngularJS-specific hints for testing:    If your are using  $http , use  axMocks.widget.whenServicesAvailable  to inject and configure  $httpBackend .\n  Trying to inject AngularJS services into your test too early can lead to problems when LaxarJS injections are prepared,    when  eventBus.flush()  is run to trigger event bus delivery, a  $rootScope.$digest  is  automatically initiated afterwards.", 
+            "title": "Testing With LaxarJS Mocks"
+        }, 
+        {
+            "location": "/#hacking-the-adapter", 
+            "text": "First, clone the repository and fetch the dependencies:  git clone https://github.com/LaxarJS/laxar-angular-adapter.git cd  laxar-angular-adapter\nnpm install  To rebuild the  pre-compiled bundle , use:  npm run dist  Otherwise, you may need to adjust your project to load the adapter with ES2015 support.\nTo pick up clone from within a LaxarJS application, you may need to modify the project's webpack resolve configuration.  To  test  the adapter, run:  npm  test   For interactive tests that can be inspected in the browser, run:  npm start  Now you can access the spec-tests at http://localhost:8080/dist/spec/laxar-angular-adapter.spec.html", 
+            "title": "Hacking the Adapter"
+        }, 
+        {
+            "location": "/CHANGELOG/", 
+            "text": "Changelog\n\n\nLast Changes\n\n\nv2.0.1\n\n\n\n\n#46\n: fixed markdown syntax in readme\n\n\n\n\nv2.0.0\n\n\nv2.0.0-rc.1\n\n\n\n\n#45\n: fixed dependencies in package.json\n\n\n#44\n: documentation: fixed list indention\n\n\n\n\nv2.0.0-rc.0\n\n\n\n\n#43\n: use laxar-infrastructure\n\n\n#42\n: removed remnants of promise-patching\n\n\n\n\nv2.0.0-beta.1\n\n\n\n\n\n\n#41\n: removed angular-sanitize as dependency\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n#40\n: fixed running multiple bootstrapping instances\n\n\n\n\n\n\nv2.0.0-beta.0\n\n\n\n\n#35\n: documentation: completed README.md\n\n\n#39\n: fixed decoration of axGlobalEventBus\n\n\n\n\nv2.0.0-alpha.2\n\n\n\n\n#38\n: added axLocalize filter\n\n\n#37\n: fixed promise/digest integration\n\n\n\n\nv2.0.0-alpha.1\n\n\n\n\n#36\n: testing: register angular modules with ngMocks\n\n\n\n\nv2.0.0-alpha.0\n\n\n\n\n\n\n#25\n: fixed testability by running $rootScope.$digest on heartbeat\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n#27\n: initialize \n$rootScope.i18n\n exactly once\n\n\n\n\n#34\n: project: updated dev-dependencies, upgraded to webpack 2\n\n\n#33\n: fixed imports of \nlaxar-widget-service-mocks\n\n\n\n\n#32\n: adapted to laxar API change (LaxarJS/laxar#413)\n\n\n\n\nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n\n\n#31\n: Made patching Promise zone.js compatible\n\n\n\n\n#30\n: Made patching angular promises defensive\n\n\n\n\nv0.3.0\n\n\n\n\n\n\n#7\n: changed the \naxVisibilityService\n used by directives to use \naxWidgetServices\n\n\n\n\nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n\n\n#29\n: Removed redundant technology field\n\n\n\n\n#28\n: Fixed tooling api access\n\n\n#24\n: adjusted to adapter API changes (laxar#358)\n\n\n#23\n: fixed testability and multi-instance operation\n\n\n#22\n: removed AngularJS specific \naxI18n\n injection in favor of widget-services version\n\n\n#21\n: fixed bower.json \nmain\n entry\n\n\n#20\n: patched window.Promise to integrate with $q\n\n\n#19\n: removed applyViewChanges in favor of a heartbeat listener\n\n\n#18\n: services: share the same object for $scope and axContext injections\n\n\n#16\n: services: provided access to widget specific services\n\n\n#17\n: project: turned framework dependencies into peer-dependencies\n\n\n#5\n: services: added AngularJS injections for widget services\n\n\n\n\n#14\n: directives: removed layout directive\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n#13\n: eslint: use shared configuration\n\n\n\n\n#12\n: additional eslint restrictions\n\n\n#11\n: added dist-target for UMD-library\n\n\n#10\n: Upgraded build/test dependencies (grunt v1)\n\n\n#6\n: LaxarJS v2 Compatibility\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\nv0.2.0\n\n\n\n\n#3\n: AngularJS: Moved all angular bootstrapping to this adapter\n\n\n#8\n: moved AngularJS exception handler to this adapter\n\n\n#6\n: visibility service: moved from core to this adapter\n\n\n#2\n: profiling: moved from core to this adapter\n\n\n#1\n: directives: moved from core to this adapter\n\n\n\n\nv0.1.0", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#changelog", 
+            "text": "", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#last-changes", 
+            "text": "", 
+            "title": "Last Changes"
+        }, 
+        {
+            "location": "/CHANGELOG/#v201", 
+            "text": "#46 : fixed markdown syntax in readme", 
+            "title": "v2.0.1"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200", 
+            "text": "", 
+            "title": "v2.0.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-rc1", 
+            "text": "#45 : fixed dependencies in package.json  #44 : documentation: fixed list indention", 
+            "title": "v2.0.0-rc.1"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-rc0", 
+            "text": "#43 : use laxar-infrastructure  #42 : removed remnants of promise-patching", 
+            "title": "v2.0.0-rc.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-beta1", 
+            "text": "#41 : removed angular-sanitize as dependency\n        +  BREAKING CHANGE:  see ticket for details    #40 : fixed running multiple bootstrapping instances", 
+            "title": "v2.0.0-beta.1"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-beta0", 
+            "text": "#35 : documentation: completed README.md  #39 : fixed decoration of axGlobalEventBus", 
+            "title": "v2.0.0-beta.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-alpha2", 
+            "text": "#38 : added axLocalize filter  #37 : fixed promise/digest integration", 
+            "title": "v2.0.0-alpha.2"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-alpha1", 
+            "text": "#36 : testing: register angular modules with ngMocks", 
+            "title": "v2.0.0-alpha.1"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-alpha0", 
+            "text": "#25 : fixed testability by running $rootScope.$digest on heartbeat\n        +  BREAKING CHANGE:  see ticket for details    #27 : initialize  $rootScope.i18n  exactly once   #34 : project: updated dev-dependencies, upgraded to webpack 2  #33 : fixed imports of  laxar-widget-service-mocks   #32 : adapted to laxar API change (LaxarJS/laxar#413)   BREAKING CHANGE:  see ticket for details     #31 : Made patching Promise zone.js compatible   #30 : Made patching angular promises defensive", 
+            "title": "v2.0.0-alpha.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v030", 
+            "text": "#7 : changed the  axVisibilityService  used by directives to use  axWidgetServices   BREAKING CHANGE:  see ticket for details     #29 : Removed redundant technology field   #28 : Fixed tooling api access  #24 : adjusted to adapter API changes (laxar#358)  #23 : fixed testability and multi-instance operation  #22 : removed AngularJS specific  axI18n  injection in favor of widget-services version  #21 : fixed bower.json  main  entry  #20 : patched window.Promise to integrate with $q  #19 : removed applyViewChanges in favor of a heartbeat listener  #18 : services: share the same object for $scope and axContext injections  #16 : services: provided access to widget specific services  #17 : project: turned framework dependencies into peer-dependencies  #5 : services: added AngularJS injections for widget services   #14 : directives: removed layout directive\n        +  BREAKING CHANGE:  see ticket for details    #13 : eslint: use shared configuration   #12 : additional eslint restrictions  #11 : added dist-target for UMD-library  #10 : Upgraded build/test dependencies (grunt v1)  #6 : LaxarJS v2 Compatibility\n        +  BREAKING CHANGE:  see ticket for details", 
+            "title": "v0.3.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v020", 
+            "text": "#3 : AngularJS: Moved all angular bootstrapping to this adapter  #8 : moved AngularJS exception handler to this adapter  #6 : visibility service: moved from core to this adapter  #2 : profiling: moved from core to this adapter  #1 : directives: moved from core to this adapter", 
+            "title": "v0.2.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v010", 
+            "text": "", 
+            "title": "v0.1.0"
+        }
+    ]
+}

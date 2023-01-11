@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../laxar.theme/img/favicon.ico">
+        <title>LaxarJS Patterns v1.0.1</title>
+
+        <link rel="stylesheet" href="../../../laxar.theme/css/pygments.css">
+        <link href="../../../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar-patterns <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="../../../laxar-latest">laxar</a></li>
+            
+            <li><a href="../../../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="../../../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="../../../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="../../../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="../../../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="../../../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="../../../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="../../../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="../../../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="../../../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="../../../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="../../../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v1.0.1 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="../../../laxar-patterns-v2-latest">v2.0.0</a></li>
+            
+               <li><a href="../../../laxar-patterns-v1-latest">v1.3.0</a></li>
+            
+               <li><a href="../../../laxar-patterns-v0-latest">v0.20.0</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="../../../laxar-patterns-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.3.0">v1.3.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.2.0">v1.2.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.1.2">v1.1.2</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.1.1">v1.1.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.1.0">v1.1.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.0.1">v1.0.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.0.0">v1.0.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.20.0">v0.20.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.19.0">v0.19.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.18.1">v0.18.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.18.0">v0.18.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.17.0">v0.17.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.16.0">v0.16.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.15.0">v0.15.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.14.1">v0.14.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.14.0">v0.14.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.13.0">v0.13.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.12.1">v0.12.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.12.0">v0.12.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.11.1">v0.11.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.11.0">v0.11.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.10.1">v0.10.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.10.0">v0.10.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.9.2">v0.9.2</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.9.1">v0.9.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.9.0">v0.9.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="../../CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+                  
+               
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar-patterns/tree/v1.0.1">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main"><a title="README" href="../..#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="API"
+               data-toggle="collapse"
+               data-target="#API"
+               aria-expanded="false"
+               aria-controls="collapseExample">API <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="API">
+               
+               <li >
+                  <a title="actions" href="../../api/actions.js/#start">actions</a>
+               </li>
+               
+               <li >
+                  <a title="errors" href="../../api/errors.js/#start">errors</a>
+               </li>
+               
+               <li >
+                  <a title="flags" href="../../api/flags.js/#start">flags</a>
+               </li>
+               
+               <li >
+                  <a title="i18n" href="../../api/i18n.js/#start">i18n</a>
+               </li>
+               
+               <li >
+                  <a title="json" href="../../api/json.js/#start">json</a>
+               </li>
+               
+               <li >
+                  <a title="patches" href="../../api/patches.js/#start">patches</a>
+               </li>
+               
+               <li >
+                  <a title="resources" href="../../api/resources.js/#start">resources</a>
+               </li>
+               
+               <li >
+                  <a title="validation" href="../../api/validation.js/#start">validation</a>
+               </li>
+               
+               <li >
+                  <a title="visibility" href="../../api/visibility.js/#start">visibility</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse ax-active" >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Patterns"
+               data-toggle="collapse"
+               data-target="#Patterns"
+               aria-expanded="false"
+               aria-controls="collapseExample">Patterns <span class="caret"></span></a>
+
+            <ul class="nav subnav in"
+               id="Patterns">
+               
+               <li >
+                  <a title="Action Patterns" href="../actions/#start">Action Patterns</a>
+               </li>
+               
+               <li >
+                  <a title="Error Handling Patterns" href="../errors/#start">Error Handling Patterns</a>
+               </li>
+               
+               <li >
+                  <a title="Flag Patterns" href="../flags/#start">Flag Patterns</a>
+               </li>
+               
+               <li class="ax-active">
+                  <a title="Resource Patterns" href="./#start">Resource Patterns</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<p><a href="../..">« return to the patterns overview</a></p>
+<h1 id="resource-patterns">Resource Patterns</h1>
+<p>Resource events are essential to any non-trivial LaxarJS application, as they allow to share application resources and to collaborate on them.
+Because events are always delivered <em>by copy</em>, there is no danger of widgets and activities performing conflicting operations on shared mutable state.</p>
+<h2 id="the-masterslave-pattern">The Master/Slave Pattern</h2>
+<p>When using the LaxarJS resource pattern, for a given resource there is usually a single widget (or activity) responsible for <em>providing</em> it, in order for others to collaborate.
+If applicable, that widget (the <em>resource master</em>) is also capable of persisting modifications to the resource.
+The other collaborators are <em>slaves</em> with respect to the shared resource.</p>
+<p>Only the resource master may change the <em>identity</em> of a shared resource, while the slaves may only publish <em>modifications to the state</em> of the resource.</p>
+<h3 id="example-shopping-cart">Example: Shopping Cart</h3>
+<p>As an example, consider a shopping cart widget that displays a list of <em>positions</em> (articles and quantities) in a web shop application.
+The user may select any of the positions, and a second widget will then show details on the <em>selected-position</em> resource, such as a photo of the corresponding article.
+The shopping cart widget is the resource master here, because it alone determines which article is currently selected.
+The details widget is a slave, it can only act with respect to the currently selected article.</p>
+<p>The details widget might even allow to modify the quantity of a given article within the cart, causing the shopping cart to remove a position when its quantity reaches zero.
+However, the slave can never change <em>which</em> position is currently the <em>selected-position</em> .</p>
+<h3 id="the-didreplace-and-didupdate-events">The <em>didReplace</em> and <em>didUpdate</em> Events</h3>
+<p>The identity and initial state of a resource is published through the <em>didReplace</em> event by the resource master.
+Modifications to a resource may be published through the <em>didUpdate</em> event, by master or slaves.</p>
+<table>
+<thead>
+<tr>
+<th>Event name</th>
+<th>Payload Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>didReplace.{resource}</code></td>
+<td></td>
+<td></td>
+<td><em>published by a resource master to define state and identity of a shared resource</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>resource</code></td>
+<td>string</td>
+<td>the topic through which the resource is shared (used in the payload <em>as well as</em> in the event name)</td>
+</tr>
+<tr>
+<td></td>
+<td><code>data</code></td>
+<td>object</td>
+<td>the (initial or new) state of the resource</td>
+</tr>
+<tr>
+<td><code>didUpdate.{resource}</code></td>
+<td></td>
+<td></td>
+<td><em>published by a resource master or by its slaves to publish modifications to the state of a shared resource</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>resource</code></td>
+<td>string</td>
+<td><em>see above</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>patches</code></td>
+<td>array</td>
+<td>A <a href="https://tools.ietf.org/html/rfc6902">JSON-Patch</a> document (an array representing a sequence of incremental modifications)</td>
+</tr>
+</tbody>
+</table>
+<p>Because modifications <em>(didUpdate)</em> are transmitted incrementally, the resource master may use the <code>patches</code> attribute of the event payload to persist modifications using an <a href="http://tools.ietf.org/html/rfc5789">HTTP PATCH</a> request.
+To create and apply patches, you require <code>laxar-patterns</code> into your widget controller and use <code>createPatch</code> and <code>applyPatch</code> its <code>json</code> API.</p>
+<p>When sharing resources, keep in mind that resource events (like all LaxarJS events) are cloned for each receiver.
+This makes it easy to write robust applications, but can lead to inefficiencies if very large resources are published.
+In some cases, it might be worthwhile to factor out sub-resources relevant to the consumers.</p>
+<h2 id="asynchronous-resource-validation">Asynchronous Resource Validation</h2>
+<p>Often the individual widgets sharing a resource know best how to validate their specific user input.
+However, in the context of persistence or navigation the validity state of the overall resource or of the entire page is of interest.</p>
+<p>Widgets and activities concerned with navigation and persistence should not be exposed to the details of resource validation [1].
+To separate these concerns, widgets may issue <em>requests to validate a resource</em> which other widgets may respond to.
+Respondents may choose to validate immediately or asynchronously.</p>
+<h3 id="the-validaterequest-willvalidate-and-didvalidate-events">The <em>validateRequest, willValidate</em> and <em>didValidate</em> Events</h3>
+<p>A widget may request validation of a resource using a <code>validateRequest</code> event.
+Collaborators capable of performing validation on this resource respond by publishing a <code>willValidate</code> event.
+After they have performed validation, possibly asynchronously, collaborators publish a <code>didValidate</code> event.</p>
+<table>
+<thead>
+<tr>
+<th>Event name</th>
+<th>Payload Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>validateRequest.{resource}</code></td>
+<td></td>
+<td></td>
+<td><em>published by any widget that requires validation of the given resource</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>resource</code></td>
+<td>string</td>
+<td>the topic through which the resource is shared (used in the payload <em>as well as</em> in the event name)</td>
+</tr>
+<tr>
+<td><code>willValidate.{resource}</code></td>
+<td></td>
+<td></td>
+<td><em>published by a widget that is about to perform validation of the given resource</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>resource</code></td>
+<td>string</td>
+<td><em>see above</em></td>
+</tr>
+<tr>
+<td><code>didValidate.{resource}</code></td>
+<td></td>
+<td></td>
+<td><em>published by a widget that has performed validation of the given resource</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>resource</code></td>
+<td>string</td>
+<td><em>see above</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>outcome</code></td>
+<td>string</td>
+<td>One of <code>ERROR</code>, <code>WARNING</code>, <code>INFO</code> and <code>SUCCESS</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>data</code></td>
+<td>array</td>
+<td>A list of <em>validation messages</em> for the application user (see below)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="validation-outcome-and-validation-messages">Validation Outcome and Validation Messages</h3>
+<p>The <code>didValidate</code> event contains information on the results of a validation:</p>
+<div class="codehilite"><pre><span></span>* The _outcome_ determines if validation was successful:
+
+        + `ERROR`: The resource is in an invalid state. If the receiver would normally persist the resource, it will probably not do so.
+        + `WARNING`: The resource _probably_ contains problems. If the receiver would normally persist the resource, it should probably obtain user confirmation before doing so.
+        + `INFO`: The resource _might_ contain problems or require user intervention. If the receiver would normally persist the resource, it might obtain confirmation or otherwise inform the user.
+        + `SUCCESS`: No problems were found _by the sender_ of the event. If the receiver would normally persist the resource, it should proceed as far as the sender is concerned.
+
+* The _validation messages_ (`data` array) contains additional details for the user. Each message is an object with at least these attributes:
+
+        + `htmlMessage`: A validation message for the user (a _string_), to be interpreted as HTML markup
+        + `level`: The severity of this particular vaidation message (a _string_), using the outcomes specified above
+        + `sortKey`: The message priority (a _string_) that should be used for sorting messages lexicographically.
+</pre></div>
+
+
+<p>[1]: As an exception to this rule, a resource master may perform a (semantic) <em>overall</em> validation after the individual editor widgets had their say.</p>
+<h2 id="saving-resources">Saving Resources</h2>
+<p>Usually the resource master is responsible for saving user input where appropriate.
+This can be achieved by performing a REST call for example, or by putting state into a container resource (as a slave) and requesting for the container to be persisted.</p>
+<h3 id="the-saverequest-willsave-and-didsave-events">The <em>saveRequest, willSave</em> and <em>didSave</em> Events</h3>
+<p>To request saving a resource, widgets may publish a <code>saveRequest</code> event.
+Widgets capable of and configured for persisting the resource respond by publishing a <code>willSave</code> event.
+After they have ensured persistence, usually asynchronously, collaborators publish a <code>didSave</code> event.</p>
+<table>
+<thead>
+<tr>
+<th>Event name</th>
+<th>Payload Attribute</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>saveRequest.{resource}</code></td>
+<td></td>
+<td></td>
+<td><em>published by any widget that requires persisting the given resource</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>resource</code></td>
+<td>string</td>
+<td>the topic through which the resource is shared (used in the payload <em>as well as</em> in the event name)</td>
+</tr>
+<tr>
+<td><code>willSave.{resource}</code></td>
+<td></td>
+<td></td>
+<td><em>published by a widget that is about to persist the given resource</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>resource</code></td>
+<td>string</td>
+<td><em>see above</em></td>
+</tr>
+<tr>
+<td><code>didSave.{resource}</code></td>
+<td></td>
+<td></td>
+<td><em>published by a widget after saving the given resource</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>resource</code></td>
+<td>string</td>
+<td><em>see above</em></td>
+</tr>
+<tr>
+<td></td>
+<td><code>outcome</code></td>
+<td>string</td>
+<td><code>ERROR</code> or <code>SUCCESS</code></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>didSave</code> event contains information on the <em>outcome</em>:</p>
+<div class="codehilite"><pre><span></span>* `ERROR`: The resource could not be saved. The sender should also publish a `didEncounterError` event in this case.
+* `SUCCESS`: The resource was saved successfully.
+</pre></div>
+
+
+<p>Depending on the use case, widgets might persist resources automatically every time they have been modified.
+In this case, it is recommended for them to still respond to save requests, for best interoperability.</p></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="../../../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="../../../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="../../../laxar.theme/js/base.js"></script>
+   </body>
+</html>

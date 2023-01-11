@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="./../laxar.theme/img/favicon.ico">
+        <title>laxar-vue-adapter v2.0.0</title>
+
+        <link rel="stylesheet" href="./../laxar.theme/css/pygments.css">
+        <link href="./../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar-vue-adapter <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="./../laxar-latest">laxar</a></li>
+            
+            <li><a href="./../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="./../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="./../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="./../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="./../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="./../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="./../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="./../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="./../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="./../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="./../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="./../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v2.0.0 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="./../laxar-vue-adapter-v2-latest">v2.0.0</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="./../laxar-vue-adapter-v2.0.0">v2.0.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar-vue-adapter/tree/v2.0.0">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main ax-active"><a title="README" href=".#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<h1 id="laxar-vue-adapter">laxar-vue-adapter</h1>
+<blockquote>
+<p>Implement <em><a href="https://laxarjs.org/">LaxarJS</a></em> widgets and controls with <em><a href="https://vuejs.org/">Vue.js</a></em>.</p>
+</blockquote>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li>
+<p><a href="#getting-started">Getting started</a></p>
+<ul>
+<li><a href="#separate-files">Separate files</a></li>
+<li><a href="#single-file-components">Single file components</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#laxarjs-integration">LaxarJS integration</a></p>
+<ul>
+<li><a href="#injections">Injections</a></li>
+<li><a href="#axcontext">axContext</a></li>
+<li><a href="#controls">Controls</a></li>
+<li><a href="#widget-areas">Widget Areas</a></li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#theming">Theming</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>The recommended installation is through NPM:</p>
+<div class="codehilite"><pre><span class="go">npm install --save laxar-vue-adapter</span>
+</pre></div>
+
+
+<p>If using the source module instead, you need to ensure that the <code>.js</code> file is loaded with ES2015 support, plus support for Object spread.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>You can either use the familiar directory structure for LaxarJS widgets, with separate <code>.js</code>, <code>.html</code> and <code>.css</code> files, or you can use the <a href="https://vue-loader.vuejs.org/en/index.html"><code>vue-loader</code></a> and put the whole widget into a single <code>.vue</code> file.</p>
+<p>In any case, your widget module will have to export an object of <a href="https://vuejs.org/v2/api/#Options-Data"><em>Vue.js</em> options</a>.
+These will be passed to <code>Vue.extend()</code> by the adapter (together with some extras to enable widget service <a href="#injections">injections</a>) so make sure you use options that are supported in component definitions.</p>
+<h3 id="separate-files">Separate files</h3>
+<p>When using separate files for HTML template and controller logic, the template will be compiled on-the-fly in the user's browser, incurring a slight performance penalty.
+You will also have to make sure that <code>vue</code> resolves to the so-called "<a href="https://vuejs.org/v2/guide/installation.html#Standalone-vs-Runtime-only-Build">standalone build</a>" of <em>Vue.js</em>.</p>
+<div class="codehilite"><pre><span class="c">&lt;!-- default.theme/my-widget.html --&gt;</span>
+<span class="nt">&lt;b&gt;</span>{{counter}}<span class="nt">&lt;/b&gt;</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span class="c1">// my-widget.js</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+   <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">{</span> <span class="nx">counter</span><span class="o">:</span> <span class="mi">0</span> <span class="p">};</span>
+   <span class="p">},</span>
+   <span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">interval</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">counter</span><span class="o">++</span><span class="p">;</span>
+      <span class="p">},</span> <span class="mi">1000</span> <span class="p">);</span>
+   <span class="p">},</span>
+   <span class="nx">destroyed</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">clearInterval</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">interval</span> <span class="p">);</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>You have to make sure <code>laxar-vue-adapter</code> has access to <a href="https://vuejs.org/v2/api/#Vue-compile"><code>Vue.compile</code></a> to compile the template HTML.
+This method is not part of <em>Vue.js'</em> default <em>NPM</em> package.
+Using <a href="https://webpack.js.org/">webpack</a>, you can use the standalone build of <em>Vue.js</em> by defining an alias in your resolve configuration:</p>
+<div class="codehilite"><pre><span class="c1">// webpack.config.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="nx">resolve</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">alias</span><span class="o">:</span> <span class="p">{</span>
+         <span class="s1">&#39;vue$&#39;</span><span class="o">:</span> <span class="s1">&#39;vue/dist/vue.js&#39;</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+
+
+<h3 id="single-file-components">Single file components</h3>
+<p>In this example the <code>vue-loader</code> will preprocess the <code>.vue</code> file and compile the template to a JavaScript function.</p>
+<div class="codehilite"><pre>&lt;!-- my-widget.vue --&gt;
+&lt;template&gt;
+   &lt;b class=&quot;counter&quot;&gt;{{counter}}&lt;/b&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+   data() {
+      return { counter: 0 };
+   },
+   created() {
+      this.interval = setInterval( () =&gt; {
+         this.counter++;
+      }, 1000 );
+   },
+   destroyed() {
+      clearInterval( this.interval );
+   }
+}
+&lt;/script&gt;
+
+&lt;style&gt;
+.counter {
+   color: red;
+}
+&lt;/style&gt;
+</pre></div>
+
+
+<p>Make sure <a href="https://vue-loader.vuejs.org/en/index.html"><code>vue-loader</code></a> is installed and set your <code>webpack.config.js</code> accordingly.</p>
+<div class="codehilite"><pre><span class="c1">// webpack.config.js</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="nx">resolve</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">extensions</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;.js&#39;</span><span class="p">,</span> <span class="s1">&#39;.vue&#39;</span> <span class="p">]</span>
+   <span class="p">},</span>
+   <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">loaders</span><span class="o">:</span> <span class="p">[</span> <span class="p">{</span>
+         <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.vue$/</span><span class="p">,</span>
+         <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;vue-loader&#39;</span>
+      <span class="p">}</span> <span class="p">]</span>
+   <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+
+
+<h2 id="laxarjs-integration">LaxarJS integration</h2>
+<p>With the basic setup described above, simple <em>Vue</em> components should <em>just work</em>.
+If you are developing anything useful you probably need to interact with the LaxarJS runtime in some way.
+The following sections will describe how the <code>laxar-vue-adapter</code> provides a (mostly) non-invasive integration with <em>LaxarJS</em>.</p>
+<h3 id="injections">Injections</h3>
+<p><em>LaxarJS</em> <a href="https://laxarjs.org/docs/laxar-v2-latest/manuals/widget_services">widget services</a> can be injected into your <em>Vue.js</em> component by using the <code>injections</code> mixin provided by the <code>laxar-vue-adapter</code>.
+An list of corresponding injection values is then available to the component instance as <code>this.$injections</code>.</p>
+<div class="codehilite"><pre><span class="kr">import</span> <span class="p">{</span> <span class="nx">injections</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;laxar-vue-adapter&#39;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+   <span class="nx">mixins</span><span class="o">:</span> <span class="p">[</span> <span class="nx">injections</span><span class="p">(</span> <span class="s1">&#39;axEventBus&#39;</span><span class="p">,</span> <span class="s1">&#39;axGlobalLog&#39;</span> <span class="p">)</span> <span class="p">],</span>
+   <span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="p">[</span> <span class="nx">eventBus</span><span class="p">,</span> <span class="nx">log</span> <span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$injections</span><span class="p">;</span>
+      <span class="nx">eventBus</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span> <span class="s1">&#39;beginLifecycleRequest&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+         <span class="nx">log</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span> <span class="s1">&#39;So it has begun!&#39;</span> <span class="p">);</span>
+      <span class="p">}</span> <span class="p">);</span>
+   <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+
+
+<h3 id="axcontext">axContext</h3>
+<p>The <a href="https://laxarjs.org/docs/laxar-v2-latest/manuals/widget_services#-axcontext-"><code>axContext</code></a> service is automatically injected.
+It can be accessed via the <code>$data</code> property.
+The context does not appear among <code>this.$injections</code> unless you explicitly specify it by using the <code>injections</code> mixin.
+Its presence in the component's <code>$data</code> allows you to easily access the <code>id()</code> generator, the event bus and the features configured for your particular widget instance.</p>
+<div class="codehilite"><pre><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+   <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;b :id=&quot;id(\&#39;some-suffix\&#39;)&quot;&gt;{{ features.mytext }}&lt;/b&gt;&#39;</span><span class="p">,</span>
+   <span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">eventBus</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span> <span class="s1">&#39;some-event&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">methods</span><span class="p">.</span><span class="nx">eventHandler</span> <span class="p">);</span>
+   <span class="p">},</span>
+   <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">eventHandler</span><span class="p">(</span> <span class="nx">payload</span><span class="p">,</span> <span class="nx">meta</span> <span class="p">)</span> <span class="p">{</span>
+         <span class="c1">// ...</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+
+
+<h3 id="controls">Controls</h3>
+<p>You can specify controls in your <code>widget.json</code>.
+Just list a module that can resolved by the module loader.
+The control will then be <a href="https://vuejs.org/v2/guide/components.html#Local-Registration">registered locally</a> as a component with the name specified in its <code>control.json</code>.</p>
+<div class="codehilite"><pre><span class="p">{</span>
+   <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-widget&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;integration&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;technology&quot;</span><span class="p">:</span> <span class="s2">&quot;vue&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;widget&quot;</span>
+   <span class="p">},</span>
+   <span class="nt">&quot;controls&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;my-vue-control-module&quot;</span> <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span class="p">{</span>
+   <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-vue-control&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;integration&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;technology&quot;</span><span class="p">:</span> <span class="s2">&quot;vue&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;control&quot;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="codehilite"><pre>&lt;!-- my-widget.vue --&gt;
+&lt;template&gt;
+&lt;div&gt;This is my widget&lt;/div&gt;
+&lt;my-vue-control&gt;It&#39;s using a control&lt;/my-vue-control&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+   components: {
+      // this part is automatically supplied by the runtime:
+      &#39;my-vue-control&#39;: ConstructorCreatedByTheVueAdapter
+   }
+};
+&lt;/script&gt;
+</pre></div>
+
+
+<h4 id="injections-in-controls">Injections in controls</h4>
+<p>Controls can access the following global services via injections:</p>
+<ul>
+<li><a href="http://laxarjs.org/docs/laxar-v2-latest/manuals/widget_services#-axconfiguration-"><code>axConfiguration</code></a></li>
+<li><a href="http://laxarjs.org/docs/laxar-v2-latest/manuals/widget_services#-axglobaleventbus-"><code>axGlobalEventBus</code></a></li>
+<li><a href="http://laxarjs.org/docs/laxar-v2-latest/manuals/widget_services#-axgloballog-"><code>axGlobalLog</code></a></li>
+<li><a href="http://laxarjs.org/docs/laxar-v2-latest/manuals/widget_services#-axglobalstorage-"><code>axGlobalStorage</code></a></li>
+<li><a href="http://laxarjs.org/docs/laxar-v2-latest/manuals/widget_services#-axheartbeat-"><code>axHeartbeat</code></a></li>
+<li><a href="http://laxarjs.org/docs/laxar-v2-latest/manuals/widget_services#-axtooling-"><code>axTooling</code></a></li>
+</ul>
+<h4 id="axwidgetservices">axWidgetServices</h4>
+<p>The services of the widget instance that uses the control can be injected as <code>axWidgetServices</code>.</p>
+<div class="codehilite"><pre><span class="kr">import</span> <span class="p">{</span> <span class="nx">injections</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;laxar-vue-adapter&#39;</span><span class="p">;</span>
+<span class="c1">// my-vue-control.js</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+   <span class="nx">mixins</span><span class="o">:</span> <span class="p">[</span> <span class="nx">injections</span><span class="p">(</span> <span class="s1">&#39;axWidgetServices&#39;</span> <span class="p">)</span> <span class="p">],</span>
+   <span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="p">[</span> <span class="p">{</span> <span class="nx">axLog</span> <span class="p">}</span> <span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$injections</span><span class="p">;</span>
+      <span class="nx">axLog</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span> <span class="s1">&#39;I\&#39;m a control using my widget\&#39;s logger!&#39;</span> <span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+</pre></div>
+
+
+<h3 id="widget-areas">Widget Areas</h3>
+<p>All Vue.js components loaded by this adapter have access to an additional component <code>ax-widget-area</code>.
+This component can be used to provide containers for nested widgets.</p>
+<div class="codehilite"><pre>&lt;!-- my-widget.vue --&gt;
+
+&lt;template&gt;
+   &lt;div&gt;
+      &lt;h1&gt;Here are two areas:&lt;/h1&gt;
+      &lt;ax-widget-area name=&quot;first&quot; /&gt;
+      &lt;ax-widget-area name=&quot;second&quot; /&gt;
+   &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+   &lt;!-- export default { ... }; --&gt;
+&lt;/script&gt;
+</pre></div>
+
+
+<p>No modifications to the component JavaScript code are needed.
+Behind the scenes, the widget area component uses the <code>axAreaHelper</code> widget service injection, to provide additional widget areas:</p>
+<div class="codehilite"><pre>   <span class="c1">// my-page.json, areas:</span>
+   <span class="s2">&quot;content&quot;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+         <span class="s2">&quot;widget&quot;</span><span class="o">:</span> <span class="s2">&quot;my-widget&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;widgetX&quot;</span>
+      <span class="p">}</span>
+   <span class="p">],</span>
+   <span class="s2">&quot;widgetX.first&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="cm">/* ...more widgets... */</span> <span class="p">],</span>
+   <span class="s2">&quot;widgetX.second&quot;</span><span class="o">:</span> <span class="p">[</span> <span class="cm">/* ... */</span> <span class="p">]</span>
+</pre></div>
+
+
+<p>Note that once mounted, widget areas should not be destroyed until their containing page is destroyed.
+Use styling (<code>display: none</code>) to hide and show areas as needed.
+This is a necessary evil for now, as some integration technologies (such as AngularJS v1) do not support temporary removal of their DOM.
+For this reason, it is also not recommended to use a mutable expression for the <code>name</code> prop.</p>
+<h3 id="testing">Testing</h3>
+<p>LaxarJS widgets and activities can be tested using <a href="http://laxarjs.org/docs/laxar-mocks-v2-latest">LaxarJS Mocks</a> just like when using other LaxarJS integration technologies.
+Note that the <code>laxar-vue-adapter</code> makes available the special property <code>axMocks.widget.vueComponent</code> when <code>axMocks.widget.load</code> is called, referencing your widget's Vue.js component instance.
+You can use this property to inspect your widget component data as well as its <code>eventBus</code>, and to simulate method calls.</p>
+<h3 id="theming">Theming</h3>
+<p>Theme directories are fully supported.
+Additionally, if you are using the <code>vue-loader</code>, the default HTML and CSS can be embedded in the main <code>.vue</code> file.
+However, the HTML and CSS corresponding to the default theme will be present in the bundled application regardless of the theme used for bundling.
+If that is an issue, we recommend using separate files for the HTML template and CSS.</p>
+<h4 id="precompiling-themed-assets">Precompiling themed assets</h4>
+<p>Using external (S)CSS is supported, just like with other integration technologies.</p>
+<p>You can also use the <code>vue-loader</code> to precompile your <em>themed HTML and CSS.</em>
+Just specify a Vue.js component file as your <code>templateSource</code> and make sure it gets processed by the <code>vue-loader</code>.</p>
+<div class="codehilite"><pre><span class="p">{</span>
+   <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-widget&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;templateSource&quot;</span><span class="p">:</span> <span class="s2">&quot;my-widget.vue&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="codehilite"><pre>&lt;!-- any.theme/my-widget.vue --&gt;
+&lt;template&gt;
+   &lt;b class=&quot;counter&quot;&gt;{{counter}}&lt;/b&gt;
+&lt;/template&gt;
+
+&lt;style&gt;
+.counter {
+   color: red;
+}
+&lt;/style&gt;
+</pre></div>
+
+
+<p>In this case, the component scripting logic could be kept in a <code>my-widget.js</code> at the widget's top-level.</p>
+<h2 id="hacking-the-adapter">Hacking the Adapter</h2>
+<p>First, clone the repository and fetch the dependencies:</p>
+<div class="codehilite"><pre><span class="go">git clone https://github.com/LaxarJS/laxar-vue-adapter.git</span>
+<span class="go">cd laxar-vue-adapter</span>
+<span class="go">npm install</span>
+</pre></div>
+
+
+<p>To rebuild the <em>pre-compiled bundle</em>, use:</p>
+<div class="codehilite"><pre><span class="go">npm run dist</span>
+</pre></div>
+
+
+<p>Otherwise, you may need to adjust your project to load the adapter with ES2015 support.
+To pick up clone from within a LaxarJS application, you may need to modify the project's webpack resolve configuration.</p>
+<p>To <em>test</em> the adapter, run:</p>
+<div class="codehilite"><pre><span class="go">npm test</span>
+</pre></div>
+
+
+<p>For interactive tests that can be inspected in the browser, run:</p>
+<div class="codehilite"><pre><span class="go">npm start</span>
+</pre></div>
+
+
+<p>Now you can access the spec-tests at http://localhost:8080/dist/spec/laxar-vue-adapter.spec.html</p></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="./../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="./../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="./../laxar.theme/js/base.js"></script>
+   </body>
+</html>

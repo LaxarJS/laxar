@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../laxar.theme/img/favicon.ico">
+        <title>LaxarJS v0.23.3</title>
+
+        <link rel="stylesheet" href="../../../laxar.theme/css/pygments.css">
+        <link href="../../../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="../../../laxar-latest">laxar</a></li>
+            
+            <li><a href="../../../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="../../../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="../../../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="../../../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="../../../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="../../../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="../../../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="../../../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="../../../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="../../../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="../../../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="../../../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v0.23.3 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="../../../laxar-v2-latest">v2.0.3</a></li>
+            
+               <li><a href="../../../laxar-v1-latest">v1.3.5</a></li>
+            
+               <li><a href="../../../laxar-v0-latest">v0.26.2</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="../../../laxar-v2.0.3">v2.0.3</a></li>
+         
+            <li><a href="../../../laxar-v2.0.2">v2.0.2</a></li>
+         
+            <li><a href="../../../laxar-v2.0.1">v2.0.1</a></li>
+         
+            <li><a href="../../../laxar-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="../../../laxar-v1.3.5">v1.3.5</a></li>
+         
+            <li><a href="../../../laxar-v1.3.4">v1.3.4</a></li>
+         
+            <li><a href="../../../laxar-v1.3.3">v1.3.3</a></li>
+         
+            <li><a href="../../../laxar-v1.3.2">v1.3.2</a></li>
+         
+            <li><a href="../../../laxar-v1.3.1">v1.3.1</a></li>
+         
+            <li><a href="../../../laxar-v1.3.0">v1.3.0</a></li>
+         
+            <li><a href="../../../laxar-v1.2.10">v1.2.10</a></li>
+         
+            <li><a href="../../../laxar-v1.2.9">v1.2.9</a></li>
+         
+            <li><a href="../../../laxar-v1.2.8">v1.2.8</a></li>
+         
+            <li><a href="../../../laxar-v1.2.7">v1.2.7</a></li>
+         
+            <li><a href="../../../laxar-v1.2.6">v1.2.6</a></li>
+         
+            <li><a href="../../../laxar-v1.2.5">v1.2.5</a></li>
+         
+            <li><a href="../../../laxar-v1.2.4">v1.2.4</a></li>
+         
+            <li><a href="../../../laxar-v1.2.3">v1.2.3</a></li>
+         
+            <li><a href="../../../laxar-v1.2.2">v1.2.2</a></li>
+         
+            <li><a href="../../../laxar-v1.2.1">v1.2.1</a></li>
+         
+            <li><a href="../../../laxar-v1.2.0">v1.2.0</a></li>
+         
+            <li><a href="../../../laxar-v1.1.0">v1.1.0</a></li>
+         
+            <li><a href="../../../laxar-v1.0.5">v1.0.5</a></li>
+         
+            <li><a href="../../../laxar-v1.0.4">v1.0.4</a></li>
+         
+            <li><a href="../../../laxar-v1.0.3">v1.0.3</a></li>
+         
+            <li><a href="../../../laxar-v1.0.2">v1.0.2</a></li>
+         
+            <li><a href="../../../laxar-v1.0.1">v1.0.1</a></li>
+         
+            <li><a href="../../../laxar-v1.0.0">v1.0.0</a></li>
+         
+            <li><a href="../../../laxar-v0.26.2">v0.26.2</a></li>
+         
+            <li><a href="../../../laxar-v0.26.1">v0.26.1</a></li>
+         
+            <li><a href="../../../laxar-v0.26.0">v0.26.0</a></li>
+         
+            <li><a href="../../../laxar-v0.25.1">v0.25.1</a></li>
+         
+            <li><a href="../../../laxar-v0.25.0">v0.25.0</a></li>
+         
+            <li><a href="../../../laxar-v0.24.0">v0.24.0</a></li>
+         
+            <li><a href="../../../laxar-v0.23.3">v0.23.3</a></li>
+         
+            <li><a href="../../../laxar-v0.23.2">v0.23.2</a></li>
+         
+            <li><a href="../../../laxar-v0.23.1">v0.23.1</a></li>
+         
+            <li><a href="../../../laxar-v0.23.0">v0.23.0</a></li>
+         
+            <li><a href="../../../laxar-v0.22.2">v0.22.2</a></li>
+         
+            <li><a href="../../../laxar-v0.22.1">v0.22.1</a></li>
+         
+            <li><a href="../../../laxar-v0.22.0">v0.22.0</a></li>
+         
+            <li><a href="../../../laxar-v0.21.0">v0.21.0</a></li>
+         
+            <li><a href="../../../laxar-v0.20.1">v0.20.1</a></li>
+         
+            <li><a href="../../../laxar-v0.20.0">v0.20.0</a></li>
+         
+            <li><a href="../../../laxar-v0.19.1">v0.19.1</a></li>
+         
+            <li><a href="../../../laxar-v0.19.0">v0.19.0</a></li>
+         
+            <li><a href="../../../laxar-v0.18.2">v0.18.2</a></li>
+         
+            <li><a href="../../../laxar-v0.18.1">v0.18.1</a></li>
+         
+            <li><a href="../../../laxar-v0.18.0">v0.18.0</a></li>
+         
+            <li><a href="../../../laxar-v0.17.1">v0.17.1</a></li>
+         
+            <li><a href="../../../laxar-v0.17.0">v0.17.0</a></li>
+         
+            <li><a href="../../../laxar-v0.16.2">v0.16.2</a></li>
+         
+            <li><a href="../../../laxar-v0.16.1">v0.16.1</a></li>
+         
+            <li><a href="../../../laxar-v0.16.0">v0.16.0</a></li>
+         
+            <li><a href="../../../laxar-v0.15.0">v0.15.0</a></li>
+         
+            <li><a href="../../../laxar-v0.14.0">v0.14.0</a></li>
+         
+            <li><a href="../../../laxar-v0.13.3">v0.13.3</a></li>
+         
+            <li><a href="../../../laxar-v0.13.2">v0.13.2</a></li>
+         
+            <li><a href="../../../laxar-v0.13.1">v0.13.1</a></li>
+         
+            <li><a href="../../../laxar-v0.13.0">v0.13.0</a></li>
+         
+            <li><a href="../../../laxar-v0.12.1">v0.12.1</a></li>
+         
+            <li><a href="../../../laxar-v0.12.0">v0.12.0</a></li>
+         
+            <li><a href="../../../laxar-v0.11.1">v0.11.1</a></li>
+         
+            <li><a href="../../../laxar-v0.11.0">v0.11.0</a></li>
+         
+            <li><a href="../../../laxar-v0.10.1">v0.10.1</a></li>
+         
+            <li><a href="../../../laxar-v0.10.0">v0.10.0</a></li>
+         
+            <li><a href="../../../laxar-v0.9.11">v0.9.11</a></li>
+         
+            <li><a href="../../../laxar-v0.9.10">v0.9.10</a></li>
+         
+            <li><a href="../../../laxar-v0.9.9">v0.9.9</a></li>
+         
+            <li><a href="../../../laxar-v0.9.8">v0.9.8</a></li>
+         
+            <li><a href="../../../laxar-v0.9.7">v0.9.7</a></li>
+         
+            <li><a href="../../../laxar-v0.9.6">v0.9.6</a></li>
+         
+            <li><a href="../../../laxar-v0.9.5">v0.9.5</a></li>
+         
+            <li><a href="../../../laxar-v0.9.4">v0.9.4</a></li>
+         
+            <li><a href="../../../laxar-v0.9.3">v0.9.3</a></li>
+         
+            <li><a href="../../../laxar-v0.9.2">v0.9.2</a></li>
+         
+            <li><a href="../../../laxar-v0.9.1">v0.9.1</a></li>
+         
+            <li><a href="../../../laxar-v0.9.0">v0.9.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="../../CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar/tree/v0.23.3">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main"><a title="README" href="../..#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Concepts" href="../../concepts/#start">LaxarJS Concepts</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="Why LaxarJS?" href="../../why_laxar/#start">Why LaxarJS?</a></li>
+         
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="API"
+               data-toggle="collapse"
+               data-target="#API"
+               aria-expanded="false"
+               aria-controls="collapseExample">API <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="API">
+               
+               <li >
+                  <a title="Overview" href="../../api/#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="laxar.md" href="../../api/laxar/#start">laxar.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-event_bus-event_bus.md" href="../../api/lib/event_bus/event_bus/#start">lib-event_bus-event_bus.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-i18n-i18n.md" href="../../api/lib/i18n/i18n/#start">lib-i18n-i18n.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-logging-level.md" href="../../api/lib/logging/level/#start">lib-logging-level.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-logging-log.md" href="../../api/lib/logging/log/#start">lib-logging-log.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-logging-log_context.md" href="../../api/lib/logging/log_context/#start">lib-logging-log_context.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-logging-logger.md" href="../../api/lib/logging/logger/#start">lib-logging-logger.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-testing-http_mock.md" href="../../api/lib/testing/http_mock/#start">lib-testing-http_mock.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-testing-jquery_mock.md" href="../../api/lib/testing/jquery_mock/#start">lib-testing-jquery_mock.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-testing-matchers.md" href="../../api/lib/testing/matchers/#start">lib-testing-matchers.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-testing-portal_mocks.md" href="../../api/lib/testing/portal_mocks/#start">lib-testing-portal_mocks.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-testing-portal_mocks_angular.md" href="../../api/lib/testing/portal_mocks_angular/#start">lib-testing-portal_mocks_angular.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-testing-run_spec.md" href="../../api/lib/testing/run_spec/#start">lib-testing-run_spec.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-testing-testing.md" href="../../api/lib/testing/testing/#start">lib-testing-testing.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-utilities-array.md" href="../../api/lib/utilities/array/#start">lib-utilities-array.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-utilities-assert.md" href="../../api/lib/utilities/assert/#start">lib-utilities-assert.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-utilities-object.md" href="../../api/lib/utilities/object/#start">lib-utilities-object.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-utilities-path.md" href="../../api/lib/utilities/path/#start">lib-utilities-path.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-utilities-storage.md" href="../../api/lib/utilities/storage/#start">lib-utilities-storage.md</a>
+               </li>
+               
+               <li >
+                  <a title="lib-utilities-string.md" href="../../api/lib/utilities/string/#start">lib-utilities-string.md</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse ax-active" >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Manuals"
+               data-toggle="collapse"
+               data-target="#Manuals"
+               aria-expanded="false"
+               aria-controls="collapseExample">Manuals <span class="caret"></span></a>
+
+            <ul class="nav subnav in"
+               id="Manuals">
+               
+               <li >
+                  <a title="Overview" href="../#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="Controls and Libraries" href="../providing_controls/#start">Controls and Libraries</a>
+               </li>
+               
+               <li class="ax-active">
+                  <a title="Creating Themes" href="./#start">Creating Themes</a>
+               </li>
+               
+               <li >
+                  <a title="Events and Publish-Subscribe" href="../events/#start">Events and Publish-Subscribe</a>
+               </li>
+               
+               <li >
+                  <a title="Flow and Places" href="../flow_and_places/#start">Flow and Places</a>
+               </li>
+               
+               <li >
+                  <a title="Infrastructure and Tools" href="../infrastructure_and_tools/#start">Infrastructure and Tools</a>
+               </li>
+               
+               <li >
+                  <a title="Internationalizing a Widget" href="../i18n/#start">Internationalizing a Widget</a>
+               </li>
+               
+               <li >
+                  <a title="LaxarJS Configuration in an Application" href="../configuration/#start">LaxarJS Configuration in an Application</a>
+               </li>
+               
+               <li >
+                  <a title="Widgets and Activities" href="../widgets_and_activities/#start">Widgets and Activities</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Compositions" href="../writing_compositions/#start">Writing Compositions</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Pages" href="../writing_pages/#start">Writing Pages</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<p><a href="../">« return to the manuals</a></p>
+<p>Preliminary readings:</p>
+<ul>
+<li><a href="../../concepts/">LaxarJS Core Concepts</a></li>
+<li><a href="../widgets_and_activities/">Widgets and Activities</a></li>
+<li><a href="../writing_pages/">Writing Pages</a></li>
+</ul>
+<h1 id="creating-themes">Creating Themes</h1>
+<p>Sometimes you would like to use the <em>one widget</em> in <em>two or more applications</em>.
+For this, usually you want the widget to <em>behave identically</em>, but <em>look differently</em>.
+Alternatively, you would sometimes like to offer the same application in different appearances.
+LaxarJS has the concept of <em>themes</em> to help you achieve these things.</p>
+<h2 id="why-themes">Why Themes?</h2>
+<p>LaxarJS ships with a so-called <em>default theme</em>, which is actually just <a href="http://getbootstrap.com/css/">Bootstrap CSS</a> together with <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a> and a few additional classes.
+There are several ways to add your own styles.</p>
+<h3 id="from-ad-hoc-styles-to-theme-folders">From Ad-Hoc Styles to Theme Folders…</h3>
+<p>Usually, you will need to add some CSS classes of your own.
+For example, the vast majority of web application needs some styling for the page background and positioning or custom header and footer areas.
+To include such <em>ad-hoc styles</em>, you <em>could</em> simply add a CSS file of your own to the project, and load it from the debug.html and index.html files using the <code>&lt;link&gt;</code> tag.
+However, it is <em>recommended</em> to add these styles to your main application layout instead, into a sub-folder called <code>default.theme/css</code>.</p>
+<p>The <em>benefit</em> of using such a <em>theme folder</em> is that</p>
+<div class="codehilite"><pre><span></span>* your CSS will be _bundled and compressed_ together with Bootstrap (no `&lt;link&gt;` tag needed) and that
+* you can support different _themes_ simply by adding more `.theme` folders.
+</pre></div>
+
+
+<p>Due to the first point, using the theme folders is useful and recommended <em>even</em> if you only use (and maybe customize) the default theme.
+The LaxarJS <a href="http://laxarjs.org/demos/mashupdemo/">MashupDemo</a> application takes this no-fuss approach to customizing Bootstrap.</p>
+<h3 id="and-to-custom-themes">…and to Custom Themes</h3>
+<p>As soon as you use multiple page layouts, the previous approach does not really scale anymore: you would have to duplicate your global styles to all of them.
+In these cases, creating your own theme is definitely recommended.
+A detailed explanation of <a href="#creating-a-theme">creating a theme</a> is given below.</p>
+<h3 id="a-note-on-compassscss">A Note on Compass/SCSS</h3>
+<p>When using theme folders or entire themes, the runtime will only ever look at <code>.css</code> files in <code>css</code> sub-folders.
+This means that it is entirely <em>up to you</em> which (if any) CSS authoring tools you would like to use.</p>
+<p>That being said, we use Compass/SCSS to create themes, and the default-theme is based on the SCSS version of Bootstrap.
+Using this approach makes it very easy to create a custom theme just by changing some Bootstrap SCSS variables.
+Also, by using SCSS variables defined in the theme, widgets and controls can provide a consistent appearance.
+After explaining themes in general, below are instructions on <a href="#creating-an-scss-theme">creating an SCSS theme</a>.</p>
+<p><a name="creating-a-theme"></a></p>
+<h2 id="creating-your-own-theme">Creating your own Theme</h2>
+<p>Let us create our own theme for an existing application, the <a href="http://laxarjs.org/demos/shopdemo/">LaxarJS ShopDemo</a>.
+The ShopDemo brings it's own theme <em>"laxar_demo"</em>, which is implemented by augmenting Bootstrap with some custom additions.</p>
+<p><img alt="LaxarJS ShopDemo using laxar_demo theme" src="../creating_themes/shop_demo_laxar_demo_50.png" /></p>
+<p><strong><em>Above:</em> The LaxarJS ShopDemo using the <em>laxar_demo</em> theme</strong></p>
+<p>However, the demo also works with just the default theme, provided by LaxarJS UiKit, although admittedly it does not look quite as pretty:</p>
+<p><img alt="LaxarJS ShopDemo using default theme" src="../creating_themes/shop_demo_default_50.png" /></p>
+<p><strong><em>Above:</em> The LaxarJS ShopDemo using the <em>default</em> theme</strong></p>
+<h3 id="adding-a-theme-using-plain-css">Adding a Theme Using Plain CSS</h3>
+<p>Now, since all applications seem to offer a "dark" look these days, let us try to achieve this for our shop demo app.
+Fortunately, there are several collections of nice bootstrap themes available for free.
+On the site <a href="http://bootswatch.com">Bootswatch</a> for example, you will find the theme <em><a href="http://bootswatch.com/darkly/">darkly</a></em>, which looks like it might work for us.</p>
+<p>The only thing that is actually <em>required</em> for a theme to work are a configuration entry and a CSS file in the right place.
+Put the pre-built <a href="http://bootswatch.com/darkly/bootstrap.css">darkly css</a> into the right place, which is <code>includes/themes/darkly.theme/css/theme.css</code>.
+The path prefix <code>includes/themes/</code> may be changed using the RequireJS configuration path <code>laxar-path-themes</code>.
+In the LaxarJS configuration (usually <code>application/application.js</code>), change the property <code>laxar.portal.theme</code> from <em>"default"</em> to <em>"darkly"</em>.
+This causes the LaxarJS runtime to use the new theme.</p>
+<p>Because the ShopDemo uses <a href="http://fortawesome.github.io/Font-Awesome">Font Awesome</a>, we need to add an import to the top of our CSS file for that as well:</p>
+<div class="codehilite"><pre><span></span><span class="p">@</span><span class="k">import</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&quot;//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css&quot;</span><span class="o">)</span><span class="p">;</span>
+</pre></div>
+
+
+<p>Before opening the application in the browser, make sure to restart the development server, so that the new files are picked up.
+And <em>voilà</em>, we have a dark web shop:</p>
+<p><img alt="LaxarJS ShopDemo using vanilla darkly theme" src="../creating_themes/shop_demo_darkly_50.png" /></p>
+<p><strong><em>Above:</em> The all-new ShopDemo using the <em>darkly</em> theme, hopefully not for any shady business</strong></p>
+<p>Of course, there are still some rough spots that need additional work:
+For example, the widget headers look much better using the original laxar demo theme.</p>
+<p>Let's fix that using <em>widget-specific styles:</em>
+The widget styles use a <em>category/name</em> directory structure, similar to that of the actual widgets.
+Here are some suggestions for a nicer look, to be put under <code>widgets/shop_demo</code>:</p>
+<ul>
+<li><em>ArticleBrowserWidget</em>: <code>article_browser_widget/css/article_browser_widget.css</code></li>
+</ul>
+<p>Here we color the icon, the headline to match the logo, and the currently selected article to match the details widget.</p>
+<div class="codehilite"><pre><span></span><span class="c">/** Customize header and icon color: */</span>
+<span class="p">.</span><span class="nc">article-browser-widget</span> <span class="nt">h3</span> <span class="nt">i</span> <span class="p">{</span>
+  <span class="k">color</span><span class="p">:</span> <span class="mh">#F90</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">article-browser-widget</span> <span class="nt">th</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="mh">#F90</span><span class="p">;</span>
+  <span class="k">color</span><span class="p">:</span> <span class="mh">#222222</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/** Highlight the selected article. */</span>
+<span class="p">.</span><span class="nc">article-browser-widget</span> <span class="nt">tr</span><span class="p">.</span><span class="nc">selected</span> <span class="nt">td</span> <span class="p">{</span>
+  <span class="k">font-weight</span><span class="p">:</span> <span class="kc">bold</span><span class="p">;</span>
+  <span class="k">background</span><span class="p">:</span> <span class="mh">#3498DB</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<ul>
+<li><em>ArticleTeaserWidget</em>: <code>article_teaser_widget/css/article_teaser_widget.css</code></li>
+</ul>
+<p>Here we color the icon and the headline to match the button.</p>
+<div class="codehilite"><pre><span></span><span class="c">/** Customize header and icon color: */</span>
+<span class="p">.</span><span class="nc">article-teaser-widget</span> <span class="nt">h3</span> <span class="nt">i</span> <span class="p">{</span>
+   <span class="k">color</span><span class="p">:</span> <span class="mh">#3498DB</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">article-teaser-widget</span> <span class="nt">h4</span> <span class="p">{</span>
+   <span class="k">background-color</span><span class="p">:</span> <span class="mh">#3498DB</span><span class="p">;</span>
+   <span class="k">padding</span><span class="p">:</span> <span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<ul>
+<li><em>ShoppingCartWidget</em>: <code>shopping_cart_widget/css/shopping_cart_widget.css</code></li>
+</ul>
+<p>Again, we color the icon and the headline to match the button.</p>
+<div class="codehilite"><pre><span></span><span class="c">/** Customize header and icon color: */</span>
+<span class="p">.</span><span class="nc">shopping-cart-widget</span> <span class="nt">h3</span> <span class="nt">i</span> <span class="p">{</span>
+   <span class="k">color</span><span class="p">:</span> <span class="mh">#00bc8c</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">shopping-cart-widget</span> <span class="nt">th</span> <span class="p">{</span>
+   <span class="k">background-color</span><span class="p">:</span> <span class="mh">#00bc8c</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/** plus/minus buttons */</span>
+<span class="p">.</span><span class="nc">shopping-cart-widget</span> <span class="p">.</span><span class="nc">app-increase-quantity</span> <span class="p">{</span>
+   <span class="k">text-align</span><span class="p">:</span> <span class="kc">right</span> <span class="cp">!important</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">shopping-cart-widget</span> <span class="p">.</span><span class="nc">app-increase-buttons</span> <span class="p">{</span>
+   <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+   <span class="k">padding-top</span><span class="p">:</span> <span class="mi">6</span><span class="kt">px</span><span class="p">;</span>
+   <span class="k">width</span><span class="p">:</span> <span class="mi">40</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">shopping-cart-widget</span> <span class="p">.</span><span class="nc">app-increase-buttons</span> <span class="nt">button</span> <span class="p">{</span>
+   <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Now we have four different CSS files.
+Of course, we do not want users to download an additional CSS file for each widget that we use.
+Instead, we use <code>grunt dist</code> to create a merged version, which we may load through the <code>index.html</code>.</p>
+<p><img alt="LaxarJS ShopDemo using complete darkly theme" src="../creating_themes/shop_demo_darkly_complete_50.png" /></p>
+<p><strong><em>Above:</em> The all-new ShopDemo using the <em>darkly</em> theme with widget styles. Not too shabby, eh?</strong></p>
+<p>Have a look at the <a href="//laxarjs.github.io/shop_demo/darkly.html#/shopDemo">dark theme in action</a>.</p>
+<p>Of course, there are still some problems with this way of styling widgets.
+For example, if we would like to change the shade of blue that is used in our theme, we would have to update multiple source code locations.
+It would be better to have some way to define these values in our theme and reuse them from individual widgets.  </p>
+<p><a name="creating-an-scss-theme"></a></p>
+<h3 id="adding-a-theme-using-compassscss">Adding a Theme using Compass/SCSS</h3>
+<p>To support centralized variables, you can use a <em>compiles-to-CSS</em> language such as <em><a href="http://sass-lang.com/">SCSS/SASS</a></em> or <em><a href="http://lesscss.org/">less</a></em>.
+At the LaxarJS team we like <a href="http://compass-style.org/">Compass</a>, which is built on top of SCSS.
+Fortunately, an SCSS-version of the darkly theme is available, and can be installed using <a href="http://bower.io/">Bower</a>.</p>
+<p>Our SCSS theme uses a single central <code>compass/config.rb</code> for the theme itself, and for individual widgets.
+The <code>config.rb</code> has a similar role for SCSS as the <code>require_config.js</code> has for the project's javascript modules: it tells Compass where to find SCSS libraries. 
+When compiling widget CSS, the path to the config should be passed on the command line:</p>
+<div class="codehilite"><pre><span></span>compass compile -c /path/to/shop_demo/includes/themes/darkly_scss.theme/compass/config.rb
+</pre></div>
+
+
+<p>With the <a href="https://github.com/LaxarJS/shop_demo/blob/master/includes/themes/darkly_scss.theme/compass/config.rb">right config</a> in place, the <a href="https://github.com/LaxarJS/shop_demo/tree/master/includes/themes/darkly_scss.theme/scss">SCSS for our theme</a> is little more than a couple of imports.
+Execute <code>compass</code> from any parent folder containing the <code>scss</code>, <code>css</code> and possibly also <code>fonts</code> and <code>images</code> directories.
+Note that you can probably configure your editor or IDE to always pass the <code>-c</code> option correctly, otherwise you can create a shell alias. </p>
+<p>The advantage of using an SCSS theme is that we can now write concise widget styles using central variables.
+As an example, here is the SCSS file for the <em>ArticleBrowserWidget</em>:</p>
+<div class="codehilite"><pre><span></span><span class="k">@import</span> <span class="s2">&quot;variables_all&quot;</span><span class="p">;</span>
+
+<span class="nc">.article-browser-widget</span> <span class="p">{</span>
+
+  <span class="nt">h3</span> <span class="nt">i</span> <span class="p">{</span>
+    <span class="nt">color</span><span class="nd">:</span> <span class="err">$</span><span class="nt">app-color-logo</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="nt">th</span> <span class="p">{</span>
+    <span class="nt">background-color</span><span class="nd">:</span> <span class="err">$</span><span class="nt">app-color-logo</span><span class="o">;</span>
+    <span class="nt">color</span><span class="nd">:</span> <span class="err">$</span><span class="nt">body-bg</span><span class="o">;</span>
+  <span class="p">}</span>
+
+  <span class="nt">tr</span><span class="nc">.selected</span> <span class="nt">td</span> <span class="p">{</span>
+    <span class="nt">font-weight</span><span class="nd">:</span> <span class="nt">bold</span><span class="o">;</span>
+    <span class="nt">background</span><span class="nd">:</span> <span class="err">$</span><span class="nt">brand-info</span><span class="o">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Which CSS framework and toolchain to use (if any) is ultimately up to you.
+The <a href="https://github.com/LaxarJS/shop_demo">shop demo on github</a> contains the <em>darkly</em> theme both as a <a href="//github.com/LaxarJS/shop_demo/tree/master/includes/themes/darkly.theme">plain CSS version</a>, and as an <a href="//github.com/LaxarJS/shop_demo/tree/master/includes/themes/darkly_scss.theme">SCSS version</a>.</p>
+<p>The Bootstrap framework incurs some degree of boilerplate, but makes it relatively easy to reuse widgets across applications, and to find controls that work with your theme out of the box.</p>
+<h2 id="how-the-runtime-finds-css">How the Runtime Finds CSS</h2>
+<p>As mentioned previously, the LaxarJS runtime and grunt tasks do not care how you create your CSS.
+However, these tools need to find it.</p>
+<p>The general lookup works always like this:</p>
+<div class="codehilite"><pre><span></span>1. if there are _application specific styles_ for an artifact then use those
+2. else if there are _default styles_ for an artifact then use those
+3. else load _nothing_
+</pre></div>
+
+
+<p>Of course, <em>load nothing</em> means that it is completely fine for a widget not to have its own CSS styles.
+If it was missing an HTML template on the other hand, that would simply be an error.
+Following this structure allows the <code>grunt-laxar</code> tasks to find and combine the correct HTML and CSS assets, so that the number of HTTP requests may be minimized during production.</p>
+<h3 id="looking-up-the-theme-css">Looking up the Theme CSS</h3>
+<p>To load the CSS for the theme itself, the portal simply uses the <a href="../configuration/">configured</a> theme <em>X</em> and looks for its CSS under <code>includes/themes/X.theme/css/theme.css</code>.
+The exception is the default theme, which is currently loaded from <em>laxar_uikit</em> (if no user-defined theme is specified).</p>
+<h3 id="looking-up-widget-css-and-html-templates">Looking up Widget CSS and HTML Templates</h3>
+<p>For widget CSS styles and HTML templates, the LaxarJS runtime first checks if a version is available within the theme.
+This means that you cannot only customize the CSS for a widget <em>X</em> by placing a stylesheet at <code>&lt;theme&gt;/widgets/category/X/css/X.css</code> but that you can also override the HTML at <code>&lt;theme&gt;/widgets/category/X/X.html</code>.
+If nothing is found in the current theme for a given widget, the <code>default.theme</code> folder within the widget itself is used.
+Do note that CSS and HTML files are treated separately:
+You can override the CSS but not the HTML or vice versa.</p>
+<h3 id="looking-up-css-and-html-for-a-layout">Looking up CSS and HTML for a Layout</h3>
+<p>Themes are intended to be reusable across applications.
+Because layouts are highly specific to an application, their CSS and HTML assets are always <em>within the layout's folder</em>, for all themes.
+Otherwise, the same process as for widgets is used: First, LaxarJS searches the current theme folder, before falling back to the default theme.</p>
+<h3 id="looking-up-css-for-a-control">Looking up CSS for a Control</h3>
+<p>Controls (AngularJS directives) take care of their own HTML loading, so the choice of theme has no effect here.
+The styling however is theme specific:
+Before looking for the default theme in <code>&lt;control-require-path&gt;/default.theme/css/&lt;control-name&gt;.css</code>, LaxarJS looks for a theme specific override in <code>&lt;theme-path&gt;/&lt;control-require-path&gt;/css/&lt;control-name&gt;.css</code>.
+Here, the <code>&lt;theme-path&gt;</code> refers to the folder containing your global theme, and the <code>&lt;control-require-path&gt;</code> is the same path that widgets specify in their widget.json to include a control.
+Have a look at the <a href="../providing_controls/">manual on controls</a> for details. </p></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="../../../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="../../../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="../../../laxar.theme/js/base.js"></script>
+   </body>
+</html>

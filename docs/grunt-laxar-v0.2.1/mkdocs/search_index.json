@@ -1,0 +1,29 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "grunt-laxar\n\n\nNo README in this version.", 
+            "title": "README"
+        }, 
+        {
+            "location": "/#grunt-laxar", 
+            "text": "No README in this version.", 
+            "title": "grunt-laxar"
+        }, 
+        {
+            "location": "/CHANGELOG/", 
+            "text": "Changelog\n\n\nLast Changes", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#changelog", 
+            "text": "", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#last-changes", 
+            "text": "", 
+            "title": "Last Changes"
+        }
+    ]
+}

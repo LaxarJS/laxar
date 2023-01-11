@@ -1,0 +1,69 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "LaxarJS React Adapter\n\n\n\n\nWrite LaxarJS widgets and controls in React\n\n\n\n\nInstallation\n\n\nbower install laxar-react-adapter\n\n\n\n\n\n\nThis will automatically install React if not already installed.\n\n\nAdd the React adapter to your bootstrapping modules, by editing the \ninit.js\n of your LaxarJS project.\nYou will need to adjust the RequireJS imports, as well as the second argument to \nax.bootstrap\n: \n\n\nrequire\n(\n \n[\n\n   \n/* existing dependencies ... */\n,\n \n   \nlaxar-react-adapter\n\n\n],\n \nfunction\n(\n \n/* laxar, applicationModules, resources, ... */\n,\n \nreactAdapter\n \n)\n \n{\n\n   \n// ... setup file listings etc. ...\n\n   \nax\n.\nbootstrap\n(\n \n/* applicationModules */\n,\n \n[\n \nreactAdapter\n \n]\n \n);\n\n\n}\n \n);\n\n\n\n\n\n\nIf you already have other custom adapters in your project, simply add the React adapter to your current list.\n\n\nUsage\n\n\nWith the adapter in place, you can now write widgets and controls using React.\nThe integration technology \n\"react\"\n is very similar to \n\"plain\"\n.\n\n\nCreating a React Widget\n\n\nYou can use the LaxarJS generator for Yeoman to create a \nplain\n widget, then turn it into a React widget:\n\n\n\n\n\n\nChange the integration technology (in the \nwidget.json\n descriptor) to \n\"react\"\n.\n\n\n\n\n\n\nThe widget module (e.g. \nmy-widget.js\n), should export an object with three properties (\nname\n, \ninjections\n, \ncreate\n), just like a plain widget would.\nThe \ncreate\n method should setup the widget controller and subscribe to events.\nIt must return an object with a function property \nonDomAttached\n which is called by the React adapter as soon as the widget DOM has been instantiated and attached to teh page DOM.\n\n\n\n\n\n\nTo render something into its dom node, the widget must request the injection \naxReactRender\n which is provided by the react adapter.\nThis injected function is a no-op as long as the widget is invisible (e.g. in a background-tab, or within a closed popup).\nAs soon as the widget has been attached to the page DOM, \naxReactRender\n goes through to \nReact.render\n.\n\n\n\n\n\n\nHere is an example widget controller for a widget named \nmy-counter-widget\n.\nIt simply subscribes to all takeActionRequest events and keeps displaying a running total of requested actions:\n\n\ndefine\n(\n \n[\n \nreact\n \n],\n \nfunction\n(\n \nReact\n \n)\n \n{\n\n   \nreturn\n \n{\n\n      \nname\n:\n \nmy-counter-widget\n,\n\n      \ninjections\n:\n \n[\n \naxEventBus\n,\n \naxReactRender\n \n],\n\n      \ncreate\n:\n \nfunction\n(\n \neventBus\n,\n \nreactRender\n \n)\n \n{\n\n         \nvar\n \ncounter\n \n=\n \n0\n;\n\n         \neventBus\n.\nsubscribe\n(\n \ntakeActionRequest\n,\n \nfunction\n()\n \n{\n\n            \n++\ncounter\n;\n\n            \nrender\n();\n\n         \n}\n \n);\n\n         \nfunction\n \nrender\n()\n \n{\n\n            \nreactRender\n(\n\n               \nReact\n.\ncreateElement\n(\n \nh1\n,\n \n{},\n \n#\n \n+\n \ncounter\n \n)\n\n            \n);\n\n         \n}\n\n\n         \nreturn\n \n{\n \nonDomAvailable\n:\n \nrender\n \n};\n\n      \n}\n\n   \n};\n\n\n}\n \n);\n\n\n\n\n\n\nCreating a React Control\n\n\nA LaxarJS control allows you to encapsulates one or more React components with associated CSS styles, that can be overwritten by themes.\n\n\nReact controls are implemented as regular AMD-modules, just like \nplain\n controls.\nJust make sure to specify \n\"react\"\n as the integration technology in your \ncontrol.json\n, and to export all components that you wish to make available to widgets.  \n\n\nUsing JSX\n\n\nIf you'd like to write your widget- or control-code in JSX, just make sure that the generated .js-file is put in the same place as a handwritten controller, and that AMD-compatible output is generated.\nUsually, you can achieve this by using the right editor/tool settings.\n\n\nUsing JSX, the widget controller from above can be simplified:\n\n\nimport React from \nreact\n;\n\nexport default {\n   name: \nmy-counter-widget\n,\n   injections: [ \naxEventBus\n, \naxReactRender\n ],\n   create: function( eventBus, reactRender ) {\n      var counter = 0;\n      const render = () =\n reactRender( \nh1\n#{counter}\n/h1\n );\n      eventBus.subscribe( \ntakeActionRequest\n, () =\n {\n         ++counter;\n         render();\n      } );\n\n      return { onDomAvailable: render };\n   }\n};\n\n\n\n\n\nAlso, you can delete the \ndefault.theme/my-counter-widget.html\n since for React, we do not use HTML template loading mechanism.\n\n\nTesting with LaxarJS Mocks\n\n\nStarting with \nlaxar-mocks\n v0.5.0, you can pass custom adapters when creating the testbed-setup function.\nSimply write your specs like this:\n\n\ndefine\n(\n \n[\n\n   \njson!../widget.json\n,\n\n   \nlaxar-react-adapter\n,\n\n   \nlaxar-mocks\n\n\n],\n \nfunction\n(\n \ndescriptor\n,\n \naxReactAdapter\n,\n \naxMocks\n \n)\n \n{\n\n   \nuse strict\n;\n\n\n   \ndescribe\n(\n \nThe my-counter-widget\n,\n \nfunction\n()\n \n{\n\n\n      \nbeforeEach\n(\n \naxMocks\n.\ncreateSetupForWidget\n(\n \ndescriptor\n,\n \n{\n\n         \n// register the adapter:\n\n         \nadapter\n:\n \naxReactAdapter\n,\n\n         \n// with React JSX, usually we will not use an HTML template:\n\n         \nknownMissingResources\n:\n \n[\n \ndefault.theme/my-counter-widget.html\n \n]\n\n      \n}\n \n)\n \n);\n\n\n      \n// ... tests ...\n\n\n      \nafterEach\n(\n \naxMocks\n.\ntearDown\n \n);\n\n\n   \n}\n \n);\n\n\n}\n \n);", 
+            "title": "README"
+        }, 
+        {
+            "location": "/#laxarjs-react-adapter", 
+            "text": "Write LaxarJS widgets and controls in React", 
+            "title": "LaxarJS React Adapter"
+        }, 
+        {
+            "location": "/#installation", 
+            "text": "bower install laxar-react-adapter   This will automatically install React if not already installed.  Add the React adapter to your bootstrapping modules, by editing the  init.js  of your LaxarJS project.\nYou will need to adjust the RequireJS imports, as well as the second argument to  ax.bootstrap :   require (   [ \n    /* existing dependencies ... */ ,  \n    laxar-react-adapter  ],   function (   /* laxar, applicationModules, resources, ... */ ,   reactAdapter   )   { \n    // ... setup file listings etc. ... \n    ax . bootstrap (   /* applicationModules */ ,   [   reactAdapter   ]   );  }   );   If you already have other custom adapters in your project, simply add the React adapter to your current list.", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/#usage", 
+            "text": "With the adapter in place, you can now write widgets and controls using React.\nThe integration technology  \"react\"  is very similar to  \"plain\" .", 
+            "title": "Usage"
+        }, 
+        {
+            "location": "/#creating-a-react-widget", 
+            "text": "You can use the LaxarJS generator for Yeoman to create a  plain  widget, then turn it into a React widget:    Change the integration technology (in the  widget.json  descriptor) to  \"react\" .    The widget module (e.g.  my-widget.js ), should export an object with three properties ( name ,  injections ,  create ), just like a plain widget would.\nThe  create  method should setup the widget controller and subscribe to events.\nIt must return an object with a function property  onDomAttached  which is called by the React adapter as soon as the widget DOM has been instantiated and attached to teh page DOM.    To render something into its dom node, the widget must request the injection  axReactRender  which is provided by the react adapter.\nThis injected function is a no-op as long as the widget is invisible (e.g. in a background-tab, or within a closed popup).\nAs soon as the widget has been attached to the page DOM,  axReactRender  goes through to  React.render .    Here is an example widget controller for a widget named  my-counter-widget .\nIt simply subscribes to all takeActionRequest events and keeps displaying a running total of requested actions:  define (   [   react   ],   function (   React   )   { \n    return   { \n       name :   my-counter-widget , \n       injections :   [   axEventBus ,   axReactRender   ], \n       create :   function (   eventBus ,   reactRender   )   { \n          var   counter   =   0 ; \n          eventBus . subscribe (   takeActionRequest ,   function ()   { \n             ++ counter ; \n             render (); \n          }   ); \n          function   render ()   { \n             reactRender ( \n                React . createElement (   h1 ,   {},   #   +   counter   ) \n             ); \n          } \n\n          return   {   onDomAvailable :   render   }; \n       } \n    };  }   );", 
+            "title": "Creating a React Widget"
+        }, 
+        {
+            "location": "/#creating-a-react-control", 
+            "text": "A LaxarJS control allows you to encapsulates one or more React components with associated CSS styles, that can be overwritten by themes.  React controls are implemented as regular AMD-modules, just like  plain  controls.\nJust make sure to specify  \"react\"  as the integration technology in your  control.json , and to export all components that you wish to make available to widgets.", 
+            "title": "Creating a React Control"
+        }, 
+        {
+            "location": "/#using-jsx", 
+            "text": "If you'd like to write your widget- or control-code in JSX, just make sure that the generated .js-file is put in the same place as a handwritten controller, and that AMD-compatible output is generated.\nUsually, you can achieve this by using the right editor/tool settings.  Using JSX, the widget controller from above can be simplified:  import React from  react ;\n\nexport default {\n   name:  my-counter-widget ,\n   injections: [  axEventBus ,  axReactRender  ],\n   create: function( eventBus, reactRender ) {\n      var counter = 0;\n      const render = () =  reactRender(  h1 #{counter} /h1  );\n      eventBus.subscribe(  takeActionRequest , () =  {\n         ++counter;\n         render();\n      } );\n\n      return { onDomAvailable: render };\n   }\n};  Also, you can delete the  default.theme/my-counter-widget.html  since for React, we do not use HTML template loading mechanism.", 
+            "title": "Using JSX"
+        }, 
+        {
+            "location": "/#testing-with-laxarjs-mocks", 
+            "text": "Starting with  laxar-mocks  v0.5.0, you can pass custom adapters when creating the testbed-setup function.\nSimply write your specs like this:  define (   [ \n    json!../widget.json , \n    laxar-react-adapter , \n    laxar-mocks  ],   function (   descriptor ,   axReactAdapter ,   axMocks   )   { \n    use strict ; \n\n    describe (   The my-counter-widget ,   function ()   { \n\n       beforeEach (   axMocks . createSetupForWidget (   descriptor ,   { \n          // register the adapter: \n          adapter :   axReactAdapter , \n          // with React JSX, usually we will not use an HTML template: \n          knownMissingResources :   [   default.theme/my-counter-widget.html   ] \n       }   )   ); \n\n       // ... tests ... \n\n       afterEach (   axMocks . tearDown   ); \n\n    }   );  }   );", 
+            "title": "Testing with LaxarJS Mocks"
+        }, 
+        {
+            "location": "/CHANGELOG/", 
+            "text": "Changelog\n\n\nLast Changes\n\n\nv0.2.0\n\n\n\n\n#1\n: added testing documentation\n\n\n\n\nv0.1.0", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#changelog", 
+            "text": "", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#last-changes", 
+            "text": "", 
+            "title": "Last Changes"
+        }, 
+        {
+            "location": "/CHANGELOG/#v020", 
+            "text": "#1 : added testing documentation", 
+            "title": "v0.2.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v010", 
+            "text": "", 
+            "title": "v0.1.0"
+        }
+    ]
+}

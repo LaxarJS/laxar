@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="./../laxar.theme/img/favicon.ico">
+        <title>laxar-angular-adapter  v2.0.0</title>
+
+        <link rel="stylesheet" href="./../laxar.theme/css/pygments.css">
+        <link href="./../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar-angular-adapter <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="./../laxar-latest">laxar</a></li>
+            
+            <li><a href="./../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="./../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="./../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="./../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="./../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="./../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="./../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="./../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="./../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="./../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="./../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="./../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v2.0.0 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="./../laxar-angular-adapter-v2-latest">v2.0.0</a></li>
+            
+               <li><a href="./../laxar-angular-adapter-v0-latest">v0.3.0</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="./../laxar-angular-adapter-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="./../laxar-angular-adapter-v0.3.0">v0.3.0</a></li>
+         
+            <li><a href="./../laxar-angular-adapter-v0.2.0">v0.2.0</a></li>
+         
+            <li><a href="./../laxar-angular-adapter-v0.1.0">v0.1.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar-angular-adapter/tree/v2.0.0">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main ax-active"><a title="README" href=".#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<h1 id="laxar-angular-adapter">laxar-angular-adapter <a href="https://travis-ci.org/LaxarJS/laxar-angular-adapter"><img alt="Build Status" src="https://travis-ci.org/LaxarJS/laxar-angular-adapter.svg?branch=master" /></a></h1>
+<blockquote>
+<p>Write LaxarJS widgets and controls with AngularJS</p>
+</blockquote>
+<p><span class="laxar-external-documentation-hint">
+   Take a look at the <a href="https://www.laxarjs.org/docs/laxar-latest/">documentation site</a> to browse documentation for all releases of this artifact.
+</span></p>
+<p>Starting with LaxarJS 2, AngularJS support is no longer included out-of-the-box.
+However, this widget-adapter for LaxarJS 2 allows to use widgets written in AngularJS 1.x within LaxarJS 2 applications.</p>
+<p>To use the adapter, install it from NPM:</p>
+<div class="codehilite"><pre><span class="go">npm install --save laxar-angular-adapter</span>
+</pre></div>
+
+
+<p>Then pass it to <code>laxar.bootstrap</code>:</p>
+<div class="codehilite"><pre><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">angularAdapter</span> <span class="nx">from</span> <span class="s1">&#39;laxar-angular-adapter&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">create</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;laxar&#39;</span><span class="p">;</span>
+<span class="nx">create</span><span class="p">(</span> <span class="p">[</span> <span class="nx">angularAdapter</span> <span class="p">]</span> <span class="cm">/*, artifacts: ..., configuration: ... */</span> <span class="p">).</span><span class="nx">flow</span><span class="p">().</span><span class="nx">bootstrap</span><span class="p">();</span>
+</pre></div>
+
+
+<p>To make LaxarJS use this adapter for your widget, set the <code>integration.technology</code> in the <code>widget.json</code> descriptor to <code>"angular"</code>:</p>
+<div class="codehilite"><pre><span class="p">{</span>
+   <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;my-angular-v1-widget&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;integration&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;widget&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;technology&quot;</span><span class="p">:</span> <span class="s2">&quot;angular&quot;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Note that AngularJS 1.x is not well suited to multiple LaxarJS application instances sharing a page.
+If you need this feature, be sure to pass the AngularJS dependencies of all instances as modules to the first <code>bootstrap</code> invocation.</p>
+<h2 id="widgets-and-controls-with-angularjs">Widgets and Controls with AngularJS</h2>
+<p>Because the integration technology <code>"angular"</code> was built into LaxarJS v1, the <a href="http://laxarjs.org/docs/laxar-v2-latest/manuals/">main LaxarJS manuals</a> contain several examples on creating widgets and controls for AngularJS.</p>
+<h3 id="widget-integration">Widget Integration</h3>
+<p>To recapitulate the basics for widgets:</p>
+<div class="codehilite"><pre>  - each widget implementation module must create an AngularJS module named after the widget, except that `camelCase` should be used for the module, to adhere to the AngularJS naming guidelines,
+  - the module name must be exported using the export `name`,
+  - the widget controller function must be registered using `.controller` on the widget&#39;s AngularJS module, and its name must correspond to the module name: for a module named `myWidget`, the controller must be named `MyWidgetController`.
+</pre></div>
+
+
+<p>When using the LaxarJS generator for Yeoman, a suitable implementation module will be prepared for you automatically.</p>
+<h3 id="control-integration">Control Integration</h3>
+<p>A control implementation for the technology <code>"angular"</code> module should return an AngularJS module defining one or more AngularJS directives.
+Dependent widgets (or controls) simply need to declare their dependency using the <code>controls</code> array of their descriptor.
+The directives and CSS styles will then be made available automatically.</p>
+<h2 id="additional-injections-for-angularjs">Additional Injections for AngularJS</h2>
+<p>The <code>laxar-angular-adapter</code> provides additional services for use with the AngularJS dependency injection.
+First and foremost, the <a href="http://laxarjs.org/docs/laxar-v2-latest/manuals/widget_services/">regular LaxarJS widget services</a> (<code>axEventBus</code>, <code>axFeatures</code>, and so on) are made available as AngularJS injections to widget controllers.</p>
+<p>In addition, the adapter provides or modifies some additional injections, for better interoperability with AngularJS.</p>
+<h3 id="axwidgetservices">axWidgetServices</h3>
+<p>An additional <code>axWidgetServices</code> injection is provided, which can be used by directives to gain access to services that belong to the context of a specific widget, such as <a href="http://laxarjs.org/docs/laxar-v2-latest/manuals/widget_services#-axfeatures-"><code>axFeatures</code></a>, <a href="http://laxarjs.org/docs/laxar-v2-latest/manuals/widget_services#-axi18n-"><code>axI18n</code></a> or the decorated widget instance log (<a href="http://laxarjs.org/docs/laxar-v2-latest/manuals/widget_services#-axlog-"><code>axLog</code></a>).
+For <code>axWidgetServices</code> a function is injected that must be called with the scope of a directive.
+This function returns the map of services available to the <em>parent-widget</em> of the directive.
+To determine the parent-widget, the AngularJS scope-chain is traversed from child to parent, until a widget-scope is found.
+An error is thrown if this service is used on a scope that is no descendant of a widget scope.</p>
+<p>In this example, a directive uses <code>axWidgetServices</code> to access the logger of its parent-widget.</p>
+<div class="codehilite"><pre><span class="nx">myModule</span><span class="p">.</span><span class="nx">directive</span><span class="p">(</span> <span class="s1">&#39;myDirective&#39;</span><span class="p">,</span> <span class="p">[</span> <span class="s1">&#39;axWidgetServices&#39;</span><span class="p">,</span> <span class="nx">axWidgetServices</span> <span class="o">=&gt;</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">link</span><span class="p">(</span> <span class="nx">scope</span> <span class="p">)</span> <span class="p">{</span>
+         <span class="kr">const</span> <span class="nx">widgetServices</span> <span class="o">=</span> <span class="nx">axWidgetServices</span><span class="p">(</span> <span class="nx">scope</span> <span class="p">);</span>
+         <span class="nx">widgetServices</span><span class="p">.</span><span class="nx">axLog</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span> <span class="s1">&#39;Here we are!&#39;</span> <span class="p">);</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span> <span class="p">]</span> <span class="p">);</span>
+</pre></div>
+
+
+<p>Note that directives will not work outside of LaxarJS applications if they rely on this injection.
+It is often a good idea to package such directives as LaxarJS controls to indicate this fact.</p>
+<h3 id="scope">$scope</h3>
+<p>For <code>"angular"</code> widget controllers, the <code>$scope</code> connecting template and controller can be injected as well, as expected for AngularJS controllers.
+Because it is an alias of the <a href="http://laxarjs.org/docs/laxar-v2-latest/api/runtime.widget_services.md#axContext"><code>axContext</code></a> injection, the <code>$scope</code> of a LaxarJS widget has additional properties compared to a regular AngularJS scope, for example <code>features</code> and <code>log</code>.</p>
+<p>All widget scopes are children of the same parent scope, regardless of possible nesting relationships in the page DOM due to LaxarJS widget areas.
+This ensures isolation between widgets.</p>
+<h3 id="global-laxarjs-service-injections">Global LaxarJS Service Injections</h3>
+<p>Widgets service injections are created by the LaxarJS runtime as their widget controllers request them (see http://laxarjs.org/docs/laxar-v2-latest/manuals/widget_services), and are not available as injections to regular AngularJS services or factories.</p>
+<p>The AngularJS adapter provides additional globally available service injections that can be used in any AngularJS injection context:</p>
+<div class="codehilite"><pre>  * [`axConfiguration`](http://laxarjs.org/docs/laxar-v2-latest/manuals/runtime.widget_services.md#axConfiguration) to access the application configuration
+  * [`axGlobalEventBus`](http://laxarjs.org/docs/laxar-v2-latest/manuals/runtime.widget_services.md#axGlobalEventBus) to inspect the event bus independent of widget or page lifetimes
+  * [`axGlobalLog`](http://laxarjs.org/docs/laxar-v2-latest/manuals/runtime.widget_services.md#axGlobalLog) to use or listen to the log, application-wide
+  * [`axGlobalStorage`](http://laxarjs.org/docs/laxar-v2-latest/manuals/runtime.widget_services.md#aGlobalStorage) for application-wide local- or session-storage
+  * [`axHeartbeat`](http://laxarjs.org/docs/laxar-v2-latest/manuals/runtime.widget_services.md#axHeartbeat) to be notified whenever events were delivered
+</pre></div>
+
+
+<h2 id="additional-filters-provided-by-laxarjs">Additional Filters Provided by LaxarJS</h2>
+<p>This adapter provides the filter <code>axLocalize</code>, previously part of <a href="http://laxarjs.org/docs/laxar-uikit-v2-latest/">LaxarJS UiKit</a>.</p>
+<p>Use it together with the <code>axI18n</code> widget injection to localize values in widgets:</p>
+<div class="codehilite"><pre><span class="nx">Controller</span><span class="p">.</span><span class="nx">injections</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;$scope&#39;</span><span class="p">,</span> <span class="s1">&#39;axI18n&#39;</span> <span class="p">];</span>
+<span class="kd">function</span> <span class="nx">Controller</span><span class="p">(</span> <span class="nx">$scope</span><span class="p">,</span> <span class="nx">i18n</span> <span class="p">)</span> <span class="p">{</span>
+   <span class="nx">$scope</span><span class="p">.</span><span class="nx">i18n</span> <span class="o">=</span> <span class="nx">i18n</span><span class="p">;</span>
+   <span class="nx">$scope</span><span class="p">.</span><span class="nx">i18nGreeting</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">en</span><span class="o">:</span> <span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="nx">fr</span><span class="o">:</span> <span class="s1">&#39;Bonjour&#39;</span> <span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Now you can do this in your widget template:</p>
+<div class="codehilite"><pre><span class="nt">&lt;h1&gt;</span>{{ i18nGreeting | axLocalize:i18n }}<span class="nt">&lt;/h1&gt;</span>
+</pre></div>
+
+
+<p>This causes the headline to stay up-to-date as locales change.</p>
+<h2 id="additional-directives-provided-by-laxarjs">Additional Directives Provided by LaxarJS</h2>
+<p>To simplify certain common use cases for widget HTML templates, the adapter also provides a couple of directives.</p>
+<h3 id="axid">axId</h3>
+<p>Use this to generate unique HTML IDs for anchors and input controls.</p>
+<div class="codehilite"><pre><span class="nt">&lt;h3</span> <span class="na">ax-id=</span><span class="s">&quot;&#39;section-b-anchor&#39;&quot;</span><span class="nt">&gt;</span>Section B<span class="nt">&lt;/h3&gt;</span>
+</pre></div>
+
+
+<p>These IDs are unique, even if a widget is used multiple times on a single page.</p>
+<h3 id="axfor">axFor</h3>
+<p>Use in conjunction with <code>axId</code>, this associates a form label to its control:</p>
+<div class="codehilite"><pre><span class="nt">&lt;label</span> <span class="na">ax-for=</span><span class="s">&quot;&#39;userName&#39;&quot;</span><span class="nt">&gt;</span>User Name:<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">ax-id=</span><span class="s">&quot;&#39;userName&#39;&quot;</span> <span class="na">ng-model=</span><span class="s">&quot;model.userName&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+
+
+<p>Sometimes, you can simply nest an input within a label, eliminating the need to use <code>axFor/axId</code>.
+Note that both directives use <em>one-time bindings</em> for performance:
+using constant expressions is recommended.
+Within <code>ngRepeat</code> contexts, the <code>track by</code> expression is a good candidate.</p>
+<h3 id="axwidgetarea">axWidgetArea</h3>
+<p>Use this to offer a nested widget area for your widget.
+Page authors can then fill the provided area with their own widgets.</p>
+<p>Use the <code>ax-widget-area-binding</code> attribute to name a widget area within your widget.
+While you do not want to change the name of a widget are after it was created, you can use this to make an area name configurable from the page.</p>
+<p>Let us assume the following template, <code>my-widget.html</code>:</p>
+<div class="codehilite"><pre><span class="nt">&lt;div</span> <span class="na">ax-widget-area</span> <span class="na">ax-widget-area-binding=</span><span class="s">&quot;::features.content.area&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+
+
+<p>In your page definition, you would then use:</p>
+<div class="codehilite"><pre><span class="s2">&quot;content&quot;</span><span class="o">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+      <span class="s2">&quot;widget&quot;</span><span class="o">:</span> <span class="s2">&quot;my-widget&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;my&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;features&quot;</span><span class="o">:</span> <span class="p">{</span>
+         <span class="s2">&quot;content&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;area&quot;</span><span class="o">:</span> <span class="s2">&quot;nested&quot;</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">],</span>
+<span class="s2">&quot;my.nested&quot;</span><span class="o">:</span> <span class="p">[</span>
+   <span class="c1">// ...</span>
+<span class="p">]</span>
+</pre></div>
+
+
+<p>This becomes powerful when you combine an array-valued feature configuration with <code>ngRepeat</code>.
+This way, you can flexibly configure and name any number of widget areas.</p>
+<h2 id="testing-with-laxarjs-mocks">Testing With LaxarJS Mocks</h2>
+<p>You can use the integration technology <code>"angular"</code> together with <a href="./../laxarjs.org/docs/laxar-mocks-v2-latest">laxar-mocks</a> without additional configuration, as long as you are using the <code>laxar-mocks/spec-loader</code> to load spec-files when running tests.</p>
+<p>Here are some AngularJS-specific hints for testing:</p>
+<ul>
+<li>
+<p>If your are using <code>$http</code>, use <code>axMocks.widget.whenServicesAvailable</code> to inject and configure <code>$httpBackend</code>.
+  Trying to inject AngularJS services into your test too early can lead to problems when LaxarJS injections are prepared,</p>
+</li>
+<li>
+<p>when <code>eventBus.flush()</code> is run to trigger event bus delivery, a <code>$rootScope.$digest</code> is  automatically initiated afterwards.</p>
+</li>
+</ul>
+<h2 id="hacking-the-adapter">Hacking the Adapter</h2>
+<p>First, clone the repository and fetch the dependencies:</p>
+<div class="codehilite"><pre><span class="go">git clone https://github.com/LaxarJS/laxar-angular-adapter.git</span>
+<span class="go">cd laxar-angular-adapter</span>
+<span class="go">npm install</span>
+</pre></div>
+
+
+<p>To rebuild the <em>pre-compiled bundle</em>, use:</p>
+<div class="codehilite"><pre><span class="go">npm run dist</span>
+</pre></div>
+
+
+<p>Otherwise, you may need to adjust your project to load the adapter with ES2015 support.
+To pick up clone from within a LaxarJS application, you may need to modify the project's webpack resolve configuration.</p>
+<p>To <em>test</em> the adapter, run:</p>
+<div class="codehilite"><pre><span class="go">npm test</span>
+</pre></div>
+
+
+<p>For interactive tests that can be inspected in the browser, run:</p>
+<div class="codehilite"><pre><span class="go">npm start</span>
+</pre></div>
+
+
+<p>Now you can access the spec-tests at http://localhost:8080/dist/spec/laxar-angular-adapter.spec.html</p></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="./../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="./../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="./../laxar.theme/js/base.js"></script>
+   </body>
+</html>

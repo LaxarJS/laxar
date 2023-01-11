@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../laxar.theme/img/favicon.ico">
+        <title>LaxarJS Mocks  v2.0.0</title>
+
+        <link rel="stylesheet" href="../../../laxar.theme/css/pygments.css">
+        <link href="../../../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar-mocks <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="../../../laxar-latest">laxar</a></li>
+            
+            <li><a href="../../../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="../../../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="../../../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="../../../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="../../../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="../../../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="../../../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="../../../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="../../../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="../../../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="../../../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="../../../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v2.0.0 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="../../../laxar-mocks-v2-latest">v2.0.0</a></li>
+            
+               <li><a href="../../../laxar-mocks-v1-latest">v1.1.1</a></li>
+            
+               <li><a href="../../../laxar-mocks-v0-latest">v0.6.1</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="../../../laxar-mocks-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v1.1.1">v1.1.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v1.1.0">v1.1.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v1.0.0">v1.0.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.6.1">v0.6.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.6.0">v0.6.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.5.1">v0.5.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.5.0">v0.5.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.4.1">v0.4.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.4.0">v0.4.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.3.1">v0.3.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.3.0">v0.3.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.2.2">v0.2.2</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.2.1">v0.2.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.2.0">v0.2.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.1.0">v0.1.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="../../CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+                  
+               
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar-mocks/tree/v2.0.0">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main"><a title="README" href="../..#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="API"
+               data-toggle="collapse"
+               data-target="#API"
+               aria-expanded="false"
+               aria-controls="collapseExample">API <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="API">
+               
+               <li >
+                  <a title="laxar-mocks" href="../../api/laxar-mocks/#start">laxar-mocks</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse ax-active" >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Manuals"
+               data-toggle="collapse"
+               data-target="#Manuals"
+               aria-expanded="false"
+               aria-controls="collapseExample">Manuals <span class="caret"></span></a>
+
+            <ul class="nav subnav in"
+               id="Manuals">
+               
+               <li >
+                  <a title="Overview" href="../#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="Coming from LaxarJS Mocks 1.x" href="../migration/#start">Coming from LaxarJS Mocks 1.x</a>
+               </li>
+               
+               <li >
+                  <a title="Introduction to LaxarJS Mocks" href="../introduction/#start">Introduction to LaxarJS Mocks</a>
+               </li>
+               
+               <li class="ax-active">
+                  <a title="Setup Instructions" href="./#start">Setup Instructions</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<p><a href="../">« return to the manuals</a></p>
+<h2 id="setup-instructions">Setup Instructions</h2>
+<p>In the following, we describe a setup using webpack, because this setup is supported out-of-the-box by LaxarJS and LaxarJS Mocks.
+Other module loaders and bundlers can be integrated by interfacing with <a href="https://github.com/LaxarJS/laxar-tooling">LaxarJS Tooling</a>, but that advanced use case is not covered here (the <a href="../../api/laxar-mocks/">API docs</a> will help you).</p>
+<h3 id="general-project-setup">General project Setup</h3>
+<p>First, you need to add LaxarJS Mocks as a dependency to your project:</p>
+<div class="codehilite"><pre><span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span> <span class="nx">laxar</span><span class="o">-</span><span class="nx">mocks</span>
+</pre></div>
+
+
+<p>It is recommended to put your widget spec tests into files with the extension <code>.spec.js</code> within a <code>spec</code> folder of each widget that you would like to test.
+For example, a widget called <code>my-widget</code> would come with a <code>spec/my-widget.spec.js</code>.
+This allows you to use the webpack <em>rules</em> configuration for automatically loading all widget specs through the LaxarJS Mocks <code>spec-loader</code>.</p>
+<p>Here is an example excerpt for use in a <code>webpack.config.js</code>:</p>
+<div class="codehilite"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="c1">// ... entry, resolve, ...</span>
+   <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+      <span class="c1">// ... other module config ...</span>
+      <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
+         <span class="c1">// ... more rules ...</span>
+         <span class="p">{</span>
+            <span class="nx">test</span><span class="o">:</span> <span class="sr">/spec\/.*\.spec\.js$/</span><span class="p">,</span>
+            <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;laxar-mocks/spec-loader&#39;</span>
+         <span class="p">}</span>
+      <span class="p">]</span>
+   <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+
+
+<p>Of course, you can also use <code>.jsx</code> or <code>.ts</code> spec tests if your other loaders are setup accordingly.</p>
+<h3 id="running-tests-using-karma">Running Tests using Karma</h3>
+<p>If webpack is configured as above, you can run spec tests with karma by using <a href="https://github.com/webpack-contrib/karma-webpack">karma-webpack</a> to preprocess your specs.</p>
+<p>Here is an example excerpt for use in a <code>karma.config.js</code>:</p>
+<div class="codehilite"><pre><span class="kr">const</span> <span class="nx">webpackConfig</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;./webpack.config.js&#39;</span> <span class="p">);</span>
+<span class="c1">// `entry` for tests is generated by karma-webpack:</span>
+<span class="k">delete</span> <span class="nx">webpackConfig</span><span class="p">.</span><span class="nx">entry</span><span class="p">;</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">config</span> <span class="p">)</span> <span class="p">{</span>
+   <span class="nx">config</span><span class="p">(</span> <span class="p">{</span>
+      <span class="c1">// ... other karma settings ...</span>
+      <span class="nx">frameworks</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;jasmine&#39;</span> <span class="p">],</span>
+      <span class="nx">files</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;path/to/widget/spec/*.spec.js&#39;</span> <span class="p">]</span>
+      <span class="nx">preprocessors</span><span class="o">:</span> <span class="p">{</span>
+         <span class="s1">&#39;path/to/widget/spec/&#39;</span><span class="o">:</span> <span class="p">[</span> <span class="s1">&#39;webpack&#39;</span><span class="p">,</span> <span class="s1">&#39;sourcemap&#39;</span> <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="nx">webpack</span><span class="o">:</span> <span class="nx">webpackConfig</span>
+   <span class="p">}</span> <span class="p">)</span>
+<span class="p">};</span>
+</pre></div>
+
+
+<p>To get all the settings right, especially when you are testing many widgets in the context of a development project, it is probably simpler to get started using the <a href="http://laxarjs.org/docs/generator-laxarjs2-latest/">Yeoman Generator for LaxarJS 2.x</a>, which automatically prepares a working karma setup for your project.</p>
+<h3 id="running-tests-in-the-browser">Running Tests in the Browser</h3>
+<p>Karma is great to run all of your tests each time you make a change to your project, for example in a Continuous Integration setup.
+However, once you get down to debugging individual test cases, possibly trying to diagnose browser-specific problems, the ability to run your spec test <em>within a web browser</em> is invaluable.
+Not only can you use the Jasmine HTML runner to drill down to individual test cases, but the powerful developer tools of modern browsers are at your disposal.</p>
+<p>To help running widget spec tests in the browser without copy/pasting a lot of brittle boilerplate HTML, projects can use the <a href="https://github.com/LaxarJS/webpack-jasmine-html-runner-plugin">Jasmine HTML Runner Plugin for Webpack</a> which is maintained by the LaxarJS team.
+Again, projects started with the LaxarJS 2 Yeoman Generator are configured to work with the HTML runner plugin out-of-the-box:
+To build and to browse the HTML, run <code>npm run browser-spec</code> and then open your web browser at <code>http://localhost:8180/spec-output/</code> to view the tests served by the webpack-dev-server.</p>
+<p>For a <em>manual setup</em>, you will need to use a webpack configuration that configures the HTML spec runner:</p>
+<div class="codehilite"><pre><span class="kr">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="c1">// ... your webpack configuration, including the spec-loader config shown above ...</span>
+<span class="p">};</span>
+
+<span class="kr">const</span> <span class="nx">WebpackJasmineHtmlRunnerPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span> <span class="s1">&#39;webpack-jasmine-html-runner-plugin&#39;</span> <span class="p">);</span>
+<span class="nx">config</span><span class="p">.</span><span class="nx">entry</span> <span class="o">=</span> <span class="nx">WebpackJasmineHtmlRunnerPlugin</span><span class="p">.</span><span class="nx">entry</span><span class="p">(</span> <span class="err">`</span><span class="nx">path</span><span class="o">/</span><span class="nx">to</span><span class="o">/</span><span class="nx">widgets</span><span class="cm">/**/</span><span class="nx">spec</span><span class="o">/*</span><span class="p">.</span><span class="nx">spec</span><span class="p">.</span><span class="nx">js</span><span class="err">`</span> <span class="p">);</span>
+<span class="nx">config</span><span class="p">.</span><span class="nx">output</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span> <span class="nx">process</span><span class="p">.</span><span class="nx">cwd</span><span class="p">(),</span> <span class="s1">&#39;spec-output&#39;</span> <span class="p">)</span> <span class="p">),</span>
+   <span class="nx">publicPath</span><span class="o">:</span> <span class="s1">&#39;/spec-output/&#39;</span><span class="p">,</span>
+   <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;[name].bundle.js&#39;</span>
+<span class="p">};</span>
+</pre></div>
+
+
+<p>You should probably put the HTML spec runner configuration into a dedicated webpack configuration file used for testing, or hide it behind an environment variable, as the generator project does.</p></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="../../../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="../../../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="../../../laxar.theme/js/base.js"></script>
+   </body>
+</html>

@@ -1,0 +1,34 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "laxar-angular-adapter\n\n\nNo README in this version.", 
+            "title": "README"
+        }, 
+        {
+            "location": "/#laxar-angular-adapter", 
+            "text": "No README in this version.", 
+            "title": "laxar-angular-adapter"
+        }, 
+        {
+            "location": "/CHANGELOG/", 
+            "text": "Changelog\n\n\nLast Changes\n\n\nv0.1.0", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#changelog", 
+            "text": "", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#last-changes", 
+            "text": "", 
+            "title": "Last Changes"
+        }, 
+        {
+            "location": "/CHANGELOG/#v010", 
+            "text": "", 
+            "title": "v0.1.0"
+        }
+    ]
+}

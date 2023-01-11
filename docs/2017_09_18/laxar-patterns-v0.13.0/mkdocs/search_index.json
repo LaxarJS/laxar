@@ -1,0 +1,49 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "LaxarJS Patterns\n\n\nHave a look at the \ndocs", 
+            "title": "README"
+        }, 
+        {
+            "location": "/#laxarjs-patterns", 
+            "text": "Have a look at the  docs", 
+            "title": "LaxarJS Patterns"
+        }, 
+        {
+            "location": "/CHANGELOG/", 
+            "text": "Changelog\n\n\nLast Changes\n\n\nv0.13.0\n\n\n\n\n#17\n: replace and update publishers now return a promise.\n\n\n#16\n: don't try to load \nwidget.json\n in laxar_patterns specs.\n\n\n#15\n: json: added helpers to work with json pointer (rfc-6901) and json patch (rfc-6902)\n\n\n#14\n: temporarily switched to the LaxarJS fork of json patch.\n\n\n\n\nv0.12.0\n\n\n\n\n\n\n#12\n: added support for JSON patch in didUpdate events.\n  NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#13\n: Remove some obsolete NPM \ndevDependencies\n.\n\n\n\n\n#11\n: added missing require path mapping for jjv and jjve.\n\n\n\n\nv0.11.0\n\n\n\n\n\n\n#8\n: resources: added method \nwereAllReplaced\n to find out if all registered resources have been replaced\n  NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#10\n: errors: implemented publisher for the didEncounterError event\n  NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#7\n: resources: fixed null-pointer when handling \nisOptional\n\n\n\n\n#6\n: i18n: fixed localize to not use fallback for non-i18n values.\n\n\n#9\n: jshintrc: disabled enforcement of dot notation for object property access.\n\n\n#5\n: Fixed jshint violation\n\n\n\n\nv0.10.0\n\n\n\n\n#4\n: Allowed to keep receiving updates from \nwhenAllWereReplaced\n after initial replacement (set watch option to true).\n\n\n#2\n: Gracefully handle optional resources, fixed resource spec tests.\n\n\n#3\n: \npatches.create\n: exclude properties starting with \n$$\n.\n\n\n#1\n: Update Bower from ~1.2.8 to ~1.3.3.", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#changelog", 
+            "text": "", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#last-changes", 
+            "text": "", 
+            "title": "Last Changes"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0130", 
+            "text": "#17 : replace and update publishers now return a promise.  #16 : don't try to load  widget.json  in laxar_patterns specs.  #15 : json: added helpers to work with json pointer (rfc-6901) and json patch (rfc-6902)  #14 : temporarily switched to the LaxarJS fork of json patch.", 
+            "title": "v0.13.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0120", 
+            "text": "#12 : added support for JSON patch in didUpdate events.\n  NEW FEATURE: see ticket for details    #13 : Remove some obsolete NPM  devDependencies .   #11 : added missing require path mapping for jjv and jjve.", 
+            "title": "v0.12.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0110", 
+            "text": "#8 : resources: added method  wereAllReplaced  to find out if all registered resources have been replaced\n  NEW FEATURE: see ticket for details    #10 : errors: implemented publisher for the didEncounterError event\n  NEW FEATURE: see ticket for details    #7 : resources: fixed null-pointer when handling  isOptional   #6 : i18n: fixed localize to not use fallback for non-i18n values.  #9 : jshintrc: disabled enforcement of dot notation for object property access.  #5 : Fixed jshint violation", 
+            "title": "v0.11.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0100", 
+            "text": "#4 : Allowed to keep receiving updates from  whenAllWereReplaced  after initial replacement (set watch option to true).  #2 : Gracefully handle optional resources, fixed resource spec tests.  #3 :  patches.create : exclude properties starting with  $$ .  #1 : Update Bower from ~1.2.8 to ~1.3.3.", 
+            "title": "v0.10.0"
+        }
+    ]
+}

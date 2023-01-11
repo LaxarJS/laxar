@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../laxar.theme/img/favicon.ico">
+        <title>LaxarJS v1.0.2</title>
+
+        <link rel="stylesheet" href="../../../laxar.theme/css/pygments.css">
+        <link href="../../../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="../../../laxar-latest">laxar</a></li>
+            
+            <li><a href="../../../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="../../../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="../../../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="../../../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="../../../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="../../../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="../../../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="../../../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="../../../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="../../../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="../../../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="../../../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v1.0.2 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="../../../laxar-v2-latest">v2.0.3</a></li>
+            
+               <li><a href="../../../laxar-v1-latest">v1.3.5</a></li>
+            
+               <li><a href="../../../laxar-v0-latest">v0.26.2</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="../../../laxar-v2.0.3">v2.0.3</a></li>
+         
+            <li><a href="../../../laxar-v2.0.2">v2.0.2</a></li>
+         
+            <li><a href="../../../laxar-v2.0.1">v2.0.1</a></li>
+         
+            <li><a href="../../../laxar-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="../../../laxar-v1.3.5">v1.3.5</a></li>
+         
+            <li><a href="../../../laxar-v1.3.4">v1.3.4</a></li>
+         
+            <li><a href="../../../laxar-v1.3.3">v1.3.3</a></li>
+         
+            <li><a href="../../../laxar-v1.3.2">v1.3.2</a></li>
+         
+            <li><a href="../../../laxar-v1.3.1">v1.3.1</a></li>
+         
+            <li><a href="../../../laxar-v1.3.0">v1.3.0</a></li>
+         
+            <li><a href="../../../laxar-v1.2.10">v1.2.10</a></li>
+         
+            <li><a href="../../../laxar-v1.2.9">v1.2.9</a></li>
+         
+            <li><a href="../../../laxar-v1.2.8">v1.2.8</a></li>
+         
+            <li><a href="../../../laxar-v1.2.7">v1.2.7</a></li>
+         
+            <li><a href="../../../laxar-v1.2.6">v1.2.6</a></li>
+         
+            <li><a href="../../../laxar-v1.2.5">v1.2.5</a></li>
+         
+            <li><a href="../../../laxar-v1.2.4">v1.2.4</a></li>
+         
+            <li><a href="../../../laxar-v1.2.3">v1.2.3</a></li>
+         
+            <li><a href="../../../laxar-v1.2.2">v1.2.2</a></li>
+         
+            <li><a href="../../../laxar-v1.2.1">v1.2.1</a></li>
+         
+            <li><a href="../../../laxar-v1.2.0">v1.2.0</a></li>
+         
+            <li><a href="../../../laxar-v1.1.0">v1.1.0</a></li>
+         
+            <li><a href="../../../laxar-v1.0.5">v1.0.5</a></li>
+         
+            <li><a href="../../../laxar-v1.0.4">v1.0.4</a></li>
+         
+            <li><a href="../../../laxar-v1.0.3">v1.0.3</a></li>
+         
+            <li><a href="../../../laxar-v1.0.2">v1.0.2</a></li>
+         
+            <li><a href="../../../laxar-v1.0.1">v1.0.1</a></li>
+         
+            <li><a href="../../../laxar-v1.0.0">v1.0.0</a></li>
+         
+            <li><a href="../../../laxar-v0.26.2">v0.26.2</a></li>
+         
+            <li><a href="../../../laxar-v0.26.1">v0.26.1</a></li>
+         
+            <li><a href="../../../laxar-v0.26.0">v0.26.0</a></li>
+         
+            <li><a href="../../../laxar-v0.25.1">v0.25.1</a></li>
+         
+            <li><a href="../../../laxar-v0.25.0">v0.25.0</a></li>
+         
+            <li><a href="../../../laxar-v0.24.0">v0.24.0</a></li>
+         
+            <li><a href="../../../laxar-v0.23.3">v0.23.3</a></li>
+         
+            <li><a href="../../../laxar-v0.23.2">v0.23.2</a></li>
+         
+            <li><a href="../../../laxar-v0.23.1">v0.23.1</a></li>
+         
+            <li><a href="../../../laxar-v0.23.0">v0.23.0</a></li>
+         
+            <li><a href="../../../laxar-v0.22.2">v0.22.2</a></li>
+         
+            <li><a href="../../../laxar-v0.22.1">v0.22.1</a></li>
+         
+            <li><a href="../../../laxar-v0.22.0">v0.22.0</a></li>
+         
+            <li><a href="../../../laxar-v0.21.0">v0.21.0</a></li>
+         
+            <li><a href="../../../laxar-v0.20.1">v0.20.1</a></li>
+         
+            <li><a href="../../../laxar-v0.20.0">v0.20.0</a></li>
+         
+            <li><a href="../../../laxar-v0.19.1">v0.19.1</a></li>
+         
+            <li><a href="../../../laxar-v0.19.0">v0.19.0</a></li>
+         
+            <li><a href="../../../laxar-v0.18.2">v0.18.2</a></li>
+         
+            <li><a href="../../../laxar-v0.18.1">v0.18.1</a></li>
+         
+            <li><a href="../../../laxar-v0.18.0">v0.18.0</a></li>
+         
+            <li><a href="../../../laxar-v0.17.1">v0.17.1</a></li>
+         
+            <li><a href="../../../laxar-v0.17.0">v0.17.0</a></li>
+         
+            <li><a href="../../../laxar-v0.16.2">v0.16.2</a></li>
+         
+            <li><a href="../../../laxar-v0.16.1">v0.16.1</a></li>
+         
+            <li><a href="../../../laxar-v0.16.0">v0.16.0</a></li>
+         
+            <li><a href="../../../laxar-v0.15.0">v0.15.0</a></li>
+         
+            <li><a href="../../../laxar-v0.14.0">v0.14.0</a></li>
+         
+            <li><a href="../../../laxar-v0.13.3">v0.13.3</a></li>
+         
+            <li><a href="../../../laxar-v0.13.2">v0.13.2</a></li>
+         
+            <li><a href="../../../laxar-v0.13.1">v0.13.1</a></li>
+         
+            <li><a href="../../../laxar-v0.13.0">v0.13.0</a></li>
+         
+            <li><a href="../../../laxar-v0.12.1">v0.12.1</a></li>
+         
+            <li><a href="../../../laxar-v0.12.0">v0.12.0</a></li>
+         
+            <li><a href="../../../laxar-v0.11.1">v0.11.1</a></li>
+         
+            <li><a href="../../../laxar-v0.11.0">v0.11.0</a></li>
+         
+            <li><a href="../../../laxar-v0.10.1">v0.10.1</a></li>
+         
+            <li><a href="../../../laxar-v0.10.0">v0.10.0</a></li>
+         
+            <li><a href="../../../laxar-v0.9.11">v0.9.11</a></li>
+         
+            <li><a href="../../../laxar-v0.9.10">v0.9.10</a></li>
+         
+            <li><a href="../../../laxar-v0.9.9">v0.9.9</a></li>
+         
+            <li><a href="../../../laxar-v0.9.8">v0.9.8</a></li>
+         
+            <li><a href="../../../laxar-v0.9.7">v0.9.7</a></li>
+         
+            <li><a href="../../../laxar-v0.9.6">v0.9.6</a></li>
+         
+            <li><a href="../../../laxar-v0.9.5">v0.9.5</a></li>
+         
+            <li><a href="../../../laxar-v0.9.4">v0.9.4</a></li>
+         
+            <li><a href="../../../laxar-v0.9.3">v0.9.3</a></li>
+         
+            <li><a href="../../../laxar-v0.9.2">v0.9.2</a></li>
+         
+            <li><a href="../../../laxar-v0.9.1">v0.9.1</a></li>
+         
+            <li><a href="../../../laxar-v0.9.0">v0.9.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="../../CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar/tree/v1.0.2">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main"><a title="README" href="../..#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Concepts" href="../../concepts/#start">LaxarJS Concepts</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="Why LaxarJS?" href="../../why_laxar/#start">Why LaxarJS?</a></li>
+         
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="API"
+               data-toggle="collapse"
+               data-target="#API"
+               aria-expanded="false"
+               aria-controls="collapseExample">API <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="API">
+               
+               <li >
+                  <a title="assert" href="../../api/assert.js/#start">assert</a>
+               </li>
+               
+               <li >
+                  <a title="axId" href="../../api/id.js/#start">axId</a>
+               </li>
+               
+               <li >
+                  <a title="axLayout" href="../../api/layout.js/#start">axLayout</a>
+               </li>
+               
+               <li >
+                  <a title="axRuntimeServices" href="../../api/runtime_services.js/#start">axRuntimeServices</a>
+               </li>
+               
+               <li >
+                  <a title="axWidgetArea" href="../../api/widget_area.js/#start">axWidgetArea</a>
+               </li>
+               
+               <li >
+                  <a title="configuration" href="../../api/configuration.js/#start">configuration</a>
+               </li>
+               
+               <li >
+                  <a title="event_bus" href="../../api/event_bus.js/#start">event_bus</a>
+               </li>
+               
+               <li >
+                  <a title="file_resource_provider" href="../../api/file_resource_provider.js/#start">file_resource_provider</a>
+               </li>
+               
+               <li >
+                  <a title="flow" href="../../api/flow.js/#start">flow</a>
+               </li>
+               
+               <li >
+                  <a title="fn" href="../../api/fn.js/#start">fn</a>
+               </li>
+               
+               <li >
+                  <a title="i18n" href="../../api/i18n.js/#start">i18n</a>
+               </li>
+               
+               <li >
+                  <a title="log" href="../../api/log.js/#start">log</a>
+               </li>
+               
+               <li >
+                  <a title="object" href="../../api/object.js/#start">object</a>
+               </li>
+               
+               <li >
+                  <a title="object" href="../../api/string.js/#start">object</a>
+               </li>
+               
+               <li >
+                  <a title="storage" href="../../api/storage.js/#start">storage</a>
+               </li>
+               
+               <li >
+                  <a title="theme_manager" href="../../api/theme_manager.js/#start">theme_manager</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Contributing"
+               data-toggle="collapse"
+               data-target="#Contributing"
+               aria-expanded="false"
+               aria-controls="collapseExample">Contributing <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="Contributing">
+               
+               <li >
+                  <a title="LaxarJS Coding Styles" href="../../contributing/styleguide/#start">LaxarJS Coding Styles</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse ax-active" >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Manuals"
+               data-toggle="collapse"
+               data-target="#Manuals"
+               aria-expanded="false"
+               aria-controls="collapseExample">Manuals <span class="caret"></span></a>
+
+            <ul class="nav subnav in"
+               id="Manuals">
+               
+               <li >
+                  <a title="Overview" href="../#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="Controls and Libraries" href="../providing_controls/#start">Controls and Libraries</a>
+               </li>
+               
+               <li >
+                  <a title="Creating Themes" href="../creating_themes/#start">Creating Themes</a>
+               </li>
+               
+               <li >
+                  <a title="Creating an Adapter for a new Widget Technology" href="../adapters/#start">Creating an Adapter for a new Widget Technology</a>
+               </li>
+               
+               <li >
+                  <a title="Events and Publish-Subscribe" href="../events/#start">Events and Publish-Subscribe</a>
+               </li>
+               
+               <li class="ax-active">
+                  <a title="Flow and Places" href="./#start">Flow and Places</a>
+               </li>
+               
+               <li >
+                  <a title="Infrastructure and Tools" href="../infrastructure_and_tools/#start">Infrastructure and Tools</a>
+               </li>
+               
+               <li >
+                  <a title="Installing Third Party Widgets" href="../installing_widgets/#start">Installing Third Party Widgets</a>
+               </li>
+               
+               <li >
+                  <a title="Internationalizing a Widget" href="../i18n/#start">Internationalizing a Widget</a>
+               </li>
+               
+               <li >
+                  <a title="LaxarJS Configuration in an Application" href="../configuration/#start">LaxarJS Configuration in an Application</a>
+               </li>
+               
+               <li >
+                  <a title="Widgets and Activities" href="../widgets_and_activities/#start">Widgets and Activities</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Compositions" href="../writing_compositions/#start">Writing Compositions</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Pages" href="../writing_pages/#start">Writing Pages</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<p><a href="../">« return to the manuals</a></p>
+<p>Preliminary readings:</p>
+<ul>
+<li><a href="../../concepts/">LaxarJS Core Concepts</a></li>
+<li><a href="../configuration/">Configuration</a></li>
+<li><a href="../writing_pages/">Writing Pages</a></li>
+</ul>
+<h1 id="flow-and-places">Flow and Places</h1>
+<p>Every application consisting of more than one page needs a concept for navigating between these pages.
+In LaxarJS this is achieved by a <em>flow</em> defining a set of <em>places</em> in a declarative fashion.
+Each place corresponds to a single page that should be rendered, or some other content displayed to the user.
+Currently the definition of one single flow file is possible, which can by default be found within the application at the path <code>application/flow/flow.json</code>.
+This can be adjusted as <code>laxar-path-flow</code> in the <em>require configuration</em> of your application.</p>
+<p>Let us start with an example for a simple <code>flow.json</code> file:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;places&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;entry&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;redirectTo&quot;</span><span class="p">:</span> <span class="s2">&quot;pageOne&quot;</span>
+      <span class="p">},</span>
+
+      <span class="nt">&quot;pageOne/:userId&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="s2">&quot;first_page&quot;</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>A flow definition is always a JSON object having the root property <code>places</code>, which in turn is a map.
+Each entry of that map consists of the place's URL template as key and a definition of what should happen when reaching that place as value.
+For LaxarJS an URL template always starts with a constant prefix, possibly consisting of multiple segments separated by slashes, containing optional <em>parameters</em>.
+The syntax is taken from AngularJS, where variable parts of a URL are always prefixed by a colon.
+Within the flow, the constant prefix of a place is interpreted as its <em>identifier</em>.
+Thus the second place in the example has the identifier <em>pageOne</em> and one parameter, called <em>userId</em>.</p>
+<p>The identifier <em>entry</em> of the first place is always interpreted as the default place to navigate to if either no place was provided or if the requested place was not found within the flow.
+Most commonly it will just redirect to another existing place, that for example handles user login or application startup.
+Just as in plain AngularJS, routing a redirect is configured using the <code>redirectTo</code> keyword and naming the place identifier to navigate to.
+In this example we simply navigate without providing a value for the <em>userId</em> parameter to the place <em>pageOne</em>.
+Any place that simply redirects to another place cannot do any meaningful in addition to that.
+Control is directly passed on to the redirection target.</p>
+<p>In contrast to that, the place <em>pageOne</em> specifies a page that should be loaded by using the key <code>page</code> in its definition.
+By default all pages are searched in the <code>application/pages/</code> directory with the <code>.json</code> suffix automatically appended when omitted.
+Just like the path to the flow file, this can also be reconfigured in the <em>require configuration</em> of your application as <code>laxar-path-pages</code>.
+So whenever this place is visited, the according page with all of its configured widgets is loaded and displayed.</p>
+<h2 id="places">Places</h2>
+<p>As said before the syntax for places is based on the URL template syntax from AngularJS and in fact AngularJS' routing is used internally.
+Within the flow, those URL templates have some additional meaning as they are being used as an identifier for places.
+Thus a few strict rules are added to the basic AngularJS URL template rules:</p>
+<ul>
+<li>A URL always consists of one or more segments separated by slashes <code>/</code>.</li>
+<li>Each segment can either be a constant alphanumeric character string or a parameter, which is an alphanumeric character string prefixed by colon.</li>
+<li>A URL always starts with a unique non empty list of constant segments, which can optionally be followed by a list of parameters.
+Parameters and constant segments may not appear interleaved.</li>
+<li>Wildcards are not supported</li>
+</ul>
+<p>Examples of valid places thus are the following:</p>
+<ul>
+<li><code>userListing</code></li>
+<li><code>user/:userId</code></li>
+<li><code>cars/vans/:manufacturer/:model</code></li>
+</ul>
+<p>In contrast these places would all be considered invalid:</p>
+<ul>
+<li><code>:userId</code>: A place <em>must</em> start with a non-empty constant segment</li>
+<li><code>user/:userId/car</code>: As soon as there is a parameter, no more constant segments may appear</li>
+<li><code>user/:names*</code> or <code>user/:names?</code>: Wildcards are <em>not</em> supported</li>
+</ul>
+<p>These rules may seem very restrictive but they enable LaxarJS to make some assumptions and optimizations based on the URL template.
+Additionally a URL should not encode too much sensitive information directly, as this might lead to security issues and bulky URLs.
+Instead only some domain information should be passed on between pages, that enables the widgets of the next place to fulfill their specific tasks.</p>
+<h2 id="targets">Targets</h2>
+<p>Navigation is triggered from within a widget by issuing a <em>navigateRequest</em> event expressing the desired next location within the application and providing values for place parameters.
+How that works in practice can be read in the separate manual covering <a href="../events/">events</a>.
+Using these events it is possible to always navigate directly from place to place.
+Nevertheless this would instantly lead to a tight coupling between the widget triggering navigation events and the definition of places within the flow.
+Instead a widget or a page (by means of the feature configuration for a widget) should only know about semantic navigation targets reachable from their current location (roughly comparable to <em>relations</em> in <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>).</p>
+<p>In LaxarJS this is achieved by the concept of <em>targets</em>:
+Each place can define a mapping from semantic target identifier valid only for this place to the identifier of another place within the flow.</p>
+<p>An example (for brevity the <code>entry</code> place is omitted):</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;places&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;introduction/:userId&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="s2">&quot;introduction&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;targets&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;next&quot;</span><span class="p">:</span> <span class="s2">&quot;interests&quot;</span>
+         <span class="p">}</span>
+      <span class="p">},</span>
+
+      <span class="nt">&quot;interests/:userId&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="s2">&quot;interests&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;targets&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;previous&quot;</span><span class="p">:</span> <span class="s2">&quot;introduction&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;next&quot;</span><span class="p">:</span> <span class="s2">&quot;profession&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;professionHelp&quot;</span>
+         <span class="p">}</span>
+      <span class="p">},</span>
+
+      <span class="nt">&quot;profession/:userId&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="s2">&quot;profession&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;targets&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;previous&quot;</span><span class="p">:</span> <span class="s2">&quot;interests&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;professionHelp&quot;</span>
+         <span class="p">}</span>
+      <span class="p">},</span>
+
+      <span class="nt">&quot;interestsHelp/:userId&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="s2">&quot;interests_help&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;targets&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;back&quot;</span><span class="p">:</span> <span class="s2">&quot;interests&quot;</span>
+         <span class="p">}</span>
+      <span class="p">},</span>
+
+      <span class="nt">&quot;professionHelp/:userId&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="s2">&quot;profession_help&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;targets&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;back&quot;</span><span class="p">:</span> <span class="s2">&quot;profession&quot;</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>This flow is typical for a wizard-like application, as it allows a forward and backward navigation, but only sparsely jumping in between pages.
+The first place in the example is called <em>introduction</em>, which simply displays a page and just lets the user navigate to the <em>next</em> target, which would be resolved to the place <em>interests</em>.
+Here a page is displayed where the user can input his interests, e.g. his hobbies or music taste.
+As we are in the middle of a wizard, there is a <em>previous</em> target reachable now in addition to the <em>next</em> and <em>help</em> targets.
+Unsurprisingly the <em>previous</em> target references the place <em>introduction</em> again.
+The <em>next</em> target instead leads us to another new place with identifier <em>profession</em>.
+The <em>profession</em> place may only lead us back to the <em>interests</em> place via the <em>previous</em> target.</p>
+<p>May be some pages have some tricky input components or there are some advices for which things to share.
+This is where the <em>help</em> targets come into play.
+Both, the <em>interests</em> and the <em>profession</em> page, have such a target.
+Nevertheless the places behind these targets are different depending on the source page.
+This makes understanding of navigation concepts simple and provides contextual semantics.
+Returning from the help pages works in a similar way via the <em>back</em> targets leading to the respective places.</p>
+<h2 id="entry-points">Entry Points</h2>
+<p>The previous sections covered the concepts of navigation within the scope of one LaxarJS application.
+Additionally it is also often necessary to integrate a use case implemented as a LaxarJS application within the context of another external application.
+For example the process of collecting data on interests and profession could be part of a larger application creating a personal profile of a person.
+The host application might have been be implemented in a totally different technology, like <a href="http://rubyonrails.org/">Ruby on Rails</a> or <a href="http://en.wikipedia.org/wiki/JavaServer_Pages">JSP</a>.
+There should be some way for this application to give control to the LaxarJS application and pass in some parameters.</p>
+<p>This is achieved by the concept of <em>entry points</em>.
+Entry points define possible ways for how to enter an application and which place to navigate to once this entry point is selected.
+Let us add entry points to our example:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;places&quot;</span><span class="p">:</span> <span class="p">{</span>
+
+      <span class="nt">&quot;entry&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;entryPoints&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;enterInterests&quot;</span><span class="p">:</span> <span class="s2">&quot;interests&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;enterProfession&quot;</span><span class="p">:</span> <span class="s2">&quot;profession&quot;</span>
+         <span class="p">}</span>
+      <span class="p">},</span>
+
+      <span class="nt">&quot;introduction/:userId&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="err">...</span>
+      <span class="p">},</span>
+
+      <span class="nt">&quot;interests/:userId&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="err">...</span>
+      <span class="p">},</span>
+
+      <span class="nt">&quot;profession/:userId&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="err">...</span>
+      <span class="p">},</span>
+
+      <span class="err">...</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Apart from the key <code>entryPoints</code> this is very similar to the definition of targets within the <code>flow.json</code>.
+The difference mainly comes from their usage when passing control from the external application to this application:
+An entry point is selected by configuring it in the global <code>window.laxar</code> <a href="../configuration/">configuration object</a> as <code>window.laxar.flow.entryPoint</code> property.
+This property is an object with key <code>target</code> denoting the name of the entry point to select and an optional map under the <code>parameters</code> with the values for the possible place parameters.</p>
+<p>So let us assume a JSP renders the bootstrapping code for the LaxarJS application, selects the <code>enterInterests</code> entry point and passes the user ID to the JavaScript frontend:</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span><span class="c">&lt;!-- contents omitted --&gt;</span><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-ng-view</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;display: none&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-ax-page</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;application/application.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;require_config.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+         <span class="nb">window</span><span class="p">.</span><span class="nx">laxar</span><span class="p">.</span><span class="nx">flow</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">entryPoint</span><span class="o">:</span> <span class="p">{</span>
+               <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;enterInterests&#39;</span><span class="p">,</span>
+               <span class="nx">parameters</span><span class="o">:</span> <span class="p">{</span>
+                  <span class="nx">userId</span><span class="o">:</span> <span class="s1">&#39;&lt;%= currentUserId %&gt;&#39;</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">};</span>
+      <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">script</span> <span class="na">data-main</span><span class="o">=</span><span class="s">&quot;../init.js&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;bower_components/requirejs/require.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>By using this mechanism the external application, in this example a simple JSP, is in control of how our application is entered.</p>
+<h2 id="exit-points">Exit Points</h2>
+<p><em>Exit points</em> work the other way around:
+Here the external application may define a map of different exit points, which in fact are simple JavaScript functions, and the LaxarJS application selects which one to call when navigating to a specific target.
+Configuration of possible exit points also takes place in the global <code>window.laxar</code> <a href="../configuration/">configuration object</a>  as <code>window.laxar.flow.exitPoints</code> property.</p>
+<p>Here we added to possible exitPoints to our example:</p>
+<div class="codehilite"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span><span class="c">&lt;!-- contents omitted --&gt;</span><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-ng-view</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;display: none&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">data-ax-page</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;application/application.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;require_config.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+         <span class="nb">window</span><span class="p">.</span><span class="nx">laxar</span><span class="p">.</span><span class="nx">flow</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">entryPoint</span><span class="o">:</span> <span class="p">{</span>
+               <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;enterInterests&#39;</span><span class="p">,</span>
+               <span class="nx">parameters</span><span class="o">:</span> <span class="p">{</span>
+                  <span class="nx">userId</span><span class="o">:</span> <span class="s1">&#39;&lt;%= currentUserId %&gt;&#39;</span>
+               <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="nx">exitPoints</span><span class="o">:</span> <span class="p">{</span>
+               <span class="nx">saveProfile</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">parameters</span> <span class="p">)</span> <span class="p">{</span>
+                  <span class="c1">// Do whatever is necessary here to pass control back to the JSP application ...</span>
+               <span class="p">},</span>
+               <span class="nx">cancelProcess</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">parameters</span> <span class="p">)</span> <span class="p">{</span>
+                  <span class="c1">// Do whatever is necessary here to pass control back to the JSP application ...</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">};</span>
+      <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">script</span> <span class="na">data-main</span><span class="o">=</span><span class="s">&quot;../init.js&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;bower_components/requirejs/require.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>All arguments passed to the target referencing an exit point during navigation will be forwarded as map to the according function in the <code>exitPoints</code> map.</p>
+<p>For this example two targets using the new exit points are defined (irrelevant places omitted for brevity):</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;places&quot;</span><span class="p">:</span> <span class="p">{</span>
+
+      <span class="nt">&quot;profession/:userId&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="s2">&quot;profession&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;targets&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;previous&quot;</span><span class="p">:</span> <span class="s2">&quot;interests&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;help&quot;</span><span class="p">:</span> <span class="s2">&quot;professionHelp&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;cancel&quot;</span><span class="p">:</span> <span class="s2">&quot;cancel&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;save&quot;</span><span class="p">:</span> <span class="s2">&quot;save&quot;</span>
+         <span class="p">}</span>
+      <span class="p">},</span>
+
+      <span class="nt">&quot;save/:userId/:profession&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;exitPoint&quot;</span><span class="p">:</span> <span class="s2">&quot;saveProfile&quot;</span>
+      <span class="p">},</span>
+
+      <span class="nt">&quot;cancel/:userId/:reasonForCancellation&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;exitPoint&quot;</span><span class="p">:</span> <span class="s2">&quot;cancelProcess&quot;</span>
+      <span class="p">}</span>
+
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>If the user decides to save his information by navigating to the target <em>save</em>, the exit point <em>saveProfile</em> with values for the parameters <em>userId</em> and <em>profession</em> will be called.
+On the other hand, if the user cancels the process by navigating to the target <em>cancel</em>, the exit point <em>cancelProcess</em> with values for the parameters <em>userId</em> and <em>reasonForCancellation</em> will get invoked.</p>
+<p>Using the simple mechanisms introduced here, most integration scenarios into external applications should be possible.
+To learn how to trigger navigation from within widgets and activities, you should go on reading the <a href="../events/">events documentation</a> and learn about the <em>navigateRequest</em> and <em>didNavigate</em> events.</p></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="../../../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="../../../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="../../../laxar.theme/js/base.js"></script>
+   </body>
+</html>

@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="./../laxar.theme/img/favicon.ico">
+        <title>LaxarJS  v2.0.0</title>
+
+        <link rel="stylesheet" href="./../laxar.theme/css/pygments.css">
+        <link href="./../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="./../laxar-latest">laxar</a></li>
+            
+            <li><a href="./../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="./../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="./../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="./../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="./../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="./../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="./../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="./../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="./../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="./../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="./../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="./../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v2.0.0 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="./../laxar-v2-latest">v2.0.3</a></li>
+            
+               <li><a href="./../laxar-v1-latest">v1.3.5</a></li>
+            
+               <li><a href="./../laxar-v0-latest">v0.26.2</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="./../laxar-v2.0.3">v2.0.3</a></li>
+         
+            <li><a href="./../laxar-v2.0.2">v2.0.2</a></li>
+         
+            <li><a href="./../laxar-v2.0.1">v2.0.1</a></li>
+         
+            <li><a href="./../laxar-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="./../laxar-v1.3.5">v1.3.5</a></li>
+         
+            <li><a href="./../laxar-v1.3.4">v1.3.4</a></li>
+         
+            <li><a href="./../laxar-v1.3.3">v1.3.3</a></li>
+         
+            <li><a href="./../laxar-v1.3.2">v1.3.2</a></li>
+         
+            <li><a href="./../laxar-v1.3.1">v1.3.1</a></li>
+         
+            <li><a href="./../laxar-v1.3.0">v1.3.0</a></li>
+         
+            <li><a href="./../laxar-v1.2.10">v1.2.10</a></li>
+         
+            <li><a href="./../laxar-v1.2.9">v1.2.9</a></li>
+         
+            <li><a href="./../laxar-v1.2.8">v1.2.8</a></li>
+         
+            <li><a href="./../laxar-v1.2.7">v1.2.7</a></li>
+         
+            <li><a href="./../laxar-v1.2.6">v1.2.6</a></li>
+         
+            <li><a href="./../laxar-v1.2.5">v1.2.5</a></li>
+         
+            <li><a href="./../laxar-v1.2.4">v1.2.4</a></li>
+         
+            <li><a href="./../laxar-v1.2.3">v1.2.3</a></li>
+         
+            <li><a href="./../laxar-v1.2.2">v1.2.2</a></li>
+         
+            <li><a href="./../laxar-v1.2.1">v1.2.1</a></li>
+         
+            <li><a href="./../laxar-v1.2.0">v1.2.0</a></li>
+         
+            <li><a href="./../laxar-v1.1.0">v1.1.0</a></li>
+         
+            <li><a href="./../laxar-v1.0.5">v1.0.5</a></li>
+         
+            <li><a href="./../laxar-v1.0.4">v1.0.4</a></li>
+         
+            <li><a href="./../laxar-v1.0.3">v1.0.3</a></li>
+         
+            <li><a href="./../laxar-v1.0.2">v1.0.2</a></li>
+         
+            <li><a href="./../laxar-v1.0.1">v1.0.1</a></li>
+         
+            <li><a href="./../laxar-v1.0.0">v1.0.0</a></li>
+         
+            <li><a href="./../laxar-v0.26.2">v0.26.2</a></li>
+         
+            <li><a href="./../laxar-v0.26.1">v0.26.1</a></li>
+         
+            <li><a href="./../laxar-v0.26.0">v0.26.0</a></li>
+         
+            <li><a href="./../laxar-v0.25.1">v0.25.1</a></li>
+         
+            <li><a href="./../laxar-v0.25.0">v0.25.0</a></li>
+         
+            <li><a href="./../laxar-v0.24.0">v0.24.0</a></li>
+         
+            <li><a href="./../laxar-v0.23.3">v0.23.3</a></li>
+         
+            <li><a href="./../laxar-v0.23.2">v0.23.2</a></li>
+         
+            <li><a href="./../laxar-v0.23.1">v0.23.1</a></li>
+         
+            <li><a href="./../laxar-v0.23.0">v0.23.0</a></li>
+         
+            <li><a href="./../laxar-v0.22.2">v0.22.2</a></li>
+         
+            <li><a href="./../laxar-v0.22.1">v0.22.1</a></li>
+         
+            <li><a href="./../laxar-v0.22.0">v0.22.0</a></li>
+         
+            <li><a href="./../laxar-v0.21.0">v0.21.0</a></li>
+         
+            <li><a href="./../laxar-v0.20.1">v0.20.1</a></li>
+         
+            <li><a href="./../laxar-v0.20.0">v0.20.0</a></li>
+         
+            <li><a href="./../laxar-v0.19.1">v0.19.1</a></li>
+         
+            <li><a href="./../laxar-v0.19.0">v0.19.0</a></li>
+         
+            <li><a href="./../laxar-v0.18.2">v0.18.2</a></li>
+         
+            <li><a href="./../laxar-v0.18.1">v0.18.1</a></li>
+         
+            <li><a href="./../laxar-v0.18.0">v0.18.0</a></li>
+         
+            <li><a href="./../laxar-v0.17.1">v0.17.1</a></li>
+         
+            <li><a href="./../laxar-v0.17.0">v0.17.0</a></li>
+         
+            <li><a href="./../laxar-v0.16.2">v0.16.2</a></li>
+         
+            <li><a href="./../laxar-v0.16.1">v0.16.1</a></li>
+         
+            <li><a href="./../laxar-v0.16.0">v0.16.0</a></li>
+         
+            <li><a href="./../laxar-v0.15.0">v0.15.0</a></li>
+         
+            <li><a href="./../laxar-v0.14.0">v0.14.0</a></li>
+         
+            <li><a href="./../laxar-v0.13.3">v0.13.3</a></li>
+         
+            <li><a href="./../laxar-v0.13.2">v0.13.2</a></li>
+         
+            <li><a href="./../laxar-v0.13.1">v0.13.1</a></li>
+         
+            <li><a href="./../laxar-v0.13.0">v0.13.0</a></li>
+         
+            <li><a href="./../laxar-v0.12.1">v0.12.1</a></li>
+         
+            <li><a href="./../laxar-v0.12.0">v0.12.0</a></li>
+         
+            <li><a href="./../laxar-v0.11.1">v0.11.1</a></li>
+         
+            <li><a href="./../laxar-v0.11.0">v0.11.0</a></li>
+         
+            <li><a href="./../laxar-v0.10.1">v0.10.1</a></li>
+         
+            <li><a href="./../laxar-v0.10.0">v0.10.0</a></li>
+         
+            <li><a href="./../laxar-v0.9.11">v0.9.11</a></li>
+         
+            <li><a href="./../laxar-v0.9.10">v0.9.10</a></li>
+         
+            <li><a href="./../laxar-v0.9.9">v0.9.9</a></li>
+         
+            <li><a href="./../laxar-v0.9.8">v0.9.8</a></li>
+         
+            <li><a href="./../laxar-v0.9.7">v0.9.7</a></li>
+         
+            <li><a href="./../laxar-v0.9.6">v0.9.6</a></li>
+         
+            <li><a href="./../laxar-v0.9.5">v0.9.5</a></li>
+         
+            <li><a href="./../laxar-v0.9.4">v0.9.4</a></li>
+         
+            <li><a href="./../laxar-v0.9.3">v0.9.3</a></li>
+         
+            <li><a href="./../laxar-v0.9.2">v0.9.2</a></li>
+         
+            <li><a href="./../laxar-v0.9.1">v0.9.1</a></li>
+         
+            <li><a href="./../laxar-v0.9.0">v0.9.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar/tree/v2.0.0">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main ax-active"><a title="README" href=".#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Concepts" href="concepts/#start">LaxarJS Concepts</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Glossary" href="glossary/#start">LaxarJS Glossary</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Troubleshooting" href="troubleshooting/#start">LaxarJS Troubleshooting</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="Why LaxarJS?" href="why_laxar/#start">Why LaxarJS?</a></li>
+         
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="API"
+               data-toggle="collapse"
+               data-target="#API"
+               aria-expanded="false"
+               aria-controls="collapseExample">API <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="API">
+               
+               <li >
+                  <a title="Overview" href="api/#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="adapter_utilities" href="api/runtime.adapter_utilities/#start">adapter_utilities</a>
+               </li>
+               
+               <li >
+                  <a title="assert" href="api/utilities.assert/#start">assert</a>
+               </li>
+               
+               <li >
+                  <a title="browser" href="api/runtime.browser/#start">browser</a>
+               </li>
+               
+               <li >
+                  <a title="configuration" href="api/runtime.configuration/#start">configuration</a>
+               </li>
+               
+               <li >
+                  <a title="configuration_mock" href="api/testing.configuration_mock/#start">configuration_mock</a>
+               </li>
+               
+               <li >
+                  <a title="control_loader" href="api/loaders.control_loader/#start">control_loader</a>
+               </li>
+               
+               <li >
+                  <a title="event_bus" href="api/runtime.event_bus/#start">event_bus</a>
+               </li>
+               
+               <li >
+                  <a title="event_bus_mock" href="api/testing.event_bus_mock/#start">event_bus_mock</a>
+               </li>
+               
+               <li >
+                  <a title="flow_service" href="api/runtime.flow_service/#start">flow_service</a>
+               </li>
+               
+               <li >
+                  <a title="flow_service_mock" href="api/testing.flow_service_mock/#start">flow_service_mock</a>
+               </li>
+               
+               <li >
+                  <a title="heartbeat" href="api/runtime.heartbeat/#start">heartbeat</a>
+               </li>
+               
+               <li >
+                  <a title="heartbeat_mock" href="api/testing.heartbeat_mock/#start">heartbeat_mock</a>
+               </li>
+               
+               <li >
+                  <a title="i18n_mock" href="api/testing.widget_services_i18n_mock/#start">i18n_mock</a>
+               </li>
+               
+               <li >
+                  <a title="laxar" href="api/laxar/#start">laxar</a>
+               </li>
+               
+               <li >
+                  <a title="laxar-widget-service-mocks" href="api/laxar-widget-service-mocks/#start">laxar-widget-service-mocks</a>
+               </li>
+               
+               <li >
+                  <a title="log" href="api/runtime.log/#start">log</a>
+               </li>
+               
+               <li >
+                  <a title="log_mock" href="api/testing.log_mock/#start">log_mock</a>
+               </li>
+               
+               <li >
+                  <a title="navigo_router" href="api/runtime.navigo_router/#start">navigo_router</a>
+               </li>
+               
+               <li >
+                  <a title="object" href="api/utilities.object/#start">object</a>
+               </li>
+               
+               <li >
+                  <a title="pages" href="api/tooling.pages/#start">pages</a>
+               </li>
+               
+               <li >
+                  <a title="plain_adapter" href="api/runtime.plain_adapter/#start">plain_adapter</a>
+               </li>
+               
+               <li >
+                  <a title="storage" href="api/runtime.storage/#start">storage</a>
+               </li>
+               
+               <li >
+                  <a title="storage_mock" href="api/testing.storage_mock/#start">storage_mock</a>
+               </li>
+               
+               <li >
+                  <a title="string" href="api/utilities.string/#start">string</a>
+               </li>
+               
+               <li >
+                  <a title="tooling" href="api/tooling.tooling/#start">tooling</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services" href="api/runtime.widget_services/#start">widget_services</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_area_helper_mock" href="api/testing.widget_services_area_helper_mock/#start">widget_services_area_helper_mock</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_assets_mock" href="api/testing.widget_services_assets_mock/#start">widget_services_assets_mock</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_i18n" href="api/runtime.widget_services_i18n/#start">widget_services_i18n</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_storage_mock" href="api/testing.widget_services_storage_mock/#start">widget_services_storage_mock</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_visibility" href="api/runtime.widget_services_visibility/#start">widget_services_visibility</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_visibility_mock" href="api/testing.widget_services_visibility_mock/#start">widget_services_visibility_mock</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Contributing"
+               data-toggle="collapse"
+               data-target="#Contributing"
+               aria-expanded="false"
+               aria-controls="collapseExample">Contributing <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="Contributing">
+               
+               <li >
+                  <a title="LaxarJS Coding Styles" href="contributing/styleguide/#start">LaxarJS Coding Styles</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Manuals"
+               data-toggle="collapse"
+               data-target="#Manuals"
+               aria-expanded="false"
+               aria-controls="collapseExample">Manuals <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="Manuals">
+               
+               <li >
+                  <a title="Overview" href="manuals/#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="Assets and the Artifacts Bundle" href="manuals/asset_lookup/#start">Assets and the Artifacts Bundle</a>
+               </li>
+               
+               <li >
+                  <a title="Controls and Libraries" href="manuals/providing_controls/#start">Controls and Libraries</a>
+               </li>
+               
+               <li >
+                  <a title="Creating Themes" href="manuals/creating_themes/#start">Creating Themes</a>
+               </li>
+               
+               <li >
+                  <a title="Creating a Project from Scratch" href="manuals/project_from_scratch/#start">Creating a Project from Scratch</a>
+               </li>
+               
+               <li >
+                  <a title="Creating an Adapter for a new Widget Technology" href="manuals/adapters/#start">Creating an Adapter for a new Widget Technology</a>
+               </li>
+               
+               <li >
+                  <a title="Events and Publish-Subscribe" href="manuals/events/#start">Events and Publish-Subscribe</a>
+               </li>
+               
+               <li >
+                  <a title="Flow and Places" href="manuals/flow_and_places/#start">Flow and Places</a>
+               </li>
+               
+               <li >
+                  <a title="Infrastructure and Tools" href="manuals/infrastructure_and_tools/#start">Infrastructure and Tools</a>
+               </li>
+               
+               <li >
+                  <a title="Installing Controls" href="manuals/installing_controls/#start">Installing Controls</a>
+               </li>
+               
+               <li >
+                  <a title="Installing Third Party Widgets" href="manuals/installing_widgets/#start">Installing Third Party Widgets</a>
+               </li>
+               
+               <li >
+                  <a title="Internationalizing a Widget" href="manuals/i18n/#start">Internationalizing a Widget</a>
+               </li>
+               
+               <li >
+                  <a title="LaxarJS Configuration in an Application" href="manuals/configuration/#start">LaxarJS Configuration in an Application</a>
+               </li>
+               
+               <li >
+                  <a title="The <code>&quot;plain&quot;</code> Integration Technology" href="manuals/plain_adapter/#start">The <code>&quot;plain&quot;</code> Integration Technology</a>
+               </li>
+               
+               <li >
+                  <a title="Upgrading LaxarJS" href="manuals/upgrade_guide/#start">Upgrading LaxarJS</a>
+               </li>
+               
+               <li >
+                  <a title="Widget Services" href="manuals/widget_services/#start">Widget Services</a>
+               </li>
+               
+               <li >
+                  <a title="Widgets and Activities" href="manuals/widgets_and_activities/#start">Widgets and Activities</a>
+               </li>
+               
+               <li >
+                  <a title="Working with Visibility Events" href="manuals/visibility_events/#start">Working with Visibility Events</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Compositions" href="manuals/writing_compositions/#start">Writing Compositions</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Pages" href="manuals/writing_pages/#start">Writing Pages</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<h1 id="laxarjs">LaxarJS <a href="https://travis-ci.org/LaxarJS/laxar"><img alt="Build Status" src="https://travis-ci.org/LaxarJS/laxar.svg?branch=master" /></a></h1>
+<blockquote>
+<p><em>Middleware for your web client:</em> Create maintainable applications from small, isolated parts.</p>
+</blockquote>
+<p><span class="laxar-external-documentation-hint">
+   Take a look at the <a href="https://www.laxarjs.org/docs/laxar-latest/">documentation site</a> to browse documentation for all releases of this artifact.
+</span></p>
+<h2 id="why-laxarjs">Why LaxarJS?</h2>
+<p>Find out <a href="why_laxar/">why</a> you would use LaxarJS and if it's the right tool for you.
+Then, explore the <a href="concepts/">core concepts</a> and browse the <a href="manuals/">manuals</a> in the <a href="">documentation</a>.
+Also, there is a <a href="glossary/">glossary</a> where you can lookup individual concepts, and a <a href="troubleshooting/">troubleshooting guide</a> there for you if you need it.</p>
+<p>Have a look at the <a href="http://laxarjs.org">LaxarJS website</a> for demos and more information.
+<span class="laxar-external-documentation-hint">
+   Take a look at the <a href="http://www.laxarjs.org/docs/laxar-latest">documentation site</a> to browse documentation for all releases.
+</span></p>
+<h2 id="getting-started">Getting Started</h2>
+<p>Here are the basic instructions to get started.</p>
+<h3 id="requirements">Requirements</h3>
+<p>On your <em>development machine</em>, make sure that you have Node.js v6 or above (v4 might work, but there is no support).</p>
+<p>Users of your application will need to have the following <em>browser capabilities:</em></p>
+<ul>
+<li>native ES5 support (no polyfills: MSIE &lt; 9 is <em>not</em> supported)</li>
+<li>
+<p>Support for the following ES6 features (native or polyfilled):</p>
+<ul>
+<li>Promise, Fetch</li>
+<li>Array.from, Array.prototype.includes</li>
+<li>Object.assign</li>
+</ul>
+</li>
+</ul>
+<p>Modern browsers have support for all of these, but polyfills for the listed ES6 features can be obtained by simply loading the LaxarJS polyfills bundle (<code>dist/polyfills.js</code>) using a script tag, before loading anything else.
+When using the generator (next step), your project will be setup for use with polyfills automatically.</p>
+<h3 id="using-the-generator">Using the Generator</h3>
+<p>Use the  <a href="https://laxarjs.org/docs/generator-laxarjs2-latest/">generator-laxarjs2</a> for the <a href="http://yeoman.io/">Yeoman</a> scaffolding tool to get started:</p>
+<div class="codehilite"><pre><span></span><span class="go">npm install -g yo generator-laxarjs2</span>
+<span class="go">mkdir my-app</span>
+<span class="go">cd my-app</span>
+<span class="go">yo laxarjs2</span>
+</pre></div>
+
+
+<p>This will guide you through a couple of prompts in order to create your first application.
+There is a <a href="https://github.com/LaxarJS/shop-demo/blob/master-2.x/docs/tutorials/01_getting_started.md#getting-started">step-by-step tutorial</a> containing a more detailed example.</p>
+<h2 id="manual-setup">Manual Setup</h2>
+<p>Using the generator is the recommended way of creating a LaxarJS application.
+However, knowledge about the <em>manual</em> project setup process is useful for a better understanding of LaxarJS and may help in some advanced use cases, such as <a href="manuals/upgrade_guide/">migrating</a> a project from a previous major version.</p>
+<p>There are detailed <a href="manuals/project_from_scratch/">instructions to create a project from scratch</a>.</p>
+<h3 id="hacking-laxarjs-itself">Hacking LaxarJS itself</h3>
+<p>Instead of using the compiled library within a project, you can also clone this repository:</p>
+<div class="codehilite"><pre><span></span><span class="go">git clone https://github.com/LaxarJS/laxar.git</span>
+<span class="go">cd laxar</span>
+<span class="go">npm install</span>
+</pre></div>
+
+
+<p>To see changes in your application, either configure your project to work with the sources (e.g. by configuring a webpack alias), or <em>rebuild the bundles</em>:</p>
+<div class="codehilite"><pre><span></span><span class="go">npm run dist</span>
+</pre></div>
+
+
+<p>To run the <em>automated tests</em>:</p>
+<div class="codehilite"><pre><span></span><span class="go">npm test</span>
+</pre></div>
+
+
+<p>To generate HTML test runners for opening in your web browser, so that you can e.g. use the browser's developer tools for diagnostics:</p>
+<div class="codehilite"><pre><span></span><span class="go">npm start</span>
+</pre></div>
+
+
+<p>Now you can select a spec-runner by browsing to http://localhost:8080/dist/lib/.</p></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="./../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="./../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="./../laxar.theme/js/base.js"></script>
+   </body>
+</html>

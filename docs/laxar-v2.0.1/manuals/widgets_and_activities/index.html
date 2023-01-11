@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../laxar.theme/img/favicon.ico">
+        <title>LaxarJS  v2.0.1</title>
+
+        <link rel="stylesheet" href="../../../laxar.theme/css/pygments.css">
+        <link href="../../../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="../../../laxar-latest">laxar</a></li>
+            
+            <li><a href="../../../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="../../../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="../../../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="../../../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="../../../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="../../../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="../../../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="../../../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="../../../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="../../../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="../../../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="../../../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v2.0.1 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="../../../laxar-v2-latest">v2.0.3</a></li>
+            
+               <li><a href="../../../laxar-v1-latest">v1.3.5</a></li>
+            
+               <li><a href="../../../laxar-v0-latest">v0.26.2</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="../../../laxar-v2.0.3">v2.0.3</a></li>
+         
+            <li><a href="../../../laxar-v2.0.2">v2.0.2</a></li>
+         
+            <li><a href="../../../laxar-v2.0.1">v2.0.1</a></li>
+         
+            <li><a href="../../../laxar-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="../../../laxar-v1.3.5">v1.3.5</a></li>
+         
+            <li><a href="../../../laxar-v1.3.4">v1.3.4</a></li>
+         
+            <li><a href="../../../laxar-v1.3.3">v1.3.3</a></li>
+         
+            <li><a href="../../../laxar-v1.3.2">v1.3.2</a></li>
+         
+            <li><a href="../../../laxar-v1.3.1">v1.3.1</a></li>
+         
+            <li><a href="../../../laxar-v1.3.0">v1.3.0</a></li>
+         
+            <li><a href="../../../laxar-v1.2.10">v1.2.10</a></li>
+         
+            <li><a href="../../../laxar-v1.2.9">v1.2.9</a></li>
+         
+            <li><a href="../../../laxar-v1.2.8">v1.2.8</a></li>
+         
+            <li><a href="../../../laxar-v1.2.7">v1.2.7</a></li>
+         
+            <li><a href="../../../laxar-v1.2.6">v1.2.6</a></li>
+         
+            <li><a href="../../../laxar-v1.2.5">v1.2.5</a></li>
+         
+            <li><a href="../../../laxar-v1.2.4">v1.2.4</a></li>
+         
+            <li><a href="../../../laxar-v1.2.3">v1.2.3</a></li>
+         
+            <li><a href="../../../laxar-v1.2.2">v1.2.2</a></li>
+         
+            <li><a href="../../../laxar-v1.2.1">v1.2.1</a></li>
+         
+            <li><a href="../../../laxar-v1.2.0">v1.2.0</a></li>
+         
+            <li><a href="../../../laxar-v1.1.0">v1.1.0</a></li>
+         
+            <li><a href="../../../laxar-v1.0.5">v1.0.5</a></li>
+         
+            <li><a href="../../../laxar-v1.0.4">v1.0.4</a></li>
+         
+            <li><a href="../../../laxar-v1.0.3">v1.0.3</a></li>
+         
+            <li><a href="../../../laxar-v1.0.2">v1.0.2</a></li>
+         
+            <li><a href="../../../laxar-v1.0.1">v1.0.1</a></li>
+         
+            <li><a href="../../../laxar-v1.0.0">v1.0.0</a></li>
+         
+            <li><a href="../../../laxar-v0.26.2">v0.26.2</a></li>
+         
+            <li><a href="../../../laxar-v0.26.1">v0.26.1</a></li>
+         
+            <li><a href="../../../laxar-v0.26.0">v0.26.0</a></li>
+         
+            <li><a href="../../../laxar-v0.25.1">v0.25.1</a></li>
+         
+            <li><a href="../../../laxar-v0.25.0">v0.25.0</a></li>
+         
+            <li><a href="../../../laxar-v0.24.0">v0.24.0</a></li>
+         
+            <li><a href="../../../laxar-v0.23.3">v0.23.3</a></li>
+         
+            <li><a href="../../../laxar-v0.23.2">v0.23.2</a></li>
+         
+            <li><a href="../../../laxar-v0.23.1">v0.23.1</a></li>
+         
+            <li><a href="../../../laxar-v0.23.0">v0.23.0</a></li>
+         
+            <li><a href="../../../laxar-v0.22.2">v0.22.2</a></li>
+         
+            <li><a href="../../../laxar-v0.22.1">v0.22.1</a></li>
+         
+            <li><a href="../../../laxar-v0.22.0">v0.22.0</a></li>
+         
+            <li><a href="../../../laxar-v0.21.0">v0.21.0</a></li>
+         
+            <li><a href="../../../laxar-v0.20.1">v0.20.1</a></li>
+         
+            <li><a href="../../../laxar-v0.20.0">v0.20.0</a></li>
+         
+            <li><a href="../../../laxar-v0.19.1">v0.19.1</a></li>
+         
+            <li><a href="../../../laxar-v0.19.0">v0.19.0</a></li>
+         
+            <li><a href="../../../laxar-v0.18.2">v0.18.2</a></li>
+         
+            <li><a href="../../../laxar-v0.18.1">v0.18.1</a></li>
+         
+            <li><a href="../../../laxar-v0.18.0">v0.18.0</a></li>
+         
+            <li><a href="../../../laxar-v0.17.1">v0.17.1</a></li>
+         
+            <li><a href="../../../laxar-v0.17.0">v0.17.0</a></li>
+         
+            <li><a href="../../../laxar-v0.16.2">v0.16.2</a></li>
+         
+            <li><a href="../../../laxar-v0.16.1">v0.16.1</a></li>
+         
+            <li><a href="../../../laxar-v0.16.0">v0.16.0</a></li>
+         
+            <li><a href="../../../laxar-v0.15.0">v0.15.0</a></li>
+         
+            <li><a href="../../../laxar-v0.14.0">v0.14.0</a></li>
+         
+            <li><a href="../../../laxar-v0.13.3">v0.13.3</a></li>
+         
+            <li><a href="../../../laxar-v0.13.2">v0.13.2</a></li>
+         
+            <li><a href="../../../laxar-v0.13.1">v0.13.1</a></li>
+         
+            <li><a href="../../../laxar-v0.13.0">v0.13.0</a></li>
+         
+            <li><a href="../../../laxar-v0.12.1">v0.12.1</a></li>
+         
+            <li><a href="../../../laxar-v0.12.0">v0.12.0</a></li>
+         
+            <li><a href="../../../laxar-v0.11.1">v0.11.1</a></li>
+         
+            <li><a href="../../../laxar-v0.11.0">v0.11.0</a></li>
+         
+            <li><a href="../../../laxar-v0.10.1">v0.10.1</a></li>
+         
+            <li><a href="../../../laxar-v0.10.0">v0.10.0</a></li>
+         
+            <li><a href="../../../laxar-v0.9.11">v0.9.11</a></li>
+         
+            <li><a href="../../../laxar-v0.9.10">v0.9.10</a></li>
+         
+            <li><a href="../../../laxar-v0.9.9">v0.9.9</a></li>
+         
+            <li><a href="../../../laxar-v0.9.8">v0.9.8</a></li>
+         
+            <li><a href="../../../laxar-v0.9.7">v0.9.7</a></li>
+         
+            <li><a href="../../../laxar-v0.9.6">v0.9.6</a></li>
+         
+            <li><a href="../../../laxar-v0.9.5">v0.9.5</a></li>
+         
+            <li><a href="../../../laxar-v0.9.4">v0.9.4</a></li>
+         
+            <li><a href="../../../laxar-v0.9.3">v0.9.3</a></li>
+         
+            <li><a href="../../../laxar-v0.9.2">v0.9.2</a></li>
+         
+            <li><a href="../../../laxar-v0.9.1">v0.9.1</a></li>
+         
+            <li><a href="../../../laxar-v0.9.0">v0.9.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="../../CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar/tree/v2.0.1">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main"><a title="README" href="../..#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Concepts" href="../../concepts/#start">LaxarJS Concepts</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Glossary" href="../../glossary/#start">LaxarJS Glossary</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Troubleshooting" href="../../troubleshooting/#start">LaxarJS Troubleshooting</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="Why LaxarJS?" href="../../why_laxar/#start">Why LaxarJS?</a></li>
+         
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="API"
+               data-toggle="collapse"
+               data-target="#API"
+               aria-expanded="false"
+               aria-controls="collapseExample">API <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="API">
+               
+               <li >
+                  <a title="Overview" href="../../api/#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="adapter_utilities" href="../../api/runtime.adapter_utilities/#start">adapter_utilities</a>
+               </li>
+               
+               <li >
+                  <a title="assert" href="../../api/utilities.assert/#start">assert</a>
+               </li>
+               
+               <li >
+                  <a title="browser" href="../../api/runtime.browser/#start">browser</a>
+               </li>
+               
+               <li >
+                  <a title="configuration" href="../../api/runtime.configuration/#start">configuration</a>
+               </li>
+               
+               <li >
+                  <a title="configuration_mock" href="../../api/testing.configuration_mock/#start">configuration_mock</a>
+               </li>
+               
+               <li >
+                  <a title="control_loader" href="../../api/loaders.control_loader/#start">control_loader</a>
+               </li>
+               
+               <li >
+                  <a title="event_bus" href="../../api/runtime.event_bus/#start">event_bus</a>
+               </li>
+               
+               <li >
+                  <a title="event_bus_mock" href="../../api/testing.event_bus_mock/#start">event_bus_mock</a>
+               </li>
+               
+               <li >
+                  <a title="flow_service" href="../../api/runtime.flow_service/#start">flow_service</a>
+               </li>
+               
+               <li >
+                  <a title="flow_service_mock" href="../../api/testing.flow_service_mock/#start">flow_service_mock</a>
+               </li>
+               
+               <li >
+                  <a title="heartbeat" href="../../api/runtime.heartbeat/#start">heartbeat</a>
+               </li>
+               
+               <li >
+                  <a title="heartbeat_mock" href="../../api/testing.heartbeat_mock/#start">heartbeat_mock</a>
+               </li>
+               
+               <li >
+                  <a title="i18n_mock" href="../../api/testing.widget_services_i18n_mock/#start">i18n_mock</a>
+               </li>
+               
+               <li >
+                  <a title="laxar" href="../../api/laxar/#start">laxar</a>
+               </li>
+               
+               <li >
+                  <a title="laxar-widget-service-mocks" href="../../api/laxar-widget-service-mocks/#start">laxar-widget-service-mocks</a>
+               </li>
+               
+               <li >
+                  <a title="log" href="../../api/runtime.log/#start">log</a>
+               </li>
+               
+               <li >
+                  <a title="log_mock" href="../../api/testing.log_mock/#start">log_mock</a>
+               </li>
+               
+               <li >
+                  <a title="navigo_router" href="../../api/runtime.navigo_router/#start">navigo_router</a>
+               </li>
+               
+               <li >
+                  <a title="object" href="../../api/utilities.object/#start">object</a>
+               </li>
+               
+               <li >
+                  <a title="pages" href="../../api/tooling.pages/#start">pages</a>
+               </li>
+               
+               <li >
+                  <a title="plain_adapter" href="../../api/runtime.plain_adapter/#start">plain_adapter</a>
+               </li>
+               
+               <li >
+                  <a title="storage" href="../../api/runtime.storage/#start">storage</a>
+               </li>
+               
+               <li >
+                  <a title="storage_mock" href="../../api/testing.storage_mock/#start">storage_mock</a>
+               </li>
+               
+               <li >
+                  <a title="string" href="../../api/utilities.string/#start">string</a>
+               </li>
+               
+               <li >
+                  <a title="tooling" href="../../api/tooling.tooling/#start">tooling</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services" href="../../api/runtime.widget_services/#start">widget_services</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_area_helper_mock" href="../../api/testing.widget_services_area_helper_mock/#start">widget_services_area_helper_mock</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_assets_mock" href="../../api/testing.widget_services_assets_mock/#start">widget_services_assets_mock</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_i18n" href="../../api/runtime.widget_services_i18n/#start">widget_services_i18n</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_storage_mock" href="../../api/testing.widget_services_storage_mock/#start">widget_services_storage_mock</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_visibility" href="../../api/runtime.widget_services_visibility/#start">widget_services_visibility</a>
+               </li>
+               
+               <li >
+                  <a title="widget_services_visibility_mock" href="../../api/testing.widget_services_visibility_mock/#start">widget_services_visibility_mock</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Contributing"
+               data-toggle="collapse"
+               data-target="#Contributing"
+               aria-expanded="false"
+               aria-controls="collapseExample">Contributing <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="Contributing">
+               
+               <li >
+                  <a title="LaxarJS Coding Styles" href="../../contributing/styleguide/#start">LaxarJS Coding Styles</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse ax-active" >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Manuals"
+               data-toggle="collapse"
+               data-target="#Manuals"
+               aria-expanded="false"
+               aria-controls="collapseExample">Manuals <span class="caret"></span></a>
+
+            <ul class="nav subnav in"
+               id="Manuals">
+               
+               <li >
+                  <a title="Overview" href="../#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="Assets and the Artifacts Bundle" href="../asset_lookup/#start">Assets and the Artifacts Bundle</a>
+               </li>
+               
+               <li >
+                  <a title="Controls and Libraries" href="../providing_controls/#start">Controls and Libraries</a>
+               </li>
+               
+               <li >
+                  <a title="Creating Themes" href="../creating_themes/#start">Creating Themes</a>
+               </li>
+               
+               <li >
+                  <a title="Creating a Project from Scratch" href="../project_from_scratch/#start">Creating a Project from Scratch</a>
+               </li>
+               
+               <li >
+                  <a title="Creating an Adapter for a new Widget Technology" href="../adapters/#start">Creating an Adapter for a new Widget Technology</a>
+               </li>
+               
+               <li >
+                  <a title="Events and Publish-Subscribe" href="../events/#start">Events and Publish-Subscribe</a>
+               </li>
+               
+               <li >
+                  <a title="Flow and Places" href="../flow_and_places/#start">Flow and Places</a>
+               </li>
+               
+               <li >
+                  <a title="Infrastructure and Tools" href="../infrastructure_and_tools/#start">Infrastructure and Tools</a>
+               </li>
+               
+               <li >
+                  <a title="Installing Controls" href="../installing_controls/#start">Installing Controls</a>
+               </li>
+               
+               <li >
+                  <a title="Installing Third Party Widgets" href="../installing_widgets/#start">Installing Third Party Widgets</a>
+               </li>
+               
+               <li >
+                  <a title="Internationalizing a Widget" href="../i18n/#start">Internationalizing a Widget</a>
+               </li>
+               
+               <li >
+                  <a title="LaxarJS Configuration in an Application" href="../configuration/#start">LaxarJS Configuration in an Application</a>
+               </li>
+               
+               <li >
+                  <a title="The <code>&quot;plain&quot;</code> Integration Technology" href="../plain_adapter/#start">The <code>&quot;plain&quot;</code> Integration Technology</a>
+               </li>
+               
+               <li >
+                  <a title="Upgrading LaxarJS" href="../upgrade_guide/#start">Upgrading LaxarJS</a>
+               </li>
+               
+               <li >
+                  <a title="Widget Services" href="../widget_services/#start">Widget Services</a>
+               </li>
+               
+               <li class="ax-active">
+                  <a title="Widgets and Activities" href="./#start">Widgets and Activities</a>
+               </li>
+               
+               <li >
+                  <a title="Working with Visibility Events" href="../visibility_events/#start">Working with Visibility Events</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Compositions" href="../writing_compositions/#start">Writing Compositions</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Pages" href="../writing_pages/#start">Writing Pages</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<h1 id="widgets-and-activities">Widgets and Activities</h1>
+<p><a href="../">« return to the manuals</a></p>
+<p>Widgets and activities are the <em>"work horse"</em> of any LaxarJS application.
+They make up the bulk of the user interface and provide all client-side application logic.</p>
+<p>Preliminary readings:</p>
+<ul>
+<li><a href="../../concepts/">LaxarJS Core Concepts</a></li>
+</ul>
+<p>If you are already familiar with widgets, and just need a refresher on the <code>widget.json</code> descriptor, skip to the <a href="#widget-descriptor-format">reference section</a> below.</p>
+<h2 id="widget-responsibilities">Widget Responsibilities</h2>
+<p>Before starting to implement your widget, take a moment to think and delineate its responsibilities.
+You can do this by phrasing the question: <em>What goal does this widget help the user to accomplish?</em>
+Are you thinking about a very broadly applicable, technical task such as <em>"allow the user to enter a date"</em> or <em>"allow the user to delete a data row"</em>?
+In this case you might want to implement this functionality as a <a href="../providing_controls/"><em>control</em></a> and use it <em>within</em> one or more of your widgets.</p>
+<p>Usually, widgets correspond to significant areas of the screen and are composed of multiple controls.
+They are built with a <em>specific user-goal</em> in mind, such as <em>"allow the user to book a flight"</em> or <em>"allow the user to review shopping cart contents"</em>.
+If widgets are made too small and too generic, page definitions will be confusing and the widget configuration options become unwieldy.
+As a rule of thumb, only very complex pages should contain more than a about a dozen widgets.
+And who wants to have very complex pages anyway?</p>
+<h3 id="when-to-use-activities">When to use Activities</h3>
+<p>Activities are <em>"invisible widgets"</em> that are used to <em>fetch and manage application resources</em>.
+Within the page, they may represent a REST API or a data store, fetching resources and performing relevant service calls (such as a form submission) upon action request.
+If you are familiar with AngularJS, you might recognize that activities perform a role similar to AngularJS <em>services</em>.
+The advantage over services is that using activities puts the <em>page author</em> in control over instantiation and configuration:
+Individual widget instances may each be connected to their own activity instance, or share an event bus topic with a single instance.</p>
+<p>Activities may also serve as a <em>mediator</em> between widgets that use mutually incompatible event vocabularies (such as different resource formats).
+This may happen when integrating a widget from a third party into an application.</p>
+<h3 id="integration-technologies">Integration Technologies</h3>
+<p>LaxarJS serves as a <em>middleware layer</em> that allows you to organize and connect isolated front end components to form an application.
+However, it has no say in how the individual widgets and their UI are implemented.
+Instead it tries to support you in using readily available frameworks such as React, Vue.JS and Angular.
+To integrate widgets that were created in different UI technologies, a piece of glue code is needed, the so-called <em>integration technology adapter</em>.</p>
+<p>The only adapter included with LaxarJS Core is the adapter for the integration technology <code>"plain"</code>, which does not rely on any specific framework, but leaves it up to the widget author to choose what (if any) supporting libraries should be loaded by the widget.
+There is a dedicated <a href="../plain_adapter/">manual on the <code>"plain"</code> adapter</a>.</p>
+<p>Another adapter offered by the LaxarJS project is the <a href="https://laxarjs.org/docs/laxar-angular-adapter-v2-latest/">laxar-angular-adapter</a> supporting the integration technology <code>"angular"</code>, meaning AngularJS v1.
+Because <code>"angular"</code> was the built-in technology for LaxarJS v1 and many developers are familiar with its basics, it is still used frequently throughout the examples in this documentation.</p>
+<h4 id="combining-integration-technologies">Combining Integration Technologies</h4>
+<p>You are encouraged to evaluate different integration technologies for use in your project, especially if you are starting from scratch
+For now, the LaxarJS project provides adapters for the technologies <a href="https://laxarjs.org/docs/laxar-vue-adapter-v2-latest/"><code>vue</code></a>, <a href="https://laxarjs.org/docs/laxar-angular-adapter-v2-latest/"><code>angular</code> (1)</a>, <a href="https://laxarjs.org/docs/laxar-react-adapter-v2-latest/"><code>react</code></a>,  and <a href="https://laxarjs.org/docs/laxar-angular2-adapter-v2-latest/"><code>angular2</code></a>.
+Once familiar with the basics, feel free to <a href="../adapters/">create your own adapter</a>.</p>
+<p>However, keep in mind that each integration technology adds to your overall application bundle size, impacting application load time and memory consumption.
+While mixing three view frameworks may be fine for an intranet application, online applications should generally aim for using a single integration technology, or maybe two technologies during a framework transition -- mobile users will thank you for it!
+Of course, <code>"plain"</code> is always free and does not weigh in here.
+Obviously, this should always be your first choice when implementing an activity.</p>
+<h2 id="how-to-create-a-widget">How to Create a Widget</h2>
+<p>The easiest way to create a widget is to use the <a href="http://laxarjs.org/docs/generator-laxarjs2-v2-latest/">LaxarJS 2 Yeoman generator</a>.
+Check out the <a href="../../">README</a> on how to obtain it, and how to use it for creating an application.</p>
+<p>To create a widget with the generator simply run the following in the root directory of your application:</p>
+<div class="codehilite"><pre><span></span>yo laxarjs2:widget
+</pre></div>
+
+
+<p>After answering all questions asked by the generator, the widget will be create in a sub-directory having its name, within the default directory for widgets (which is <code>application/widgets/</code>).
+For example, the sources for a widget named <code>shopping-cart-widget</code>, which is used as an example throughout this manual, can be found in the sub-directory <code>application/widgets/shopping-cart-widget</code>.</p>
+<p>Alternatively, it's possible to choose a different directory for the widget sources by creating that directory yourself and navigating there before calling the widget generator.
+Keep in mind however, that this directory has to be a sub-directory of the application directory, and that webpack needs to be configured to search for widgets there as well.
+To change the default widget root, you can create a file <code>laxar.config.js</code> in your application directory, and use the export <code>path.widgets</code> to override the widget root.
+Webpack will then try to load widgets from there instead of <code>application/widgets/</code>.
+Having multiple directories for widgets is possible by <a href="https://webpack.js.org/configuration/resolve/#resolve-modules">adding the relevant directories to the module resolution directories</a>, but this is out of scope of this manual.</p>
+<p>To create a widget in a custom directory, start by creating a sub-directory for your new widget within the LaxarJS application.
+The last component of the widget path is the so-called <em>widget directory</em>, which uses the name of the widget itself.
+The widget name must be unique throughout an application and should be written in lower case letters with components separated by dashes.
+Widget names always end in <code>-widget</code> whereas activities always end in <code>-activity</code>.</p>
+<p>To create the actual widget, run:</p>
+<div class="codehilite"><pre><span></span><span class="nb">cd</span> my-custom-widget-directory/shopping-cart-widget
+yo laxarjs2:widget
+</pre></div>
+
+
+<p>In the following steps, it is assumed that you used the widget name <em>shopping-cart-widget</em> as above.</p>
+<h3 id="widget-files">Widget Files</h3>
+<p>A newly created widget contains the following files:</p>
+<ul>
+<li><code>widget.json</code></li>
+</ul>
+<p>This <em>widget descriptor</em> contains meta-data about your widget that is used by the LaxarJS framework.
+  The descriptor contains the name of the widget and specifies both integration type (<code>"widget"</code> or <code>"activity"</code>) and integration technology (such as <code>"angular"</code>, <code>"react"</code> or <a href="#combining-integration-technologies">something else</a>).
+  Finally, the descriptor allows to describe <em>configuration options</em> of your widget features using a JSON schema, so that configuration will be validated automatically.</p>
+<ul>
+<li><code>shopping-cart-widget.js</code></li>
+</ul>
+<p>The <em>business logic</em> of your shopping cart (like calculating a total or changing item quantities) as a JavaScript module.
+  The precise contents of the widget module depend on the integration technology used by your widget.
+  Usually, it exports either a class constructor, or a plain factory function to create the widget instance.
+  When a widget is instantiated by the LaxarJS runtime, it is passed a set of <em>widget services</em> including the <em>event bus</em>, which allows for communication with other widget instances.</p>
+<p>Note that the file extension can also vary depending on the integration technology.
+  For example widgets written using the <code>"vue"</code> integration technology will have <code>.vue</code> as extension while <code>"react"</code> widgets will use <code>.jsx</code>.</p>
+<ul>
+<li><code>default.theme/shopping-cart-widget.html</code></li>
+</ul>
+<p>The <em>HTML template</em> defining the <em>appearance</em> of your widget.
+  Again, the integration technology determines the syntax that is supported in the template, or if the template is even integrated into the controller source file and hence not present at all.
+  When your widget is used on a page, LaxarJS will load this automatically and bind it to your widget controller's scope.
+  The <a href="http://getbootstrap.com/css/">Bootstrap CSS</a> classes are made available by the LaxarJS <em>default.theme</em> to facilitate uniform styling across widgets.
+  If Bootstrap does not suit you, feel free to use a different framework (or none at all) in <a href="../creating_themes/">your own theme</a>, but keep in mind that this limits opportunities for widget reuse.
+  Similarly to controllers, all widget templates will be bundled within a single JSON file when your application is packaged for release.</p>
+<ul>
+<li><code>default.theme/css/shopping-cart-widget.css</code></li>
+</ul>
+<p>Widget-specific <em>style definitions</em>.
+  Most of the time, your widget is fine just using CSS style definitions from the global application theme.
+  In this case, it can do completely without CSS folders.
+  Sometimes though, you have style definitions which are widget-specific (such as CSS animations) and should not be part of the global theme.
+  If your widget has its own CSS file, LaxarJS will include it within the CSS bundle when the widget is used in an application.</p>
+<ul>
+<li><code>package.json</code> <em>(optional)</em></li>
+</ul>
+<p>This file specifies the <em>dependencies</em> of your widget for use with <a href="http://npmjs.org/">npm</a>.
+  If you want to version and package you widget as a standalone component for use in multiple applications, this is the recommended way to describe the widget and its dependencies.</p>
+<ul>
+<li><code>webpack.config.js</code> <em>(optional)</em></li>
+</ul>
+<p>Webpack configuration for this widget.
+  The main purpose of webpack in a widget context is to help when <a href="#widget-files-for-testing">writing widget specs</a>, but it can also create a bundle of your widget and its own dependencies.</p>
+<p>LaxarJS supports to change the appearance of an existing widget by overriding its template or its CSS styles from within a custom <em>theme</em>.
+It is also possible to put shared style definitions (CSS classes and SCSS variables) as well as shared assets like fonts and images into that theme.
+To get started with some simple styling, you do not have to concern yourself with themes or SCSS.
+However they are very useful for adapting widgets to different applications and web sites.
+Read <a href="../creating_themes/">more about themes</a> once you are familiar with creating and using widgets.</p>
+<h3 id="widget-files-for-testing">Widget Files for Testing</h3>
+<p>The sub folder <code>spec</code> contains the widget spec test and, possibly associated resources.
+While we recommend writing tests for your widget, note that the spec folder is not required.
+None of these files are loaded during regular application runtime.</p>
+<ul>
+<li><code>spec/shopping-cart-widget.spec.js</code></li>
+</ul>
+<p>This should be a <a href="https://jasmine.github.io/2.5/introduction.html">Jasmine 2</a> spec test.
+  If you used the LaxarJS generator to setup your application including configuration for karma and webpack, this spec can be run on the command-line using <a href="http://karma-runner.github.io/1.0/index.html">karma</a>, or as an interactive HTML test in the browser, by using the <a href="https://github.com/LaxarJS/webpack-jasmine-html-runner-plugin">webpack-jasmine-html-runner-plugin</a>.</p>
+<p>For projects that were generated using the Yeoman generator for LaxarJS, you can start the karma test-runner for your widgets using <code>npm test</code>.</p>
+<h3 id="implementing-a-controller">Implementing a Controller</h3>
+<p>To write the controller for your widget, you will need to implement some business logic.
+For a very simple shopping cart this means</p>
+<ul>
+<li>
+<p>summing the contents of the cart</p>
+</li>
+<li>
+<p>increasing or decreasing the quantity of individual positions within the cart.</p>
+</li>
+</ul>
+<p>Throughout this example, we will be using the <code>angular</code> integration technology (AngularJS v1), as it is familiar to developers coming from LaxarJS v1.
+Different integration technologies should work in a similar fashion.
+For more information on the AngularJS integration, consult the <a href="https://laxarjs.org/docs/laxar-angular-adapter-v2-latest/">angular adapter documentation</a>.</p>
+<p>The Yeoman generator has already created an empty controller along with some AngularJS infrastructure (module and injections).
+For a shopping cart, <em>this</em> might be an appropriate starting implementation with some dummy data:</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">ng</span> <span class="nx">from</span> <span class="s1">&#39;angular&#39;</span><span class="p">;</span>
+
+<span class="nx">Controller</span><span class="p">.</span><span class="nx">$inject</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;$scope&#39;</span> <span class="p">];</span>
+<span class="kd">function</span> <span class="nx">Controller</span><span class="p">(</span> <span class="nx">$scope</span> <span class="p">)</span> <span class="p">{</span>
+   <span class="nx">$scope</span><span class="p">.</span><span class="nx">model</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="p">{</span> <span class="nx">label</span><span class="o">:</span> <span class="s1">&#39;Dairy Dreams&#39;</span><span class="p">,</span> <span class="nx">price</span><span class="o">:</span> <span class="mf">5.25</span><span class="p">,</span> <span class="nx">amount</span><span class="o">:</span> <span class="mi">1</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="nx">label</span><span class="o">:</span> <span class="s1">&#39;Milky Mocha&#39;</span><span class="p">,</span> <span class="nx">price</span><span class="o">:</span> <span class="mf">12.75</span><span class="p">,</span> <span class="nx">amount</span><span class="o">:</span> <span class="mi">3</span> <span class="p">},</span>
+      <span class="p">{</span> <span class="nx">label</span><span class="o">:</span> <span class="s1">&#39;Freezing Frappé&#39;</span><span class="p">,</span> <span class="nx">price</span><span class="o">:</span> <span class="mf">18.25</span><span class="p">,</span> <span class="nx">amount</span><span class="o">:</span> <span class="mi">1</span> <span class="p">}</span>
+   <span class="p">];</span>
+
+   <span class="nx">$scope</span><span class="p">.</span><span class="nx">increment</span> <span class="o">=</span> <span class="nx">item</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="o">++</span><span class="nx">item</span><span class="p">.</span><span class="nx">amount</span><span class="p">;</span>
+   <span class="p">};</span>
+
+   <span class="nx">$scope</span><span class="p">.</span><span class="nx">decrement</span> <span class="o">=</span> <span class="nx">item</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">item</span><span class="p">.</span><span class="nx">amount</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">item</span><span class="p">.</span><span class="nx">amount</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">);</span>
+   <span class="p">};</span>
+
+   <span class="nx">$scope</span><span class="p">.</span><span class="nx">total</span> <span class="o">=</span> <span class="nx">rows</span> <span class="p">=&gt;</span> <span class="nx">rows</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span>
+      <span class="p">(</span><span class="nx">total</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">total</span> <span class="o">+</span> <span class="nx">item</span><span class="p">.</span><span class="nx">price</span> <span class="o">*</span> <span class="nx">item</span><span class="p">.</span><span class="nx">amount</span><span class="p">,</span>
+      <span class="mi">0</span>
+   <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">ng</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span> <span class="s1">&#39;shoppingCartWidget&#39;</span><span class="p">,</span> <span class="p">[]</span> <span class="p">)</span>
+   <span class="p">.</span><span class="nx">controller</span><span class="p">(</span> <span class="s1">&#39;ShoppingCartWidgetController&#39;</span> <span class="p">).</span><span class="nx">name</span><span class="p">;</span>
+</pre></div>
+
+
+<p>The adapter for the integration technology <code>"angular"</code> makes it possible for a widget controller in LaxarJS to work just like any other AngularJS controller.
+Of course, things will get more interesting once you use the event bus to receive shopping cart contents from somewhere else, or to signal that an order should be placed.</p>
+<h3 id="creating-a-template">Creating a Template</h3>
+<p>The purpose of creating an HTML template is to provide your widget with an appearance on the screen.
+For anyone familiar with Bootstrap and AngularJS, most of this should not be a surprise:</p>
+<div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">h4</span> <span class="na">ng-bind-html</span><span class="o">=</span><span class="s">&quot;features.headline.htmlText&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;table&quot;</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">thead</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Beverage<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">th</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cart-amount&quot;</span><span class="p">&gt;</span>Price<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">th</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cart-price&quot;</span><span class="p">&gt;</span>Amount<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">thead</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">tfoot</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">th</span> <span class="na">colspan</span><span class="o">=</span><span class="s">&quot;3&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cart-price&quot;</span><span class="p">&gt;</span>{{ total( model ) }}<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">tfoot</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">ng-repeat</span><span class="o">=</span><span class="s">&quot;item in model&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>{{ item.label }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">td</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cart-amount&quot;</span><span class="p">&gt;</span>{{ item.amount }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">td</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cart-price&quot;</span><span class="p">&gt;</span>{{ item.price }}<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
+         <span class="p">&lt;</span><span class="nt">button</span> <span class="na">ng-click</span><span class="o">=</span><span class="s">&quot;decrement( item )&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-xs&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">i</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;fa fa-minus&quot;</span> <span class="p">/&gt;&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+         <span class="p">&lt;</span><span class="nt">button</span> <span class="na">ng-click</span><span class="o">=</span><span class="s">&quot;increment( item )&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-xs&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">i</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;fa fa-plus&quot;</span> <span class="p">/&gt;&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>Note that the LaxarJS runtime will wrap the DOM of each widget within a single DIV container.
+The scope of the template is the same as for the controller so that <code>model</code>, <code>decrement</code>, <code>increment</code> and <code>total</code> will be available upon template instantiation.
+The <code>features</code> property used within the headline comes from the <em>widget configuration</em>, which is described below.</p>
+<h3 id="adding-some-style">Adding Some Style</h3>
+<p>A widget may be styled using CSS, or its more fancy variants such as LESS or SCSS.
+To keep things simple, you can ignore SCSS and themes for now and simply write a CSS file for your widget, in our case under <code>default.theme/css/shopping-cart-widget.css</code>.
+Once you are familiar with the basics, read the article on <a href="../creating_themes/">creating themes</a> for more information.</p>
+<p>Thanks to Bootstrap CSS, this widget does not require a lot of fancy styling:</p>
+<div class="codehilite"><pre><span></span><span class="p">.</span><span class="nc">shopping-cart-widget</span> <span class="p">.</span><span class="nc">cart-amount</span><span class="o">,</span>
+<span class="p">.</span><span class="nc">shopping-cart-widget</span> <span class="p">.</span><span class="nc">cart-price</span> <span class="p">{</span>
+   <span class="k">text-align</span><span class="p">:</span> <span class="kc">right</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>For best encapsulation, selectors should be prefixed with the widget class (<code>.shopping-cart-widget</code>) as shown here.
+LaxarJS automatically adds this class to the widget container, so there is no need to specify it in the widget template.
+It is also recommended to prefix custom CSS classes as shown here (<code>cart-amount</code>, <code>cart-price</code>), just as you would prefix custom HTML elements or attributes.
+This makes widget styles more robust against changes in Bootstrap or other third party CSS.</p>
+<h3 id="configuration-options">Configuration Options</h3>
+<p>When looking at the template, you might have wondered where the <code>features.headline.htmlText</code> came from.
+This is a <em>feature configuration</em> option of our widget:
+We want to be able to control the headline text for each instance of our widget.
+For this reason, we specify a configuration option by adding a feature entry to the <code>widget.json</code>:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;shopping-cart-widget&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Allows Users to Review and Modify Purchase Items&quot;</span><span class="p">,</span>
+
+   <span class="nt">&quot;integration:&quot;</span> <span class="p">{</span>
+      <span class="nt">&quot;technology&quot;</span><span class="p">:</span> <span class="s2">&quot;angular&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;widget&quot;</span>
+   <span class="p">},</span>
+
+   <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;$schema&quot;</span><span class="p">:</span> <span class="s2">&quot;http://json-schema.org/draft-04/schema#&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;headline&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&quot;htmlText&quot;</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+                  <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;the HTML headline content&quot;</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>The <em>widget features</em> are a <a href="http://json-schema.org">JSON schema</a> document that is used by LaxarJS to verify pages.
+It contains a property for each configurable feature, and it also allows to specify default values as needed.
+This makes it easy to provide self-documenting customization options for your widget.</p>
+<p>Note that LaxarJS deviates from standard JSON schema in two respects:</p>
+<ul>
+<li>
+<p><code>"additionalProperties": false</code> is default for all schemas of <code>"type": "object"</code>
+  This helps to catch typing errors.</p>
+</li>
+<li>
+<p><code>"format"</code> allows for the LaxarJS specific value <code>"topic"</code>, and checks it to validate event topics.
+  See the <a href="../events/">manual on events</a> for details on event topic syntax.</p>
+</li>
+<li>
+<p>defaults for features (first level of widget/composition schema) are inferred if they are of type <code>"array"</code> or <code>"object"</code>.
+  This eliminates the need to repeat nested defaults on the feature-level.</p>
+</li>
+</ul>
+<p>Note that using schemas is <em>optional</em>:
+If a widget descriptor does not specify a schema, any configuration will be considered valid and passed to the widget controller, which can be useful for prototyping.
+However, it is strongly recommended to add a schema before releasing a widget or putting it into production, if only to <em>document</em> the available configuration.</p>
+<p>See the <a href="#reference">reference section</a> for a reference of the widget descriptor.</p>
+<h3 id="checking-out-the-result">Checking out the Result</h3>
+<p>Before we can take a look at the widget, we will need to integrate it into the page provided by the application template (<code>application/pages/page1.json</code>).</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;layout&quot;</span><span class="p">:</span> <span class="s2">&quot;one-column&quot;</span><span class="p">,</span>
+
+   <span class="nt">&quot;areas&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;activities&quot;</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="nt">&quot;header&quot;</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span>
+             <span class="nt">&quot;widget&quot;</span><span class="p">:</span> <span class="s2">&quot;shopping-cart-widget&quot;</span><span class="p">,</span>
+             <span class="nt">&quot;features&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;headline&quot;</span><span class="p">:</span> <span class="p">{</span>
+                   <span class="nt">&quot;htmlText&quot;</span><span class="p">:</span> <span class="s2">&quot;My Shopping Cart&quot;</span>
+                <span class="p">}</span>
+             <span class="p">}</span>
+          <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;footer&quot;</span><span class="p">:</span> <span class="p">[]</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>I you would like to know more, there is a dedicated manual to learn more about <a href="../writing_pages/">writing pages</a>.</p>
+<p>Now we can start the <em>webpack-dev-server</em> from the application root:</p>
+<div class="codehilite"><pre><span></span>npm install <span class="c1"># if you have not already</span>
+npm start
+</pre></div>
+
+
+<p>Navigate to <code>http://localhost:8080/debug.html</code> to admire the fruits of your labor:</p>
+<p><img alt="CartWidget" src="../widgets_and_activities/cart_widget.png" /></p>
+<p>Now that you have learned the basics in <em>creating</em> widgets, take a closer look at widget <em>testing.</em></p>
+<h2 id="testing-a-widget">Testing a Widget</h2>
+<p>One of the major goals of LaxarJS is to simplify the development <em>and testing</em> of isolated components.
+For this reason, a basic widget test has already been prepared when using <code>yo laxarjs2:widget</code>.</p>
+<h3 id="writing-spec-tests">Writing Spec-Tests</h3>
+<p>For testing widgets and activities in isolation, we recommend to use the library <a href="https://laxarjs.org/docs/laxar-mocks-v2-latest/">LaxarJS Mocks</a>, which allows to setup a test bed for widgets that were created in any integration technology.
+There you'll also find manuals and <a href="https://laxarjs.org/docs/laxar-mocks-v2-latest/manuals/introduction/">an introduction</a> on how to test widgets in isolation.</p>
+<h3 id="running-the-test">Running the Test</h3>
+<p>The <a href="https://laxarjs.org/docs/laxar-mocks-v2-latest/">LaxarJS Mocks Setup Instructions</a> explain how to run widget tests from the command line using karma, or interactively using a generated HTML test runner.
+Hopefully this makes it simple to set up continuous testing for your application.</p>
+<p><a name="reference"></a></p>
+<h2 id="laxarjs-widget-reference">LaxarJS Widget Reference</h2>
+<p>Building on top of the basics covered so far, sometimes it is helpful to know about all the options available to widget authors.
+This section covers the details of the widget specification format and the properties available on the <code>$scope</code> in case of an AngularJS widget.</p>
+<h3 id="widget-descriptor-format">Widget Descriptor Format</h3>
+<p>Each widget has a <code>widget.json</code> file which is also called <em>widget descriptor</em>.
+LaxarJS contains a <a href="../../../static/schemas/widget.json">widget schema definition</a> that defines the exact format of this file.
+These are the most important widget properties:</p>
+<ul>
+<li><code>name</code></li>
+</ul>
+<p>This required field contains the name of the widget, used to find its implementation module, template and stylesheet. The name must match the spelling and case of the module name (minus <code>.js</code> extension) exactly.</p>
+<ul>
+<li><code>description</code></li>
+</ul>
+<p>What this widget is about.
+  Ideally, this contains the main <em>user-goal</em> mentioned in the first section.</p>
+<ul>
+<li><code>integration</code></li>
+</ul>
+<p>An object with keys <code>type</code> and <code>technology</code> specifying whether this is an <code>activity</code> or a <code>widget</code>, and the technology the widget's controller is implemented in.
+  This was already explained <a href="#integration-technologies">above</a>.</p>
+<ul>
+<li><code>features</code></li>
+</ul>
+<p>The widget features.
+  This is an optional (but highly recommended) JSON schema object that documents the configurable widget features.
+  For each widget instance used on a page, LaxarJS will check the feature configuration of that instance against this schema.
+  This also allows to provide default values for configuration options.</p>
+<ul>
+<li><code>compatibility</code></li>
+</ul>
+<p>An optional list of new LaxarJS features that this widget is compatible with.
+  It allows individual widgets to <em>opt in</em> to breaking LaxarJS changes (similarly to the Python <em>import from future</em> construct), without harming widgets that do not yet support these changes.</p>
+<p>In the past, this was used to opt-in to a new event vocabulary.
+  Right now, there are no upcoming features to be activated here.</p>
+<ul>
+<li><code>controls</code></li>
+</ul>
+<p>An optional list of LaxarJS controls used by this widget.
+  Each control is represented by its path, which may either be relative to the controls-root (usually <code>application/controls</code> or resolvable by the module loader (webpack).
+  This allows the LaxarJS runtime to automatically load the modules and CSS styles associated with these controls whenever your widget is used.
+  Refer to <a href="../providing_controls/">Providing Controls</a> on loading user interface components and their resources in this manner.</p>
+<ul>
+<li><code>templateSource</code></li>
+</ul>
+<p>You can load the template from a different source in order to support a preprocessing syntax such as <a href="https://mustache.github.io/">Mustache</a> or <a href="https://pugjs.org/">pug</a>.
+  Simply set the <code>templateSource</code> to the respective path relative to the theme folder, such as <code>shopping-cart-widget.pug</code> and make sure that an appropriate (webpack) loader is installed.</p>
+<ul>
+<li><code>styleSource</code></li>
+</ul>
+<p>Instead of CSS you can also use <a href="http://sass-lang.com/">SCSS</a> or <a href="http://lesscss.org/">LESS</a>, by providing this entry in the <code>widget.json</code>, which must be a path within the theme-folder (for example <code>scss/shopping-cart-widget.scss</code>).
+  Make sure that you have a (webpack) loader installed to handle the file type of your choice.</p>
+<h3 id="widget-services">Widget Services</h3>
+<p>The widget controller has access to a set of injectable widget services, which are described in detail in the <a href="../widget_services/">manual on widget services</a>.</p>
+<p>When using the integration technology <code>"angular"</code>, these are passed as AngularJS controller injections, along with the AngularJS <code>$scope</code>.
+The LaxarJS <a href="https://laxarjs.org/docs/laxar-angular-adapter-v2-latest/">angular adapter</a> puts some additional properties on the scope that simplify writing templates and controller logic:</p>
+<ul>
+<li><code>$scope.features</code></li>
+</ul>
+<p>An alias to the <code>axFeatures</code> widget service injection, useful for (one-time) template bindings.</p>
+<ul>
+<li><code>$scope.eventBus</code></li>
+</ul>
+<p>An alias to the <code>axEventBus</code> widget service injection, for publish/subscribe interaction.</p>
+<ul>
+<li><code>$scope.widget.id</code>
+  A unique identifier for this widget within the page.
+  You can use it to generate unique DOM IDs, for example to connect <code>label</code> and <code>input</code> elements in an HTML form.</li>
+</ul>
+<p>In other integration technologies, an object with these helpers is made available through the <code>axContext</code> injection.</p></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="../../../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="../../../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="../../../laxar.theme/js/base.js"></script>
+   </body>
+</html>

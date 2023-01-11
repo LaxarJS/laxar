@@ -1,0 +1,104 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "LaxarJS UIKit is a collection of controls and base styles for LaxarJS widgets.", 
+            "title": "README"
+        }, 
+        {
+            "location": "/CHANGELOG/", 
+            "text": "Changelog\n\n\nLast Changes\n\n\nv0.21.0\n\n\n\n\n#94\n: axAffix: added missing require-configuration\n\n\n#93\n: default.theme: changed external encoding to \nutf-8\n\n        + NEW FEATURE: see ticket for details\n\n\n\n\nv0.20.0\n\n\n\n\n#91\n: axInput: fixed null-pointer in string length validation\n\n\n\n\n#90\n: axInput: added minimumLength validator for string values\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#92\n: axInput: decimalTruncation (variable length format)\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#88\n: default.theme: Fixed auto-prefixer configuration\n\n\n\n\n\n\nv0.19.0\n\n\n\n\n#87\n: axInput: Changed controller implementation to be compatible with AngularJS 1.3.\n\n\n#86\n: axInput: Fixed attaching multiple focusout handlers.\n\n\n#85\n: axInput: Fixed endless loop if grouping separator was set to empty.\n\n\n#84\n: axDatePicker: avoid unnecessary 404 requests for i18n \n\n\n#83\n: axDatePicker: performance: build calendar lazily \n\n\n#82\n: fix: removed console.log statement \n\n\n#81\n: axInput: performance: build tooltip lazily \n\n\n\n\nv0.18.0\n\n\n\n\n#79\n: refactoring: use \nlaxar.string\n instead of \nlaxar.text\n \n\n\n#78\n: axInput: be more strict when parsing dates\n\n\n\n\nv0.17.0\n\n\n\n\n\n\n#77\n: Added affix control\n  NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#73\n: Updated jQuery UI to 1.11.1 and removed touch punch.\n  BREAKING CHANGE: see ticket for details\n\n\n\n\n\n\nv0.16.0\n\n\n\n\n\n\n#76\n: Implemented directives for dynamic text truncation.\n  NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#74\n: DatePicker: Fixed support for ngReadonly and ngDisabled.\n\n\n\n\n#72\n: Styling: Updated font awesome (v4.2) and bootstrap (v3.2)\n\n\n#71\n: Styling DatePicker: Fixed color definitions.\n\n\n\n\nv0.15.0\n\n\n\n\n#67\n: Styling: refactored default.theme\n\n\n\n\n#69\n: layer: allowed prevention of scrolling the body when showing.\n  NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#68\n: fixed wrongly global assert in jshintrc.\n\n\n\n\n#66\n: fixed ont-size can change depending on disabled- or error-state \n\n\n#65\n: axAccordion: fixed unchecked call to $apply\n\n\n\n\nv0.14.0\n\n\n\n\n#60\n: portal, dom: deprecated dom.ensureRenderingAndApplyFunction and removed usage\n\n\n#64\n: tests: make sure PhantomJS is installed properly, before running spec tests.\n\n\n#63\n: Styling DatePicker: Highlighted current day\n\n\n#62\n: Styling: extend mixin to equal col height for different widths\n\n\n#61\n: axButtonList: fixed double click handling with debounce function\n\n\n\n\nv0.13.0\n\n\n\n\n#59\n: Fixed width of a single col in a row\n\n\n#58\n: Styling table: Fixed row selecton is not visible\n\n\n#57\n: Styling table: Added new table style (skeletal)\n\n\n\n\nv0.12.0\n\n\n\n\n#55\n: don't try to load \nwidget.json\n in laxar_uikit specs.\n\n\n#56\n: axConfirmButton: fixed initialization of html label\n\n\n#54\n: Styling confirm control: fixed unnecessary linebreak\n\n\n#53\n: Styling table: Refactored table cells with form elements\n\n\n#52\n: Styling buttons: refactored animation for busy state\n\n\n#51\n: Remove some obsolete NPM \ndevDependencies\n.\n\n\n#50\n: Removed expensive layout polling from axConfirmButton\n\n\n#49\n: Styling status classes: Refactored\n\n\n#48\n: Styling icons: customized icon size independent from font size\n\n\n#47\n: added missing require path mapping for jjv and jjve.\n\n\n\n\nv0.11.0\n\n\n\n\n#46\n: axDatePicker: Fixed wrong regional settings in Internet Explorer.\n\n\n#44\n: axInput: added support for checkboxes.\n\n\n#42\n: Styling global IE10: Fixed layout problems with input clear button\n\n\n#43\n: jshintrc: disabled enforcement of dot notation for object property access.\n\n\n#41\n: Styling table: Added border style support for sub rows\n\n\n#40\n: Styling table: Fixed vertical alignment of buttons in a table cell\n\n\n#39\n: Styling table: Fixed some variables can not be overwritten\n\n\n#38\n: axInput: fixed spec test in MSIE8\n\n\n#37\n: Added support for bootstrap table classes\n\n\n#36\n: axInput: documented configuration options under docs/manuals/configuration.md\n\n\n#35\n: Refactored third party dependencies\n\n\n\n\n#32\n: axInput: Allow to validate on focusout instead of on keypress\n  NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#34\n: Fixed \naxDatepicker\n, which was breaking MSIE8 by trying to set the type attribute.\n\n\n\n\n\n\nv0.10.0\n\n\n\n\n#33\n: Improved styling of an input field with an unit sign\n\n\n\n\n#31\n: Added new validation behavior: display of errors to the user can now be deferred.\n  NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#30\n: Fix relative json messages imports (workaround for bug in requirejs-json plugin)\n\n\n\n\n#29\n: Added additional css class to increase space between cols\n\n\n#28\n: Added additional css class for two column layout\n\n\n#27\n: axDatePicker now warns if yearRange is used without minDate and maxDate\n\n\n#26\n: Added new css class to add space between two rows\n\n\n#25\n: Updated font awesome (4.1)\n\n\n#24\n: Fixed incorrect col indent for nested layouts\n\n\n#23\n: Fixed datepicker on axInput with changing locale.\n\n\n#22\n: Fixed icons depends on position of class ax-icon- or fa- in attribute.\n\n\n#21\n: Reduce complexity to overwrite variables.\n\n\n#20\n: Fixed ax-error class should work for labels.\n\n\n#19\n: Made axInputRequired work for radio buttons.\n\n\n#18\n: Fixed handling of axInputMinimum and axInputMaximum for empty field.\n\n\n#16\n: Fixed handling of axInputRequire by triggering re-validation on change.\n\n\n#17\n: Fixed boostrap horizontal form is not compatible with laxar uikit grid.\n\n\n#15\n: Fixed incomplete refresh of $viewValue after format change.\n\n\n#14\n: Fixed selection required error message for select boxes.\n\n\n#13\n: Code formatting, added license for font-awesome and removed max-width for popovers.\n\n\n#12\n: Moved colors form default.theme to laxar_uikit\n\n\n#11\n: Fixed bootstrap limit of form-inline rules for view-ports.\n\n\n#9\n: Update Bower from ~1.2.8 to ~1.3.3.\n\n\n#8\n: The axInput control now respects the scope locale for on-focus formatting.\n\n\n#7\n: Fixed grid depends on position of class col-lg in attribute.\n\n\n#6\n: Now the margin-top for a button variant (sm, xs) will calculate depending on bootstrap variants.\n\n\n#5\n: Removed console.log statements from text-ellipsis control.\n\n\n#4\n: Fixed table style with form elements.\n\n\n#3\n: Fixed spelling in grid classes.\n\n\n#1\n: Fixed compass environment for execution from bower components.", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#changelog", 
+            "text": "", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#last-changes", 
+            "text": "", 
+            "title": "Last Changes"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0210", 
+            "text": "#94 : axAffix: added missing require-configuration  #93 : default.theme: changed external encoding to  utf-8 \n        + NEW FEATURE: see ticket for details", 
+            "title": "v0.21.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0200", 
+            "text": "#91 : axInput: fixed null-pointer in string length validation   #90 : axInput: added minimumLength validator for string values\n        + NEW FEATURE: see ticket for details    #92 : axInput: decimalTruncation (variable length format)\n        + NEW FEATURE: see ticket for details    #88 : default.theme: Fixed auto-prefixer configuration", 
+            "title": "v0.20.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0190", 
+            "text": "#87 : axInput: Changed controller implementation to be compatible with AngularJS 1.3.  #86 : axInput: Fixed attaching multiple focusout handlers.  #85 : axInput: Fixed endless loop if grouping separator was set to empty.  #84 : axDatePicker: avoid unnecessary 404 requests for i18n   #83 : axDatePicker: performance: build calendar lazily   #82 : fix: removed console.log statement   #81 : axInput: performance: build tooltip lazily", 
+            "title": "v0.19.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0180", 
+            "text": "#79 : refactoring: use  laxar.string  instead of  laxar.text    #78 : axInput: be more strict when parsing dates", 
+            "title": "v0.18.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0170", 
+            "text": "#77 : Added affix control\n  NEW FEATURE: see ticket for details    #73 : Updated jQuery UI to 1.11.1 and removed touch punch.\n  BREAKING CHANGE: see ticket for details", 
+            "title": "v0.17.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0160", 
+            "text": "#76 : Implemented directives for dynamic text truncation.\n  NEW FEATURE: see ticket for details    #74 : DatePicker: Fixed support for ngReadonly and ngDisabled.   #72 : Styling: Updated font awesome (v4.2) and bootstrap (v3.2)  #71 : Styling DatePicker: Fixed color definitions.", 
+            "title": "v0.16.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0150", 
+            "text": "#67 : Styling: refactored default.theme   #69 : layer: allowed prevention of scrolling the body when showing.\n  NEW FEATURE: see ticket for details    #68 : fixed wrongly global assert in jshintrc.   #66 : fixed ont-size can change depending on disabled- or error-state   #65 : axAccordion: fixed unchecked call to $apply", 
+            "title": "v0.15.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0140", 
+            "text": "#60 : portal, dom: deprecated dom.ensureRenderingAndApplyFunction and removed usage  #64 : tests: make sure PhantomJS is installed properly, before running spec tests.  #63 : Styling DatePicker: Highlighted current day  #62 : Styling: extend mixin to equal col height for different widths  #61 : axButtonList: fixed double click handling with debounce function", 
+            "title": "v0.14.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0130", 
+            "text": "#59 : Fixed width of a single col in a row  #58 : Styling table: Fixed row selecton is not visible  #57 : Styling table: Added new table style (skeletal)", 
+            "title": "v0.13.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0120", 
+            "text": "#55 : don't try to load  widget.json  in laxar_uikit specs.  #56 : axConfirmButton: fixed initialization of html label  #54 : Styling confirm control: fixed unnecessary linebreak  #53 : Styling table: Refactored table cells with form elements  #52 : Styling buttons: refactored animation for busy state  #51 : Remove some obsolete NPM  devDependencies .  #50 : Removed expensive layout polling from axConfirmButton  #49 : Styling status classes: Refactored  #48 : Styling icons: customized icon size independent from font size  #47 : added missing require path mapping for jjv and jjve.", 
+            "title": "v0.12.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0110", 
+            "text": "#46 : axDatePicker: Fixed wrong regional settings in Internet Explorer.  #44 : axInput: added support for checkboxes.  #42 : Styling global IE10: Fixed layout problems with input clear button  #43 : jshintrc: disabled enforcement of dot notation for object property access.  #41 : Styling table: Added border style support for sub rows  #40 : Styling table: Fixed vertical alignment of buttons in a table cell  #39 : Styling table: Fixed some variables can not be overwritten  #38 : axInput: fixed spec test in MSIE8  #37 : Added support for bootstrap table classes  #36 : axInput: documented configuration options under docs/manuals/configuration.md  #35 : Refactored third party dependencies   #32 : axInput: Allow to validate on focusout instead of on keypress\n  NEW FEATURE: see ticket for details    #34 : Fixed  axDatepicker , which was breaking MSIE8 by trying to set the type attribute.", 
+            "title": "v0.11.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0100", 
+            "text": "#33 : Improved styling of an input field with an unit sign   #31 : Added new validation behavior: display of errors to the user can now be deferred.\n  NEW FEATURE: see ticket for details    #30 : Fix relative json messages imports (workaround for bug in requirejs-json plugin)   #29 : Added additional css class to increase space between cols  #28 : Added additional css class for two column layout  #27 : axDatePicker now warns if yearRange is used without minDate and maxDate  #26 : Added new css class to add space between two rows  #25 : Updated font awesome (4.1)  #24 : Fixed incorrect col indent for nested layouts  #23 : Fixed datepicker on axInput with changing locale.  #22 : Fixed icons depends on position of class ax-icon- or fa- in attribute.  #21 : Reduce complexity to overwrite variables.  #20 : Fixed ax-error class should work for labels.  #19 : Made axInputRequired work for radio buttons.  #18 : Fixed handling of axInputMinimum and axInputMaximum for empty field.  #16 : Fixed handling of axInputRequire by triggering re-validation on change.  #17 : Fixed boostrap horizontal form is not compatible with laxar uikit grid.  #15 : Fixed incomplete refresh of $viewValue after format change.  #14 : Fixed selection required error message for select boxes.  #13 : Code formatting, added license for font-awesome and removed max-width for popovers.  #12 : Moved colors form default.theme to laxar_uikit  #11 : Fixed bootstrap limit of form-inline rules for view-ports.  #9 : Update Bower from ~1.2.8 to ~1.3.3.  #8 : The axInput control now respects the scope locale for on-focus formatting.  #7 : Fixed grid depends on position of class col-lg in attribute.  #6 : Now the margin-top for a button variant (sm, xs) will calculate depending on bootstrap variants.  #5 : Removed console.log statements from text-ellipsis control.  #4 : Fixed table style with form elements.  #3 : Fixed spelling in grid classes.  #1 : Fixed compass environment for execution from bower components.", 
+            "title": "v0.10.0"
+        }, 
+        {
+            "location": "/manuals/", 
+            "text": "return to index\n\n\nManuals\n\n\n\n\nConfiguration Options", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/manuals/#manuals", 
+            "text": "Configuration Options", 
+            "title": "Manuals"
+        }, 
+        {
+            "location": "/manuals/configuration/", 
+            "text": "return to the manuals\n\n\nLaxarJS UiKit Configuration Options\n\n\nThere are a few global configuration options to control the default behavior of certain \nLaxarJS UiKit\n controls in an application.\nFor details on configuration, see the \nLaxarJS Core\n \nhttps://github.com/LaxarJS/laxar/blob/master/docs/manuals/configuration.md\n.\n\n\nThe following options are available in \nLaxarJS UiKit\n:\n\n\n\n\n\n\n\n\nKey\n\n\nDefault\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nlib.laxar_uikit.controls.input.ngModelOptions.updateOn\n\n\n'default'\n\n\nThe LaxarJS \naxInput\n control implements the \nupdateOn\n property of the \nngModelOptions\n attribute which is expected to ship with AngularJS 1.3. It is a space-separated sequence of DOM-event names upon which to trigger a model update. The value \n'default'\n causes updates on \n'change'\n as well as on \n'focusout'\n. Can be overridden per-field using the \ndata-ng-model-options\n attribute.\n\n\n\n\n\n\nlib.laxar_uikit.controls.input.displayErrorsImmediately\n\n\ntrue\n*\n\n\nIf set to \ntrue\n, the \naxInput\n control will indicate validation errors to the user immediately upon creation. If set to \nfalse\n, validation will be indicated then the user has visited the field or when an \naxInput.validate\n event has been received by the control. Can be overridden per-field using the \ndata-ax-input-display-errors-immediately\n attribute.\n\n\n\n\n\n\n\n\n\n\nThe default is due to backwards compatibility. It may be changed in future major versions of \nLaxarJS UiKit\n, so it is recommended to set this option explicitly.", 
+            "title": "LaxarJS UiKit Configuration Options"
+        }, 
+        {
+            "location": "/manuals/configuration/#laxarjs-uikit-configuration-options", 
+            "text": "There are a few global configuration options to control the default behavior of certain  LaxarJS UiKit  controls in an application.\nFor details on configuration, see the  LaxarJS Core   https://github.com/LaxarJS/laxar/blob/master/docs/manuals/configuration.md .  The following options are available in  LaxarJS UiKit :     Key  Default  Description      lib.laxar_uikit.controls.input.ngModelOptions.updateOn  'default'  The LaxarJS  axInput  control implements the  updateOn  property of the  ngModelOptions  attribute which is expected to ship with AngularJS 1.3. It is a space-separated sequence of DOM-event names upon which to trigger a model update. The value  'default'  causes updates on  'change'  as well as on  'focusout' . Can be overridden per-field using the  data-ng-model-options  attribute.    lib.laxar_uikit.controls.input.displayErrorsImmediately  true *  If set to  true , the  axInput  control will indicate validation errors to the user immediately upon creation. If set to  false , validation will be indicated then the user has visited the field or when an  axInput.validate  event has been received by the control. Can be overridden per-field using the  data-ax-input-display-errors-immediately  attribute.      The default is due to backwards compatibility. It may be changed in future major versions of  LaxarJS UiKit , so it is recommended to set this option explicitly.", 
+            "title": "LaxarJS UiKit Configuration Options"
+        }
+    ]
+}

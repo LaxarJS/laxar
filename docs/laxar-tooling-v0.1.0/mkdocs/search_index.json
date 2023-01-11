@@ -1,0 +1,334 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "laxar-tooling \n\n\n\n\nA tool support library to inspect \nLaxarJS\n applications\n\n\n\n\nThis library serves as a central point to codify build-time knowledge of LaxarJS applications.\nUse it to add LaxarJS support to your build tool.\n\n\nCurrently \nlaxar-tooling\n serves three main purposes:\n\n\n\n\n\n\nartifactCollector\n: collect a list of artifacts (pages, layouts, themes, widgets,\n  controls) plus meta-information starting from the application's flow(s)\n\n\n\n\n\n\nresourceCollector\n: from this list, build a resource map compatible with LaxarJS'\n  \nfileResourceProvider\n\n\n\n\n\n\ndependencyCollector\n: generate a list of application dependencies (widgets,\n  controls) and their respective integration technologies from the artifacts list\n\n\n\n\n\n\nstylesheetCollector\n: collect stylesheets listed by the artifacts list and\n  corresponding to the themes in use\n\n\n\n\n\n\nInstallation\n\n\nFirst, make sure you are running NodeJS v4.0 or newer. After that, just install \nlaxar-tooling\n:\n\n\n$\n node -v\n\nv4.4.7\n\n\n$\n npm install --save laxar-tooling\n\n\n\n\n\nUsage\n\n\nRefer to the \nAPI documentation\n and/or real-world usage in \nlaxar-loader\n and \ngrunt-laxar\n\n(v2.0 and newer).", 
+            "title": "README"
+        }, 
+        {
+            "location": "/#laxar-tooling", 
+            "text": "A tool support library to inspect  LaxarJS  applications   This library serves as a central point to codify build-time knowledge of LaxarJS applications.\nUse it to add LaxarJS support to your build tool.  Currently  laxar-tooling  serves three main purposes:    artifactCollector : collect a list of artifacts (pages, layouts, themes, widgets,\n  controls) plus meta-information starting from the application's flow(s)    resourceCollector : from this list, build a resource map compatible with LaxarJS'\n   fileResourceProvider    dependencyCollector : generate a list of application dependencies (widgets,\n  controls) and their respective integration technologies from the artifacts list    stylesheetCollector : collect stylesheets listed by the artifacts list and\n  corresponding to the themes in use", 
+            "title": "laxar-tooling"
+        }, 
+        {
+            "location": "/#installation", 
+            "text": "First, make sure you are running NodeJS v4.0 or newer. After that, just install  laxar-tooling :  $  node -v v4.4.7  $  npm install --save laxar-tooling", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/#usage", 
+            "text": "Refer to the  API documentation  and/or real-world usage in  laxar-loader  and  grunt-laxar \n(v2.0 and newer).", 
+            "title": "Usage"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/", 
+            "text": "artifactCollector\n\n\nDetermine application artifacts by inspecting flow, pages and widgets.\n\n\nContents\n\n\nModule Members\n\n\n\n\ncreate\n\n\ngetResourcePaths\n\n\n\n\nTypes\n\n\n\n\nArtifactCollector\n\n\nArtifactCollector#collectArtifacts\n\n\nArtifactCollector#collectFlows\n\n\nArtifactCollector#collectPages\n\n\nArtifactCollector#collectWidgets\n\n\nArtifactCollector#collectControls\n\n\nArtifactCollector#collectThemes\n\n\nArtifactCollector#collectLayouts\n\n\n\n\n\n\n\n\nModule Members\n\n\ncreate( log, options )\n\n\nCreate an artifact collector instance.\n\n\nExample:\n\n\nconst collector = laxarTooling.artifactCollector.create( log, {\n   readJson: filename =\n new Promise( ( resolve, reject ) =\n {\n      fs.readFile( filename, ( err, contents ) =\n {\n         try {\n            err ? reject( err ) : resolve( JSON.parse( contents ) );\n         }\n         catch( err ) {\n            reject( err );\n         }\n      } );\n   } ),\n   projectPath: filename =\n path.relative( projectRoot, filename ),\n   projectRef: filename =\n path.relative( baseUrl, filename )\n} );\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nlog\n\n\nObject\n\n\na logger instance with at least a \nlog.error()\n method\n\n\n\n\n\n\noptions\n\n\nObject\n\n\nadditional options\n\n\n\n\n\n\noptions.fileContents\n\n\nObject\n\n\nan object mapping file paths (as returned by options.projectPath) to promises that resolve to the parsed JSON contents of the file\n\n\n\n\n\n\noptions.readJson\n\n\nFunction\n\n\na function accepting a file path as an argument and returning a promise that resolves to the parsed JSON contents of the file\n\n\n\n\n\n\noptions.projectPath\n\n\nFunction\n\n\na function resolving a given file path to something that can be read by the \nreadJson\n function and either returning it as a \nString\n or asynchronously as a \nPromise\n\n\n\n\n\n\noptions.projectRef\n\n\nFunction\n\n\na function returning a module name or path that can be \nrequire()\nd\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nArtifactCollector\n\n\nthe created artifact collector\n\n\n\n\n\n\n\n\ngetResourcePaths( themes, resourceType )\n\n\nGenerate a function that maps artifacts to resource paths (to watch, list or embed),\ntaking into account the available themes.\n\n\nNote: when asking for \nlist\n paths, \nembed\n paths will be included (embedding implies listing)!\nThis spares artifact developers from specifying embedded resources twice.\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nthemes\n\n\nArray.\nObject\n\n\na list of themes, each with a \nname\n property (e.g. \n'default.theme'\n)\n\n\n\n\n\n\nresourceType\n\n\nstring\n\n\nthe type of resource\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nFunction.\nstring, Array.\nstring\n\n\na function to provide the desired resource paths for the given artifact\n\n\n\n\n\n\n\n\nTypes\n\n\nArtifactCollector\n\n\nArtifactCollector#collectArtifacts( flowPaths, themeRefs )\n\n\nObtain artifact information asynchronously, starting from a set of flow definitions.\n\n\nExample:\n\n\ncollector.collectArtifacts( [ \npath/to/flow.json\n ] )\n   .then( artifacts =\n {\n      assert( Array.isArray( artifacts.flows ) );\n      assert( Array.isArray( artifacts.themes ) );\n      assert( Array.isArray( artifacts.pages ) );\n      assert( Array.isArray( artifacts.layouts ) );\n      assert( Array.isArray( artifacts.widgets ) );\n      assert( Array.isArray( artifacts.controls ) );\n   } );\n// =\n {\n//       flows: [ ... ],\n//       themes: [ ... ],\n//       pages: [ ... ],\n//       layouts: [ ... ],\n//       widgets: [ ... ],\n//       contros: [ ... ]\n//    }\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nflowPaths\n\n\nArray.\nString\n\n\na list of flows to follow to find all the pages reachable form the flow and their required artifacts\n\n\n\n\n\n\nthemeRefs\n\n\nArray.\nString\n\n\na list of themes to include in the artifacts\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nObject\n\n\nthe artifact listing with the keys \nflows\n, \nthemes\n, \npages\n, \nlayouts\n, \nwidgets\n and \ncontrols\n, of which each is an array of artifact objects\n\n\n\n\n\n\n\n\nArtifactCollector#collectFlows( flowPaths )\n\n\nAsynchronously collect all flows corresponding to the given paths.\n\n\nExample:\n\n\ncollector.collectFlows( [ \npath/to/flow.json\n ] )\n   .then( flows =\n {\n      assert( Array.isArray( flows ) );\n   } );\n// =\n [ {\n//       path: \npath/to/flow.json\n,\n//       resources: {\n//          watch: [ \n.\n ],\n//          embed: [ \n.\n ],\n//          list: []\n//       },\n//       references: {\n//          local: { self: \npath/to/flow.json\n }\n//       }\n//    } ]\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nflowPaths\n\n\nArray.\nString\n\n\na list of flow paths\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nArray\n\n\na promise for an array of flow-meta objects\n\n\n\n\n\n\n\n\nArtifactCollector#collectPages( flows )\n\n\nAsynchronously collect all pages that are reachable from the given list of flows.\n\n\nExample:\n\n\ncollector.collectPages( flows )\n   .then( pages =\n {\n      assert( Array.isArray( pages ) );\n   } );\n// =\n [ {\n//       path: \npath/to/page.json\n,\n//       resources: { ... },\n//       references: {\n//          local: { self: \nref/of/page\n }\n//       },\n//       pages: [ ... ],\n//       layouts: [ ... ],\n//       widgets: [ ... ],\n//    }, ... ]\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nflows\n\n\nArray.\nString\n\n\na list of flow artifacts as returned by \nArtifactCollector#collectFlows\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nArray\n\n\na promise for a combined array of page meta information for these flows\n\n\n\n\n\n\n\n\nArtifactCollector#collectWidgets( pages, themes )\n\n\nCollect meta information on all widget that are referenced from the given pages.\n\n\nExample:\n\n\ncollector.collectWidgets( pages, themes )\n   .then( widgets =\n {\n      assert( Array.isArray( widgets ) );\n   } );\n// =\n [ {\n//       path: \npath/to/widget\n,\n//       resources: { ... },\n//       references: {\n//          local: { self: \nref/of/widget\n },\n//          amd: { self: \nref/of/widget\n, module: \nref/of/widget/widget\n }\n//       },\n//       integration: {\n//          type: \n...\n,\n//          technology: \n...\n\n//       },\n//       controls: [ ... ]\n//    }, ... ]\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\npages\n\n\nArray\n\n\na list of page artifacts as returned by \nArtifactCollector#collectPages\n\n\n\n\n\n\nthemes\n\n\nArray\n\n\na list of theme artifacts as returned by \nArtifactCollector#collectThemes\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nArray\n\n\na promise for an array of meta-information about all reachable widgets\n\n\n\n\n\n\n\n\nArtifactCollector#collectControls( widgets, themes )\n\n\nCollect meta information on all controls that are referenced by the given widgets.\n\n\nExample:\n\n\ncollector.collectControls( widgets, themes )\n   .then( controls =\n {\n      assert( Array.isArray( controls ) );\n   } );\n// =\n [ {\n//       path: \npath/to/control\n,\n//       resources: { ... },\n//       references: {\n//          local: { self: \nref/of/control\n },\n//          amd: { self: \nref/of/control\n, module: \nref/of/control/control\n }\n//       },\n//       integration: {\n//          type: \n...\n,\n//          technology: \n...\n\n//       }\n//    }, ... ]\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nwidgets\n\n\nArray\n\n\na list of widget artifacts as returned by \nArtifactCollector#collectWidgets\n\n\n\n\n\n\nthemes\n\n\nArray\n\n\na list of theme artifacts as returned by \nArtifactCollector#collectThemes\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nArray\n\n\na promise for an array of meta-information about all reachable controls\n\n\n\n\n\n\n\n\nArtifactCollector#collectThemes( themeRefs )\n\n\nCollect meta information on the given themes.\n\n\nExample:\n\n\ncollector.collectThemes( themeRefs )\n   .then( themes =\n {\n      assert( Array.isArray( themes ) );\n   } );\n// =\n [ {\n//       path: \npath/to/my.theme\n,\n//       name: \nmy.theme\n,\n//       resources: { ... },\n//       references: { ... }\n//    }, {\n//       path: \npath/to/laxar-uikit/themes/default.theme\n,\n//       name: \ndefault.theme\n,\n//       resources: { ... },\n//       references: { ... }\n//    } ]\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nthemeRefs\n\n\nArray.\nString\n\n\na list of themes to include in the artifacts\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nArray\n\n\na promise for an array of meta-information about all themes\n\n\n\n\n\n\n\n\nArtifactCollector#collectLayouts( pages, themes )\n\n\nFinds layouts based on them being referenced in page areas.\n\n\nExample:\n\n\ncollector.collectLayouts( pages, themes )\n   .then( layouts =\n {\n      assert( Array.isArray( layouts ) );\n   } );\n// =\n [ {\n//       resources: { ... },\n//       references: {\n//          local: { self: \nref/of/layout\n }\n//       }\n//    }, ... ]\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\npages\n\n\nArray\n\n\na list of page artifacts as returned by \nArtifactCollector#collectPages\n\n\n\n\n\n\nthemes\n\n\nArray\n\n\na list of theme artifacts as returned by \nArtifactCollector#collectThemes\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nArray\n\n\na promise for an array of meta-information about all layouts", 
+            "title": "artifactCollector"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#artifactcollector", 
+            "text": "Determine application artifacts by inspecting flow, pages and widgets.", 
+            "title": "artifactCollector"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#contents", 
+            "text": "Module Members   create  getResourcePaths   Types   ArtifactCollector  ArtifactCollector#collectArtifacts  ArtifactCollector#collectFlows  ArtifactCollector#collectPages  ArtifactCollector#collectWidgets  ArtifactCollector#collectControls  ArtifactCollector#collectThemes  ArtifactCollector#collectLayouts", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#parameters", 
+            "text": "Property  Type  Description      log  Object  a logger instance with at least a  log.error()  method    options  Object  additional options    options.fileContents  Object  an object mapping file paths (as returned by options.projectPath) to promises that resolve to the parsed JSON contents of the file    options.readJson  Function  a function accepting a file path as an argument and returning a promise that resolves to the parsed JSON contents of the file    options.projectPath  Function  a function resolving a given file path to something that can be read by the  readJson  function and either returning it as a  String  or asynchronously as a  Promise    options.projectRef  Function  a function returning a module name or path that can be  require() d", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#returns", 
+            "text": "Type  Description      ArtifactCollector  the created artifact collector", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#parameters_1", 
+            "text": "Property  Type  Description      themes  Array. Object  a list of themes, each with a  name  property (e.g.  'default.theme' )    resourceType  string  the type of resource", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#returns_1", 
+            "text": "Type  Description      Function. string, Array. string  a function to provide the desired resource paths for the given artifact", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#types", 
+            "text": "", 
+            "title": "Types"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#parameters_2", 
+            "text": "Property  Type  Description      flowPaths  Array. String  a list of flows to follow to find all the pages reachable form the flow and their required artifacts    themeRefs  Array. String  a list of themes to include in the artifacts", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#returns_2", 
+            "text": "Type  Description      Promise. Object  the artifact listing with the keys  flows ,  themes ,  pages ,  layouts ,  widgets  and  controls , of which each is an array of artifact objects", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#parameters_3", 
+            "text": "Property  Type  Description      flowPaths  Array. String  a list of flow paths", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#returns_3", 
+            "text": "Type  Description      Promise. Array  a promise for an array of flow-meta objects", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#parameters_4", 
+            "text": "Property  Type  Description      flows  Array. String  a list of flow artifacts as returned by  ArtifactCollector#collectFlows", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#returns_4", 
+            "text": "Type  Description      Promise. Array  a promise for a combined array of page meta information for these flows", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#parameters_5", 
+            "text": "Property  Type  Description      pages  Array  a list of page artifacts as returned by  ArtifactCollector#collectPages    themes  Array  a list of theme artifacts as returned by  ArtifactCollector#collectThemes", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#returns_5", 
+            "text": "Type  Description      Promise. Array  a promise for an array of meta-information about all reachable widgets", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#parameters_6", 
+            "text": "Property  Type  Description      widgets  Array  a list of widget artifacts as returned by  ArtifactCollector#collectWidgets    themes  Array  a list of theme artifacts as returned by  ArtifactCollector#collectThemes", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#returns_6", 
+            "text": "Type  Description      Promise. Array  a promise for an array of meta-information about all reachable controls", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#parameters_7", 
+            "text": "Property  Type  Description      themeRefs  Array. String  a list of themes to include in the artifacts", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#returns_7", 
+            "text": "Type  Description      Promise. Array  a promise for an array of meta-information about all themes", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#parameters_8", 
+            "text": "Property  Type  Description      pages  Array  a list of page artifacts as returned by  ArtifactCollector#collectPages    themes  Array  a list of theme artifacts as returned by  ArtifactCollector#collectThemes", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/artifact_collector.js/#returns_8", 
+            "text": "Type  Description      Promise. Array  a promise for an array of meta-information about all layouts", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/dependency_collector.js/", 
+            "text": "dependencyCollector\n\n\nCreate a list of dependencies for the LaxarJS bootstrapping process.\n\n\nContents\n\n\nModule Members\n\n\n\n\ncreate\n\n\n- unknown -\n\n\n\n\nTypes\n\n\n\n\nDependencyCollector\n\n\nDependencyCollector#collectDependencies\n\n\n\n\n\n\n\n\nModule Members\n\n\ncreate( log, options )\n\n\nCreate a dependency collector instance.\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nlog\n\n\nObject\n\n\na logger instance with at least a \nlog.error()\n method.\n\n\n\n\n\n\noptions\n\n\nObject\n\n\nadditional options (currently unused).\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nDependencyCollector\n\n\nthe created dependency collector.\n\n\n\n\n\n\n\n\n- unknown -()\n\n\nlog, options\n\n\nTypes\n\n\nDependencyCollector\n\n\nDependencyCollector#collectDependencies( artifacts )\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nartifacts\n\n\nObject\n\n\nan artifacts listing as returned by \nArtifactCollector#collectArtifacts\n.\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nObject\n\n\nthe application dependencies from the given artifacts listing, grouped by integration technology", 
+            "title": "dependencyCollector"
+        }, 
+        {
+            "location": "/api/dependency_collector.js/#dependencycollector", 
+            "text": "Create a list of dependencies for the LaxarJS bootstrapping process.", 
+            "title": "dependencyCollector"
+        }, 
+        {
+            "location": "/api/dependency_collector.js/#contents", 
+            "text": "Module Members   create  - unknown -   Types   DependencyCollector  DependencyCollector#collectDependencies", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/dependency_collector.js/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/dependency_collector.js/#parameters", 
+            "text": "Property  Type  Description      log  Object  a logger instance with at least a  log.error()  method.    options  Object  additional options (currently unused).", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/dependency_collector.js/#returns", 
+            "text": "Type  Description      DependencyCollector  the created dependency collector.", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/dependency_collector.js/#types", 
+            "text": "", 
+            "title": "Types"
+        }, 
+        {
+            "location": "/api/dependency_collector.js/#parameters_1", 
+            "text": "Property  Type  Description      artifacts  Object  an artifacts listing as returned by  ArtifactCollector#collectArtifacts .", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/dependency_collector.js/#returns_1", 
+            "text": "Type  Description      Object  the application dependencies from the given artifacts listing, grouped by integration technology", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/file_reader.js/", 
+            "text": "fileReader\n\n\nHelper for reading and caching files.\n\n\nContents\n\n\nModule Members\n\n\n\n\ncreate\n\n\n\n\nModule Members\n\n\ncreate( log, fileContents )\n\n\nCreate a function to read files from the file system an cache the contents.\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nlog\n\n\nLogger\n\n\na logger to log messages in case of error\n\n\n\n\n\n\nfileContents\n\n\nObject\n\n\nthe object to cache file content promises in\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nFunction\n\n\na function that wraps \nfs.readFile\n and returns a \nPromise", 
+            "title": "fileReader"
+        }, 
+        {
+            "location": "/api/file_reader.js/#filereader", 
+            "text": "Helper for reading and caching files.", 
+            "title": "fileReader"
+        }, 
+        {
+            "location": "/api/file_reader.js/#contents", 
+            "text": "Module Members   create", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/file_reader.js/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/file_reader.js/#parameters", 
+            "text": "Property  Type  Description      log  Logger  a logger to log messages in case of error    fileContents  Object  the object to cache file content promises in", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/file_reader.js/#returns", 
+            "text": "Type  Description      Function  a function that wraps  fs.readFile  and returns a  Promise", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/json_reader.js/", 
+            "text": "jsonReader\n\n\nHelper for reading, parsing and caching JSON files.\n\n\nContents\n\n\nModule Members\n\n\n\n\ncreate\n\n\n\n\nModule Members\n\n\ncreate( log, fileContents )\n\n\nCreate a function to read files from the file system, parses them as JSON an cache the contents.\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nlog\n\n\nLogger\n\n\na logger to log messages in case of error\n\n\n\n\n\n\nfileContents\n\n\nObject\n\n\nthe object to cache file content promises in\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nFunction\n\n\na function that returns a \nPromise", 
+            "title": "jsonReader"
+        }, 
+        {
+            "location": "/api/json_reader.js/#jsonreader", 
+            "text": "Helper for reading, parsing and caching JSON files.", 
+            "title": "jsonReader"
+        }, 
+        {
+            "location": "/api/json_reader.js/#contents", 
+            "text": "Module Members   create", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/json_reader.js/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/json_reader.js/#parameters", 
+            "text": "Property  Type  Description      log  Logger  a logger to log messages in case of error    fileContents  Object  the object to cache file content promises in", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/json_reader.js/#returns", 
+            "text": "Type  Description      Function  a function that returns a  Promise", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/resource_collector.js/", 
+            "text": "resourceCollector\n\n\nCreate a resource map compatible with LaxarJS' \nFileResourceProvider\n.\n\n\nContents\n\n\nModule Members\n\n\n\n\ncreate\n\n\n\n\nTypes\n\n\n\n\nResourceCollector\n\n\nResourceCollector#collectResources\n\n\n\n\n\n\n\n\nModule Members\n\n\ncreate( log, options )\n\n\nCreate a resource collector instance.\n\n\nExample:\n\n\nconst collector = laxarTooling.resourceCollector.create( log, {\n   readFile: ( filename, encodig ) =\n new Promise( ( resolve, reject ) =\n {\n      fs.readFile( filename, encoding, ( err, contents ) =\n {\n         if( err ) {\n            reject( err );\n         }\n         else {\n            resolve( contents );\n         }\n      } );\n   } ),\n   fileExists: filename =\n new Promise( resolve =\n {\n      fs.access( filename, fs.F_OK, err =\n resolve( !err ) );\n   } )\n} );\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nlog\n\n\nObject\n\n\na logger instance with at least a \nlog.error()\n method\n\n\n\n\n\n\noptions\n\n\nObject\n\n\nadditional options\n\n\n\n\n\n\noptions.fileContents\n\n\nObject\n\n\nan object mapping file paths (as returned by options.projectPath) to promises that resolve to the raw contents of the file\n\n\n\n\n\n\noptions.readFile\n\n\nFunction\n\n\na function accepting a file path as an argument and returning a promise that resolves to the raw contents of the file (similar to \nfs.readFile()\n)\n\n\n\n\n\n\noptions.fileExists\n\n\nFunction\n\n\na function accepting a file path as an argument and returning a promise that resolves to either \ntrue\n or \nfalse\n depending on the existance of the given file (similar to the deprecated \nfs.exists()\n)\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nResourceCollector\n\n\nthe created resource collector\n\n\n\n\n\n\n\n\nTypes\n\n\nResourceCollector\n\n\nResourceCollector#collectResources( artifacts )\n\n\nCreate a resource map, representing directories as objects with the directory entries\nas keys and files as values. File contents can be embedded as strings or listed as\na truthy, non-string value (the number \n1\n).\n\n\nExample:\n\n\ncollector.collectResources( artifacts )\n   .then( resources =\n {\n      assert( typeof resources === \nobject\n );\n   } );\n// =\n {\n//       path: {\n//          to: {\n//             widget: {\n//                \ndefault.theme\n: {\n//                   css: { \nwidget.css\n: 1 },\n//                   \nwidget.html\n: \nb\n{{text}}\n/b\n\n//                },\n//                \nwidget.json\n: \n{name:\nwidget\n,...}\n\n//             },\n//             control: {\n//                \ndefault.theme\n: { css: { \ncontrol.css\n: 1 } },\n//                \ncontrol.json\n: \n{name:\ncontrol\n,...}\n\n//             }\n//          }\n//       }\n//    }\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nartifacts\n\n\nObject\n\n\nan artifacts listing as returned by \nArtifactCollector#collectArtifacts\n.\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nObject\n\n\nthe application resources required by the given artifacts listing", 
+            "title": "resourceCollector"
+        }, 
+        {
+            "location": "/api/resource_collector.js/#resourcecollector", 
+            "text": "Create a resource map compatible with LaxarJS'  FileResourceProvider .", 
+            "title": "resourceCollector"
+        }, 
+        {
+            "location": "/api/resource_collector.js/#contents", 
+            "text": "Module Members   create   Types   ResourceCollector  ResourceCollector#collectResources", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/resource_collector.js/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/resource_collector.js/#parameters", 
+            "text": "Property  Type  Description      log  Object  a logger instance with at least a  log.error()  method    options  Object  additional options    options.fileContents  Object  an object mapping file paths (as returned by options.projectPath) to promises that resolve to the raw contents of the file    options.readFile  Function  a function accepting a file path as an argument and returning a promise that resolves to the raw contents of the file (similar to  fs.readFile() )    options.fileExists  Function  a function accepting a file path as an argument and returning a promise that resolves to either  true  or  false  depending on the existance of the given file (similar to the deprecated  fs.exists() )", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/resource_collector.js/#returns", 
+            "text": "Type  Description      ResourceCollector  the created resource collector", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/resource_collector.js/#types", 
+            "text": "", 
+            "title": "Types"
+        }, 
+        {
+            "location": "/api/resource_collector.js/#parameters_1", 
+            "text": "Property  Type  Description      artifacts  Object  an artifacts listing as returned by  ArtifactCollector#collectArtifacts .", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/resource_collector.js/#returns_1", 
+            "text": "Type  Description      Promise. Object  the application resources required by the given artifacts listing", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/stylesheet_collector.js/", 
+            "text": "stylesheetCollector\n\n\nDetermine stylesheets by inspecting layouts, widgets and controls.\n\n\nContents\n\n\nModule Members\n\n\n\n\ncreate\n\n\n\n\nTypes\n\n\n\n\nStylesheetCollector\n\n\nStylesheetCollector#collectStylesheets\n\n\n\n\n\n\n\n\nModule Members\n\n\ncreate( log, options )\n\n\nCreate an stylesheet collector instance.\n\n\nconst collector = laxarTooling.stylesheetCollector.create( log, {\n   readFile: ( filename, encodig ) =\n new Promise( ( resolve, reject ) =\n {\n      fs.readFile( filename, encoding, ( err, contents ) =\n {\n         if( err ) {\n            reject( err );\n         }\n         else {\n            resolve( contents );\n         }\n      } );\n   } )\n} );\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nlog\n\n\nObject\n\n\na logger instance with at least a \nlog.error()\n method\n\n\n\n\n\n\noptions\n\n\nObject\n\n\nadditional options\n\n\n\n\n\n\noptions.fileContents\n\n\nObject\n\n\nan object mapping file paths (as returned by options.projectPath) to promises that resolve to the raw contents of the file\n\n\n\n\n\n\noptions.readFile\n\n\nFunction\n\n\na function accepting a file path as an argument and returning a promise that resolves to the raw contents of the file (similar to \nfs.readFile()\n)\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nStylesheetCollector\n\n\nthe created stylesheet collector.\n\n\n\n\n\n\n\n\nTypes\n\n\nStylesheetCollector\n\n\nStylesheetCollector#collectStylesheets( artifacts )\n\n\nCollect stylesheets required by the given artifacts.\n\n\nExample:\n\n\ncollector.collectStylesheets( artifacts )\n   .then( stylesheets =\n {\n      assert( typeof stylesheets === \nstring\n );\n   } );\n// =\n \n@charset \nutf-8\n;\\nbody {\\n...\n;\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nartifacts\n\n\nObject\n\n\nan artifacts listing as returned by \nArtifactCollector#collectArtifacts\n.\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nPromise.\nString\n\n\nthe stylesheets required by the given artifacts listing", 
+            "title": "stylesheetCollector"
+        }, 
+        {
+            "location": "/api/stylesheet_collector.js/#stylesheetcollector", 
+            "text": "Determine stylesheets by inspecting layouts, widgets and controls.", 
+            "title": "stylesheetCollector"
+        }, 
+        {
+            "location": "/api/stylesheet_collector.js/#contents", 
+            "text": "Module Members   create   Types   StylesheetCollector  StylesheetCollector#collectStylesheets", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/stylesheet_collector.js/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/stylesheet_collector.js/#parameters", 
+            "text": "Property  Type  Description      log  Object  a logger instance with at least a  log.error()  method    options  Object  additional options    options.fileContents  Object  an object mapping file paths (as returned by options.projectPath) to promises that resolve to the raw contents of the file    options.readFile  Function  a function accepting a file path as an argument and returning a promise that resolves to the raw contents of the file (similar to  fs.readFile() )", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/stylesheet_collector.js/#returns", 
+            "text": "Type  Description      StylesheetCollector  the created stylesheet collector.", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/stylesheet_collector.js/#types", 
+            "text": "", 
+            "title": "Types"
+        }, 
+        {
+            "location": "/api/stylesheet_collector.js/#parameters_1", 
+            "text": "Property  Type  Description      artifacts  Object  an artifacts listing as returned by  ArtifactCollector#collectArtifacts .", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/stylesheet_collector.js/#returns_1", 
+            "text": "Type  Description      Promise. String  the stylesheets required by the given artifacts listing", 
+            "title": "Returns"
+        }
+    ]
+}

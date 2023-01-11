@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../laxar.theme/img/favicon.ico">
+        <title>LaxarJS  v1.3.5</title>
+
+        <link rel="stylesheet" href="../../../laxar.theme/css/pygments.css">
+        <link href="../../../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="../../../laxar-latest">laxar</a></li>
+            
+            <li><a href="../../../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="../../../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="../../../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="../../../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="../../../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="../../../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="../../../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="../../../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="../../../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="../../../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="../../../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="../../../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v1.3.5 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="../../../laxar-v2-latest">v2.0.3</a></li>
+            
+               <li><a href="../../../laxar-v1-latest">v1.3.5</a></li>
+            
+               <li><a href="../../../laxar-v0-latest">v0.26.2</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="../../../laxar-v2.0.3">v2.0.3</a></li>
+         
+            <li><a href="../../../laxar-v2.0.2">v2.0.2</a></li>
+         
+            <li><a href="../../../laxar-v2.0.1">v2.0.1</a></li>
+         
+            <li><a href="../../../laxar-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="../../../laxar-v1.3.5">v1.3.5</a></li>
+         
+            <li><a href="../../../laxar-v1.3.4">v1.3.4</a></li>
+         
+            <li><a href="../../../laxar-v1.3.3">v1.3.3</a></li>
+         
+            <li><a href="../../../laxar-v1.3.2">v1.3.2</a></li>
+         
+            <li><a href="../../../laxar-v1.3.1">v1.3.1</a></li>
+         
+            <li><a href="../../../laxar-v1.3.0">v1.3.0</a></li>
+         
+            <li><a href="../../../laxar-v1.2.10">v1.2.10</a></li>
+         
+            <li><a href="../../../laxar-v1.2.9">v1.2.9</a></li>
+         
+            <li><a href="../../../laxar-v1.2.8">v1.2.8</a></li>
+         
+            <li><a href="../../../laxar-v1.2.7">v1.2.7</a></li>
+         
+            <li><a href="../../../laxar-v1.2.6">v1.2.6</a></li>
+         
+            <li><a href="../../../laxar-v1.2.5">v1.2.5</a></li>
+         
+            <li><a href="../../../laxar-v1.2.4">v1.2.4</a></li>
+         
+            <li><a href="../../../laxar-v1.2.3">v1.2.3</a></li>
+         
+            <li><a href="../../../laxar-v1.2.2">v1.2.2</a></li>
+         
+            <li><a href="../../../laxar-v1.2.1">v1.2.1</a></li>
+         
+            <li><a href="../../../laxar-v1.2.0">v1.2.0</a></li>
+         
+            <li><a href="../../../laxar-v1.1.0">v1.1.0</a></li>
+         
+            <li><a href="../../../laxar-v1.0.5">v1.0.5</a></li>
+         
+            <li><a href="../../../laxar-v1.0.4">v1.0.4</a></li>
+         
+            <li><a href="../../../laxar-v1.0.3">v1.0.3</a></li>
+         
+            <li><a href="../../../laxar-v1.0.2">v1.0.2</a></li>
+         
+            <li><a href="../../../laxar-v1.0.1">v1.0.1</a></li>
+         
+            <li><a href="../../../laxar-v1.0.0">v1.0.0</a></li>
+         
+            <li><a href="../../../laxar-v0.26.2">v0.26.2</a></li>
+         
+            <li><a href="../../../laxar-v0.26.1">v0.26.1</a></li>
+         
+            <li><a href="../../../laxar-v0.26.0">v0.26.0</a></li>
+         
+            <li><a href="../../../laxar-v0.25.1">v0.25.1</a></li>
+         
+            <li><a href="../../../laxar-v0.25.0">v0.25.0</a></li>
+         
+            <li><a href="../../../laxar-v0.24.0">v0.24.0</a></li>
+         
+            <li><a href="../../../laxar-v0.23.3">v0.23.3</a></li>
+         
+            <li><a href="../../../laxar-v0.23.2">v0.23.2</a></li>
+         
+            <li><a href="../../../laxar-v0.23.1">v0.23.1</a></li>
+         
+            <li><a href="../../../laxar-v0.23.0">v0.23.0</a></li>
+         
+            <li><a href="../../../laxar-v0.22.2">v0.22.2</a></li>
+         
+            <li><a href="../../../laxar-v0.22.1">v0.22.1</a></li>
+         
+            <li><a href="../../../laxar-v0.22.0">v0.22.0</a></li>
+         
+            <li><a href="../../../laxar-v0.21.0">v0.21.0</a></li>
+         
+            <li><a href="../../../laxar-v0.20.1">v0.20.1</a></li>
+         
+            <li><a href="../../../laxar-v0.20.0">v0.20.0</a></li>
+         
+            <li><a href="../../../laxar-v0.19.1">v0.19.1</a></li>
+         
+            <li><a href="../../../laxar-v0.19.0">v0.19.0</a></li>
+         
+            <li><a href="../../../laxar-v0.18.2">v0.18.2</a></li>
+         
+            <li><a href="../../../laxar-v0.18.1">v0.18.1</a></li>
+         
+            <li><a href="../../../laxar-v0.18.0">v0.18.0</a></li>
+         
+            <li><a href="../../../laxar-v0.17.1">v0.17.1</a></li>
+         
+            <li><a href="../../../laxar-v0.17.0">v0.17.0</a></li>
+         
+            <li><a href="../../../laxar-v0.16.2">v0.16.2</a></li>
+         
+            <li><a href="../../../laxar-v0.16.1">v0.16.1</a></li>
+         
+            <li><a href="../../../laxar-v0.16.0">v0.16.0</a></li>
+         
+            <li><a href="../../../laxar-v0.15.0">v0.15.0</a></li>
+         
+            <li><a href="../../../laxar-v0.14.0">v0.14.0</a></li>
+         
+            <li><a href="../../../laxar-v0.13.3">v0.13.3</a></li>
+         
+            <li><a href="../../../laxar-v0.13.2">v0.13.2</a></li>
+         
+            <li><a href="../../../laxar-v0.13.1">v0.13.1</a></li>
+         
+            <li><a href="../../../laxar-v0.13.0">v0.13.0</a></li>
+         
+            <li><a href="../../../laxar-v0.12.1">v0.12.1</a></li>
+         
+            <li><a href="../../../laxar-v0.12.0">v0.12.0</a></li>
+         
+            <li><a href="../../../laxar-v0.11.1">v0.11.1</a></li>
+         
+            <li><a href="../../../laxar-v0.11.0">v0.11.0</a></li>
+         
+            <li><a href="../../../laxar-v0.10.1">v0.10.1</a></li>
+         
+            <li><a href="../../../laxar-v0.10.0">v0.10.0</a></li>
+         
+            <li><a href="../../../laxar-v0.9.11">v0.9.11</a></li>
+         
+            <li><a href="../../../laxar-v0.9.10">v0.9.10</a></li>
+         
+            <li><a href="../../../laxar-v0.9.9">v0.9.9</a></li>
+         
+            <li><a href="../../../laxar-v0.9.8">v0.9.8</a></li>
+         
+            <li><a href="../../../laxar-v0.9.7">v0.9.7</a></li>
+         
+            <li><a href="../../../laxar-v0.9.6">v0.9.6</a></li>
+         
+            <li><a href="../../../laxar-v0.9.5">v0.9.5</a></li>
+         
+            <li><a href="../../../laxar-v0.9.4">v0.9.4</a></li>
+         
+            <li><a href="../../../laxar-v0.9.3">v0.9.3</a></li>
+         
+            <li><a href="../../../laxar-v0.9.2">v0.9.2</a></li>
+         
+            <li><a href="../../../laxar-v0.9.1">v0.9.1</a></li>
+         
+            <li><a href="../../../laxar-v0.9.0">v0.9.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="../../CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar/tree/v1.3.5">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main"><a title="README" href="../..#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+      
+         
+            <li class="main"><a title="LaxarJS Concepts" href="../../concepts/#start">LaxarJS Concepts</a></li>
+         
+      
+   
+      
+         
+            <li class="main"><a title="Why LaxarJS?" href="../../why_laxar/#start">Why LaxarJS?</a></li>
+         
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="API"
+               data-toggle="collapse"
+               data-target="#API"
+               aria-expanded="false"
+               aria-controls="collapseExample">API <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="API">
+               
+               <li >
+                  <a title="assert" href="../../api/assert.js/#start">assert</a>
+               </li>
+               
+               <li >
+                  <a title="axId" href="../../api/id.js/#start">axId</a>
+               </li>
+               
+               <li >
+                  <a title="axLayout" href="../../api/layout.js/#start">axLayout</a>
+               </li>
+               
+               <li >
+                  <a title="axRuntimeServices" href="../../api/runtime_services.js/#start">axRuntimeServices</a>
+               </li>
+               
+               <li >
+                  <a title="axWidgetArea" href="../../api/widget_area.js/#start">axWidgetArea</a>
+               </li>
+               
+               <li >
+                  <a title="configuration" href="../../api/configuration.js/#start">configuration</a>
+               </li>
+               
+               <li >
+                  <a title="controls_service" href="../../api/controls_service.js/#start">controls_service</a>
+               </li>
+               
+               <li >
+                  <a title="event_bus" href="../../api/event_bus.js/#start">event_bus</a>
+               </li>
+               
+               <li >
+                  <a title="file_resource_provider" href="../../api/file_resource_provider.js/#start">file_resource_provider</a>
+               </li>
+               
+               <li >
+                  <a title="flow" href="../../api/flow.js/#start">flow</a>
+               </li>
+               
+               <li >
+                  <a title="fn" href="../../api/fn.js/#start">fn</a>
+               </li>
+               
+               <li >
+                  <a title="i18n" href="../../api/i18n.js/#start">i18n</a>
+               </li>
+               
+               <li >
+                  <a title="log" href="../../api/log.js/#start">log</a>
+               </li>
+               
+               <li >
+                  <a title="object" href="../../api/object.js/#start">object</a>
+               </li>
+               
+               <li >
+                  <a title="storage" href="../../api/storage.js/#start">storage</a>
+               </li>
+               
+               <li >
+                  <a title="string" href="../../api/string.js/#start">string</a>
+               </li>
+               
+               <li >
+                  <a title="theme_manager" href="../../api/theme_manager.js/#start">theme_manager</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Contributing"
+               data-toggle="collapse"
+               data-target="#Contributing"
+               aria-expanded="false"
+               aria-controls="collapseExample">Contributing <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="Contributing">
+               
+               <li >
+                  <a title="LaxarJS Coding Styles" href="../../contributing/styleguide/#start">LaxarJS Coding Styles</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse ax-active" >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Manuals"
+               data-toggle="collapse"
+               data-target="#Manuals"
+               aria-expanded="false"
+               aria-controls="collapseExample">Manuals <span class="caret"></span></a>
+
+            <ul class="nav subnav in"
+               id="Manuals">
+               
+               <li >
+                  <a title="Overview" href="../#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="Assets and the FileResourceProvider" href="../asset_lookup/#start">Assets and the FileResourceProvider</a>
+               </li>
+               
+               <li >
+                  <a title="Configuration" href="../configuration/#start">Configuration</a>
+               </li>
+               
+               <li class="ax-active">
+                  <a title="Configuring RequireJS for Widgets and Controls" href="./#start">Configuring RequireJS for Widgets and Controls</a>
+               </li>
+               
+               <li >
+                  <a title="Controls and Libraries" href="../providing_controls/#start">Controls and Libraries</a>
+               </li>
+               
+               <li >
+                  <a title="Creating Themes" href="../creating_themes/#start">Creating Themes</a>
+               </li>
+               
+               <li >
+                  <a title="Creating an Adapter for a new Widget Technology" href="../adapters/#start">Creating an Adapter for a new Widget Technology</a>
+               </li>
+               
+               <li >
+                  <a title="Events and Publish-Subscribe" href="../events/#start">Events and Publish-Subscribe</a>
+               </li>
+               
+               <li >
+                  <a title="Flow and Places" href="../flow_and_places/#start">Flow and Places</a>
+               </li>
+               
+               <li >
+                  <a title="Infrastructure and Tools" href="../infrastructure_and_tools/#start">Infrastructure and Tools</a>
+               </li>
+               
+               <li >
+                  <a title="Installing Controls" href="../installing_controls/#start">Installing Controls</a>
+               </li>
+               
+               <li >
+                  <a title="Installing Third Party Widgets" href="../installing_widgets/#start">Installing Third Party Widgets</a>
+               </li>
+               
+               <li >
+                  <a title="Internationalizing a Widget" href="../i18n/#start">Internationalizing a Widget</a>
+               </li>
+               
+               <li >
+                  <a title="Widgets and Activities" href="../widgets_and_activities/#start">Widgets and Activities</a>
+               </li>
+               
+               <li >
+                  <a title="Working with Visibility Events" href="../visibility_events/#start">Working with Visibility Events</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Compositions" href="../writing_compositions/#start">Writing Compositions</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Pages" href="../writing_pages/#start">Writing Pages</a>
+               </li>
+               
+               <li >
+                  <a title="Writing Widget Controllers" href="../writing_widget_controllers/#start">Writing Widget Controllers</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<h1 id="configuring-requirejs-for-widgets-and-controls">Configuring RequireJS for Widgets and Controls</h1>
+<p><a href="../">« return to the manuals</a></p>
+<h2 id="the-need-for-configuration">The Need for Configuration</h2>
+<p>Widgets and Controls perform very different tasks and are of varying complexity.
+In many cases only the event bus is needed as communication interface and all logic is contained within the implementation of an artifact.</p>
+<p>Preliminary readings:</p>
+<ul>
+<li><a href="../widgets_and_activities/">Widgets and Activities</a></li>
+<li><a href="../infrastructure_and_tools/">Infrastructure and Tools</a></li>
+</ul>
+<p>However, sooner or later one will come to a point, where third party libraries are useful or even necessary for a widget or control, or where own code should be extracted into a separate library.
+When using such external dependencies, it is never a good idea to assume a specific location for it.
+Instead, a widget should add a dependency to an according <a href="http://requirejs.org/docs/whyamd.html#namedmodules">named module</a>, where the actual location of a module can then be configured independently by using the <a href="http://requirejs.org/docs/api.html">configuration API of RequireJS</a>.</p>
+<h2 id="the-one-file-fits-all-way">The One-File-Fits-All Way</h2>
+<p>The most common way to configure <em>RequireJS</em> is by adding all necessary entries to the <code>require_config.js</code> file within the root folder of the application.
+Everything configured there will be used when loading widget and control AMD modules.
+If, for example, a widget needs a special library to fulfill its task, this library can be configured as a module in there and the widget will have access to it via the normal AMD module definition syntax.</p>
+<p>Although this will work and may be sufficient for small projects where custom widgets are tightly coupled to the application, this adds complexity when attempting to share widgets or controls.
+In this case every developer who wants to use that artifact in his application, has to know about these requirements and adjust the <code>require_config.js</code> of his application accordingly.
+As if this isn't worse enough, over time this global configuration will grow and probably become a maintenance hell.</p>
+<h2 id="the-individual-way">The Individual Way</h2>
+<p>To solve this problem, <em>LaxarJS</em> supports placing <em>RequireJS</em> configuration locally within a widget or control directory.
+All configuration that is specific to an artifact and not already satisfied by the configuration of the application can then be placed there.
+Since <em>RequireJS</em> does not support this out-of-the-box, <em>LaxarJS</em> implements the support for distributed configuration itself during the build process.</p>
+<h3 id="how-it-works">How it works</h3>
+<p>The magic happens inside the <a href="https://github.com/LaxarJS/grunt-laxar">grunt-laxar</a> grunt tasks:
+Running the <code>laxar-build</code> task now also triggers running the <code>laxar-merge-require-config</code> task.
+This task walks through all widget and control directories reachable from a flow, collects all <code>require_config.js</code> files and merges them with the application specific <code>require_config.js</code> found in the root directory of the application.
+The result will be written under the folder for generated flow artifacts (e.g. <code>var/flows/main/require_config.js</code> for a flow called <em>main</em>).</p>
+<p>It is assumed that the configuration is saved as a global <code>require</code> variable within the <code>require_config.js</code>.</p>
+<p>For example:</p>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">require</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="nx">paths</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">marked</span><span class="o">:</span> <span class="s1">&#39;marked/lib/marked&#39;</span>
+   <span class="p">},</span>
+   <span class="nx">packages</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+         <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;URI&#39;</span><span class="p">,</span>
+         <span class="nx">location</span><span class="o">:</span> <span class="s1">&#39;URIjs/src&#39;</span><span class="p">,</span>
+         <span class="nx">main</span><span class="o">:</span> <span class="s1">&#39;URI&#39;</span>
+      <span class="p">}</span>
+   <span class="p">]</span>
+<span class="p">};</span>
+</pre></div>
+
+
+<p>This will <em>not</em> work:</p>
+<div class="codehilite"><pre><span></span><span class="nb">window</span><span class="p">.</span><span class="nx">require</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// this won&#39;t work ....</span>
+<span class="p">};</span>
+<span class="c1">// or</span>
+<span class="nx">require</span><span class="p">.</span><span class="nx">config</span><span class="p">(</span> <span class="p">{</span>
+   <span class="c1">// this won&#39;t work, too ...</span>
+<span class="p">}</span> <span class="p">);</span>
+</pre></div>
+
+
+<p>When merging the configuration the <code>require_config.js</code> found in the application root is used as starting point.
+Whenever in another configuration a <code>shim</code>, <code>deps</code> or <code>package</code> configuration is found, it is added to the resulting configuration.
+Already existing entries will not be overwritten.
+Hence the application always wins.</p>
+<p><code>paths</code> will be merged likewise, with the only difference, that a different path for an already configured module will be added as mapping under the path of the artifact.
+If for example the application configures the path for <code>underscore</code> as <code>underscore/dist/underscore</code> but the widget (which is for example located under <code>includes/widgets/category/my-widget</code>) defines <code>underscore</code> as <code>lodash/dist/lodash</code>, the following mapping will be added:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+   <span class="s1">&#39;map&#39;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s1">&#39;includes/widgets/category/my-widget&#39;</span> <span class="o">:</span> <span class="p">{</span>
+         <span class="s1">&#39;underscore&#39;</span><span class="o">:</span> <span class="s1">&#39;lodash/dist/lodash&#39;</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Everything under <code>map</code> in the artifact configuration will prefixed with the path to the artifact before adding it to the resulting configuration.
+This ensures it will only be enabled for the correct artifact.
+The result looks similar to the example for paths above.</p>
+<p>All other available <em>RequireJS</em> configuration will simply be added, if not set already.
+If e.g. <code>baseUrl</code> is defined in the <code>require_config.js</code> of the application, a value from a widget's <code>require_config.js</code> will be ignored.</p></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="../../../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="../../../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="../../../laxar.theme/js/base.js"></script>
+   </body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../laxar.theme/img/favicon.ico">
+        <title>LaxarJS Patterns  v1.1.1</title>
+
+        <link rel="stylesheet" href="../../../laxar.theme/css/pygments.css">
+        <link href="../../../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar-patterns <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="../../../laxar-latest">laxar</a></li>
+            
+            <li><a href="../../../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="../../../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="../../../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="../../../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="../../../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="../../../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="../../../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="../../../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="../../../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="../../../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="../../../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="../../../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v1.1.1 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="../../../laxar-patterns-v2-latest">v2.0.0</a></li>
+            
+               <li><a href="../../../laxar-patterns-v1-latest">v1.2.0</a></li>
+            
+               <li><a href="../../../laxar-patterns-v0-latest">v0.20.0</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="../../../laxar-patterns-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.2.0">v1.2.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.1.2">v1.1.2</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.1.1">v1.1.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.1.0">v1.1.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.0.1">v1.0.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v1.0.0">v1.0.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.20.0">v0.20.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.19.0">v0.19.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.18.1">v0.18.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.18.0">v0.18.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.17.0">v0.17.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.16.0">v0.16.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.15.0">v0.15.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.14.1">v0.14.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.14.0">v0.14.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.13.0">v0.13.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.12.1">v0.12.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.12.0">v0.12.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.11.1">v0.11.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.11.0">v0.11.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.10.1">v0.10.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.10.0">v0.10.0</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.9.2">v0.9.2</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.9.1">v0.9.1</a></li>
+         
+            <li><a href="../../../laxar-patterns-v0.9.0">v0.9.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="../../CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+                  
+               
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar-patterns/tree/v1.1.1">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main"><a title="README" href="../..#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+      
+         <li class="main ax-collapse ax-active" >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="API"
+               data-toggle="collapse"
+               data-target="#API"
+               aria-expanded="false"
+               aria-controls="collapseExample">API <span class="caret"></span></a>
+
+            <ul class="nav subnav in"
+               id="API">
+               
+               <li >
+                  <a title="actions" href="../actions.js/#start">actions</a>
+               </li>
+               
+               <li class="ax-active">
+                  <a title="errors" href="./#start">errors</a>
+               </li>
+               
+               <li >
+                  <a title="flags" href="../flags.js/#start">flags</a>
+               </li>
+               
+               <li >
+                  <a title="i18n" href="../i18n.js/#start">i18n</a>
+               </li>
+               
+               <li >
+                  <a title="json" href="../json.js/#start">json</a>
+               </li>
+               
+               <li >
+                  <a title="patches" href="../patches.js/#start">patches</a>
+               </li>
+               
+               <li >
+                  <a title="resources" href="../resources.js/#start">resources</a>
+               </li>
+               
+               <li >
+                  <a title="validation" href="../validation.js/#start">validation</a>
+               </li>
+               
+               <li >
+                  <a title="visibility" href="../visibility.js/#start">visibility</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Patterns"
+               data-toggle="collapse"
+               data-target="#Patterns"
+               aria-expanded="false"
+               aria-controls="collapseExample">Patterns <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="Patterns">
+               
+               <li >
+                  <a title="Action Patterns" href="../../patterns/actions/#start">Action Patterns</a>
+               </li>
+               
+               <li >
+                  <a title="Error Handling Patterns" href="../../patterns/errors/#start">Error Handling Patterns</a>
+               </li>
+               
+               <li >
+                  <a title="Flag Patterns" href="../../patterns/flags/#start">Flag Patterns</a>
+               </li>
+               
+               <li >
+                  <a title="Resource Patterns" href="../../patterns/resources/#start">Resource Patterns</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<h1 id="errors">errors</h1>
+<p>This module provides helpers for patterns regarding <em>didEncounterError</em> events.</p>
+<h2 id="contents">Contents</h2>
+<p><strong>Module Members</strong></p>
+<ul>
+<li><a href="#errorPublisherForFeature">errorPublisherForFeature</a></li>
+</ul>
+<h2 id="module-members">Module Members</h2>
+<h4 id="errorpublisherforfeature-scope-featurepath-options"><a name="errorPublisherForFeature"></a>errorPublisherForFeature( scope, featurePath, options )</h4>
+<p>Creates and returns a function to publish didEncounterError events related to a specific feature.
+Generated events will not be delivered to the sender.</p>
+<p>The returned publisher function takes these arguments:</p>
+<ul>
+<li><code>code</code>: a generic code that identifies the failing operation (such as 'HTTP_PUT', 'HTTP_GET')</li>
+<li><code>messagePath</code>: to lookup a human-readable message under this publisher's feature configuration</li>
+<li><code>data</code>: additional information to be used for substituting in the message, It should contain the
+  fields <code>resource</code> and <code>location</code> if applicable.</li>
+<li><code>cause</code>: more diagnostic information on the error's cause, such as the underlying HTTP status code</li>
+</ul>
+<h5 id="parameters">Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scope</td>
+<td><code>Object</code></td>
+<td>the scope the publisher works on</td>
+</tr>
+<tr>
+<td>featurePath</td>
+<td><code>String</code></td>
+<td>the configuration path for (i18n) error-messages to publish</td>
+</tr>
+<tr>
+<td><em>options</em></td>
+<td><code>Object</code></td>
+<td>an optional object with additional configuration</td>
+</tr>
+<tr>
+<td><em>options.localizer</em></td>
+<td><code>Function</code></td>
+<td>a function such as <code>i18nHandler.localize</code> to prepare messages</td>
+</tr>
+</tbody>
+</table>
+<h5 id="returns">Returns</h5>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Function</code></td>
+<td>a publisher function with four arguments as described above</td>
+</tr>
+</tbody>
+</table></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="../../../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="../../../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="../../../laxar.theme/js/base.js"></script>
+   </body>
+</html>

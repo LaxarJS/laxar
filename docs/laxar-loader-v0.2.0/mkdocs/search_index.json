@@ -1,0 +1,24 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "laxar-loader\n\n\n\n\nwebpack loader for LaxarJS\n\n\n\n\nExample\n\n\ninit.js\n:\n\n\nimport\n \nartifacts\n \nfrom\n \nlaxar-loader?flow=main\nthemes[]=cube\nthemes[]=default!./package.json\n;\n\n\n\n\n\n\nQuery options (aka the stuff after the \"?\")\n\n\n\n\n?flows\n or \n?flow\n: reference(s) to the flow(s) to bundle\n\n\n?themes\n or \n?theme\n: reference(s) to the theme(s) to bundle\n\n\n\n\nRefer to the \nwebpack documentation\n for details about the loader syntax.", 
+            "title": "README"
+        }, 
+        {
+            "location": "/#laxar-loader", 
+            "text": "webpack loader for LaxarJS", 
+            "title": "laxar-loader"
+        }, 
+        {
+            "location": "/#example", 
+            "text": "init.js :  import   artifacts   from   laxar-loader?flow=main themes[]=cube themes[]=default!./package.json ;", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/#query-options-aka-the-stuff-after-the", 
+            "text": "?flows  or  ?flow : reference(s) to the flow(s) to bundle  ?themes  or  ?theme : reference(s) to the theme(s) to bundle   Refer to the  webpack documentation  for details about the loader syntax.", 
+            "title": "Query options (aka the stuff after the \"?\")"
+        }
+    ]
+}

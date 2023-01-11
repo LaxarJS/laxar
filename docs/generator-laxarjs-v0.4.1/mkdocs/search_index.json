@@ -1,0 +1,94 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "LaxarJS generator\n\n\n\n\nA simple way to create LaxarJS applications and artifacts\n\n\n\n\nUsage\n\n\nFirst you have to install the node modules for \nyeoman\n:\n\n\nnpm install -g yo bower grunt-cli\n\n\n\n\n\nand then install the package with the LaxarJS generator:\n\n\nnpm install -g generator-laxarjs\n\n\n\n\n\nGenerators\n\n\nThe Yeoman generator \nlaxarjs\n comes up with the main generator for scaffolding an application and three sub generators for widgets, activities and controls.\n\n\nAvailable generators:\n\n\n\n\nlaxarjs\n\n\nlaxarjs:widget\n\n\nlaxarjs:activity\n\n\nlaxarjs:control\n\n\n\n\nApplication\n\n\nTo scaffold a new LaxarJS application, create a directory and run the generator:\n\n\nmkdir my-application\n\n\ncd my-application\n\n\nyo laxarjs\n\n\n\n\n\n\nAfter answering several questions, the generator creates the bare-bones application scaffolding for you.\nNow you can fetch your project's dependencies using \nnpm install\n and start the application development server by running \ngrunt laxar-develop\n.\n\n\nSub-Generators\n\n\nThe sub-generators expect a Yeoman configuration file \n.yo-rc.json\n in the root directory of the application.\nIf you created your application using the Yeoman generator as described above, a Yeoman configuration file was already created for you.\n\n\nIf the application has no Yeoman configuration file, just create one by running:\n\n\necho {} \n .yo-rc.json\n\n\n\n\n\n\nWidget\n\n\nTo generate the scaffold for a LaxarJS widget use the following command:\n\n\nyo laxarjs:widget\n\n\n\n\n\n\nThe generator creates the new widget in a directory named like the widget.\nIf the current directory is the root directory of the application, the generator places the new widget into the default directory for widgets, \nincludes/widgets\n.\nOtherwise, the widget scaffolding is created within the current directory.\n\n\nActivity\n\n\nTo generate the scaffolding for a LaxarJS activity use either the command\n\n\nyo laxarjs:activity\n\n\n\n\n\n\nor use the widget generator with the option \nactivity\n:\n\n\nyo laxarjs:widget --activity\n\n\n\n\n\n\nThe generator creates the new activity in a directory named like the activity, just as described above for widgets.\n\n\nControl\n\n\nTo generate the scaffolding for a LaxarJS control use the following command:\n\n\nyo laxarjs:control\n\n\n\n\n\n\nThe generator creates the new control in a directory named by the control.\nIf the current directory is the root directory of the application, the generator places the new widget into the default directory for controls, \nincludes/controls\n.\nOtherwise, a new directory with the scaffolding is created in the current directory.\n\n\nArguments and Options for Sub-Generators\n\n\nEach of the three sub-generators accepts the name for the artifact as an argument and the destination path as an option.\nThe following examples are for the widget generator but the others behave accordingly.\n\n\nYou can pass the name for a new widget as an argument from the command line:\n\n\nyo laxarjs:widget my-widget\n\n\n\n\n\n\nIn this case the generator creates the scaffold in the directory \nincludes/widgets/my-widget\n independently from the working directory.\n\n\nUsing the option \ndirectory\n, it is possible to change the destination.\nUsing this command, the generator creates the files in a directory named by the new widget in the directory \nincludes/widgets/destination\n:\n\n\nyo laxarjs:widget --directory=includes/widgets/destination\n\n\n\n\n\n\nIt is possible to set the directory option \nand\n pass the name as argument:\n\n\nyo laxarjs:widget my-widget --directory=includes/my-app\n\n\n\n\n\n\nUsing this pattern, the full path can be specified when running the generator.\nThe command above creates the new widget in the directory \nincludes/my-app/my-widget\n.", 
+            "title": "README"
+        }, 
+        {
+            "location": "/#laxarjs-generator", 
+            "text": "A simple way to create LaxarJS applications and artifacts", 
+            "title": "LaxarJS generator"
+        }, 
+        {
+            "location": "/#usage", 
+            "text": "First you have to install the node modules for  yeoman :  npm install -g yo bower grunt-cli  and then install the package with the LaxarJS generator:  npm install -g generator-laxarjs", 
+            "title": "Usage"
+        }, 
+        {
+            "location": "/#generators", 
+            "text": "The Yeoman generator  laxarjs  comes up with the main generator for scaffolding an application and three sub generators for widgets, activities and controls.  Available generators:   laxarjs  laxarjs:widget  laxarjs:activity  laxarjs:control", 
+            "title": "Generators"
+        }, 
+        {
+            "location": "/#application", 
+            "text": "To scaffold a new LaxarJS application, create a directory and run the generator:  mkdir my-application  cd my-application  yo laxarjs   After answering several questions, the generator creates the bare-bones application scaffolding for you.\nNow you can fetch your project's dependencies using  npm install  and start the application development server by running  grunt laxar-develop .", 
+            "title": "Application"
+        }, 
+        {
+            "location": "/#sub-generators", 
+            "text": "The sub-generators expect a Yeoman configuration file  .yo-rc.json  in the root directory of the application.\nIf you created your application using the Yeoman generator as described above, a Yeoman configuration file was already created for you.  If the application has no Yeoman configuration file, just create one by running:  echo {}   .yo-rc.json", 
+            "title": "Sub-Generators"
+        }, 
+        {
+            "location": "/#widget", 
+            "text": "To generate the scaffold for a LaxarJS widget use the following command:  yo laxarjs:widget   The generator creates the new widget in a directory named like the widget.\nIf the current directory is the root directory of the application, the generator places the new widget into the default directory for widgets,  includes/widgets .\nOtherwise, the widget scaffolding is created within the current directory.", 
+            "title": "Widget"
+        }, 
+        {
+            "location": "/#activity", 
+            "text": "To generate the scaffolding for a LaxarJS activity use either the command  yo laxarjs:activity   or use the widget generator with the option  activity :  yo laxarjs:widget --activity   The generator creates the new activity in a directory named like the activity, just as described above for widgets.", 
+            "title": "Activity"
+        }, 
+        {
+            "location": "/#control", 
+            "text": "To generate the scaffolding for a LaxarJS control use the following command:  yo laxarjs:control   The generator creates the new control in a directory named by the control.\nIf the current directory is the root directory of the application, the generator places the new widget into the default directory for controls,  includes/controls .\nOtherwise, a new directory with the scaffolding is created in the current directory.", 
+            "title": "Control"
+        }, 
+        {
+            "location": "/#arguments-and-options-for-sub-generators", 
+            "text": "Each of the three sub-generators accepts the name for the artifact as an argument and the destination path as an option.\nThe following examples are for the widget generator but the others behave accordingly.  You can pass the name for a new widget as an argument from the command line:  yo laxarjs:widget my-widget   In this case the generator creates the scaffold in the directory  includes/widgets/my-widget  independently from the working directory.  Using the option  directory , it is possible to change the destination.\nUsing this command, the generator creates the files in a directory named by the new widget in the directory  includes/widgets/destination :  yo laxarjs:widget --directory=includes/widgets/destination   It is possible to set the directory option  and  pass the name as argument:  yo laxarjs:widget my-widget --directory=includes/my-app   Using this pattern, the full path can be specified when running the generator.\nThe command above creates the new widget in the directory  includes/my-app/my-widget .", 
+            "title": "Arguments and Options for Sub-Generators"
+        }, 
+        {
+            "location": "/CHANGELOG/", 
+            "text": "Changelog\n\n\nLast Changes\n\n\nv0.4.1\n\n\n\n\n#10\n: widget: fixed laxar-mocks dev-dependency\n\n\n\n\nv0.4.0\n\n\n\n\n#9\n: app: debug.html now uses merged require_config.js\n\n\n\n\nv0.3.0\n\n\n\n\n#7\n: docs: improved README.md\n\n\n#6\n: updated versions of laxar, grunt-laxar, laxar-patterns\n\n\n#5\n: fixed bower source for jasmine2\n\n\n\n\nv0.2.0\n\n\n\n\n#4\n: added template for plain (non-angular) control\n\n\n#3\n: fixed jasmine2 dependency path\n\n\n\n\nv0.1.0\n\n\n\n\n#1\n: changed spec-tests to use laxar-mocks rather than laxar/laxar-testing\n\n\n#2\n: created one configuration file for bower.json defaults for the scaffolds", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#changelog", 
+            "text": "", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#last-changes", 
+            "text": "", 
+            "title": "Last Changes"
+        }, 
+        {
+            "location": "/CHANGELOG/#v041", 
+            "text": "#10 : widget: fixed laxar-mocks dev-dependency", 
+            "title": "v0.4.1"
+        }, 
+        {
+            "location": "/CHANGELOG/#v040", 
+            "text": "#9 : app: debug.html now uses merged require_config.js", 
+            "title": "v0.4.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v030", 
+            "text": "#7 : docs: improved README.md  #6 : updated versions of laxar, grunt-laxar, laxar-patterns  #5 : fixed bower source for jasmine2", 
+            "title": "v0.3.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v020", 
+            "text": "#4 : added template for plain (non-angular) control  #3 : fixed jasmine2 dependency path", 
+            "title": "v0.2.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v010", 
+            "text": "#1 : changed spec-tests to use laxar-mocks rather than laxar/laxar-testing  #2 : created one configuration file for bower.json defaults for the scaffolds", 
+            "title": "v0.1.0"
+        }
+    ]
+}

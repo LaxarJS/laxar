@@ -1,0 +1,909 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "grunt-laxar \n\n\n\n\nGrunt tasks for LaxarJS\n\n\n\n\ngrunt-laxar\n provides a couple of custom \nGrunt\n tasks for \nLaxarJS\n applications, plus matching default configuration for several tasks from the Grunt community.\n\n\n$\n grunt laxar-test laxar-build laxar-dist laxar-develop\n\n        \u2514\u25001\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u25002\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u25003\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u25004\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\n\n\n  1) run widget tests\n\n\n  2) generate required application artifacts, bring your own server\n\n\n  3) generate an optimized version for production (may take a bit longer)\n\n\n  4) do a build, then run a development server with live-reload of changes\n\n\n\n\n\n\nGetting Started\n\n\nThis plugin requires Grunt \n~0.4.4\n.\nIn case you have not used Grunt before, be sure to have a look at its \nGetting Started\n guide.\n\n\nTo use this plugin, you first need to install it using \nnpm\n:\n\n\n$\n npm install grunt-laxar\n\n\n\n\n\nAfter that, load its tasks from your Gruntfile:\n\n\ngrunt\n.\nloadNpmTasks\n(\n \ngrunt-laxar\n \n);\n\n\n\n\n\n\nMain Tasks\n\n\nThese are the \nbread-and-butter\n tasks for developing and optimizing your LaxarJS application.\nUsually, the only task that you will have to configure \nmanually\n is \nlaxar-configure\n.\n\n\nThese tasks form the \npublic API\n for grunt-laxar, and any change in their configuration or end-result is subject to the \nsemantic versioning\n of this package.\n\n\n\u2699 \nlaxar-configure\n\n\nConfigures all flow-based tasks and their building blocks.\nThis is the only task that requires manual configuration \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-build\n\n\nGenerates all artifacts that are needed to develop your application on an existing web server \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-develop\n\n\nGenerates \ndependencies\n and \nresource listings\n required by the LaxarJS runtime, and starts a \ndevelopment server\n with live reloading \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-dist\n\n\nPrepares your application for production \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-test\n\n\nRuns the spec tests of all widgets that are a direct part of the application \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-test-widget\n\n\nRuns the spec test of an individual widget \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-info\n\n\nObtain information about the artifacts in your application (\nmore\n).\n\n\n\u2699 \nlaxar-dox\n\n\nCreate API documentation in Markdown format (\nmore\n).\n\n\nInternal Building-Block Tasks\n\n\nThese tasks are used \nunder the hood\n by the main tasks listed above.\n\n\nUsually you do not need to know the details on these tasks, but sometimes you can save a few seconds by only running the sub-tasks you need, instead of the whole toolchain.\nThe APIs of these tasks and their intermediate output is considered \ninternal\n, so that behavior may change in incompatible ways between minor versions of grunt-laxar.\n\n\nAll of these tasks are multitasks that must be configured once for each set of flows that they may handle.\nThus, If your Gruntfile contains the \nlaxar-configure\n settings given above, you would (re)create the artifacts model for the main flow by executing:\n\n\ngrunt laxar-configure laxar-artifacts:main\n\n\n\n\n\n\nThe easiest way to generate the required configuration is by running \nlaxar-configure\n before launching any of these tasks.\nThe main tasks listed above do that for you out of the box.\n\n\n\u2699 \nlaxar-build-flow\n\n\nFor a given flow target, generates all artifacts that are needed to run that flow in the browser during development \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-artifacts\n\n\nFor a given flow target, collects all reachable artifacts and produce an \nartifacts model\n in JSON format \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-resources\n\n\nFor a given flow target, determines static assets (JSON, CSS, HTML) from the artifacts model in order to produce a \nresources listing\n in JSON format \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-dependencies\n\n\nFor a given flow target, generates an AMD module that references all direct dependencies \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-merge-require-config\n\n\nFor a given flow target, collects and merges all \nrequire_config.js\n files found in widgets and controls \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-configure-watch\n\n\nFor a given flow target, generates configuration for  \nwatch\n targets \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-dist-flow\n\n\nFor a given flow target, produces optimized assets (CSS, JavaScript) \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-dist-js\n\n\nFor a given flow target, uses \nr.js\n to create an optimized JavaScript bundle \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-dist-css\n\n\nFor a given flow target, uses \nclean-css\n (via \ncssmin\n) in order to create a single, optimized CSS file for each theme \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-test-flow\n\n\nFor a given flow target, run all widget tests \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-test-configure-flow\n\n\nPrepares test-configuration for all widgets of the given flow \n(\nmore\n)\n.\n\n\n\u2699 \nlaxar-test-widget-internal\n\n\nRuns pre-configured widget tests (prepared by \nlaxar-test-configure-flow\n or by \nlaxar-test-widget\n) \n(\nmore\n)\n.\n\n\nDeprecated Tasks\n\n\nThese tasks were originally available for LaxarJS v0.x and have similar objectives to the tasks listed above.\nYhese tasks are kept for compatibility only, because they shipped with LaxarJS v1.0.\nIt is recommended to instead use the tasks listed above, which are flow-aware and much less likely to cause CPU problems due to rampant watchers.\n\n\n\n\ncss_merger\n:\n  Merge multiple CSS files into one file.\n\n\ndirectory_tree\n:\n  Generate a JSON mapping of files inside a specific directory tree.\n\n\nlaxar_application_dependencies\n:\n  Generate a \nRequireJS\n module to bootstrap \nAngularJS\n.\n\n\ntest_results_merger\n:\n  Merges XML test results.\n\n\n\n\nThird-Party Tasks\n\n\nThese tasks are automatically configured by \ngrunt-laxar\n to work with a LaxarJS application.\nStarting with grunt-laxar v1.1.0, it is recommended not to use these tasks directly but to use the main tasks above.\nIf using these tasks directly, try not to rely on the current pre-configuration performed by grunt-laxar.\nIn the future, configuration for these tasks may be \nscoped\n to affect only specific named targets defined by grunt-laxar\nThis way, configuration will not influence any (alias) tasks defined by yourself.\n\n\n\n\nconnect\n:\n  Start a static web server.\n\n\njshint\n:\n  Validate files with JSHint.\n\n\nkarma\n:\n  Run \nKarma\n.\n\n\nrequirejs\n:\n  Optimize \nRequireJS\n projects using \nr.js\n.\n\n\nconnect\n:\n  Start a static web server.\n\n\nwatch\n:\n  Run tasks whenever watched files change.", 
+            "title": "README"
+        }, 
+        {
+            "location": "/#grunt-laxar", 
+            "text": "Grunt tasks for LaxarJS   grunt-laxar  provides a couple of custom  Grunt  tasks for  LaxarJS  applications, plus matching default configuration for several tasks from the Grunt community.  $  grunt laxar-test laxar-build laxar-dist laxar-develop         \u2514\u25001\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u25002\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u25003\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u25004\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518    1) run widget tests    2) generate required application artifacts, bring your own server    3) generate an optimized version for production (may take a bit longer)    4) do a build, then run a development server with live-reload of changes", 
+            "title": "grunt-laxar"
+        }, 
+        {
+            "location": "/#getting-started", 
+            "text": "This plugin requires Grunt  ~0.4.4 .\nIn case you have not used Grunt before, be sure to have a look at its  Getting Started  guide.  To use this plugin, you first need to install it using  npm :  $  npm install grunt-laxar  After that, load its tasks from your Gruntfile:  grunt . loadNpmTasks (   grunt-laxar   );", 
+            "title": "Getting Started"
+        }, 
+        {
+            "location": "/#main-tasks", 
+            "text": "These are the  bread-and-butter  tasks for developing and optimizing your LaxarJS application.\nUsually, the only task that you will have to configure  manually  is  laxar-configure .  These tasks form the  public API  for grunt-laxar, and any change in their configuration or end-result is subject to the  semantic versioning  of this package.", 
+            "title": "Main Tasks"
+        }, 
+        {
+            "location": "/#laxar-configure", 
+            "text": "Configures all flow-based tasks and their building blocks.\nThis is the only task that requires manual configuration  ( more ) .", 
+            "title": "\u2699 laxar-configure"
+        }, 
+        {
+            "location": "/#laxar-build", 
+            "text": "Generates all artifacts that are needed to develop your application on an existing web server  ( more ) .", 
+            "title": "\u2699 laxar-build"
+        }, 
+        {
+            "location": "/#laxar-develop", 
+            "text": "Generates  dependencies  and  resource listings  required by the LaxarJS runtime, and starts a  development server  with live reloading  ( more ) .", 
+            "title": "\u2699 laxar-develop"
+        }, 
+        {
+            "location": "/#laxar-dist", 
+            "text": "Prepares your application for production  ( more ) .", 
+            "title": "\u2699 laxar-dist"
+        }, 
+        {
+            "location": "/#laxar-test", 
+            "text": "Runs the spec tests of all widgets that are a direct part of the application  ( more ) .", 
+            "title": "\u2699 laxar-test"
+        }, 
+        {
+            "location": "/#laxar-test-widget", 
+            "text": "Runs the spec test of an individual widget  ( more ) .", 
+            "title": "\u2699 laxar-test-widget"
+        }, 
+        {
+            "location": "/#laxar-info", 
+            "text": "Obtain information about the artifacts in your application ( more ).", 
+            "title": "\u2699 laxar-info"
+        }, 
+        {
+            "location": "/#laxar-dox", 
+            "text": "Create API documentation in Markdown format ( more ).", 
+            "title": "\u2699 laxar-dox"
+        }, 
+        {
+            "location": "/#internal-building-block-tasks", 
+            "text": "These tasks are used  under the hood  by the main tasks listed above.  Usually you do not need to know the details on these tasks, but sometimes you can save a few seconds by only running the sub-tasks you need, instead of the whole toolchain.\nThe APIs of these tasks and their intermediate output is considered  internal , so that behavior may change in incompatible ways between minor versions of grunt-laxar.  All of these tasks are multitasks that must be configured once for each set of flows that they may handle.\nThus, If your Gruntfile contains the  laxar-configure  settings given above, you would (re)create the artifacts model for the main flow by executing:  grunt laxar-configure laxar-artifacts:main   The easiest way to generate the required configuration is by running  laxar-configure  before launching any of these tasks.\nThe main tasks listed above do that for you out of the box.", 
+            "title": "Internal Building-Block Tasks"
+        }, 
+        {
+            "location": "/#laxar-build-flow", 
+            "text": "For a given flow target, generates all artifacts that are needed to run that flow in the browser during development  ( more ) .  \u2699  laxar-artifacts  For a given flow target, collects all reachable artifacts and produce an  artifacts model  in JSON format  ( more ) .  \u2699  laxar-resources  For a given flow target, determines static assets (JSON, CSS, HTML) from the artifacts model in order to produce a  resources listing  in JSON format  ( more ) .  \u2699  laxar-dependencies  For a given flow target, generates an AMD module that references all direct dependencies  ( more ) .  \u2699  laxar-merge-require-config  For a given flow target, collects and merges all  require_config.js  files found in widgets and controls  ( more ) .  \u2699  laxar-configure-watch  For a given flow target, generates configuration for   watch  targets  ( more ) .", 
+            "title": "\u2699 laxar-build-flow"
+        }, 
+        {
+            "location": "/#laxar-dist-flow", 
+            "text": "For a given flow target, produces optimized assets (CSS, JavaScript)  ( more ) .  \u2699  laxar-dist-js  For a given flow target, uses  r.js  to create an optimized JavaScript bundle  ( more ) .  \u2699  laxar-dist-css  For a given flow target, uses  clean-css  (via  cssmin ) in order to create a single, optimized CSS file for each theme  ( more ) .", 
+            "title": "\u2699 laxar-dist-flow"
+        }, 
+        {
+            "location": "/#laxar-test-flow", 
+            "text": "For a given flow target, run all widget tests  ( more ) .  \u2699  laxar-test-configure-flow  Prepares test-configuration for all widgets of the given flow  ( more ) .  \u2699  laxar-test-widget-internal  Runs pre-configured widget tests (prepared by  laxar-test-configure-flow  or by  laxar-test-widget )  ( more ) .", 
+            "title": "\u2699 laxar-test-flow"
+        }, 
+        {
+            "location": "/#deprecated-tasks", 
+            "text": "These tasks were originally available for LaxarJS v0.x and have similar objectives to the tasks listed above.\nYhese tasks are kept for compatibility only, because they shipped with LaxarJS v1.0.\nIt is recommended to instead use the tasks listed above, which are flow-aware and much less likely to cause CPU problems due to rampant watchers.   css_merger :\n  Merge multiple CSS files into one file.  directory_tree :\n  Generate a JSON mapping of files inside a specific directory tree.  laxar_application_dependencies :\n  Generate a  RequireJS  module to bootstrap  AngularJS .  test_results_merger :\n  Merges XML test results.", 
+            "title": "Deprecated Tasks"
+        }, 
+        {
+            "location": "/#third-party-tasks", 
+            "text": "These tasks are automatically configured by  grunt-laxar  to work with a LaxarJS application.\nStarting with grunt-laxar v1.1.0, it is recommended not to use these tasks directly but to use the main tasks above.\nIf using these tasks directly, try not to rely on the current pre-configuration performed by grunt-laxar.\nIn the future, configuration for these tasks may be  scoped  to affect only specific named targets defined by grunt-laxar\nThis way, configuration will not influence any (alias) tasks defined by yourself.   connect :\n  Start a static web server.  jshint :\n  Validate files with JSHint.  karma :\n  Run  Karma .  requirejs :\n  Optimize  RequireJS  projects using  r.js .  connect :\n  Start a static web server.  watch :\n  Run tasks whenever watched files change.", 
+            "title": "Third-Party Tasks"
+        }, 
+        {
+            "location": "/CHANGELOG/", 
+            "text": "Changelog\n\n\nLast Changes\n\n\nv1.1.0\n\n\n\n\n#90\n: laxar-dist-js: allow to override baseUrl from laxar application config\n        + NEW FEATURE: see ticket for details\n\n\n\n\nv1.1.0-alpha.9\n\n\n\n\n#86\n: laxar-artifacts: fixed watchers for layout HTML files\n\n\n#89\n: laxar-artifacts: fixed CSS paths for control styles bundled in themes\n\n\n#88\n: tests: improved testing of AMD-reference handling\n\n\n#87\n: fixinstall: fixed fixinstall (for use with npm v3.x)\n\n\n\n\nv1.1.0-alpha.8\n\n\n\n\n#85\n: laxar-info: allow to address artifacts by path\n        + NEW FEATURE: see ticket for details\n\n\n\n\nv1.1.0-alpha.7\n\n\n\n\n#84\n: laxar-info: print indirect references\n\n\n\n\nv1.1.0-alpha.6\n\n\n\n\n\n\n#78\n: laxar-configure-watch: ignore bower_components by default\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#77\n: laxar-artifacts: do not try to list (global) theme paths\n\n\n\n\n#82\n: fixed handling of missing \nincludes/themes\n\n\n\n\nv1.1.0-alpha.5\n\n\n\n\n#83\n: fixed local references in laxar-info\n\n\n#80\n: require_config_merger: improved log message\n\n\n#81\n: fixed paths on windows\n\n\n#79\n: integration: implemented using widgets installed via bower as amd module\n        + NEW FEATURE: see ticket for details\n\n\n\n\nv1.1.0-alpha.4\n\n\n\n\n#76\n: laxar-build, laxar-dist, laxar-test: run each user-task flow-target only once\n\n\n#73\n: laxar-artifacts: fixed artifact model inconsistencies\n\n\n\n\n#72\n: new task: laxar-info\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#74\n: added task laxar-merge-require-config\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#70\n: per-artifact resources now extend (rather than replace) defaults\n\n\n\n\n#68\n: documentation: added docs for \nlaxar-artifacts\n\n\n#69\n: documentation: fixed directory_tree docs\n\n\n#71\n: widgets: fixed lookup of jshintrc\n\n\n\n\nv1.1.0-alpha.3\n\n\n\n\n#67\n: project: use latest karma-laxar\n\n\n#66\n: jshint: always use project settings\n        + NEW FEATURE: see ticket for details\n\n\n\n\nv1.1.0-alpha.2\n\n\n\n\n\n\n#65\n: laxar-resources: normalized task result\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#64\n: added Travis-CI build integration\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#63\n: added regression tests for the new flow-based tasks\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\nv1.1.0-alpha.1\n\n\n\n\n#41\n: added new flow-based tasks\n        + NEW FEATURE: see ticket for details\n\n\n\n\nv1.1.0-alpha.0\n\n\n\n\n#62\n: karma-laxar: upgraded to latest 1.1.0 alpha\n\n\n#61\n: widgets: fixed support for widgets using dist-package references\n\n\n\n\nv1.0.0\n\n\nv1.0.0-beta.2\n\n\n\n\n#60\n: css_merger: fixed default.theme lookup\n\n\n\n\nv1.0.0-beta.1\n\n\n\n\n#59\n: css_merger: fixed loading of nested layout CSS\n\n\n\n\nv1.0.0-beta.0\n\n\n\n\n#57\n: page_loader: laxar is now used as node module\n\n\n\n\nv1.0.0-alpha.10\n\n\n\n\n#56\n: widgets: added support for new-style controls and modules\n\n\n#52\n: tests: made all \ngrunt-laxar\n tests pass on Windows\n\n\n#37\n: css_merger: fixed paths and URLs for Windows\n\n\n\n\nv1.0.0-alpha.9\n\n\n\n\n#55\n: css_merger: added support for new-style controls (with descriptor)\n\n\n#53\n: laxar_application_dependencies: remove laxar submodule; use npm instead\n\n\n#51\n: laxar_application_dependencies: fixed laxar path for require config\n\n\n#50\n: laxar_application_dependencies: added lookup of control.json for actual control name\n\n\n\n\nv1.0.0-alpha.8\n\n\n\n\n#49\n: laxar_application_dependencies: fixed dependencies\n\n\n#48\n: documentation: updated to newest laxar dox version\n\n\n\n\nv1.0.0-alpha.7\n\n\n\n\n#47\n: laxar_application_dependencies: turned internal laxar dependency into git submodule\n\n\n#46\n: documentation: refactored laxar_dox task and added public documentation task\n\n\n\n\nv1.0.0-alpha.6\n\n\n\n\n#43\n: css_merger: load CSS from themes\n        + NEW FEATURE: see ticket for details\n\n\n\n\nv1.0.0-alpha.5\n\n\n\n\n\n\n#44\n: laxar_application_dependencies: use laxar-application package to allow for using relative AMD-paths from widgets, even with plugins\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n#42\n: laxar_application_dependencies: cleaned up some fallout of (#29)\n\n\n\n\n\n\nv1.0.0-alpha.4\n\n\n\n\n\n\n#39\n: widget: updated \nkarma-laxar\n to automatically load \nes5-shim\n\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#29\n: portal_angular_dependencies: renamed to laxar_application_dependencies\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n#25\n: Removed the now obsolete widget_json_merger task.\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\nv1.0.0-alpha.3\n\n\n\n\n\n\n#40\n: portal_angular_dependencies, css_merger: refactored portal artifacts to runtime and loaders.\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n#31\n: portal_angular_dependencies: fixed handling of missing integration field\n\n\n\n\n#28\n: widgets: added support for more integration technologies.\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\nv0.8.0\n\n\n\n\n#38\n: css_merger: find custom theme folders within widgets\n\n\n#6\n: css_merger: fixed imports by URL\n\n\n#36\n: css_merger: fix incorrect CSS output path and \nurl()\ns for windows\n\n\n#35\n: widget dependencies: fixed URL generation for windows\n\n\n\n\nv0.7.0\n\n\n\n\n#32\n: widget dependencies: fixed URL generation for windows\n\n\n#34\n: widgets: fixed package configuration\n\n\n#33\n: widget: jshint should ignore embedded projects\n\n\n\n\nv0.6.0\n\n\n\n\n#30\n: directory_tree: better JSON syntax error reporting\n\n\n#27\n: widgets: removed marked configuration\n\n\n#26\n: widgets: add jquery_ui require path\n\n\n#24\n: css_merger: fixed handling of protocol-relative URLs\n\n\n#23\n: the plugin provides a new Option \n--continue\n to keep running tasks after failures but keep a proper return code.\n\n\n#22\n: Added path to bootstrap affix control.\n\n\n#21\n: the Gruntfile provided for widget tests now create coverage reports.\n\n\n\n\nv0.5.0\n\n\n\n\n#19\n: we're now using our own \nKarma\n and \ngrunt-karma\n forks so that we can respond to issues more quickly.\n\n\n#18\n: there is a new script \nbin/fixinstall\n to fix the PhantomJS installation if it's broken.\n\n\n\n\n#17\n: there are two new tasks to merge \ntest-results.xml\n and \nlcov.info\n files.\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#16\n: the karma-task is now configured to easily create coverage reports.\n\n\n\n\n#15\n: the \nrequire_config.js\n, that is generated for widgets, now contains static configuration for Marked.\n\n\n#13\n: the \nrequire_config.js\n, that is generated for widgets, now contains the proper configuration for JSON-patch.\n\n\n\n\nv0.4.0\n\n\n\n\n#11\n: Improved readability of directory listing for connect task.\n\n\n#10\n: Fixed processing of multiple non-default themes\n\n\n#3\n: add some documentation\n\n\n#8\n: widget tests: automatically generate a \nRequireJS\n configuration (instead of using a static one)\n\n\n#7\n: css_merger: fixed theme processing for widgets and controls\n\n\n\n\nv0.3.0\n\n\n\n\n\n\n#4\n: directory_tree: allowed to embed files into listings using option embedContents\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#5\n: css_merger: fixed default.theme handling (laxar_uikit) and absolute css urls\n\n\n\n\n#2\n: Finally, added a lot of tests\n\n\n#1\n: Made lookup of Grunt tasks more resilient", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#changelog", 
+            "text": "", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#last-changes", 
+            "text": "", 
+            "title": "Last Changes"
+        }, 
+        {
+            "location": "/CHANGELOG/#v110", 
+            "text": "#90 : laxar-dist-js: allow to override baseUrl from laxar application config\n        + NEW FEATURE: see ticket for details", 
+            "title": "v1.1.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v110-alpha9", 
+            "text": "#86 : laxar-artifacts: fixed watchers for layout HTML files  #89 : laxar-artifacts: fixed CSS paths for control styles bundled in themes  #88 : tests: improved testing of AMD-reference handling  #87 : fixinstall: fixed fixinstall (for use with npm v3.x)", 
+            "title": "v1.1.0-alpha.9"
+        }, 
+        {
+            "location": "/CHANGELOG/#v110-alpha8", 
+            "text": "#85 : laxar-info: allow to address artifacts by path\n        + NEW FEATURE: see ticket for details", 
+            "title": "v1.1.0-alpha.8"
+        }, 
+        {
+            "location": "/CHANGELOG/#v110-alpha7", 
+            "text": "#84 : laxar-info: print indirect references", 
+            "title": "v1.1.0-alpha.7"
+        }, 
+        {
+            "location": "/CHANGELOG/#v110-alpha6", 
+            "text": "#78 : laxar-configure-watch: ignore bower_components by default\n        + NEW FEATURE: see ticket for details    #77 : laxar-artifacts: do not try to list (global) theme paths   #82 : fixed handling of missing  includes/themes", 
+            "title": "v1.1.0-alpha.6"
+        }, 
+        {
+            "location": "/CHANGELOG/#v110-alpha5", 
+            "text": "#83 : fixed local references in laxar-info  #80 : require_config_merger: improved log message  #81 : fixed paths on windows  #79 : integration: implemented using widgets installed via bower as amd module\n        + NEW FEATURE: see ticket for details", 
+            "title": "v1.1.0-alpha.5"
+        }, 
+        {
+            "location": "/CHANGELOG/#v110-alpha4", 
+            "text": "#76 : laxar-build, laxar-dist, laxar-test: run each user-task flow-target only once  #73 : laxar-artifacts: fixed artifact model inconsistencies   #72 : new task: laxar-info\n        + NEW FEATURE: see ticket for details    #74 : added task laxar-merge-require-config\n        + NEW FEATURE: see ticket for details    #70 : per-artifact resources now extend (rather than replace) defaults   #68 : documentation: added docs for  laxar-artifacts  #69 : documentation: fixed directory_tree docs  #71 : widgets: fixed lookup of jshintrc", 
+            "title": "v1.1.0-alpha.4"
+        }, 
+        {
+            "location": "/CHANGELOG/#v110-alpha3", 
+            "text": "#67 : project: use latest karma-laxar  #66 : jshint: always use project settings\n        + NEW FEATURE: see ticket for details", 
+            "title": "v1.1.0-alpha.3"
+        }, 
+        {
+            "location": "/CHANGELOG/#v110-alpha2", 
+            "text": "#65 : laxar-resources: normalized task result\n        + NEW FEATURE: see ticket for details    #64 : added Travis-CI build integration\n        + NEW FEATURE: see ticket for details    #63 : added regression tests for the new flow-based tasks\n        + NEW FEATURE: see ticket for details", 
+            "title": "v1.1.0-alpha.2"
+        }, 
+        {
+            "location": "/CHANGELOG/#v110-alpha1", 
+            "text": "#41 : added new flow-based tasks\n        + NEW FEATURE: see ticket for details", 
+            "title": "v1.1.0-alpha.1"
+        }, 
+        {
+            "location": "/CHANGELOG/#v110-alpha0", 
+            "text": "#62 : karma-laxar: upgraded to latest 1.1.0 alpha  #61 : widgets: fixed support for widgets using dist-package references", 
+            "title": "v1.1.0-alpha.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100", 
+            "text": "", 
+            "title": "v1.0.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-beta2", 
+            "text": "#60 : css_merger: fixed default.theme lookup", 
+            "title": "v1.0.0-beta.2"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-beta1", 
+            "text": "#59 : css_merger: fixed loading of nested layout CSS", 
+            "title": "v1.0.0-beta.1"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-beta0", 
+            "text": "#57 : page_loader: laxar is now used as node module", 
+            "title": "v1.0.0-beta.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-alpha10", 
+            "text": "#56 : widgets: added support for new-style controls and modules  #52 : tests: made all  grunt-laxar  tests pass on Windows  #37 : css_merger: fixed paths and URLs for Windows", 
+            "title": "v1.0.0-alpha.10"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-alpha9", 
+            "text": "#55 : css_merger: added support for new-style controls (with descriptor)  #53 : laxar_application_dependencies: remove laxar submodule; use npm instead  #51 : laxar_application_dependencies: fixed laxar path for require config  #50 : laxar_application_dependencies: added lookup of control.json for actual control name", 
+            "title": "v1.0.0-alpha.9"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-alpha8", 
+            "text": "#49 : laxar_application_dependencies: fixed dependencies  #48 : documentation: updated to newest laxar dox version", 
+            "title": "v1.0.0-alpha.8"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-alpha7", 
+            "text": "#47 : laxar_application_dependencies: turned internal laxar dependency into git submodule  #46 : documentation: refactored laxar_dox task and added public documentation task", 
+            "title": "v1.0.0-alpha.7"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-alpha6", 
+            "text": "#43 : css_merger: load CSS from themes\n        + NEW FEATURE: see ticket for details", 
+            "title": "v1.0.0-alpha.6"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-alpha5", 
+            "text": "#44 : laxar_application_dependencies: use laxar-application package to allow for using relative AMD-paths from widgets, even with plugins\n        +  BREAKING CHANGE:  see ticket for details    #42 : laxar_application_dependencies: cleaned up some fallout of (#29)", 
+            "title": "v1.0.0-alpha.5"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-alpha4", 
+            "text": "#39 : widget: updated  karma-laxar  to automatically load  es5-shim \n        + NEW FEATURE: see ticket for details    #29 : portal_angular_dependencies: renamed to laxar_application_dependencies\n        +  BREAKING CHANGE:  see ticket for details    #25 : Removed the now obsolete widget_json_merger task.\n        +  BREAKING CHANGE:  see ticket for details", 
+            "title": "v1.0.0-alpha.4"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-alpha3", 
+            "text": "#40 : portal_angular_dependencies, css_merger: refactored portal artifacts to runtime and loaders.\n        +  BREAKING CHANGE:  see ticket for details    #31 : portal_angular_dependencies: fixed handling of missing integration field   #28 : widgets: added support for more integration technologies.\n        +  BREAKING CHANGE:  see ticket for details", 
+            "title": "v1.0.0-alpha.3"
+        }, 
+        {
+            "location": "/CHANGELOG/#v080", 
+            "text": "#38 : css_merger: find custom theme folders within widgets  #6 : css_merger: fixed imports by URL  #36 : css_merger: fix incorrect CSS output path and  url() s for windows  #35 : widget dependencies: fixed URL generation for windows", 
+            "title": "v0.8.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v070", 
+            "text": "#32 : widget dependencies: fixed URL generation for windows  #34 : widgets: fixed package configuration  #33 : widget: jshint should ignore embedded projects", 
+            "title": "v0.7.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v060", 
+            "text": "#30 : directory_tree: better JSON syntax error reporting  #27 : widgets: removed marked configuration  #26 : widgets: add jquery_ui require path  #24 : css_merger: fixed handling of protocol-relative URLs  #23 : the plugin provides a new Option  --continue  to keep running tasks after failures but keep a proper return code.  #22 : Added path to bootstrap affix control.  #21 : the Gruntfile provided for widget tests now create coverage reports.", 
+            "title": "v0.6.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v050", 
+            "text": "#19 : we're now using our own  Karma  and  grunt-karma  forks so that we can respond to issues more quickly.  #18 : there is a new script  bin/fixinstall  to fix the PhantomJS installation if it's broken.   #17 : there are two new tasks to merge  test-results.xml  and  lcov.info  files.\n        + NEW FEATURE: see ticket for details    #16 : the karma-task is now configured to easily create coverage reports.   #15 : the  require_config.js , that is generated for widgets, now contains static configuration for Marked.  #13 : the  require_config.js , that is generated for widgets, now contains the proper configuration for JSON-patch.", 
+            "title": "v0.5.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v040", 
+            "text": "#11 : Improved readability of directory listing for connect task.  #10 : Fixed processing of multiple non-default themes  #3 : add some documentation  #8 : widget tests: automatically generate a  RequireJS  configuration (instead of using a static one)  #7 : css_merger: fixed theme processing for widgets and controls", 
+            "title": "v0.4.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v030", 
+            "text": "#4 : directory_tree: allowed to embed files into listings using option embedContents\n        + NEW FEATURE: see ticket for details    #5 : css_merger: fixed default.theme handling (laxar_uikit) and absolute css urls   #2 : Finally, added a lot of tests  #1 : Made lookup of Grunt tasks more resilient", 
+            "title": "v0.3.0"
+        }, 
+        {
+            "location": "/api/", 
+            "text": "Documentation\n\n\nlaxarPaths( config, [options] ) = require( './lib/laxar_paths' )\n\n\nUse laxar and the given require configuration to resolve\nthe paths/constants that laxar uses.\n\n\nParameters\n\n\n\n\n\n\nconfig {Object}\n: the require configuration to use\n\n\n\n\n\n\noptions\n {Object}\n: overrides\n\n\n\n\n\n\nReturns\n\n\n\n\n{Object}\n: an object containig the path laxar constants \nPRODUCT\n,\n\nTHEMES\n, \nLAYOUTS\n, \nWIDGETS\n, \nPAGES\n, \nFLOW_JSON\n,\n\nDEFAULT_THEME\n.\n\n\n\n\n\n\nmktree( base, filelist, callback ) = require( './lib/mktree' )\n\n\nTake a list of files and represent the directory tree\nas a javascript object.\n\n\nParameters\n\n\n\n\n\n\nbase {String}\n: the base directory for files\n\n\n\n\n\n\nfilelist {Array}\n: a list of filenames\n\n\n\n\n\n\ncallback {Function}\n: a nodejs style callback taking an error instance as\nthe first parameter or the directory tree as the second\n\n\n\n\n\n\nReturns\n\n\n\n\n{Object}\n: the promise of the whole operation\n\n\n\n\n\n\nrequireConfig( file, [options] ) = require( './lib/require_config' )\n\n\nLoad a configuration file for RequireJS and return\nthe config object.\nIf the configuration specifies paths for 'underscore' and/or\n'q', those will be replaced by local node modules.\n\n\nParameters\n\n\n\n\n\n\nfile {String}\n: the config file\n\n\n\n\n\n\noptions\n {Objec\u0167}\n: additional options:\n\n\n\n\n\n\nbase\n: interpret the config file's \nbaseUrl\n as\nrelative to this directory\n\n\n\n\n\n\nglobals\n: export the given grobals the the require\nconfiguration script\n\n\n\n\n\n\nReturns\n\n\n\n\n{Object}\n: the configuration object", 
+            "title": "api.md"
+        }, 
+        {
+            "location": "/api/#documentation", 
+            "text": "", 
+            "title": "Documentation"
+        }, 
+        {
+            "location": "/api/#laxarpaths-config-options-require-liblaxar_paths", 
+            "text": "Use laxar and the given require configuration to resolve\nthe paths/constants that laxar uses.", 
+            "title": "laxarPaths( config, [options] ) = require( './lib/laxar_paths' )"
+        }, 
+        {
+            "location": "/api/#parameters", 
+            "text": "config {Object} : the require configuration to use    options  {Object} : overrides", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/#returns", 
+            "text": "{Object} : an object containig the path laxar constants  PRODUCT , THEMES ,  LAYOUTS ,  WIDGETS ,  PAGES ,  FLOW_JSON , DEFAULT_THEME .", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/#mktree-base-filelist-callback-require-libmktree", 
+            "text": "Take a list of files and represent the directory tree\nas a javascript object.", 
+            "title": "mktree( base, filelist, callback ) = require( './lib/mktree' )"
+        }, 
+        {
+            "location": "/api/#parameters_1", 
+            "text": "base {String} : the base directory for files    filelist {Array} : a list of filenames    callback {Function} : a nodejs style callback taking an error instance as\nthe first parameter or the directory tree as the second", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/#returns_1", 
+            "text": "{Object} : the promise of the whole operation", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/#requireconfig-file-options-require-librequire_config", 
+            "text": "Load a configuration file for RequireJS and return\nthe config object.\nIf the configuration specifies paths for 'underscore' and/or\n'q', those will be replaced by local node modules.", 
+            "title": "requireConfig( file, [options] ) = require( './lib/require_config' )"
+        }, 
+        {
+            "location": "/api/#parameters_2", 
+            "text": "file {String} : the config file    options  {Objec\u0167} : additional options:    base : interpret the config file's  baseUrl  as\nrelative to this directory    globals : export the given grobals the the require\nconfiguration script", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/#returns_2", 
+            "text": "{Object} : the configuration object", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/tasks/css_merger/", 
+            "text": "The \"css_merger\" task\n\n\n\n\nThis task is \ndeprecated\n. Have a look at \nlaxar-dist-css\n instead.\n\n\n\n\nThe \ncss_merger\n task merges CSS files.\n\n\nOverview\n\n\nRun this task with the \ngrunt css_merger\n command.\n\n\nTask targets, files and options may be specified according to the grunt\n\nConfiguring tasks\n guide.\n\n\nOptions\n\n\noptions.base\n\n\nType: \nString\n\nDefault value: \n.\n\n\nThe path to your project.\n\n\noptions.themes\n\n\nType: \nString\n\nDefault value: \nlaxar-path-themes\n\n\nA path that RequireJS can resolve that points to your themes.\n\n\noptions.layouts\n\n\nType: \nString\n\nDefault value: \nlaxar-path-layouts\n\n\nA path that RequireJS can resolve that points to your layouts.\n\n\noptions.widgets\n\n\nType: \nString\n\nDefault value: \nlaxar-path-widgets\n\n\nA path that RequireJS can resolve that points to your widgets.\n\n\noptions.output\n\n\nType: \nString\n\nDefault value: \nvar/static/css\n\n\nThe directory to write CSS files to.\n\n\noptions.defaulTheme\n\n\nType: \nString\n\nDefault value: \ndefault.theme\n\n\nThe name of the default theme.\n\n\noptions.requireConfig\n\n\nType: \nString\n\nDefault value: \nrequire_config.js\n\n\nThe path to your RequireJS configuration file.\n\n\nUsage examples\n\n\nDefault options\n\n\ngrunt\n.\ninitConfig\n(\n \n{\n\n   \ncss_merger\n:\n \n{\n\n      \ndefault\n:\n \n{}\n\n   \n}\n\n\n}\n \n);", 
+            "title": "The &quot;css_merger&quot; task"
+        }, 
+        {
+            "location": "/tasks/css_merger/#the-css_merger-task", 
+            "text": "This task is  deprecated . Have a look at  laxar-dist-css  instead.   The  css_merger  task merges CSS files.", 
+            "title": "The \"css_merger\" task"
+        }, 
+        {
+            "location": "/tasks/css_merger/#overview", 
+            "text": "Run this task with the  grunt css_merger  command.  Task targets, files and options may be specified according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/css_merger/#options", 
+            "text": "", 
+            "title": "Options"
+        }, 
+        {
+            "location": "/tasks/css_merger/#optionsbase", 
+            "text": "Type:  String \nDefault value:  .  The path to your project.", 
+            "title": "options.base"
+        }, 
+        {
+            "location": "/tasks/css_merger/#optionsthemes", 
+            "text": "Type:  String \nDefault value:  laxar-path-themes  A path that RequireJS can resolve that points to your themes.", 
+            "title": "options.themes"
+        }, 
+        {
+            "location": "/tasks/css_merger/#optionslayouts", 
+            "text": "Type:  String \nDefault value:  laxar-path-layouts  A path that RequireJS can resolve that points to your layouts.", 
+            "title": "options.layouts"
+        }, 
+        {
+            "location": "/tasks/css_merger/#optionswidgets", 
+            "text": "Type:  String \nDefault value:  laxar-path-widgets  A path that RequireJS can resolve that points to your widgets.", 
+            "title": "options.widgets"
+        }, 
+        {
+            "location": "/tasks/css_merger/#optionsoutput", 
+            "text": "Type:  String \nDefault value:  var/static/css  The directory to write CSS files to.", 
+            "title": "options.output"
+        }, 
+        {
+            "location": "/tasks/css_merger/#optionsdefaultheme", 
+            "text": "Type:  String \nDefault value:  default.theme  The name of the default theme.", 
+            "title": "options.defaulTheme"
+        }, 
+        {
+            "location": "/tasks/css_merger/#optionsrequireconfig", 
+            "text": "Type:  String \nDefault value:  require_config.js  The path to your RequireJS configuration file.", 
+            "title": "options.requireConfig"
+        }, 
+        {
+            "location": "/tasks/css_merger/#usage-examples", 
+            "text": "", 
+            "title": "Usage examples"
+        }, 
+        {
+            "location": "/tasks/css_merger/#default-options", 
+            "text": "grunt . initConfig (   { \n    css_merger :   { \n       default :   {} \n    }  }   );", 
+            "title": "Default options"
+        }, 
+        {
+            "location": "/tasks/directory_tree/", 
+            "text": "The \"directory_tree\" task\n\n\n\n\nThis task is \ndeprecated\n. Have a look at \nlaxar-resources\n instead.\n\n\n\n\nThe \ndirectory_tree\n task takes a list of files and generates a JSON file\nthat resembles the directory tree represented by these files.\n\n\nOverview\n\n\nRun this task with the \ngrunt directory_tree\n command.\n\n\nTask targets, files and options may be specified according to the grunt\n\nConfiguring tasks\n guide.\n\n\nOptions\n\n\noptions.base\n\n\nType: \nString\n\nDefault value: \n.\n\n\nThe path to your project.\n\n\noptions.embedContents\n\n\nType: \nArray\nString\n\nDefault: []\n\n\nSource files matching any of these patterns will be embedded into the generated listing.\nThis is recommended for efficient loading of HTML and JSON assets in production setups.\n\n\nUsage examples\n\n\nIn this example, the task is used to generate listings for \napplication\n and for selected \nlaxar-uikit\n resources living in \nbower_components\n:\n\n\n```js\ngrunt.initConfig( {\n   directory_tree: {\n      application: {\n         dest: 'var/listing/application_resources.json',\n         src: [\n            'application/+(flow|pages)/\n/*.json',\n            'application/layouts/\n/\n.+(css|html)'\n         ],\n         options: {\n            embedContents: [\n               'application/(flow|pages)/\n/*.json',\n               'application/layouts/\n/\n.html'\n            ]\n         }\n      },\n      bower_components: {\n         dest: 'var/listing/bower_components_resources.json',\n         src: [\n            'bower_components/laxar_uikit/themes/\n/*.css',\n            'bower_components/laxar_uikit/controls/\n/\n.+(css|html)'\n         ],\n         options: {\n            embedContents: [ \n               'bower_components/laxar-uikit/controls/\n/\n.html' \n            ]\n         }\n      }\n   }\n} );", 
+            "title": "The &quot;directory_tree&quot; task"
+        }, 
+        {
+            "location": "/tasks/directory_tree/#the-directory_tree-task", 
+            "text": "This task is  deprecated . Have a look at  laxar-resources  instead.   The  directory_tree  task takes a list of files and generates a JSON file\nthat resembles the directory tree represented by these files.", 
+            "title": "The \"directory_tree\" task"
+        }, 
+        {
+            "location": "/tasks/directory_tree/#overview", 
+            "text": "Run this task with the  grunt directory_tree  command.  Task targets, files and options may be specified according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/directory_tree/#options", 
+            "text": "", 
+            "title": "Options"
+        }, 
+        {
+            "location": "/tasks/directory_tree/#optionsbase", 
+            "text": "Type:  String \nDefault value:  .  The path to your project.", 
+            "title": "options.base"
+        }, 
+        {
+            "location": "/tasks/directory_tree/#optionsembedcontents", 
+            "text": "Type:  Array String \nDefault: []  Source files matching any of these patterns will be embedded into the generated listing.\nThis is recommended for efficient loading of HTML and JSON assets in production setups.", 
+            "title": "options.embedContents"
+        }, 
+        {
+            "location": "/tasks/directory_tree/#usage-examples", 
+            "text": "In this example, the task is used to generate listings for  application  and for selected  laxar-uikit  resources living in  bower_components :  ```js\ngrunt.initConfig( {\n   directory_tree: {\n      application: {\n         dest: 'var/listing/application_resources.json',\n         src: [\n            'application/+(flow|pages)/ /*.json',\n            'application/layouts/ / .+(css|html)'\n         ],\n         options: {\n            embedContents: [\n               'application/(flow|pages)/ /*.json',\n               'application/layouts/ / .html'\n            ]\n         }\n      },\n      bower_components: {\n         dest: 'var/listing/bower_components_resources.json',\n         src: [\n            'bower_components/laxar_uikit/themes/ /*.css',\n            'bower_components/laxar_uikit/controls/ / .+(css|html)'\n         ],\n         options: {\n            embedContents: [ \n               'bower_components/laxar-uikit/controls/ / .html' \n            ]\n         }\n      }\n   }\n} );", 
+            "title": "Usage examples"
+        }, 
+        {
+            "location": "/tasks/laxar_application_dependencies/", 
+            "text": "The \"laxar_application_dependencies\" Task\n\n\n\n\nThis task is \ndeprecated\n. Have a look at \nlaxar-dependencies\n instead.\n\n\n\n\nThe \nlaxar_application_dependencies\n task parses an application's flow, resolves the pages and determines the widgets and controls used on those pages.\nFrom the list of widgets and controls it creates a \nRequireJS\n module that consists of a list of all the required modules' names, grouped by integration technology.\nTypically, this module is required from your main javascript file, such as \ninit.js\n when using the \ngrunt-init-laxar-application\n template, and used to bootstrap your LaxarJS application.\n\n\nOverview\n\n\nRun this task with the \ngrunt laxar_application_dependencies\n command.\n\n\nTask targets, files and options may be specified according to the grunt \nConfiguring tasks\n guide.\n\n\nOptions\n\n\noptions.base\n\n\nType: \nString\n\nDefault value: \n.\n\n\nThe path to your project root.\n\n\noptions.laxar\n\n\nType: \nString\n\nDefault value: \nlaxar\n\n\nThe RequireJS module name that resolves to Laxar.\n\n\noptions.pages\n\n\nType: \nString\n\nDefault value: \nlaxar-path-pages\n\n\nA path that RequireJS can resolve that points to your pages.\n\n\noptions.widgets\n\n\nType: \nString\n\nDefault value: \nlaxar-path-widgets\n\n\nA path that RequireJS can resolve that points to your widgets.\n\n\noptions.requireConfig\n\n\nType: \nString\n\nDefault value: \nrequire_config.js\n\n\nThe path to your RequireJS configuration file.\n\n\nUsage Examples\n\n\nUsually you will use this task to collect a single set of dependencies from a single application flow.\nIf you use a different approach, make sure to structure your initialization code accordingly.\n\n\nSingle Flow, Single Output\n\n\ngrunt\n.\ninitConfig\n(\n \n{\n\n   \nlaxar_application_dependencies\n:\n \n{\n\n      \ndefault\n:\n \n{\n\n         \nvar/laxar_application_dependencies.js\n:\n \n[\n \napplication/flow/flow.json\n \n]\n\n      \n}\n\n   \n}\n\n\n}\n \n);\n\n\n\n\n\n\nMultiple Flows, Single Output\n\n\ngrunt\n.\ninitConfig\n(\n \n{\n\n   \nlaxar_application_dependencies\n:\n \n{\n\n      \ndefault\n:\n \n{\n\n         \nvar/laxar_application_dependencies.js\n:\n \n[\n \napplication/flow/*.json\n \n]\n\n      \n}\n\n   \n}\n\n\n}\n \n);\n\n\n\n\n\n\nMultiple Flows, Multiple Outputs\n\n\ngrunt\n.\ninitConfig\n(\n \n{\n\n   \nlaxar_application_dependencies\n:\n \n{\n\n      \ndefault\n:\n \n{\n\n         \nvar/laxar_application_dependencies_one.js\n:\n \n[\n \napplication/flow/flow_one.json\n \n],\n\n         \nvar/laxar_application_dependencies_two.js\n:\n \n[\n \napplication/flow/flow_two.json\n \n]\n\n      \n}\n\n   \n}\n\n\n}\n \n);", 
+            "title": "The &quot;laxar_application_dependencies&quot; Task"
+        }, 
+        {
+            "location": "/tasks/laxar_application_dependencies/#the-laxar_application_dependencies-task", 
+            "text": "This task is  deprecated . Have a look at  laxar-dependencies  instead.   The  laxar_application_dependencies  task parses an application's flow, resolves the pages and determines the widgets and controls used on those pages.\nFrom the list of widgets and controls it creates a  RequireJS  module that consists of a list of all the required modules' names, grouped by integration technology.\nTypically, this module is required from your main javascript file, such as  init.js  when using the  grunt-init-laxar-application  template, and used to bootstrap your LaxarJS application.", 
+            "title": "The \"laxar_application_dependencies\" Task"
+        }, 
+        {
+            "location": "/tasks/laxar_application_dependencies/#overview", 
+            "text": "Run this task with the  grunt laxar_application_dependencies  command.  Task targets, files and options may be specified according to the grunt  Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/laxar_application_dependencies/#options", 
+            "text": "", 
+            "title": "Options"
+        }, 
+        {
+            "location": "/tasks/laxar_application_dependencies/#optionsbase", 
+            "text": "Type:  String \nDefault value:  .  The path to your project root.", 
+            "title": "options.base"
+        }, 
+        {
+            "location": "/tasks/laxar_application_dependencies/#optionslaxar", 
+            "text": "Type:  String \nDefault value:  laxar  The RequireJS module name that resolves to Laxar.", 
+            "title": "options.laxar"
+        }, 
+        {
+            "location": "/tasks/laxar_application_dependencies/#optionspages", 
+            "text": "Type:  String \nDefault value:  laxar-path-pages  A path that RequireJS can resolve that points to your pages.", 
+            "title": "options.pages"
+        }, 
+        {
+            "location": "/tasks/laxar_application_dependencies/#optionswidgets", 
+            "text": "Type:  String \nDefault value:  laxar-path-widgets  A path that RequireJS can resolve that points to your widgets.", 
+            "title": "options.widgets"
+        }, 
+        {
+            "location": "/tasks/laxar_application_dependencies/#optionsrequireconfig", 
+            "text": "Type:  String \nDefault value:  require_config.js  The path to your RequireJS configuration file.", 
+            "title": "options.requireConfig"
+        }, 
+        {
+            "location": "/tasks/laxar_application_dependencies/#usage-examples", 
+            "text": "Usually you will use this task to collect a single set of dependencies from a single application flow.\nIf you use a different approach, make sure to structure your initialization code accordingly.", 
+            "title": "Usage Examples"
+        }, 
+        {
+            "location": "/tasks/laxar_application_dependencies/#single-flow-single-output", 
+            "text": "grunt . initConfig (   { \n    laxar_application_dependencies :   { \n       default :   { \n          var/laxar_application_dependencies.js :   [   application/flow/flow.json   ] \n       } \n    }  }   );", 
+            "title": "Single Flow, Single Output"
+        }, 
+        {
+            "location": "/tasks/laxar_application_dependencies/#multiple-flows-single-output", 
+            "text": "grunt . initConfig (   { \n    laxar_application_dependencies :   { \n       default :   { \n          var/laxar_application_dependencies.js :   [   application/flow/*.json   ] \n       } \n    }  }   );", 
+            "title": "Multiple Flows, Single Output"
+        }, 
+        {
+            "location": "/tasks/laxar_application_dependencies/#multiple-flows-multiple-outputs", 
+            "text": "grunt . initConfig (   { \n    laxar_application_dependencies :   { \n       default :   { \n          var/laxar_application_dependencies_one.js :   [   application/flow/flow_one.json   ], \n          var/laxar_application_dependencies_two.js :   [   application/flow/flow_two.json   ] \n       } \n    }  }   );", 
+            "title": "Multiple Flows, Multiple Outputs"
+        }, 
+        {
+            "location": "/tasks/laxar-dox/", 
+            "text": "The \"laxar_dox\" task\n\n\n\n\nUses \nlaxar_dox\n to output API documentation in markdown format.\n\n\n\n\nOverview\n\n\nRun this task with the \ngrunt laxar_dox\n command.\n\n\nTask targets, files and options may be specified according to the grunt\n\nConfiguring tasks\n guide.\n\n\nOptions\n\n\nNone\n\n\nUsage examples\n\n\nOne markdown file\n\n\ngrunt\n.\ninitConfig\n(\n \n{\n\n   \nlaxar_dox\n:\n \n{\n\n      \nlib\n:\n \n{\n\n         \nfiles\n:\n \n{\n\n            \ndocs/api.md\n:\n \n[\n \nlib/**/*.js\n \n]\n\n         \n}\n\n      \n}\n\n   \n}\n\n\n}\n \n);\n\n\n\n\n\n\nMultiple markdown files\n\n\ngrunt\n.\ninitConfig\n(\n \n{\n\n   \nlaxar_dox\n:\n \n{\n\n      \nlib\n:\n \n{\n\n         \nfiles\n:\n \n{\n\n            \nexpand\n:\n \ntrue\n,\n\n            \ncwd\n:\n \nlib\n,\n\n            \nsrc\n:\n \nlib/**/*.js\n,\n\n            \ndest\n:\n \ndocs/api/\n,\n\n            \next\n:\n \n.md\n\n         \n}\n\n      \n}\n\n   \n}\n\n\n}\n \n);", 
+            "title": "The &quot;laxar_dox&quot; task"
+        }, 
+        {
+            "location": "/tasks/laxar-dox/#the-laxar_dox-task", 
+            "text": "Uses  laxar_dox  to output API documentation in markdown format.", 
+            "title": "The \"laxar_dox\" task"
+        }, 
+        {
+            "location": "/tasks/laxar-dox/#overview", 
+            "text": "Run this task with the  grunt laxar_dox  command.  Task targets, files and options may be specified according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/laxar-dox/#options", 
+            "text": "None", 
+            "title": "Options"
+        }, 
+        {
+            "location": "/tasks/laxar-dox/#usage-examples", 
+            "text": "", 
+            "title": "Usage examples"
+        }, 
+        {
+            "location": "/tasks/laxar-dox/#one-markdown-file", 
+            "text": "grunt . initConfig (   { \n    laxar_dox :   { \n       lib :   { \n          files :   { \n             docs/api.md :   [   lib/**/*.js   ] \n          } \n       } \n    }  }   );", 
+            "title": "One markdown file"
+        }, 
+        {
+            "location": "/tasks/laxar-dox/#multiple-markdown-files", 
+            "text": "grunt . initConfig (   { \n    laxar_dox :   { \n       lib :   { \n          files :   { \n             expand :   true , \n             cwd :   lib , \n             src :   lib/**/*.js , \n             dest :   docs/api/ , \n             ext :   .md \n          } \n       } \n    }  }   );", 
+            "title": "Multiple markdown files"
+        }, 
+        {
+            "location": "/tasks/laxar-build/", 
+            "text": "The \nlaxar-build\n Task\n\n\n\n\nBuilds the required artifacts for all flow targets.\n\n\n\n\nAfter running \nlaxar-configure\n, this task runs the building block tasks belonging to \nlaxar-build-flow\n.\nThis results in concatenated JavaScript and CSS for each flow, which should be used by your application in production setups.\nThe \nindex.html\n that comes with the LaxarJS application template uses these artifacts by default.\n\n\nOverview\n\n\nRun this task with the \ngrunt laxar-build\n command.\n\n\nThis task has no further options.", 
+            "title": "The <em>laxar-build</em> Task"
+        }, 
+        {
+            "location": "/tasks/laxar-build/#the-laxar-build-task", 
+            "text": "Builds the required artifacts for all flow targets.   After running  laxar-configure , this task runs the building block tasks belonging to  laxar-build-flow .\nThis results in concatenated JavaScript and CSS for each flow, which should be used by your application in production setups.\nThe  index.html  that comes with the LaxarJS application template uses these artifacts by default.", 
+            "title": "The laxar-build Task"
+        }, 
+        {
+            "location": "/tasks/laxar-build/#overview", 
+            "text": "Run this task with the  grunt laxar-build  command.  This task has no further options.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/laxar-configure/", 
+            "text": "The \nlaxar-configure\n Task\n\n\n\n\nConfigures all flow-based tasks and their building blocks.\n\n\n\n\nGenerates configuration for the internal building-block tasks at \n{dest}/{target}/work/task-configuration.json\n.\nHere, \ndest\n refers to the configured destination directory (usually \nvar/flows\n), and \ntarget\n corresponds to each flow target that was configured (see below).\n\n\nOverview\n\n\nRun this task with the \ngrunt laxar-configure\n command.\n\n\nThis is the only task that \nrequires\n configuration.\n\n\nHere is the example configuration which is also used when creating a new LaxarJS application from the grunt-init \napplication template\n:\n\n\nlaxar-configure\n:\n \n{\n\n   \noptions\n:\n \n{\n\n      \nworkDirectory\n:\n \nvar/flows\n,\n\n      \nflows\n:\n \n[\n\n         \n{\n \ntarget\n:\n \nmain\n,\n \nsrc\n:\n \napplication/flow/flow.json\n \n}\n\n      \n]\n\n   \n}\n\n\n}\n\n\n\n\n\n\nThis configuration defines a \nflow target\n called \nmain\n and associates with this targets all artifacts than can be reached by browsing the flow \napplication/flow/flow.json\n.\n\n\nMost of the time, you will not need to run this task manually, because it is automatically run whenever starting \nlaxar-develop\n, \nlaxar-dist\n or \nlaxar-test\n.\nHowever, you will need to launch this task when trying to manually trigger building blocks such as \nlaxar-dist-css\n (see below).\n\n\nYou can instruct \nlaxar-configure\n to only use a single flow target so that the rest is effectively ignored.\nTo do this, start grunt with the global option \nlaxar-flow\n, e.g. \ngrunt --laxar-flow=main laxar-develop\n.\n\n\nOptions\n\n\noptions.workDirectory\n\n\nType: \nString\n\nDefault value: \nvar/flows\n\n\nThe path within your project where task output files are stored.\nAll \nlaxar-...\n tasks will use this folder, and a subfolder will be created for each flow target.\n\n\noptions.testDirectory\n\n\nType: \nString\n\nDefault value: \nvar/test\n\n\nThe path within your project where test output files are stored.\nAll \nlaxar-test-...\n tasks will use this folder, and subfolders will be created for artifacts that are being tested.\n\n\noptions.userTasks\n\n\nType: \nObject\n\nDefault value: \n{ 'build-flow': [], 'dist-flow': [], 'test-flow': [] }\n\n\nAllows to specify additional tasks to be invoked for each flow target, by \nlaxar-build-flow\n or by \nlaxar-build-flow\n respectively.\nThese tasks must be multi-tasks and their targets will be configured by \nlaxar-configure\n.\n\n\nFor each flow target, the tasks will be run with a single \ndest\n, which is the workDirectory option of this task.\nTasks run this way can safely access to the \nartifacts model\n of their flow, located under \n{dest}/{target}/tooling/artifacts.json\n.\nYou can use this to hook your own flow-based tasks into the \nbuild\n stage, for example to watch and compile \nSCSS\n files for a flow, or to perform additional optimizations during the \ndist\n stage.\n\n\noptions.flows\n\n\nType: \nArray\n\nDefault value: \n[]\n\n\nA list of flow-targets and their associated flow definitions.\nEach entry is an object with a \ntarget\n and a \nsrc\n property.\n\n\noptions.flows.*.target\n\n\nType: \nString\n\n\nThe \ntarget\n string is used to generate sub-tasks for the building blocks tasks.\nEach \ntarget\n also gets its own subdirectory within the \nworkDirectory\n.\n\n\noptions.flows.*.src\n\n\nType: \nString\n\n\nThe \nsrc\n property is a file path which is passed on to the (\nlaxar-artifacts\n) during the build.\nIt is used to look up the flow definition to be included into the build artifacts for this target.\n\n\noptions.flows.*.init\n\n\nType: \nString\n\nDefault value: \n'../init'\n\n\nThis is the AMD entry module for your flow, which pulls in all dependencies and kicks off the runtime using \nlaxar.bootstrap()\n.\nIt is needed to produce an optimized bundle using \nr.js\n (see \nlaxar-dist-js\n).\n\n\noptions.ports\n\n\nType: Object\n\n\nAllows to override the default TCP ports used by \nconnect\n (development, testing) and \nwatch\n (for live reload).\nYou should modify these ports when developing multiple LaxarJS applications simultaneously.\n\n\noptions.ports.develop\n\n\nType: Number\nDefault: 8000\n\n\nThe port that is used by the development web server.\nOther \nconnect\n options should be configured directly for that task.\nVisit this port in the web browser to try out your LaxarJS application.\n\n\noptions.ports.test\n\n\nType: Number\nDefault: 9000\n\n\nThe port that is used by the development web server \nfor automated testing\n.\nOther \nconnect\n options should be configured directly for that task.\nThis should be different from the development port so that testing does not interfere with development.\n\n\noptions.ports.livereload\n\n\nType: Number\nDefault: 35729\n\n\nThe port that is used by the \nwatch\n to implement the live-reload channel.", 
+            "title": "The <em>laxar-configure</em> Task"
+        }, 
+        {
+            "location": "/tasks/laxar-configure/#the-laxar-configure-task", 
+            "text": "Configures all flow-based tasks and their building blocks.   Generates configuration for the internal building-block tasks at  {dest}/{target}/work/task-configuration.json .\nHere,  dest  refers to the configured destination directory (usually  var/flows ), and  target  corresponds to each flow target that was configured (see below).", 
+            "title": "The laxar-configure Task"
+        }, 
+        {
+            "location": "/tasks/laxar-configure/#overview", 
+            "text": "Run this task with the  grunt laxar-configure  command.  This is the only task that  requires  configuration.  Here is the example configuration which is also used when creating a new LaxarJS application from the grunt-init  application template :  laxar-configure :   { \n    options :   { \n       workDirectory :   var/flows , \n       flows :   [ \n          {   target :   main ,   src :   application/flow/flow.json   } \n       ] \n    }  }   This configuration defines a  flow target  called  main  and associates with this targets all artifacts than can be reached by browsing the flow  application/flow/flow.json .  Most of the time, you will not need to run this task manually, because it is automatically run whenever starting  laxar-develop ,  laxar-dist  or  laxar-test .\nHowever, you will need to launch this task when trying to manually trigger building blocks such as  laxar-dist-css  (see below).  You can instruct  laxar-configure  to only use a single flow target so that the rest is effectively ignored.\nTo do this, start grunt with the global option  laxar-flow , e.g.  grunt --laxar-flow=main laxar-develop .", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/laxar-configure/#options", 
+            "text": "", 
+            "title": "Options"
+        }, 
+        {
+            "location": "/tasks/laxar-configure/#optionsworkdirectory", 
+            "text": "Type:  String \nDefault value:  var/flows  The path within your project where task output files are stored.\nAll  laxar-...  tasks will use this folder, and a subfolder will be created for each flow target.", 
+            "title": "options.workDirectory"
+        }, 
+        {
+            "location": "/tasks/laxar-configure/#optionstestdirectory", 
+            "text": "Type:  String \nDefault value:  var/test  The path within your project where test output files are stored.\nAll  laxar-test-...  tasks will use this folder, and subfolders will be created for artifacts that are being tested.", 
+            "title": "options.testDirectory"
+        }, 
+        {
+            "location": "/tasks/laxar-configure/#optionsusertasks", 
+            "text": "Type:  Object \nDefault value:  { 'build-flow': [], 'dist-flow': [], 'test-flow': [] }  Allows to specify additional tasks to be invoked for each flow target, by  laxar-build-flow  or by  laxar-build-flow  respectively.\nThese tasks must be multi-tasks and their targets will be configured by  laxar-configure .  For each flow target, the tasks will be run with a single  dest , which is the workDirectory option of this task.\nTasks run this way can safely access to the  artifacts model  of their flow, located under  {dest}/{target}/tooling/artifacts.json .\nYou can use this to hook your own flow-based tasks into the  build  stage, for example to watch and compile  SCSS  files for a flow, or to perform additional optimizations during the  dist  stage.", 
+            "title": "options.userTasks"
+        }, 
+        {
+            "location": "/tasks/laxar-configure/#optionsflows", 
+            "text": "Type:  Array \nDefault value:  []  A list of flow-targets and their associated flow definitions.\nEach entry is an object with a  target  and a  src  property.", 
+            "title": "options.flows"
+        }, 
+        {
+            "location": "/tasks/laxar-configure/#optionsflowstarget", 
+            "text": "Type:  String  The  target  string is used to generate sub-tasks for the building blocks tasks.\nEach  target  also gets its own subdirectory within the  workDirectory .", 
+            "title": "options.flows.*.target"
+        }, 
+        {
+            "location": "/tasks/laxar-configure/#optionsflowssrc", 
+            "text": "Type:  String  The  src  property is a file path which is passed on to the ( laxar-artifacts ) during the build.\nIt is used to look up the flow definition to be included into the build artifacts for this target.", 
+            "title": "options.flows.*.src"
+        }, 
+        {
+            "location": "/tasks/laxar-configure/#optionsflowsinit", 
+            "text": "Type:  String \nDefault value:  '../init'  This is the AMD entry module for your flow, which pulls in all dependencies and kicks off the runtime using  laxar.bootstrap() .\nIt is needed to produce an optimized bundle using  r.js  (see  laxar-dist-js ).", 
+            "title": "options.flows.*.init"
+        }, 
+        {
+            "location": "/tasks/laxar-configure/#optionsports", 
+            "text": "Type: Object  Allows to override the default TCP ports used by  connect  (development, testing) and  watch  (for live reload).\nYou should modify these ports when developing multiple LaxarJS applications simultaneously.", 
+            "title": "options.ports"
+        }, 
+        {
+            "location": "/tasks/laxar-configure/#optionsportsdevelop", 
+            "text": "Type: Number\nDefault: 8000  The port that is used by the development web server.\nOther  connect  options should be configured directly for that task.\nVisit this port in the web browser to try out your LaxarJS application.", 
+            "title": "options.ports.develop"
+        }, 
+        {
+            "location": "/tasks/laxar-configure/#optionsportstest", 
+            "text": "Type: Number\nDefault: 9000  The port that is used by the development web server  for automated testing .\nOther  connect  options should be configured directly for that task.\nThis should be different from the development port so that testing does not interfere with development.", 
+            "title": "options.ports.test"
+        }, 
+        {
+            "location": "/tasks/laxar-configure/#optionsportslivereload", 
+            "text": "Type: Number\nDefault: 35729  The port that is used by the  watch  to implement the live-reload channel.", 
+            "title": "options.ports.livereload"
+        }, 
+        {
+            "location": "/tasks/laxar-develop-no-watch/", 
+            "text": "The \nlaxar-develop-no-watch\n Task\n\n\n\n\nGenerates \ndependencies\n and \nresource listings\n required by the LaxarJS runtime, and starts a \ndevelopment server\n \nwithout\n live reloading.\n\n\n\n\nThis task is an \nend-user task\n of grunt-laxar and thus considered part of the public API.\n\n\nThis is the same as \nlaxar-develop\n, but without watching of files or live reloading.\n\n\nOverview\n\n\nRun this task with the \ngrunt laxar-develop-no-watch\n command.\n\n\nThis task has no further options.", 
+            "title": "The <em>laxar-develop-no-watch</em> Task"
+        }, 
+        {
+            "location": "/tasks/laxar-develop-no-watch/#the-laxar-develop-no-watch-task", 
+            "text": "Generates  dependencies  and  resource listings  required by the LaxarJS runtime, and starts a  development server   without  live reloading.   This task is an  end-user task  of grunt-laxar and thus considered part of the public API.  This is the same as  laxar-develop , but without watching of files or live reloading.", 
+            "title": "The laxar-develop-no-watch Task"
+        }, 
+        {
+            "location": "/tasks/laxar-develop-no-watch/#overview", 
+            "text": "Run this task with the  grunt laxar-develop-no-watch  command.  This task has no further options.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/laxar-develop/", 
+            "text": "The \nlaxar-develop\n Task\n\n\n\n\nGenerates \ndependencies\n and \nresource listings\n required by the LaxarJS runtime, and starts a \ndevelopment server\n  with live reloading.\n\n\n\n\nThis task is an \nend-user task\n of grunt-laxar and thus considered part of the public API.\n\n\nThis task simply runs \nlaxar-configure\n, followed by \nlaxar-build\n.\nFinally the third-party tasks \nconnect\n and \nwatch\n are run in order to launch a development server with live-reload capabilities.\n\n\nBecause the watch task is configured by \nlaxar-build\n, only files that are relevant to the application are watched for modification, making this process relatively CPU- and battery-friendly.\nTo avoid watching for modifications entirely, you can use the \nlaxar-develop-no-watch\n variant of this task.\n\n\nFor a \nproduction build\n, additional artifacts must be generated, by using \nlaxar-dist\n.\n\n\nOverview\n\n\nRun this task with the \ngrunt laxar-develop\n command.\n\n\nThis task has no further options.", 
+            "title": "The <em>laxar-develop</em> Task"
+        }, 
+        {
+            "location": "/tasks/laxar-develop/#the-laxar-develop-task", 
+            "text": "Generates  dependencies  and  resource listings  required by the LaxarJS runtime, and starts a  development server   with live reloading.   This task is an  end-user task  of grunt-laxar and thus considered part of the public API.  This task simply runs  laxar-configure , followed by  laxar-build .\nFinally the third-party tasks  connect  and  watch  are run in order to launch a development server with live-reload capabilities.  Because the watch task is configured by  laxar-build , only files that are relevant to the application are watched for modification, making this process relatively CPU- and battery-friendly.\nTo avoid watching for modifications entirely, you can use the  laxar-develop-no-watch  variant of this task.  For a  production build , additional artifacts must be generated, by using  laxar-dist .", 
+            "title": "The laxar-develop Task"
+        }, 
+        {
+            "location": "/tasks/laxar-develop/#overview", 
+            "text": "Run this task with the  grunt laxar-develop  command.  This task has no further options.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/laxar-dist/", 
+            "text": "The \nlaxar-dist\n Task\n\n\n\n\nPrepares your application for production.\n\n\n\n\nAfter running \nlaxar-configure\n and \nlaxar-build\n this task runs the building block task \nlaxar-dist-optimize\n for each flow target.\nThis results in the necessary resources and dependencies as well as in the concatenated JavaScript and CSS for each flow, which should be used by your application in production setups.\nThe \nindex.html\n that comes with the LaxarJS application template uses these artifacts by default.\n\n\nOverview\n\n\nRun this task with the \ngrunt laxar-dist\n command.\n\n\nThis task has no further options.", 
+            "title": "The <em>laxar-dist</em> Task"
+        }, 
+        {
+            "location": "/tasks/laxar-dist/#the-laxar-dist-task", 
+            "text": "Prepares your application for production.   After running  laxar-configure  and  laxar-build  this task runs the building block task  laxar-dist-optimize  for each flow target.\nThis results in the necessary resources and dependencies as well as in the concatenated JavaScript and CSS for each flow, which should be used by your application in production setups.\nThe  index.html  that comes with the LaxarJS application template uses these artifacts by default.", 
+            "title": "The laxar-dist Task"
+        }, 
+        {
+            "location": "/tasks/laxar-dist/#overview", 
+            "text": "Run this task with the  grunt laxar-dist  command.  This task has no further options.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/laxar-info/", 
+            "text": "The \nlaxar-info\n Task\n\n\n\n\nPrints information about LaxarJS application artifacts to the command line\n\n\n\n\nThis task uses the artifacts model produced by \nlaxar-build\n and provides information on individual artifacts.\n\n\nIn particular, it tells you which resources (CSS/HTML) are used for which artifact, and under which theme. \n\n\nOverview\n\n\nRun this task with the \ngrunt laxar-info\n command.\n\n\nUsually, you will alias the task to \ninfo\n in your Gruntfile, so that you can use it like this.\n\n\n#\n print general project information \n(\ne.g. which flow targets are available\n)\n\n\ngrunt info\n\n\n\n#\n print usage information\n\ngrunt info --usage\n\n\n\n#\n try all artifact types,\n\n#\n print information on the first \ntype\n \nfor\n which this is a reference\n\ngrunt info -X some-artifact-reference\n\n\n\n\n#\n print information on the flow-target _main_\n\ngrunt info --flow main\n\n\n\n#\n print information on the page \n`\nmy/page\n`\n\n\ngrunt info --page my/page\n\n\n\n#\n print information on the widget with file reference \n`\ncat/my-widget\n`\n\n\ngrunt info --widget cat/my-widget\n\n\n\n#\n print information on the control with AMD path \n`\nlaxar-input-control\n`\n\n\ngrunt info --control laxar-path-control\n\n\n\n#\n print information on the layout \n`\nmy/layout\n`\n\n\ngrunt info --layout my/layout", 
+            "title": "The <em>laxar-info</em> Task"
+        }, 
+        {
+            "location": "/tasks/laxar-info/#the-laxar-info-task", 
+            "text": "Prints information about LaxarJS application artifacts to the command line   This task uses the artifacts model produced by  laxar-build  and provides information on individual artifacts.  In particular, it tells you which resources (CSS/HTML) are used for which artifact, and under which theme.", 
+            "title": "The laxar-info Task"
+        }, 
+        {
+            "location": "/tasks/laxar-info/#overview", 
+            "text": "Run this task with the  grunt laxar-info  command.  Usually, you will alias the task to  info  in your Gruntfile, so that you can use it like this.  #  print general project information  ( e.g. which flow targets are available )  grunt info  #  print usage information grunt info --usage  #  try all artifact types, #  print information on the first  type   for  which this is a reference grunt info -X some-artifact-reference  #  print information on the flow-target _main_ grunt info --flow main  #  print information on the page  ` my/page `  grunt info --page my/page  #  print information on the widget with file reference  ` cat/my-widget `  grunt info --widget cat/my-widget  #  print information on the control with AMD path  ` laxar-input-control `  grunt info --control laxar-path-control  #  print information on the layout  ` my/layout `  grunt info --layout my/layout", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/laxar-test-widget/", 
+            "text": "The \nlaxar-test-widget\n Task\n\n\n\n\nRuns spec tests for a single widget\n\n\n\n\nExecutes a single widget's spec test using \nkarma\n.\n\n\nOverview\n\n\nRun this task with the \ngrunt laxar-test-widget:path/to/widget\n command.\n\n\nTest output is printed to standard out, and an XML report is written to \nvar/test/path/to/widget/test-results.xml\n.\n\n\nThis task has no further options.\n\n\nOptions\n\n\noptions.testDirectory\n\n\nType: \nString\n\nDefault value: \nvar/test\n\n\nThe path within your project where test output files are stored.\nAll \nlaxar-test-...\n tasks will use this folder, and sub-folders will be created for artifacts that are being tested.", 
+            "title": "The <em>laxar-test-widget</em> Task"
+        }, 
+        {
+            "location": "/tasks/laxar-test-widget/#the-laxar-test-widget-task", 
+            "text": "Runs spec tests for a single widget   Executes a single widget's spec test using  karma .", 
+            "title": "The laxar-test-widget Task"
+        }, 
+        {
+            "location": "/tasks/laxar-test-widget/#overview", 
+            "text": "Run this task with the  grunt laxar-test-widget:path/to/widget  command.  Test output is printed to standard out, and an XML report is written to  var/test/path/to/widget/test-results.xml .  This task has no further options.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/laxar-test-widget/#options", 
+            "text": "", 
+            "title": "Options"
+        }, 
+        {
+            "location": "/tasks/laxar-test-widget/#optionstestdirectory", 
+            "text": "Type:  String \nDefault value:  var/test  The path within your project where test output files are stored.\nAll  laxar-test-...  tasks will use this folder, and sub-folders will be created for artifacts that are being tested.", 
+            "title": "options.testDirectory"
+        }, 
+        {
+            "location": "/tasks/laxar-test/", 
+            "text": "The \nlaxar-test\n Task\n\n\n\n\nRuns spec tests of all widgets that are a direct part of the application\n\n\n\n\nIt does not make sense to test the same widget twice just for being part of two flows, so this task pools and processes widgets from all flows.\n\n\nTo test an individual widget, use the task \nlaxar-test-widget\n.\n\n\nOverview\n\n\nRun this task with the \ngrunt laxar-test\n command.\n\n\nOverall test output for all widgets of a flow is written to \n{dest}/{target}/tooling/test-results.xml\n.\n\n\nWhen a single test fails, the task aborts so that you can inspect the output.\nYou can force \nlaxar-test\n to continue by invoking grunt with the \n--continue\n option.\nIn this case, the task prints a warning if any of the tests failed, and you should inspect the output.\n\n\nThis task has no further options.", 
+            "title": "The <em>laxar-test</em> Task"
+        }, 
+        {
+            "location": "/tasks/laxar-test/#the-laxar-test-task", 
+            "text": "Runs spec tests of all widgets that are a direct part of the application   It does not make sense to test the same widget twice just for being part of two flows, so this task pools and processes widgets from all flows.  To test an individual widget, use the task  laxar-test-widget .", 
+            "title": "The laxar-test Task"
+        }, 
+        {
+            "location": "/tasks/laxar-test/#overview", 
+            "text": "Run this task with the  grunt laxar-test  command.  Overall test output for all widgets of a flow is written to  {dest}/{target}/tooling/test-results.xml .  When a single test fails, the task aborts so that you can inspect the output.\nYou can force  laxar-test  to continue by invoking grunt with the  --continue  option.\nIn this case, the task prints a warning if any of the tests failed, and you should inspect the output.  This task has no further options.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-artifacts/", 
+            "text": "The \nlaxar-artifacts\n Task\n\n\n\n\nFor a given flow target, collects all reachable artifacts and produce an \nartifacts model\n in JSON format.\n\n\n\n\nThe generated \nartifacts model\n serves as a base for many other tasks and is very useful for tooling and inspection.\n\n\nThe artifacts model is stored under \n{dest}/{target}/tooling/artifacts.json\n.\nHere, \ndest\n refers to the configured destination directory (usually \nvar/flows\n), and \ntarget\n corresponds to the flow target that was specified when running the task.\n\n\nThere is one top-level key in the artifacts model for each type of artifact: \nflows, themes, pages (including compositions), layouts, widgets\n and \ncontrols\n.\nThe value of each of these top-level entries is a list of corresponding \nartifact items\n.\nThe individual attributes of an artifact item depend on the type of artifact, but all items have a \nresources\n entry, and many also have a \npath\n and/or \nreferences\n.\n\n\nArtifact Resources\n\n\nEach artifact that is part of the artifacts model has associated \nresources\n which play a role for processing by subsequent tasks.\nThere are several sets of such resources, which may overlap.\nThe \nresources\n attribute of each artifact item contains these sets by name, each being represented as an \narray of strings\n, which are file paths or glob-patterns.\nPatterns starting with '/' must be interpreted relative to the project root, while other patterns are relative to the artifact's path.\nNot that there do not actually have to exist any files matching these paths; these are just the paths where the LaxarJS runtime and tasks will be able to pick them up.\n\n\nArtifact Resources: \nembed\n\n\nAny \nembed resources\n of an artifact will possibly be downloaded by the LaxarJS runtime, using the \naxFileResourceProvider\n service.\nActually existing files that match these resources will be textually embedded by the \nlaxar-resources\n task into the file \nresources.json\n, so that the runtime can access their contents without any delay.\n\n\n\n\n\n\nFor \nwidgets\n, this list includes the \nwidget.json\n, any HTML templates (local to the widget, or provided externally by a theme), and anything specified in the \nwidget.json\n under \nresources.embed\n.\n\n\n\n\n\n\nFor \ncontrols\n, this list includes the \ncontrol.json\n, and anything specified in the \ncontrol.json\n under \nresources.embed\n.\n\n\n\n\n\n\nNote that \nembed\n implies \nlist\n (see below).\n\n\nArtifact Resources: \nlist\n\n\nAny \nlist resources\n of an artifact will possibly be checked for availability by the LaxarJS runtime, using the \naxFileResourceProvider\n service.\nActual files corresponding to these resources will be listed by the task \nlaxar-resources\n in the file \nresources.json\n so that the runtime can determine their availability without producing HTML 404 errors.\nThese resources \nmight\n be downloaded (if they actually exist), for example by a runtime-generated \nlink\n element, in order to load a stylesheet.\n\n\n\n\n\n\nFor \nwidgets\n, this list includes any CSS stylesheets (local to the widget, or provided externally by a theme), and anything specified in the \nwidget.json\n under \nresources.list\n.\n\n\n\n\n\n\nFor \ncontrols\n, this list includes any CSS stylesheets (local to the control, or provided externally by a theme), anything specified in the \ncontrol.json\n under \nresources.list\n.\n\n\n\n\n\n\nNote that any \nembed\n resources belong are \nimplicitly\n list resources as well.\n\n\nArtifact Resources: \nwatch\n\n\nAny \nwatch resources\n indicate file locations that are observed by the development server.\nThese resources are processed by \nlaxar-configure-watch\n to configure the grunt \nwatch\n task.\nChanges to these resources will be live-reloaded if the development server is used.\n\n\n\n\n\n\nFor \nwidgets\n, this list includes the implementation module, any of the default \nlist\n and \nembed\n resources (see above) as well as anything specified in the \nwidget.json\n under \nresources.watch\n.\n\n\n\n\n\n\nFor \ncontrols\n, this list includes the implementation module, any of the default \nlist\n and \nembed\n resources (see above) as well as anything specified in the \ncontrol.json\n under \nresources.watch\n.\n\n\n\n\n\n\nTo watch all JavaScript files of a widget that you are developing, you could simply add an entry \n\"*.js\"\n to the \nresources.watch\n entry of the \nwidget.json\n.\n\n\nOverview\n\n\nNote:\n This task is an \ninternal building block\n used by the grunt-laxar main tasks, and not considered a part of the stable API.\n\n\nRun this task with the \ngrunt laxar-configure laxar-artifacts:target\n command.\n\n\nThe possible targets are determined by the configuration which is generated by the \nlaxar-configure\n task.\nIf used without \nlaxar-configure\n, the task targets, files and options may be specified manually according to the grunt\n\nConfiguring tasks\n guide.", 
+            "title": "internal-The <em>laxar-artifacts</em> Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-artifacts/#the-laxar-artifacts-task", 
+            "text": "For a given flow target, collects all reachable artifacts and produce an  artifacts model  in JSON format.   The generated  artifacts model  serves as a base for many other tasks and is very useful for tooling and inspection.  The artifacts model is stored under  {dest}/{target}/tooling/artifacts.json .\nHere,  dest  refers to the configured destination directory (usually  var/flows ), and  target  corresponds to the flow target that was specified when running the task.  There is one top-level key in the artifacts model for each type of artifact:  flows, themes, pages (including compositions), layouts, widgets  and  controls .\nThe value of each of these top-level entries is a list of corresponding  artifact items .\nThe individual attributes of an artifact item depend on the type of artifact, but all items have a  resources  entry, and many also have a  path  and/or  references .", 
+            "title": "The laxar-artifacts Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-artifacts/#artifact-resources", 
+            "text": "Each artifact that is part of the artifacts model has associated  resources  which play a role for processing by subsequent tasks.\nThere are several sets of such resources, which may overlap.\nThe  resources  attribute of each artifact item contains these sets by name, each being represented as an  array of strings , which are file paths or glob-patterns.\nPatterns starting with '/' must be interpreted relative to the project root, while other patterns are relative to the artifact's path.\nNot that there do not actually have to exist any files matching these paths; these are just the paths where the LaxarJS runtime and tasks will be able to pick them up.", 
+            "title": "Artifact Resources"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-artifacts/#artifact-resources-embed", 
+            "text": "Any  embed resources  of an artifact will possibly be downloaded by the LaxarJS runtime, using the  axFileResourceProvider  service.\nActually existing files that match these resources will be textually embedded by the  laxar-resources  task into the file  resources.json , so that the runtime can access their contents without any delay.    For  widgets , this list includes the  widget.json , any HTML templates (local to the widget, or provided externally by a theme), and anything specified in the  widget.json  under  resources.embed .    For  controls , this list includes the  control.json , and anything specified in the  control.json  under  resources.embed .    Note that  embed  implies  list  (see below).", 
+            "title": "Artifact Resources: embed"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-artifacts/#artifact-resources-list", 
+            "text": "Any  list resources  of an artifact will possibly be checked for availability by the LaxarJS runtime, using the  axFileResourceProvider  service.\nActual files corresponding to these resources will be listed by the task  laxar-resources  in the file  resources.json  so that the runtime can determine their availability without producing HTML 404 errors.\nThese resources  might  be downloaded (if they actually exist), for example by a runtime-generated  link  element, in order to load a stylesheet.    For  widgets , this list includes any CSS stylesheets (local to the widget, or provided externally by a theme), and anything specified in the  widget.json  under  resources.list .    For  controls , this list includes any CSS stylesheets (local to the control, or provided externally by a theme), anything specified in the  control.json  under  resources.list .    Note that any  embed  resources belong are  implicitly  list resources as well.", 
+            "title": "Artifact Resources: list"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-artifacts/#artifact-resources-watch", 
+            "text": "Any  watch resources  indicate file locations that are observed by the development server.\nThese resources are processed by  laxar-configure-watch  to configure the grunt  watch  task.\nChanges to these resources will be live-reloaded if the development server is used.    For  widgets , this list includes the implementation module, any of the default  list  and  embed  resources (see above) as well as anything specified in the  widget.json  under  resources.watch .    For  controls , this list includes the implementation module, any of the default  list  and  embed  resources (see above) as well as anything specified in the  control.json  under  resources.watch .    To watch all JavaScript files of a widget that you are developing, you could simply add an entry  \"*.js\"  to the  resources.watch  entry of the  widget.json .", 
+            "title": "Artifact Resources: watch"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-artifacts/#overview", 
+            "text": "Note:  This task is an  internal building block  used by the grunt-laxar main tasks, and not considered a part of the stable API.  Run this task with the  grunt laxar-configure laxar-artifacts:target  command.  The possible targets are determined by the configuration which is generated by the  laxar-configure  task.\nIf used without  laxar-configure , the task targets, files and options may be specified manually according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-build-flow/", 
+            "text": "The \nlaxar-build-flow\n Task\n\n\n\n\nFor a given flow target, generates all artifacts that are needed to run that flow in the browser during development.\n\n\n\n\nThis task simply executes \nlaxar-artifacts\n, \nlaxar-dependencies\n, \nlaxar-resources\n and \nlaxar-configure-watch\n.\n\n\nOverview\n\n\nNote:\n This task is an \ninternal building block\n used by the grunt-laxar main tasks, and not considered a part of the stable API.\n\n\nRun this task with the \ngrunt laxar-configure laxar-build-flow:{target}\n command.\n\n\nThe possible targets are determined by the configuration which is generated by the \nlaxar-configure\n task.\nIf used without \nlaxar-configure\n, the task targets, files and options may be specified manually according to the grunt\n\nConfiguring tasks\n guide.", 
+            "title": "internal-The <em>laxar-build-flow</em> Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-build-flow/#the-laxar-build-flow-task", 
+            "text": "For a given flow target, generates all artifacts that are needed to run that flow in the browser during development.   This task simply executes  laxar-artifacts ,  laxar-dependencies ,  laxar-resources  and  laxar-configure-watch .", 
+            "title": "The laxar-build-flow Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-build-flow/#overview", 
+            "text": "Note:  This task is an  internal building block  used by the grunt-laxar main tasks, and not considered a part of the stable API.  Run this task with the  grunt laxar-configure laxar-build-flow:{target}  command.  The possible targets are determined by the configuration which is generated by the  laxar-configure  task.\nIf used without  laxar-configure , the task targets, files and options may be specified manually according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-configure-watch/", 
+            "text": "The \nlaxar-configure-watch\n Task\n\n\n\n\nFor a given flow target, generates configuration for  \nwatch\n targets.\n\n\n\n\nThis does not actually start the watch task, because that would immediately block the grunt main thread for other tasks, as well as for additional flow targets to be configured for watching.\nUsually, the watch task is started together with \nconnect\n by the \nlaxar-develop\n main task.\n\n\nThe generated watcher configuration is stored under \n{dest}/{target}/work/watch-configuration.json\n.\nHere, \ndest\n refers to the configured destination directory (usually \nvar/flows\n), and \ntarget\n corresponds to the flow target that was specified when running the task.\n\n\nOverview\n\n\nNote:\n This task is an \ninternal building block\n used by the grunt-laxar main tasks, and not considered a part of the stable API.\n\n\nRun this task with the \ngrunt laxar-configure laxar-configure-watch:{target}\n command.\n\n\nUsually it does not make sense to run the task like this without also executing \nwatch\n and \nconnect\n, since otherwise the task runner would simply exit.\nHowever, you may run it in this manner in order to inspect the generated watcher configuration.\n\n\nThe possible targets are determined by the configuration which is generated by the \nlaxar-configure\n task.\nIf used without \nlaxar-configure\n, the task targets, files and options may be specified manually according to the grunt\n\nConfiguring tasks\n guide.\n\n\nOptions\n\n\noptions.watchBowerComponents\n\n\nDefault:\n \nfalse\n\n\nBy default, no watchers are configured for anything installed as a bower component.\nDepending on the project, this can lead to considerable CPU usage savings, but you may have to restart your development server after updating a bower dependency.\nYou can change this behavior by setting \noptions.watchBowerComponents\n to \ntrue\n, so that the folder \nbower_components\n is no longer ignored.", 
+            "title": "internal-The <em>laxar-configure-watch</em> Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-configure-watch/#the-laxar-configure-watch-task", 
+            "text": "For a given flow target, generates configuration for   watch  targets.   This does not actually start the watch task, because that would immediately block the grunt main thread for other tasks, as well as for additional flow targets to be configured for watching.\nUsually, the watch task is started together with  connect  by the  laxar-develop  main task.  The generated watcher configuration is stored under  {dest}/{target}/work/watch-configuration.json .\nHere,  dest  refers to the configured destination directory (usually  var/flows ), and  target  corresponds to the flow target that was specified when running the task.", 
+            "title": "The laxar-configure-watch Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-configure-watch/#overview", 
+            "text": "Note:  This task is an  internal building block  used by the grunt-laxar main tasks, and not considered a part of the stable API.  Run this task with the  grunt laxar-configure laxar-configure-watch:{target}  command.  Usually it does not make sense to run the task like this without also executing  watch  and  connect , since otherwise the task runner would simply exit.\nHowever, you may run it in this manner in order to inspect the generated watcher configuration.  The possible targets are determined by the configuration which is generated by the  laxar-configure  task.\nIf used without  laxar-configure , the task targets, files and options may be specified manually according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-configure-watch/#options", 
+            "text": "", 
+            "title": "Options"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-configure-watch/#optionswatchbowercomponents", 
+            "text": "Default:   false  By default, no watchers are configured for anything installed as a bower component.\nDepending on the project, this can lead to considerable CPU usage savings, but you may have to restart your development server after updating a bower dependency.\nYou can change this behavior by setting  options.watchBowerComponents  to  true , so that the folder  bower_components  is no longer ignored.", 
+            "title": "options.watchBowerComponents"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-dependencies/", 
+            "text": "The \nlaxar-dependencies\n Task\n\n\n\n\nFor a given flow target, generates an AMD module that references all direct dependencies.\n\n\n\n\nA module is generated, which depends on the controller modules of all reachable widgets and activities as well the modules of their controls.\nWhen loaded using \nRequireJS\n or bundled using \nr.js\n this causes all transitive dependencies of these modules to be included as well.\n\n\nThe dependencies module is stored under \n{dest}/{target}/dependencies.js\n.\nHere, \ndest\n refers to the configured destination directory (usually \nvar/flows\n), and \ntarget\n corresponds to the flow target that was specified when running the task.\n\n\nOverview\n\n\nNote:\n This task is an \ninternal building block\n used by the grunt-laxar main tasks, and not considered a part of the stable API.\n\n\nRun this task with the \ngrunt laxar-configure laxar-dependencies:{target}\n command.\n\n\nThe possible targets are determined by the configuration which is generated by the \nlaxar-configure\n task.\nIf used without \nlaxar-configure\n, the task targets, files and options may be specified manually according to the grunt\n\nConfiguring tasks\n guide.", 
+            "title": "internal-The <em>laxar-dependencies</em> Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-dependencies/#the-laxar-dependencies-task", 
+            "text": "For a given flow target, generates an AMD module that references all direct dependencies.   A module is generated, which depends on the controller modules of all reachable widgets and activities as well the modules of their controls.\nWhen loaded using  RequireJS  or bundled using  r.js  this causes all transitive dependencies of these modules to be included as well.  The dependencies module is stored under  {dest}/{target}/dependencies.js .\nHere,  dest  refers to the configured destination directory (usually  var/flows ), and  target  corresponds to the flow target that was specified when running the task.", 
+            "title": "The laxar-dependencies Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-dependencies/#overview", 
+            "text": "Note:  This task is an  internal building block  used by the grunt-laxar main tasks, and not considered a part of the stable API.  Run this task with the  grunt laxar-configure laxar-dependencies:{target}  command.  The possible targets are determined by the configuration which is generated by the  laxar-configure  task.\nIf used without  laxar-configure , the task targets, files and options may be specified manually according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-dist-css/", 
+            "text": "The \nlaxar-dist-css\n Task\n\n\n\n\nFor a given flow target, uses \nclean-css\n (via \ncssmin\n) in order to create a single, optimized CSS file for each theme.\n\n\n\n\nThe generated CSS stylesheet is stored under \n{dest}/{target}/dist/{theme}.css\n.\nHere, \ndest\n refers to the configured destination directory (usually \nvar/flows\n), \ntarget\n corresponds to the flow target that was specified when running the task, and \ntheme\n is the full name of an application theme, or \ndefault.theme\n.\nEach theme is accompanied by a \nsource map\n located at \n{dest}/{target}/dist/{theme}.css.map\n.\n\n\nOverview\n\n\nNote:\n This task is an \ninternal building block\n used by the grunt-laxar main tasks, and not considered a part of the stable API.\n\n\nRun this task with the \ngrunt laxar-configure laxar-dist-css:{target}\n command.\n\n\nThe possible targets are determined by the configuration which is generated by the \nlaxar-configure\n task.\nIf used without \nlaxar-configure\n, the task targets, files and options may be specified manually according to the grunt\n\nConfiguring tasks\n guide.", 
+            "title": "internal-The <em>laxar-dist-css</em> Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-dist-css/#the-laxar-dist-css-task", 
+            "text": "For a given flow target, uses  clean-css  (via  cssmin ) in order to create a single, optimized CSS file for each theme.   The generated CSS stylesheet is stored under  {dest}/{target}/dist/{theme}.css .\nHere,  dest  refers to the configured destination directory (usually  var/flows ),  target  corresponds to the flow target that was specified when running the task, and  theme  is the full name of an application theme, or  default.theme .\nEach theme is accompanied by a  source map  located at  {dest}/{target}/dist/{theme}.css.map .", 
+            "title": "The laxar-dist-css Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-dist-css/#overview", 
+            "text": "Note:  This task is an  internal building block  used by the grunt-laxar main tasks, and not considered a part of the stable API.  Run this task with the  grunt laxar-configure laxar-dist-css:{target}  command.  The possible targets are determined by the configuration which is generated by the  laxar-configure  task.\nIf used without  laxar-configure , the task targets, files and options may be specified manually according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-dist-flow/", 
+            "text": "The \nlaxar-dist-flow\n Task\n\n\n\n\nFor a given flow target, produces optimized assets (CSS, JavaScript).\n\n\n\n\nThis task simply executes \nlaxar-dist-js\n and  \nlaxar-dist-css\n.\n\n\nOverview\n\n\nNote:\n This task is an \ninternal building block\n used by the grunt-laxar main tasks, and not considered a part of the stable API.\n\n\nRun this task with the \ngrunt laxar-configure laxar-dist-optimize:{target}\n command.\n\n\nThe possible targets are determined by the configuration which is generated by the \nlaxar-configure\n task.\nIf used without \nlaxar-configure\n, the task targets, files and options may be specified manually according to the grunt\n\nConfiguring tasks\n guide.", 
+            "title": "internal-The <em>laxar-dist-flow</em> Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-dist-flow/#the-laxar-dist-flow-task", 
+            "text": "For a given flow target, produces optimized assets (CSS, JavaScript).   This task simply executes  laxar-dist-js  and   laxar-dist-css .", 
+            "title": "The laxar-dist-flow Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-dist-flow/#overview", 
+            "text": "Note:  This task is an  internal building block  used by the grunt-laxar main tasks, and not considered a part of the stable API.  Run this task with the  grunt laxar-configure laxar-dist-optimize:{target}  command.  The possible targets are determined by the configuration which is generated by the  laxar-configure  task.\nIf used without  laxar-configure , the task targets, files and options may be specified manually according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-dist-js/", 
+            "text": "The \nlaxar-dist-js\n Task\n\n\n\n\nFor a given flow target, uses \nr.js\n to create an optimized JavaScript bundle.\n\n\n\n\nThe generated JavaScript bundle is stored under \n{dest}/{target}/dist/bundle.js\n and is accompanied by a \nsource map\n located at \n{dest}/{target}/dist/bundle.js.map\n.\nHere, \ndest\n refers to the configured destination directory (usually \nvar/flows\n), \ntarget\n corresponds to the flow target that was specified when running the task, and \ntheme\n is the full name of an application theme, or \ndefault.theme\n.\n\n\nOverview\n\n\nNote:\n This task is an \ninternal building block\n used by the grunt-laxar main tasks, and not considered a part of the stable API.\n\n\nRun this task with the \ngrunt laxar-configure laxar-dist-js:{target}\n command.\n\n\nThe possible targets are determined by the configuration which is generated by the \nlaxar-configure\n task.\nIf used without \nlaxar-configure\n, the task targets, files and options may be specified manually according to the grunt\n\nConfiguring tasks\n guide.", 
+            "title": "internal-The <em>laxar-dist-js</em> Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-dist-js/#the-laxar-dist-js-task", 
+            "text": "For a given flow target, uses  r.js  to create an optimized JavaScript bundle.   The generated JavaScript bundle is stored under  {dest}/{target}/dist/bundle.js  and is accompanied by a  source map  located at  {dest}/{target}/dist/bundle.js.map .\nHere,  dest  refers to the configured destination directory (usually  var/flows ),  target  corresponds to the flow target that was specified when running the task, and  theme  is the full name of an application theme, or  default.theme .", 
+            "title": "The laxar-dist-js Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-dist-js/#overview", 
+            "text": "Note:  This task is an  internal building block  used by the grunt-laxar main tasks, and not considered a part of the stable API.  Run this task with the  grunt laxar-configure laxar-dist-js:{target}  command.  The possible targets are determined by the configuration which is generated by the  laxar-configure  task.\nIf used without  laxar-configure , the task targets, files and options may be specified manually according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-merge-require-config/", 
+            "text": "The \nlaxar-merge-require-config\n Task\n\n\n\n\nFor a given flow target, collects and merges all \nrequire_config.js\n files found in widgets and controls\n\n\n\n\nThe task scans through all widget and control directories reachable from the given flow and collects all existing \nrequire_config.js\n files.\nIt is assumed that the configuration for the artifact is defined as a global \nrequire\n object in there.\n\n\nUsing the application \nrequire_config.js\n as a basis, a merged configuration for each flow will be generated under \n{dest}/{target}/require_config.js\n.\nHere, \ndest\n refers to the configured destination directory (usually \nvar/flows\n), and \ntarget\n corresponds to the flow target that was specified when running the task.\n\n\nOverview\n\n\nNote:\n This task is an \ninternal building block\n used by the grunt-laxar main tasks, and not considered a part of the stable API.\n\n\nRun this task with the \ngrunt laxar-configure laxar-merge-require-config:{target}\n command.\n\n\nThe possible targets are determined by the configuration which is generated by the \nlaxar-configure\n task.\nIf used without \nlaxar-configure\n, the task targets, files and options may be specified manually according to the grunt\n\nConfiguring tasks\n guide.", 
+            "title": "internal-The <em>laxar-merge-require-config</em> Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-merge-require-config/#the-laxar-merge-require-config-task", 
+            "text": "For a given flow target, collects and merges all  require_config.js  files found in widgets and controls   The task scans through all widget and control directories reachable from the given flow and collects all existing  require_config.js  files.\nIt is assumed that the configuration for the artifact is defined as a global  require  object in there.  Using the application  require_config.js  as a basis, a merged configuration for each flow will be generated under  {dest}/{target}/require_config.js .\nHere,  dest  refers to the configured destination directory (usually  var/flows ), and  target  corresponds to the flow target that was specified when running the task.", 
+            "title": "The laxar-merge-require-config Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-merge-require-config/#overview", 
+            "text": "Note:  This task is an  internal building block  used by the grunt-laxar main tasks, and not considered a part of the stable API.  Run this task with the  grunt laxar-configure laxar-merge-require-config:{target}  command.  The possible targets are determined by the configuration which is generated by the  laxar-configure  task.\nIf used without  laxar-configure , the task targets, files and options may be specified manually according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-resources/", 
+            "text": "The \nlaxar-resources\n Task\n\n\n\n\nFor a given flow target, finds static assets (JSON, CSS, HTML) from the artifacts model and produces a \nresources listing\n in JSON format.\n\n\n\n\nThe generated listing is used by the LaxarJS runtime to determine which resources are available.\nFor example, the runtime consults the listing to determine if a widget has CSS styles and an HTML template matching the current application theme, or if the default theme should be used instead.\nIf no listing is available, the runtime has to query for the existence of assets by using HTTP HEAD requests, which is annoying during development (slow, many 404 requests in the browser console) and simply unacceptable in production.\n\n\nFor an optimized experience in production, the resource listing embeds the actual resource contents where this makes sense (HTML, JSON), and can in turn be embedded into the application javascript bundle for best minification results.\nThe application template is configured for this by default.\n\n\nThe resources listing is stored under \n{dest}/{target}/resources.json\n.\nHere, \ndest\n refers to the configured destination directory (usually \nvar/flows\n), and \ntarget\n corresponds to the flow target that was specified when running the task.\n\n\nOverview\n\n\nNote:\n This task is an \ninternal building block\n used by the grunt-laxar main tasks, and not considered a part of the stable API.\n\n\nRun this task with the \ngrunt laxar-configure laxar-resources:{target}\n command.\n\n\nThe possible targets are determined by the configuration which is generated by the \nlaxar-configure\n task.\nIf used without \nlaxar-configure\n, the task targets, files and options may be specified manually according to the grunt\n\nConfiguring tasks\n guide.", 
+            "title": "internal-The <em>laxar-resources</em> Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-resources/#the-laxar-resources-task", 
+            "text": "For a given flow target, finds static assets (JSON, CSS, HTML) from the artifacts model and produces a  resources listing  in JSON format.   The generated listing is used by the LaxarJS runtime to determine which resources are available.\nFor example, the runtime consults the listing to determine if a widget has CSS styles and an HTML template matching the current application theme, or if the default theme should be used instead.\nIf no listing is available, the runtime has to query for the existence of assets by using HTTP HEAD requests, which is annoying during development (slow, many 404 requests in the browser console) and simply unacceptable in production.  For an optimized experience in production, the resource listing embeds the actual resource contents where this makes sense (HTML, JSON), and can in turn be embedded into the application javascript bundle for best minification results.\nThe application template is configured for this by default.  The resources listing is stored under  {dest}/{target}/resources.json .\nHere,  dest  refers to the configured destination directory (usually  var/flows ), and  target  corresponds to the flow target that was specified when running the task.", 
+            "title": "The laxar-resources Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-resources/#overview", 
+            "text": "Note:  This task is an  internal building block  used by the grunt-laxar main tasks, and not considered a part of the stable API.  Run this task with the  grunt laxar-configure laxar-resources:{target}  command.  The possible targets are determined by the configuration which is generated by the  laxar-configure  task.\nIf used without  laxar-configure , the task targets, files and options may be specified manually according to the grunt Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-test-configure-flow/", 
+            "text": "The \nlaxar-test-configure-flow\n Task\n\n\n\n\nFor a given flow target, configure widget tests.\n\n\n\n\nThis task collects all widgets for a flow and configures a target of the \nlaxar-test-widget-internal\n task for each of them.\n\n\nOverview\n\n\nNote:\n This task is an \ninternal building block\n used by the grunt-laxar main tasks, and not considered a part of the stable API.\n\n\nRun this task with the \ngrunt laxar-configure laxar-test-configure-flow:{target} laxar-test-widget-internal:{widget-path}\n command.\n\n\nThe possible targets are determined by the \nlaxar-test-configure-flow\n task.\nIf used without \nlaxar-configure\n, the task targets, files and options may be specified manually according to the grunt \nConfiguring tasks\n guide.", 
+            "title": "internal-The <em>laxar-test-configure-flow</em> Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-test-configure-flow/#the-laxar-test-configure-flow-task", 
+            "text": "For a given flow target, configure widget tests.   This task collects all widgets for a flow and configures a target of the  laxar-test-widget-internal  task for each of them.", 
+            "title": "The laxar-test-configure-flow Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-test-configure-flow/#overview", 
+            "text": "Note:  This task is an  internal building block  used by the grunt-laxar main tasks, and not considered a part of the stable API.  Run this task with the  grunt laxar-configure laxar-test-configure-flow:{target} laxar-test-widget-internal:{widget-path}  command.  The possible targets are determined by the  laxar-test-configure-flow  task.\nIf used without  laxar-configure , the task targets, files and options may be specified manually according to the grunt  Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-test-flow/", 
+            "text": "The \nlaxar-test-flow\n Task\n\n\n\n\nFor a given flow target, test the widgets used by the flow.\n\n\n\n\nThis task simply executes \nlaxar-test-configure-flow\n and  \nlaxar-test-widget-internal\n.\n\n\nOverview\n\n\nNote:\n This task is an \ninternal building block\n used by the grunt-laxar main tasks, and not considered a part of the stable API.\n\n\nRun this task with the \ngrunt laxar-configure laxar-test-flow:{target}\n command.\n\n\nThe possible targets are determined by the configuration which is generated by the \nlaxar-configure\n task.\nIf used without \nlaxar-configure\n, the task targets, files and options may be specified manually according to the grunt \nConfiguring tasks\n guide.", 
+            "title": "internal-The <em>laxar-test-flow</em> Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-test-flow/#the-laxar-test-flow-task", 
+            "text": "For a given flow target, test the widgets used by the flow.   This task simply executes  laxar-test-configure-flow  and   laxar-test-widget-internal .", 
+            "title": "The laxar-test-flow Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-test-flow/#overview", 
+            "text": "Note:  This task is an  internal building block  used by the grunt-laxar main tasks, and not considered a part of the stable API.  Run this task with the  grunt laxar-configure laxar-test-flow:{target}  command.  The possible targets are determined by the configuration which is generated by the  laxar-configure  task.\nIf used without  laxar-configure , the task targets, files and options may be specified manually according to the grunt  Configuring tasks  guide.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-test-widget-internal/", 
+            "text": "The \nlaxar-test-widget-internal\n Task\n\n\n\n\nFor a given flow widget, run spec tests\n\n\n\n\nThis task needs a configured target for each widget that it should be run for.\n\n\nOverview\n\n\nNote:\n This task is an \ninternal building block\n used by the grunt-laxar main tasks, and not considered a part of the stable API.\n\n\nRun this task with the \ngrunt laxar-configure laxar-test-widget-internal:{target}\n command.\n\n\nThe possible targets are determined by the configuration which is generated by the \nlaxar-configure\n task.\nIf used without \nlaxar-configure\n, the task targets, files and options may be specified manually according to the grunt \nConfiguring tasks\n guide.", 
+            "title": "internal-The <em>laxar-test-widget-internal</em> Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-test-widget-internal/#the-laxar-test-widget-internal-task", 
+            "text": "For a given flow widget, run spec tests   This task needs a configured target for each widget that it should be run for.", 
+            "title": "The laxar-test-widget-internal Task"
+        }, 
+        {
+            "location": "/tasks/internal/laxar-test-widget-internal/#overview", 
+            "text": "Note:  This task is an  internal building block  used by the grunt-laxar main tasks, and not considered a part of the stable API.  Run this task with the  grunt laxar-configure laxar-test-widget-internal:{target}  command.  The possible targets are determined by the configuration which is generated by the  laxar-configure  task.\nIf used without  laxar-configure , the task targets, files and options may be specified manually according to the grunt  Configuring tasks  guide.", 
+            "title": "Overview"
+        }
+    ]
+}

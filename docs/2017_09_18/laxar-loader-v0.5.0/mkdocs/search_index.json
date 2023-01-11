@@ -1,0 +1,84 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "laxar-loader \n\n\n\n\nwebpack loader for LaxarJS\n\n\n\n\nExample\n\n\nYou could use \nlaxar-loader\n directly, but since it does not need a specific entry\nmodule, we pre-rolled the \nartifacts\n entry point for you and placed it into this\nmodule. Import the entry point in your \ninit.js\n:\n\n\nimport\n \nartifacts\n \nfrom\n \nlaxar-loader/artifacts?flow=main\ntheme=rainbows-and-unicorns\n;\n\n\nimport\n \n{\n \nbootstrap\n \n}\n \nfrom\n \nlaxar\n;\n\n\n\n// ... later ...\n\n\n\nbootstrap\n(\n \nelement\n,\n \n{\n\n   \nwidgetAdapters\n,\n\n   \nconfiguration\n,\n\n   \nartifacts\n\n\n}\n \n);\n\n\n\n\n\n\nConfiguration\n\n\nPlace a \nlaxar.config.js\n file into your project root directory.\nThis is either the directory where your \nwebpack.config.js\n is, or the directory configured\nwith webpack's \ncontext\n option\n.\n\n\nThe \nlaxar.config.js\n file should look like this:\n\n\nmodule\n.\nexports\n \n=\n \n{\n\n   \npaths\n:\n \n{\n\n      \nflows\n:\n \n./path/to/flows\n,\n \n// default: \nflows\n\n      \nthemes\n:\n \n./path/to/themes\n,\n \n// default: \nthemes\n\n      \npages\n:\n \n./path/to/pages\n,\n \n// default: \npages\n\n      \nlayouts\n:\n \n./path/to/layouts\n,\n \n// default: \nlayouts\n\n      \nwidgets\n:\n \n./path/to/widgets\n,\n \n// default: \nwidgets\n\n      \ncontrols\n:\n \n./path/to/controls\n,\n \n// default: \ncontrols\n\n      \ndefault-theme\n:\n \n./path/to/default.theme\n\n   \n}\n\n\n};\n\n\n\n\n\n\nQuery options (aka the stuff after the \"?\")\n\n\n\n\n\n\n\n\nParameter\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\n?flow\n, \n?flows[]\n\n\nreference(s) to the flow(s) to bundle\n\n\n\n\n\n\n?theme\n, \n?themes[]\n\n\nreference(s) to the theme(s) to bundle\n\n\n\n\n\n\n?page\n, \n?pages[]\n\n\nreference(s) to the page(s) to bundle; can be omitted if pages are reachable from the flow\n\n\n\n\n\n\n?layout\n, \n?layouts[]\n\n\nreference(s) to the layout(s) to bundle; can be omitted if layouts are referenced in bundled pages\n\n\n\n\n\n\n?widget\n, \n?widgets[]\n\n\nreference(s) to the widget(s) to bundle; can be omitted if widgets are referenced in bundled pages\n\n\n\n\n\n\n?control\n, \n?controls[]\n\n\nreference(s) to the control(s) to bundle; can be omitted if controls are referenced in bundled widgets\n\n\n\n\n\n\n\n\nRefer to the \nwebpack documentation\n for details about the loader syntax.\n\n\nThe loaded artifacts listing can then be used to \nbootstrap LaxarJS\n.\n\n\nInteraction with other loaders\n\n\nWhen building the artifacts listing, the loader collects JSON, HTML and CSS files and generates\nrequire calls so they will be present in your webpack bundle. If no loaders are configured for the\nrequired files, \nlaxar-loader\n will use the \njson-loader\n for JSON files,\n\nraw-loader\n for HTML and will write out the resource path for CSS files.\n\n\nIf you want to leverage the power of webpack to pre-process these artifacts, just add your loaders to\nthe webpack configuration and they will be used to load the artifacts' assets. There are just a few rules\nyour loaders should obey:\n\n\n\n\nTemplate sources should be valid HTML strings after passing through your loaders.\n\n\nStyle sources should be URLs (\nfile-\n or \nurl-loader\n) or be loaded\n  outside \nLaxar\n via the \nstyle-loader\n.\n\n\n\n\nExample:\n\n\nmodule\n.\nexports\n \n=\n \n{\n\n   \nmodule\n:\n \n{\n\n      \nloaders\n:\n \n[\n\n         \n{\n\n            \ntest\n:\n \n/\\.(css|gif|jpe?g|png|ttf|woff2?|svg|eot|otf)(\\?.*)?$/\n,\n\n            \nloader\n:\n \nfile\n\n         \n},\n\n         \n{\n\n            \ntest\n:\n \n/\\.(gif|jpe?g|png|svg)$/\n,\n\n            \nloader\n:\n \nimg?progressive=true\n\n         \n},\n\n         \n{\n\n            \ntest\n:\n \n/\\.css$/\n,\n\n            \nloader\n:\n \nstyle!css\n\n         \n},\n\n         \n{\n\n            \ntest\n:\n \n/\\/default.theme\\/.*\\.scss$/\n,\n\n            \nloader\n:\n \nstyle!css!sass\n\n         \n},\n\n         \n{\n\n            \ntest\n:\n \n/\\/rainbows-and-unicorns\\.theme\\/.*\\.scss$/\n,\n\n            \nloader\n:\n \nstyle!css!sass?config=sassLoaderRainbows\n\n      \n]\n\n   \n},\n\n   \nfileLoader\n:\n \n{\n\n      \nname\n:\n \nassets/[name]-[sha1:hash:hex:6].[ext]\n\n   \n},\n\n   \nsassLoader\n:\n \n{\n\n      \nincludePaths\n:\n \n[\n\n         \n./themes/default.theme/scss\n,\n\n         \n./bower_components/bootstrap-sass-official/assets/stylesheets\n,\n\n         \n./bower_components\n\n      \n].\nmap\n(\n \np\n \n=\n \npath\n.\nresolve\n(\n \n__dirname\n,\n \np\n \n)\n \n)\n\n   \n},\n\n   \nsassLoaderRainbows\n:\n \n{\n\n      \nincludePaths\n:\n \n[\n\n         \n./themes/rainbows-and-unicorns.theme/scss\n,\n\n         \n./bower_components/bootstrap-sass-official/assets/stylesheets\n,\n\n         \n./bower_components\n\n      \n].\nmap\n(\n \np\n \n=\n \npath\n.\nresolve\n(\n \n__dirname\n,\n \np\n \n)\n \n)\n\n   \n}\n\n\n};", 
+            "title": "README"
+        }, 
+        {
+            "location": "/#laxar-loader", 
+            "text": "webpack loader for LaxarJS", 
+            "title": "laxar-loader"
+        }, 
+        {
+            "location": "/#example", 
+            "text": "You could use  laxar-loader  directly, but since it does not need a specific entry\nmodule, we pre-rolled the  artifacts  entry point for you and placed it into this\nmodule. Import the entry point in your  init.js :  import   artifacts   from   laxar-loader/artifacts?flow=main theme=rainbows-and-unicorns ;  import   {   bootstrap   }   from   laxar ;  // ... later ...  bootstrap (   element ,   { \n    widgetAdapters , \n    configuration , \n    artifacts  }   );", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/#configuration", 
+            "text": "Place a  laxar.config.js  file into your project root directory.\nThis is either the directory where your  webpack.config.js  is, or the directory configured\nwith webpack's  context  option .  The  laxar.config.js  file should look like this:  module . exports   =   { \n    paths :   { \n       flows :   ./path/to/flows ,   // default:  flows \n       themes :   ./path/to/themes ,   // default:  themes \n       pages :   ./path/to/pages ,   // default:  pages \n       layouts :   ./path/to/layouts ,   // default:  layouts \n       widgets :   ./path/to/widgets ,   // default:  widgets \n       controls :   ./path/to/controls ,   // default:  controls \n       default-theme :   ./path/to/default.theme \n    }  };", 
+            "title": "Configuration"
+        }, 
+        {
+            "location": "/#query-options-aka-the-stuff-after-the", 
+            "text": "Parameter  Description      ?flow ,  ?flows[]  reference(s) to the flow(s) to bundle    ?theme ,  ?themes[]  reference(s) to the theme(s) to bundle    ?page ,  ?pages[]  reference(s) to the page(s) to bundle; can be omitted if pages are reachable from the flow    ?layout ,  ?layouts[]  reference(s) to the layout(s) to bundle; can be omitted if layouts are referenced in bundled pages    ?widget ,  ?widgets[]  reference(s) to the widget(s) to bundle; can be omitted if widgets are referenced in bundled pages    ?control ,  ?controls[]  reference(s) to the control(s) to bundle; can be omitted if controls are referenced in bundled widgets     Refer to the  webpack documentation  for details about the loader syntax.  The loaded artifacts listing can then be used to  bootstrap LaxarJS .", 
+            "title": "Query options (aka the stuff after the \"?\")"
+        }, 
+        {
+            "location": "/#interaction-with-other-loaders", 
+            "text": "When building the artifacts listing, the loader collects JSON, HTML and CSS files and generates\nrequire calls so they will be present in your webpack bundle. If no loaders are configured for the\nrequired files,  laxar-loader  will use the  json-loader  for JSON files, raw-loader  for HTML and will write out the resource path for CSS files.  If you want to leverage the power of webpack to pre-process these artifacts, just add your loaders to\nthe webpack configuration and they will be used to load the artifacts' assets. There are just a few rules\nyour loaders should obey:   Template sources should be valid HTML strings after passing through your loaders.  Style sources should be URLs ( file-  or  url-loader ) or be loaded\n  outside  Laxar  via the  style-loader .   Example:  module . exports   =   { \n    module :   { \n       loaders :   [ \n          { \n             test :   /\\.(css|gif|jpe?g|png|ttf|woff2?|svg|eot|otf)(\\?.*)?$/ , \n             loader :   file \n          }, \n          { \n             test :   /\\.(gif|jpe?g|png|svg)$/ , \n             loader :   img?progressive=true \n          }, \n          { \n             test :   /\\.css$/ , \n             loader :   style!css \n          }, \n          { \n             test :   /\\/default.theme\\/.*\\.scss$/ , \n             loader :   style!css!sass \n          }, \n          { \n             test :   /\\/rainbows-and-unicorns\\.theme\\/.*\\.scss$/ , \n             loader :   style!css!sass?config=sassLoaderRainbows \n       ] \n    }, \n    fileLoader :   { \n       name :   assets/[name]-[sha1:hash:hex:6].[ext] \n    }, \n    sassLoader :   { \n       includePaths :   [ \n          ./themes/default.theme/scss , \n          ./bower_components/bootstrap-sass-official/assets/stylesheets , \n          ./bower_components \n       ]. map (   p   =   path . resolve (   __dirname ,   p   )   ) \n    }, \n    sassLoaderRainbows :   { \n       includePaths :   [ \n          ./themes/rainbows-and-unicorns.theme/scss , \n          ./bower_components/bootstrap-sass-official/assets/stylesheets , \n          ./bower_components \n       ]. map (   p   =   path . resolve (   __dirname ,   p   )   ) \n    }  };", 
+            "title": "Interaction with other loaders"
+        }, 
+        {
+            "location": "/CHANGELOG/", 
+            "text": "Changelog\n\n\nLast Changes\n\n\nv0.5.0\n\n\n\n\n#21\n: bump laxar-tooling version: pre-assemble pages at build-time\n\n\n\n\nv0.5.0-alpha.0\n\n\n\n\n\n\n#17\n: artifacts are now validation with JSON schema before they are serialized\n\n\n\n\nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n\n\n#16\n: updated to \nlaxar-tooling\n v0.5.0\n\n\n\n\nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n\n\n#15\n: handle webpack aliases ending in \n$\n properly\n\n\n\n\n#12\n: avoid getting module objects for artifact URLs\n\n\n#9\n: the webpack loader is now tested with TravisCI\n\n\n#14\n: avoid use of node's \nfs\n module in favor of webpack's input filesystem\n\n\n#13\n: throw an error when the \nlaxar.config\n can't be resolved, instead of timing out\n\n\n\n\nv0.4.1\n\n\n\n\n#10\n: fix loading of CSS files and \nassetUrls\n\n\n\n\nv0.4.0\n\n\n\n\n#8\n: read \nlaxar.config.js\n for path configuration, update to \nlaxar-tooling\n v0.4.1\n\n\n#7\n: resolve laxar-paths only at the beginning of the path\n\n\n#6\n: don't inject preceding loaders' output into artifact collector\n\n\n#5\n: provide the importable entry point \nlaxar-loader/artifacts\n\n\n\n\nv0.3.0\n\n\n\n\n#4\n: allow loading artifacts directly (instead of starting from the flow)\n\n\n\n\nv0.2.0\n\n\n\n\n#2\n: update to \nlaxar-tooling\n \nv0.3.0\n for artifact asset support\n\n\n#1\n: modified parameters to accept singular and plural variants (e.g. \nflow\n and \nflows[]\n)\n\n\n\n\nv0.1.0\n\n\n\n\ninitial version", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#changelog", 
+            "text": "", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#last-changes", 
+            "text": "", 
+            "title": "Last Changes"
+        }, 
+        {
+            "location": "/CHANGELOG/#v050", 
+            "text": "#21 : bump laxar-tooling version: pre-assemble pages at build-time", 
+            "title": "v0.5.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v050-alpha0", 
+            "text": "#17 : artifacts are now validation with JSON schema before they are serialized   BREAKING CHANGE:  see ticket for details     #16 : updated to  laxar-tooling  v0.5.0   BREAKING CHANGE:  see ticket for details     #15 : handle webpack aliases ending in  $  properly   #12 : avoid getting module objects for artifact URLs  #9 : the webpack loader is now tested with TravisCI  #14 : avoid use of node's  fs  module in favor of webpack's input filesystem  #13 : throw an error when the  laxar.config  can't be resolved, instead of timing out", 
+            "title": "v0.5.0-alpha.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v041", 
+            "text": "#10 : fix loading of CSS files and  assetUrls", 
+            "title": "v0.4.1"
+        }, 
+        {
+            "location": "/CHANGELOG/#v040", 
+            "text": "#8 : read  laxar.config.js  for path configuration, update to  laxar-tooling  v0.4.1  #7 : resolve laxar-paths only at the beginning of the path  #6 : don't inject preceding loaders' output into artifact collector  #5 : provide the importable entry point  laxar-loader/artifacts", 
+            "title": "v0.4.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v030", 
+            "text": "#4 : allow loading artifacts directly (instead of starting from the flow)", 
+            "title": "v0.3.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v020", 
+            "text": "#2 : update to  laxar-tooling   v0.3.0  for artifact asset support  #1 : modified parameters to accept singular and plural variants (e.g.  flow  and  flows[] )", 
+            "title": "v0.2.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v010", 
+            "text": "initial version", 
+            "title": "v0.1.0"
+        }
+    ]
+}

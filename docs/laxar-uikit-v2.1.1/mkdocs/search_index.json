@@ -1,0 +1,359 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "LaxarJS UiKit \n\n\n\n\nBootstrap 3 compatible base styles for LaxarJS widgets, plus a few i18n-UI helpers\n\n\n\n\nThis is the home of the \ndefault theme\n for LaxarJS.\nBased on the SCSS version of Bootstrap 3.3 together with Font Awesome 4.7, it contains only a small number of additional classes.\n\n\nAlso, this repository contains a number of JavaScript library functions, which are too UI-specific to be included into LaxarJS core.\nThey are mostly related to formatting and parsing of values (numbers, decimals, dates) in i18n applications.\nLearn what's in there for you, by consulting the \nAPI docs\n.\n\n\nOf course, the additional JavaScript code will only be bundled as part of your application if it actually imports the \nlaxar-uikit\n module.\n\n\nWhat is the default theme?\n\n\nSeveral types of artifacts in a LaxarJS application may be \nthemed\n, namely \nwidgets, controls\n and \nlayouts.\n\nThe CSS and HTML of such an artifact lives in a subfolder named after each theme that the artifacts support.\nHowever, to allow for reuse of artifacts in different applications, all artifacts should support at least the so-called \"default theme\".\nFor example, if a widget called \nmy-widget\n supports the default theme and the \ncube theme\n, it will use two folders (\nmy-widget/default.theme\n and \nmy-widget/cube.theme\n), and each folder may contain a CSS file and an HTML file for the widget.\n\n\nAlthough it has a few extra classes (those starting with the \nax-\n prefix), you may think of the default theme as \njust Bootstrap 3.\n\nWhen creating custom themes, it is recommended to use a Bootstrap-compatible set of classes, so that any widget can be themed without having to create new HTML markup.\nUsually, only the folder \ndefault.theme\n will contain the widget HTML, and the other theme folders just specify custom CSS when needed.\nIf your application is using a custom theme (such as the \ncube.theme\n), not all widgets need to specify custom CSS for that theme, because LaxarJS will always fall back to the default theme of a widget.\nRefer to the \nLaxarJS manual on themes\n for more information on themes.\n\n\nUsing LaxarJS UiKit in a project\n\n\nIncluding LaxarJS UiKit is currently recommended for any LaxarJS application, except if you're aiming to use a non-standard default theme (see below).\n\n\nStarting with LaxarJS v2, obtain the UiKit either by starting from the \nYeoman generator\n or by using NPM:\n\n\nnpm install --save laxar-uikit\n\n\n\n\n\n\nUsing the Library\n\n\nTo use the \nparser\n and \nformatter\n library functions, import them into a widget or control:\n\n\nimport\n \n{\n \nformatter\n \n}\n \nfrom\n \nlaxar-uikit\n;\n\n\n\nconst\n \nformat\n \n=\n \nformatter\n.\ncreate\n(\n \ndecimal\n,\n \n{\n \ndecimalPlaces\n:\n \n1\n \n}\n \n);\n\n\nformat\n(\n \nMath\n.\nPI\n \n);\n \n// --\n \n3.1\n\n\n\n\n\n\nOr, if using CommonJS modules:\n\n\nvar\n \nformatter\n \n=\n \nrequire\n(\n \nlaxar-uikit\n \n).\nformatter\n;\n\n\n// ...\n\n\n\n\n\n\nAnd, to use i18n:\n\n\nimport\n \n{\n \nlocalized\n \n}\n \nfrom\n \nlaxar-uikit\n;\n\n\n\nconst\n \naxI18n\n \n=\n \n// ... obtained by widget injection, depends on the integration technology\n\n\nconst\n \nformat\n \n=\n \nlocalized\n(\n \naxI18n\n \n).\nformatter\n.\ncreate\n(\n \ndecimal\n \n);\n\n\n// assuming the locale is \nde\n\n\nformat\n(\n \nMath\n.\nPI\n \n);\n \n// --\n \n3,14\n\n\n\n\n\n\nUsing the default.theme\n\n\nTo load the default theme, your loader (webpack) needs to be setup correctly.\nThis is already the case if you project was created using the LaxarJS v2 Yeoman generator.\n\n\nIf creating a project from scratch, first make sure you have the dependencies:\n\n\nnpm install --save-dev laxar-loader sass-loader\n\n\n\n\n\n\nThen add a \nresolve alias\n and a \nrule configuration\n for the default.theme:\n\n\n// webpack.config.js\n\n\nresolve\n:\n \n{\n\n   \n// ...,\n\n   \nalias\n:\n \n{\n\n      \n// ...,\n\n      \ndefault.theme\n:\n \nlaxar-uikit/themes/default.theme\n\n   \n}\n\n\n},\n\n\nmodule\n:\n \n{\n\n   \nrules\n:\n \n[\n\n      \n// ...,\n\n      \n{\n\n         \ntest\n:\n \n/[/]default[.]theme[/].*[.]s[ac]ss$/\n,\n\n         \nloader\n:\n \nsass-loader\n,\n\n         \noptions\n:\n \nrequire\n(\n \nlaxar-uikit/themes/default.theme/sass-options\n \n)\n\n      \n}\n\n   \n]\n\n\n}\n\n\n\n\n\n\nWhen using webpack and the \nlaxar-loader\n, the default theme will now be available for use in your application (through the \ninit.js\n):\n\n\n// init.js\n\n\nimport\n \n{\n \ncreate\n \n}\n \nfrom\n \nlaxar\n;\n\n\nimport\n \nartifacts\n \nfrom\n \nlaxar-loader/artifacts?flow=main\ntheme=default\n;\n\n\n\ncreate\n(\n \n[\n \n/* ... adapters ... */\n \n],\n \nartifacts\n,\n \n{\n \n/* ... configuration ... */\n \n}\n \n)\n\n   \n.\nflow\n(\n \nmain\n,\n \ndocument\n.\nquerySelector\n(\n \n[data-ax-page]\n \n)\n \n)\n\n   \n.\nbootstrap\n();\n\n\n\n\n\n\nUsing a custom default theme\n\n\nIn some cases, your application simply does not work with Bootstrap:\nFor example, if you're working with a legacy code base, your options may be limited.\nAlso, you may be producing a mobile-only application an incompatible CSS-framework such as \nmaterial design\n.\n\n\nYou can change to a different default theme by creating a module \nlaxar.config.js\n in your project root, and by setting its \ndefault.theme\n export to the path of your own default theme (which should be a directory named \ndefault.theme\n containing a folder \ncss\n and a \ntheme.css\n inside of that).\n\n\nOf course, now you need to make sure that all \ndefault.theme\n folders of your project's artifacts are compatible with you own default theme!\n\n\nBuilding LaxarJS UiKit from source\n\n\nInstead of using a pre-compiled library within a project, you can also clone this repository:\n\n\ngit clone https://github.com/LaxarJS/laxar-uikit.git\n\ncd\n laxar-uikit\nnpm install\n\n\n\n\n\nTo see changes in your application, configure your project to work with the sources (e.g. by using webpack), or \nrebuild\n the bundles:\n\n\nnpm run dist\n\n\n\n\n\nTo run the automated karma tests:\n\n\nnpm \ntest\n\n\n\n\n\n\nTo generate HTML spec runners for opening in your web browser, so that you can e.g. use the browser's developer tools:\n\n\nnpm start\n\n\n\n\n\nNow you can run the specs by browsing to http://localhost:8080/dist/lib/spec/laxar-uikit.spec.html.", 
+            "title": "README"
+        }, 
+        {
+            "location": "/#laxarjs-uikit", 
+            "text": "Bootstrap 3 compatible base styles for LaxarJS widgets, plus a few i18n-UI helpers   This is the home of the  default theme  for LaxarJS.\nBased on the SCSS version of Bootstrap 3.3 together with Font Awesome 4.7, it contains only a small number of additional classes.  Also, this repository contains a number of JavaScript library functions, which are too UI-specific to be included into LaxarJS core.\nThey are mostly related to formatting and parsing of values (numbers, decimals, dates) in i18n applications.\nLearn what's in there for you, by consulting the  API docs .  Of course, the additional JavaScript code will only be bundled as part of your application if it actually imports the  laxar-uikit  module.", 
+            "title": "LaxarJS UiKit"
+        }, 
+        {
+            "location": "/#what-is-the-default-theme", 
+            "text": "Several types of artifacts in a LaxarJS application may be  themed , namely  widgets, controls  and  layouts. \nThe CSS and HTML of such an artifact lives in a subfolder named after each theme that the artifacts support.\nHowever, to allow for reuse of artifacts in different applications, all artifacts should support at least the so-called \"default theme\".\nFor example, if a widget called  my-widget  supports the default theme and the  cube theme , it will use two folders ( my-widget/default.theme  and  my-widget/cube.theme ), and each folder may contain a CSS file and an HTML file for the widget.  Although it has a few extra classes (those starting with the  ax-  prefix), you may think of the default theme as  just Bootstrap 3. \nWhen creating custom themes, it is recommended to use a Bootstrap-compatible set of classes, so that any widget can be themed without having to create new HTML markup.\nUsually, only the folder  default.theme  will contain the widget HTML, and the other theme folders just specify custom CSS when needed.\nIf your application is using a custom theme (such as the  cube.theme ), not all widgets need to specify custom CSS for that theme, because LaxarJS will always fall back to the default theme of a widget.\nRefer to the  LaxarJS manual on themes  for more information on themes.", 
+            "title": "What is the default theme?"
+        }, 
+        {
+            "location": "/#using-laxarjs-uikit-in-a-project", 
+            "text": "Including LaxarJS UiKit is currently recommended for any LaxarJS application, except if you're aiming to use a non-standard default theme (see below).  Starting with LaxarJS v2, obtain the UiKit either by starting from the  Yeoman generator  or by using NPM:  npm install --save laxar-uikit", 
+            "title": "Using LaxarJS UiKit in a project"
+        }, 
+        {
+            "location": "/#using-the-library", 
+            "text": "To use the  parser  and  formatter  library functions, import them into a widget or control:  import   {   formatter   }   from   laxar-uikit ;  const   format   =   formatter . create (   decimal ,   {   decimalPlaces :   1   }   );  format (   Math . PI   );   // --   3.1   Or, if using CommonJS modules:  var   formatter   =   require (   laxar-uikit   ). formatter ;  // ...   And, to use i18n:  import   {   localized   }   from   laxar-uikit ;  const   axI18n   =   // ... obtained by widget injection, depends on the integration technology  const   format   =   localized (   axI18n   ). formatter . create (   decimal   );  // assuming the locale is  de  format (   Math . PI   );   // --   3,14", 
+            "title": "Using the Library"
+        }, 
+        {
+            "location": "/#using-the-defaulttheme", 
+            "text": "To load the default theme, your loader (webpack) needs to be setup correctly.\nThis is already the case if you project was created using the LaxarJS v2 Yeoman generator.  If creating a project from scratch, first make sure you have the dependencies:  npm install --save-dev laxar-loader sass-loader   Then add a  resolve alias  and a  rule configuration  for the default.theme:  // webpack.config.js  resolve :   { \n    // ..., \n    alias :   { \n       // ..., \n       default.theme :   laxar-uikit/themes/default.theme \n    }  },  module :   { \n    rules :   [ \n       // ..., \n       { \n          test :   /[/]default[.]theme[/].*[.]s[ac]ss$/ , \n          loader :   sass-loader , \n          options :   require (   laxar-uikit/themes/default.theme/sass-options   ) \n       } \n    ]  }   When using webpack and the  laxar-loader , the default theme will now be available for use in your application (through the  init.js ):  // init.js  import   {   create   }   from   laxar ;  import   artifacts   from   laxar-loader/artifacts?flow=main theme=default ;  create (   [   /* ... adapters ... */   ],   artifacts ,   {   /* ... configuration ... */   }   ) \n    . flow (   main ,   document . querySelector (   [data-ax-page]   )   ) \n    . bootstrap ();", 
+            "title": "Using the default.theme"
+        }, 
+        {
+            "location": "/#using-a-custom-default-theme", 
+            "text": "In some cases, your application simply does not work with Bootstrap:\nFor example, if you're working with a legacy code base, your options may be limited.\nAlso, you may be producing a mobile-only application an incompatible CSS-framework such as  material design .  You can change to a different default theme by creating a module  laxar.config.js  in your project root, and by setting its  default.theme  export to the path of your own default theme (which should be a directory named  default.theme  containing a folder  css  and a  theme.css  inside of that).  Of course, now you need to make sure that all  default.theme  folders of your project's artifacts are compatible with you own default theme!", 
+            "title": "Using a custom default theme"
+        }, 
+        {
+            "location": "/#building-laxarjs-uikit-from-source", 
+            "text": "Instead of using a pre-compiled library within a project, you can also clone this repository:  git clone https://github.com/LaxarJS/laxar-uikit.git cd  laxar-uikit\nnpm install  To see changes in your application, configure your project to work with the sources (e.g. by using webpack), or  rebuild  the bundles:  npm run dist  To run the automated karma tests:  npm  test   To generate HTML spec runners for opening in your web browser, so that you can e.g. use the browser's developer tools:  npm start  Now you can run the specs by browsing to http://localhost:8080/dist/lib/spec/laxar-uikit.spec.html.", 
+            "title": "Building LaxarJS UiKit from source"
+        }, 
+        {
+            "location": "/CHANGELOG/", 
+            "text": "Changelog\n\n\nLast Changes\n\n\nv2.1.1\n\n\n\n\n#158\n: date/time formatter: removed useless, possibly harmful global assignment\n\n\n\n\nv2.1.0\n\n\n\n\n#157\n: date/time formatter: support Date objects and full ISO-date as input\n        + NEW FEATURE: see ticket for details\n\n\n\n\nv2.0.0\n\n\n\n\n#155\n: i18n helper: fixed doc comments\n\n\n\n\nv2.0.0-rc.1\n\n\n\n\n#154\n: fixed dependencies in package.json\n\n\n\n\nv2.0.0-rc.0\n\n\n\n\n#153\n: updated infrastructure (Travis-CI/sauce labs)\n\n\n\n\nv2.0.0-beta.2\n\n\n\n\n#152\n: default.theme: revert \nstyleSource\n to plain CSS\n\n\n\n\nv2.0.0-beta.1\n\n\n\n\n#151\n: default.theme: added sass-options\n\n\n\n\nv2.0.0-beta.0\n\n\n\n\n#147\n: documentation: added main module API docs\n\n\n\n\nv2.0.0-alpha.5\n\n\n\n\n#150\n: parser: added additional date fallback formats\n\n\n\n\nv2.0.0-alpha.4\n\n\n\n\n#149\n: removed \ni18n\n\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\nv2.0.0-alpha.3\n\n\n\n\n#148\n: include \ndist/laxar-uikit.*\n in NPM package, add \nbrowser\n field to \npackage.json\n\n\n\n\nv2.0.0-alpha.2\n\n\n\n\n#141\n: updated dependencies to bootstrap 3.3.7, font-awesome 4.7.0, and moment 2.17.1\n\n\n#142\n: project: improved README.md\n\n\n#146\n: default.theme: added \ntheme.json\n descriptor\n\n\n\n\nv2.0.0-alpha.1\n\n\n\n\n#145\n: project: updated dev-dependencies, upgraded to webpack 2\n\n\n\n\n#139\n: removed \ndom.cssTransformPropertyName\n helper\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n#143\n: removed \ni18n.languageTagFromScope\n, fixed tests\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n#142\n: the compass dependency has been removed\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n#140\n: added missing glyphicons fonts to enable building from SCSS sources\n\n\n\n\n#138\n: adapted to changes due to removing angular in LaxarJS\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\nv2.0.0-alpha.0\n\n\n\n\n\n\n#135\n: adapted to changes due to removing angular in LaxarJS\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n#134\n: using locally installed jspm\n\n\n\n\n#133\n: testing: updated spec runners to Jasmine 2.4\n\n\n#132\n: transformed AMD modules to es2015 modules\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\nv1.1.0\n\n\n\n\n\n\n#130\n: styling: updated \nFontAwesome (v4.4)\n\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#129\n: tests: allow to execute spec-tests using a project RequireJS configuration\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#128\n: added Travis-CI build integration\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#124\n: api-doc: update generated api doc\n\n\n\n\n\n\nv1.0.0\n\n\n\n\n#123\n: documentation: fixed some minor issues\n\n\n\n\nv1.0.0-beta.0\n\n\n\n\n#116\n:  documentation: provided updated API doc for relevant modules\n\n\n\n\nv1.0.0-alpha.7\n\n\n\n\n\n\n#105\n: project: removed now-standalone controls\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n#121\n: project: renamed to laxar-uikit\n\n\n\n\n#122\n: require_config, bower: removed deps field and updated grunt-laxar\n\n\n\n\nv1.0.0-alpha.6\n\n\n\n\n#118\n: i18n: added as export to module\n\n\n#117\n: project: added missing license\n\n\n\n\nv1.0.0-alpha.5\n\n\n\n\n\n\n#115\n: axInput: exposed formatter and parser as public api of laxar uikit\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#114\n: axInput: removed some ie8 specific code\n\n\n\n\n\n\n#113\n: axPageFade: added axPageFade which had been removed from LaxarJS core (LaxarJS/laxar#181)\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#112\n: axInput, axTooltip: tooltip now reflects position change of anchor element.\n\n\n\n\n\n\nv1.0.0-alpha.4\n\n\n\n\n#110\n: styling: updated \nFontAwesome (v4.3)\n and \nBootstrap (v3.3)\n\n\n\n\n#108\n: footprint: removed \ndom.getComputedStyle\n\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\n#106\n: footprint: removed \ndom.ensureRenderingAndApply\n\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\nv1.0.0-alpha.3\n\n\n\n\n\n\n#45\n: axLocalize: do not require a localization when filtering primitive values\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#97\n: axInput: implemented ngModelOptions defaults for AngularJS 1.3.x\n\n\n\n\n#70\n: layer: remove requirement for jQuery UI.\n\n\n\n\nv1.0.0-alpha.2\n\n\n\n\n#96\n: axInput: added possibility to configure how a two digit year is interpreted.\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\nv1.0.0-alpha.1\n\n\n\n\n#98\n: axInput: fixed tests for upcoming usage of Angular 1.3.\n\n\n#102\n: refactoring: normalized AngularJS module and injection names\n\n\n\n\n#80\n: footprint: removed underscore dependency\n\n\n\n\n\n\n#107\n: cleanup: removed dist-task fragments from grunt- and package configuration\n\n\n\n\n\n\n#109\n: axInput: fixed another moment creation from string\n\n\n\n\n#104\n: axInput: fixed moment creation from string\n\n\n#101\n: layer: fixed random order of tabbable nodes.\n\n\n#100\n: axInput: fixed missing error class on syntax error when using AngularJS 1.3.\n\n\n#99\n: require_config: added jquery dependency shims for trunk8 and bootstrap-tooltip\n\n\n\n\nv0.21.0\n\n\n\n\n#94\n: axAffix: added missing require-configuration\n\n\n#93\n: default.theme: changed external encoding to \nutf-8\n\n        + NEW FEATURE: see ticket for details\n\n\n\n\nv0.20.0\n\n\n\n\n#91\n: axInput: fixed null-pointer in string length validation\n\n\n\n\n#90\n: axInput: added minimumLength validator for string values\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#92\n: axInput: decimalTruncation (variable length format)\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#88\n: default.theme: Fixed auto-prefixer configuration\n\n\n\n\n\n\nv0.19.0\n\n\n\n\n#87\n: axInput: Changed controller implementation to be compatible with AngularJS 1.3.\n\n\n#86\n: axInput: Fixed attaching multiple focusout handlers.\n\n\n#85\n: axInput: Fixed endless loop if grouping separator was set to empty.\n\n\n#84\n: axDatePicker: avoid unnecessary 404 requests for i18n\n\n\n#83\n: axDatePicker: performance: build calendar lazily\n\n\n#82\n: fix: removed console.log statement\n\n\n#81\n: axInput: performance: build tooltip lazily\n\n\n\n\nv0.18.0\n\n\n\n\n#79\n: refactoring: use \nlaxar.string\n instead of \nlaxar.text\n\n\n#78\n: axInput: be more strict when parsing dates\n\n\n\n\nv0.17.0\n\n\n\n\n\n\n#77\n: Added affix control\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#73\n: Updated jQuery UI to 1.11.1 and removed touch punch.\n        + \nBREAKING CHANGE:\n see ticket for details\n\n\n\n\n\n\nv0.16.0\n\n\n\n\n\n\n#76\n: Implemented directives for dynamic text truncation.\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#74\n: DatePicker: Fixed support for ngReadonly and ngDisabled.\n\n\n\n\n#72\n: Styling: Updated font awesome (v4.2) and bootstrap (v3.2)\n\n\n#71\n: Styling DatePicker: Fixed color definitions.\n\n\n\n\nv0.15.0\n\n\n\n\n#67\n: Styling: refactored default.theme\n\n\n\n\n#69\n: layer: allowed prevention of scrolling the body when showing.\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#68\n: fixed wrongly global assert in jshintrc.\n\n\n\n\n#66\n: fixed ont-size can change depending on disabled- or error-state\n\n\n#65\n: axAccordion: fixed unchecked call to $apply\n\n\n\n\nv0.14.0\n\n\n\n\n#60\n: portal, dom: deprecated dom.ensureRenderingAndApplyFunction and removed usage\n\n\n#64\n: tests: make sure PhantomJS is installed properly, before running spec tests.\n\n\n#63\n: Styling DatePicker: Highlighted current day\n\n\n#62\n: Styling: extend mixin to equal col height for different widths\n\n\n#61\n: axButtonList: fixed double click handling with debounce function\n\n\n\n\nv0.13.0\n\n\n\n\n#59\n: Fixed width of a single col in a row\n\n\n#58\n: Styling table: Fixed row selecton is not visible\n\n\n#57\n: Styling table: Added new table style (skeletal)\n\n\n\n\nv0.12.0\n\n\n\n\n#55\n: don't try to load \nwidget.json\n in laxar_uikit specs.\n\n\n#56\n: axConfirmButton: fixed initialization of html label\n\n\n#54\n: Styling confirm control: fixed unnecessary linebreak\n\n\n#53\n: Styling table: Refactored table cells with form elements\n\n\n#52\n: Styling buttons: refactored animation for busy state\n\n\n#51\n: Remove some obsolete NPM \ndevDependencies\n.\n\n\n#50\n: Removed expensive layout polling from axConfirmButton\n\n\n#49\n: Styling status classes: Refactored\n\n\n#48\n: Styling icons: customized icon size independent from font size\n\n\n#47\n: added missing require path mapping for jjv and jjve.\n\n\n\n\nv0.11.0\n\n\n\n\n#46\n: axDatePicker: Fixed wrong regional settings in Internet Explorer.\n\n\n#44\n: axInput: added support for checkboxes.\n\n\n#42\n: Styling global IE10: Fixed layout problems with input clear button\n\n\n#43\n: jshintrc: disabled enforcement of dot notation for object property access.\n\n\n#41\n: Styling table: Added border style support for sub rows\n\n\n#40\n: Styling table: Fixed vertical alignment of buttons in a table cell\n\n\n#39\n: Styling table: Fixed some variables can not be overwritten\n\n\n#38\n: axInput: fixed spec test in MSIE8\n\n\n#37\n: Added support for bootstrap table classes\n\n\n#36\n: axInput: documented configuration options under docs/manuals/configuration.md\n\n\n#35\n: Refactored third party dependencies\n\n\n\n\n#32\n: axInput: Allow to validate on focusout instead of on keypress\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#34\n: Fixed \naxDatepicker\n, which was breaking MSIE8 by trying to set the type attribute.\n\n\n\n\n\n\nv0.10.0\n\n\n\n\n#33\n: Improved styling of an input field with an unit sign\n\n\n\n\n#31\n: Added new validation behavior: display of errors to the user can now be deferred.\n        + NEW FEATURE: see ticket for details\n\n\n\n\n\n\n#30\n: Fix relative json messages imports (workaround for bug in requirejs-json plugin)\n\n\n\n\n#29\n: Added additional css class to increase space between cols\n\n\n#28\n: Added additional css class for two column layout\n\n\n#27\n: axDatePicker now warns if yearRange is used without minDate and maxDate\n\n\n#26\n: Added new css class to add space between two rows\n\n\n#25\n: Updated font awesome (4.1)\n\n\n#24\n: Fixed incorrect col indent for nested layouts\n\n\n#23\n: Fixed datepicker on axInput with changing locale.\n\n\n#22\n: Fixed icons depends on position of class ax-icon- or fa- in attribute.\n\n\n#21\n: Reduce complexity to overwrite variables.\n\n\n#20\n: Fixed ax-error class should work for labels.\n\n\n#19\n: Made axInputRequired work for radio buttons.\n\n\n#18\n: Fixed handling of axInputMinimum and axInputMaximum for empty field.\n\n\n#16\n: Fixed handling of axInputRequire by triggering re-validation on change.\n\n\n#17\n: Fixed boostrap horizontal form is not compatible with laxar uikit grid.\n\n\n#15\n: Fixed incomplete refresh of $viewValue after format change.\n\n\n#14\n: Fixed selection required error message for select boxes.\n\n\n#13\n: Code formatting, added license for font-awesome and removed max-width for popovers.\n\n\n#12\n: Moved colors form default.theme to laxar_uikit\n\n\n#11\n: Fixed bootstrap limit of form-inline rules for view-ports.\n\n\n#9\n: Update Bower from ~1.2.8 to ~1.3.3.\n\n\n#8\n: The axInput control now respects the scope locale for on-focus formatting.\n\n\n#7\n: Fixed grid depends on position of class col-lg in attribute.\n\n\n#6\n: Now the margin-top for a button variant (sm, xs) will calculate depending on bootstrap variants.\n\n\n#5\n: Removed console.log statements from text-ellipsis control.\n\n\n#4\n: Fixed table style with form elements.\n\n\n#3\n: Fixed spelling in grid classes.\n\n\n#1\n: Fixed compass environment for execution from bower components.", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#changelog", 
+            "text": "", 
+            "title": "Changelog"
+        }, 
+        {
+            "location": "/CHANGELOG/#last-changes", 
+            "text": "", 
+            "title": "Last Changes"
+        }, 
+        {
+            "location": "/CHANGELOG/#v211", 
+            "text": "#158 : date/time formatter: removed useless, possibly harmful global assignment", 
+            "title": "v2.1.1"
+        }, 
+        {
+            "location": "/CHANGELOG/#v210", 
+            "text": "#157 : date/time formatter: support Date objects and full ISO-date as input\n        + NEW FEATURE: see ticket for details", 
+            "title": "v2.1.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200", 
+            "text": "#155 : i18n helper: fixed doc comments", 
+            "title": "v2.0.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-rc1", 
+            "text": "#154 : fixed dependencies in package.json", 
+            "title": "v2.0.0-rc.1"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-rc0", 
+            "text": "#153 : updated infrastructure (Travis-CI/sauce labs)", 
+            "title": "v2.0.0-rc.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-beta2", 
+            "text": "#152 : default.theme: revert  styleSource  to plain CSS", 
+            "title": "v2.0.0-beta.2"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-beta1", 
+            "text": "#151 : default.theme: added sass-options", 
+            "title": "v2.0.0-beta.1"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-beta0", 
+            "text": "#147 : documentation: added main module API docs", 
+            "title": "v2.0.0-beta.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-alpha5", 
+            "text": "#150 : parser: added additional date fallback formats", 
+            "title": "v2.0.0-alpha.5"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-alpha4", 
+            "text": "#149 : removed  i18n \n        +  BREAKING CHANGE:  see ticket for details", 
+            "title": "v2.0.0-alpha.4"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-alpha3", 
+            "text": "#148 : include  dist/laxar-uikit.*  in NPM package, add  browser  field to  package.json", 
+            "title": "v2.0.0-alpha.3"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-alpha2", 
+            "text": "#141 : updated dependencies to bootstrap 3.3.7, font-awesome 4.7.0, and moment 2.17.1  #142 : project: improved README.md  #146 : default.theme: added  theme.json  descriptor", 
+            "title": "v2.0.0-alpha.2"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-alpha1", 
+            "text": "#145 : project: updated dev-dependencies, upgraded to webpack 2   #139 : removed  dom.cssTransformPropertyName  helper\n        +  BREAKING CHANGE:  see ticket for details    #143 : removed  i18n.languageTagFromScope , fixed tests\n        +  BREAKING CHANGE:  see ticket for details    #142 : the compass dependency has been removed\n        +  BREAKING CHANGE:  see ticket for details    #140 : added missing glyphicons fonts to enable building from SCSS sources   #138 : adapted to changes due to removing angular in LaxarJS\n        +  BREAKING CHANGE:  see ticket for details", 
+            "title": "v2.0.0-alpha.1"
+        }, 
+        {
+            "location": "/CHANGELOG/#v200-alpha0", 
+            "text": "#135 : adapted to changes due to removing angular in LaxarJS\n        +  BREAKING CHANGE:  see ticket for details    #134 : using locally installed jspm   #133 : testing: updated spec runners to Jasmine 2.4  #132 : transformed AMD modules to es2015 modules\n        +  BREAKING CHANGE:  see ticket for details", 
+            "title": "v2.0.0-alpha.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v110", 
+            "text": "#130 : styling: updated  FontAwesome (v4.4) \n        + NEW FEATURE: see ticket for details    #129 : tests: allow to execute spec-tests using a project RequireJS configuration\n        + NEW FEATURE: see ticket for details    #128 : added Travis-CI build integration\n        + NEW FEATURE: see ticket for details    #124 : api-doc: update generated api doc", 
+            "title": "v1.1.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100", 
+            "text": "#123 : documentation: fixed some minor issues", 
+            "title": "v1.0.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-beta0", 
+            "text": "#116 :  documentation: provided updated API doc for relevant modules", 
+            "title": "v1.0.0-beta.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-alpha7", 
+            "text": "#105 : project: removed now-standalone controls\n        +  BREAKING CHANGE:  see ticket for details    #121 : project: renamed to laxar-uikit   #122 : require_config, bower: removed deps field and updated grunt-laxar", 
+            "title": "v1.0.0-alpha.7"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-alpha6", 
+            "text": "#118 : i18n: added as export to module  #117 : project: added missing license", 
+            "title": "v1.0.0-alpha.6"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-alpha5", 
+            "text": "#115 : axInput: exposed formatter and parser as public api of laxar uikit\n        + NEW FEATURE: see ticket for details    #114 : axInput: removed some ie8 specific code    #113 : axPageFade: added axPageFade which had been removed from LaxarJS core (LaxarJS/laxar#181)\n        + NEW FEATURE: see ticket for details    #112 : axInput, axTooltip: tooltip now reflects position change of anchor element.", 
+            "title": "v1.0.0-alpha.5"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-alpha4", 
+            "text": "#110 : styling: updated  FontAwesome (v4.3)  and  Bootstrap (v3.3)   #108 : footprint: removed  dom.getComputedStyle \n        +  BREAKING CHANGE:  see ticket for details    #106 : footprint: removed  dom.ensureRenderingAndApply \n        +  BREAKING CHANGE:  see ticket for details", 
+            "title": "v1.0.0-alpha.4"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-alpha3", 
+            "text": "#45 : axLocalize: do not require a localization when filtering primitive values\n        + NEW FEATURE: see ticket for details    #97 : axInput: implemented ngModelOptions defaults for AngularJS 1.3.x   #70 : layer: remove requirement for jQuery UI.", 
+            "title": "v1.0.0-alpha.3"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-alpha2", 
+            "text": "#96 : axInput: added possibility to configure how a two digit year is interpreted.\n        +  BREAKING CHANGE:  see ticket for details", 
+            "title": "v1.0.0-alpha.2"
+        }, 
+        {
+            "location": "/CHANGELOG/#v100-alpha1", 
+            "text": "#98 : axInput: fixed tests for upcoming usage of Angular 1.3.  #102 : refactoring: normalized AngularJS module and injection names   #80 : footprint: removed underscore dependency    #107 : cleanup: removed dist-task fragments from grunt- and package configuration    #109 : axInput: fixed another moment creation from string   #104 : axInput: fixed moment creation from string  #101 : layer: fixed random order of tabbable nodes.  #100 : axInput: fixed missing error class on syntax error when using AngularJS 1.3.  #99 : require_config: added jquery dependency shims for trunk8 and bootstrap-tooltip", 
+            "title": "v1.0.0-alpha.1"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0210", 
+            "text": "#94 : axAffix: added missing require-configuration  #93 : default.theme: changed external encoding to  utf-8 \n        + NEW FEATURE: see ticket for details", 
+            "title": "v0.21.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0200", 
+            "text": "#91 : axInput: fixed null-pointer in string length validation   #90 : axInput: added minimumLength validator for string values\n        + NEW FEATURE: see ticket for details    #92 : axInput: decimalTruncation (variable length format)\n        + NEW FEATURE: see ticket for details    #88 : default.theme: Fixed auto-prefixer configuration", 
+            "title": "v0.20.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0190", 
+            "text": "#87 : axInput: Changed controller implementation to be compatible with AngularJS 1.3.  #86 : axInput: Fixed attaching multiple focusout handlers.  #85 : axInput: Fixed endless loop if grouping separator was set to empty.  #84 : axDatePicker: avoid unnecessary 404 requests for i18n  #83 : axDatePicker: performance: build calendar lazily  #82 : fix: removed console.log statement  #81 : axInput: performance: build tooltip lazily", 
+            "title": "v0.19.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0180", 
+            "text": "#79 : refactoring: use  laxar.string  instead of  laxar.text  #78 : axInput: be more strict when parsing dates", 
+            "title": "v0.18.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0170", 
+            "text": "#77 : Added affix control\n        + NEW FEATURE: see ticket for details    #73 : Updated jQuery UI to 1.11.1 and removed touch punch.\n        +  BREAKING CHANGE:  see ticket for details", 
+            "title": "v0.17.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0160", 
+            "text": "#76 : Implemented directives for dynamic text truncation.\n        + NEW FEATURE: see ticket for details    #74 : DatePicker: Fixed support for ngReadonly and ngDisabled.   #72 : Styling: Updated font awesome (v4.2) and bootstrap (v3.2)  #71 : Styling DatePicker: Fixed color definitions.", 
+            "title": "v0.16.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0150", 
+            "text": "#67 : Styling: refactored default.theme   #69 : layer: allowed prevention of scrolling the body when showing.\n        + NEW FEATURE: see ticket for details    #68 : fixed wrongly global assert in jshintrc.   #66 : fixed ont-size can change depending on disabled- or error-state  #65 : axAccordion: fixed unchecked call to $apply", 
+            "title": "v0.15.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0140", 
+            "text": "#60 : portal, dom: deprecated dom.ensureRenderingAndApplyFunction and removed usage  #64 : tests: make sure PhantomJS is installed properly, before running spec tests.  #63 : Styling DatePicker: Highlighted current day  #62 : Styling: extend mixin to equal col height for different widths  #61 : axButtonList: fixed double click handling with debounce function", 
+            "title": "v0.14.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0130", 
+            "text": "#59 : Fixed width of a single col in a row  #58 : Styling table: Fixed row selecton is not visible  #57 : Styling table: Added new table style (skeletal)", 
+            "title": "v0.13.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0120", 
+            "text": "#55 : don't try to load  widget.json  in laxar_uikit specs.  #56 : axConfirmButton: fixed initialization of html label  #54 : Styling confirm control: fixed unnecessary linebreak  #53 : Styling table: Refactored table cells with form elements  #52 : Styling buttons: refactored animation for busy state  #51 : Remove some obsolete NPM  devDependencies .  #50 : Removed expensive layout polling from axConfirmButton  #49 : Styling status classes: Refactored  #48 : Styling icons: customized icon size independent from font size  #47 : added missing require path mapping for jjv and jjve.", 
+            "title": "v0.12.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0110", 
+            "text": "#46 : axDatePicker: Fixed wrong regional settings in Internet Explorer.  #44 : axInput: added support for checkboxes.  #42 : Styling global IE10: Fixed layout problems with input clear button  #43 : jshintrc: disabled enforcement of dot notation for object property access.  #41 : Styling table: Added border style support for sub rows  #40 : Styling table: Fixed vertical alignment of buttons in a table cell  #39 : Styling table: Fixed some variables can not be overwritten  #38 : axInput: fixed spec test in MSIE8  #37 : Added support for bootstrap table classes  #36 : axInput: documented configuration options under docs/manuals/configuration.md  #35 : Refactored third party dependencies   #32 : axInput: Allow to validate on focusout instead of on keypress\n        + NEW FEATURE: see ticket for details    #34 : Fixed  axDatepicker , which was breaking MSIE8 by trying to set the type attribute.", 
+            "title": "v0.11.0"
+        }, 
+        {
+            "location": "/CHANGELOG/#v0100", 
+            "text": "#33 : Improved styling of an input field with an unit sign   #31 : Added new validation behavior: display of errors to the user can now be deferred.\n        + NEW FEATURE: see ticket for details    #30 : Fix relative json messages imports (workaround for bug in requirejs-json plugin)   #29 : Added additional css class to increase space between cols  #28 : Added additional css class for two column layout  #27 : axDatePicker now warns if yearRange is used without minDate and maxDate  #26 : Added new css class to add space between two rows  #25 : Updated font awesome (4.1)  #24 : Fixed incorrect col indent for nested layouts  #23 : Fixed datepicker on axInput with changing locale.  #22 : Fixed icons depends on position of class ax-icon- or fa- in attribute.  #21 : Reduce complexity to overwrite variables.  #20 : Fixed ax-error class should work for labels.  #19 : Made axInputRequired work for radio buttons.  #18 : Fixed handling of axInputMinimum and axInputMaximum for empty field.  #16 : Fixed handling of axInputRequire by triggering re-validation on change.  #17 : Fixed boostrap horizontal form is not compatible with laxar uikit grid.  #15 : Fixed incomplete refresh of $viewValue after format change.  #14 : Fixed selection required error message for select boxes.  #13 : Code formatting, added license for font-awesome and removed max-width for popovers.  #12 : Moved colors form default.theme to laxar_uikit  #11 : Fixed bootstrap limit of form-inline rules for view-ports.  #9 : Update Bower from ~1.2.8 to ~1.3.3.  #8 : The axInput control now respects the scope locale for on-focus formatting.  #7 : Fixed grid depends on position of class col-lg in attribute.  #6 : Now the margin-top for a button variant (sm, xs) will calculate depending on bootstrap variants.  #5 : Removed console.log statements from text-ellipsis control.  #4 : Fixed table style with form elements.  #3 : Fixed spelling in grid classes.  #1 : Fixed compass environment for execution from bower components.", 
+            "title": "v0.10.0"
+        }, 
+        {
+            "location": "/api/lib.formatter/", 
+            "text": "formatter\n\n\nA module for formatting values of different types to strings.\n\n\nContents\n\n\nModule Members\n\n\n\n\ncreate()\n\n\n\n\nModule Members\n\n\ncreate( type, optionalOptions )\n\n\nCreates a function to format values of a given type to a configurable string representations. If a\nvalue has the wrong type to be formatted using the configured \ntype\n, the format function throws a\n\nTypeError\n.\n\n\nWhen formatting values for display as date or time, the full datetime should always be passed if\navailable; either as a Date-object, or as a full \nISO 8601\n string,\nincluding timezone. To format a date without time or to format a time-of-day, the respective ISO-formatted\nportions can be passed instead, without TZ information.\nFinally, the string \"NOW\" can be used which always results in the current local date/time.\n\n\nAcceptable \ninput\n values for\n      - date: \n\"NOW\", new Date(), \"2014-03-22T14:52:03.444Z\", \"2014-03-22\"\n\n      - time: \n\"NOW\", new Date(), \"2014-03-22T14:52:03.444Z\", \"14:52:03\"\n\n\nThe formatter for type \n'string'\n simply triggers the \ntoString\n method of the given argument, while\n\nnull\n and \nundefined\n result in the empty string.\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\ntype\n\n\nString\n\n\nthe value type to create the formatter for. Can be one of \n'string'\n, \n'integer'\n, \n'decimal'\n, \n'date'\n and \n'time'\n\n\n\n\n\n\noptionalOptions\n\n\nObject\n\n\ndifferent options depending on the selected \ntype\n\n\n\n\n\n\noptionalOptions.groupingSeparator\n\n\nString\n\n\nthe character used for thousands separation. Applicable to types \ndecimal\n and \ninteger\n only. Default: \n','\n\n\n\n\n\n\noptionalOptions.decimalSeparator\n\n\nString\n\n\nthe character used for fraction part separation. Applicable to type \ndecimal\n only. Default: \n'.'\n\n\n\n\n\n\noptionalOptions.decimalPlaces\n\n\nNumber\n\n\nnumber of decimal places to keep in the formatted value. Applies rounding if necessary. Applicable to type \ndecimal\n only. Default: \n2\n\n\n\n\n\n\noptionalOptions.decimalTruncation\n\n\nString\n\n\nhow to treat insignificant decimal places (trailing zeros):\n- \n'FIXED'\n: uses a fraction length of exactly \ndecimalPlaces\n, padding with zeros\n- \n'BOUNDED'\n: uses a fraction length up to \ndecimalPlaces\n, no padding\n- \n'NONE'\n: unbounded fraction length (only limited by numeric precision), no padding Applicable to type \ndecimal\n only. Default: \n'FIXED'\n\n\n\n\n\n\noptionalOptions.dateFormat\n\n\nString\n\n\nthe format used to format date values with. Applicable to type \ndate\n only. Default: \n'M/D/YYYY'\n\n\n\n\n\n\noptionalOptions.timeFormat\n\n\nString\n\n\nthe format used to format time values with. Applicable to type \ntime\n only. Default: \n'H:m'\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nFunction\n\n\nthe format function as described above. Throws a \nTypeError\n if the provided value cannot be formatted using the configured \ntype", 
+            "title": "formatter"
+        }, 
+        {
+            "location": "/api/lib.formatter/#contents", 
+            "text": "Module Members   create()", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/lib.formatter/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/lib.formatter/#parameters", 
+            "text": "Property  Type  Description      type  String  the value type to create the formatter for. Can be one of  'string' ,  'integer' ,  'decimal' ,  'date'  and  'time'    optionalOptions  Object  different options depending on the selected  type    optionalOptions.groupingSeparator  String  the character used for thousands separation. Applicable to types  decimal  and  integer  only. Default:  ','    optionalOptions.decimalSeparator  String  the character used for fraction part separation. Applicable to type  decimal  only. Default:  '.'    optionalOptions.decimalPlaces  Number  number of decimal places to keep in the formatted value. Applies rounding if necessary. Applicable to type  decimal  only. Default:  2    optionalOptions.decimalTruncation  String  how to treat insignificant decimal places (trailing zeros): -  'FIXED' : uses a fraction length of exactly  decimalPlaces , padding with zeros -  'BOUNDED' : uses a fraction length up to  decimalPlaces , no padding -  'NONE' : unbounded fraction length (only limited by numeric precision), no padding Applicable to type  decimal  only. Default:  'FIXED'    optionalOptions.dateFormat  String  the format used to format date values with. Applicable to type  date  only. Default:  'M/D/YYYY'    optionalOptions.timeFormat  String  the format used to format time values with. Applicable to type  time  only. Default:  'H:m'", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/lib.formatter/#returns", 
+            "text": "Type  Description      Function  the format function as described above. Throws a  TypeError  if the provided value cannot be formatted using the configured  type", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/lib.i18n/", 
+            "text": "i18n\n\n\nSome utilities for working with i18n and finding the correct formats based on the configured language.\n\n\nContents\n\n\nModule Members\n\n\n\n\nmomentFormats()\n\n\nnumberFormats()\n\n\n\n\nModule Members\n\n\nmomentFormats()\n\n\nContains formats for usage with Moment.js indexed by a \nlanguageTag\n. The stored values are objects having\nthe properties \ndate\n and \ntime\n, each with an according format string.\n\n\nExample:\n\n\ni18n\n.\nupdate\n(\n \nde\n \n).\nthen\n(\n \n()\n \n=\n \n{\n\n   \naxI18n\n.\nlocalize\n(\n \nui\n.\ni18n\n.\nmomentFormats\n \n);\n \n// =\n { date: \nDD.MM.YYYY\n, time: \nHH:mm\n }\n\n\n}\n \n);\n\n\ni18n\n.\nupdate\n(\n \nen-gb\n \n).\nthen\n(\n \n()\n \n=\n \n{\n\n   \naxI18n\n.\nlocalize\n(\n \nui\n.\ni18n\n.\nmomentFormats\n \n);\n \n// =\n { date: \nDD/MM/YYYY\n, time: \nHH:mm\n }\n\n\n}\n \n);\n\n\ni18n\n.\nupdate\n(\n \nxy\n \n).\nthen\n(\n \n()\n \n=\n \n{\n\n  \naxI18n\n.\nlocalize\n(\n \nui\n.\ni18n\n.\nmomentFormats\n \n);\n \n// =\n undefined\n\n\n}\n \n);\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nObject\n\n\na map from language tag to formatting rules\n\n\n\n\n\n\n\n\nnumberFormats()\n\n\nContains number formatting characters indexed by a \nlanguageTag\n. The stored values are objects having\nthe properties \ng\n (grouping separator) and \nd\n (decimal separator), each with the according character\nto use for that language tag.\n\n\nExample:\n\n\ni18n\n.\nupdate\n(\n \nde\n \n).\nthen\n(\n \n()\n \n=\n \n{\n\n   \naxI18n\n.\nlocalize\n(\n \nui\n.\ni18n\n.\nnumberFormats\n \n);\n \n// =\n { g: \n.\n, d: \n,\n }\n\n\n}\n \n);\n\n\ni18n\n.\nupdate\n(\n \nen-gb\n \n).\nthen\n(\n \n()\n \n=\n \n{\n\n   \naxI18n\n.\nlocalize\n(\n \nui\n.\ni18n\n.\nnumberFormats\n \n);\n \n// =\n { g: \n,\n, d: \n.\n }\n\n\n}\n \n);\n\n\ni18n\n.\nupdate\n(\n \nxy\n \n).\nthen\n(\n \n()\n \n=\n \n{\n\n   \naxI18n\n.\nlocalize\n(\n \nui\n.\ni18n\n.\nnumberFormats\n \n);\n \n// =\n undefined\n\n\n}\n \n);\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nObject\n\n\na map from language tag to formatting rules", 
+            "title": "i18n"
+        }, 
+        {
+            "location": "/api/lib.i18n/#contents", 
+            "text": "Module Members   momentFormats()  numberFormats()", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/lib.i18n/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/lib.i18n/#returns", 
+            "text": "Type  Description      Object  a map from language tag to formatting rules", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/lib.i18n/#returns_1", 
+            "text": "Type  Description      Object  a map from language tag to formatting rules", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/laxar-uikit/", 
+            "text": "laxar-uikit\n\n\nProvides utilities for localized parsing and formatting of values in LaxarJS applications.\n\n\nContents\n\n\nTypes\n\n\n\n\nlaxar-uikit\n\n\nlaxar-uikit.formatter\n\n\nlaxar-uikit.formatter\n\n\nlaxar-uikit.options\n\n\nlaxar-uikit.localized()\n\n\n\n\n\n\n\n\nTypes\n\n\nlaxar-uikit\n\n\nlaxar-uikit.formatter \nObject\n\n\nProvides access to the default (non-localized) formatter.\nUse \nformatter.create()\n to obtain a formatting function.\n\n\nFor details, refer to the \nformatter API\n.\n\n\nlaxar-uikit.formatter \nObject\n\n\nProvides access to the default (non-localized) parser.\nUse \nparser.create()\n to obtain a formatting function.\n\n\nFor details, refer to the \nparser API\n.\n\n\nlaxar-uikit.options \nObject\n\n\nProvides access to the default (non-localized) options that can be used to \ncreate\n a formatter or\nparser.\n\n\nlaxar-uikit.localized(    a LaxarJS axI18n widget service, used to determine the correct localization for formatting/parsing )\n\n\nAllows to create localized UiKit module instances, to parse/format values for the user.\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\na LaxarJS axI18n widget service, used to determine the correct localization for formatting/parsing\n\n\nAxI18n\n\n\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nObject\n\n\nan object compatible to the UiKit module, but with localized formatter, parser and options properties", 
+            "title": "laxar-uikit"
+        }, 
+        {
+            "location": "/api/laxar-uikit/#contents", 
+            "text": "Types   laxar-uikit  laxar-uikit.formatter  laxar-uikit.formatter  laxar-uikit.options  laxar-uikit.localized()", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/laxar-uikit/#types", 
+            "text": "", 
+            "title": "Types"
+        }, 
+        {
+            "location": "/api/laxar-uikit/#parameters", 
+            "text": "Property  Type  Description      a LaxarJS axI18n widget service, used to determine the correct localization for formatting/parsing  AxI18n", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/laxar-uikit/#returns", 
+            "text": "Type  Description      Object  an object compatible to the UiKit module, but with localized formatter, parser and options properties", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/lib.parser/", 
+            "text": "parser\n\n\nA module for parsing strings to different value types.\n\n\nContents\n\n\nModule Members\n\n\n\n\nsuccess()\n\n\nerror()\n\n\ncreate()\n\n\n\n\nModule Members\n\n\nsuccess( value )\n\n\nCreates a successful parsing result. This is useful e.g. when writing tests.\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nvalue\n\n\n*\n\n\nthe parsing result\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nObject\n\n\nthe parsing result object of form \n{ ok: true, value: value }\n\n\n\n\n\n\n\n\nerror()\n\n\nCreates a failed parsing result. This is useful e.g. when writing tests.\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nObject\n\n\nthe parsing result object of form \n{ ok: false }\n\n\n\n\n\n\n\n\ncreate( type, optionalOptions )\n\n\nCreates a function for parsing strings to a value of the given type. The function only accepts the\nstring to parse as argument and returns an object yielding success or failure. The outcome can be\nread from the object's attribute \nok\n which is \ntrue\n in case parsing was successful, or \nfalse\n\notherwise. Additionally, when the string was parsed successfully as the a value of the given type,\nthe parsed value can be found under the attribute \nvalue\n.\n\n\nNote that results for types \ndate\n and \ntime\n are not returned as JavaScript type \nDate\n or wrapped\notherwise, but as simple \nISO 8601\n strings. Thus a possible\ndate would be \n'2014-03-12'\n and a time value \n'16:34:52'\n.\n\n\nThe parser for type \n'string'\n will always return a successful result with the given input as the\nresult's value.\n\n\nExample:\n\n\nSuccessful parsing:\n\n\nconst\n \nparse\n \n=\n \nparser\n.\ncreate\n(\n \ndecimal\n \n);\n\n\nparse\n(\n \n1,435.56\n \n);\n \n// -\n { ok: true, value: 1435.56 }\n\n\n\n\n\n\nFailed parsing:\n\n\nconst\n \nparse\n \n=\n \nparser\n.\ncreate\n(\n \ndate\n \n);\n\n\nparse\n(\n \nlaxar\n \n);\n \n// -\n { ok: false }\n\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nProperty\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\ntype\n\n\nString\n\n\nthe value type to create the parser for. Can be one of \n'string'\n, \n'integer'\n, \n'decimal'\n, \n'date'\n and \n'time'\n\n\n\n\n\n\noptionalOptions\n\n\nObject\n\n\ndifferent options depending on the selected \ntype\n\n\n\n\n\n\noptionalOptions.groupingSeparator\n\n\nString\n\n\nthe character used for thousands separation. Applicable to types \ndecimal\n and \ninteger\n only. Default: \n','\n\n\n\n\n\n\noptionalOptions.decimalSeparator\n\n\nString\n\n\nthe character used for fraction part separation. Applicable to type \ndecimal\n only. Default: \n'.'\n\n\n\n\n\n\noptionalOptions.dateFormat\n\n\nString\n\n\nthe expected format for dates to parse. If the input doesn't match this format, the \noptionalOptions.dateFallbackFormats\n are tried. Applicable to type \ndate\n only. Default: \n'M/D/YYYY'\n\n\n\n\n\n\noptionalOptions.dateFallbackFormats\n\n\nString\n\n\nformats to try, when parsing with the \noptionalOptions.dateFormat\n failed. Applicable to type \ndate\n only. Default: \n[ 'M/D/YY' ]\n\n\n\n\n\n\noptionalOptions.dateTwoDigitYearWrap\n\n\nNumber\n\n\nthe value to decide when parsing a two digit year, if the resulting year starts with \n19\n or with \n20\n. Any value below or equal to this number results in a year of the form 20xx, whereas any value above results in a year of the form 19xx. Applicable to type \ndate\n only. Default: \n68\n\n\n\n\n\n\noptionalOptions.timeFormat\n\n\nString\n\n\nthe expected format for times to parse. If the input doesn't match this format, the \noptionalOptions.timeFallbackFormats\n are tried. Applicable to type \ntime\n only. Default: \n'H:m'\n\n\n\n\n\n\noptionalOptions.timeFallbackFormats\n\n\nString\n\n\nformats to try, when parsing with the \noptionalOptions.timeFormat\n failed. Applicable to type \ntime\n only. Default: \n[ 'H', 'HHmm' ]\n\n\n\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nType\n\n\nDescription\n\n\n\n\n\n\n\n\n\n\nFunction\n\n\nthe parsing function as described above", 
+            "title": "parser"
+        }, 
+        {
+            "location": "/api/lib.parser/#contents", 
+            "text": "Module Members   success()  error()  create()", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/api/lib.parser/#module-members", 
+            "text": "", 
+            "title": "Module Members"
+        }, 
+        {
+            "location": "/api/lib.parser/#parameters", 
+            "text": "Property  Type  Description      value  *  the parsing result", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/lib.parser/#returns", 
+            "text": "Type  Description      Object  the parsing result object of form  { ok: true, value: value }", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/lib.parser/#returns_1", 
+            "text": "Type  Description      Object  the parsing result object of form  { ok: false }", 
+            "title": "Returns"
+        }, 
+        {
+            "location": "/api/lib.parser/#example", 
+            "text": "Successful parsing:  const   parse   =   parser . create (   decimal   );  parse (   1,435.56   );   // -  { ok: true, value: 1435.56 }   Failed parsing:  const   parse   =   parser . create (   date   );  parse (   laxar   );   // -  { ok: false }", 
+            "title": "Example:"
+        }, 
+        {
+            "location": "/api/lib.parser/#parameters_1", 
+            "text": "Property  Type  Description      type  String  the value type to create the parser for. Can be one of  'string' ,  'integer' ,  'decimal' ,  'date'  and  'time'    optionalOptions  Object  different options depending on the selected  type    optionalOptions.groupingSeparator  String  the character used for thousands separation. Applicable to types  decimal  and  integer  only. Default:  ','    optionalOptions.decimalSeparator  String  the character used for fraction part separation. Applicable to type  decimal  only. Default:  '.'    optionalOptions.dateFormat  String  the expected format for dates to parse. If the input doesn't match this format, the  optionalOptions.dateFallbackFormats  are tried. Applicable to type  date  only. Default:  'M/D/YYYY'    optionalOptions.dateFallbackFormats  String  formats to try, when parsing with the  optionalOptions.dateFormat  failed. Applicable to type  date  only. Default:  [ 'M/D/YY' ]    optionalOptions.dateTwoDigitYearWrap  Number  the value to decide when parsing a two digit year, if the resulting year starts with  19  or with  20 . Any value below or equal to this number results in a year of the form 20xx, whereas any value above results in a year of the form 19xx. Applicable to type  date  only. Default:  68    optionalOptions.timeFormat  String  the expected format for times to parse. If the input doesn't match this format, the  optionalOptions.timeFallbackFormats  are tried. Applicable to type  time  only. Default:  'H:m'    optionalOptions.timeFallbackFormats  String  formats to try, when parsing with the  optionalOptions.timeFormat  failed. Applicable to type  time  only. Default:  [ 'H', 'HHmm' ]", 
+            "title": "Parameters"
+        }, 
+        {
+            "location": "/api/lib.parser/#returns_2", 
+            "text": "Type  Description      Function  the parsing function as described above", 
+            "title": "Returns"
+        }
+    ]
+}

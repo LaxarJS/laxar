@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../laxar.theme/img/favicon.ico">
+        <title>LaxarJS Mocks  v2.0.0</title>
+
+        <link rel="stylesheet" href="../../../laxar.theme/css/pygments.css">
+        <link href="../../../laxar.theme/css/style.min.css" rel="stylesheet">
+
+    </head>
+
+    <body class="documentation">
+
+      <header class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header navbar-inverse">
+           <button class="navbar-toggle"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+            <!-- Main title -->
+            <a class="navbar-brand" href="http://www.laxarjs.org">
+               <span class="ax-laxar-logo">Laxar<span>JS</span></span>
+            </a>
+         </div>
+
+         <div class="navbar-collapse collapse navbar-inverse">
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         laxar-mocks <span class="caret"></span>
+      </a>
+         
+         <ul class="dropdown-menu">
+            
+            <li><a href="../../../laxar-latest">laxar</a></li>
+            
+            <li><a href="../../../laxar-patterns-latest">laxar-patterns</a></li>
+            
+            <li><a href="../../../laxar-uikit-latest">laxar-uikit</a></li>
+            
+            <li><a href="../../../laxar-mocks-latest">laxar-mocks</a></li>
+            
+            <li><a href="../../../laxar-loader-latest">laxar-loader</a></li>
+            
+            <li><a href="../../../laxar-tooling-latest">laxar-tooling</a></li>
+            
+            <li><a href="../../../laxar-angular-adapter-latest">laxar-angular-adapter</a></li>
+            
+            <li><a href="../../../laxar-angular2-adapter-latest">laxar-angular2-adapter</a></li>
+            
+            <li><a href="../../../laxar-react-adapter-latest">laxar-react-adapter</a></li>
+            
+            <li><a href="../../../laxar-vue-adapter-latest">laxar-vue-adapter</a></li>
+            
+            <li><a href="../../../generator-laxarjs-latest">generator-laxarjs</a></li>
+            
+            <li><a href="../../../generator-laxarjs2-latest">generator-laxarjs2</a></li>
+            
+            <li><a href="../../../grunt-laxar-latest">grunt-laxar</a></li>
+            
+         </ul>
+         
+   </li>
+</ul>
+            <ul class="nav navbar-nav nav-pills ax-dropdown">
+   <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+         v2.0.0 <span class="caret"></span>
+      </a>
+      
+      <ul class="dropdown-menu">
+         
+            <li class="ax-dropdown-headline">Latest</li>
+            
+               <li><a href="../../../laxar-mocks-v2-latest">v2.0.0</a></li>
+            
+               <li><a href="../../../laxar-mocks-v1-latest">v1.1.1</a></li>
+            
+               <li><a href="../../../laxar-mocks-v0-latest">v0.6.1</a></li>
+            
+            <li role="separator" class="divider"></li>
+         
+         <li class="ax-dropdown-headline">All Releases</li>
+         
+            <li><a href="../../../laxar-mocks-v2.0.0">v2.0.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v1.1.1">v1.1.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v1.1.0">v1.1.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v1.0.0">v1.0.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.6.1">v0.6.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.6.0">v0.6.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.5.1">v0.5.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.5.0">v0.5.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.4.1">v0.4.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.4.0">v0.4.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.3.1">v0.3.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.3.0">v0.3.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.2.2">v0.2.2</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.2.1">v0.2.1</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.2.0">v0.2.0</a></li>
+         
+            <li><a href="../../../laxar-mocks-v0.1.0">v0.1.0</a></li>
+         
+      </ul>
+      
+   </li>
+</ul>
+
+            <ul class="nav navbar-nav">
+               
+                  
+               
+                  
+                     <li >
+                        <a href="../../CHANGELOG/">Changelog</a>
+                     </li>
+                  
+               
+                  
+               
+                  
+               
+               
+                <!-- Repo link -->
+                
+                <li>
+                    <a class="ax-external" href="https://github.com/LaxarJS/laxar-mocks/tree/v2.0.0">
+                       <i class="fa fa-github"></i> GitHub
+                    </a>
+                </li>
+                
+            </ul>
+            <a class="ax-navbar-additional"
+               target="_blank"
+               href="http://laxarjs.github.io/widget-browser/#/widgetBrowser">Widgets</a>
+        </div>
+    </div>
+</header>
+
+      <div class="container content">
+        <div class="row">
+           <sidebar class="col-sm-4 col-xs-12"><div class="bs-sidebar hidden-print" role="complementary">
+   <h3>Documentation</h3>
+   <ul class="nav bs-sidenav">
+   
+      
+         
+            <li class="main"><a title="README" href="../..#start">README</a></li>
+         
+      
+   
+      
+         
+         
+      
+   
+      
+         <li class="main ax-collapse " >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="API"
+               data-toggle="collapse"
+               data-target="#API"
+               aria-expanded="false"
+               aria-controls="collapseExample">API <span class="caret"></span></a>
+
+            <ul class="nav subnav collapse"
+               id="API">
+               
+               <li >
+                  <a title="laxar-mocks" href="../../api/laxar-mocks/#start">laxar-mocks</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+      
+         <li class="main ax-collapse ax-active" >
+            <a class="ax-link"
+               href="javascript:void(0)"
+               title="Manuals"
+               data-toggle="collapse"
+               data-target="#Manuals"
+               aria-expanded="false"
+               aria-controls="collapseExample">Manuals <span class="caret"></span></a>
+
+            <ul class="nav subnav in"
+               id="Manuals">
+               
+               <li >
+                  <a title="Overview" href="../#start">Overview</a>
+               </li>
+               
+               <li >
+                  <a title="Coming from LaxarJS Mocks 1.x" href="../migration/#start">Coming from LaxarJS Mocks 1.x</a>
+               </li>
+               
+               <li class="ax-active">
+                  <a title="Introduction to LaxarJS Mocks" href="./#start">Introduction to LaxarJS Mocks</a>
+               </li>
+               
+               <li >
+                  <a title="Setup Instructions" href="../setup/#start">Setup Instructions</a>
+               </li>
+               
+            </ul>
+         </li>
+      
+   
+    </ul>
+</div></sidebar>
+           <main class="col-sm-8 col-xs-12 " role="main">
+
+<a name="start" class="ax-anchor"></a>
+<p><a href="../">« return to the manuals</a></p>
+<h1 id="introduction-to-laxarjs-mocks">Introduction to LaxarJS Mocks</h1>
+<p>Before going into details, we will introduce the testing framework by showing an example and use that to describe the individual steps usually found in a widget test.
+Coming from LaxarJS 1.x, the <a href="../migration/">migration guide</a> may help.
+If you are already familiar with the basics, you may want to browse the <a href="../../api/laxar-mocks/">API docs</a> instead.</p>
+<h2 id="an-example-test">An Example Test</h2>
+<p>The following is a simple test for a <em>plain</em> widget.
+Consult your adapter's documentation to find any additional information for your integration technology.</p>
+<p>Below the example, each of the enumerated points is described in more detail.
+Note that some of the steps are optional, depending on your testing needs.</p>
+<div class="codehilite"><pre><span class="c1">// 1. Module Definition, Imports</span>
+<span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">axMocks</span> <span class="nx">from</span> <span class="s1">&#39;laxar-mocks&#39;</span><span class="p">;</span>
+
+<span class="nx">describe</span><span class="p">(</span> <span class="s1">&#39;An example-widget&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+
+   <span class="c1">// 2. Testbed Setup, creates axMocks.widget for the widget under test</span>
+   <span class="nx">beforeEach</span><span class="p">(</span> <span class="nx">axMocks</span><span class="p">.</span><span class="nx">setupForWidget</span><span class="p">()</span> <span class="p">);</span>
+
+   <span class="nx">beforeEach</span><span class="p">(</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">// 3. Widget Configuration (as needed by the widget)</span>
+      <span class="nx">axMocks</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">configure</span><span class="p">(</span> <span class="p">{</span>
+         <span class="nx">example</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">resource</span><span class="o">:</span> <span class="s1">&#39;exampleResource&#39;</span><span class="p">,</span>
+            <span class="nx">action</span><span class="o">:</span> <span class="s1">&#39;exampleAction&#39;</span>
+         <span class="p">}</span>
+      <span class="p">}</span> <span class="p">);</span>
+
+      <span class="c1">// 4. Optional: Configuring and/or Replacing Widget Services</span>
+      <span class="nx">axMocks</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">whenServicesAvailable</span><span class="p">(</span> <span class="nx">services</span> <span class="o">=&gt;</span> <span class="p">{</span>
+         <span class="nx">services</span><span class="p">.</span><span class="nx">axFlowService</span><span class="p">.</span><span class="nx">constructAbsoluteUrl</span>
+            <span class="p">.</span><span class="nx">and</span><span class="p">.</span><span class="nx">callFake</span><span class="p">(</span> <span class="nx">target</span> <span class="o">=&gt;</span> <span class="nx">target</span> <span class="o">===</span> <span class="s1">&#39;next&#39;</span> <span class="o">?</span> <span class="s1">&#39;/step2&#39;</span> <span class="o">:</span> <span class="s1">&#39;/default&#39;</span> <span class="p">);</span>
+         <span class="nx">services</span><span class="p">.</span><span class="nx">axId</span> <span class="o">=</span> <span class="nx">suffix</span> <span class="o">=&gt;</span> <span class="err">`</span><span class="nx">ABC</span><span class="o">-</span><span class="nx">$</span><span class="p">{</span><span class="nx">suffix</span><span class="p">}</span><span class="err">`</span><span class="p">;</span>
+      <span class="p">}</span> <span class="p">);</span>
+   <span class="p">}</span> <span class="p">);</span>
+
+   <span class="c1">// 5. Loading the Widget, and instantiating the controller</span>
+   <span class="nx">beforeEach</span><span class="p">(</span> <span class="nx">axMocks</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">load</span> <span class="p">);</span>
+
+   <span class="c1">// 6.  Optional: Simulating Startup Events</span>
+   <span class="nx">beforeEach</span><span class="p">(</span> <span class="nx">axMocks</span><span class="p">.</span><span class="nx">triggerStartupEvents</span> <span class="p">);</span>
+
+   <span class="c1">// 7. Optional: Rendering the Widget DOM</span>
+   <span class="kd">let</span> <span class="nx">widgetDom</span><span class="p">;</span>
+   <span class="nx">beforeEach</span><span class="p">(</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="nx">widgetDom</span> <span class="o">=</span> <span class="nx">axMocks</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span> <span class="p">}</span> <span class="p">);</span>
+
+   <span class="c1">// 8. Tests</span>
+   <span class="nx">it</span><span class="p">(</span> <span class="s1">&#39;subscribes to didReplace events for the example resource&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">expect</span><span class="p">(</span> <span class="nx">axMocks</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">axEventBus</span><span class="p">.</span><span class="nx">subscribe</span> <span class="p">)</span>
+         <span class="p">.</span><span class="nx">toHaveBeenCalledWith</span><span class="p">(</span> <span class="s1">&#39;didReplace.exampleResource&#39;</span><span class="p">,</span> <span class="nx">jasmine</span><span class="p">.</span><span class="nx">any</span><span class="p">(</span> <span class="nb">Function</span> <span class="p">)</span> <span class="p">);</span>
+   <span class="p">}</span> <span class="p">);</span>
+
+   <span class="nx">it</span><span class="p">(</span> <span class="s1">&#39;uses the flow service to generate a &quot;next&quot; link&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">expect</span><span class="p">(</span> <span class="nx">axMocks</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">axFlowService</span><span class="p">.</span><span class="nx">constructAbsoluteUrl</span> <span class="p">)</span>
+         <span class="p">.</span><span class="nx">toHaveBeenCalledWith</span><span class="p">(</span> <span class="s1">&#39;next&#39;</span><span class="p">,</span> <span class="p">{}</span> <span class="p">);</span>
+   <span class="p">}</span> <span class="p">);</span>
+
+   <span class="c1">// 9. Optional: DOM-Tests</span>
+   <span class="nx">it</span><span class="p">(</span> <span class="s1">&#39;renders a link refering to the &quot;next&quot; target&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">expect</span><span class="p">(</span> <span class="nx">widgetDom</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span> <span class="s1">&#39;a&#39;</span> <span class="p">).</span><span class="nx">href</span> <span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span> <span class="s1">&#39;/step2&#39;</span> <span class="p">);</span>
+   <span class="p">}</span> <span class="p">);</span>
+
+   <span class="nx">it</span><span class="p">(</span> <span class="s1">&#39;renders an input with matching label&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">expect</span><span class="p">(</span> <span class="nx">widgetDom</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span> <span class="s1">&#39;input&#39;</span> <span class="p">).</span><span class="nx">id</span> <span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span> <span class="s1">&#39;ABC-myInput&#39;</span> <span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span> <span class="nx">widgetDom</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span> <span class="s1">&#39;label&#39;</span> <span class="p">).</span><span class="k">for</span> <span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span> <span class="s1">&#39;ABC-myInput&#39;</span> <span class="p">);</span>
+   <span class="p">}</span> <span class="p">);</span>
+
+   <span class="c1">// 10. Testbed Tear-Down</span>
+   <span class="nx">afterEach</span><span class="p">(</span> <span class="nx">axMocks</span><span class="p">.</span><span class="nx">tearDown</span> <span class="p">);</span>
+
+<span class="p">}</span> <span class="p">);</span>
+</pre></div>
+
+
+<p>The individual steps are explained below in more detail.</p>
+<h2 id="1-module-definition-imports">1. Module Definition, Imports</h2>
+<p>For simplicity, this test is written as an ES2015 module, but other styles (CommonJS, AMD) should work just fine.
+The LaxarJS spec-loader takes care of loading the widget itself and its dependencies, such as controls.</p>
+<h2 id="2-testbed-setup">2. Testbed Setup</h2>
+<p>LaxarJS mocks has already been provisioned with information on the widget's assets, so no arguments need to be passed here
+To spare the user from handling of asynchronous tasks in the <em>Jasmine</em> environment, <code>axMocks.setupForWidget()</code> returns an asynchronous function suitable for use with <code>beforeEach</code>, so the parentheses <em>must not</em> be removed.</p>
+<h2 id="3-widget-configuration">3. Widget Configuration</h2>
+<p>Next, we configure the features of the widget instance.
+The same information that you would configure as <code>features</code> within a page when developing an application can be passed to the method <code>axMocks.widget.configure</code>.
+For convenience it's also possible to use an <em>attribute path</em> together with a single value as arguments.
+This is especially useful if the widget gets pre-configured in an outer <code>describe</code> block and is adjusted deeper in a nested structure.</p>
+<p>This means that alternatively we could have written:</p>
+<div class="codehilite"><pre><span class="nx">beforeEach</span><span class="p">(</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+   <span class="nx">axMocks</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">configure</span><span class="p">(</span> <span class="s1">&#39;example.resource&#39;</span><span class="p">,</span> <span class="s1">&#39;exampleResource&#39;</span> <span class="p">);</span>
+   <span class="nx">axMocks</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">configure</span><span class="p">(</span> <span class="s1">&#39;example.action&#39;</span><span class="p">,</span> <span class="s1">&#39;exampleAction&#39;</span> <span class="p">);</span>
+<span class="p">}</span> <span class="p">);</span>
+</pre></div>
+
+
+<h2 id="4-optional-configuring-andor-replacing-widget-services">4. <em>Optional:</em> Configuring and/or Replacing Widget Services</h2>
+<p>Next, some of the LaxarJS widget services are modified for the test.
+Because LaxarJS Mocks automatically injects service mocks with appropriate Jasmine spies for all widget services provided by LaxarJS, you will often be able to skip this step.
+In this case, we'd like to test the URLs generated by the widget, so we modify the <code>axFlowService</code> mock to generate URLs of our choosing, that we can check against our expectations below.</p>
+<p><em>Note</em> that this callback has to complete <em>synchronously</em>.
+You cannot complete the surrounding <code>beforeEach</code> block by calling its <code>done</code> parameter from this callback because LaxarJS Mocks <em>only stores</em> the callback for now, and will only run it when <code>axMocks.widget.load</code> is called.</p>
+<h2 id="5-loading-the-widget">5. Loading the Widget</h2>
+<p>Here we tell LaxarJS to actually instantiate the widget controller.
+Since the API of the LaxarJS widget loader is asynchronous, the <code>axMocks.widget.load</code> method is asynchronous as well and thus expects a <em>Jasmine</em> <code>done</code> callback.
+Again, to keep tests simple, <code>load</code> doesn't need to be called directly, but can be passed directly to <code>beforeEach</code>.
+Make sure to load the widget only <em>after</em> all configuration and service mocks have been prepared, because afterwards calls to <code>axMocks.widget.configure</code> and <code>axMocks.widget.whenServicesAvailable</code> will have no effect.</p>
+<h2 id="6-optional-simulating-startup-events">6. <em>Optional:</em> Simulating Startup Events</h2>
+<p>When a page is loaded within a <em>LaxarJS</em> application, the runtime publishes several <em>lifecycle events</em>.
+Many widgets don't actually care for these events and only subscribe to custom events such as <em>didReplace</em> or <em>takeActionRequest</em>.
+Other widgets may depend on <a href="http://laxarjs.org/docs/laxar-latest/manuals/events/#pattern-reference">core events</a> like <em>didChangeLocale</em> or <em>didNavigate</em> with certain parameters.</p>
+<p>For testing a widget's response to core events without duplicating too much of the associated logic within every test, the function <code>axMocks.triggerStartupEvents</code> publishes all events that the runtime would publish, in the same order.</p>
+<p>The method also allows to modify these events or skip some of them completely.
+For further information on event configuration have a look at the <a href="../../api/laxar-mocks/#triggerStartupEvents">API docs</a>.</p>
+<h2 id="7-optional-rendering-the-widget-dom">7. <em>Optional:</em> Rendering the Widget DOM</h2>
+<p>Naturally this step does not apply to activities, since they do not influence the DOM and in particular have no visual representation.
+Calling <code>axMocks.widget.render()</code> for activities isn't harmful, but simply has no effect.</p>
+<p>For widgets, their template is processed by the underlying technology adapter, wrapped in a <code>DIV</code> element and the resulting DOM node returned.
+This is not different from the rendering process in a regular application.
+Instead of appending the DOM to a widget area, it is appended to the body element of the test.
+It is removed again before the next test run would render its DOM or when calling <code>axMocks.tearDown</code>.</p>
+<h2 id="8-tests">8. Tests</h2>
+<p>Now you're set up to write your actual tests.
+At this point the widget controller is instantiated, the (optional) DOM fragment has been rendered and all relevant runtime events were published.</p>
+<p>Probably you want to group your tests into functional use cases via <em>Jasmine</em> <code>describe</code> functions.
+In this case it is sometimes a good thing to postpone the calls to <code>axMocks.widget.load</code>, <code>axMocks.widget.render</code> and <code>axMocks.triggerStartupEvents</code>.
+This allows you to structure the test in isolated <code>describe</code> blocks, to adjust configuration and service mocks for each block as needed and only afterwards to actually instantiate the widget and fire up your tests.</p>
+<h2 id="9-optional-dom-tests">9. <em>Optional:</em> DOM-Tests</h2>
+<p>Using the DOM rendered in step 8, you can now run DOM-tests to check your widget's HTML representation.
+This is only relevant for widgets that you would like to write DOM-tests for.
+We recommend using the standard DOM APIs for this, but nothing prevents you from using a helper library such as jQuery.</p>
+<h2 id="10-testbed-tear-down">10. Testbed Tear-Down</h2>
+<p>Every widget test should call <code>axMocks.tearDown</code> in a <em>Jasmine</em> <code>afterEach</code> block or simply pass it to <code>afterEach</code> as a callback.
+This ensures that after each test run the DOM is cleaned up and the widget with all its dependencies is destroyed.
+If this is omitted, it cannot be guaranteed previous test runs do not influence the current test run.</p>
+<p>Note that you should <em>avoid changing global state</em> in your widget module, as LaxarJS Mocks cannot detect nor revert those changes during tear-down.
+However, side-effecting widget services such as <code>axStorage</code> are provided as mocks and are automatically reset between test runs.</p>
+<h2 id="more-information">More Information</h2>
+<p>For more in-depth documentation, refer to the <a href="../../api/laxar-mocks/">API docs</a>.</p></main>
+        </div>
+      </div>
+
+      <footer>
+   <div class="container">
+      <div class="ax-copyright">
+         <span>
+            
+         </span>
+
+         <ul class="ax-social">
+            
+               <li><a class="fa fa-twitter-square" target="_blank" href="https://twitter.com/laxarjs"></a></li>
+            
+            
+               <li><a class="fa fa-rss-square" target="_blank" title="Subscribe to our RSS-feed" href="http://laxarjs.org/rss"></a></li>
+            
+         </ul>
+      </div>
+   </div>
+</footer>
+
+      <script src="../../../laxar.theme/js/jquery-1.10.2.min.js"></script>
+      <script src="../../../laxar.theme/js/bootstrap-3.0.3.min.js"></script>
+      <script src="../../../laxar.theme/js/base.js"></script>
+   </body>
+</html>
